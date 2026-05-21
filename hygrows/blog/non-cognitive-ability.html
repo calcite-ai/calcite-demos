@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>非認知能力とは？ | H&Y Grows Lab Blog</title>
+  <link rel="stylesheet" href="../style.css">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Noto+Sans+JP:wght@300;400;500;700&family=Zen+Maru+Gothic:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    /* Blog Article Specific Styles */
+    .article-header {
+      padding: 120px 20px 40px;
+      background: var(--bg-cream, #FFF9F5);
+    }
+
+    .article-header .container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .article-category {
+      display: inline-block;
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--primary, #2EBAC6);
+      background: var(--bg-light, #F0F8FA);
+      padding: 4px 16px;
+      border-radius: 20px;
+      margin-bottom: 16px;
+    }
+
+    .article-title {
+      font-family: 'Zen Maru Gothic', 'Noto Sans JP', sans-serif;
+      font-size: clamp(1.5rem, 3.5vw, 2.2rem);
+      font-weight: 700;
+      color: var(--text-dark, #2D3436);
+      line-height: 1.6;
+      margin-bottom: 16px;
+    }
+
+    .article-date {
+      font-family: 'DM Sans', 'Noto Sans JP', sans-serif;
+      font-size: 0.85rem;
+      color: var(--text-light, #636E72);
+    }
+
+    .article-featured-image {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .article-featured-image img {
+      width: 100%;
+      border-radius: 16px;
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
+    }
+
+    /* Article Body */
+    .article-body {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 48px 20px 80px;
+    }
+
+    .article-body p {
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 1rem;
+      color: var(--text-dark, #2D3436);
+      line-height: 2;
+      margin-bottom: 24px;
+    }
+
+    /* Related Articles */
+    .related-section {
+      padding: 60px 20px 100px;
+      background: var(--bg-light, #F0F8FA);
+    }
+
+    .related-section .section-title {
+      text-align: center;
+      font-family: 'Zen Maru Gothic', 'Noto Sans JP', sans-serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--text-dark, #2D3436);
+      margin-bottom: 40px;
+    }
+
+    .related-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 32px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .blog-card {
+      background: #fff;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.04);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+    }
+
+    .blog-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+    }
+
+    .blog-card-image {
+      width: 100%;
+      aspect-ratio: 16 / 10;
+      overflow: hidden;
+      background: var(--bg-light, #F0F8FA);
+    }
+
+    .blog-card-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+
+    .blog-card:hover .blog-card-image img {
+      transform: scale(1.05);
+    }
+
+    .blog-card-body {
+      padding: 20px 24px 24px;
+    }
+
+    .blog-card-category {
+      display: inline-block;
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: var(--primary, #2EBAC6);
+      background: var(--bg-light, #F0F8FA);
+      padding: 4px 12px;
+      border-radius: 20px;
+      margin-bottom: 12px;
+    }
+
+    .blog-card-title {
+      font-family: 'Zen Maru Gothic', 'Noto Sans JP', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text-dark, #2D3436);
+      line-height: 1.7;
+      margin-bottom: 12px;
+    }
+
+    .blog-card-date {
+      font-family: 'DM Sans', 'Noto Sans JP', sans-serif;
+      font-size: 0.8rem;
+      color: var(--text-light, #636E72);
+    }
+
+    @media (max-width: 640px) {
+      .related-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="header" id="header">
+    <div class="header-inner container">
+      <a href="../index.html" class="logo">
+        <img src="../img/logo.png" alt="H&Y Grows Lab">
+      </a>
+      <button class="hamburger" id="hamburger" aria-label="メニューを開く">
+        <span></span><span></span><span></span>
+      </button>
+      <nav class="gnav" id="gnav">
+        <a href="../index.html">Home</a>
+        <a href="../aboutus.html">About Us</a>
+        <a href="../product.html">Product</a>
+        <a href="../services.html">Services</a>
+        <a href="../blog.html" class="current">Blog</a>
+        <a href="../contact.html" class="btn btn-primary nav-cta">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Breadcrumb -->
+  <div class="breadcrumb">
+    <div class="container">
+      <a href="../index.html">HOME</a> <span>&gt;</span> <a href="../blog.html">Blog</a> <span>&gt;</span> <span>非認知能力とは？</span>
+    </div>
+  </div>
+
+  <!-- Article Header -->
+  <section class="article-header">
+    <div class="container fadeUp">
+      <span class="article-category">未分類</span>
+      <h1 class="article-title">非認知能力とは？</h1>
+      <time class="article-date">2026年2月3日</time>
+    </div>
+  </section>
+
+  <!-- Featured Image -->
+  <div class="article-featured-image fadeUp">
+    <img src="../img/raise_hand.jpeg" alt="非認知能力とは？">
+  </div>
+
+  <!-- Article Body -->
+  <article class="article-body fadeUp">
+    <p>この記事はサンプルです。非認知能力についての詳細な記事が今後掲載される予定です。</p>
+  </article>
+
+  <!-- Related Articles -->
+  <section class="related-section">
+    <h2 class="section-title fadeUp">関連記事</h2>
+    <div class="related-grid">
+      <a href="reading-effect.html" class="blog-card fadeUp">
+        <div class="blog-card-image">
+          <img src="../img/raising_hand.jpeg" alt="絵本読み聞かせの効果の結果">
+        </div>
+        <div class="blog-card-body">
+          <span class="blog-card-category">未分類</span>
+          <h3 class="blog-card-title">絵本読み聞かせの効果の結果</h3>
+          <time class="blog-card-date">2026年2月3日</time>
+        </div>
+      </a>
+      <a href="reading-method.html" class="blog-card fadeUp">
+        <div class="blog-card-image">
+          <img src="../img/design_6.png" alt="たった５分で効果のある読み聞かせ方法とは">
+        </div>
+        <div class="blog-card-body">
+          <span class="blog-card-category">未分類</span>
+          <h3 class="blog-card-title">たった５分で効果のある読み聞かせ方法とは</h3>
+          <time class="blog-card-date">2026年2月3日</time>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-inner container">
+      <div class="footer-brand">
+        <img src="../img/logo_black.png" alt="H&Y Grows Lab" class="footer-logo">
+        <p class="footer-company">H&Y Grows Lab 株式会社</p>
+        <p class="footer-address">〒107-0062 東京都港区南青山1丁目</p>
+      </div>
+      <nav class="footer-nav">
+        <a href="../product.html">Product</a>
+        <a href="../services.html">Services</a>
+        <a href="../blog.html">Blog</a>
+        <a href="../aboutus.html">About Us</a>
+      </nav>
+    </div>
+    <div class="footer-copy">
+      <p>&copy; H&Y Grows Lab 株式会社</p>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script>
+    // Header scroll effect
+    const header = document.getElementById('header');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+    });
+
+    // Hamburger menu
+    const hamburger = document.getElementById('hamburger');
+    const gnav = document.getElementById('gnav');
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('active');
+      gnav.classList.toggle('open');
+    });
+
+    // Intersection Observer fadeUp
+    const fadeEls = document.querySelectorAll('.fadeUp');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    fadeEls.forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>
