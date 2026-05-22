@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="カルサイト｜Web制作・業務自動化・AI活用で、中小企業の信頼を磨くデジタルパートナー。">
+<title>カルサイト ｜ 信頼を、磨く。- Web制作・DX・AI活用</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@500;700;900&display=swap" rel="stylesheet">
+<style>
+/* === Variables & Reset === */
+:root{
+  --ink:#0d0d0d;--paper:#f5f2ec;--rust:#b8331a;--steel:#8a8a85;
+  --warn:#e8b923;--soft:#ede9e1;
+  --ease:cubic-bezier(.16,1,.3,1);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  background:var(--paper);color:var(--ink);
+  font-family:'Noto Sans JP',sans-serif;font-weight:400;line-height:1.8;
+  overflow-x:hidden;-webkit-font-smoothing:antialiased;
+}
+a{cursor:inherit;}
+
+/* === Scroll Progress === */
+.progress-bar{position:fixed;top:0;left:0;height:2px;background:var(--rust);z-index:200;width:0;}
+
+/* === Custom Cursor === */
+.cc{width:10px;height:10px;border:1.5px solid var(--warn);border-radius:50%;position:fixed;
+  pointer-events:none;z-index:9999;transform:translate(-50%,-50%);
+  transition:width .25s var(--ease),height .25s var(--ease),background .25s;mix-blend-mode:exclusion;}
+.cc.hover{width:48px;height:48px;background:rgba(232,185,35,.15);}
+
+/* === Loading Overlay === */
+.loader{position:fixed;inset:0;background:var(--ink);z-index:300;
+  display:flex;align-items:center;justify-content:center;
+  transition:opacity .6s .15s,visibility .6s .15s;}
+.loader.done{opacity:0;visibility:hidden;pointer-events:none;}
+.loader-mark{display:flex;flex-direction:column;align-items:center;gap:14px;}
+.loader-mark svg{width:36px;height:36px;animation:loaderSpin 3s linear infinite;}
+.loader-mark span{font-family:'Bebas Neue',sans-serif;font-size:1rem;letter-spacing:.6em;color:var(--warn);opacity:0;animation:loaderFade .8s .2s ease forwards;}
+@keyframes loaderSpin{0%{transform:rotate(0)}100%{transform:rotate(360deg)}}
+@keyframes loaderFade{to{opacity:1}}
+
+/* === Header === */
+header{position:fixed;top:0;left:0;right:0;z-index:100;padding:20px 40px;
+  transition:transform .4s var(--ease),background .3s,box-shadow .3s;mix-blend-mode:difference;}
+header.scrolled{mix-blend-mode:normal;background:rgba(13,13,13,.9);backdrop-filter:blur(18px);box-shadow:0 1px 0 rgba(245,242,236,.05);}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;max-width:1400px;margin:0 auto;}
+.logo{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--paper);}
+.logo .mark{width:28px;height:28px;}
+.logo .mark svg{width:100%;height:100%;display:block;}
+.logo .wm{font-family:'Bebas Neue',sans-serif;font-size:1.15rem;letter-spacing:.2em;line-height:1;}
+.logo .wm small{display:block;font-family:'Noto Serif JP',serif;font-size:.38rem;letter-spacing:.3em;color:var(--steel);font-weight:700;margin-top:2px;}
+nav ul{display:flex;gap:32px;list-style:none;}
+nav a{color:var(--paper);text-decoration:none;font-size:.78rem;font-weight:500;letter-spacing:.08em;position:relative;padding:4px 0;}
+nav a::after{content:'';position:absolute;bottom:-2px;left:0;width:0;height:1px;background:var(--warn);transition:width .4s var(--ease);}
+nav a:hover::after{width:100%;}
+.nav-cta{background:transparent;color:var(--paper);padding:10px 24px;font-size:.76rem;font-weight:700;
+  text-decoration:none;letter-spacing:.1em;border:1px solid rgba(245,242,236,.3);transition:all .3s var(--ease);}
+.nav-cta:hover{background:var(--paper);color:var(--ink);border-color:var(--paper);}
+.hamburger{display:none;background:none;border:none;font-size:1.4rem;color:var(--paper);}
+
+/* === Hero === */
+.hero{position:relative;min-height:100vh;display:flex;align-items:flex-end;
+  background:
+    linear-gradient(rgba(13,13,13,.72),rgba(13,13,13,.86)),
+    url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1920&q=60') center/cover no-repeat;
+  color:var(--paper);overflow:hidden;padding:0 40px 120px;}
+#particles{position:absolute;inset:0;z-index:0;}
+.hero::before{content:'';position:absolute;inset:0;
+  background-image:
+    linear-gradient(rgba(245,242,236,.018) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(245,242,236,.018) 1px,transparent 1px);
+  background-size:80px 80px;}
+.hero-crystal{position:absolute;right:5%;top:50%;transform:translateY(-50%);
+  width:42vw;max-width:580px;pointer-events:none;
+  opacity:0;animation:crystalEnter 2s .9s var(--ease) forwards;}
+.hero-crystal svg{width:100%;height:auto;display:block;}
+.crystal-float{animation:crystalFloat 8s 3s ease-in-out infinite;}
+.hero-glow{position:absolute;right:10%;top:22%;width:520px;height:520px;
+  background:radial-gradient(circle,rgba(184,51,26,.2),transparent 70%);
+  pointer-events:none;animation:glowPulse 7s 1s ease-in-out infinite;}
+.hero-content{position:relative;z-index:2;max-width:1400px;margin:0 auto;width:100%;}
+.hero-tag{font-family:'Bebas Neue',sans-serif;font-size:.72rem;letter-spacing:.4em;color:var(--warn);
+  margin-bottom:36px;display:flex;align-items:center;gap:16px;overflow:hidden;}
+.hero-tag::before{content:'';width:48px;height:1px;background:var(--warn);}
+.hero-tag span{display:inline-block;transform:translateY(110%);animation:slideUp .7s .35s var(--ease) forwards;}
+.hero h1{font-family:'Noto Serif JP',serif;font-weight:900;
+  font-size:clamp(3.2rem,9vw,7.2rem);line-height:1.05;letter-spacing:.02em;margin-bottom:44px;}
+.hero h1 .char{display:inline-block;opacity:0;transform:translateY(55px) rotate(4deg);
+  animation:charIn .65s var(--ease) forwards;}
+.hero h1 .acc .char{color:var(--rust);}
+.hero-sub{opacity:0;transform:translateY(24px);animation:fadeSlide .9s 1.8s var(--ease) forwards;}
+.hero-sub p{font-size:clamp(.9rem,1.3vw,1.08rem);max-width:420px;color:rgba(245,242,236,.6);line-height:2.2;margin-bottom:40px;}
+.hero-actions{display:flex;gap:16px;flex-wrap:wrap;}
+.btn-primary,.btn-ghost{padding:18px 40px;font-size:.82rem;font-weight:700;text-decoration:none;
+  letter-spacing:.1em;display:inline-flex;align-items:center;gap:10px;transition:all .3s var(--ease);}
+.btn-primary{background:var(--rust);color:var(--paper);border:1.5px solid var(--rust);}
+.btn-primary:hover{background:transparent;color:var(--paper);}
+.btn-ghost{background:transparent;color:var(--paper);border:1.5px solid rgba(245,242,236,.25);}
+.btn-ghost:hover{background:var(--paper);color:var(--ink);border-color:var(--paper);}
+.hero-scroll{position:absolute;bottom:40px;left:40px;z-index:2;display:flex;align-items:center;gap:14px;}
+.hero-scroll .line{width:1px;height:52px;background:rgba(245,242,236,.15);position:relative;overflow:hidden;}
+.hero-scroll .line::after{content:'';position:absolute;top:-100%;left:0;width:100%;height:100%;
+  background:var(--warn);animation:scrollLine 2.2s 2.5s ease-in-out infinite;}
+.hero-scroll span{font-family:'Bebas Neue',sans-serif;font-size:.66rem;letter-spacing:.35em;color:var(--steel);writing-mode:vertical-rl;}
+.hero-ticker{position:absolute;bottom:0;left:0;right:0;z-index:3;overflow:hidden;
+  border-top:1px solid rgba(245,242,236,.05);padding:15px 0;
+  background:rgba(13,13,13,.45);backdrop-filter:blur(6px);}
+.ticker-track{display:flex;animation:tickerScroll 35s linear infinite;width:max-content;}
+.ticker-item{font-family:'Bebas Neue',sans-serif;font-size:.82rem;letter-spacing:.22em;
+  color:rgba(245,242,236,.2);white-space:nowrap;display:flex;align-items:center;gap:24px;padding:0 24px;}
+.ticker-item::after{content:'◆';color:var(--rust);font-size:.32rem;opacity:.45;}
+
+/* === Section Common === */
+.section{padding:160px 40px;position:relative;}
+.lbl{font-family:'Bebas Neue',sans-serif;color:var(--rust);font-size:.82rem;letter-spacing:.45em;
+  display:flex;align-items:center;gap:12px;margin-bottom:16px;}
+.lbl::before{content:'';width:28px;height:1px;background:currentColor;}
+.sec-title{font-family:'Noto Serif JP',serif;font-weight:900;font-size:clamp(2rem,5vw,3.2rem);line-height:1.35;}
+.container{max-width:1200px;margin:0 auto;}
+
+/* === Reveal System === */
+.reveal{opacity:0;transform:translateY(44px);transition:opacity .9s var(--ease),transform .9s var(--ease);}
+.reveal.in{opacity:1;transform:translateY(0);}
+.reveal-left{opacity:0;transform:translateX(-60px);transition:opacity .9s var(--ease),transform .9s var(--ease);}
+.reveal-left.in{opacity:1;transform:translateX(0);}
+.reveal-right{opacity:0;transform:translateX(60px);transition:opacity .9s var(--ease),transform .9s var(--ease);}
+.reveal-right.in{opacity:1;transform:translateX(0);}
+.stagger.in > *{opacity:1;transform:translateY(0);}
+.stagger > *{opacity:0;transform:translateY(30px);transition:opacity .7s var(--ease),transform .7s var(--ease);}
+.stagger.in > *:nth-child(1){transition-delay:.06s}
+.stagger.in > *:nth-child(2){transition-delay:.14s}
+.stagger.in > *:nth-child(3){transition-delay:.22s}
+.stagger.in > *:nth-child(4){transition-delay:.30s}
+.line-mask{overflow:hidden;display:block;}
+.line-mask .inner{display:block;transform:translateY(108%);transition:transform .85s var(--ease);}
+.line-mask.in .inner{transform:translateY(0);}
+
+/* === Philosophy === */
+.philo{background:var(--paper);}
+.philo-grid{display:grid;grid-template-columns:1fr 1fr;gap:100px;align-items:center;}
+.philo-text .big{font-family:'Noto Serif JP',serif;font-weight:900;
+  font-size:clamp(1.5rem,3vw,2.3rem);line-height:1.6;margin:28px 0 32px;}
+.philo-text .big em{font-style:normal;color:var(--rust);}
+.philo-text p{color:#555;line-height:2.3;margin-bottom:18px;font-size:.94rem;}
+.philo-visual{position:relative;aspect-ratio:1;display:flex;align-items:center;justify-content:center;}
+.philo-visual .crystal-lg{width:68%;}
+.philo-visual .crystal-lg svg{width:100%;height:auto;filter:drop-shadow(0 24px 48px rgba(184,51,26,.1));}
+.philo-visual .ring{position:absolute;width:100%;height:100%;border:1px solid rgba(13,13,13,.05);
+  border-radius:50%;animation:ringRotate 30s linear infinite;}
+.philo-visual .ring2{width:70%;height:70%;border-color:rgba(184,51,26,.08);animation-direction:reverse;animation-duration:22s;}
+
+/* === Problems === */
+.problems{background:var(--ink);color:var(--paper);position:relative;overflow:hidden;}
+.problems::after{content:'';position:absolute;inset:0;
+  background:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.04'/%3E%3C/svg%3E");pointer-events:none;}
+.problems .sec-title{color:var(--paper);}
+.prob-lead{max-width:560px;color:rgba(245,242,236,.45);font-size:.94rem;line-height:2;margin-top:20px;}
+.prob-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-top:60px;position:relative;}
+.prob-item{padding:40px 36px;border:1px solid rgba(245,242,236,.06);
+  transition:border-color .5s,background .5s,transform .5s var(--ease);}
+.prob-item:hover{border-color:rgba(184,51,26,.45);background:rgba(184,51,26,.04);transform:translateY(-6px);}
+.prob-item .prob-q{font-family:'Noto Serif JP',serif;font-weight:700;font-size:1.06rem;line-height:1.7;color:var(--paper);}
+.prob-item .prob-q::before{content:'Q.';font-family:'Bebas Neue',sans-serif;color:var(--rust);letter-spacing:.1em;margin-right:8px;font-size:.86rem;}
+.prob-item p{font-size:.83rem;color:rgba(245,242,236,.38);line-height:1.95;margin-top:12px;}
+.prob-answer{text-align:center;margin-top:76px;position:relative;}
+.prob-answer .big{font-family:'Noto Serif JP',serif;font-weight:900;
+  font-size:clamp(1.4rem,3.5vw,2.2rem);color:var(--paper);line-height:1.55;}
+.prob-answer .big em{font-style:normal;color:var(--rust);}
+
+/* === Services === */
+.services{background:var(--soft);color:var(--ink);}
+.svc-head{margin-bottom:0;}
+.svc-head .desc{max-width:480px;color:var(--steel);font-size:.92rem;line-height:2;margin-top:18px;}
+.svc-rows{margin-top:24px;}
+.svc-row{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center;
+  padding:88px 0;border-bottom:1px solid rgba(13,13,13,.06);position:relative;}
+.svc-row:last-child{border-bottom:none;}
+.svc-row-visual{position:relative;aspect-ratio:4/3;background:var(--ink);
+  display:flex;align-items:center;justify-content:center;overflow:hidden;
+  transition:transform .7s var(--ease);}
+.svc-row-visual:hover{transform:scale(1.03);}
+.svc-row-visual img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0;
+  opacity:.35;transition:opacity .7s var(--ease),transform 1.2s var(--ease);}
+.svc-row-visual:hover img{opacity:.5;transform:scale(1.05);}
+.svc-row-visual::after{content:'';position:absolute;inset:0;
+  background:linear-gradient(160deg,rgba(13,13,13,.15),rgba(13,13,13,.5));pointer-events:none;z-index:1;}
+.svc-row-visual .svc-watermark{position:absolute;font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(6rem,14vw,12rem);color:rgba(245,242,236,.06);line-height:1;right:-5px;bottom:-10px;pointer-events:none;z-index:2;}
+.svc-row-content .svc-no{font-family:'Bebas Neue',sans-serif;font-size:.8rem;letter-spacing:.3em;color:var(--rust);margin-bottom:22px;}
+.svc-row-content h3{font-family:'Noto Serif JP',serif;font-weight:900;
+  font-size:clamp(1.5rem,3vw,2.1rem);line-height:1.4;margin-bottom:8px;}
+.svc-row-content .en{font-family:'Bebas Neue',sans-serif;font-size:.7rem;letter-spacing:.24em;color:var(--steel);margin-bottom:28px;display:block;}
+.svc-row-content p{color:#555;font-size:.94rem;line-height:2.2;}
+.svc-row-content ul{list-style:none;margin-top:22px;}
+.svc-row-content ul li{font-size:.86rem;color:#666;line-height:2.2;padding-left:20px;position:relative;}
+.svc-row-content ul li::before{content:'—';position:absolute;left:0;color:var(--rust);}
+.svc-row:nth-child(even) .svc-row-visual{order:-1;}
+
+/* === Approach === */
+.approach{background:var(--paper);position:relative;}
+.appr-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:48px 72px;margin-top:68px;}
+.appr{display:flex;gap:24px;padding:32px 0;border-bottom:1px solid rgba(13,13,13,.06);}
+.appr:last-child{border-bottom:none;}
+.appr .num{font-family:'Bebas Neue',sans-serif;font-size:3.2rem;line-height:1;color:var(--rust);flex-shrink:0;
+  opacity:.2;transition:opacity .5s var(--ease);}
+.appr:hover .num{opacity:1;}
+.appr h3{font-family:'Noto Serif JP',serif;font-weight:700;font-size:1.18rem;margin-bottom:12px;}
+.appr p{color:#555;font-size:.9rem;line-height:2.1;}
+
+/* === Works === */
+.works{background:var(--soft);}
+.works-coming{display:flex;align-items:center;justify-content:center;
+  background:var(--ink);aspect-ratio:16/5;margin-top:56px;position:relative;overflow:hidden;}
+.works-coming::before{content:'';position:absolute;inset:0;background:linear-gradient(145deg,#1a1a1a,#080808);}
+.works-coming .inner{position:relative;text-align:center;padding:40px;}
+.works-coming .tag{font-family:'Bebas Neue',sans-serif;letter-spacing:.3em;font-size:.76rem;color:var(--rust);margin-bottom:14px;}
+.works-coming .txt{font-family:'Noto Serif JP',serif;color:rgba(245,242,236,.8);font-size:1.02rem;line-height:1.8;}
+.work-note{margin-top:28px;font-size:.82rem;color:var(--steel);text-align:center;}
+
+/* === About === */
+.about{background:var(--ink);color:var(--paper);}
+.about .sec-title{color:var(--paper);}
+.about-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:72px;align-items:center;margin-top:56px;}
+.about-photo{aspect-ratio:3/4;background:linear-gradient(145deg,#1c1c1c,#0a0a0a);
+  border:1px solid rgba(245,242,236,.06);display:flex;align-items:center;justify-content:center;
+  position:relative;overflow:hidden;}
+.about-photo .ph{width:42%;opacity:.4;}
+.about-photo .tag{position:absolute;bottom:18px;left:18px;font-family:'Bebas Neue',sans-serif;
+  letter-spacing:.22em;font-size:.68rem;color:var(--steel);}
+.about-text .name{font-family:'Noto Serif JP',serif;font-weight:900;font-size:2rem;margin-bottom:4px;}
+.about-text .name small{font-family:'Bebas Neue',sans-serif;font-size:.88rem;letter-spacing:.2em;color:var(--warn);margin-left:14px;}
+.about-text .role{font-size:.84rem;color:var(--rust);letter-spacing:.12em;margin-bottom:28px;}
+.about-text p{color:rgba(245,242,236,.68);line-height:2.2;margin-bottom:18px;font-size:.93rem;}
+
+/* === Contact === */
+.contact{background:var(--paper);text-align:center;}
+.contact .big{font-family:'Noto Serif JP',serif;font-weight:900;
+  font-size:clamp(2rem,5.5vw,3.6rem);line-height:1.3;margin:20px 0 24px;}
+.contact .big .acc{color:var(--rust);}
+.contact .desc{max-width:520px;margin:0 auto 48px;color:#555;line-height:2;font-size:.94rem;}
+.contact-card{max-width:520px;margin:0 auto;background:var(--ink);color:var(--paper);padding:48px;text-align:center;}
+.contact-card .card-lbl{font-family:'Bebas Neue',sans-serif;color:var(--warn);letter-spacing:.3em;font-size:.78rem;margin-bottom:14px;}
+.contact-card .card-title{font-family:'Noto Serif JP',serif;font-size:1.2rem;margin-bottom:18px;line-height:1.6;}
+.contact-card .card-desc{font-size:.83rem;color:rgba(245,242,236,.5);margin-bottom:28px;line-height:1.9;}
+.contact-card .btn-form{display:block;padding:18px;background:var(--rust);color:var(--paper);
+  text-decoration:none;font-weight:700;letter-spacing:.1em;font-size:.85rem;transition:all .3s var(--ease);}
+.contact-card .btn-form:hover{background:var(--warn);color:var(--ink);}
+
+/* === Footer === */
+footer{background:#050505;color:rgba(245,242,236,.5);padding:64px 40px 28px;}
+.foot-inner{max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:32px;}
+.foot-brand p{font-size:.78rem;line-height:1.9;color:rgba(245,242,236,.35);margin-top:16px;}
+.foot-nav{display:flex;gap:28px;flex-wrap:wrap;}
+.foot-nav a{color:rgba(245,242,236,.45);text-decoration:none;font-size:.8rem;transition:color .3s;}
+.foot-nav a:hover{color:var(--warn);}
+.foot-bottom{max-width:1200px;margin:44px auto 0;padding-top:20px;border-top:1px solid rgba(245,242,236,.06);
+  font-size:.7rem;color:rgba(245,242,236,.3);display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;}
+
+/* === Section Backgrounds === */
+.philo{background:
+  linear-gradient(rgba(245,242,236,.91),rgba(245,242,236,.93)),
+  url('https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?auto=format&fit=crop&w=1600&q=60') center/cover no-repeat;}
+.problems{background:
+  linear-gradient(rgba(13,13,13,.84),rgba(13,13,13,.88)),
+  url('https://images.unsplash.com/photo-1504639725590-34d0984388bd?auto=format&fit=crop&w=1600&q=60') center/cover no-repeat;}
+.services{background:
+  linear-gradient(rgba(237,233,225,.88),rgba(237,233,225,.92)),
+  url('https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1600&q=60') center/cover no-repeat;}
+.approach{background:
+  linear-gradient(rgba(245,242,236,.89),rgba(245,242,236,.92)),
+  url('https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1600&q=60') center/cover no-repeat;}
+.works{background:
+  linear-gradient(rgba(237,233,225,.9),rgba(237,233,225,.93)),
+  url('https://images.unsplash.com/photo-1497215842964-222b430dc094?auto=format&fit=crop&w=1600&q=60') center/cover no-repeat;}
+.about{background:
+  linear-gradient(rgba(13,13,13,.84),rgba(13,13,13,.88)),
+  url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1600&q=60') center/cover no-repeat;}
+.contact{background:
+  linear-gradient(rgba(245,242,236,.88),rgba(245,242,236,.91)),
+  url('https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=1600&q=60') center/cover no-repeat;}
+
+/* === Keyframes === */
+@keyframes fadeSlide{to{opacity:1;transform:translateY(0)}}
+@keyframes slideUp{from{transform:translateY(110%)}to{transform:translateY(0)}}
+@keyframes charIn{to{opacity:1;transform:translateY(0) rotate(0deg)}}
+@keyframes crystalEnter{to{opacity:.85;transform:translateY(-50%)}}
+@keyframes crystalFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-16px)}}
+@keyframes glowPulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.1);opacity:.65}}
+@keyframes scrollLine{0%{top:-100%}100%{top:100%}}
+@keyframes ringRotate{to{transform:rotate(360deg)}}
+@keyframes tickerScroll{to{transform:translateX(-50%)}}
+
+/* === Responsive === */
+@media(max-width:880px){
+  .cc{display:none!important;}
+  body{cursor:auto;}
+  header{padding:16px 24px;mix-blend-mode:normal;background:rgba(13,13,13,.9);backdrop-filter:blur(14px);}
+  nav ul,.nav-cta{display:none;}
+  .hamburger{display:block;}
+  .hero{padding:0 24px 80px;}
+  .hero h1{font-size:clamp(2.6rem,13vw,4.2rem);}
+  .hero-crystal{width:75vw;right:-10%;opacity:0;animation:crystalEnter 2s .9s var(--ease) forwards;--final-opacity:.2;}
+  .hero-glow{width:300px;height:300px;right:0;}
+  .section{padding:100px 24px;}
+  .philo-grid,.about-grid{grid-template-columns:1fr;gap:48px;}
+  .svc-row,.prob-grid,.appr-grid{grid-template-columns:1fr;}
+  .svc-row{gap:36px;padding:60px 0;}
+  .svc-row:nth-child(even) .svc-row-visual{order:0;}
+  .about-photo{max-width:300px;margin:0 auto;}
+  .hero-scroll{display:none;}
+  .hero-ticker{padding:12px 0;}
+  .ticker-item{font-size:.72rem;padding:0 18px;gap:18px;}
+  .foot-inner{flex-direction:column;gap:24px;}
+}
+@media(max-width:480px){
+  .hero{padding:0 20px 64px;}
+  .hero h1{font-size:2.3rem;}
+  .section{padding:72px 20px;}
+  .prob-grid{gap:12px;}
+  .prob-item{padding:28px 22px;}
+  .svc-row{gap:28px;padding:48px 0;}
+  .appr-grid{gap:32px 48px;}
+}
+</style>
+</head>
+<body>
+
+<!-- Loading -->
+<div class="loader" id="loader">
+  <div class="loader-mark">
+    <svg viewBox="0 0 100 100"><g stroke="rgba(232,185,35,.6)" stroke-width="2" fill="none" stroke-linejoin="miter"><polygon points="50,8 92,30 50,52 8,30"/><polygon points="92,30 92,70 50,92 50,52"/><polygon points="8,30 8,70 50,92 50,52"/></g></svg>
+    <span>CALCITE</span>
+  </div>
+</div>
+
+<!-- Progress -->
+<div class="progress-bar" id="progress"></div>
+
+<!-- Cursor -->
+<div class="cc" id="cc"></div>
+
+<!-- Header -->
+<header id="header">
+  <div class="nav-inner">
+    <a href="#" class="logo">
+      <span class="mark"><svg viewBox="0 0 100 100"><g stroke="#f5f2ec" stroke-width="4" fill="none" stroke-linejoin="miter" stroke-linecap="square"><polygon points="50,8 92,30 50,52 8,30"/><polygon points="92,30 92,70 50,92 50,52"/><polygon points="8,30 8,70 50,92 50,52"/></g></svg></span>
+      <span class="wm">CALCITE<small>カルサイト</small></span>
+    </a>
+    <nav><ul>
+      <li><a href="#philosophy">理念</a></li>
+      <li><a href="#services">サービス</a></li>
+      <li><a href="#approach">特徴</a></li>
+      <li><a href="#about">代表紹介</a></li>
+    </ul></nav>
+    <a href="#contact" class="nav-cta">お問い合わせ</a>
+    <button class="hamburger" aria-label="menu">≡</button>
+  </div>
+</header>
+
+<!-- ==================== HERO ==================== -->
+<section class="hero">
+  <canvas id="particles"></canvas>
+  <div class="hero-glow"></div>
+  <div class="hero-crystal">
+    <div class="crystal-float">
+      <svg viewBox="0 0 100 100"><g stroke="rgba(232,185,35,0.4)" stroke-width="0.7" fill="none" stroke-linejoin="miter">
+        <polygon points="50,6 94,30 50,54 6,30"/>
+        <polygon points="94,30 94,72 50,96 50,54"/>
+        <polygon points="6,30 6,72 50,96 50,54"/>
+        <line x1="50" y1="54" x2="50" y2="96" stroke="rgba(184,51,26,0.3)"/>
+        <line x1="50" y1="6" x2="50" y2="54" stroke="rgba(245,242,236,0.07)"/>
+      </g></svg>
+    </div>
+  </div>
+  <div class="hero-content">
+    <div class="hero-tag"><span>DIGITAL PARTNER FOR SMB</span></div>
+    <h1 id="hero-heading">信頼を、<br><span class="acc">磨く</span>。</h1>
+    <div class="hero-sub">
+      <p>Web制作、業務の自動化、AI活用——<br>中小企業の「困った」をデジタルの力で<br>まるごと解決するパートナーです。</p>
+      <div class="hero-actions">
+        <a href="#contact" class="btn-primary">無料相談はこちら →</a>
+        <a href="#services" class="btn-ghost">サービスを見る</a>
+      </div>
+    </div>
+  </div>
+  <div class="hero-scroll"><div class="line"></div><span>SCROLL</span></div>
+  <div class="hero-ticker">
+    <div class="ticker-track">
+      <span class="ticker-item">Web制作</span>
+      <span class="ticker-item">業務自動化</span>
+      <span class="ticker-item">AI活用</span>
+      <span class="ticker-item">ITコンサルティング</span>
+      <span class="ticker-item">DX支援</span>
+      <span class="ticker-item">クラウド導入</span>
+      <span class="ticker-item">保守・運用</span>
+      <span class="ticker-item">Web制作</span>
+      <span class="ticker-item">業務自動化</span>
+      <span class="ticker-item">AI活用</span>
+      <span class="ticker-item">ITコンサルティング</span>
+      <span class="ticker-item">DX支援</span>
+      <span class="ticker-item">クラウド導入</span>
+      <span class="ticker-item">保守・運用</span>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== PHILOSOPHY ==================== -->
+<section class="section philo" id="philosophy">
+  <div class="container">
+    <div class="philo-grid">
+      <div class="philo-text">
+        <div class="lbl reveal">PHILOSOPHY</div>
+        <div class="big line-mask"><span class="inner">「カルサイト」は、<br><em>方解石</em>という鉱物の名。</span></div>
+        <p class="reveal">方解石は、磨くことで透明に輝き、建築の礎にもなる石です。私たちはこの名に、「すでにある価値を、磨いて輝かせる」という想いを込めました。</p>
+        <p class="reveal">中小企業の皆さまは、長年かけて築いた確かな信頼と技術を持っています。けれど、その魅力がWebやデジタルの面で十分に活かされていないことが少なくありません。</p>
+        <p class="reveal">ホームページ制作だけでなく、日々の業務の自動化やAIの活用まで。御社が本来持つ力を、デジタルの力で磨いて最大限に引き出す——それがカルサイトの仕事です。</p>
+      </div>
+      <div class="philo-visual reveal">
+        <div class="ring"></div>
+        <div class="ring ring2"></div>
+        <div class="crystal-lg">
+          <svg viewBox="0 0 100 100"><g stroke="#0d0d0d" stroke-width="1.8" fill="none" stroke-linejoin="miter" stroke-linecap="square">
+            <polygon points="50,8 92,30 50,52 8,30"/>
+            <polygon points="92,30 92,70 50,92 50,52"/>
+            <polygon points="8,30 8,70 50,92 50,52"/>
+            <line x1="50" y1="52" x2="50" y2="92" stroke="#b8331a"/>
+          </g></svg>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== PROBLEMS ==================== -->
+<section class="section problems">
+  <div class="container">
+    <div class="reveal">
+      <div class="lbl" style="color:var(--warn)">CHALLENGES</div>
+      <h2 class="sec-title">こんなお悩み、<br>ありませんか？</h2>
+      <p class="prob-lead">多くの中小企業が抱える、デジタルにまつわる課題です。</p>
+    </div>
+    <div class="prob-grid stagger">
+      <div class="prob-item">
+        <div class="prob-q">ホームページ、作ったまま放置していませんか？</div>
+        <p>何年も前に作ったきり更新できず、今の事業内容と合っていない。スマホで見ると崩れる。</p>
+      </div>
+      <div class="prob-item">
+        <div class="prob-q">その作業、まだ手作業でやっていませんか？</div>
+        <p>見積書の作成、顧客リストの管理、データの集計…。毎日の繰り返し作業に時間を取られている。</p>
+      </div>
+      <div class="prob-item">
+        <div class="prob-q">AIやITツール、何から始めればいいかわからない？</div>
+        <p>便利そうだとは聞くけれど、自社にどう活かせるのか見当がつかない。相談する相手もいない。</p>
+      </div>
+      <div class="prob-item">
+        <div class="prob-q">Web周りのトラブル、誰に聞けばいい？</div>
+        <p>ドメイン更新、メール設定、SNS運用…。ちょっとしたことを気軽に相談できる先がない。</p>
+      </div>
+    </div>
+    <div class="prob-answer reveal">
+      <p class="big">そのすべてを、<em>カルサイト</em>が<br>まるごとお引き受けします。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== SERVICES ==================== -->
+<section class="section services" id="services">
+  <div class="container">
+    <div class="svc-head reveal">
+      <div class="lbl">SERVICES</div>
+      <h2 class="sec-title">3つのサービス</h2>
+      <p class="desc">Web制作から業務改善、AI活用まで。中小企業のデジタルに関するお悩みをまるごとお任せいただけます。</p>
+    </div>
+    <div class="svc-rows">
+      <!-- 01 -->
+      <div class="svc-row">
+        <div class="svc-row-content reveal-left">
+          <div class="svc-no">01</div>
+          <h3>Web制作・リニューアル</h3>
+          <span class="en">WEB CREATION</span>
+          <p>御社の魅力を引き出す、スマホ完全対応の本格的なホームページを制作します。新規制作からリニューアル、公開後の保守運用まで一貫対応。</p>
+          <ul><li>企業サイト新規制作</li><li>既存サイトのリニューアル</li><li>スマートフォン対応</li><li>公開後の保守・更新代行</li></ul>
+        </div>
+        <div class="svc-row-visual reveal-right">
+          <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80" alt="Web制作イメージ" loading="lazy">
+          <div class="svc-watermark">01</div>
+        </div>
+      </div>
+      <!-- 02 -->
+      <div class="svc-row">
+        <div class="svc-row-content reveal-right">
+          <div class="svc-no">02</div>
+          <h3>業務自動化・DX支援</h3>
+          <span class="en">AUTOMATION / DX</span>
+          <p>手作業で時間がかかっている業務を仕組み化。日々のルーティンを自動化して、本業に集中できる環境をつくります。</p>
+          <ul><li>見積書・請求書の自動作成</li><li>顧客管理・データ集計の効率化</li><li>業務フローの見直し・改善</li><li>クラウドツール導入支援</li></ul>
+        </div>
+        <div class="svc-row-visual reveal-left">
+          <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80" alt="業務自動化イメージ" loading="lazy">
+          <div class="svc-watermark">02</div>
+        </div>
+      </div>
+      <!-- 03 -->
+      <div class="svc-row">
+        <div class="svc-row-content reveal-left">
+          <div class="svc-no">03</div>
+          <h3>AI活用・ITコンサルティング</h3>
+          <span class="en">AI &amp; IT CONSULTING</span>
+          <p>「AIって何ができるの？」から始められます。業務へのAI導入提案から、ネット上の困りごとの解決まで。何でも相談できるデジタルの窓口です。</p>
+          <ul><li>AI導入の提案・サポート</li><li>ITツール選定・設定</li><li>ネット周りのトラブル対応</li><li>デジタル全般のご相談</li></ul>
+        </div>
+        <div class="svc-row-visual reveal-right">
+          <img src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=800&q=80" alt="AI活用イメージ" loading="lazy">
+          <div class="svc-watermark">03</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== APPROACH ==================== -->
+<section class="section approach" id="approach">
+  <div class="container">
+    <div class="reveal">
+      <div class="lbl">OUR APPROACH</div>
+      <h2 class="sec-title">カルサイトが選ばれる理由</h2>
+    </div>
+    <div class="appr-grid stagger">
+      <div class="appr"><div class="num">01</div><div><h3>「見てから決められる」提案</h3><p>Web制作では、ご契約前にデモサイトをお作りしてお見せします。完成イメージを確認してから、安心してご判断いただけます。</p></div></div>
+      <div class="appr"><div class="num">02</div><div><h3>Webも業務もAIも、一括相談</h3><p>ホームページのことも、業務効率化のことも、AIのことも。窓口を分ける必要がなく、デジタルに関するお悩みをまとめてご相談いただけます。</p></div></div>
+      <div class="appr"><div class="num">03</div><div><h3>相談から実行まで、迅速に</h3><p>お悩みを伺ったその場で解決の方向性をご提案。確認待ちや担当者間のたらい回しがなく、スムーズにプロジェクトが進みます。</p></div></div>
+      <div class="appr"><div class="num">04</div><div><h3>専門用語なし、わかりやすく</h3><p>「ITは苦手で…」という方でも安心。難しい言葉を使わず、丁寧にご説明します。まず何に困っているかを聞くところから始めます。</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== WORKS ==================== -->
+<section class="section works" id="works">
+  <div class="container">
+    <div class="reveal">
+      <div class="lbl">WORKS</div>
+      <h2 class="sec-title">制作事例</h2>
+    </div>
+    <div class="works-coming reveal">
+      <div class="inner">
+        <div class="tag">COMING SOON</div>
+        <div class="txt">事例を準備中です</div>
+      </div>
+    </div>
+    <p class="work-note reveal">※ 事例は順次掲載予定です。具体的なご提案はお問い合わせ時にお伝えできます。</p>
+  </div>
+</section>
+
+<!-- ==================== ABOUT ==================== -->
+<section class="section about" id="about">
+  <div class="container">
+    <div class="reveal">
+      <div class="lbl" style="color:var(--warn)">ABOUT</div>
+      <h2 class="sec-title">代表紹介</h2>
+    </div>
+    <div class="about-grid">
+      <div class="about-photo reveal-left">
+        <div class="ph"><svg viewBox="0 0 100 100"><g stroke="rgba(232,185,35,0.3)" stroke-width="2.5" fill="none" stroke-linejoin="miter"><polygon points="50,8 92,30 50,52 8,30"/><polygon points="92,30 92,70 50,92 50,52"/><polygon points="8,30 8,70 50,92 50,52"/></g></svg></div>
+        <div class="tag">CALCITE — KENTA HINO</div>
+      </div>
+      <div class="about-text reveal-right">
+        <div class="name">日野 研太<small>KENTA HINO</small></div>
+        <div class="role">カルサイト 代表</div>
+        <p>中小企業の皆さまが抱える「デジタルの困りごと」を、まるごと引き受けるパートナーでありたいと考えています。</p>
+        <p>ホームページ制作はもちろん、日々の業務の効率化やAIの活用提案まで。一社一社のお話をじっくり伺い、その企業に合った解決策をご提案します。専門用語をできるだけ使わず、丁寧にご説明することを心がけています。</p>
+        <p>「何から相談すればいいかわからない」という方こそ、お気軽にお声がけください。一緒に、御社の可能性を広げていきましょう。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== CONTACT ==================== -->
+<section class="section contact" id="contact">
+  <div class="container">
+    <div class="reveal">
+      <div class="lbl" style="justify-content:center;">CONTACT</div>
+      <div class="big">まずは、お気軽に。<br><span class="acc">無料相談</span>受付中。</div>
+      <p class="desc">「これって頼めるの？」というご相談だけでも歓迎です。Web制作、業務の自動化、AIのことなど、何でもお気軽にどうぞ。</p>
+      <div class="contact-card">
+        <div class="card-lbl">CONTACT FORM</div>
+        <div class="card-title" style="font-family:'Noto Serif JP',serif">フォームからお問い合わせください</div>
+        <p class="card-desc">内容を確認の上、2営業日以内にメールでご返信いたします。</p>
+        <a href="#contact-form" class="btn-form">お問い合わせフォームへ →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== FOOTER ==================== -->
+<footer>
+  <div class="foot-inner">
+    <div class="foot-brand">
+      <a href="#" class="logo"><span class="mark"><svg viewBox="0 0 100 100"><g stroke="#e8b923" stroke-width="4" fill="none" stroke-linejoin="miter" stroke-linecap="square"><polygon points="50,8 92,30 50,52 8,30"/><polygon points="92,30 92,70 50,92 50,52"/><polygon points="8,30 8,70 50,92 50,52"/></g></svg></span><span class="wm" style="color:#f5f2ec">CALCITE<small style="color:var(--steel)">カルサイト</small></span></a>
+      <p>信頼を、磨く。<br>Web制作・業務自動化・AI活用</p>
+    </div>
+    <div class="foot-nav">
+      <a href="#philosophy">理念</a>
+      <a href="#services">サービス</a>
+      <a href="#approach">特徴</a>
+      <a href="#about">代表紹介</a>
+      <a href="#contact">お問い合わせ</a>
+    </div>
+  </div>
+  <div class="foot-bottom">
+    <div>&copy; 2026 CALCITE. All Rights Reserved.</div>
+    <div>Digital Partner for SMB</div>
+  </div>
+</footer>
+
+<!-- ==================== SCRIPT ==================== -->
+<script>
+(function(){
+  'use strict';
+
+  /* --- Loading --- */
+  window.addEventListener('load',function(){
+    setTimeout(function(){document.getElementById('loader').classList.add('done');},700);
+  });
+
+  /* --- Custom Cursor (desktop only) --- */
+  var isTouch=!window.matchMedia('(hover:hover)').matches;
+  if(!isTouch){
+    var cc=document.getElementById('cc');
+    var cx=0,cy=0,tx=0,ty=0;
+    document.addEventListener('mousemove',function(e){tx=e.clientX;ty=e.clientY;});
+    (function loop(){
+      cx+=(tx-cx)*.12;cy+=(ty-cy)*.12;
+      cc.style.left=cx+'px';cc.style.top=cy+'px';
+      requestAnimationFrame(loop);
+    })();
+    var hovers=document.querySelectorAll('a,button,.prob-item,.svc-row-visual');
+    for(var i=0;i<hovers.length;i++){
+      hovers[i].addEventListener('mouseenter',function(){cc.classList.add('hover');});
+      hovers[i].addEventListener('mouseleave',function(){cc.classList.remove('hover');});
+    }
+    document.body.style.cursor='none';
+  }else{
+    document.getElementById('cc').style.display='none';
+  }
+
+  /* --- Scroll: progress bar + header --- */
+  var prog=document.getElementById('progress');
+  var hdr=document.getElementById('header');
+  var lastY=0;
+  window.addEventListener('scroll',function(){
+    var y=window.scrollY;
+    var max=document.documentElement.scrollHeight-window.innerHeight;
+    if(max>0)prog.style.width=(y/max*100)+'%';
+    hdr.style.transform=(y>160&&y>lastY)?'translateY(-100%)':'translateY(0)';
+    if(y>80)hdr.classList.add('scrolled');else hdr.classList.remove('scrolled');
+    lastY=y;
+  },{passive:true});
+
+  /* --- Hero: character split animation --- */
+  var heading=document.getElementById('hero-heading');
+  if(heading){
+    var raw=heading.innerHTML;
+    var idx=0;
+    heading.innerHTML=raw.replace(/(<[^>]+>)|(\s)|(.)/g,function(_,tag,space,ch){
+      if(tag)return tag;
+      if(space)return space;
+      return '<span class="char" style="animation-delay:'+(idx++*.05+.55)+'s">'+ch+'</span>';
+    });
+  }
+
+  /* --- Scroll Reveal (IntersectionObserver) --- */
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}
+    });
+  },{threshold:.1,rootMargin:'0px 0px -50px 0px'});
+  var els=document.querySelectorAll('.reveal,.reveal-left,.reveal-right,.stagger,.line-mask');
+  for(var j=0;j<els.length;j++)io.observe(els[j]);
+
+  /* --- Parallax: hero glow --- */
+  var ticking=false;
+  var glow=document.querySelector('.hero-glow');
+  window.addEventListener('scroll',function(){
+    if(!ticking){
+      requestAnimationFrame(function(){
+        var y=window.scrollY;
+        if(glow)glow.style.transform='scale('+(1+y*.0002)+') translateY('+y*-.06+'px)';
+        ticking=false;
+      });
+      ticking=true;
+    }
+  },{passive:true});
+
+  /* --- Particles --- */
+  var cvs=document.getElementById('particles');
+  if(cvs){
+    var c=cvs.getContext('2d');
+    var pts=[];
+    var mx=-9e3,my=-9e3;
+    var N=75,cDist=130,mDist=110;
+
+    function resize(){cvs.width=cvs.parentElement.offsetWidth;cvs.height=cvs.parentElement.offsetHeight;}
+    resize();
+    window.addEventListener('resize',resize);
+
+    cvs.parentElement.addEventListener('mousemove',function(e){
+      var r=cvs.getBoundingClientRect();mx=e.clientX-r.left;my=e.clientY-r.top;});
+    cvs.parentElement.addEventListener('mouseleave',function(){mx=-9e3;my=-9e3;});
+
+    for(var pi=0;pi<N;pi++){
+      pts.push({
+        x:Math.random()*cvs.width,y:Math.random()*cvs.height,
+        vx:(Math.random()-.5)*.35,vy:(Math.random()-.5)*.35,
+        r:Math.random()*1.4+.5,o:Math.random()*.35+.08
+      });
+    }
+
+    function drawParticles(){
+      c.clearRect(0,0,cvs.width,cvs.height);
+      for(var i=0;i<pts.length;i++){
+        var p=pts[i];
+        var dx=p.x-mx,dy=p.y-my,d=Math.sqrt(dx*dx+dy*dy);
+        if(d<mDist&&d>0){var f=(mDist-d)/mDist*.7;p.vx+=dx/d*f;p.vy+=dy/d*f;}
+        p.vx*=.985;p.vy*=.985;
+        var sp=Math.sqrt(p.vx*p.vx+p.vy*p.vy);
+        if(sp<.12){p.vx+=(Math.random()-.5)*.08;p.vy+=(Math.random()-.5)*.08;}
+        p.x+=p.vx;p.y+=p.vy;
+        if(p.x<0)p.x=cvs.width;if(p.x>cvs.width)p.x=0;
+        if(p.y<0)p.y=cvs.height;if(p.y>cvs.height)p.y=0;
+        c.beginPath();c.arc(p.x,p.y,p.r,0,6.28);
+        c.fillStyle='rgba(232,185,35,'+p.o+')';c.fill();
+      }
+      for(var i=0;i<pts.length;i++){
+        for(var j=i+1;j<pts.length;j++){
+          var dx=pts[i].x-pts[j].x,dy=pts[i].y-pts[j].y,d=Math.sqrt(dx*dx+dy*dy);
+          if(d<cDist){
+            c.beginPath();c.moveTo(pts[i].x,pts[i].y);c.lineTo(pts[j].x,pts[j].y);
+            c.strokeStyle='rgba(232,185,35,'+((1-d/cDist)*.1)+')';
+            c.lineWidth=.5;c.stroke();
+          }
+        }
+      }
+      requestAnimationFrame(drawParticles);
+    }
+    drawParticles();
+  }
+
+})();
+</script>
+</body>
+</html>
