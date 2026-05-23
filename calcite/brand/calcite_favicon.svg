@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52" width="52" height="52">
+  <title>Calcite Favicon</title>
+  <desc>Calcite favicon - gold C on dark background</desc>
+  <rect x="0" y="0" width="52" height="52" rx="6" fill="#0d0d0d"/>
+  <g transform="translate(10, 4)" stroke="#c4a55a" stroke-width="2.4" fill="none" stroke-linecap="square" stroke-linejoin="miter">
+    <path d="M26,2 L6,2 L2,6 L2,38 L6,42 L26,42"/>
+  </g>
+</svg>

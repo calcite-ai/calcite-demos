@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 64" width="52" height="64">
+  <title>Calcite Icon</title>
+  <desc>Calcite symbol mark - geometric C with crystal-cut corners</desc>
+  <g transform="translate(6, 4)" stroke="#0d0d0d" stroke-width="2.8" fill="none" stroke-linecap="square" stroke-linejoin="miter">
+    <path d="M34,2 L6,2 L2,6 L2,50 L6,54 L34,54"/>
+  </g>
+</svg>

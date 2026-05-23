@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 228 56" width="228" height="56">
+  <title>CALCITE Wordmark</title>
+  <desc>Calcite geometric wordmark - text only, no subtext</desc>
+  <g transform="translate(6, 2)" stroke="#0d0d0d" stroke-width="2.4" fill="none" stroke-linecap="square" stroke-linejoin="miter">
+    <!-- C -->
+    <path d="M30,2 L6,2 L2,6 L2,48 L6,52 L30,52"/>
+    <!-- A (no crossbar) -->
+    <path d="M42,52 L54,2 L66,52"/>
+    <!-- L -->
+    <path d="M78,2 L78,52 L102,52"/>
+    <!-- C -->
+    <path d="M124,2 L106,2 L102,6 L102,48 L106,52 L124,52"/>
+    <!-- I (gold serifs) -->
+    <line x1="134" y1="2" x2="134" y2="52"/>
+    <line x1="129" y1="2" x2="139" y2="2" stroke="#c4a55a" stroke-width="1.8"/>
+    <line x1="129" y1="52" x2="139" y2="52" stroke="#c4a55a" stroke-width="1.8"/>
+    <!-- T -->
+    <line x1="149" y1="2" x2="177" y2="2"/>
+    <line x1="163" y1="2" x2="163" y2="52"/>
+    <!-- E -->
+    <path d="M189,2 L211,2 M189,2 L189,52 L211,52 M189,27 L205,27"/>
+  </g>
+</svg>

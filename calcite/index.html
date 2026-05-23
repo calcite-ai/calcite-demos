@@ -39,10 +39,21 @@ a{cursor:inherit;}
   transition:opacity .6s .15s,visibility .6s .15s;}
 .loader.done{opacity:0;visibility:hidden;pointer-events:none;}
 .loader-mark{display:flex;flex-direction:column;align-items:center;gap:14px;}
-.loader-mark svg{width:36px;height:36px;animation:loaderSpin 3s linear infinite;}
-.loader-mark span{font-family:'Bebas Neue',sans-serif;font-size:1rem;letter-spacing:.6em;color:var(--warn);opacity:0;animation:loaderFade .8s .2s ease forwards;}
-@keyframes loaderSpin{0%{transform:rotate(0)}100%{transform:rotate(360deg)}}
-@keyframes loaderFade{to{opacity:1}}
+.loader-mark svg{width:160px;height:auto;}
+
+/* Stroke draw animation */
+.draw-path{
+  stroke-dasharray:var(--len);
+  stroke-dashoffset:var(--len);
+  animation:drawIn 1s var(--d,.1s) cubic-bezier(.4,0,.2,1) forwards;
+}
+@keyframes drawIn{to{stroke-dashoffset:0}}
+
+/* Hero crystal version */
+.hero-crystal .draw-path{
+  animation:drawInHero 1.6s var(--d,.3s) cubic-bezier(.4,0,.2,1) forwards;
+}
+@keyframes drawInHero{to{stroke-dashoffset:0}}
 
 /* === Header === */
 header{position:fixed;top:0;left:0;right:0;z-index:100;padding:20px 40px;
@@ -50,10 +61,8 @@ header{position:fixed;top:0;left:0;right:0;z-index:100;padding:20px 40px;
 header.scrolled{mix-blend-mode:normal;background:rgba(13,13,13,.9);backdrop-filter:blur(18px);box-shadow:0 1px 0 rgba(245,242,236,.05);}
 .nav-inner{display:flex;align-items:center;justify-content:space-between;max-width:1400px;margin:0 auto;}
 .logo{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--paper);}
-.logo .mark{width:28px;height:28px;}
-.logo .mark svg{width:100%;height:100%;display:block;}
-.logo .wm{font-family:'Bebas Neue',sans-serif;font-size:1.15rem;letter-spacing:.2em;line-height:1;}
-.logo .wm small{display:block;font-family:'Noto Serif JP',serif;font-size:.38rem;letter-spacing:.3em;color:var(--steel);font-weight:700;margin-top:2px;}
+.logo .mark{height:22px;display:flex;align-items:center;}
+.logo .mark svg{height:100%;width:auto;display:block;}
 nav ul{display:flex;gap:32px;list-style:none;}
 nav a{color:var(--paper);text-decoration:none;font-size:.78rem;font-weight:500;letter-spacing:.08em;position:relative;padding:4px 0;}
 nav a::after{content:'';position:absolute;bottom:-2px;left:0;width:0;height:1px;background:var(--warn);transition:width .4s var(--ease);}
@@ -147,12 +156,15 @@ nav a:hover::after{width:100%;}
   font-size:clamp(1.5rem,3vw,2.3rem);line-height:1.6;margin:28px 0 32px;}
 .philo-text .big em{font-style:normal;color:var(--rust);}
 .philo-text p{color:#555;line-height:2.3;margin-bottom:18px;font-size:.94rem;}
-.philo-visual{position:relative;aspect-ratio:1;display:flex;align-items:center;justify-content:center;}
-.philo-visual .crystal-lg{width:68%;}
-.philo-visual .crystal-lg svg{width:100%;height:auto;filter:drop-shadow(0 24px 48px rgba(184,51,26,.1));}
-.philo-visual .ring{position:absolute;width:100%;height:100%;border:1px solid rgba(13,13,13,.05);
-  border-radius:50%;animation:ringRotate 30s linear infinite;}
-.philo-visual .ring2{width:70%;height:70%;border-color:rgba(184,51,26,.08);animation-direction:reverse;animation-duration:22s;}
+.philo-visual{position:relative;aspect-ratio:1;display:flex;align-items:center;justify-content:center;overflow:hidden;}
+.philo-visual .pv-photo{position:absolute;inset:0;z-index:0;}
+.philo-visual .pv-photo img{width:100%;height:100%;object-fit:cover;object-position:center 30%;}
+.philo-visual .pv-photo-overlay{position:absolute;inset:0;
+  background:linear-gradient(135deg,rgba(245,242,236,.82),rgba(245,242,236,.6));}
+.philo-visual svg.pv-main{width:88%;height:88%;position:relative;z-index:1;}
+.philo-visual .pv-pulse{position:absolute;width:45%;height:45%;border:1px solid rgba(196,165,90,.10);
+  transform:rotate(45deg);animation:pvPulse 6s ease-in-out infinite;z-index:1;}
+@keyframes pvPulse{0%,100%{transform:rotate(45deg) scale(1);opacity:1}50%{transform:rotate(45deg) scale(1.08);opacity:.4}}
 
 /* === Problems === */
 .problems{background:var(--ink);color:var(--paper);position:relative;overflow:hidden;}
@@ -226,12 +238,13 @@ nav a:hover::after{width:100%;}
 .about{background:var(--ink);color:var(--paper);}
 .about .sec-title{color:var(--paper);}
 .about-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:72px;align-items:center;margin-top:56px;}
-.about-photo{aspect-ratio:3/4;background:linear-gradient(145deg,#1c1c1c,#0a0a0a);
-  border:1px solid rgba(245,242,236,.06);display:flex;align-items:center;justify-content:center;
+.about-photo{aspect-ratio:3/4;background:#0a0a0a;
   position:relative;overflow:hidden;}
-.about-photo .ph{width:42%;opacity:.4;}
-.about-photo .tag{position:absolute;bottom:18px;left:18px;font-family:'Bebas Neue',sans-serif;
-  letter-spacing:.22em;font-size:.68rem;color:var(--steel);}
+.about-photo .ap-img{position:absolute;inset:0;}
+.about-photo .ap-img img{width:100%;height:100%;object-fit:cover;object-position:center 30%;}
+.about-photo .ap-img-overlay{position:absolute;inset:0;
+  background:linear-gradient(160deg,rgba(10,10,10,.88),rgba(10,10,10,.7));}
+.about-photo svg.ap-canvas{position:absolute;inset:0;width:100%;height:100%;}
 .about-text .name{font-family:'Noto Serif JP',serif;font-weight:900;font-size:2rem;margin-bottom:4px;}
 .about-text .name small{font-family:'Bebas Neue',sans-serif;font-size:.88rem;letter-spacing:.2em;color:var(--warn);margin-left:14px;}
 .about-text .role{font-size:.84rem;color:var(--rust);letter-spacing:.12em;margin-bottom:28px;}
@@ -333,8 +346,28 @@ footer{background:#050505;color:rgba(245,242,236,.5);padding:64px 40px 28px;}
 <!-- Loading -->
 <div class="loader" id="loader">
   <div class="loader-mark">
-    <svg viewBox="0 0 100 100"><g stroke="rgba(232,185,35,.6)" stroke-width="2" fill="none" stroke-linejoin="miter"><polygon points="50,8 92,30 50,52 8,30"/><polygon points="92,30 92,70 50,92 50,52"/><polygon points="8,30 8,70 50,92 50,52"/></g></svg>
-    <span>CALCITE</span>
+    <svg viewBox="0 0 228 56" width="160"><g transform="translate(6,2)" stroke="rgba(232,185,35,.6)" stroke-width="2.4" fill="none" stroke-linecap="square" stroke-linejoin="miter">
+      <!-- C -->
+      <path class="draw-path" style="--len:150;--d:0s" d="M30,2 L6,2 L2,6 L2,48 L6,52 L30,52"/>
+      <!-- A -->
+      <path class="draw-path" style="--len:130;--d:.12s" d="M42,52 L54,2 L66,52"/>
+      <!-- L -->
+      <path class="draw-path" style="--len:98;--d:.24s" d="M78,2 L78,52 L102,52"/>
+      <!-- C2 -->
+      <path class="draw-path" style="--len:150;--d:.36s" d="M124,2 L106,2 L102,6 L102,48 L106,52 L124,52"/>
+      <!-- I stem -->
+      <line class="draw-path" style="--len:50;--d:.48s" x1="134" y1="2" x2="134" y2="52"/>
+      <!-- I serifs gold -->
+      <line class="draw-path" style="--len:10;--d:.58s" x1="129" y1="2" x2="139" y2="2" stroke="#c4a55a" stroke-width="1.8"/>
+      <line class="draw-path" style="--len:10;--d:.6s" x1="129" y1="52" x2="139" y2="52" stroke="#c4a55a" stroke-width="1.8"/>
+      <!-- T top -->
+      <line class="draw-path" style="--len:28;--d:.62s" x1="149" y1="2" x2="177" y2="2"/>
+      <!-- T stem -->
+      <line class="draw-path" style="--len:50;--d:.66s" x1="163" y1="2" x2="163" y2="52"/>
+      <!-- E -->
+      <path class="draw-path" style="--len:94;--d:.74s" d="M211,2 L189,2 L189,52 L211,52"/>
+      <line class="draw-path" style="--len:16;--d:.86s" x1="189" y1="27" x2="205" y2="27"/>
+    </g></svg>
   </div>
 </div>
 
@@ -348,8 +381,7 @@ footer{background:#050505;color:rgba(245,242,236,.5);padding:64px 40px 28px;}
 <header id="header">
   <div class="nav-inner">
     <a href="#" class="logo">
-      <span class="mark"><svg viewBox="0 0 100 100"><g stroke="#f5f2ec" stroke-width="4" fill="none" stroke-linejoin="miter" stroke-linecap="square"><polygon points="50,8 92,30 50,52 8,30"/><polygon points="92,30 92,70 50,92 50,52"/><polygon points="8,30 8,70 50,92 50,52"/></g></svg></span>
-      <span class="wm">CALCITE<small>カルサイト</small></span>
+      <span class="mark"><svg viewBox="0 0 228 56" height="22"><g transform="translate(6,2)" stroke="#f5f2ec" stroke-width="2.4" fill="none" stroke-linecap="square" stroke-linejoin="miter"><path d="M30,2 L6,2 L2,6 L2,48 L6,52 L30,52"/><path d="M42,52 L54,2 L66,52"/><path d="M78,2 L78,52 L102,52"/><path d="M124,2 L106,2 L102,6 L102,48 L106,52 L124,52"/><line x1="134" y1="2" x2="134" y2="52"/><line x1="129" y1="2" x2="139" y2="2" stroke="#c4a55a" stroke-width="1.8"/><line x1="129" y1="52" x2="139" y2="52" stroke="#c4a55a" stroke-width="1.8"/><line x1="149" y1="2" x2="177" y2="2"/><line x1="163" y1="2" x2="163" y2="52"/><path d="M189,2 L211,2 M189,2 L189,52 L211,52 M189,27 L205,27"/></g></svg></span>
     </a>
     <nav><ul>
       <li><a href="#philosophy">理念</a></li>
@@ -368,18 +400,24 @@ footer{background:#050505;color:rgba(245,242,236,.5);padding:64px 40px 28px;}
   <div class="hero-glow"></div>
   <div class="hero-crystal">
     <div class="crystal-float">
-      <svg viewBox="0 0 100 100"><g stroke="rgba(232,185,35,0.4)" stroke-width="0.7" fill="none" stroke-linejoin="miter">
-        <polygon points="50,6 94,30 50,54 6,30"/>
-        <polygon points="94,30 94,72 50,96 50,54"/>
-        <polygon points="6,30 6,72 50,96 50,54"/>
-        <line x1="50" y1="54" x2="50" y2="96" stroke="rgba(184,51,26,0.3)"/>
-        <line x1="50" y1="6" x2="50" y2="54" stroke="rgba(245,242,236,0.07)"/>
+      <svg viewBox="0 0 228 56"><g transform="translate(6,2)" stroke="rgba(232,185,35,0.35)" stroke-width="1.2" fill="none" stroke-linecap="square" stroke-linejoin="miter">
+        <path class="draw-path" style="--len:150;--d:2.5s" d="M30,2 L6,2 L2,6 L2,48 L6,52 L30,52"/>
+        <path class="draw-path" style="--len:130;--d:2.7s" d="M42,52 L54,2 L66,52"/>
+        <path class="draw-path" style="--len:98;--d:2.9s" d="M78,2 L78,52 L102,52"/>
+        <path class="draw-path" style="--len:150;--d:3.1s" d="M124,2 L106,2 L102,6 L102,48 L106,52 L124,52"/>
+        <line class="draw-path" style="--len:50;--d:3.3s" x1="134" y1="2" x2="134" y2="52"/>
+        <line class="draw-path" style="--len:10;--d:3.5s" x1="129" y1="2" x2="139" y2="2" stroke="rgba(196,165,90,0.5)" stroke-width="1"/>
+        <line class="draw-path" style="--len:10;--d:3.55s" x1="129" y1="52" x2="139" y2="52" stroke="rgba(196,165,90,0.5)" stroke-width="1"/>
+        <line class="draw-path" style="--len:28;--d:3.6s" x1="149" y1="2" x2="177" y2="2"/>
+        <line class="draw-path" style="--len:50;--d:3.65s" x1="163" y1="2" x2="163" y2="52"/>
+        <path class="draw-path" style="--len:94;--d:3.8s" d="M211,2 L189,2 L189,52 L211,52"/>
+        <line class="draw-path" style="--len:16;--d:4.0s" x1="189" y1="27" x2="205" y2="27"/>
       </g></svg>
     </div>
   </div>
   <div class="hero-content">
     <div class="hero-tag"><span>DIGITAL PARTNER FOR SMB</span></div>
-    <h1 id="hero-heading">信頼を、<br><span class="acc">磨く</span>。</h1>
+    <h1 id="hero-heading">信頼を<br><span class="acc">磨く</span></h1>
     <div class="hero-sub">
       <p>Web制作、業務の自動化、AI活用——<br>中小企業の「困った」をデジタルの力で<br>まるごと解決するパートナーです。</p>
       <div class="hero-actions">
@@ -421,16 +459,55 @@ footer{background:#050505;color:rgba(245,242,236,.5);padding:64px 40px 28px;}
         <p class="reveal">ホームページ制作だけでなく、日々の業務の自動化やAIの活用まで。御社が本来持つ力を、デジタルの力で磨いて最大限に引き出す——それがカルサイトの仕事です。</p>
       </div>
       <div class="philo-visual reveal">
-        <div class="ring"></div>
-        <div class="ring ring2"></div>
-        <div class="crystal-lg">
-          <svg viewBox="0 0 100 100"><g stroke="#0d0d0d" stroke-width="1.8" fill="none" stroke-linejoin="miter" stroke-linecap="square">
-            <polygon points="50,8 92,30 50,52 8,30"/>
-            <polygon points="92,30 92,70 50,92 50,52"/>
-            <polygon points="8,30 8,70 50,92 50,52"/>
-            <line x1="50" y1="52" x2="50" y2="92" stroke="#b8331a"/>
-          </g></svg>
+        <!-- Real calcite crystal photo -->
+        <div class="pv-photo">
+          <img src="https://images.unsplash.com/photo-1652118845377-72608dad7ea8?auto=format&fit=crop&w=800&q=60" alt="方解石の結晶" loading="lazy">
+          <div class="pv-photo-overlay"></div>
         </div>
+        <!-- Breathing diamond pulse -->
+        <div class="pv-pulse"></div>
+        <!-- Main SVG: double refraction -->
+        <svg class="pv-main" viewBox="0 0 400 400">
+          <defs>
+            <clipPath id="crystal-clip">
+              <polygon points="200,50 350,200 200,350 50,200"/>
+            </clipPath>
+            <clipPath id="crystal-inner">
+              <polygon points="200,90 310,200 200,310 90,200"/>
+            </clipPath>
+          </defs>
+          <!-- Thin radial guides -->
+          <line x1="200" y1="30" x2="200" y2="370" stroke="#0d0d0d" stroke-width=".3" opacity=".06"/>
+          <line x1="30" y1="200" x2="370" y2="200" stroke="#0d0d0d" stroke-width=".3" opacity=".06"/>
+          <!-- POLISH text outside — single, faint -->
+          <text x="200" y="220" text-anchor="middle" font-family="'Bebas Neue',sans-serif"
+                font-size="100" letter-spacing="8" fill="#0d0d0d" opacity=".04">POLISH</text>
+          <!-- Diamond frame -->
+          <polygon points="200,50 350,200 200,350 50,200"
+                   fill="none" stroke="#0d0d0d" stroke-width="1.2" opacity=".15"/>
+          <!-- Inner diamond — photo visible through this window -->
+          <g clip-path="url(#crystal-inner)">
+            <!-- Darken the photo inside crystal -->
+            <rect x="0" y="0" width="400" height="400" fill="rgba(245,242,236,.35)"/>
+          </g>
+          <polygon points="200,90 310,200 200,310 90,200"
+                   fill="none" stroke="#c4a55a" stroke-width=".6" opacity=".25"/>
+          <!-- REFRACTED text inside diamond — doubled -->
+          <g clip-path="url(#crystal-clip)">
+            <text x="200" y="220" text-anchor="middle" font-family="'Bebas Neue',sans-serif"
+                  font-size="100" letter-spacing="8" fill="#0d0d0d" opacity=".15">POLISH</text>
+            <text x="210" y="226" text-anchor="middle" font-family="'Bebas Neue',sans-serif"
+                  font-size="100" letter-spacing="8" fill="#c4a55a" opacity=".12">POLISH</text>
+          </g>
+          <!-- Vertex accents -->
+          <circle cx="200" cy="50" r="2.5" fill="#c4a55a" opacity=".35"/>
+          <circle cx="350" cy="200" r="2.5" fill="#c4a55a" opacity=".35"/>
+          <circle cx="200" cy="350" r="2.5" fill="#c4a55a" opacity=".35"/>
+          <circle cx="50" cy="200" r="2.5" fill="#c4a55a" opacity=".35"/>
+          <!-- Label -->
+          <text x="370" y="196" text-anchor="end" font-family="'Bebas Neue',sans-serif"
+                font-size="9" letter-spacing="3" fill="#8a8a85" opacity=".45">DOUBLE REFRACTION</text>
+        </svg>
       </div>
     </div>
   </div>
@@ -565,11 +642,30 @@ footer{background:#050505;color:rgba(245,242,236,.5);padding:64px 40px 28px;}
     </div>
     <div class="about-grid">
       <div class="about-photo reveal-left">
-        <div class="ph"><svg viewBox="0 0 100 100"><g stroke="rgba(232,185,35,0.3)" stroke-width="2.5" fill="none" stroke-linejoin="miter"><polygon points="50,8 92,30 50,52 8,30"/><polygon points="92,30 92,70 50,92 50,52"/><polygon points="8,30 8,70 50,92 50,52"/></g></svg></div>
-        <div class="tag">CALCITE — KENTA HINO</div>
+        <div class="ap-img">
+          <img src="https://images.unsplash.com/photo-1652118845377-72608dad7ea8?auto=format&fit=crop&w=600&q=60" alt="方解石の結晶" loading="lazy">
+          <div class="ap-img-overlay"></div>
+        </div>
+        <svg class="ap-canvas" viewBox="0 0 300 400" preserveAspectRatio="xMidYMid slice">
+          <!-- Name -->
+          <text x="150" y="185" text-anchor="middle" font-family="'Noto Serif JP',serif" font-weight="900"
+                font-size="32" fill="#f5f2ec" opacity=".9">日野 研太</text>
+          <text x="150" y="212" text-anchor="middle" font-family="'Inter',sans-serif" font-size="8"
+                letter-spacing="4" fill="#c4a55a" opacity=".5">KENTA HINO</text>
+          <!-- Diamond frame around name -->
+          <polygon points="150,130 230,195 150,260 70,195" fill="none" stroke="#c4a55a" stroke-width=".5" opacity=".2"/>
+          <!-- Bottom wordmark -->
+          <g transform="translate(90,368) scale(.32)" stroke="#f5f2ec" stroke-width="2.4" fill="none" stroke-linecap="square" stroke-linejoin="miter" opacity=".1">
+            <path d="M30,2 L6,2 L2,6 L2,48 L6,52 L30,52"/><path d="M42,52 L54,2 L66,52"/><path d="M78,2 L78,52 L102,52"/>
+            <path d="M124,2 L106,2 L102,6 L102,48 L106,52 L124,52"/><line x1="134" y1="2" x2="134" y2="52"/>
+            <line x1="149" y1="2" x2="177" y2="2"/><line x1="163" y1="2" x2="163" y2="52"/>
+            <path d="M189,2 L211,2 M189,2 L189,52 L211,52 M189,27 L205,27"/>
+          </g>
+          <text x="150" y="390" text-anchor="middle" font-family="'Inter',sans-serif" font-size="5.5"
+                letter-spacing="2" fill="#8a8a85" opacity=".4">FOUNDER — CALCITE</text>
+        </svg>
       </div>
       <div class="about-text reveal-right">
-        <div class="name">日野 研太<small>KENTA HINO</small></div>
         <div class="role">カルサイト 代表</div>
         <p>中小企業の皆さまが抱える「デジタルの困りごと」を、まるごと引き受けるパートナーでありたいと考えています。</p>
         <p>ホームページ制作はもちろん、日々の業務の効率化やAIの活用提案まで。一社一社のお話をじっくり伺い、その企業に合った解決策をご提案します。専門用語をできるだけ使わず、丁寧にご説明することを心がけています。</p>
@@ -600,7 +696,7 @@ footer{background:#050505;color:rgba(245,242,236,.5);padding:64px 40px 28px;}
 <footer>
   <div class="foot-inner">
     <div class="foot-brand">
-      <a href="#" class="logo"><span class="mark"><svg viewBox="0 0 100 100"><g stroke="#e8b923" stroke-width="4" fill="none" stroke-linejoin="miter" stroke-linecap="square"><polygon points="50,8 92,30 50,52 8,30"/><polygon points="92,30 92,70 50,92 50,52"/><polygon points="8,30 8,70 50,92 50,52"/></g></svg></span><span class="wm" style="color:#f5f2ec">CALCITE<small style="color:var(--steel)">カルサイト</small></span></a>
+      <a href="#" class="logo"><span class="mark"><svg viewBox="0 0 228 56" height="20"><g transform="translate(6,2)" stroke="#f5f2ec" stroke-width="2.4" fill="none" stroke-linecap="square" stroke-linejoin="miter"><path d="M30,2 L6,2 L2,6 L2,48 L6,52 L30,52"/><path d="M42,52 L54,2 L66,52"/><path d="M78,2 L78,52 L102,52"/><path d="M124,2 L106,2 L102,6 L102,48 L106,52 L124,52"/><line x1="134" y1="2" x2="134" y2="52"/><line x1="129" y1="2" x2="139" y2="2" stroke="#c4a55a" stroke-width="1.8"/><line x1="129" y1="52" x2="139" y2="52" stroke="#c4a55a" stroke-width="1.8"/><line x1="149" y1="2" x2="177" y2="2"/><line x1="163" y1="2" x2="163" y2="52"/><path d="M189,2 L211,2 M189,2 L189,52 L211,52 M189,27 L205,27"/></g></svg></span></a>
       <p>信頼を、磨く。<br>Web制作・業務自動化・AI活用</p>
     </div>
     <div class="foot-nav">
@@ -624,7 +720,7 @@ footer{background:#050505;color:rgba(245,242,236,.5);padding:64px 40px 28px;}
 
   /* --- Loading --- */
   window.addEventListener('load',function(){
-    setTimeout(function(){document.getElementById('loader').classList.add('done');},700);
+    setTimeout(function(){document.getElementById('loader').classList.add('done');},1800);
   });
 
   /* --- Custom Cursor (desktop only) --- */
