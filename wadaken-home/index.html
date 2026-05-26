@@ -1,0 +1,1155 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="新築・リフォーム・工務店（愛媛/新居浜・西条・四国中央）ならワダケンホーム。自然素材を使用した家づくり、古民家のリフォームなども手掛ける地域密着の工務店です。">
+<title>ワダケンホーム｜新築・リフォーム・工務店（愛媛/新居浜・西条・四国中央）</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@400;500;700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --primary: #3a5a4c; --primary-dark: #2a3f36; --primary-light: #5a7d6b;
+  --accent: #c8956c; --accent-dark: #a87750; --accent-light: #f7efe8;
+  --wood: #8b6f52; --wood-light: #c4a882;
+  --cream: #f9f5f0; --cream-dark: #f0e8dd;
+  --bg: #fdfbf8; --bg-green: #f0f5f2; --bg-warm: #faf5ef;
+  --text: #3d3832; --text-light: #7a7168; --text-muted: #a69e94;
+  --white: #fff; --border: #e8e0d5;
+  --shadow-sm: 0 2px 8px rgba(58,48,38,0.04);
+  --shadow: 0 4px 20px rgba(58,48,38,0.07);
+  --shadow-lg: 0 12px 40px rgba(58,48,38,0.1);
+  --radius: 16px; --radius-sm: 10px; --radius-lg: 24px;
+}
+html { scroll-behavior: smooth; }
+body { font-family: 'Noto Sans JP', sans-serif; color: var(--text); line-height: 1.8; background: var(--bg); -webkit-font-smoothing: antialiased; }
+img { max-width: 100%; height: auto; display: block; }
+a { text-decoration: none; color: inherit; }
+.img-cover { width: 100%; height: 100%; object-fit: cover; }
+
+/* ===== HEADER ===== */
+.top-bar { background: var(--primary-dark); color: rgba(255,255,255,0.7); font-size: 11px; padding: 7px 24px; display: flex; justify-content: flex-end; gap: 24px; letter-spacing: 0.05em; }
+.top-bar a { color: rgba(255,255,255,0.7); transition: color 0.3s; }
+.top-bar a:hover { color: var(--accent); }
+header { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.96); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(0,0,0,0.04); }
+.header-inner { max-width: 1200px; margin: 0 auto; padding: 0 24px; display: flex; align-items: center; justify-content: space-between; height: 76px; }
+.logo { display: flex; align-items: center; gap: 0; }
+.logo-img { height: 44px; width: auto; object-fit: contain; }
+.logo-text { font-family: 'Outfit', sans-serif; font-size: 19px; font-weight: 600; color: var(--primary-dark); }
+.logo-jp { display: block; font-size: 9px; color: var(--text-muted); letter-spacing: 0.08em; margin-top: 1px; }
+nav { display: flex; align-items: center; gap: 1px; }
+nav a { padding: 7px 12px; font-size: 12px; font-weight: 500; color: var(--text-light); transition: all 0.3s; border-radius: 8px; }
+nav a:hover { color: var(--primary); background: var(--bg-green); }
+.nav-cta { display: flex; gap: 8px; margin-left: 12px; }
+.nav-cta a { padding: 9px 20px; border-radius: 50px; font-size: 11px; font-weight: 700; transition: all 0.3s; letter-spacing: 0.05em; }
+.btn-line { background: #06C755; color: var(--white); }
+.btn-line:hover { background: #05b34c; }
+.btn-contact { background: var(--primary); color: var(--white); }
+.btn-contact:hover { background: var(--primary-dark); }
+.hamburger { display: none; background: none; border: none; font-size: 24px; cursor: pointer; color: var(--primary); }
+
+/* ===== HERO ===== */
+.hero { position: relative; min-height: 90vh; display: flex; align-items: center; overflow: hidden; }
+.hero-bg { position: absolute; inset: 0; }
+.hero-bg img { width: 100%; height: 100%; object-fit: cover; }
+.hero-bg::after { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(42,63,54,0.9) 0%, rgba(58,90,76,0.75) 50%, rgba(90,125,107,0.5) 100%); }
+.hero-content { max-width: 1200px; margin: 0 auto; padding: 80px 24px; position: relative; z-index: 2; display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; width: 100%; }
+.hero-text { color: var(--white); }
+.hero-badge { display: inline-flex; padding: 6px 16px; background: rgba(200,149,108,0.15); border: 1px solid rgba(200,149,108,0.3); border-radius: 50px; font-size: 11px; color: var(--accent); margin-bottom: 24px; letter-spacing: 0.12em; }
+.hero h1 { font-family: 'Noto Serif JP', serif; font-size: clamp(26px, 4vw, 42px); line-height: 1.5; margin-bottom: 12px; font-weight: 700; }
+.hero h1 em { font-style: normal; color: var(--accent); }
+.hero-sub { font-size: 15px; color: rgba(255,255,255,0.85); margin-bottom: 18px; font-weight: 300; letter-spacing: 0.08em; }
+.hero-desc { font-size: 13px; line-height: 2; color: rgba(255,255,255,0.6); margin-bottom: 32px; }
+.hero-buttons { display: flex; gap: 12px; flex-wrap: wrap; }
+.hero-btn { padding: 14px 30px; border-radius: 50px; font-size: 13px; font-weight: 700; display: inline-flex; align-items: center; gap: 8px; transition: all 0.3s; letter-spacing: 0.05em; }
+.hero-btn-primary { background: var(--accent); color: var(--white); }
+.hero-btn-primary:hover { background: var(--accent-dark); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(200,149,108,0.3); }
+.hero-btn-outline { border: 1.5px solid rgba(255,255,255,0.35); color: var(--white); background: rgba(255,255,255,0.06); }
+.hero-btn-outline:hover { border-color: rgba(255,255,255,0.6); background: rgba(255,255,255,0.12); }
+.hero-visual { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.hero-img { border-radius: var(--radius); overflow: hidden; }
+.hero-img-tall { grid-row: span 2; }
+.hero-img img { width: 100%; height: 100%; object-fit: cover; }
+.hero-img-tall img { min-height: 360px; }
+.hero-stats { display: flex; gap: 32px; margin-top: 36px; padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.12); }
+.hero-stat-num { font-family: 'Outfit', sans-serif; font-size: 30px; font-weight: 700; color: var(--accent); line-height: 1; }
+.hero-stat-label { font-size: 10px; color: rgba(255,255,255,0.5); margin-top: 6px; letter-spacing: 0.08em; }
+
+/* ===== SECTIONS ===== */
+section { padding: 96px 24px; }
+.section-inner { max-width: 1080px; margin: 0 auto; }
+.section-label { font-family: 'Outfit', sans-serif; font-size: 11px; letter-spacing: 0.25em; color: var(--accent); font-weight: 500; text-transform: uppercase; margin-bottom: 10px; }
+.section-title { font-family: 'Noto Serif JP', serif; font-size: clamp(22px, 3.5vw, 32px); color: var(--primary-dark); margin-bottom: 14px; line-height: 1.5; }
+.section-desc { font-size: 13px; color: var(--text-light); margin-bottom: 48px; max-width: 620px; line-height: 2; }
+.section-center { text-align: center; }
+.section-center .section-desc { margin: 0 auto 48px; }
+
+/* ===== CONCEPT ===== */
+.concept { background: var(--white); }
+.concept-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; }
+.concept-visual { position: relative; }
+.concept-img-main { aspect-ratio: 4/3; border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-lg); }
+.concept-badge { position: absolute; bottom: -14px; right: -14px; background: var(--accent); color: var(--white); padding: 14px 20px; border-radius: var(--radius); font-size: 12px; font-weight: 700; line-height: 1.5; box-shadow: 0 8px 24px rgba(200,149,108,0.3); }
+.concept-text h3 { font-family: 'Noto Serif JP', serif; font-size: 24px; color: var(--primary-dark); margin-bottom: 18px; line-height: 1.6; }
+.concept-text p { font-size: 13px; color: var(--text-light); line-height: 2.2; margin-bottom: 12px; }
+.concept-quote { margin-top: 24px; padding: 20px; background: var(--cream); border-radius: var(--radius); border-left: 3px solid var(--accent); }
+.concept-quote p { font-family: 'Noto Serif JP', serif; font-size: 13px; color: var(--primary); line-height: 1.9; margin: 0; }
+
+/* ===== PROMISE (私たちの想い) ===== */
+.promise { background: var(--cream); }
+.promise-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+.promise-img { border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); }
+.promise-img img { width: 100%; height: auto; }
+
+/* ===== BRAND LINES ===== */
+.brands { background: var(--bg); }
+.brand-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+.brand-card { background: var(--white); border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow); transition: transform 0.4s, box-shadow 0.4s; }
+.brand-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+.brand-card-img { position: relative; height: 240px; overflow: hidden; }
+.brand-card-img img { width: 100%; height: 100%; object-fit: cover; }
+.brand-card-img::after { content: ''; position: absolute; inset: 0; background: linear-gradient(transparent 40%, rgba(0,0,0,0.6)); }
+.brand-card:nth-child(2) .brand-card-img::after { background: linear-gradient(transparent 40%, rgba(100,60,20,0.6)); }
+.brand-card-label { position: absolute; bottom: 16px; left: 20px; z-index: 2; color: var(--white); }
+.brand-name { font-family: 'Noto Serif JP', serif; font-size: 28px; }
+.brand-ruby { font-size: 12px; opacity: 0.8; letter-spacing: 0.15em; }
+.brand-card-body { padding: 24px; }
+.brand-card-body h4 { font-size: 14px; color: var(--primary); margin-bottom: 8px; font-weight: 700; }
+.brand-card-body p { font-size: 12px; color: var(--text-light); line-height: 1.9; margin-bottom: 14px; }
+.brand-features { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 0 16px; }
+.brand-features li { padding: 7px 0; font-size: 12px; color: var(--text); border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 10px; }
+.brand-features li::before { content: '✓'; color: var(--accent); font-weight: 700; font-size: 11px; flex-shrink: 0; }
+
+/* ===== SERVICES (expanded) ===== */
+.services { background: var(--bg-green); }
+.service-visual { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 32px; }
+.service-card { position: relative; border-radius: var(--radius-lg); overflow: hidden; min-height: 360px; box-shadow: var(--shadow); }
+.service-card img { width: 100%; height: 100%; object-fit: cover; position: absolute; inset: 0; }
+.service-card::after { content: ''; position: absolute; inset: 0; background: linear-gradient(transparent 30%, rgba(42,63,54,0.85)); }
+.service-card:nth-child(2)::after { background: linear-gradient(transparent 30%, rgba(100,70,40,0.85)); }
+.service-card-content { position: absolute; bottom: 0; left: 0; right: 0; z-index: 2; padding: 28px; color: var(--white); }
+.service-card-content h3 { font-family: 'Noto Serif JP', serif; font-size: 22px; margin-bottom: 4px; }
+.service-card-content .service-en { font-family: 'Outfit', sans-serif; font-size: 10px; opacity: 0.6; letter-spacing: 0.15em; margin-bottom: 12px; }
+.service-card-content p { font-size: 12px; opacity: 0.85; line-height: 1.8; margin-bottom: 14px; }
+.service-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.service-tag-item { padding: 4px 12px; background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.25); border-radius: 50px; font-size: 10px; color: var(--white); backdrop-filter: blur(4px); }
+/* Extra services row */
+.extra-services { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+.extra-service { position: relative; border-radius: var(--radius); overflow: hidden; min-height: 200px; box-shadow: var(--shadow-sm); transition: all 0.4s; }
+.extra-service:hover { transform: translateY(-3px); box-shadow: var(--shadow); }
+.extra-service img { width: 100%; height: 100%; object-fit: cover; position: absolute; inset: 0; transition: transform 0.6s; }
+.extra-service:hover img { transform: scale(1.05); }
+.extra-service::after { content: ''; position: absolute; inset: 0; background: linear-gradient(transparent 20%, rgba(0,0,0,0.6)); }
+.extra-service-content { position: absolute; bottom: 0; left: 0; right: 0; z-index: 2; padding: 16px; color: var(--white); }
+.extra-service-content h4 { font-size: 15px; font-weight: 700; margin-bottom: 4px; }
+.extra-service-content p { font-size: 10px; opacity: 0.8; line-height: 1.6; }
+
+/* ===== GUARANTEE ===== */
+.guarantee { background: var(--white); position: relative; overflow: hidden; }
+.guarantee-bg { position: absolute; inset: 0; opacity: 0.04; }
+.guarantee-bg img { width: 100%; height: 100%; object-fit: cover; }
+.guarantee-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; position: relative; z-index: 2; }
+.guarantee-card { padding: 28px 16px; background: var(--white); border-radius: var(--radius); text-align: center; transition: all 0.3s; border: 1px solid var(--border); }
+.guarantee-card:hover { border-color: var(--accent); box-shadow: var(--shadow); transform: translateY(-3px); }
+.guarantee-icon { width: 52px; height: 52px; margin: 0 auto 12px; background: var(--accent-light); border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+.guarantee-icon svg { width: 24px; height: 24px; stroke: var(--accent); }
+.guarantee-card h3 { font-size: 12px; color: var(--text-light); margin-bottom: 4px; font-weight: 500; }
+.guarantee-card .guarantee-years { font-family: 'Outfit', sans-serif; font-size: 36px; font-weight: 700; color: var(--primary); margin: 4px 0; line-height: 1; }
+.guarantee-card .guarantee-unit { font-size: 14px; color: var(--primary); font-weight: 700; }
+.guarantee-card p { font-size: 10px; color: var(--text-muted); line-height: 1.6; margin-top: 8px; }
+
+/* ===== FLOW ===== */
+.flow { background: var(--bg); }
+.flow-timeline { display: flex; flex-direction: column; gap: 0; position: relative; max-width: 800px; margin: 0 auto; }
+.flow-timeline::before { content: ''; position: absolute; left: 28px; top: 0; bottom: 0; width: 2px; background: linear-gradient(var(--accent), var(--primary)); }
+.flow-item { display: flex; gap: 24px; padding: 20px 0; position: relative; }
+.flow-num { width: 56px; height: 56px; background: var(--white); border: 2px solid var(--accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'Outfit', sans-serif; font-size: 16px; font-weight: 700; color: var(--accent); flex-shrink: 0; position: relative; z-index: 2; }
+.flow-item.flow-free-item .flow-num { background: var(--accent); color: var(--white); border-color: var(--accent); }
+.flow-item-body { background: var(--white); border-radius: var(--radius); padding: 20px 24px; box-shadow: var(--shadow-sm); flex: 1; transition: box-shadow 0.3s; }
+.flow-item-body:hover { box-shadow: var(--shadow); }
+.flow-item-body h4 { font-size: 14px; color: var(--primary-dark); margin-bottom: 4px; font-weight: 700; }
+.flow-item-body p { font-size: 12px; color: var(--text-light); line-height: 1.7; }
+.flow-badge { display: inline-block; padding: 2px 10px; background: var(--accent); color: var(--white); font-size: 10px; font-weight: 700; border-radius: 50px; margin-left: 8px; }
+.flow-note { margin-top: 24px; padding: 16px 20px; background: var(--accent-light); border-radius: var(--radius-sm); font-size: 12px; color: var(--accent-dark); text-align: center; max-width: 800px; margin-left: auto; margin-right: auto; }
+
+/* ===== PRODUCTS ===== */
+.products { background: var(--bg-warm); }
+.products-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.product-card { background: var(--white); border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow-sm); transition: all 0.4s; }
+.product-card:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
+.product-card-img { aspect-ratio: 16/10; overflow: hidden; background: var(--bg-green); }
+.product-card-img img { width: 100%; height: 100%; object-fit: cover; }
+.product-card-body { padding: 20px; }
+.product-card-body h3 { font-size: 14px; color: var(--primary-dark); margin-bottom: 6px; font-weight: 700; }
+.product-card-body p { font-size: 11px; color: var(--text-light); line-height: 1.8; }
+.product-tag { display: inline-block; padding: 2px 8px; background: var(--bg-green); color: var(--primary); font-size: 10px; font-weight: 700; border-radius: 4px; margin-bottom: 8px; }
+
+/* ===== 5 ANSHIN ===== */
+.anshin { background: var(--cream); }
+.anshin-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; }
+.anshin-card { padding: 24px 14px; background: var(--white); border-radius: var(--radius); text-align: center; transition: all 0.4s; }
+.anshin-card:hover { box-shadow: var(--shadow); transform: translateY(-2px); }
+.anshin-num { font-family: 'Outfit', sans-serif; font-size: 24px; font-weight: 700; color: var(--accent); opacity: 0.3; margin-bottom: 6px; }
+.anshin-icon { font-size: 24px; margin-bottom: 8px; }
+.anshin-card h3 { font-size: 13px; color: var(--primary); margin-bottom: 6px; font-weight: 700; }
+.anshin-card p { font-size: 10px; color: var(--text-light); line-height: 1.7; }
+
+/* ===== WORKS ===== */
+.works { background: var(--white); }
+.works-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+.work-card { border-radius: var(--radius); overflow: hidden; background: var(--bg); box-shadow: var(--shadow-sm); transition: all 0.4s; }
+.work-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+.work-img { aspect-ratio: 4/3; overflow: hidden; }
+.work-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s; }
+.work-card:hover .work-img img { transform: scale(1.05); }
+.work-card-body { padding: 16px 18px; }
+.work-card-body h3 { font-size: 13px; color: var(--primary-dark); margin-bottom: 4px; font-weight: 700; }
+.work-tag { display: inline-block; padding: 2px 8px; background: var(--accent-light); color: var(--accent-dark); font-size: 10px; font-weight: 700; border-radius: 4px; margin-bottom: 6px; }
+.work-card-body p { font-size: 10px; color: var(--text-muted); }
+
+/* ===== VOICE ===== */
+.voice { background: var(--cream); }
+.voice-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.voice-card { background: var(--white); border-radius: var(--radius); padding: 28px 24px; box-shadow: var(--shadow-sm); transition: all 0.3s; }
+.voice-card:hover { box-shadow: var(--shadow); }
+.voice-header { display: flex; align-items: center; gap: 14px; margin-bottom: 16px; }
+.voice-avatar { width: 48px; height: 48px; border-radius: 50%; background: var(--bg-green); display: flex; align-items: center; justify-content: center; flex-shrink: 0; overflow: hidden; }
+.voice-avatar svg { width: 28px; height: 28px; fill: var(--primary-light); }
+.voice-meta { }
+.voice-name { font-size: 13px; color: var(--primary-dark); font-weight: 700; }
+.voice-detail { font-size: 10px; color: var(--text-muted); margin-top: 1px; }
+.voice-stars { color: var(--accent); font-size: 12px; letter-spacing: 2px; }
+.voice-card .voice-text { font-size: 13px; color: var(--text-light); line-height: 2; margin-bottom: 14px; position: relative; padding-left: 16px; border-left: 3px solid var(--accent-light); }
+.voice-tag { display: inline-block; padding: 3px 10px; background: var(--bg-green); color: var(--primary); font-size: 10px; font-weight: 500; border-radius: 50px; }
+
+/* ===== PRESIDENT ===== */
+.president { background: var(--white); }
+.president-grid { display: grid; grid-template-columns: 5fr 7fr; gap: 48px; align-items: start; }
+.president-photo { aspect-ratio: 3/4; border-radius: var(--radius-lg); overflow: hidden; position: relative; box-shadow: var(--shadow-lg); }
+.president-photo img { width: 100%; height: 100%; object-fit: cover; object-position: top center; }
+.president-photo-label { position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(42,63,54,0.9)); padding: 36px 18px 14px; }
+.president-photo-label span { color: var(--white); font-size: 12px; font-weight: 500; }
+.president-text h3 { font-family: 'Noto Serif JP', serif; font-size: 20px; color: var(--primary-dark); margin-bottom: 6px; line-height: 1.5; }
+.president-role { font-size: 11px; color: var(--accent); margin-bottom: 20px; letter-spacing: 0.08em; font-weight: 500; }
+.president-text p { font-size: 13px; color: var(--text-light); line-height: 2.2; margin-bottom: 12px; }
+.president-highlight { margin-top: 20px; padding: 18px 20px; background: var(--cream); border-radius: var(--radius); }
+.president-highlight p { font-family: 'Noto Serif JP', serif; font-size: 14px; color: var(--primary); line-height: 1.9; margin: 0; }
+
+/* ===== STAFF ===== */
+.staff { background: var(--bg-green); }
+.staff-images { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.staff-img { border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow-sm); background: var(--white); }
+.staff-img img { width: 100%; }
+
+/* ===== BLOG ===== */
+.blog { background: var(--bg); }
+.blog-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.blog-card { background: var(--white); border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow-sm); transition: all 0.4s; }
+.blog-card:hover { transform: translateY(-3px); box-shadow: var(--shadow); }
+.blog-img { aspect-ratio: 16/9; overflow: hidden; }
+.blog-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s; }
+.blog-card:hover .blog-img img { transform: scale(1.05); }
+.blog-card-body { padding: 18px; }
+.blog-date { font-family: 'Outfit', sans-serif; font-size: 10px; color: var(--accent); margin-bottom: 6px; font-weight: 500; }
+.blog-card-body h3 { font-size: 13px; color: var(--primary-dark); margin-bottom: 6px; line-height: 1.5; font-weight: 700; }
+.blog-card-body p { font-size: 11px; color: var(--text-muted); line-height: 1.8; }
+
+/* ===== FINANCING ===== */
+.financing { background: var(--primary); color: var(--white); }
+.financing-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
+.financing-text h2 { font-family: 'Noto Serif JP', serif; font-size: 24px; margin-bottom: 14px; }
+.financing-text p { font-size: 13px; opacity: 0.8; line-height: 2; margin-bottom: 8px; }
+.financing-features { list-style: none; margin-top: 20px; }
+.financing-features li { padding: 8px 0; font-size: 12px; display: flex; align-items: center; gap: 8px; opacity: 0.9; }
+.financing-features li::before { content: '✓'; color: var(--accent); font-weight: 700; }
+.financing-img { border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow-lg); }
+
+/* ===== NEWSLETTER ===== */
+.newsletter { background: var(--primary-dark); color: var(--white); text-align: center; padding: 52px 24px; }
+.newsletter h2 { font-family: 'Noto Serif JP', serif; font-size: 20px; margin-bottom: 8px; }
+.newsletter p { font-size: 12px; opacity: 0.7; margin-bottom: 16px; line-height: 1.9; }
+.newsletter-badge { display: inline-block; padding: 7px 20px; border: 1px solid rgba(255,255,255,0.2); border-radius: 50px; font-size: 12px; color: var(--accent); }
+
+/* ===== SNS ===== */
+.sns { background: var(--white); text-align: center; padding: 72px 24px; }
+.sns-title { font-family: 'Noto Serif JP', serif; font-size: 20px; color: var(--primary); margin-bottom: 6px; }
+.sns-desc { font-size: 12px; color: var(--text-muted); margin-bottom: 24px; }
+.sns-links { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; }
+.sns-link { display: flex; align-items: center; gap: 6px; padding: 10px 22px; border-radius: 50px; font-size: 12px; font-weight: 600; transition: all 0.3s; }
+.sns-link:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.15); }
+.sns-ig { background: linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045); color: var(--white); }
+.sns-fb { background: #1877F2; color: var(--white); }
+.sns-line { background: #06C755; color: var(--white); }
+.sns-yt { background: #FF0000; color: var(--white); }
+
+/* ===== COMPANY ===== */
+.company { background: var(--bg); }
+.company-grid { display: grid; grid-template-columns: 3fr 2fr; gap: 32px; }
+.company-table { width: 100%; border-collapse: separate; border-spacing: 0; background: var(--white); border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow-sm); }
+.company-table th, .company-table td { padding: 12px 18px; text-align: left; font-size: 12px; border-bottom: 1px solid var(--border); }
+.company-table th { width: 28%; color: var(--primary); font-weight: 500; background: var(--cream); }
+.company-table tr:last-child th, .company-table tr:last-child td { border-bottom: none; }
+.company-map { border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow-sm); }
+.company-map iframe { width: 100%; height: 100%; min-height: 340px; border: none; }
+.company-qualifications { margin-top: 24px; }
+.company-qualifications h3 { font-size: 14px; color: var(--primary); margin-bottom: 12px; font-weight: 700; }
+.qual-list { display: flex; flex-wrap: wrap; gap: 6px; }
+.qual-tag { padding: 4px 10px; background: var(--white); border: 1px solid var(--border); border-radius: 6px; font-size: 10px; color: var(--text-light); }
+
+/* ===== CONTACT FORM ===== */
+.contact-form { background: var(--bg-warm); }
+.contact-form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; }
+.form-group { margin-bottom: 16px; }
+.form-group label { display: block; font-size: 12px; font-weight: 700; color: var(--primary); margin-bottom: 6px; }
+.form-group label .required { color: #e74c3c; font-size: 10px; margin-left: 4px; }
+.form-input { width: 100%; padding: 12px 16px; border: 1px solid var(--border); border-radius: var(--radius-sm); font-size: 13px; font-family: inherit; transition: border-color 0.3s; background: var(--white); }
+.form-input:focus { outline: none; border-color: var(--accent); }
+.form-textarea { min-height: 120px; resize: vertical; }
+.form-select { appearance: none; background: var(--white) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%237a7168' fill='none' stroke-width='1.5'/%3E%3C/svg%3E") no-repeat right 14px center; padding-right: 36px; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.form-submit { padding: 14px 40px; background: var(--accent); color: var(--white); border: none; border-radius: 50px; font-size: 14px; font-weight: 700; cursor: pointer; transition: all 0.3s; font-family: inherit; letter-spacing: 0.05em; }
+.form-submit:hover { background: var(--accent-dark); transform: translateY(-2px); }
+.contact-info-side h3 { font-family: 'Noto Serif JP', serif; font-size: 22px; color: var(--primary-dark); margin-bottom: 14px; }
+.contact-info-side > p { font-size: 13px; color: var(--text-light); line-height: 2; margin-bottom: 24px; }
+.contact-method { padding: 20px; background: var(--white); border-radius: var(--radius); margin-bottom: 12px; box-shadow: var(--shadow-sm); }
+.contact-method-label { font-size: 11px; color: var(--accent); font-weight: 700; margin-bottom: 4px; letter-spacing: 0.05em; }
+.contact-method-value { font-size: 22px; font-weight: 700; color: var(--primary-dark); }
+.contact-method-note { font-size: 10px; color: var(--text-muted); margin-top: 2px; }
+
+/* ===== CTA ===== */
+.cta { position: relative; text-align: center; padding: 96px 24px; overflow: hidden; color: var(--white); }
+.cta-bg { position: absolute; inset: 0; }
+.cta-bg img { width: 100%; height: 100%; object-fit: cover; }
+.cta-bg::after { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(42,63,54,0.92), rgba(58,90,76,0.88)); }
+.cta-content { position: relative; z-index: 2; }
+.cta h2 { font-family: 'Noto Serif JP', serif; font-size: clamp(22px, 3.5vw, 32px); margin-bottom: 14px; line-height: 1.5; }
+.cta-sub { font-size: 13px; opacity: 0.8; margin-bottom: 36px; }
+.cta-methods { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-bottom: 24px; }
+.cta-method { background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.12); border-radius: var(--radius); padding: 24px 32px; text-align: center; min-width: 200px; }
+.cta-method-label { font-size: 11px; color: var(--accent); margin-bottom: 6px; }
+.cta-method-value { font-size: 24px; font-weight: 700; }
+.cta-method-note { font-size: 10px; opacity: 0.5; margin-top: 4px; }
+.cta-note { font-size: 11px; opacity: 0.5; }
+
+/* ===== FOOTER ===== */
+footer { background: var(--primary-dark); color: rgba(255,255,255,0.45); }
+.footer-main { max-width: 1200px; margin: 0 auto; padding: 52px 24px; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 32px; }
+.footer-brand .logo-text { color: var(--white); font-family: 'Outfit', sans-serif; font-size: 17px; font-weight: 600; }
+.footer-brand .logo-jp { display: block; color: rgba(255,255,255,0.4); font-size: 9px; margin-top: 2px; }
+.footer-brand p { margin-top: 12px; font-size: 11px; line-height: 1.9; }
+.footer-nav h4 { color: rgba(255,255,255,0.8); font-size: 11px; margin-bottom: 12px; letter-spacing: 0.1em; font-weight: 700; }
+.footer-nav ul { list-style: none; }
+.footer-nav li { margin-bottom: 6px; }
+.footer-nav a { font-size: 11px; color: rgba(255,255,255,0.4); transition: color 0.3s; }
+.footer-nav a:hover { color: var(--accent); }
+.footer-bottom { border-top: 1px solid rgba(255,255,255,0.06); padding: 16px 24px; text-align: center; font-size: 10px; }
+
+/* ===== SECTION PHOTO BG ===== */
+.section-photo-bg { position: relative; overflow: hidden; }
+.section-photo-bg::before { content: ''; position: absolute; inset: 0; background-size: cover; background-position: center; opacity: 0.07; z-index: 0; pointer-events: none; }
+.section-photo-bg > * { position: relative; z-index: 1; }
+.section-photo-bg-1::before { background-image: url('http://www.wadakenhome.co.jp/wada_acus_1.jpg'); }
+.section-photo-bg-2::before { background-image: url('http://www.wadakenhome.co.jp/wada_acus_2.jpg'); }
+.section-photo-bg-3::before { background-image: url('http://www.wadakenhome.co.jp/wada_acus_3.jpg'); }
+.section-photo-bg-4::before { background-image: url('http://www.wadakenhome.co.jp/wada_acus_4.jpg'); }
+
+/* ===== MOBILE PHONE BAR ===== */
+.mobile-phone-bar { display: none; }
+@media (max-width: 768px) {
+  .mobile-phone-bar { display: flex; position: fixed; bottom: 36px; left: 0; right: 0; z-index: 190; background: var(--primary); box-shadow: 0 -4px 16px rgba(0,0,0,0.2); }
+  .mobile-phone-bar a { flex: 1; display: flex; align-items: center; justify-content: center; gap: 8px; padding: 14px 0; color: var(--white); font-size: 14px; font-weight: 700; letter-spacing: 0.03em; text-decoration: none; transition: background 0.3s; }
+  .mobile-phone-bar a:first-child { border-right: 1px solid rgba(255,255,255,0.15); }
+  .mobile-phone-bar a:active { background: var(--primary-dark); }
+  .mobile-phone-bar svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2; }
+  body { padding-bottom: 86px; }
+}
+
+/* ===== DEMO BANNER ===== */
+.demo-banner { position: fixed; bottom: 0; left: 0; right: 0; z-index: 200; background: linear-gradient(135deg, #c0392b, #e74c3c); color: #fff; text-align: center; padding: 8px 20px; font-size: 10px; letter-spacing: 0.05em; box-shadow: 0 -4px 16px rgba(0,0,0,0.15); }
+.demo-banner a { color: #ffd700; text-decoration: underline; margin-left: 12px; font-weight: 700; }
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 1024px) {
+  .anshin-grid, .guarantee-grid { grid-template-columns: repeat(3, 1fr); }
+  .flow-timeline { max-width: 100%; }
+  .extra-services { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 768px) {
+  .top-bar { display: none; }
+  nav, .nav-cta { display: none; }
+  .hamburger { display: block; }
+  .header-inner { height: 56px; }
+  section { padding: 64px 20px; }
+  .hero { min-height: 80vh; }
+  .hero-content { grid-template-columns: 1fr; padding: 48px 20px; }
+  .hero-visual { display: none; }
+  .hero-stats { gap: 20px; }
+  .hero-stat-num { font-size: 24px; }
+  .concept-grid, .brand-cards, .service-tabs, .president-grid, .company-grid,
+  .contact-form-grid, .financing-inner, .promise-grid { grid-template-columns: 1fr; }
+  .anshin-grid, .guarantee-grid { grid-template-columns: repeat(2, 1fr); }
+  .works-grid, .voice-cards, .blog-grid, .products-grid { grid-template-columns: 1fr; }
+  .staff-images { grid-template-columns: 1fr; }
+  .extra-services { grid-template-columns: 1fr 1fr; }
+  .service-visual { grid-template-columns: 1fr; }
+  .service-card { min-height: 300px; }
+  .extra-service { min-height: 160px; }
+  .cta-methods { flex-direction: column; align-items: center; }
+  .footer-main { grid-template-columns: 1fr; }
+  .service-grid { grid-template-columns: repeat(2, 1fr); }
+  .form-row { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="top-bar">
+  <a href="#contact-form">来店予約</a>
+  <a href="#contact-form">資料請求</a>
+  <span>営業時間 9:00〜18:00（土日祝はご予約制）</span>
+</div>
+
+<!-- HEADER -->
+<header>
+  <div class="header-inner">
+    <a href="#" class="logo">
+      <img src="http://www.wadakenhome.co.jp/header_logo.gif" alt="ワダケンホーム" class="logo-img">
+    </a>
+    <nav>
+      <a href="#concept">家づくりの想い</a>
+      <a href="#services">新築・リフォーム</a>
+      <a href="#works">施工事例</a>
+      <a href="#voice">お客様の声</a>
+      <a href="#president">代表挨拶</a>
+      <a href="#company">会社概要</a>
+      <a href="#guarantee">保証体制</a>
+    </nav>
+    <div class="nav-cta">
+      <a href="#" class="btn-line">LINE相談</a>
+      <a href="#contact-form" class="btn-contact">お問い合わせ</a>
+    </div>
+    <button class="hamburger" aria-label="メニュー">&#9776;</button>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg">
+    <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1920&q=80" alt="自然素材の家" loading="eager">
+  </div>
+  <div class="hero-content">
+    <div class="hero-text">
+      <div class="hero-badge">愛媛県新居浜市の工務店</div>
+      <h1>一つひとつに想いをこめた<br><em>「こだわりの家づくり」</em></h1>
+      <p class="hero-sub">確かな技術と信頼の注文住宅</p>
+      <p class="hero-desc">大工出身の社長が、すべての現場を自ら調査。<br>自然素材を使った健康住宅から古民家再生まで、<br>「丈夫で長持ち、暮らしやすい」家をお届けします。</p>
+      <div class="hero-buttons">
+        <a href="#contact-form" class="hero-btn hero-btn-primary">無料相談・来店予約 →</a>
+        <a href="#works" class="hero-btn hero-btn-outline">施工事例を見る</a>
+      </div>
+      <div class="hero-stats">
+        <div class="hero-stat"><div class="hero-stat-num">37</div><div class="hero-stat-label">年の実績</div></div>
+        <div class="hero-stat"><div class="hero-stat-num">500+</div><div class="hero-stat-label">施工実績</div></div>
+        <div class="hero-stat"><div class="hero-stat-num">No.1</div><div class="hero-stat-label">お客様の声 愛媛県</div></div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-img hero-img-tall">
+        <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=600&q=80" alt="無垢材のリビング" loading="eager">
+      </div>
+      <div class="hero-img">
+        <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=400&q=80" alt="外観" loading="eager">
+      </div>
+      <div class="hero-img">
+        <img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=400&q=80" alt="こだわりの内装" loading="eager">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONCEPT -->
+<section class="concept section-photo-bg section-photo-bg-1" id="concept">
+  <div class="section-inner">
+    <div class="concept-grid">
+      <div class="concept-visual">
+        <div class="concept-img-main">
+          <img src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=800&q=80" alt="自然素材の空間" class="img-cover">
+        </div>
+        <div class="concept-badge">ベストハウス<br>オブザイヤー<br>金賞受賞</div>
+      </div>
+      <div class="concept-text">
+        <p class="section-label">CONCEPT</p>
+        <h3>「ひと手間かけて」<br>あなたの夢を叶える工務店</h3>
+        <p>ワダケンホームは昭和62年の創業以来、新居浜市で地域の皆さまの住まいづくりをお手伝いしてきました。</p>
+        <p>無駄な経費を徹底的におさえて良い材料を使い、きちっとした仕事をさせていただきたい。それが私たちのこだわりです。</p>
+        <p>大工出身の社長が全ての現場を自ら調査し、40坪の自社作業場で規格外の造作も製作。「こんなことできる？」のご相談、大歓迎です。</p>
+        <div class="concept-quote">
+          <p>「和田くんは、できないとすぐには絶対言わない。話を全部聴いてくれて、両方がいいと思うところを細部にわたって詰めてくれるよね。」<br>― お客様の声より</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 私たちの想い・お約束 -->
+<section class="promise" id="promise">
+  <div class="section-inner section-center">
+    <p class="section-label">OUR PROMISE</p>
+    <h2 class="section-title">私たちの想い・お約束</h2>
+    <p class="section-desc">お客様に安心して家づくりを任せていただくために、私たちが大切にしていることをお伝えします。</p>
+    <div class="promise-grid">
+      <div class="promise-img"><img src="http://www.wadakenhome.co.jp/omoi.jpg" alt="私たちの想い" loading="lazy"></div>
+      <div class="promise-img"><img src="http://www.wadakenhome.co.jp/wadakenyakusoku.jpg" alt="ワダケンのお約束" loading="lazy"></div>
+    </div>
+  </div>
+</section>
+
+<!-- BRAND LINES -->
+<section class="brands" id="brands">
+  <div class="section-inner section-center">
+    <p class="section-label">BRAND LINE</p>
+    <h2 class="section-title">ライフスタイルに合わせた2つの家づくり</h2>
+    <p class="section-desc">家族構成やライフステージに合わせて、最適な住まいの形をご提案します。</p>
+    <div class="brand-cards">
+      <div class="brand-card">
+        <div class="brand-card-img">
+          <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=700&q=80" alt="明日家 自然素材の家">
+          <div class="brand-card-label">
+            <p class="brand-ruby">あすか</p>
+            <h3 class="brand-name">明日家</h3>
+          </div>
+        </div>
+        <div class="brand-card-body">
+          <h4>自然素材・健康住宅</h4>
+          <p>無垢材や漆喰など、自然素材をふんだんに使った健康住宅。家族の健康を守りながら、経年変化を楽しめる住まいです。</p>
+          <ul class="brand-features">
+            <li>無垢の床材・漆喰壁</li>
+            <li>自然の光と風を活かす設計</li>
+            <li>アレルギーに配慮した素材選び</li>
+            <li>経年で味わいが増す住まい</li>
+          </ul>
+        </div>
+      </div>
+      <div class="brand-card">
+        <div class="brand-card-img">
+          <img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=700&q=80" alt="育家 子育ての家">
+          <div class="brand-card-label">
+            <p class="brand-ruby">いくいえ</p>
+            <h3 class="brand-name">育家</h3>
+          </div>
+        </div>
+        <div class="brand-card-body">
+          <h4>子育て世代・共働き夫婦の家</h4>
+          <p>子育てと仕事を両立する家族のための住まい。家事動線や収納、子どもの成長に合わせた間取りを重視しています。</p>
+          <ul class="brand-features">
+            <li>効率的な家事動線</li>
+            <li>たっぷり収納</li>
+            <li>子どもの成長に対応する間取り</li>
+            <li>コストパフォーマンス重視</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="section-inner section-center">
+    <p class="section-label">SERVICES</p>
+    <h2 class="section-title">新築・リフォーム</h2>
+    <p class="section-desc">新築の注文住宅から水回りのリフォーム、古民家再生まで。住まいのことなら何でもご相談ください。</p>
+    <div class="service-visual">
+      <div class="service-card">
+        <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=800&q=80" alt="新築住宅">
+        <div class="service-card-content">
+          <h3>新築・建て替え</h3>
+          <p class="service-en">NEW CONSTRUCTION</p>
+          <p>自然素材の健康住宅「明日家」、子育て世代の「育家」を中心に、お客様のライフスタイルに合わせた注文住宅をご提案。</p>
+          <div class="service-tags">
+            <span class="service-tag-item">自然素材の家</span>
+            <span class="service-tag-item">子育て住宅</span>
+            <span class="service-tag-item">平屋</span>
+            <span class="service-tag-item">二世帯住宅</span>
+            <span class="service-tag-item">プレシニア住宅</span>
+            <span class="service-tag-item">土地探し</span>
+          </div>
+        </div>
+      </div>
+      <div class="service-card">
+        <img src="https://images.unsplash.com/photo-1484154218962-a197022b5858?auto=format&fit=crop&w=800&q=80" alt="リフォーム">
+        <div class="service-card-content">
+          <h3>リフォーム</h3>
+          <p class="service-en">RENOVATION</p>
+          <p>キッチン・お風呂などの水回りから、外壁塗装、古民家再生、バリアフリー改修まで。大小問わずご相談ください。</p>
+          <div class="service-tags">
+            <span class="service-tag-item">キッチン</span>
+            <span class="service-tag-item">お風呂・トイレ</span>
+            <span class="service-tag-item">屋根・外壁</span>
+            <span class="service-tag-item">古民家再生</span>
+            <span class="service-tag-item">バリアフリー</span>
+            <span class="service-tag-item">店舗改装</span>
+            <span class="service-tag-item">耐震工事</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Extra Services -->
+    <div class="extra-services">
+      <div class="extra-service">
+        <img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=400&q=80" alt="幸齢住宅">
+        <div class="extra-service-content"><h4>幸齢住宅</h4><p>シニア世代のためのバリアフリー設計</p></div>
+      </div>
+      <div class="extra-service">
+        <img src="https://images.unsplash.com/photo-1562259949-e8e7689d7828?auto=format&fit=crop&w=400&q=80" alt="外壁塗装">
+        <div class="extra-service-content"><h4>外壁塗装</h4><p>紫外線から家を守る。10〜15年が目安</p></div>
+      </div>
+      <div class="extra-service">
+        <img src="https://images.unsplash.com/photo-1509391366360-2e959784a276?auto=format&fit=crop&w=400&q=80" alt="太陽光発電">
+        <div class="extra-service-content"><h4>太陽光発電</h4><p>穴を開けない工法で安心。25年保証</p></div>
+      </div>
+      <div class="extra-service">
+        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=400&q=80" alt="空き家対策">
+        <div class="extra-service-content"><h4>空き家対策</h4><p>空き家を資産として活かすご提案</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCTS / TECHNOLOGY -->
+<section class="products" id="products">
+  <div class="section-inner section-center">
+    <p class="section-label">TECHNOLOGY</p>
+    <h2 class="section-title">ワダケンホームの設備・技術</h2>
+    <p class="section-desc">快適な暮らしを支える、独自の設備と技術をご紹介します。</p>
+    <div class="products-grid">
+      <div class="product-card">
+        <div class="product-card-img">
+          <img src="http://www.wadakenhome.co.jp/mbb_1.gif" alt="マイクロバブル風呂" loading="lazy">
+        </div>
+        <div class="product-card-body">
+          <span class="product-tag">浴室設備</span>
+          <h3>マイクロバブル風呂</h3>
+          <p>1/1000mmの超微細気泡が毛穴の奥まで浸透。石鹸なしでも汚れを落とし、体臭・加齢臭にも効果的。敏感肌の方にもおすすめです。</p>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-card-img">
+          <img src="http://www.wadakenhome.co.jp/kanki2014_3.png" alt="におい吸い取りくん" loading="lazy">
+        </div>
+        <div class="product-card-body">
+          <span class="product-tag">換気システム</span>
+          <h3>におい吸い取りくん</h3>
+          <p>排水口からのにおい・カビを根本から解決するワダケン独自の換気システム。キッチン・お風呂・洗面所の排水口を排気管に接続し、においを元から断ちます。</p>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-card-img">
+          <img src="http://www.wadakenhome.co.jp/taiyou_a.png" alt="太陽光発電" loading="lazy">
+        </div>
+        <div class="product-card-body">
+          <span class="product-tag">太陽光発電</span>
+          <h3>穴を開けない太陽光パネル</h3>
+          <p>屋根に穴を開けない独自工法で雨漏りの心配なし。従来比30%のコスト削減を実現。25年出力保証＋10年災害補償付き。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 5 ANSHIN -->
+<section class="anshin section-photo-bg section-photo-bg-2" id="anshin">
+  <div class="section-inner section-center">
+    <p class="section-label">5 ASSURANCES</p>
+    <h2 class="section-title">ワダケンホームの「5つの安心」</h2>
+    <p class="section-desc">お客様に安心して家づくりを任せていただくための、5つのお約束です。</p>
+    <div class="anshin-grid">
+      <div class="anshin-card"><div class="anshin-num">01</div><div class="anshin-icon">💰</div><h3>適正価格</h3><p>工事内容を写真で説明。見積り明細をきちんと表示。不明瞭な費用はありません。</p></div>
+      <div class="anshin-card"><div class="anshin-num">02</div><div class="anshin-icon">🔧</div><h3>アフターケア</h3><p>メーカー保証1年のところ、ワダケンは5年保証。3ヶ月に1度のニュースレターでつながり続けます。</p></div>
+      <div class="anshin-card"><div class="anshin-num">03</div><div class="anshin-icon">🏗️</div><h3>工事の質</h3><p>大工社長がすべての現場を調査。40坪の自社作業場で規格外の造作も製作可能。</p></div>
+      <div class="anshin-card"><div class="anshin-num">04</div><div class="anshin-icon">🎨</div><h3>希望通りの仕上がり</h3><p>70坪の展示スペースで実物サンプルを確認。3D画像で仕上がりイメージを事前共有。</p></div>
+      <div class="anshin-card"><div class="anshin-num">05</div><div class="anshin-icon">🤝</div><h3>担当者の対応</h3><p>女性スタッフが奥様の悩みに対応。合わないと感じたらいつでもお断りいただけます。</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- GUARANTEE -->
+<section class="guarantee" id="guarantee">
+  <div class="section-inner section-center">
+    <p class="section-label">GUARANTEE</p>
+    <h2 class="section-title">充実の保証体制</h2>
+    <p class="section-desc">建てた後も安心。ワダケンホームは5つの保証でお客様の暮らしを守り続けます。</p>
+    <div class="guarantee-grid">
+      <div class="guarantee-card">
+        <div class="guarantee-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+        <h3>住宅瑕疵担保保険</h3>
+        <div class="guarantee-years">10<span class="guarantee-unit">年保証</span></div>
+        <p>JIO（日本住宅保証検査機構）による構造躯体・防水の10年保証</p>
+      </div>
+      <div class="guarantee-card">
+        <div class="guarantee-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M5 21V7l7-4 7 4v14"/><rect x="9" y="13" width="6" height="8"/></svg></div>
+        <h3>地盤サポート</h3>
+        <div class="guarantee-years">10<span class="guarantee-unit">年保証</span></div>
+        <p>ジャパンホームシールドによる地盤保証。最大5,000万円補償</p>
+      </div>
+      <div class="guarantee-card">
+        <div class="guarantee-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg></div>
+        <h3>太陽光出力保証</h3>
+        <div class="guarantee-years">25<span class="guarantee-unit">年保証</span></div>
+        <p>12年で90%、25年で80%の出力保証。10年災害補償付き</p>
+      </div>
+      <div class="guarantee-card">
+        <div class="guarantee-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91A6 6 0 013.47 2.53l3.77 3.77z"/></svg></div>
+        <h3>設備延長保証</h3>
+        <div class="guarantee-years">5<span class="guarantee-unit">年保証</span></div>
+        <p>キッチン・お風呂・給湯器などの設備5年無料保証。最長10年まで延長可</p>
+      </div>
+      <div class="guarantee-card">
+        <div class="guarantee-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4"/><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/></svg></div>
+        <h3>白アリ保証</h3>
+        <div class="guarantee-years">5<span class="guarantee-unit">年保証</span></div>
+        <p>白アリ防除施工後5年間の再施工保証。定期点検も実施</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FLOW -->
+<section class="flow" id="flow">
+  <div class="section-inner section-center">
+    <p class="section-label">FLOW</p>
+    <h2 class="section-title">リフォームの流れ</h2>
+    <p class="section-desc">お問い合わせからアフターメンテナンスまで、安心の流れをご紹介します。</p>
+    <div class="flow-timeline">
+      <div class="flow-item flow-free-item">
+        <div class="flow-num">01</div>
+        <div class="flow-item-body"><h4>お問い合わせ・ご相談<span class="flow-badge">無料</span></h4><p>お電話・LINE・フォームからお気軽にどうぞ。まずはお話をお聞かせください。</p></div>
+      </div>
+      <div class="flow-item flow-free-item">
+        <div class="flow-num">02</div>
+        <div class="flow-item-body"><h4>現地調査・ヒアリング<span class="flow-badge">無料</span></h4><p>ご自宅にお伺いし、現状を確認。ご要望をじっくりお聞きします。</p></div>
+      </div>
+      <div class="flow-item flow-free-item">
+        <div class="flow-num">03</div>
+        <div class="flow-item-body"><h4>プラン作成<span class="flow-badge">無料</span></h4><p>ご要望をもとに、最適なプランをお作りします。</p></div>
+      </div>
+      <div class="flow-item flow-free-item">
+        <div class="flow-num">04</div>
+        <div class="flow-item-body"><h4>概算見積り<span class="flow-badge">無料</span></h4><p>プランに基づいた概算のお見積りをご提示します。</p></div>
+      </div>
+      <div class="flow-item">
+        <div class="flow-num">05</div>
+        <div class="flow-item-body"><h4>最終仕様・価格決定</h4><p>素材・設備を決定し、最終価格を確定します。</p></div>
+      </div>
+      <div class="flow-item">
+        <div class="flow-num">06</div>
+        <div class="flow-item-body"><h4>ご契約</h4><p>内容にご納得いただけましたら、ご契約となります。</p></div>
+      </div>
+      <div class="flow-item">
+        <div class="flow-num">07</div>
+        <div class="flow-item-body"><h4>着工・工事管理</h4><p>自社管理で工事を進めます。進捗はブログでも公開しています。</p></div>
+      </div>
+      <div class="flow-item">
+        <div class="flow-num">08</div>
+        <div class="flow-item-body"><h4>完成・お引渡し</h4><p>完成検査の後、鍵をお渡しします。アフターメンテナンスもお任せください。</p></div>
+      </div>
+    </div>
+    <div class="flow-note">※ STEP 1〜4 は完全無料です。お見積りまでは費用は一切かかりません。</div>
+  </div>
+</section>
+
+<!-- WORKS -->
+<section class="works" id="works">
+  <div class="section-inner section-center">
+    <p class="section-label">WORKS</p>
+    <h2 class="section-title">施工事例</h2>
+    <p class="section-desc">新築・リフォーム、これまでに手がけた住まいの一部をご紹介します。</p>
+    <div class="works-grid">
+      <div class="work-card">
+        <div class="work-img"><img src="http://www.wadakenhome.co.jp/sin_all_31top.jpg" alt="K様邸" loading="lazy"></div>
+        <div class="work-card-body"><span class="work-tag">新築</span><h3>K様邸 ― こだわりの子育て住宅</h3><p>新居浜市 ｜ 自然素材 / 高気密高断熱</p></div>
+      </div>
+      <div class="work-card">
+        <div class="work-img"><img src="http://www.wadakenhome.co.jp/sin_all_34top.jpg" alt="S様邸" loading="lazy"></div>
+        <div class="work-card-body"><span class="work-tag">新築</span><h3>S様邸 ― インナーガレージハウス</h3><p>新居浜市 ｜ ビルトインガレージ / コンパクト設計</p></div>
+      </div>
+      <div class="work-card">
+        <div class="work-img"><img src="http://www.wadakenhome.co.jp/sin_all_33top.jpg" alt="N様邸" loading="lazy"></div>
+        <div class="work-card-body"><span class="work-tag">新築</span><h3>N様邸 ― 雑貨屋さんの店舗兼住宅</h3><p>新居浜市 ｜ 店舗併用住宅 / 自然素材</p></div>
+      </div>
+      <div class="work-card">
+        <div class="work-img"><img src="http://www.wadakenhome.co.jp/sin_all_32top.jpg" alt="N様邸" loading="lazy"></div>
+        <div class="work-card-body"><span class="work-tag">新築</span><h3>N様邸 ― 三世代が集う住まい</h3><p>新居浜市 ｜ 三世代住宅 / バリアフリー</p></div>
+      </div>
+      <div class="work-card">
+        <div class="work-img"><img src="http://www.wadakenhome.co.jp/wadareal202605221.jpg" alt="Y様邸" loading="lazy"></div>
+        <div class="work-card-body"><span class="work-tag">リフォーム</span><h3>Y様邸 ― 洋室と和室のリフォーム</h3><p>新居浜市 ｜ 2026年5月施工</p></div>
+      </div>
+      <div class="work-card">
+        <div class="work-img"><img src="http://www.wadakenhome.co.jp/wadareal202204151.jpg" alt="A様邸" loading="lazy"></div>
+        <div class="work-card-body"><span class="work-tag">リフォーム</span><h3>A様邸 ― バリアフリー改修</h3><p>新居浜市 ｜ 段差解消・手すり設置</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VOICE -->
+<section class="voice section-photo-bg section-photo-bg-3" id="voice">
+  <div class="section-inner section-center">
+    <p class="section-label">VOICE</p>
+    <h2 class="section-title">お客様の声</h2>
+    <p class="section-desc">愛媛県No.1のお客様レビュー数。実際にご依頼いただいたお客様からの声をご紹介します。</p>
+    <div class="voice-cards">
+      <div class="voice-card">
+        <div class="voice-header">
+          <div class="voice-avatar"><svg viewBox="0 0 24 24"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg></div>
+          <div class="voice-meta">
+            <p class="voice-name">T様ご家族</p>
+            <p class="voice-detail">新居浜市 ｜ 新築注文住宅</p>
+          </div>
+        </div>
+        <div class="voice-stars">★★★★★</div>
+        <p class="voice-text">チーム力に感謝しております。社長さんをはじめスタッフの皆さんが一丸となって、私たちの家づくりに向き合ってくださいました。</p>
+        <span class="voice-tag">新築</span>
+      </div>
+      <div class="voice-card">
+        <div class="voice-header">
+          <div class="voice-avatar"><svg viewBox="0 0 24 24"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg></div>
+          <div class="voice-meta">
+            <p class="voice-name">K様ご夫婦</p>
+            <p class="voice-detail">新居浜市 ｜ 新築注文住宅</p>
+          </div>
+        </div>
+        <div class="voice-stars">★★★★★</div>
+        <p class="voice-text">ワダケンホームさんがずば抜けて良かったです。他の工務店も回りましたが、提案力と対応の速さが段違いでした。</p>
+        <span class="voice-tag">新築</span>
+      </div>
+      <div class="voice-card">
+        <div class="voice-header">
+          <div class="voice-avatar"><svg viewBox="0 0 24 24"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg></div>
+          <div class="voice-meta">
+            <p class="voice-name">M様</p>
+            <p class="voice-detail">西条市 ｜ リフォーム</p>
+          </div>
+        </div>
+        <div class="voice-stars">★★★★★</div>
+        <p class="voice-text">社長さん、奥さんの人柄に惚れてしまいました。まるで自分が住む家のように親身になって考えてくれました。</p>
+        <span class="voice-tag">リフォーム</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRESIDENT -->
+<section class="president" id="president">
+  <div class="section-inner">
+    <p class="section-label">MESSAGE</p>
+    <h2 class="section-title">代表挨拶</h2>
+    <div class="president-grid">
+      <div class="president-photo">
+        <img src="http://www.wadakenhome.co.jp/spro_1.png" alt="代表取締役 和田吉仁" loading="lazy">
+        <div class="president-photo-label"><span>代表取締役 和田 吉仁</span></div>
+      </div>
+      <div class="president-text">
+        <h3>人のよろこぶ「笑顔」のために</h3>
+        <p class="president-role">代表取締役 ／ 大工歴37年</p>
+        <p>高知県の山間部で生まれ、15歳で建築の道へ。20歳で新居浜に移り住み、27歳で独立しました。</p>
+        <p>30歳で住宅展示場にモデルハウスを建てた時、お客様の笑顔を直接見られる喜びを知りました。それ以来「人のよろこぶ笑顔」を見ることが、私の仕事の原動力です。</p>
+        <p>大手ゼネコンの下請け仕事に疲弊した40代、「もうお客様と直接向き合う仕事しかしない」と決意。以来、一棟一棟、お施主様と膝を突き合わせて家づくりをしています。</p>
+        <p>私は大工です。だからこそ、構造のこと、材料のこと、現場のことがわかります。「できない」とは簡単に言いません。お客様の夢を形にするために、ひと手間かけて考え抜く。それがワダケンホームの家づくりです。</p>
+        <div class="president-highlight">
+          <p>「無駄な経費を徹底的におさえて良い材料を使い、きちっとした仕事をさせていただきたいのです。」</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STAFF -->
+<section class="staff" id="staff">
+  <div class="section-inner section-center">
+    <p class="section-label">STAFF</p>
+    <h2 class="section-title">スタッフのご紹介</h2>
+    <p class="section-desc">お客様の家づくりをサポートするワダケンホームのチームをご紹介します。</p>
+    <div class="staff-images">
+      <div class="staff-img"><img src="http://www.wadakenhome.co.jp/wadastaff_1a.png" alt="スタッフ紹介" loading="lazy"></div>
+      <div class="staff-img"><img src="http://www.wadakenhome.co.jp/wadastaff_2.png" alt="スタッフ紹介" loading="lazy"></div>
+      <div class="staff-img"><img src="http://www.wadakenhome.co.jp/wadastaff_3.png" alt="スタッフ紹介" loading="lazy"></div>
+    </div>
+  </div>
+</section>
+
+<!-- BLOG -->
+<section class="blog" id="blog">
+  <div class="section-inner section-center">
+    <p class="section-label">BLOG</p>
+    <h2 class="section-title">施工ブログ</h2>
+    <p class="section-desc">現在進行中の施工現場や、完成した住まいのレポートをお届けします。</p>
+    <div class="blog-grid">
+      <div class="blog-card">
+        <div class="blog-img"><img src="http://www.wadakenhome.co.jp/wadareal202605221.jpg" alt="Y様邸" loading="lazy"></div>
+        <div class="blog-card-body"><p class="blog-date">2026.05</p><h3>新居浜市Y様邸 改修工事</h3><p>洋室と和室のリフォーム。お客様のご要望に合わせた間取り変更を行いました。</p></div>
+      </div>
+      <div class="blog-card">
+        <div class="blog-img"><img src="http://www.wadakenhome.co.jp/wadareal202605222.jpg" alt="N様邸" loading="lazy"></div>
+        <div class="blog-card-body"><p class="blog-date">2026.03</p><h3>新居浜市N様邸 改修工事</h3><p>和室から洋室への変更。断熱性能も同時にアップグレードしました。</p></div>
+      </div>
+      <div class="blog-card">
+        <div class="blog-img"><img src="http://www.wadakenhome.co.jp/wadareal202602201.jpg" alt="K様邸" loading="lazy"></div>
+        <div class="blog-card-body"><p class="blog-date">2026.02</p><h3>新居浜市K様邸 改修工事</h3><p>勝手口の段差改修。バリアフリー化で安全な動線を確保しました。</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FINANCING -->
+<section class="financing" id="financing">
+  <div class="section-inner">
+    <div class="financing-inner">
+      <div class="financing-text">
+        <p class="section-label" style="color: var(--accent);">FINANCING</p>
+        <h2>資金・住宅ローンのご相談</h2>
+        <p>家づくりで一番不安な「お金のこと」。ワダケンホームでは、ファイナンシャルプランナーによる無料相談会を開催しています。</p>
+        <ul class="financing-features">
+          <li>住宅ローンの選び方・借り方・返し方</li>
+          <li>家計の見直しと資金計画</li>
+          <li>税金の仕組みと控除の活用</li>
+          <li>親の土地に建てる場合の税務相談</li>
+          <li>税理士による個別相談も可能</li>
+        </ul>
+      </div>
+      <div class="financing-img">
+        <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=600&q=80" alt="資金相談" loading="lazy">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NEWSLETTER -->
+<section class="newsletter">
+  <h2>わだけん通信 ― 第72号 発行中</h2>
+  <p>3ヶ月に1度、お客様にお届けしているニュースレター。<br>住まいのお手入れ情報や、施工事例、スタッフの日常をお届けしています。</p>
+  <div class="newsletter-badge">20年以上 ・ 72号発行</div>
+</section>
+
+<!-- SNS -->
+<section class="sns">
+  <p class="section-label">FOLLOW US</p>
+  <h2 class="sns-title">SNSでも情報発信中</h2>
+  <p class="sns-desc">施工事例やイベント情報、スタッフの日常を各SNSで発信しています。</p>
+  <div class="sns-links">
+    <a href="https://www.instagram.com/wadakenhome/" target="_blank" class="sns-link sns-ig">Instagram</a>
+    <a href="https://www.facebook.com/pages/%E3%83%AF%E3%83%80%E3%82%B1%E3%83%B3%E3%83%9B%E3%83%BC%E3%83%A0/540322946023037" target="_blank" class="sns-link sns-fb">Facebook</a>
+    <a href="#" class="sns-link sns-line">LINE公式</a>
+    <a href="https://www.youtube.com/embed/dth7nJe9Evw" target="_blank" class="sns-link sns-yt">YouTube</a>
+  </div>
+</section>
+
+<!-- COMPANY -->
+<section class="company section-photo-bg section-photo-bg-4" id="company">
+  <div class="section-inner">
+    <p class="section-label">COMPANY</p>
+    <h2 class="section-title">会社概要</h2>
+    <div class="company-grid">
+      <div>
+        <table class="company-table">
+          <tr><th>社名</th><td>有限会社和田建設（ワダケンホーム）</td></tr>
+          <tr><th>代表者</th><td>和田 吉仁（代表取締役）</td></tr>
+          <tr><th>創業</th><td>昭和62年7月（1987年）</td></tr>
+          <tr><th>資本金</th><td>300万円</td></tr>
+          <tr><th>所在地</th><td>〒792-0012 愛媛県新居浜市八幡1丁目2-55</td></tr>
+          <tr><th>電話</th><td>0897-46-0424</td></tr>
+          <tr><th>FAX</th><td>0897-46-0320</td></tr>
+          <tr><th>メール</th><td>info@wadakenhome.co.jp</td></tr>
+          <tr><th>営業時間</th><td>9:00〜18:00</td></tr>
+          <tr><th>定休日</th><td>土曜・日曜・祝日（ご予約で対応可）</td></tr>
+          <tr><th>事業内容</th><td>注文住宅の設計・施工、リフォーム全般、古民家再生、店舗改装</td></tr>
+          <tr><th>対応エリア</th><td>新居浜市・西条市・四国中央市 ほか東予地域</td></tr>
+          <tr><th>建設業許可</th><td>愛媛県知事許可（般-05）第16366号</td></tr>
+        </table>
+        <div class="company-qualifications">
+          <h3>保有資格・登録</h3>
+          <div class="qual-list">
+            <span class="qual-tag">JIO登録 第A6001977号</span>
+            <span class="qual-tag">応急危険度判定士</span>
+            <span class="qual-tag">増改築相談員</span>
+            <span class="qual-tag">外装劣化診断士</span>
+            <span class="qual-tag">古民家鑑定士2級</span>
+            <span class="qual-tag">愛媛県木造住宅耐震改修事業者</span>
+            <span class="qual-tag">住宅リフォーム・紛争処理支援センター登録</span>
+            <span class="qual-tag">グランピアネット加入</span>
+          </div>
+        </div>
+      </div>
+      <div class="company-map">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d1655!2d133.312573!3d33.975935!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3551c8be2d3582f1%3A0xabd30393f89809b8!2z44Ov44OA44Kx44Oz44Ob44O844Og!5e0!3m2!1sja!2sjp!4v1716700000000" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="ワダケンホーム所在地"></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT FORM -->
+<section class="contact-form" id="contact-form">
+  <div class="section-inner">
+    <div class="contact-form-grid">
+      <div class="contact-info-side">
+        <p class="section-label">CONTACT</p>
+        <h3>お問い合わせ・来店予約</h3>
+        <p>新築・リフォームのご相談、来店予約、資料請求など、お気軽にお問い合わせください。お見積りまで無料です。</p>
+        <div class="contact-method">
+          <p class="contact-method-label">お電話でのご相談</p>
+          <p class="contact-method-value">0897-46-0424</p>
+          <p class="contact-method-note">受付 9:00〜18:00</p>
+        </div>
+        <div class="contact-method">
+          <p class="contact-method-label">メール</p>
+          <p class="contact-method-value" style="font-size: 16px;">info@wadakenhome.co.jp</p>
+        </div>
+        <div class="contact-method">
+          <p class="contact-method-label">LINEでお気軽に</p>
+          <p class="contact-method-value" style="font-size: 16px;">LINE公式アカウント</p>
+          <p class="contact-method-note">写真を送って簡単見積り</p>
+        </div>
+        <p style="font-size: 11px; color: var(--text-muted); margin-top: 16px;">※ 事務所に常駐スタッフがおりませんので、ご来店の際は事前にご予約をお願いいたします。</p>
+      </div>
+      <div>
+        <form>
+          <div class="form-group">
+            <label>お名前 <span class="required">必須</span></label>
+            <input type="text" class="form-input" placeholder="山田 太郎">
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>電話番号</label>
+              <input type="tel" class="form-input" placeholder="090-0000-0000">
+            </div>
+            <div class="form-group">
+              <label>メールアドレス</label>
+              <input type="email" class="form-input" placeholder="example@email.com">
+            </div>
+          </div>
+          <div class="form-group">
+            <label>お問い合わせ種別</label>
+            <select class="form-input form-select">
+              <option value="">選択してください</option>
+              <option>新築のご相談</option>
+              <option>リフォームのご相談</option>
+              <option>来店予約</option>
+              <option>資料請求</option>
+              <option>外壁塗装のご相談</option>
+              <option>その他</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>ご来店希望日時（来店予約の方）</label>
+            <div class="form-row">
+              <input type="date" class="form-input">
+              <select class="form-input form-select">
+                <option value="">時間帯を選択</option>
+                <option>09:00〜10:00</option>
+                <option>10:00〜11:00</option>
+                <option>11:00〜12:00</option>
+                <option>13:00〜14:00</option>
+                <option>14:00〜15:00</option>
+                <option>15:00〜16:00</option>
+                <option>16:00〜17:00</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>お問い合わせ内容</label>
+            <textarea class="form-input form-textarea" placeholder="ご相談内容をご記入ください"></textarea>
+          </div>
+          <button type="submit" class="form-submit">送信する</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta" id="cta">
+  <div class="cta-bg">
+    <img src="https://images.unsplash.com/photo-1600607687644-c7171b42498f?auto=format&fit=crop&w=1920&q=80" alt="" loading="lazy">
+  </div>
+  <div class="cta-content">
+    <h2>家づくりのご相談、<br>お気軽にどうぞ。</h2>
+    <p class="cta-sub">新築もリフォームも、まずはお気軽にご連絡ください。お見積り・ご相談は無料です。</p>
+    <div class="cta-methods">
+      <div class="cta-method">
+        <p class="cta-method-label">お電話でのご相談</p>
+        <p class="cta-method-value">0897-46-0424</p>
+        <p class="cta-method-note">受付 9:00〜18:00</p>
+      </div>
+      <div class="cta-method">
+        <p class="cta-method-label">LINEでお気軽に</p>
+        <p class="cta-method-value" style="font-size: 18px;">LINE公式アカウント</p>
+        <p class="cta-method-note">写真を送って簡単見積り</p>
+      </div>
+    </div>
+    <p class="cta-note">※ 事務所に常駐スタッフがおりませんので、ご来店の際は事前にご予約をお願いいたします。</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-main">
+    <div class="footer-brand">
+      <div>
+        <img src="http://www.wadakenhome.co.jp/header_logo.gif" alt="ワダケンホーム" style="height: 36px; width: auto; background: rgba(255,255,255,0.9); padding: 6px 12px; border-radius: 8px;">
+      </div>
+      <p>〒792-0012 愛媛県新居浜市八幡1丁目2-55<br>TEL: 0897-46-0424 / FAX: 0897-46-0320<br>info@wadakenhome.co.jp</p>
+    </div>
+    <div class="footer-nav">
+      <h4>家づくり</h4>
+      <ul>
+        <li><a href="#concept">家づくりの想い</a></li>
+        <li><a href="#brands">明日家・育家</a></li>
+        <li><a href="#anshin">5つの安心</a></li>
+        <li><a href="#services">新築・リフォーム</a></li>
+        <li><a href="#products">設備・技術</a></li>
+        <li><a href="#guarantee">保証体制</a></li>
+      </ul>
+    </div>
+    <div class="footer-nav">
+      <h4>実績・お客様</h4>
+      <ul>
+        <li><a href="#works">施工事例</a></li>
+        <li><a href="#voice">お客様の声</a></li>
+        <li><a href="#blog">施工ブログ</a></li>
+        <li><a href="#flow">リフォームの流れ</a></li>
+        <li><a href="#financing">資金・ローン</a></li>
+      </ul>
+    </div>
+    <div class="footer-nav">
+      <h4>会社情報</h4>
+      <ul>
+        <li><a href="#president">代表挨拶</a></li>
+        <li><a href="#staff">スタッフ紹介</a></li>
+        <li><a href="#company">会社概要</a></li>
+        <li><a href="#contact-form">お問い合わせ</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; ワダケンホーム（有限会社和田建設）All Rights Reserved.</p>
+  </div>
+</footer>
+
+<!-- MOBILE PHONE BAR -->
+<div class="mobile-phone-bar">
+  <a href="tel:0897-46-0424"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>電話で相談</a>
+  <a href="#contact-form"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>お問い合わせ</a>
+</div>
+
+<!-- DEMO BANNER -->
+<div class="demo-banner">
+  ※ これはカルサイトが制作したデモサイトです。正式な公開サイトではありません。
+  <a href="https://calcite-ai.jp" target="_blank">制作：カルサイト</a>
+</div>
+
+</body>
+</html>
