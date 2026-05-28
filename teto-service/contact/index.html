@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="テートーサービスへのお問い合わせ。エアコン工事・空調設備のご相談、お見積りは無料です。お電話・メールフォームからお気軽にご連絡ください。">
+  <title>お問い合わせ | テートーサービス</title>
+  <link rel="stylesheet" href="../style.css">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect fill='%230f4c75' rx='12' width='100' height='100'/><text x='50' y='68' font-size='42' text-anchor='middle' fill='%23e8652e' font-family='sans-serif' font-weight='bold'>T</text></svg>">
+</head>
+<body>
+  <header class="header">
+    <div class="header__inner">
+      <a href="../index.html" class="header__logo"><div class="header__logo-icon">TETO</div><div class="header__logo-text"><span class="header__logo-sub">TETO SERVICE CO., LTD.</span><span class="header__logo-main">テートーサービス</span></div></a>
+      <nav class="header__nav">
+        <div class="header__nav-item"><a href="../index.html" class="header__nav-link">ホーム</a></div>
+        <div class="header__nav-item"><a href="../services/index.html" class="header__nav-link">サービス内容</a></div>
+        <div class="header__nav-item"><a href="../about/index.html" class="header__nav-link">会社概要</a></div>
+        <div class="header__nav-item"><a href="index.html" class="header__nav-link">お問い合わせ</a></div>
+      </nav>
+      <div class="header__phone"><span class="header__phone-icon">&#9742;</span><div><a href="tel:0423046376" style="color:inherit;">042-304-6376</a><span class="header__phone-note">受付 9:00-18:00</span></div></div>
+      <button class="header__mobile-toggle" id="mobileToggle" aria-label="メニューを開く"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="../index.html" class="mobile-menu__link">ホーム</a>
+    <a href="../services/index.html" class="mobile-menu__link">サービス内容</a>
+    <a href="../about/index.html" class="mobile-menu__link">会社概要</a>
+    <a href="index.html" class="mobile-menu__link">お問い合わせ</a>
+    <a href="tel:0423046376" class="mobile-menu__phone">&#9742; 042-304-6376</a>
+  </div>
+
+  <section class="hero" style="padding:60px 0 40px;">
+    <div class="container">
+      <span class="section-label" style="color:var(--accent-light);">CONTACT</span>
+      <h1 class="hero__title" style="font-size:clamp(1.4rem,3vw,2rem);">お問い合わせ</h1>
+      <p class="hero__subtitle" style="margin-bottom:0;">エアコン工事・空調設備のご相談、お見積りは無料です。お気軽にお問い合わせください。</p>
+    </div>
+  </section>
+
+  <!-- Contact Methods -->
+  <section class="section">
+    <div class="container">
+      <div class="grid-2col" style="margin-bottom:48px;">
+        <div style="background:var(--bg-light);border-radius:16px;padding:40px;text-align:center;">
+          <div style="font-size:2.4rem;margin-bottom:12px;">&#9742;</div>
+          <h2 style="font-size:1rem;font-weight:700;color:var(--primary);margin-bottom:8px;">お電話でのご相談</h2>
+          <div style="font-family:var(--font-display);font-size:2rem;color:var(--primary);letter-spacing:0.03em;margin-bottom:8px;">
+            <a href="tel:0423046376" style="color:inherit;">042-304-6376</a>
+          </div>
+          <p style="font-size:0.82rem;color:var(--text-light);">受付時間：9:00 - 18:00</p>
+        </div>
+        <div style="background:var(--bg-light);border-radius:16px;padding:40px;text-align:center;">
+          <div style="font-size:2.4rem;margin-bottom:12px;">&#9993;</div>
+          <h2 style="font-size:1rem;font-weight:700;color:var(--primary);margin-bottom:8px;">メールでのご相談</h2>
+          <p style="font-size:0.95rem;color:var(--primary);font-weight:500;margin-bottom:8px;">
+            <a href="mailto:info@teto-s.com">info@teto-s.com</a>
+          </p>
+          <p style="font-size:0.82rem;color:var(--text-light);">24時間受付・翌営業日までに回答</p>
+        </div>
+      </div>
+
+      <!-- Form -->
+      <div style="max-width:720px;margin:0 auto;">
+        <h2 class="section-title">お問い合わせフォーム</h2>
+        <p class="section-subtitle">以下のフォームに必要事項をご記入の上、送信してください。</p>
+        <form action="#" method="post" style="margin-top:32px;">
+          <div class="grid-2col">
+            <div class="form-group">
+              <label>お名前<span class="required">必須</span></label>
+              <input type="text" placeholder="山田 太郎" required>
+            </div>
+            <div class="form-group">
+              <label>フリガナ</label>
+              <input type="text" placeholder="ヤマダ タロウ">
+            </div>
+          </div>
+          <div class="grid-2col">
+            <div class="form-group">
+              <label>電話番号<span class="required">必須</span></label>
+              <input type="tel" placeholder="042-000-0000" required>
+            </div>
+            <div class="form-group">
+              <label>メールアドレス<span class="required">必須</span></label>
+              <input type="email" placeholder="example@example.com" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>ご依頼の種類</label>
+            <select>
+              <option value="">選択してください</option>
+              <option>エアコン取付（家庭用）</option>
+              <option>エアコン取付（業務用）</option>
+              <option>エアコン入替・買い替え</option>
+              <option>エアコン移設（引越し）</option>
+              <option>エアコン修理</option>
+              <option>業務用空調設備工事</option>
+              <option>メンテナンス・点検</option>
+              <option>その他</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>設置場所</label>
+            <select>
+              <option value="">選択してください</option>
+              <option>戸建て住宅</option>
+              <option>マンション・アパート</option>
+              <option>オフィス・事務所</option>
+              <option>店舗・飲食店</option>
+              <option>工場・倉庫</option>
+              <option>その他</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>ご相談の詳細</label>
+            <textarea placeholder="エアコンのメーカー・型番、設置場所の状況、ご希望の工事日程など、分かる範囲でご記入ください。"></textarea>
+          </div>
+          <div class="text-center" style="margin-top:24px;">
+            <button type="submit" class="btn btn--primary btn--large" style="min-width:240px;">送信する</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Map -->
+  <section class="section section--warm" id="access">
+    <div class="container">
+      <span class="section-label">ACCESS</span>
+      <h2 class="section-title">アクセス</h2>
+      <p class="section-subtitle">〒183-0031 東京都府中市西府町2-14-1 北村ビル</p>
+      <div class="map-container">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3241.5!2d139.4458!3d35.6677!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6018e5a5a5a5a5a5%3A0x0!2z5p2x5Lqs6YO95bqc5Lit5biC6KW_5bqc55S6Mi0xNC0x!5e0!3m2!1sja!2sjp!4v1"
+          width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade" title="テートーサービス 所在地"></iframe>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__grid">
+        <div><div class="footer__logo"><div class="footer__logo-icon">TETO</div><div class="footer__logo-text">テートーサービス</div></div><p class="footer__text">〒183-0031<br>東京都府中市西府町2-14-1<br>北村ビル</p><p class="footer__text">TEL: 042-304-6376<br>FAX: 042-406-3538</p></div>
+        <div><h3 class="footer__heading">サービス内容</h3><a href="../services/index.html" class="footer__link">エアコン取付・取外し</a><a href="../services/index.html" class="footer__link">業務用空調設備工事</a><a href="../services/index.html" class="footer__link">修理・メンテナンス</a></div>
+        <div><h3 class="footer__heading">会社情報</h3><a href="../about/index.html" class="footer__link">会社概要</a><a href="index.html" class="footer__link">お問い合わせ</a></div>
+      </div>
+      <div class="footer__bottom">&copy; 株式会社テートーサービス All Rights Reserved.</div>
+    </div>
+  </footer>
+
+  <div class="mobile-bottom-bar"><div class="mobile-bottom-bar__inner">
+    <a href="tel:0423046376" class="mobile-bottom-bar__btn">&#9742; 電話する</a>
+    <a href="mailto:info@teto-s.com" class="mobile-bottom-bar__btn">&#9993; メールする</a>
+  </div></div>
+
+  <script>const t=document.getElementById('mobileToggle'),m=document.getElementById('mobileMenu');t.addEventListener('click',()=>m.classList.toggle('active'));document.querySelectorAll('.mobile-menu__link').forEach(l=>l.addEventListener('click',()=>m.classList.remove('active')));</script>
+</body>
+</html>

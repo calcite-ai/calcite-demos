@@ -814,6 +814,7 @@ table {
   padding: 40px;
   text-align: center;
   margin: 32px 0;
+  overflow: hidden;
 }
 
 .fee-highlight__amount {
@@ -1721,6 +1722,14 @@ table {
     grid-template-columns: repeat(2, 1fr);
   }
 
+  .fee-highlight {
+    padding: 24px 16px;
+  }
+
+  .fee-highlight__amount {
+    font-size: 2.2rem;
+  }
+
   .profile {
     grid-template-columns: 1fr;
   }
@@ -1839,11 +1848,12 @@ table {
   }
 
   .fee-highlight {
-    padding: 24px;
+    padding: 20px 16px;
+    margin: 0;
   }
 
   .fee-highlight__amount {
-    font-size: 2.2rem;
+    font-size: 1.8rem;
   }
 
   .access-grid {
@@ -1885,6 +1895,111 @@ table {
 
   .timeline__item {
     padding-left: 16px;
+  }
+}
+
+/* ========================================
+   Inline Grid Replacements (Responsive)
+   ======================================== */
+.grid-3col {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.grid-2col {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.grid-gallery {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+@media (max-width: 880px) {
+  .grid-3col {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .grid-gallery {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .grid-3col,
+  .grid-2col,
+  .grid-gallery {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ========================================
+   Mobile Bottom Bar
+   ======================================== */
+.mobile-bottom-bar {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 998;
+  background: var(--primary);
+  box-shadow: 0 -2px 12px rgba(0, 0, 0, 0.2);
+}
+
+.mobile-bottom-bar__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.mobile-bottom-bar__btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 14px 0;
+  color: var(--text-white);
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 700;
+  transition: background var(--transition);
+}
+
+.mobile-bottom-bar__btn:hover {
+  color: var(--text-white);
+}
+
+.mobile-bottom-bar__btn--phone {
+  background: var(--primary);
+}
+
+.mobile-bottom-bar__btn--mail {
+  background: var(--accent-dark);
+}
+
+.mobile-bottom-bar__btn-icon {
+  font-size: 1.1rem;
+}
+
+@media (max-width: 880px) {
+  .mobile-bottom-bar {
+    display: block;
+  }
+
+  body {
+    padding-bottom: 52px;
+  }
+
+  .footer {
+    padding-bottom: 52px;
   }
 }
 
