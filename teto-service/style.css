@@ -173,7 +173,7 @@ a:hover{color:var(--accent)}
 .header__nav,.header__phone{display:none}.header__mobile-toggle{display:block}
 .hero{padding:60px 0 50px}.hero__title{font-size:1.6rem}.hero__buttons{flex-direction:column}.hero__buttons .btn{width:100%}.hero__stats{grid-template-columns:repeat(3,1fr);gap:16px}
 .section{padding:56px 0}.trust-badges__grid{grid-template-columns:repeat(2,1fr);gap:16px}.services-grid{grid-template-columns:1fr}
-.benefits-grid{grid-template-columns:1fr}.grid-3col,.grid-2col{grid-template-columns:1fr}.flow{grid-template-columns:1fr;gap:16px}
+.benefits-grid{grid-template-columns:1fr}.benefit-card__text{text-align:left}.flow__step-text{text-align:left}.grid-3col,.grid-2col{grid-template-columns:1fr}.flow{grid-template-columns:1fr;gap:16px}
 .footer__grid{grid-template-columns:1fr;gap:32px}.mobile-bottom-bar{display:block}body{padding-bottom:56px}.cta__phone{font-size:1.8rem}
 .info-grid{grid-template-columns:120px 1fr}
 }

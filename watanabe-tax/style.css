@@ -252,6 +252,8 @@ a:hover { color: var(--accent); }
   .profile { grid-template-columns: 1fr; }
   .profile__image-wrap { max-width: 240px; margin: 0 auto; }
   .benefits-grid { grid-template-columns: 1fr; }
+  .benefit-card__text { text-align: left; }
+  .flow__step-text { text-align: left; }
   .results-grid { grid-template-columns: 1fr; }
   .grid-3col { grid-template-columns: 1fr; }
   .grid-2col { grid-template-columns: 1fr; }
