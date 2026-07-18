@@ -1,0 +1,44 @@
+---
+import { breadcrumbJsonLd } from '../../lib/schema';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHero from '../../components/PageHero.astro';
+import Section from '../../components/Section.astro';
+import { activities } from '../../lib/site';
+
+const desc = '地域包括支援センターや社協などでの終活セミナー・講座の実績です。専門職向け研修にも対応しています。';
+const jsonLd = [breadcrumbJsonLd([{ name: '活動実績', path: '/activity/' }])];
+---
+
+<BaseLayout jsonLd={jsonLd} title="活動実績" description={desc}>
+  <PageHero title="活動実績" lead={desc} crumbs={[{ label: '活動実績' }]} />
+
+  <Section eyebrow="Seminars" title="最近の講座・研修実績" lead="公開情報をもとに再構成したデモ表です。最新の詳細はお問い合わせください。">
+    <div class="overflow-x-auto rounded-2xl border border-brand/10 bg-white shadow-sm">
+      <table class="min-w-full text-left text-sm">
+        <thead class="bg-brand-light text-brand-dark">
+          <tr>
+            <th class="px-4 py-3 font-semibold whitespace-nowrap">日付</th>
+            <th class="px-4 py-3 font-semibold">場所</th>
+            <th class="px-4 py-3 font-semibold">主宰</th>
+            <th class="px-4 py-3 font-semibold">テーマ</th>
+            <th class="px-4 py-3 font-semibold">対象</th>
+            <th class="px-4 py-3 font-semibold whitespace-nowrap">人数</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-brand/10 text-muted">
+          {activities.map((a) => (
+            <tr class="hover:bg-bg/80">
+              <td class="px-4 py-3 whitespace-nowrap">{a.date}</td>
+              <td class="px-4 py-3">{a.place}</td>
+              <td class="px-4 py-3">{a.host}</td>
+              <td class="px-4 py-3">{a.theme}</td>
+              <td class="px-4 py-3">{a.audience}</td>
+              <td class="px-4 py-3 whitespace-nowrap">{a.count}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+    <p class="mt-6 text-sm text-muted">講師派遣・研修のご依頼は <a href="/contact/" class="text-brand underline">お問い合わせ</a> まで。</p>
+  </Section>
+</BaseLayout>

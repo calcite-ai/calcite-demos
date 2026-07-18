@@ -1,0 +1,49 @@
+name: Generate column drafts (prototype)
+
+on:
+  workflow_dispatch:
+    inputs:
+      count:
+        description: 'Number of drafts to generate'
+        required: false
+        default: '3'
+  # 正式決定後に有効化:
+  # schedule:
+  #   - cron: '0 1 * * 1'  # 毎週月曜 10:00 JST相当
+
+permissions:
+  contents: write
+
+jobs:
+  draft:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: package-lock.json
+      - run: npm ci
+      - name: Generate draft columns
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          DRAFT_COUNT: ${{ github.event.inputs.count || '3' }}
+        run: npm run generate:drafts
+      - name: Show generated drafts
+        run: |
+          echo '=== draft files ==='
+          ls -la src/content/columns/*ai-draft* || true
+          test -f tmp/draft-generation-manifest.json && cat tmp/draft-generation-manifest.json || true
+      - name: Create PR with drafts (optional)
+        if: ${{ hashFiles('src/content/columns/*ai-draft*.md') != '' }}
+        uses: peter-evans/create-pull-request@v6
+        with:
+          commit-message: 'content: AI生成コラム下書き（要確認）'
+          title: 'content: AI生成コラム下書き（要確認）'
+          body: |
+            自動生成の **draft** 記事です。
+            - `status: draft` のためサイトには出力されません
+            - 一次ソース確認後、`status: published` に変更して公開してください
+            - 相続・成年後見・死後事務の断定表現がないか重点レビュー
+          branch: chore/ai-column-drafts

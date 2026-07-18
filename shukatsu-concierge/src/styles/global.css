@@ -1,0 +1,68 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand: #2f5d50;
+  --color-brand-dark: #1f3f36;
+  --color-brand-light: #e8f0ed;
+  --color-accent: #c4a35a;
+  --color-accent-soft: #f3ead3;
+  --color-ink: #1c1c1c;
+  --color-muted: #5a5a5a;
+  --color-bg: #f7f5f1;
+  --color-surface: #ffffff;
+  --font-sans: "Noto Sans JP", "Hiragino Sans", "Hiragino Kaku Gothic ProN",
+    "Yu Gothic", YuGothic, Meiryo, sans-serif;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-sans);
+  color: var(--color-ink);
+  background: var(--color-bg);
+  line-height: 1.85;
+  font-feature-settings: "palt";
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-brand);
+  outline-offset: 2px;
+}
+
+.prose-demo h2 {
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--color-brand-dark);
+}
+.prose-demo h3 {
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--color-brand);
+}
+.prose-demo p { margin-bottom: 1rem; color: var(--color-muted); }
+.prose-demo ul { margin: 0.75rem 0 1rem; padding-left: 1.25rem; color: var(--color-muted); }
+.prose-demo li { list-style: disc; margin-bottom: 0.35rem; }
+
+.prose-demo table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0 1.5rem;
+  font-size: 0.9rem;
+}
+.prose-demo th,
+.prose-demo td {
+  border: 1px solid color-mix(in oklab, var(--color-brand) 18%, white);
+  padding: 0.65rem 0.75rem;
+  text-align: left;
+  vertical-align: top;
+}
+.prose-demo th {
+  background: var(--color-brand-light);
+  color: var(--color-brand-dark);
+  font-weight: 700;
+}
+.prose-demo a { color: var(--color-brand); text-decoration: underline; text-underline-offset: 3px; }

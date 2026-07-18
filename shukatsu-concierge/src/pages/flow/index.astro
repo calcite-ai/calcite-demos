@@ -1,0 +1,47 @@
+---
+import { breadcrumbJsonLd } from '../../lib/schema';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHero from '../../components/PageHero.astro';
+import Section from '../../components/Section.astro';
+import { flowSteps } from '../../lib/site';
+
+const desc = 'ご相談受付から面談、契約、サービス開始までの4ステップ。ご本人・ご家族・専門職それぞれの進め方をご説明します。';
+const jsonLd = [breadcrumbJsonLd([{ name: 'ご契約の流れ', path: '/flow/' }])];
+---
+
+<BaseLayout title="ご契約の流れ" jsonLd={jsonLd} description={desc}>
+  <PageHero title="ご契約の流れ" lead={desc} crumbs={[{ label: 'ご契約の流れ' }]} />
+
+  <Section eyebrow="4 Steps" title="安心につながる、わかりやすい手順">
+    <div class="space-y-6">
+      {flowSteps.map((f) => (
+        <article class="grid gap-6 overflow-hidden rounded-2xl border border-brand/10 bg-white md:grid-cols-[280px_1fr]">
+          <img src={f.image} alt={`ステップ${f.step} ${f.title}`} class="h-48 w-full object-cover md:h-full" />
+          <div class="p-6 md:py-8">
+            <p class="text-sm font-semibold tracking-wide text-accent">STEP {String(f.step).padStart(2, '0')}</p>
+            <h2 class="mt-1 text-xl font-bold text-brand-dark">{f.title}</h2>
+            <p class="mt-3 text-muted leading-relaxed">{f.body}</p>
+            {f.step === 1 && (
+              <ul class="mt-4 space-y-2 text-sm text-muted">
+                <li>・ご本人・ご家族：内容を伺い、面談日程を調整</li>
+                <li>・事業者の方：本人面談前にヒアリングを実施</li>
+              </ul>
+            )}
+            {f.step === 2 && (
+              <p class="mt-4 text-sm text-muted">※事業者様からのご相談の場合はご同席をお願いしています。面談場所はご希望に合わせて伺います。</p>
+            )}
+            {f.step === 3 && (
+              <p class="mt-4 text-sm text-muted">※契約書の読み合わせには、事業者様やご家族の同席をお願いしています。</p>
+            )}
+            {f.step === 4 && (
+              <p class="mt-4 text-sm font-medium text-brand">※ここから有料になります</p>
+            )}
+          </div>
+        </article>
+      ))}
+    </div>
+    <div class="mt-10 text-center">
+      <a href="/contact/" class="inline-flex rounded-full bg-brand px-6 py-3 text-sm font-medium text-white hover:bg-brand-dark">まずは無料相談する</a>
+    </div>
+  </Section>
+</BaseLayout>

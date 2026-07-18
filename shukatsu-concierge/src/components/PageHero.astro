@@ -1,0 +1,29 @@
+---
+interface Props {
+  title: string;
+  lead?: string;
+  crumbs?: { label: string; href?: string }[];
+}
+const { title, lead, crumbs = [] } = Astro.props;
+---
+
+<section class="relative overflow-hidden border-b border-brand/10 bg-[linear-gradient(135deg,#fffcf8_0%,#e8f0ed_55%,#f3ead3_100%)]">
+  <div class="pointer-events-none absolute -right-16 top-0 h-56 w-56 rounded-full bg-brand/5 blur-2xl"></div>
+  <div class="mx-auto max-w-6xl px-4 py-12 md:py-16">
+    {crumbs.length > 0 && (
+      <nav aria-label="パンくず" class="mb-4 text-xs text-muted">
+        <ol class="flex flex-wrap items-center gap-1">
+          <li><a href="/" class="hover:text-brand">ホーム</a></li>
+          {crumbs.map((c) => (
+            <>
+              <li aria-hidden="true" class="text-brand/30">/</li>
+              <li>{c.href ? <a href={c.href} class="hover:text-brand">{c.label}</a> : <span class="text-ink">{c.label}</span>}</li>
+            </>
+          ))}
+        </ol>
+      </nav>
+    )}
+    <h1 class="text-3xl md:text-4xl font-bold text-brand-dark tracking-tight">{title}</h1>
+    {lead && <p class="mt-4 max-w-3xl text-[15px] md:text-base text-muted leading-relaxed">{lead}</p>}
+  </div>
+</section>

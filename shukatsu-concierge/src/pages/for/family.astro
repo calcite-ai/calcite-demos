@@ -1,0 +1,38 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHero from '../../components/PageHero.astro';
+import Section from '../../components/Section.astro';
+
+const label = "ご家族向け";
+const lead = "遠方でも、親の入院・施設・死後の手続きを任せられる窓口を。";
+const pains = ["遠方に住んでいて、急な入院連絡に対応しきれない", "身元保証人を頼める親族が近くにいない", "死後の手続きまで含めて整理しておきたい"];
+const offers = ["無料相談で状況を整理", "必要なら身元保証・死後事務の提案", "施設・病院との連絡窓口を一本化"];
+---
+
+<BaseLayout title={label} description={`${lead}（対象者別ページ・デモ）`}>
+  <PageHero
+    title={label}
+    lead={lead}
+    crumbs={[{ label: '対象者別' }, { label }]}
+  />
+
+  <Section eyebrow="Challenges" title="現場でよくある課題">
+    <ul class="space-y-3">
+      {pains.map((p) => (
+        <li class="rounded-2xl border border-brand/10 bg-white px-5 py-4 text-muted">{p}</li>
+      ))}
+    </ul>
+  </Section>
+
+  <Section class="bg-white border-y border-brand/5" eyebrow="Support" title="終活コンシェルジュができること">
+    <ul class="grid gap-3 md:grid-cols-3">
+      {offers.map((o) => (
+        <li class="rounded-2xl bg-brand-light/60 p-5 font-medium text-brand-dark">{o}</li>
+      ))}
+    </ul>
+    <div class="mt-8 flex flex-wrap gap-3">
+      <a href="/cases/" class="rounded-full border border-brand/30 px-5 py-2.5 text-sm text-brand">関連する解決事例</a>
+      <a href="/contact/" class="rounded-full bg-brand px-5 py-2.5 text-sm font-medium text-white">連携・相談する</a>
+    </div>
+  </Section>
+</BaseLayout>

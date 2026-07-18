@@ -1,0 +1,51 @@
+---
+import { breadcrumbJsonLd } from '../../lib/schema';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHero from '../../components/PageHero.astro';
+import Section from '../../components/Section.astro';
+
+const desc = '終活に関するお悩み・ご相談ごとを生涯にわたってサポート。相続・身元保証・葬儀まで窓口ひとつでお答えします。';
+const canDo = [
+  { title: '入院・入所の身元保証', body: '病院への入院や介護施設への入所時に、ご家族に代わって身元保証を引き受けます。' },
+  { title: '生活の見守り・支援', body: '診察同席、日用品の購入、外出同伴など、日常の支えとなるお付き合いをします。' },
+  { title: '死後の事務手続き', body: '葬儀・喪主代行、埋葬、遺品整理、役所への届出など、死後に必要な手続きを担います。' },
+  { title: '遺言書作成支援', body: '公正証書遺言の文案作成・証人支援など、想いを形にするお手伝いをします。' },
+  { title: '不動産の処分相談', body: '施設入所に伴う住まいの整理など、関連する相談にも対応します。' },
+  { title: '納骨・散骨・遺品整理', body: 'ご本人の希望に沿った納骨・散骨、遺品の整理をサポートします。' },
+];
+const jsonLd = [breadcrumbJsonLd([{ name: '私たちについて', path: '/about/' }])];
+---
+
+<BaseLayout title="終活コンシェルジュについて" jsonLd={jsonLd} description={desc}>
+  <PageHero
+    title="終活コンシェルジュについて"
+    lead={desc}
+    crumbs={[{ label: '終活コンシェルジュについて' }]}
+  />
+
+  <Section eyebrow="Mission" title="終活の総合相談窓口として" lead="今日、シニアの方々を取り巻く問題は多岐にわたります。とりわけ終活に関わる問題は、ご家族はもちろん、ご自身でもどうしていいかわからないケースが多く見られます。相談窓口は分野ごとに分かれており、すべてを解決しようと思えば大変な労力が必要です。">
+    <div class="rounded-2xl border border-brand/10 bg-white p-6 md:p-8">
+      <p class="text-muted leading-relaxed">
+        私たち終活コンシェルジュは、シニアの方々が抱える相続や身元保証、葬儀の問題などに、<strong class="text-brand-dark">窓口ひとつ</strong>でお答えします。終活に関わる不安や煩わしさを取り除くことで、充実したシニアライフを送っていただき、それらのサービスを通じて一生涯のお付き合いをさせていただきます。
+      </p>
+      <p class="mt-4 text-muted leading-relaxed">
+        また、病院の医療ソーシャルワーカーや地域包括支援センター、居宅介護支援事業所のケアマネジャーからも「これ以上一人で生活させられない」「支援が難しいが何とかしてあげたい」といったご相談を多数いただいています。
+      </p>
+    </div>
+  </Section>
+
+  <Section class="bg-white border-y border-brand/5" eyebrow="What we can do" title="終活コンシェルジュのできること" lead="「こんなことはできるの？」というご要望も、まずはお気軽にご相談ください。">
+    <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      {canDo.map((item) => (
+        <article class="rounded-2xl border border-brand/10 bg-bg p-5">
+          <h3 class="font-bold text-brand-dark">{item.title}</h3>
+          <p class="mt-2 text-sm text-muted leading-relaxed">{item.body}</p>
+        </article>
+      ))}
+    </div>
+    <div class="mt-8 flex flex-wrap gap-3">
+      <a href="/service/" class="rounded-full bg-brand px-5 py-2.5 text-sm font-medium text-white">サービス・料金を見る</a>
+      <a href="/cases/" class="rounded-full border border-brand/30 px-5 py-2.5 text-sm font-medium text-brand">解決事例を見る</a>
+    </div>
+  </Section>
+</BaseLayout>

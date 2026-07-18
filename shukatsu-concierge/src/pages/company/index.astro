@@ -1,0 +1,80 @@
+---
+import { breadcrumbJsonLd } from '../../lib/schema';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHero from '../../components/PageHero.astro';
+import Section from '../../components/Section.astro';
+import { site, companyProfile } from '../../lib/site';
+
+const desc = '代表理事あいさつ、会社情報、アクセス、沿革。一般社団法人終活コンシェルジュの概要です。';
+const jsonLd = [breadcrumbJsonLd([{ name: '会社概要', path: '/company/' }])];
+---
+
+<BaseLayout title="会社概要" jsonLd={jsonLd} description={desc}>
+  <PageHero title="会社概要" lead={desc} crumbs={[{ label: '会社概要' }]} />
+
+  <Section eyebrow="Greeting" title="ごあいさつ" lead="すべては高齢者の安心のために">
+    <div class="grid gap-8 md:grid-cols-[1fr_220px] items-start">
+      <div class="rounded-2xl border border-brand/10 bg-white p-6 md:p-8">
+        {companyProfile.greeting.split('\n\n').map((para) => (
+          <p class="mb-4 text-muted leading-relaxed last:mb-0">{para}</p>
+        ))}
+        <p class="mt-6 text-right text-sm text-brand-dark">
+          {site.name}<br />
+          代表理事　{site.representative}
+        </p>
+      </div>
+      <aside class="rounded-2xl border border-dashed border-brand/25 bg-brand-light/40 p-5 text-center">
+        <div class="mx-auto flex h-40 w-40 items-center justify-center rounded-full bg-white border border-brand/10 text-sm text-muted">
+          顔写真<br />準備中
+        </div>
+        <p class="mt-3 text-sm font-medium text-brand-dark">{site.representative}</p>
+        <p class="text-xs text-muted">代表理事</p>
+        <p class="mt-3 text-[11px] text-muted leading-relaxed">※現行サイトに代表写真がなかったため、提供後に掲載予定です。</p>
+      </aside>
+    </div>
+  </Section>
+
+  <Section class="bg-white border-y border-brand/5" eyebrow="Profile" title="法人概要">
+    <dl class="overflow-hidden rounded-2xl border border-brand/10 bg-bg divide-y divide-brand/10">
+      {[
+        ['社名', site.name],
+        ['本部所在地', site.address.full],
+        ['TEL / FAX', `TEL ${site.phone}　／　FAX ${site.fax}`],
+        ['代表者', site.representative],
+        ['事業内容', companyProfile.business.join('／')],
+      ].map(([th, td]) => (
+        <div class="grid gap-1 px-5 py-4 sm:grid-cols-[140px_1fr] sm:gap-4">
+          <dt class="text-sm font-semibold text-brand">{th}</dt>
+          <dd class="text-sm text-muted leading-relaxed">{td}</dd>
+        </div>
+      ))}
+    </dl>
+  </Section>
+
+  <Section eyebrow="Access" title="アクセス">
+    <div class="rounded-2xl border border-brand/10 bg-white p-6">
+      <p class="text-muted">{site.address.full}</p>
+      <p class="mt-2 text-sm text-muted">お越しの際は事前にご連絡ください。</p>
+      <div class="mt-5 aspect-[16/9] overflow-hidden rounded-xl border border-brand/10">
+        <iframe
+          title="終活コンシェルジュ所在地マップ"
+          class="h-full w-full"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          src={`https://maps.google.com/maps?q=${encodeURIComponent(site.address.full)}&output=embed`}
+        ></iframe>
+      </div>
+    </div>
+  </Section>
+
+  <Section class="bg-brand-light/40" eyebrow="History" title="沿革">
+    <ol class="space-y-4">
+      {companyProfile.history.map((h) => (
+        <li class="flex gap-4 rounded-2xl border border-brand/10 bg-white p-5">
+          <span class="shrink-0 text-sm font-bold text-accent w-16">{h.year}</span>
+          <span class="text-sm text-muted leading-relaxed">{h.text}</span>
+        </li>
+      ))}
+    </ol>
+  </Section>
+</BaseLayout>

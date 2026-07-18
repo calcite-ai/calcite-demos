@@ -1,0 +1,86 @@
+---
+import { breadcrumbJsonLd } from '../../lib/schema';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHero from '../../components/PageHero.astro';
+import Section from '../../components/Section.astro';
+import ServiceFlow from '../../components/ServiceFlow.astro';
+
+const desc = '預託金不要の身元保証「ささえ」、生活支援、死後事務「むかえ」、オプションサービスと料金の目安をご案内します。';
+const jsonLd = [breadcrumbJsonLd([{ name: 'サービス概要', path: '/service/' }])];
+---
+
+<BaseLayout title="サービス概要" jsonLd={jsonLd} description={desc}>
+  <PageHero title="サービス概要" lead={desc} crumbs={[{ label: 'サービス概要' }]} />
+
+  <Section eyebrow="Overview" title="家族のように見守る安心を" lead="入院・老人ホームへの入所、引っ越しの際の身元保証人が見つからない——そんな声に応えるため、一人ひとりに合わせたプランをご提供します。">
+    <ServiceFlow />
+  </Section>
+
+  <Section id="sasae" class="bg-white border-y border-brand/5" eyebrow="Main service 01" title="預託金不要の高齢者の身元保証「ささえ」">
+    <div class="grid gap-8 md:grid-cols-[200px_1fr] items-start">
+      <img src="/images/service/身元保証ささえ.png" alt="身元保証ささえ" class="mx-auto h-44 w-44 object-contain" />
+      <div>
+        <p class="text-muted leading-relaxed">病院への入院や介護施設への入所の際に、ご家族の代わりとなって高齢者の身元保証人として「連帯保証」や「身柄引受」を行います。施設利用料の不払い時の保証や、万が一の身柄の引き取りまで、団体で対応します。</p>
+        <div class="mt-6 overflow-hidden rounded-2xl border border-brand/10 bg-bg">
+          <h3 class="bg-brand-light px-5 py-3 text-sm font-bold text-brand-dark">ご利用料金（税込）</h3>
+          <ul class="divide-y divide-brand/10 text-sm text-muted">
+            <li class="px-5 py-3 flex justify-between gap-4"><span>契約金</span><span class="font-medium text-ink">440,000円</span></li>
+            <li class="px-5 py-3 flex justify-between gap-4"><span>連帯保証料（施設入所・初年度）</span><span class="font-medium text-ink">20,000円／年</span></li>
+            <li class="px-5 py-3 flex justify-between gap-4"><span>連帯保証料（施設入所・次年度以降）</span><span class="font-medium text-ink">12,000円／年</span></li>
+            <li class="px-5 py-3 flex justify-between gap-4"><span>連帯保証料（入院・1回）</span><span class="font-medium text-ink">10,000円</span></li>
+            <li class="px-5 py-3 flex justify-between gap-4"><span>管理費</span><span class="font-medium text-ink">月額 11,000円</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </Section>
+
+  <Section id="otomo" eyebrow="Main service 02" title="シニアの生活支援サービス">
+    <div class="grid gap-8 md:grid-cols-[200px_1fr] items-start">
+      <img src="/images/service/生活支援おとも.png" alt="生活支援おとも" class="mx-auto h-44 w-44 object-contain" />
+      <div>
+        <p class="text-muted leading-relaxed">病院や介護施設での医師による説明時の同席、日用品の購入、外出への同伴など、普段の支えとなるお付き合いをします。「ささえ」ご利用の方のみのサービスで、支援の都度料金が発生します。</p>
+        <p class="mt-4 text-sm text-muted">目安：時間等 3,300円（税込）※デモ表記。詳細はお問い合わせください。</p>
+      </div>
+    </div>
+  </Section>
+
+  <Section id="mukae" class="bg-white border-y border-brand/5" eyebrow="Main service 03" title="シニアの死後事務委任「むかえ」">
+    <div class="grid gap-8 md:grid-cols-[200px_1fr] items-start">
+      <img src="/images/service/死後事務むかえ.png" alt="死後事務むかえ" class="mx-auto h-44 w-44 object-contain" />
+      <div>
+        <p class="text-muted leading-relaxed">万が一お亡くなりになった後のご葬儀及び喪主代行から、埋葬支援、遺品整理代行、役所等への各種手続きを一手に引き受けます。ご自身の葬儀のことを決めておきたい方や、お身内のいらっしゃらない方など、生前に契約できます。</p>
+        <div class="mt-6 overflow-hidden rounded-2xl border border-brand/10 bg-bg">
+          <h3 class="bg-brand-light px-5 py-3 text-sm font-bold text-brand-dark">ご利用料金（税込）</h3>
+          <ul class="divide-y divide-brand/10 text-sm text-muted">
+            <li class="px-5 py-3 flex justify-between gap-4"><span>契約金</span><span class="font-medium text-ink">55,000円</span></li>
+            <li class="px-5 py-3 flex justify-between gap-4"><span>管理費</span><span class="font-medium text-ink">月額 2,200円（「ささえ」利用の方は無料）</span></li>
+            <li class="px-5 py-3 text-xs">葬儀・埋葬・遺品整理等は実費。各種手続きには事務手数料が発生します。</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </Section>
+
+  <Section eyebrow="Options" title="オプション" lead="必要に応じて組み合わせできます。">
+    <div class="grid gap-4 md:grid-cols-2">
+      <article class="rounded-2xl border border-brand/10 bg-white p-6">
+        <h3 class="font-bold text-brand-dark">任意後見パック</h3>
+        <p class="mt-2 text-sm text-muted leading-relaxed">任意後見契約と身元保証・死後事務委任を組み合わせたパック。契約金 495,000円（税込）ほか。</p>
+      </article>
+      <article class="rounded-2xl border border-brand/10 bg-white p-6">
+        <h3 class="font-bold text-brand-dark">入院だけの身元保証</h3>
+        <p class="mt-2 text-sm text-muted leading-relaxed">一時的な検査入院や、退院見込みのある入院の身元引受・連帯保証。</p>
+      </article>
+      <article class="rounded-2xl border border-brand/10 bg-white p-6">
+        <h3 class="font-bold text-brand-dark">あんしん見守りサービス</h3>
+        <p class="mt-2 text-sm text-muted leading-relaxed">見守りセンサー異常時の駆けつけ・救急要請・入院手続き同行（対象契約者向け）。</p>
+      </article>
+      <article class="rounded-2xl border border-brand/10 bg-white p-6">
+        <h3 class="font-bold text-brand-dark">遺言書作成支援</h3>
+        <p class="mt-2 text-sm text-muted leading-relaxed">公正証書の文案作成・証人支援。費用はお問い合わせください。</p>
+      </article>
+    </div>
+    <p class="mt-6 text-xs text-muted">※料金は現行サイト掲載内容に基づくデモ表示です。正式契約時の最新料金は必ずご確認ください。</p>
+  </Section>
+</BaseLayout>

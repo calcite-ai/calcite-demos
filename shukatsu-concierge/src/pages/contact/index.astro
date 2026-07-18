@@ -1,0 +1,65 @@
+---
+import { breadcrumbJsonLd } from '../../lib/schema';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHero from '../../components/PageHero.astro';
+import Section from '../../components/Section.astro';
+import { site } from '../../lib/site';
+
+const desc = '電話・メールでの無料相談を受け付けています。ご本人・ご家族・専門職の方、どなたでもお気軽にどうぞ。';
+const jsonLd = [breadcrumbJsonLd([{ name: 'お問い合わせ', path: '/contact/' }])];
+---
+
+<BaseLayout title="お問い合わせ" jsonLd={jsonLd} description={desc} showCta={false}>
+  <PageHero title="お問い合わせ" lead={desc} crumbs={[{ label: 'お問い合わせ' }]} />
+
+  <Section eyebrow="Phone" title="電話での無料相談">
+    <div class="grid gap-4 md:grid-cols-2">
+      <a href={`tel:${site.phone.replaceAll('-', '')}`} class="rounded-2xl border border-brand/10 bg-white p-6 hover:border-brand transition">
+        <p class="text-sm text-muted">代表電話</p>
+        <p class="mt-2 text-2xl font-bold text-brand-dark tracking-wide">{site.phone}</p>
+        <p class="mt-2 text-xs text-muted">受付時間はお問い合わせください（デモ表記）</p>
+      </a>
+      <a href={`tel:${site.phoneFree.replaceAll('-', '')}`} class="rounded-2xl border border-brand/10 bg-white p-6 hover:border-brand transition">
+        <p class="text-sm text-muted">フリーダイヤル</p>
+        <p class="mt-2 text-2xl font-bold text-brand-dark tracking-wide">{site.phoneFree}</p>
+        <p class="mt-2 text-xs text-muted">通話料無料</p>
+      </a>
+    </div>
+  </Section>
+
+  <Section class="bg-white border-y border-brand/5" eyebrow="Mail" title="メールでのお問い合わせ" lead="試作デモのため送信は行われません。見た目と導線の確認用フォームです。">
+    <form class="mx-auto max-w-2xl space-y-5 rounded-2xl border border-brand/10 bg-bg p-6 md:p-8" onsubmit="event.preventDefault(); alert('デモのため送信していません。本番ではメールまたはフォームサービスに接続します。');">
+      <div>
+        <label class="block text-sm font-medium text-brand-dark" for="name">お名前 <span class="text-red-600">*</span></label>
+        <input id="name" name="name" required class="mt-1.5 w-full rounded-xl border border-brand/20 bg-white px-4 py-3 text-sm" />
+      </div>
+      <div>
+        <label class="block text-sm font-medium text-brand-dark" for="role">ご連絡者の立場</label>
+        <select id="role" name="role" class="mt-1.5 w-full rounded-xl border border-brand/20 bg-white px-4 py-3 text-sm">
+          <option>ご本人</option>
+          <option>ご家族</option>
+          <option>地域包括支援センター</option>
+          <option>ケアマネジャー</option>
+          <option>病院MSW</option>
+          <option>老人ホーム・施設</option>
+          <option>紹介会社</option>
+          <option>その他</option>
+        </select>
+      </div>
+      <div>
+        <label class="block text-sm font-medium text-brand-dark" for="email">メールアドレス <span class="text-red-600">*</span></label>
+        <input id="email" name="email" type="email" required class="mt-1.5 w-full rounded-xl border border-brand/20 bg-white px-4 py-3 text-sm" />
+      </div>
+      <div>
+        <label class="block text-sm font-medium text-brand-dark" for="tel">電話番号</label>
+        <input id="tel" name="tel" type="tel" class="mt-1.5 w-full rounded-xl border border-brand/20 bg-white px-4 py-3 text-sm" />
+      </div>
+      <div>
+        <label class="block text-sm font-medium text-brand-dark" for="message">ご相談内容 <span class="text-red-600">*</span></label>
+        <textarea id="message" name="message" required rows="6" class="mt-1.5 w-full rounded-xl border border-brand/20 bg-white px-4 py-3 text-sm"></textarea>
+      </div>
+      <button type="submit" class="w-full rounded-full bg-brand py-3.5 text-sm font-semibold text-white hover:bg-brand-dark transition">送信する（デモ）</button>
+    </form>
+    <p class="mt-6 text-center text-sm text-muted">{site.address.full}</p>
+  </Section>
+</BaseLayout>

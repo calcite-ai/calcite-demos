@@ -1,0 +1,140 @@
+---
+const guaranteeSteps = [
+  {
+    title: '入院・通院',
+    items: [
+      { text: '入院から退院までの各手続', tone: 'accent' },
+      { text: '身元保証人、緊急連絡先としての役割', tone: 'accent' },
+      { text: '医療費に関する連帯保証', tone: 'accent', note: '※別途契約が必要になります' },
+      { text: '通院のサポート', tone: 'brand' },
+    ],
+  },
+  {
+    title: '介護',
+    items: [
+      { text: 'お客様に合った施設選び', tone: 'accent' },
+      { text: '身元保証及び連帯保証人としての役割', tone: 'accent' },
+      { text: '入居準備や施設での生活サポート', tone: 'brand' },
+    ],
+  },
+];
+
+const aftercareSteps = [
+  {
+    title: 'ご逝去',
+    items: [
+      { text: 'ご遺体の一時引き取り、身の回り品の預り', tone: 'accent' },
+      { text: '親族、関係者への連絡', tone: 'cool' },
+      { text: '葬儀社の手配', tone: 'cool' },
+    ],
+  },
+  {
+    title: 'お葬式から納骨',
+    items: [
+      { text: '家族に代わる喪主代行', tone: 'cool' },
+      { text: '菩提寺への連絡', tone: 'cool' },
+      { text: '納骨支援', tone: 'cool' },
+    ],
+  },
+  {
+    title: '各種手続き・遺品整理',
+    items: [
+      { text: '行政官庁への届出', tone: 'cool' },
+      { text: '未清算金の支払い', tone: 'cool' },
+      { text: '各種解約', tone: 'cool' },
+      { text: '遺品の処分', tone: 'cool' },
+    ],
+  },
+];
+
+const toneClass: Record<string, string> = {
+  accent: 'bg-accent',
+  brand: 'bg-brand',
+  cool: 'bg-[#5b7c99]',
+};
+---
+
+<div class="service-flow mx-auto max-w-2xl rounded-3xl border border-brand/10 bg-white p-5 shadow-[0_12px_40px_rgba(31,63,54,0.08)] md:p-8">
+  <p class="text-center text-sm md:text-[15px] font-medium leading-relaxed text-brand">
+    身元保証を通じて、一生涯のお付き合い。<br class="sm:hidden" />
+    死後事務委任で最期まで安心。
+  </p>
+
+  <!-- 身元保証ブロック -->
+  <div class="mt-8 grid grid-cols-[44px_1fr] gap-3 md:grid-cols-[56px_1fr] md:gap-5">
+    <div class="relative flex justify-center pt-2">
+      <div class="absolute inset-y-2 w-8 rounded-full bg-brand-light md:w-10"></div>
+      <div class="relative z-10 flex h-full min-h-[8rem] w-8 items-center justify-center rounded-full bg-brand text-white md:w-10">
+        <span class="text-[11px] font-bold tracking-[0.35em] md:text-xs" style="writing-mode: vertical-rl; text-orientation: mixed;">身元保証</span>
+      </div>
+    </div>
+    <div class="space-y-0">
+      {guaranteeSteps.map((step, i) => (
+        <>
+          <article class="rounded-2xl border border-brand/15 bg-bg/60 p-4 md:p-5">
+            <h3 class="text-base font-bold text-brand-dark md:text-lg">{step.title}</h3>
+            <ul class="mt-3 space-y-2">
+              {step.items.map((item) => (
+                <li class="flex gap-2.5 text-sm text-muted leading-relaxed">
+                  <span class:list={['mt-1.5 h-2 w-2 shrink-0 rounded-full', toneClass[item.tone]]}></span>
+                  <span>
+                    {item.text}
+                    {item.note && <span class="mt-0.5 block text-[11px] text-muted/80">{item.note}</span>}
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </article>
+          {i === 0 && (
+            <div class="flex flex-col items-center py-2 text-brand/50" aria-hidden="true">
+              <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+              <svg class="h-4 w-4 -mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
+            </div>
+          )}
+          {i === 1 && (
+            <div class="flex justify-center py-3 text-brand/40" aria-hidden="true">
+              <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
+            </div>
+          )}
+        </>
+      ))}
+    </div>
+  </div>
+
+  <!-- 死後事務委任ブロック -->
+  <div class="mt-2 grid grid-cols-[44px_1fr] gap-3 md:grid-cols-[56px_1fr] md:gap-5">
+    <div class="relative flex justify-center pt-2">
+      <div class="absolute inset-y-2 w-8 rounded-full bg-[#dce6ef] md:w-10"></div>
+      <div class="relative z-10 flex h-full min-h-[10rem] w-8 items-center justify-center rounded-full bg-[#5b7c99] text-white md:w-10">
+        <span class="text-[11px] font-bold tracking-[0.2em] md:text-xs" style="writing-mode: vertical-rl; text-orientation: mixed;">死後事務委任</span>
+      </div>
+    </div>
+    <div>
+      {aftercareSteps.map((step, i) => (
+        <>
+          <article class="rounded-2xl border border-[#5b7c99]/25 bg-bg/60 p-4 md:p-5">
+            <h3 class="text-base font-bold text-brand-dark md:text-lg">{step.title}</h3>
+            <ul class="mt-3 space-y-2">
+              {step.items.map((item) => (
+                <li class="flex gap-2.5 text-sm text-muted leading-relaxed">
+                  <span class:list={['mt-1.5 h-2 w-2 shrink-0 rounded-full', toneClass[item.tone]]}></span>
+                  <span>{item.text}</span>
+                </li>
+              ))}
+            </ul>
+          </article>
+          {i < aftercareSteps.length - 1 && (
+            <div class="flex justify-center py-3 text-[#5b7c99]/50" aria-hidden="true">
+              <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
+            </div>
+          )}
+        </>
+      ))}
+    </div>
+  </div>
+
+  <p class="mt-8 text-center text-xs md:text-sm text-muted leading-relaxed">
+    死後事務業務後は、皆さまの意思に沿って<br class="sm:hidden" />
+    遺された方が困らないようにサポートいたします。
+  </p>
+</div>

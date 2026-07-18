@@ -1,0 +1,51 @@
+---
+import { breadcrumbJsonLd } from '../../lib/schema';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHero from '../../components/PageHero.astro';
+import Section from '../../components/Section.astro';
+
+const desc = 'シニア社交ダンス「踊活（とうかつ）」。プロ講師によるレッスンで、からだを動かし、人とつながる時間をつくります。';
+const scenes = [
+  '/images/dancing/踊活風景_01.jpg',
+  '/images/dancing/踊活風景_02.jpg',
+  '/images/dancing/踊活風景_03.jpg',
+  '/images/dancing/踊活風景_04.jpg',
+];
+const jsonLd = [breadcrumbJsonLd([{ name: 'シニア社交ダンス「踊活」', path: '/dancing/' }])];
+---
+
+<BaseLayout jsonLd={jsonLd} title="シニア社交ダンス「踊活」" description={desc}>
+  <PageHero title="シニア社交ダンス「踊活」" lead={desc} crumbs={[{ label: 'シニア社交ダンス「踊活」' }]} />
+
+  <Section eyebrow="About" title="踊活（とうかつ）とは" lead="終活コンシェルジュが推進する、シニア向け社交ダンスの取り組みです。毎月数回、プロの講師がレッスンに伺い、三田や鶴見などで教室を開催しています。">
+    <p class="text-muted leading-relaxed">詳しい日程・会場はお問い合わせください。ダンスを通じた交流が、孤立予防や健康づくりにもつながります。</p>
+  </Section>
+
+  <Section class="bg-white border-y border-brand/5" eyebrow="Instructors" title="ダンス講師の方々">
+    <div class="grid gap-6 md:grid-cols-2">
+      <article class="rounded-2xl border border-brand/10 bg-bg p-6 flex gap-5">
+        <img src="/images/dancing/講師_飯田満之.jpg" alt="飯田満之先生" class="h-28 w-28 rounded-xl object-cover" width="112" height="150" />
+        <div>
+          <h3 class="font-bold text-brand-dark">飯田 満之 先生</h3>
+          <p class="mt-2 text-sm text-muted leading-relaxed">競技・指導の実績を持つプロ講師。一人ひとりに合わせた丁寧な指導が好評です。</p>
+        </div>
+      </article>
+      <article class="rounded-2xl border border-brand/10 bg-bg p-6 flex gap-5">
+        <img src="/images/dancing/講師_松浦茜.jpg" alt="松浦茜先生" class="h-28 w-28 rounded-xl object-cover" width="112" height="150" />
+        <div>
+          <h3 class="font-bold text-brand-dark">松浦 茜 先生</h3>
+          <p class="mt-2 text-sm text-muted leading-relaxed">「宝塚みたい！」と男性役も好評。出張レッスン・サークルも開講しています。</p>
+        </div>
+      </article>
+    </div>
+    <p class="mt-6 text-sm text-muted">曙橋さくらダンススタジオ：sakuradance101@gmail.com ／ TEL・FAX 03-5357-7484（または終活コンシェルジュ {`0120-108-251`}）</p>
+  </Section>
+
+  <Section eyebrow="Gallery" title="踊活の風景">
+    <div class="grid gap-4 sm:grid-cols-2">
+      {scenes.map((src, i) => (
+        <img src={src} alt={`踊活のレッスン風景 ${i + 1}`} class="aspect-[4/3] w-full rounded-2xl object-cover border border-brand/10" loading="lazy" />
+      ))}
+    </div>
+  </Section>
+</BaseLayout>
