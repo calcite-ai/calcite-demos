@@ -1,4 +1,5 @@
 ---
+import { withBase } from '../../lib/site';
 import { breadcrumbJsonLd } from '../../lib/schema';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import PageHero from '../../components/PageHero.astro';
@@ -16,7 +17,7 @@ const jsonLd = [breadcrumbJsonLd([{ name: 'ご契約の流れ', path: '/flow/' }
     <div class="space-y-6">
       {flowSteps.map((f) => (
         <article class="grid gap-6 overflow-hidden rounded-2xl border border-brand/10 bg-white md:grid-cols-[280px_1fr]">
-          <img src={f.image} alt={`ステップ${f.step} ${f.title}`} class="h-48 w-full object-cover md:h-full" />
+          <img src={withBase(f.image)} alt={`ステップ${f.step} ${f.title}`} class="h-48 w-full object-cover md:h-full" />
           <div class="p-6 md:py-8">
             <p class="text-sm font-semibold tracking-wide text-accent">STEP {String(f.step).padStart(2, '0')}</p>
             <h2 class="mt-1 text-xl font-bold text-brand-dark">{f.title}</h2>
@@ -41,7 +42,7 @@ const jsonLd = [breadcrumbJsonLd([{ name: 'ご契約の流れ', path: '/flow/' }
       ))}
     </div>
     <div class="mt-10 text-center">
-      <a href="/contact/" class="inline-flex rounded-full bg-brand px-6 py-3 text-sm font-medium text-white hover:bg-brand-dark">まずは無料相談する</a>
+      <a href={withBase("/contact/")} class="inline-flex rounded-full bg-brand px-6 py-3 text-sm font-medium text-white hover:bg-brand-dark">まずは無料相談する</a>
     </div>
   </Section>
 </BaseLayout>

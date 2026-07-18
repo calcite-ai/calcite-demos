@@ -1,4 +1,5 @@
 ---
+import { withBase } from '../../lib/site';
 import { breadcrumbJsonLd } from '../../lib/schema';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import PageHero from '../../components/PageHero.astro';
@@ -44,8 +45,8 @@ const jsonLd = [breadcrumbJsonLd([{ name: '私たちについて', path: '/about
       ))}
     </div>
     <div class="mt-8 flex flex-wrap gap-3">
-      <a href="/service/" class="rounded-full bg-brand px-5 py-2.5 text-sm font-medium text-white">サービス・料金を見る</a>
-      <a href="/cases/" class="rounded-full border border-brand/30 px-5 py-2.5 text-sm font-medium text-brand">解決事例を見る</a>
+      <a href={withBase("/service/")} class="rounded-full bg-brand px-5 py-2.5 text-sm font-medium text-white">サービス・料金を見る</a>
+      <a href={withBase("/cases/")} class="rounded-full border border-brand/30 px-5 py-2.5 text-sm font-medium text-brand">解決事例を見る</a>
     </div>
   </Section>
 </BaseLayout>

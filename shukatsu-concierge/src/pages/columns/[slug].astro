@@ -1,4 +1,5 @@
 ---
+import { withBase } from '../../lib/site';
 import { getCollection, render } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import PageHero from '../../components/PageHero.astro';
@@ -44,6 +45,6 @@ const jsonLd = [
     <div class="prose-demo rounded-2xl border border-brand/10 bg-white p-6 md:p-10">
       <Content />
     </div>
-    <p class="mt-8"><a href="/columns/" class="text-brand font-medium underline underline-offset-4">コラム一覧へ戻る</a></p>
+    <p class="mt-8"><a href={withBase("/columns/")} class="text-brand font-medium underline underline-offset-4">コラム一覧へ戻る</a></p>
   </article>
 </BaseLayout>

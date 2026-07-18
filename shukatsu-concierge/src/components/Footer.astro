@@ -1,11 +1,11 @@
 ---
-import { site, audiencePages } from '../lib/site';
+import { site, audiencePages, withBase } from '../lib/site';
 ---
 
 <footer class="bg-[#16362e] text-white">
   <div class="mx-auto grid max-w-6xl gap-10 px-4 py-14 md:grid-cols-12">
     <div class="md:col-span-4">
-      <img src="/images/logo/終活コンシェルジュ_フッターロゴ.png" alt="終活コンシェルジュ" class="h-14 w-auto brightness-0 invert opacity-90" width="200" height="150" />
+      <img src={withBase('/images/logo/終活コンシェルジュ_フッターロゴ.png')} alt="終活コンシェルジュ" class="h-14 w-auto brightness-0 invert opacity-90" width="200" height="150" />
       <p class="mt-4 text-sm leading-relaxed text-white/75">
         身元保証から死後事務まで。高齢者ご本人・ご家族・専門職のための総合相談窓口です。
       </p>
@@ -14,26 +14,26 @@ import { site, audiencePages } from '../lib/site';
     <div class="md:col-span-3">
       <h2 class="text-xs font-semibold tracking-[0.15em] text-accent uppercase">Sitemap</h2>
       <ul class="mt-4 space-y-2 text-sm text-white/80">
-        <li><a class="hover:text-white" href="/about/">私たちについて</a></li>
-        <li><a class="hover:text-white" href="/service/">サービス概要</a></li>
-        <li><a class="hover:text-white" href="/cases/">ご相談・解決事例</a></li>
-        <li><a class="hover:text-white" href="/flow/">ご契約の流れ</a></li>
-        <li><a class="hover:text-white" href="/activity/">活動実績</a></li>
-        <li><a class="hover:text-white" href="/dancing/">シニア社交ダンス「踊活」</a></li>
-        <li><a class="hover:text-white" href="/company/">会社概要</a></li>
-        <li><a class="hover:text-white" href="/faq/">よくある質問</a></li>
-        <li><a class="hover:text-white" href="/columns/">コラム</a></li>
-        <li><a class="hover:text-white" href="/contact/">お問い合わせ</a></li>
+        <li><a class="hover:text-white" href={withBase('/about/')}>私たちについて</a></li>
+        <li><a class="hover:text-white" href={withBase('/service/')}>サービス概要</a></li>
+        <li><a class="hover:text-white" href={withBase('/cases/')}>ご相談・解決事例</a></li>
+        <li><a class="hover:text-white" href={withBase('/flow/')}>ご契約の流れ</a></li>
+        <li><a class="hover:text-white" href={withBase('/activity/')}>活動実績</a></li>
+        <li><a class="hover:text-white" href={withBase('/dancing/')}>シニア社交ダンス「踊活」</a></li>
+        <li><a class="hover:text-white" href={withBase('/company/')}>会社概要</a></li>
+        <li><a class="hover:text-white" href={withBase('/faq/')}>よくある質問</a></li>
+        <li><a class="hover:text-white" href={withBase('/columns/')}>コラム</a></li>
+        <li><a class="hover:text-white" href={withBase('/contact/')}>お問い合わせ</a></li>
       </ul>
     </div>
     <div class="md:col-span-5">
       <h2 class="text-xs font-semibold tracking-[0.15em] text-accent uppercase">For Professionals</h2>
       <ul class="mt-4 grid gap-2 sm:grid-cols-2 text-sm text-white/80">
         {audiencePages.map((p) => (
-          <li><a class="hover:text-white" href={p.href}>{p.label}</a></li>
+          <li><a class="hover:text-white" href={withBase(p.href)}>{p.label}</a></li>
         ))}
-        <li><a class="hover:text-white" href="/guides/seinengoiken/">成年後見制度との違い</a></li>
-        <li><a class="hover:text-white" href="/guides/kazoku-shintaku/">家族信託との違い</a></li>
+        <li><a class="hover:text-white" href={withBase('/guides/seinengoiken/')}>成年後見制度との違い</a></li>
+        <li><a class="hover:text-white" href={withBase('/guides/kazoku-shintaku/')}>家族信託との違い</a></li>
       </ul>
       <div class="mt-8 rounded-xl bg-white/5 p-4 text-sm text-white/80">
         <p>{site.address.full}</p>

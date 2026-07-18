@@ -1,4 +1,5 @@
 ---
+import { withBase } from '../../lib/site';
 import { breadcrumbJsonLd } from '../../lib/schema';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import PageHero from '../../components/PageHero.astro';
@@ -18,7 +19,7 @@ const jsonLd = [breadcrumbJsonLd([{ name: 'サービス概要', path: '/service/
 
   <Section id="sasae" class="bg-white border-y border-brand/5" eyebrow="Main service 01" title="預託金不要の高齢者の身元保証「ささえ」">
     <div class="grid gap-8 md:grid-cols-[200px_1fr] items-start">
-      <img src="/images/service/身元保証ささえ.png" alt="身元保証ささえ" class="mx-auto h-44 w-44 object-contain" />
+      <img src={withBase("/images/service/身元保証ささえ.png")} alt="身元保証ささえ" class="mx-auto h-44 w-44 object-contain" />
       <div>
         <p class="text-muted leading-relaxed">病院への入院や介護施設への入所の際に、ご家族の代わりとなって高齢者の身元保証人として「連帯保証」や「身柄引受」を行います。施設利用料の不払い時の保証や、万が一の身柄の引き取りまで、団体で対応します。</p>
         <div class="mt-6 overflow-hidden rounded-2xl border border-brand/10 bg-bg">
@@ -37,7 +38,7 @@ const jsonLd = [breadcrumbJsonLd([{ name: 'サービス概要', path: '/service/
 
   <Section id="otomo" eyebrow="Main service 02" title="シニアの生活支援サービス">
     <div class="grid gap-8 md:grid-cols-[200px_1fr] items-start">
-      <img src="/images/service/生活支援おとも.png" alt="生活支援おとも" class="mx-auto h-44 w-44 object-contain" />
+      <img src={withBase("/images/service/生活支援おとも.png")} alt="生活支援おとも" class="mx-auto h-44 w-44 object-contain" />
       <div>
         <p class="text-muted leading-relaxed">病院や介護施設での医師による説明時の同席、日用品の購入、外出への同伴など、普段の支えとなるお付き合いをします。「ささえ」ご利用の方のみのサービスで、支援の都度料金が発生します。</p>
         <p class="mt-4 text-sm text-muted">目安：時間等 3,300円（税込）※デモ表記。詳細はお問い合わせください。</p>
@@ -47,7 +48,7 @@ const jsonLd = [breadcrumbJsonLd([{ name: 'サービス概要', path: '/service/
 
   <Section id="mukae" class="bg-white border-y border-brand/5" eyebrow="Main service 03" title="シニアの死後事務委任「むかえ」">
     <div class="grid gap-8 md:grid-cols-[200px_1fr] items-start">
-      <img src="/images/service/死後事務むかえ.png" alt="死後事務むかえ" class="mx-auto h-44 w-44 object-contain" />
+      <img src={withBase("/images/service/死後事務むかえ.png")} alt="死後事務むかえ" class="mx-auto h-44 w-44 object-contain" />
       <div>
         <p class="text-muted leading-relaxed">万が一お亡くなりになった後のご葬儀及び喪主代行から、埋葬支援、遺品整理代行、役所等への各種手続きを一手に引き受けます。ご自身の葬儀のことを決めておきたい方や、お身内のいらっしゃらない方など、生前に契約できます。</p>
         <div class="mt-6 overflow-hidden rounded-2xl border border-brand/10 bg-bg">

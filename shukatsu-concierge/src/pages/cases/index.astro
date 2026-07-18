@@ -1,4 +1,5 @@
 ---
+import { withBase } from '../../lib/site';
 import { breadcrumbJsonLd } from '../../lib/schema';
 import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
@@ -30,7 +31,7 @@ const jsonLd = [breadcrumbJsonLd([{ name: 'ご相談・解決事例集', path: '
     <div class="grid gap-4" id="case-list">
       {all.map((item) => (
         <a
-          href={`/cases/${item.id}/`}
+          href={withBase(`/cases/${item.id}/`)}
           data-category={item.data.category}
           class="case-card block rounded-2xl border border-brand/10 bg-white p-5 hover:border-brand hover:shadow-sm transition"
         >

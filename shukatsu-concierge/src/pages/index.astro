@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Section from '../components/Section.astro';
-import { site, services, worries, audiencePages, flowSteps } from '../lib/site';
+import { site, services, worries, audiencePages, flowSteps, withBase } from '../lib/site';
 import {
   organizationJsonLd,
   webSiteJsonLd,
@@ -18,7 +18,7 @@ const jsonLd = [
 <BaseLayout title="ご高齢者と関係者のための支援・相談窓口" description={site.description} jsonLd={jsonLd}>
   <section class="relative min-h-[72vh] overflow-hidden bg-brand-dark text-white">
     <img
-      src="/images/hero/トップ_活動風景.jpg"
+      src={withBase("/images/hero/トップ_活動風景.jpg")}
       alt="終活コンシェルジュの活動風景"
       class="absolute inset-0 h-full w-full object-cover"
     />
@@ -32,8 +32,8 @@ const jsonLd = [
         1,000件を超える相談実績を活かし、高齢者ご本人・ご家族・病院・地域包括・ケアマネの悩みを一括サポートします。
       </p>
       <div class="mt-9 flex flex-wrap gap-3">
-        <a href="/contact/" class="rounded-full bg-accent px-7 py-3.5 text-sm font-bold text-brand-dark hover:brightness-105 transition">無料で相談する</a>
-        <a href="/service/" class="rounded-full border border-white/50 px-7 py-3.5 text-sm font-medium text-white hover:bg-white/10 transition">サービスを見る</a>
+        <a href={withBase("/contact/")} class="rounded-full bg-accent px-7 py-3.5 text-sm font-bold text-brand-dark hover:brightness-105 transition">無料で相談する</a>
+        <a href={withBase("/service/")} class="rounded-full border border-white/50 px-7 py-3.5 text-sm font-medium text-white hover:bg-white/10 transition">サービスを見る</a>
       </div>
       <p class="mt-8 text-xs text-white/60">高齢者等終身サポート事業者ガイドライン遵守　／　全国高齢者支援団体連合会 参画</p>
     </div>
@@ -53,8 +53,8 @@ const jsonLd = [
   <Section class="bg-white border-y border-brand/5" eyebrow="Service" title="三つの柱で、生涯を支えます" lead="生活上のお困りごとから、万が一の保証人まで。「家族のように見守る安心」を、一人ひとりに合わせたプランで。">
     <div class="grid gap-6 md:grid-cols-3">
       {services.map((s) => (
-        <a href={s.href} class="group rounded-2xl border border-brand/10 bg-bg p-6 hover:border-brand/30 hover:shadow-md transition">
-          <img src={s.image} alt={s.name} class="mx-auto h-36 w-36 object-contain" width="144" height="144" />
+        <a href={withBase(s.href)} class="group rounded-2xl border border-brand/10 bg-bg p-6 hover:border-brand/30 hover:shadow-md transition">
+          <img src={withBase(s.image)} alt={s.name} class="mx-auto h-36 w-36 object-contain" width="144" height="144" />
           <h3 class="mt-4 text-lg font-bold text-brand-dark group-hover:text-brand">{s.name}</h3>
           <p class="mt-2 text-sm text-muted leading-relaxed">{s.summary}</p>
           <span class="mt-4 inline-block text-sm font-medium text-brand">詳しく見る →</span>
@@ -62,7 +62,7 @@ const jsonLd = [
       ))}
     </div>
     <div class="mt-8 text-center">
-      <a href="/service/" class="inline-flex rounded-full bg-brand px-6 py-3 text-sm font-medium text-white hover:bg-brand-dark transition">サービス一覧・料金を見る</a>
+      <a href={withBase("/service/")} class="inline-flex rounded-full bg-brand px-6 py-3 text-sm font-medium text-white hover:bg-brand-dark transition">サービス一覧・料金を見る</a>
     </div>
   </Section>
 
@@ -70,7 +70,7 @@ const jsonLd = [
     <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
       {flowSteps.map((f) => (
         <div class="rounded-2xl bg-white border border-brand/10 overflow-hidden">
-          <img src={f.image} alt={f.title} class="h-36 w-full object-cover" />
+          <img src={withBase(f.image)} alt={f.title} class="h-36 w-full object-cover" />
           <div class="p-4">
             <p class="text-xs font-semibold tracking-wide text-accent">STEP {f.step}</p>
             <h3 class="mt-1 font-bold text-brand-dark">{f.title}</h3>
@@ -79,23 +79,23 @@ const jsonLd = [
         </div>
       ))}
     </div>
-    <p class="mt-6"><a href="/flow/" class="text-brand font-medium underline underline-offset-4">ご契約の流れを詳しく →</a></p>
+    <p class="mt-6"><a href={withBase("/flow/")} class="text-brand font-medium underline underline-offset-4">ご契約の流れを詳しく →</a></p>
   </Section>
 
   <Section class="bg-brand-light/50" eyebrow="For You" title="あなたに合わせた入口" lead="ご本人・ご家族だけでなく、現場の専門職の方にも使いやすい導線を用意しました。">
     <div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
       {audiencePages.map((p) => (
-        <a href={p.href} class="rounded-2xl border border-brand/10 bg-white p-5 hover:border-brand transition">
+        <a href={withBase(p.href)} class="rounded-2xl border border-brand/10 bg-white p-5 hover:border-brand transition">
           <h3 class="font-bold text-brand-dark">{p.label}</h3>
           <p class="mt-2 text-sm text-muted">{p.lead}</p>
         </a>
       ))}
     </div>
     <div class="mt-6 flex flex-wrap gap-4 text-sm">
-      <a href="/guides/seinengoiken/" class="text-brand underline underline-offset-4">成年後見制度との違い</a>
-      <a href="/guides/kazoku-shintaku/" class="text-brand underline underline-offset-4">家族信託との違い</a>
-      <a href="/faq/" class="text-brand underline underline-offset-4">よくある質問</a>
-      <a href="/dancing/" class="text-brand underline underline-offset-4">シニア社交ダンス「踊活」</a>
+      <a href={withBase("/guides/seinengoiken/")} class="text-brand underline underline-offset-4">成年後見制度との違い</a>
+      <a href={withBase("/guides/kazoku-shintaku/")} class="text-brand underline underline-offset-4">家族信託との違い</a>
+      <a href={withBase("/faq/")} class="text-brand underline underline-offset-4">よくある質問</a>
+      <a href={withBase("/dancing/")} class="text-brand underline underline-offset-4">シニア社交ダンス「踊活」</a>
     </div>
   </Section>
 </BaseLayout>

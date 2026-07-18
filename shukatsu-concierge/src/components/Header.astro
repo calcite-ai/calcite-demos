@@ -1,23 +1,26 @@
 ---
-import { site, navItems } from '../lib/site';
+import { site, navItems, withBase } from '../lib/site';
+
 const path = Astro.url.pathname;
+const base = (import.meta.env.BASE_URL || '/').replace(/\/$/, '');
 
 function isActive(href: string) {
-  if (href === '/') return path === '/';
-  return path === href || path.startsWith(href);
+  const full = withBase(href);
+  if (href === '/') return path === `${base}/` || path === base || path.endsWith('/shukatsu-demo/') || path === '/';
+  return path === full || path.startsWith(full.replace(/\/$/, ''));
 }
 ---
 
 <header class="sticky top-0 z-50 border-b border-brand/10 bg-[#fffcf8]/95 backdrop-blur-md">
   <div class="mx-auto flex max-w-6xl items-center justify-between gap-3 px-4 py-3">
-    <a href="/" class="flex shrink-0 items-center gap-2">
-      <img src={site.logoDisplay ?? site.logo} alt="一般社団法人 終活コンシェルジュ" class="h-11 w-auto" width="175" height="60" />
+    <a href={withBase('/')} class="flex shrink-0 items-center gap-2">
+      <img src={withBase(site.logoDisplay ?? site.logo)} alt="一般社団法人 終活コンシェルジュ" class="h-11 w-auto" width="175" height="60" />
     </a>
 
     <nav class="hidden xl:flex items-center gap-0.5 text-[13px]" aria-label="メインナビゲーション">
       {navItems.map((item) => (
         <a
-          href={item.href}
+          href={withBase(item.href)}
           class:list={[
             'rounded-md px-2.5 py-2 text-ink/75 hover:bg-brand-light hover:text-brand-dark transition',
             isActive(item.href) ? 'bg-brand-light text-brand-dark font-medium' : '',
@@ -30,14 +33,14 @@ function isActive(href: string) {
 
     <div class="flex items-center gap-2">
       <a href={`tel:${site.phone.replaceAll('-', '')}`} class="hidden sm:block text-xs text-brand font-medium">{site.phone}</a>
-      <a href="/contact/" class="rounded-full bg-brand px-4 py-2.5 text-sm font-medium text-white hover:bg-brand-dark transition shadow-sm">無料相談</a>
+      <a href={withBase('/contact/')} class="rounded-full bg-brand px-4 py-2.5 text-sm font-medium text-white hover:bg-brand-dark transition shadow-sm">無料相談</a>
       <details class="xl:hidden relative">
         <summary class="list-none cursor-pointer rounded-md border border-brand/20 bg-white px-3 py-2 text-sm">メニュー</summary>
         <div class="absolute right-0 mt-2 w-64 rounded-xl border border-brand/10 bg-white p-2 shadow-xl">
           {navItems.map((item) => (
-            <a href={item.href} class="block rounded-lg px-3 py-2.5 text-sm hover:bg-brand-light">{item.label}</a>
+            <a href={withBase(item.href)} class="block rounded-lg px-3 py-2.5 text-sm hover:bg-brand-light">{item.label}</a>
           ))}
-          <a href="/dancing/" class="block rounded-lg px-3 py-2.5 text-sm hover:bg-brand-light">シニア社交ダンス</a>
+          <a href={withBase('/dancing/')} class="block rounded-lg px-3 py-2.5 text-sm hover:bg-brand-light">シニア社交ダンス</a>
         </div>
       </details>
     </div>

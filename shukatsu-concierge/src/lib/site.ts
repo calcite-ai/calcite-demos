@@ -1,3 +1,19 @@
+/** GitHub Pages 等の base path 付きURLを返す */
+export function withBase(path: string): string {
+  if (
+    path.startsWith('http://') ||
+    path.startsWith('https://') ||
+    path.startsWith('tel:') ||
+    path.startsWith('mailto:') ||
+    path.startsWith('#')
+  ) {
+    return path;
+  }
+  const base = (import.meta.env.BASE_URL || '/').replace(/\/$/, '');
+  const normalized = path.startsWith('/') ? path : `/${path}`;
+  return `${base}${normalized}`;
+}
+
 export const site = {
   name: '一般社団法人 終活コンシェルジュ',
   shortName: '終活コンシェルジュ',

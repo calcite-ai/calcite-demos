@@ -1,4 +1,5 @@
 ---
+import { withBase } from '../../lib/site';
 import { breadcrumbJsonLd } from '../../lib/schema';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import PageHero from '../../components/PageHero.astro';
@@ -24,14 +25,14 @@ const jsonLd = [breadcrumbJsonLd([{ name: 'シニア社交ダンス「踊活」'
   <Section class="bg-white border-y border-brand/5" eyebrow="Instructors" title="ダンス講師の方々">
     <div class="grid gap-6 md:grid-cols-2">
       <article class="rounded-2xl border border-brand/10 bg-bg p-6 flex gap-5">
-        <img src="/images/dancing/講師_飯田満之.jpg" alt="飯田満之先生" class="h-28 w-28 rounded-xl object-cover" width="112" height="150" />
+        <img src={withBase("/images/dancing/講師_飯田満之.jpg")} alt="飯田満之先生" class="h-28 w-28 rounded-xl object-cover" width="112" height="150" />
         <div>
           <h3 class="font-bold text-brand-dark">飯田 満之 先生</h3>
           <p class="mt-2 text-sm text-muted leading-relaxed">競技・指導の実績を持つプロ講師。一人ひとりに合わせた丁寧な指導が好評です。</p>
         </div>
       </article>
       <article class="rounded-2xl border border-brand/10 bg-bg p-6 flex gap-5">
-        <img src="/images/dancing/講師_松浦茜.jpg" alt="松浦茜先生" class="h-28 w-28 rounded-xl object-cover" width="112" height="150" />
+        <img src={withBase("/images/dancing/講師_松浦茜.jpg")} alt="松浦茜先生" class="h-28 w-28 rounded-xl object-cover" width="112" height="150" />
         <div>
           <h3 class="font-bold text-brand-dark">松浦 茜 先生</h3>
           <p class="mt-2 text-sm text-muted leading-relaxed">「宝塚みたい！」と男性役も好評。出張レッスン・サークルも開講しています。</p>

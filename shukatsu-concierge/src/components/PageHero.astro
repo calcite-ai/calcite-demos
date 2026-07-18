@@ -1,4 +1,5 @@
 ---
+import { withBase } from '../lib/site';
 interface Props {
   title: string;
   lead?: string;
@@ -13,11 +14,11 @@ const { title, lead, crumbs = [] } = Astro.props;
     {crumbs.length > 0 && (
       <nav aria-label="パンくず" class="mb-4 text-xs text-muted">
         <ol class="flex flex-wrap items-center gap-1">
-          <li><a href="/" class="hover:text-brand">ホーム</a></li>
+          <li><a href={withBase("/")} class="hover:text-brand">ホーム</a></li>
           {crumbs.map((c) => (
             <>
               <li aria-hidden="true" class="text-brand/30">/</li>
-              <li>{c.href ? <a href={c.href} class="hover:text-brand">{c.label}</a> : <span class="text-ink">{c.label}</span>}</li>
+              <li>{c.href ? <a href={withBase(c.href)} class="hover:text-brand">{c.label}</a> : <span class="text-ink">{c.label}</span>}</li>
             </>
           ))}
         </ol>

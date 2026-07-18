@@ -1,4 +1,5 @@
 ---
+import { withBase } from '../../lib/site';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import PageHero from '../../components/PageHero.astro';
 import Section from '../../components/Section.astro';
@@ -31,8 +32,8 @@ const offers = ["施設入所時の連帯保証・身柄引受", "緊急時対�
       ))}
     </ul>
     <div class="mt-8 flex flex-wrap gap-3">
-      <a href="/cases/" class="rounded-full border border-brand/30 px-5 py-2.5 text-sm text-brand">関連する解決事例</a>
-      <a href="/contact/" class="rounded-full bg-brand px-5 py-2.5 text-sm font-medium text-white">連携・相談する</a>
+      <a href={withBase("/cases/")} class="rounded-full border border-brand/30 px-5 py-2.5 text-sm text-brand">関連する解決事例</a>
+      <a href={withBase("/contact/")} class="rounded-full bg-brand px-5 py-2.5 text-sm font-medium text-white">連携・相談する</a>
     </div>
   </Section>
 </BaseLayout>

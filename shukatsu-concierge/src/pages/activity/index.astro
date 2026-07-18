@@ -1,4 +1,5 @@
 ---
+import { withBase } from '../../lib/site';
 import { breadcrumbJsonLd } from '../../lib/schema';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import PageHero from '../../components/PageHero.astro';
@@ -39,6 +40,6 @@ const jsonLd = [breadcrumbJsonLd([{ name: '活動実績', path: '/activity/' }])
         </tbody>
       </table>
     </div>
-    <p class="mt-6 text-sm text-muted">講師派遣・研修のご依頼は <a href="/contact/" class="text-brand underline">お問い合わせ</a> まで。</p>
+    <p class="mt-6 text-sm text-muted">講師派遣・研修のご依頼は <a href={withBase("/contact/")} class="text-brand underline">お問い合わせ</a> まで。</p>
   </Section>
 </BaseLayout>
