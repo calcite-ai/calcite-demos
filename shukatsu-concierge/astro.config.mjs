@@ -6,7 +6,8 @@ import mdx from '@astrojs/mdx';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://shukatsu-concierge.vercel.app',
+  site: 'https://calcite-ai.github.io',
+  base: '/calcite-demos/shukatsu-demo/',
   vite: {
     plugins: [tailwindcss()],
   },

@@ -4,7 +4,7 @@ export const site = {
   titleTemplate: (page: string) => `${page} | 終活コンシェルジュ`,
   description:
     '高齢者の身元保証・死後事務・生活支援まで、窓口ひとつでサポートする終活の総合相談窓口です。',
-  url: 'https://shukatsu-concierge.vercel.app',
+  url: 'https://calcite-ai.github.io/calcite-demos/shukatsu-demo',
   locale: 'ja_JP',
   phone: '03-6276-8097',
   phoneFree: '0120-108-251',
