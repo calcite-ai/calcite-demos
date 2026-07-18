@@ -1,16 +1,5 @@
 ---
 import AudiencePage from '../../components/AudiencePage.astro';
+import { getAudience } from '../../data/audiences';
 ---
-
-<AudiencePage
-  label="老人ホーム向け"
-  slug="nursing-home"
-  lead="入居時の身元保証・緊急連絡の相談先に。"
-  definition="老人ホーム・介護施設の入居時に必要な身元保証・緊急連絡先について、終活コンシェルジュが連帯保証や身柄引受の受け皿となります。"
-  pains={['保証人不在で入居が進まない', '緊急連絡先が形骸化している', '退去・看取り後の手続きが滞る']}
-  offers={['入居時の身元保証', '緊急時の連絡・対応', '退去・死後事務の相談']}
-  faqs={[
-    { question: '施設から直接相談できますか？', answer: 'できます。入居希望者・ご家族の同意のもと、保証内容と費用を明確にして説明します。' },
-    { question: '預託金は必要ですか？', answer: '当社の身元保証「ささえ」は預託金不要の設計です。費用は契約金・保証料・管理費などを契約書で明示します。' },
-  ]}
-/>
+<AudiencePage content={getAudience('nursing-home')} />

@@ -1,16 +1,5 @@
 ---
 import AudiencePage from '../../components/AudiencePage.astro';
+import { getAudience } from '../../data/audiences';
 ---
-
-<AudiencePage
-  label="紹介会社向け"
-  slug="referral"
-  lead="紹介フローに乗せられる、ガイドライン遵守の連携先。"
-  definition="高齢者支援・施設紹介などに関わる紹介会社向けに、ガイドラインを遵守する身元保証・死後事務の連携先として終活コンシェルジュを案内できます。"
-  pains={['紹介先の信頼説明が難しい', '同席説明の手配が負担', '顧客の身元保証ニーズに応えきれない']}
-  offers={['紹介フローに乗せる連携', '顧客への同席説明', 'ガイドライン遵守の安心感']}
-  faqs={[
-    { question: '紹介の流れを共有できますか？', answer: '可能です。顧客への説明ポイント、同席の可否、相談窓口を事前にすり合わせます。' },
-    { question: 'ガイドライン遵守の根拠は？', answer: '政府のチェックリストに対する当社の対応をウェブで公開しています。公式PDFとあわせてご確認ください。' },
-  ]}
-/>
+<AudiencePage content={getAudience('referral')} />

@@ -1,16 +1,5 @@
 ---
 import AudiencePage from '../../components/AudiencePage.astro';
+import { getAudience } from '../../data/audiences';
 ---
-
-<AudiencePage
-  label="ケアマネジャー向け"
-  slug="care-manager"
-  lead="入所・入院時の身元保証の受け皿に。"
-  definition="ケアマネジャーが担当する高齢者が、入院・施設入所で身元保証人を確保できないときに、終活コンシェルジュが保証・連絡窓口として連携できます。"
-  pains={['入所時の保証人・連絡先が足りない', '家族はいるが協力を得にくい', '死後の手続きまで視野に入れた提案が必要']}
-  offers={['入所・入院時の身元保証の受け皿', 'ケアマネとの情報共有', '死後事務を含む切れ目ない支援']}
-  faqs={[
-    { question: 'ケアマネから直接相談できますか？', answer: 'できます。ご本人・ご家族の同意を得たうえで、状況整理から同席説明まで対応します。' },
-    { question: '成年後見との使い分けは？', answer: '判断能力や財産管理の必要性に応じて整理します。制度比較の説明資料・講座実績もあります。' },
-  ]}
-/>
+<AudiencePage content={getAudience('care-manager')} />

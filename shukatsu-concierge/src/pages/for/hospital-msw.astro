@@ -1,16 +1,5 @@
 ---
 import AudiencePage from '../../components/AudiencePage.astro';
+import { getAudience } from '../../data/audiences';
 ---
-
-<AudiencePage
-  label="病院MSW向け"
-  slug="hospital-msw"
-  lead="退院調整・緊急時の身元引受を支援。"
-  definition="病院の医療ソーシャルワーカー向けに、退院調整や緊急時の身元引受・連絡窓口として終活コンシェルジュが連携します。"
-  pains={['退院先の保証人がいない', '緊急連絡先が不安定', '身寄りなしケースの調整に時間がかかる']}
-  offers={['退院調整時の身元保証相談', '緊急時の連絡・引受の相談', '施設・在宅へのつなぎ支援']}
-  faqs={[
-    { question: '緊急の相談にも対応できますか？', answer: '状況により可能な範囲で対応します。まずは電話で現状（入院先・緊急性・家族の有無）をお知らせください。' },
-    { question: 'MSWから紹介する流れは？', answer: 'ご本人・ご家族の同意後、ヒアリング→面談→必要なら契約、の順です。無理な勧誘はしません。' },
-  ]}
-/>
+<AudiencePage content={getAudience('hospital-msw')} />

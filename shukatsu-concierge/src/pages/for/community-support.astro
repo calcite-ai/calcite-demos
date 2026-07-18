@@ -1,16 +1,5 @@
 ---
 import AudiencePage from '../../components/AudiencePage.astro';
+import { getAudience } from '../../data/audiences';
 ---
-
-<AudiencePage
-  label="地域包括支援センター向け"
-  slug="community-support"
-  lead="身寄りのない高齢者支援の連携先として。"
-  definition="地域包括支援センターの職員向けに、身元保証・死後事務・成年後見との違いの整理、勉強会・事例相談の連携先として終活コンシェルジュを利用できます。"
-  pains={['身寄りがなく入所・入院の保証人が見つからない', '成年後見と民間サポートの違いを説明しにくい', '緊急時の連絡・引受先が不安定']}
-  offers={['包括職員向けの勉強会実績あり', '本人面談前のヒアリング対応', '成年後見との違いも整理して説明']}
-  faqs={[
-    { question: '勉強会や研修の依頼はできますか？', answer: '可能です。エンディングノート、身元保証と成年後見の違いなど、現場向けテーマで講師派遣の実績があります。' },
-    { question: '相談のタイミングはいつがよいですか？', answer: '入所・入院の保証人探しが難航した時点、または見守り体制の見直し時にお問い合わせください。' },
-  ]}
-/>
+<AudiencePage content={getAudience('community-support')} />
