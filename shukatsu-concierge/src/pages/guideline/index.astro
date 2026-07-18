@@ -1,0 +1,206 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHero from '../../components/PageHero.astro';
+import Section from '../../components/Section.astro';
+import { withBase } from '../../lib/site';
+import { breadcrumbJsonLd } from '../../lib/schema';
+
+const desc =
+  '政府の「高齢者等終身サポート事業者ガイドライン」チェックリストに対し、終活コンシェルジュがどのように対応しているかを公開しています。';
+
+const checklistPdf =
+  'https://www.caa.go.jp/policies/policy/consumer_policy/caution/caution_037/assets/consumer_policy_cms102_240618_02.pdf';
+const pointsPdf =
+  'https://www.caa.go.jp/policies/policy/consumer_policy/caution/caution_037/assets/consumer_policy_cms102_240618_03.pdf';
+const guidelinePdf =
+  'https://www.cao.go.jp/kodoku_koritsu/torikumi/suishinhonbu/dai2/pdf/siryou2-2.pdf';
+
+/** 当社公開資料の項目 × 政府チェックリストの関連番号（内容対応） */
+const items = [
+  {
+    guideline: '契約内容の適正な説明がなされている',
+    checklist: ['13', '14'],
+    checklistLabel: '契約時の適切な説明・重要事項の説明',
+    status: '対応済',
+    practice:
+      '契約時にケアマネージャーや医療従事者等が同席のうえ、契約書と重要事項説明書を双方で読み合わせし、不明点は分かりやすく説明しています。',
+  },
+  {
+    guideline: '契約書・重要事項説明書を交付、説明している',
+    checklist: ['14', '15', '18'],
+    checklistLabel: '重要事項説明書の交付・契約書の作成・交付',
+    status: '対応済',
+    practice:
+      '契約書・重要事項説明書を2部作製し、1部を交付するとともに、内容について明確に説明しています。',
+  },
+  {
+    guideline: '提供するサービス内容と費用を明確に説明している',
+    checklist: ['1', '5', '16'],
+    checklistLabel: 'サービス内容・費用の明示',
+    status: '対応済',
+    practice: '契約書にサービス内容と費用を紐づけて記載し、明確に説明しています。',
+  },
+  {
+    guideline: '契約を解除する際の手順や解除料について説明している',
+    checklist: ['6', '17', '25'],
+    checklistLabel: '解約料・解除方法・解約手順の説明',
+    status: '対応済',
+    practice:
+      '重要事項説明書に「中途解約」の項目を設け、解約の方法や費用について明示し説明しています。',
+  },
+  {
+    guideline: '寄付や遺贈を契約条件にしていない',
+    checklist: ['7', '8'],
+    checklistLabel: '死因贈与・寄附を条件としないこと',
+    status: '対応済',
+    practice: '寄附や遺贈を前提とした契約は行っていません。',
+  },
+  {
+    guideline: '介護・医療関係者等と連携して対応している',
+    checklist: ['20'],
+    checklistLabel: '定期的な面談等による希望・状況の把握',
+    status: '対応済',
+    practice:
+      '毎月1回の定期訪問で本人の状況を確認し、ケアマネージャー・ヘルパー・病院などと連携して、本人にとって最適な生活が送れるようにしています。',
+  },
+  {
+    guideline: '提供したサービスの時期や内容・費用等の記録の作成、保存、説明をしている',
+    checklist: ['19', '23'],
+    checklistLabel: 'サービス記録の作成・保存・報告',
+    status: '対応済',
+    practice:
+      'サービス提供時に実施時期・内容・費用を記録・保存し、本人に内容を説明しています。',
+  },
+  {
+    guideline: '利用者の判断能力が不十分となった場合に成年後見制度の活用をしている',
+    checklist: ['9'],
+    checklistLabel: '判断能力低下時の取扱い',
+    status: '対応済',
+    practice:
+      '契約書第7条「財産管理」において、財産管理をする見込みがないと判断したときは、成年後見人選任の申立を働きかける旨を定めています。',
+  },
+  {
+    guideline: '預託金（前払金）を運営資金と明確に区分して管理している',
+    checklist: ['10', '11', '22'],
+    checklistLabel: '預託金の額・根拠・管理方法の明示と区分管理',
+    status: '預託金制度なし',
+    practice:
+      '当社は預託金制度を設けておらず、費用発生の都度請求しています。（預託金を預かって運営資金と混同するリスク自体を避けています）',
+  },
+] as const;
+
+const jsonLd = [breadcrumbJsonLd([{ name: 'ガイドラインへの取組み', path: '/guideline/' }])];
+---
+
+<BaseLayout title="ガイドラインへの取組み" description={desc} jsonLd={jsonLd}>
+  <PageHero
+    title="ガイドラインへの取組み"
+    lead="政府のチェックリスト（確認項目）に対し、終活コンシェルジュがどのように応えているかを公開しています。"
+    crumbs={[{ label: 'ガイドラインへの取組み' }]}
+  />
+
+  <Section
+    eyebrow="関係の整理"
+    title="チェックリストと、弊社の取組みは対になっています"
+    lead="チェックリストは「確認すべき項目」の一覧です。弊社の取組みは、その各項目に対する具体的な実務の答えです。"
+  >
+    <div class="grid gap-4 md:grid-cols-[1fr_auto_1fr] md:items-center">
+      <div class="rounded-2xl border border-brand/15 bg-white p-6">
+        <p class="text-xs font-semibold tracking-wide text-accent uppercase">Government</p>
+        <h3 class="mt-2 text-lg font-bold text-brand-dark">チェックリスト</h3>
+        <p class="mt-3 text-sm text-muted leading-relaxed">
+          消費者庁が公表した確認項目。事業者・利用者・支援者が「この点は大丈夫か」を点検するための公式の物差しです。
+        </p>
+        <a
+          href={checklistPdf}
+          class="mt-4 inline-block text-sm font-medium text-brand underline underline-offset-4"
+          target="_blank"
+          rel="noopener noreferrer"
+        >公式チェックリスト（PDF） →</a>
+      </div>
+      <div class="hidden md:flex flex-col items-center gap-1 text-accent" aria-hidden="true">
+        <span class="text-2xl font-bold">→</span>
+        <span class="text-[11px] tracking-wide">対応</span>
+      </div>
+      <div class="rounded-2xl border border-accent/40 bg-accent-soft/40 p-6">
+        <p class="text-xs font-semibold tracking-wide text-accent uppercase">Our practice</p>
+        <h3 class="mt-2 text-lg font-bold text-brand-dark">弊社の取組み</h3>
+        <p class="mt-3 text-sm text-muted leading-relaxed">
+          チェックリストの各項目に対し、契約・説明・記録・連携などで何をしているかを、ウェブ上で公開しています。
+        </p>
+      </div>
+    </div>
+    <p class="mt-6 rounded-xl bg-brand-light/60 px-4 py-3 text-sm text-brand-dark leading-relaxed">
+      読み方の例：「チェックリストで解約料の説明を確認する」→「下の表で、弊社が重要事項説明書の中途解約欄でどう説明しているかを見る」
+    </p>
+  </Section>
+
+  <Section class="bg-white border-y border-brand/5" eyebrow="対応表" title="チェックリスト項目への対応状況" lead="当社公開資料に基づく対応です。チェックリスト番号は、内容が対応する公式項目を示しています。">
+    <div class="overflow-x-auto rounded-2xl border border-brand/10">
+      <table class="min-w-full text-left text-sm">
+        <thead class="bg-brand-dark text-white">
+          <tr>
+            <th class="px-4 py-3 font-medium w-[18%]">関連チェックリスト</th>
+            <th class="px-4 py-3 font-medium w-[28%]">ガイドライン上の確認ポイント</th>
+            <th class="px-4 py-3 font-medium w-[12%]">状況</th>
+            <th class="px-4 py-3 font-medium">弊社の具体的な取組み</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-brand/10 bg-white">
+          {items.map((item) => (
+            <tr class="align-top">
+              <td class="px-4 py-4">
+                <div class="flex flex-wrap gap-1.5">
+                  {item.checklist.map((n) => (
+                    <span class="inline-flex rounded-full bg-brand-light px-2.5 py-0.5 text-xs font-semibold text-brand-dark">#{n}</span>
+                  ))}
+                </div>
+                <p class="mt-2 text-xs text-muted leading-snug">{item.checklistLabel}</p>
+              </td>
+              <td class="px-4 py-4 font-medium text-ink/90">{item.guideline}</td>
+              <td class="px-4 py-4">
+                <span
+                  class:list={[
+                    'inline-flex rounded-full px-2.5 py-1 text-xs font-bold',
+                    item.status === '対応済' ? 'bg-brand/10 text-brand-dark' : 'bg-accent-soft text-brand-dark',
+                  ]}
+                >
+                  {item.status}
+                </span>
+              </td>
+              <td class="px-4 py-4 text-muted leading-relaxed">{item.practice}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+    <p class="mt-4 text-xs text-muted leading-relaxed">
+      ※チェックリストの全文・全項目は消費者庁の公式PDFをご確認ください。本ページは、当社が特に公開している対応項目を、関連するチェックリスト番号と並べて示したものです。
+    </p>
+  </Section>
+
+  <Section eyebrow="公式資料" title="あわせて確認できる政府資料（PDF）" lead="原文はPDFのまま残しています。制度の正確な確認には、こちらをご利用ください。">
+    <ul class="space-y-3">
+      <li>
+        <a class="text-brand font-medium underline underline-offset-4" href={pointsPdf} target="_blank" rel="noopener noreferrer">
+          高齢者等終身サポート事業者ガイドライン（主なポイント）
+        </a>
+      </li>
+      <li>
+        <a class="text-brand font-medium underline underline-offset-4" href={guidelinePdf} target="_blank" rel="noopener noreferrer">
+          高齢者等終身サポート事業者ガイドライン（全文）
+        </a>
+      </li>
+      <li>
+        <a class="text-brand font-medium underline underline-offset-4" href={checklistPdf} target="_blank" rel="noopener noreferrer">
+          チェックリスト
+        </a>
+      </li>
+    </ul>
+    <div class="mt-8">
+      <a href={withBase('/contact/')} class="inline-flex rounded-full bg-brand px-6 py-3 text-sm font-medium text-white hover:bg-brand-dark transition">
+        取組みについて相談する
+      </a>
+    </div>
+  </Section>
+</BaseLayout>
