@@ -2,6 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Section from '../components/Section.astro';
 import AnswerLead from '../components/AnswerLead.astro';
+import BrandIcon from '../components/BrandIcon.astro';
 import { site, services, worries, audiencePages, flowSteps, withBase } from '../lib/site';
 import {
   organizationJsonLd,
@@ -74,12 +75,17 @@ const jsonLd = [
     </div>
   </section>
 
-  <section class="bg-[#e8a317] text-white">
-    <div class="mx-auto max-w-4xl px-4 py-12 md:py-14 text-center">
-      <p class="text-[15px] md:text-base font-bold leading-relaxed">
+  <section class="relative overflow-hidden border-y border-brand/10 bg-[#f4f1ea]">
+    <div class="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top,_rgba(47,93,80,0.08),_transparent_55%)]"></div>
+    <div class="relative mx-auto max-w-4xl px-4 py-12 md:py-14 text-center">
+      <p class="inline-flex items-center gap-2 rounded-full border border-accent/40 bg-white/80 px-4 py-1.5 text-xs font-semibold tracking-wide text-brand-dark">
+        <span class="h-1.5 w-1.5 rounded-full bg-accent"></span>
+        ガイドライン遵守
+      </p>
+      <p class="mt-5 text-[15px] md:text-base font-bold leading-relaxed text-brand-dark">
         一般社団法人終活コンシェルジュは【高齢者等終身サポート事業者ガイドライン】を遵守しております。
       </p>
-      <div class="mt-6 space-y-4 text-[14px] md:text-[15px] leading-relaxed text-white/95">
+      <div class="mt-6 space-y-4 text-[14px] md:text-[15px] leading-relaxed text-muted text-left sm:text-center">
         <p>
           身寄りがない、家族がいても身近に頼れる人がいないなどの理由から、高齢者の「身元保証サービス」「死後事務委任サービス」の需要が年々増加しており、それらのサービスを提供する事業者も増えています。
         </p>
@@ -91,43 +97,45 @@ const jsonLd = [
           ひとりでも多くのご利用者様に、安心安全なサービスを提供できるよう、ガイドラインの徹底と品質向上に努めてまいります。
         </p>
       </div>
-      <p class="mt-8 text-sm font-semibold">＊政府の公式資料はPDFです。</p>
-      <ul class="mt-4 space-y-2 text-sm md:text-base">
-        <li>
+      <div class="mt-8 rounded-2xl border border-brand/10 bg-white/90 p-5 md:p-6 text-left shadow-sm">
+        <p class="text-sm font-semibold text-brand-dark">政府の公式資料（PDF）</p>
+        <ul class="mt-3 space-y-2 text-sm md:text-[15px]">
+          <li>
+            <a
+              class="font-medium text-brand underline underline-offset-4 hover:text-brand-dark"
+              href="https://www.caa.go.jp/policies/policy/consumer_policy/caution/caution_037/assets/consumer_policy_cms102_240618_03.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+            >高齢者等終身サポート事業者ガイドライン（主なポイント）</a>
+          </li>
+          <li>
+            <a
+              class="font-medium text-brand underline underline-offset-4 hover:text-brand-dark"
+              href="https://www.cao.go.jp/kodoku_koritsu/torikumi/suishinhonbu/dai2/pdf/siryou2-2.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+            >高齢者等終身サポート事業者ガイドライン（全文）</a>
+          </li>
+          <li>
+            <a
+              class="font-medium text-brand underline underline-offset-4 hover:text-brand-dark"
+              href="https://www.caa.go.jp/policies/policy/consumer_policy/caution/caution_037/assets/consumer_policy_cms102_240618_02.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+            >チェックリスト</a>
+          </li>
+        </ul>
+        <p class="mt-5 text-sm font-semibold text-brand-dark">チェックリストへの答え＝弊社の取組み</p>
+        <p class="mt-2 text-[13px] md:text-sm text-muted leading-relaxed">
+          チェックリストは「確認項目」、弊社の取組みは「その項目にどう応えているか」です。対応表で並べてご覧いただけます。
+        </p>
+        <p class="mt-3">
           <a
-            class="font-bold text-[#1e4fd6] underline underline-offset-2 hover:opacity-80"
-            href="https://www.caa.go.jp/policies/policy/consumer_policy/caution/caution_037/assets/consumer_policy_cms102_240618_03.pdf"
-            target="_blank"
-            rel="noopener noreferrer"
-          >『高齢者等終身サポート事業者ガイドライン（主なポイント）はこちら』</a>
-        </li>
-        <li>
-          <a
-            class="font-bold text-[#1e4fd6] underline underline-offset-2 hover:opacity-80"
-            href="https://www.cao.go.jp/kodoku_koritsu/torikumi/suishinhonbu/dai2/pdf/siryou2-2.pdf"
-            target="_blank"
-            rel="noopener noreferrer"
-          >『高齢者等終身サポート事業者ガイドラインはこちら』</a>
-        </li>
-        <li>
-          <a
-            class="font-bold text-[#1e4fd6] underline underline-offset-2 hover:opacity-80"
-            href="https://www.caa.go.jp/policies/policy/consumer_policy/caution/caution_037/assets/consumer_policy_cms102_240618_02.pdf"
-            target="_blank"
-            rel="noopener noreferrer"
-          >『チェックリストはこちら』</a>
-        </li>
-      </ul>
-      <p class="mt-8 text-sm font-semibold">＊チェックリストへの答え＝弊社の取組み（ウェブページ）</p>
-      <p class="mt-2 text-[13px] md:text-sm text-white/95 leading-relaxed">
-        チェックリストは「確認項目」、弊社の取組みは「その項目にどう応えているか」です。対応表で並べてご覧いただけます。
-      </p>
-      <p class="mt-3">
-        <a
-          class="font-bold text-[#1e4fd6] underline underline-offset-2 hover:opacity-80 text-sm md:text-base"
-          href={withBase('/guideline/')}
-        >『弊社の取組み（チェックリスト対応表）はこちら』</a>
-      </p>
+            class="inline-flex rounded-full bg-brand px-5 py-2.5 text-sm font-medium text-white hover:bg-brand-dark transition"
+            href={withBase('/guideline/')}
+          >弊社の取組み（チェックリスト対応表）を見る</a>
+        </p>
+      </div>
     </div>
   </section>
 
@@ -146,8 +154,8 @@ const jsonLd = [
     <div class="grid gap-6 md:grid-cols-3">
       {services.map((s) => (
         <a href={withBase(s.href)} class="group rounded-2xl border border-brand/10 bg-bg p-6 hover:border-brand/30 hover:shadow-md transition">
-          <img src={withBase(s.image)} alt={s.name} class="mx-auto h-36 w-36 object-contain" width="144" height="144" />
-          <h3 class="mt-4 text-lg font-bold text-brand-dark group-hover:text-brand">{s.name}</h3>
+          <BrandIcon name={s.icon} />
+          <h3 class="mt-5 text-lg font-bold text-brand-dark group-hover:text-brand">{s.name}</h3>
           <p class="mt-2 text-sm text-muted leading-relaxed">{s.summary}</p>
           <span class="mt-4 inline-block text-sm font-medium text-brand">詳しく見る →</span>
         </a>
@@ -161,13 +169,11 @@ const jsonLd = [
   <Section eyebrow="Flow" title="ご契約までの流れ" lead="まずは無料相談から。無理な勧誘はいたしません。">
     <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
       {flowSteps.map((f) => (
-        <div class="rounded-2xl bg-white border border-brand/10 overflow-hidden">
-          <img src={withBase(f.image)} alt={f.title} class="h-36 w-full object-cover" />
-          <div class="p-4">
-            <p class="text-xs font-semibold tracking-wide text-accent">STEP {f.step}</p>
-            <h3 class="mt-1 font-bold text-brand-dark">{f.title}</h3>
-            <p class="mt-2 text-sm text-muted leading-relaxed">{f.body}</p>
-          </div>
+        <div class="rounded-2xl bg-white border border-brand/10 p-5">
+          <BrandIcon name={f.icon} class="max-w-[7.5rem]" />
+          <p class="mt-4 text-xs font-semibold tracking-wide text-accent">STEP {f.step}</p>
+          <h3 class="mt-1 font-bold text-brand-dark">{f.title}</h3>
+          <p class="mt-2 text-sm text-muted leading-relaxed">{f.body}</p>
         </div>
       ))}
     </div>

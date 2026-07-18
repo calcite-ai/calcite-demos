@@ -1,0 +1,74 @@
+---
+interface Props {
+  name: 'sasae' | 'otomo' | 'mukae' | 'consult' | 'meeting' | 'contract' | 'start';
+  class?: string;
+}
+const { name, class: className = '' } = Astro.props;
+
+const titles: Record<Props['name'], string> = {
+  sasae: '身元保証',
+  otomo: '生活支援',
+  mukae: '死後事務',
+  consult: '相談受付',
+  meeting: 'ご面談',
+  contract: 'ご契約',
+  start: 'サービス開始',
+};
+---
+
+<div class:list={['relative flex aspect-square w-full max-w-[11rem] mx-auto items-center justify-center', className]}>
+  <div class="absolute inset-0 rounded-full bg-[radial-gradient(circle_at_40%_35%,#f3ead3_0%,#e8f0ed_55%,#dce8e3_100%)] ring-1 ring-brand/10"></div>
+  <svg viewBox="0 0 120 120" class="relative h-[58%] w-[58%] text-brand-dark" aria-hidden="true">
+    {name === 'sasae' && (
+      <g fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M60 18 L92 32 V58 C92 82 74 98 60 104 C46 98 28 82 28 58 V32 Z" class="text-brand" stroke="currentColor" />
+        <path d="M44 60 L55 71 L78 46" stroke="#c4a35a" stroke-width="4" />
+      </g>
+    )}
+    {name === 'otomo' && (
+      <g fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="42" cy="36" r="10" />
+        <circle cx="78" cy="36" r="10" />
+        <path d="M28 92 C28 72 36 62 42 62 C50 62 54 72 60 72 C66 72 70 62 78 62 C84 62 92 72 92 92" />
+        <path d="M48 48 C52 54 68 54 72 48" stroke="#c4a35a" />
+      </g>
+    )}
+    {name === 'mukae' && (
+      <g fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="30" y="28" width="60" height="72" rx="4" />
+        <path d="M42 48 H78 M42 62 H78 M42 76 H66" />
+        <circle cx="78" cy="88" r="14" fill="#e8f0ed" stroke="#c4a35a" />
+        <path d="M72 88 L76 92 L86 80" stroke="#c4a35a" stroke-width="3.5" />
+      </g>
+    )}
+    {name === 'consult' && (
+      <g fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M28 36 H78 A14 14 0 0 1 92 50 V70 A14 14 0 0 1 78 84 H52 L36 98 V84 H28 A14 14 0 0 1 14 70 V50 A14 14 0 0 1 28 36 Z" />
+        <path d="M40 58 H72 M40 68 H58" stroke="#c4a35a" />
+      </g>
+    )}
+    {name === 'meeting' && (
+      <g fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="44" cy="40" r="10" />
+        <circle cx="76" cy="40" r="10" />
+        <path d="M24 92 C24 72 34 64 44 64 C52 64 56 70 60 70 C64 70 68 64 76 64 C86 64 96 72 96 92" />
+        <path d="M36 28 H52 M68 28 H84" stroke="#c4a35a" />
+      </g>
+    )}
+    {name === 'contract' && (
+      <g fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M34 22 H70 L90 42 V98 H34 Z" />
+        <path d="M70 22 V42 H90" />
+        <path d="M46 58 H74 M46 70 H74 M46 82 H62" />
+        <path d="M78 86 C70 78 62 86 70 94 C78 86 86 94 78 86 Z" stroke="#c4a35a" />
+      </g>
+    )}
+    {name === 'start' && (
+      <g fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="60" cy="60" r="34" />
+        <path d="M48 60 L58 70 L76 48" stroke="#c4a35a" stroke-width="4.5" />
+      </g>
+    )}
+  </svg>
+  <span class="sr-only">{titles[name]}</span>
+</div>

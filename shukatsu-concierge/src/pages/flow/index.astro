@@ -5,6 +5,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import PageHero from '../../components/PageHero.astro';
 import Section from '../../components/Section.astro';
 import AnswerLead from '../../components/AnswerLead.astro';
+import BrandIcon from '../../components/BrandIcon.astro';
 
 const desc = 'ご相談受付から面談、契約、サービス開始までの4ステップ。ご本人・ご家族・専門職それぞれの進め方をご説明します。';
 const jsonLd = [
@@ -32,8 +33,10 @@ const jsonLd = [
   <Section eyebrow="4 Steps" title="安心につながる、わかりやすい手順">
     <div class="space-y-6">
       {flowSteps.map((f) => (
-        <article class="grid gap-6 overflow-hidden rounded-2xl border border-brand/10 bg-white md:grid-cols-[280px_1fr]">
-          <img src={withBase(f.image)} alt={`ステップ${f.step} ${f.title}`} class="h-48 w-full object-cover md:h-full" />
+        <article class="grid gap-6 overflow-hidden rounded-2xl border border-brand/10 bg-white md:grid-cols-[200px_1fr] items-center">
+          <div class="flex justify-center bg-brand-light/40 p-6 md:h-full md:items-center">
+            <BrandIcon name={f.icon} class="max-w-[8.5rem]" />
+          </div>
           <div class="p-6 md:py-8">
             <p class="text-sm font-semibold tracking-wide text-accent">STEP {String(f.step).padStart(2, '0')}</p>
             <h2 class="mt-1 text-xl font-bold text-brand-dark">{f.title}</h2>
