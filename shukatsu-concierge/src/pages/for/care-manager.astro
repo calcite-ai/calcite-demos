@@ -1,39 +1,16 @@
 ---
-import { withBase } from '../../lib/site';
-import BaseLayout from '../../layouts/BaseLayout.astro';
-import PageHero from '../../components/PageHero.astro';
-import Section from '../../components/Section.astro';
-
-const label = "ケアマネジャー向け";
-const lead = "入所・入院時の身元保証の受け皿として連携できます。";
-const pains = ["緊急連絡先・保証人の確保が難しいケース", "家族がいても実質的な支援が難しい", "サービス説明を本人に同席して聞いてほしい"];
-const offers = ["居宅からの相談事例が多数", "生活支援との組み合わせ提案", "契約時の同席・説明協力"];
+import AudiencePage from '../../components/AudiencePage.astro';
 ---
 
-<BaseLayout title={label} description={`${lead}（対象者別ページ・デモ）`}>
-  <PageHero
-    title={label}
-    lead={lead}
-    crumbs={[{ label: '対象者別' }, { label }]}
-  />
-
-  <Section eyebrow="Challenges" title="現場でよくある課題">
-    <ul class="space-y-3">
-      {pains.map((p) => (
-        <li class="rounded-2xl border border-brand/10 bg-white px-5 py-4 text-muted">{p}</li>
-      ))}
-    </ul>
-  </Section>
-
-  <Section class="bg-white border-y border-brand/5" eyebrow="Support" title="終活コンシェルジュができること">
-    <ul class="grid gap-3 md:grid-cols-3">
-      {offers.map((o) => (
-        <li class="rounded-2xl bg-brand-light/60 p-5 font-medium text-brand-dark">{o}</li>
-      ))}
-    </ul>
-    <div class="mt-8 flex flex-wrap gap-3">
-      <a href={withBase("/cases/")} class="rounded-full border border-brand/30 px-5 py-2.5 text-sm text-brand">関連する解決事例</a>
-      <a href={withBase("/contact/")} class="rounded-full bg-brand px-5 py-2.5 text-sm font-medium text-white">連携・相談する</a>
-    </div>
-  </Section>
-</BaseLayout>
+<AudiencePage
+  label="ケアマネジャー向け"
+  slug="care-manager"
+  lead="入所・入院時の身元保証の受け皿に。"
+  definition="ケアマネジャーが担当する高齢者が、入院・施設入所で身元保証人を確保できないときに、終活コンシェルジュが保証・連絡窓口として連携できます。"
+  pains={['入所時の保証人・連絡先が足りない', '家族はいるが協力を得にくい', '死後の手続きまで視野に入れた提案が必要']}
+  offers={['入所・入院時の身元保証の受け皿', 'ケアマネとの情報共有', '死後事務を含む切れ目ない支援']}
+  faqs={[
+    { question: 'ケアマネから直接相談できますか？', answer: 'できます。ご本人・ご家族の同意を得たうえで、状況整理から同席説明まで対応します。' },
+    { question: '成年後見との使い分けは？', answer: '判断能力や財産管理の必要性に応じて整理します。制度比較の説明資料・講座実績もあります。' },
+  ]}
+/>

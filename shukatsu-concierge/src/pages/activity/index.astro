@@ -1,45 +1,100 @@
 ---
 import { withBase } from '../../lib/site';
-import { breadcrumbJsonLd } from '../../lib/schema';
+import { breadcrumbJsonLd, itemListJsonLd } from '../../lib/schema';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import PageHero from '../../components/PageHero.astro';
 import Section from '../../components/Section.astro';
-import { activities } from '../../lib/site';
+import AnswerLead from '../../components/AnswerLead.astro';
+import ActivityTable from '../../components/ActivityTable.astro';
+import {
+  recentActivities,
+  activitiesByYear,
+  activitySummary,
+} from '../../lib/activities';
 
-const desc = '地域包括支援センターや社協などでの終活セミナー・講座の実績です。専門職向け研修にも対応しています。';
-const jsonLd = [breadcrumbJsonLd([{ name: '活動実績', path: '/activity/' }])];
+const desc =
+  '地域包括支援センターや社協などでの終活セミナー・講座の実績です。公開情報に基づく集計と、直近実績・年別アーカイブを掲載しています。';
+
+const summary = activitySummary();
+const recent = recentActivities(2);
+const byYear = activitiesByYear();
+const openYears = new Set(recent.map((a) => a.date.slice(0, 4)));
+
+const jsonLd = [
+  breadcrumbJsonLd([{ name: '活動実績', path: '/activity/' }]),
+  itemListJsonLd(
+    '終活セミナー・講座の最近の実績',
+    recent.slice(0, 20).map((a) => ({
+      name: `${a.date} ${a.theme || a.host}`,
+      path: '/activity/',
+      description: [a.place, a.host, a.audience].filter(Boolean).join('／'),
+    })),
+    '/activity/',
+  ),
+];
 ---
 
 <BaseLayout jsonLd={jsonLd} title="活動実績" description={desc}>
   <PageHero title="活動実績" lead={desc} crumbs={[{ label: '活動実績' }]} />
 
-  <Section eyebrow="Seminars" title="最近の講座・研修実績" lead="公開情報をもとに再構成したデモ表です。最新の詳細はお問い合わせください。">
-    <div class="overflow-x-auto rounded-2xl border border-brand/10 bg-white shadow-sm">
-      <table class="min-w-full text-left text-sm">
-        <thead class="bg-brand-light text-brand-dark">
-          <tr>
-            <th class="px-4 py-3 font-semibold whitespace-nowrap">日付</th>
-            <th class="px-4 py-3 font-semibold">場所</th>
-            <th class="px-4 py-3 font-semibold">主宰</th>
-            <th class="px-4 py-3 font-semibold">テーマ</th>
-            <th class="px-4 py-3 font-semibold">対象</th>
-            <th class="px-4 py-3 font-semibold whitespace-nowrap">人数</th>
-          </tr>
-        </thead>
-        <tbody class="divide-y divide-brand/10 text-muted">
-          {activities.map((a) => (
-            <tr class="hover:bg-bg/80">
-              <td class="px-4 py-3 whitespace-nowrap">{a.date}</td>
-              <td class="px-4 py-3">{a.place}</td>
-              <td class="px-4 py-3">{a.host}</td>
-              <td class="px-4 py-3">{a.theme}</td>
-              <td class="px-4 py-3">{a.audience}</td>
-              <td class="px-4 py-3 whitespace-nowrap">{a.count}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+  <div class="mx-auto max-w-6xl px-4 pt-10">
+    <AnswerLead title="活動実績の要約">
+      <p>
+        一般社団法人終活コンシェルジュは、地域包括支援センター・社会福祉協議会・ケアマネ向け研修などで、終活・身元保証・エンディングノートなどの講座を行っています。
+      </p>
+      <p>
+        公開実績に基づく集計では、<strong class="text-brand-dark">{summary.yearFrom}年〜{summary.yearTo}年</strong>に
+        <strong class="text-brand-dark">{summary.total}件</strong>
+        （{summary.regionNames.slice(0, 4).join('・')}など）。詳細は直近2年を表で、それ以前は年別に掲載しています。
+      </p>
+    </AnswerLead>
+  </div>
+
+  <Section eyebrow="Summary" title="数字で見る活動">
+    <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      <div class="rounded-2xl border border-brand/10 bg-white p-5">
+        <p class="text-xs text-muted">公開実績の件数</p>
+        <p class="mt-2 text-3xl font-bold text-brand-dark">{summary.total}<span class="text-base font-medium">件</span></p>
+      </div>
+      <div class="rounded-2xl border border-brand/10 bg-white p-5">
+        <p class="text-xs text-muted">対象期間</p>
+        <p class="mt-2 text-2xl font-bold text-brand-dark">{summary.yearFrom}–{summary.yearTo}</p>
+      </div>
+      <div class="rounded-2xl border border-brand/10 bg-white p-5">
+        <p class="text-xs text-muted">掲載年数</p>
+        <p class="mt-2 text-3xl font-bold text-brand-dark">{summary.yearCount}<span class="text-base font-medium">年</span></p>
+      </div>
+      <div class="rounded-2xl border border-brand/10 bg-white p-5">
+        <p class="text-xs text-muted">主な活動エリア</p>
+        <p class="mt-2 text-sm font-medium text-brand-dark leading-relaxed">{summary.regionNames.join('・')}</p>
+      </div>
     </div>
-    <p class="mt-6 text-sm text-muted">講師派遣・研修のご依頼は <a href={withBase("/contact/")} class="text-brand underline">お問い合わせ</a> まで。</p>
+    <p class="mt-4 text-xs text-muted">※件数は現行サイトに公開されている活動報告の転記・集計です（デモ）。</p>
+  </Section>
+
+  <Section
+    class="bg-white border-y border-brand/5"
+    eyebrow="Recent"
+    title={`直近の講座・研修（${recent.at(-1)?.date.slice(0, 4) ?? ''}〜${recent[0]?.date.slice(0, 4) ?? ''}）`}
+    lead={`${recent.length}件を新しい順に掲載しています。`}
+  >
+    <ActivityTable items={recent} />
+  </Section>
+
+  <Section eyebrow="Archive" title="年別アーカイブ" lead="過去の実績は年ごとに開けます。地域名・主宰団体名・テーマは、連携先を探すときの手がかりになります。">
+    <div class="space-y-3">
+      {byYear.map(({ year, items }) => (
+        <details class="group rounded-2xl border border-brand/10 bg-white open:shadow-sm" open={openYears.has(year)}>
+          <summary class="cursor-pointer list-none px-5 py-4 flex items-center justify-between gap-4">
+            <span class="font-bold text-brand-dark">{year}年 <span class="font-medium text-muted">（{items.length}件）</span></span>
+            <span class="text-brand text-xl leading-none transition group-open:rotate-45">+</span>
+          </summary>
+          <div class="border-t border-brand/10 px-3 pb-4 pt-2 md:px-4">
+            <ActivityTable items={items} />
+          </div>
+        </details>
+      ))}
+    </div>
+    <p class="mt-6 text-sm text-muted">講師派遣・研修のご依頼は <a href={withBase('/contact/')} class="text-brand underline">お問い合わせ</a> まで。</p>
   </Section>
 </BaseLayout>

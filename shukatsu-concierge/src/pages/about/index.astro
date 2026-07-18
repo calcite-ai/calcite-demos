@@ -1,9 +1,10 @@
 ---
 import { withBase } from '../../lib/site';
-import { breadcrumbJsonLd } from '../../lib/schema';
+import { breadcrumbJsonLd, aboutPageJsonLd } from '../../lib/schema';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import PageHero from '../../components/PageHero.astro';
 import Section from '../../components/Section.astro';
+import AnswerLead from '../../components/AnswerLead.astro';
 
 const desc = '終活に関するお悩み・ご相談ごとを生涯にわたってサポート。相続・身元保証・葬儀まで窓口ひとつでお答えします。';
 const canDo = [
@@ -14,7 +15,10 @@ const canDo = [
   { title: '不動産の処分相談', body: '施設入所に伴う住まいの整理など、関連する相談にも対応します。' },
   { title: '納骨・散骨・遺品整理', body: 'ご本人の希望に沿った納骨・散骨、遺品の整理をサポートします。' },
 ];
-const jsonLd = [breadcrumbJsonLd([{ name: '私たちについて', path: '/about/' }])];
+const jsonLd = [
+  breadcrumbJsonLd([{ name: '私たちについて', path: '/about/' }]),
+  aboutPageJsonLd(desc),
+];
 ---
 
 <BaseLayout title="終活コンシェルジュについて" jsonLd={jsonLd} description={desc}>
@@ -23,6 +27,14 @@ const jsonLd = [breadcrumbJsonLd([{ name: '私たちについて', path: '/about
     lead={desc}
     crumbs={[{ label: '終活コンシェルジュについて' }]}
   />
+
+  <div class="mx-auto max-w-6xl px-4 pt-10">
+    <AnswerLead title="終活コンシェルジュとは">
+      <p>
+        一般社団法人終活コンシェルジュは、高齢者の身元保証・生活支援・死後事務などを、窓口ひとつで支える終活の総合相談窓口です。ご本人・ご家族に加え、地域包括・ケアマネ・病院MSWからの相談にも対応します。
+      </p>
+    </AnswerLead>
+  </div>
 
   <Section eyebrow="Mission" title="終活の総合相談窓口として" lead="今日、シニアの方々を取り巻く問題は多岐にわたります。とりわけ終活に関わる問題は、ご家族はもちろん、ご自身でもどうしていいかわからないケースが多く見られます。相談窓口は分野ごとに分かれており、すべてを解決しようと思えば大変な労力が必要です。">
     <div class="rounded-2xl border border-brand/10 bg-white p-6 md:p-8">

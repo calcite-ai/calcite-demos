@@ -1,19 +1,40 @@
 ---
 import { withBase } from '../../lib/site';
-import { breadcrumbJsonLd } from '../../lib/schema';
+import { breadcrumbJsonLd, itemListJsonLd } from '../../lib/schema';
 import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import PageHero from '../../components/PageHero.astro';
 import Section from '../../components/Section.astro';
+import AnswerLead from '../../components/AnswerLead.astro';
 
 const desc = '終活・高齢者支援に関するコラム。Amebaブログから自社ドメインへ移行する想定のデモです。';
 const posts = (await getCollection('columns', ({ data }) => data.status === 'published'))
   .sort((a, b) => b.data.published_date.valueOf() - a.data.published_date.valueOf());
-const jsonLd = [breadcrumbJsonLd([{ name: 'コラム', path: '/columns/' }])];
+const jsonLd = [
+  breadcrumbJsonLd([{ name: 'コラム', path: '/columns/' }]),
+  itemListJsonLd(
+    'コラム記事一覧',
+    posts.map((post) => ({
+      name: post.data.title,
+      path: `/columns/${post.id}/`,
+      description: post.data.meta_description,
+    })),
+    '/columns/',
+  ),
+];
 ---
 
 <BaseLayout title="コラム" jsonLd={jsonLd} description={desc}>
   <PageHero title="コラム" lead={desc} crumbs={[{ label: 'コラム' }]} />
+
+  <div class="mx-auto max-w-6xl px-4 pt-10">
+    <AnswerLead title="コラムについて">
+      <p>
+        終活・身元保証・制度の見方など、高齢者ご本人・ご家族・専門職向けの解説記事を掲載します。検索やAIに引用されやすいよう、各記事の冒頭で結論を示します。
+      </p>
+    </AnswerLead>
+  </div>
+
   <Section eyebrow="Articles" title="記事一覧">
     <div class="grid gap-4">
       {posts.map((post) => (

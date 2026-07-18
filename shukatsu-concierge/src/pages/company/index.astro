@@ -1,16 +1,28 @@
 ---
-import { breadcrumbJsonLd } from '../../lib/schema';
+import { breadcrumbJsonLd, organizationEntityJsonLd } from '../../lib/schema';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import PageHero from '../../components/PageHero.astro';
 import Section from '../../components/Section.astro';
+import AnswerLead from '../../components/AnswerLead.astro';
 import { site, companyProfile } from '../../lib/site';
 
 const desc = '代表理事あいさつ、会社情報、アクセス、沿革。一般社団法人終活コンシェルジュの概要です。';
-const jsonLd = [breadcrumbJsonLd([{ name: '会社概要', path: '/company/' }])];
+const jsonLd = [
+  breadcrumbJsonLd([{ name: '会社概要', path: '/company/' }]),
+  organizationEntityJsonLd(),
+];
 ---
 
 <BaseLayout title="会社概要" jsonLd={jsonLd} description={desc}>
   <PageHero title="会社概要" lead={desc} crumbs={[{ label: '会社概要' }]} />
+
+  <div class="mx-auto max-w-6xl px-4 pt-10">
+    <AnswerLead title="法人情報の要点">
+      <p>
+        {site.name}は2012年設立の一般社団法人です。所在地は{site.address.full}、代表理事は{site.representative}。電話は{site.phone}（フリーダイヤル {site.phoneFree}）、メールは{site.email}です。
+      </p>
+    </AnswerLead>
+  </div>
 
   <Section eyebrow="Greeting" title="ごあいさつ" lead="すべては高齢者の安心のために">
     <div class="grid gap-8 md:grid-cols-[1fr_220px] items-start">
@@ -38,8 +50,10 @@ const jsonLd = [breadcrumbJsonLd([{ name: '会社概要', path: '/company/' }])]
     <dl class="overflow-hidden rounded-2xl border border-brand/10 bg-bg divide-y divide-brand/10">
       {[
         ['社名', site.name],
+        ['設立', '2012年'],
         ['本部所在地', site.address.full],
         ['TEL / FAX', `TEL ${site.phone}　／　FAX ${site.fax}`],
+        ['メール', site.email],
         ['代表者', site.representative],
         ['事業内容', companyProfile.business.join('／')],
       ].map(([th, td]) => (

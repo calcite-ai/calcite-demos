@@ -1,16 +1,28 @@
 ---
-import { breadcrumbJsonLd } from '../../lib/schema';
+import { breadcrumbJsonLd, contactPageJsonLd } from '../../lib/schema';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import PageHero from '../../components/PageHero.astro';
 import Section from '../../components/Section.astro';
+import AnswerLead from '../../components/AnswerLead.astro';
 import { site } from '../../lib/site';
 
 const desc = '電話・メールでの無料相談を受け付けています。ご本人・ご家族・専門職の方、どなたでもお気軽にどうぞ。';
-const jsonLd = [breadcrumbJsonLd([{ name: 'お問い合わせ', path: '/contact/' }])];
+const jsonLd = [
+  breadcrumbJsonLd([{ name: 'お問い合わせ', path: '/contact/' }]),
+  contactPageJsonLd(),
+];
 ---
 
 <BaseLayout title="お問い合わせ" jsonLd={jsonLd} description={desc} showCta={false}>
   <PageHero title="お問い合わせ" lead={desc} crumbs={[{ label: 'お問い合わせ' }]} />
+
+  <div class="mx-auto max-w-6xl px-4 pt-10">
+    <AnswerLead title="連絡先">
+      <p>
+        電話は {site.phone}、フリーダイヤルは {site.phoneFree}、メールは {site.email} です。所在地は {site.address.full}。ご本人・ご家族・専門職いずれからも相談を受け付けます。
+      </p>
+    </AnswerLead>
+  </div>
 
   <Section eyebrow="Phone" title="電話での無料相談">
     <div class="grid gap-4 md:grid-cols-2">

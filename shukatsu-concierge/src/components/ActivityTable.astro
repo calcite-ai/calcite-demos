@@ -1,0 +1,35 @@
+---
+import type { Activity } from '../lib/activities';
+
+interface Props {
+  items: Activity[];
+}
+const { items } = Astro.props;
+---
+
+<div class="overflow-x-auto rounded-2xl border border-brand/10 bg-white shadow-sm">
+  <table class="min-w-full text-left text-sm">
+    <thead class="bg-brand-light text-brand-dark">
+      <tr>
+        <th class="px-4 py-3 font-semibold whitespace-nowrap">日付</th>
+        <th class="px-4 py-3 font-semibold">場所</th>
+        <th class="px-4 py-3 font-semibold">主宰</th>
+        <th class="px-4 py-3 font-semibold">テーマ</th>
+        <th class="px-4 py-3 font-semibold">対象</th>
+        <th class="px-4 py-3 font-semibold whitespace-nowrap">人数</th>
+      </tr>
+    </thead>
+    <tbody class="divide-y divide-brand/10 text-muted">
+      {items.map((a) => (
+        <tr class="hover:bg-bg/80">
+          <td class="px-4 py-3 whitespace-nowrap">{a.date}</td>
+          <td class="px-4 py-3">{a.place}</td>
+          <td class="px-4 py-3">{a.host}</td>
+          <td class="px-4 py-3">{a.theme}</td>
+          <td class="px-4 py-3">{a.audience || '—'}</td>
+          <td class="px-4 py-3 whitespace-nowrap">{a.count || '—'}</td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div>

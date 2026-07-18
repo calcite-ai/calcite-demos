@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Section from '../components/Section.astro';
+import AnswerLead from '../components/AnswerLead.astro';
 import { site, services, worries, audiencePages, flowSteps, withBase } from '../lib/site';
 import {
   organizationJsonLd,
@@ -38,6 +39,14 @@ const jsonLd = [
       <p class="mt-8 text-xs text-white/60">高齢者等終身サポート事業者ガイドライン遵守　／　全国高齢者支援団体連合会 参画</p>
     </div>
   </section>
+
+  <div class="mx-auto max-w-6xl px-4 py-10">
+    <AnswerLead title="終活コンシェルジュとは（要約）">
+      <p>
+        一般社団法人終活コンシェルジュは、高齢者の身元保証・生活支援・死後事務を窓口ひとつで支える終活の総合相談窓口です。ご本人・ご家族だけでなく、地域包括支援センター・ケアマネジャー・病院MSWからの相談にも対応します。
+      </p>
+    </AnswerLead>
+  </div>
 
   <section class="border-b border-brand/10 bg-white">
     <div class="mx-auto max-w-6xl px-4 py-12 md:py-16">

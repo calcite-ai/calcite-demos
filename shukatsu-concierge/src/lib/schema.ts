@@ -96,11 +96,12 @@ export function breadcrumbJsonLd(
 
 export function faqPageJsonLd(
   faqs: { question: string; answer: string }[],
+  pagePath = '/faq/',
 ) {
   return {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
-    '@id': absUrl('/faq/#faq'),
+    '@id': absUrl(`${pagePath}#faq`),
     mainEntity: faqs.map((f) => ({
       '@type': 'Question',
       name: f.question,
@@ -140,19 +141,8 @@ export function articleJsonLd(opts: {
     image: [absUrl(opts.image ?? site.ogImage)],
     datePublished: published,
     dateModified: modified,
-    author: {
-      '@type': 'Organization',
-      name: site.name,
-      url: site.url,
-    },
-    publisher: {
-      '@type': 'Organization',
-      name: site.name,
-      logo: {
-        '@type': 'ImageObject',
-        url: absUrl(site.logo),
-      },
-    },
+    author: { '@id': absUrl('/#organization') },
+    publisher: { '@id': absUrl('/#organization') },
     mainEntityOfPage: {
       '@type': 'WebPage',
       '@id': absUrl(opts.path),
@@ -181,5 +171,110 @@ export function professionalServiceJsonLd() {
     priceRange: '¥¥',
     description: site.description,
     parentOrganization: { '@id': absUrl('/#organization') },
+  };
+}
+
+export function itemListJsonLd(
+  name: string,
+  items: { name: string; path: string; description?: string }[],
+  path: string,
+) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    name,
+    numberOfItems: items.length,
+    itemListElement: items.map((item, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      name: item.name,
+      url: absUrl(item.path),
+      ...(item.description ? { description: item.description } : {}),
+    })),
+    mainEntityOfPage: absUrl(path),
+    isPartOf: { '@id': absUrl('/#website') },
+  };
+}
+
+export function howToJsonLd(opts: {
+  name: string;
+  description: string;
+  path: string;
+  steps: { name: string; text: string }[];
+}) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'HowTo',
+    name: opts.name,
+    description: opts.description,
+    step: opts.steps.map((s, i) => ({
+      '@type': 'HowToStep',
+      position: i + 1,
+      name: s.name,
+      text: s.text,
+    })),
+    mainEntityOfPage: absUrl(opts.path),
+    publisher: { '@id': absUrl('/#organization') },
+  };
+}
+
+export function aboutPageJsonLd(description: string) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'AboutPage',
+    '@id': absUrl('/about/#webpage'),
+    name: `${site.shortName}について`,
+    description,
+    url: absUrl('/about/'),
+    mainEntity: { '@id': absUrl('/#organization') },
+    isPartOf: { '@id': absUrl('/#website') },
+  };
+}
+
+export function contactPageJsonLd() {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'ContactPage',
+    '@id': absUrl('/contact/#webpage'),
+    name: 'お問い合わせ',
+    url: absUrl('/contact/'),
+    mainEntity: { '@id': absUrl('/#organization') },
+    isPartOf: { '@id': absUrl('/#website') },
+  };
+}
+
+export function serviceCatalogJsonLd(
+  services: { name: string; description: string; path: string }[],
+) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'OfferCatalog',
+    name: `${site.shortName}のサービス`,
+    itemListElement: services.map((s) => ({
+      '@type': 'Offer',
+      itemOffered: {
+        '@type': 'Service',
+        name: s.name,
+        description: s.description,
+        provider: { '@id': absUrl('/#organization') },
+        url: absUrl(s.path),
+        areaServed: 'JP',
+      },
+    })),
+  };
+}
+
+/** 会社概要ページ用：Organization を @id で再掲（エンティティ強化） */
+export function organizationEntityJsonLd() {
+  return {
+    ...organizationJsonLd(),
+    foundingDate: '2012',
+    description: site.description,
+    knowsAbout: [
+      '高齢者等終身サポート',
+      '身元保証',
+      '死後事務委任',
+      '終活セミナー',
+    ],
   };
 }

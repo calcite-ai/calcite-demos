@@ -1,39 +1,16 @@
 ---
-import { withBase } from '../../lib/site';
-import BaseLayout from '../../layouts/BaseLayout.astro';
-import PageHero from '../../components/PageHero.astro';
-import Section from '../../components/Section.astro';
-
-const label = "老人ホーム向け";
-const lead = "入居時保証・緊急連絡先の課題を解消するパートナーに。";
-const pains = ["入居要件の保証人が見つからない", "緊急時の連絡体制が不安定", "退去・看取り時の手続きが不安"];
-const offers = ["施設入所時の連帯保証・身柄引受", "緊急時対応の窓口明確化", "死後事務との連続支援"];
+import AudiencePage from '../../components/AudiencePage.astro';
 ---
 
-<BaseLayout title={label} description={`${lead}（対象者別ページ・デモ）`}>
-  <PageHero
-    title={label}
-    lead={lead}
-    crumbs={[{ label: '対象者別' }, { label }]}
-  />
-
-  <Section eyebrow="Challenges" title="現場でよくある課題">
-    <ul class="space-y-3">
-      {pains.map((p) => (
-        <li class="rounded-2xl border border-brand/10 bg-white px-5 py-4 text-muted">{p}</li>
-      ))}
-    </ul>
-  </Section>
-
-  <Section class="bg-white border-y border-brand/5" eyebrow="Support" title="終活コンシェルジュができること">
-    <ul class="grid gap-3 md:grid-cols-3">
-      {offers.map((o) => (
-        <li class="rounded-2xl bg-brand-light/60 p-5 font-medium text-brand-dark">{o}</li>
-      ))}
-    </ul>
-    <div class="mt-8 flex flex-wrap gap-3">
-      <a href={withBase("/cases/")} class="rounded-full border border-brand/30 px-5 py-2.5 text-sm text-brand">関連する解決事例</a>
-      <a href={withBase("/contact/")} class="rounded-full bg-brand px-5 py-2.5 text-sm font-medium text-white">連携・相談する</a>
-    </div>
-  </Section>
-</BaseLayout>
+<AudiencePage
+  label="老人ホーム向け"
+  slug="nursing-home"
+  lead="入居時の身元保証・緊急連絡の相談先に。"
+  definition="老人ホーム・介護施設の入居時に必要な身元保証・緊急連絡先について、終活コンシェルジュが連帯保証や身柄引受の受け皿となります。"
+  pains={['保証人不在で入居が進まない', '緊急連絡先が形骸化している', '退去・看取り後の手続きが滞る']}
+  offers={['入居時の身元保証', '緊急時の連絡・対応', '退去・死後事務の相談']}
+  faqs={[
+    { question: '施設から直接相談できますか？', answer: 'できます。入居希望者・ご家族の同意のもと、保証内容と費用を明確にして説明します。' },
+    { question: '預託金は必要ですか？', answer: '当社の身元保証「ささえ」は預託金不要の設計です。費用は契約金・保証料・管理費などを契約書で明示します。' },
+  ]}
+/>

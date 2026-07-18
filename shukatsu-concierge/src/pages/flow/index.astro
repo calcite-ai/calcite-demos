@@ -1,17 +1,33 @@
 ---
-import { withBase } from '../../lib/site';
-import { breadcrumbJsonLd } from '../../lib/schema';
+import { withBase, flowSteps } from '../../lib/site';
+import { breadcrumbJsonLd, howToJsonLd } from '../../lib/schema';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import PageHero from '../../components/PageHero.astro';
 import Section from '../../components/Section.astro';
-import { flowSteps } from '../../lib/site';
+import AnswerLead from '../../components/AnswerLead.astro';
 
 const desc = 'ご相談受付から面談、契約、サービス開始までの4ステップ。ご本人・ご家族・専門職それぞれの進め方をご説明します。';
-const jsonLd = [breadcrumbJsonLd([{ name: 'ご契約の流れ', path: '/flow/' }])];
+const jsonLd = [
+  breadcrumbJsonLd([{ name: 'ご契約の流れ', path: '/flow/' }]),
+  howToJsonLd({
+    name: '終活コンシェルジュご契約までの流れ',
+    description: desc,
+    path: '/flow/',
+    steps: flowSteps.map((f) => ({ name: f.title, text: f.body })),
+  }),
+];
 ---
 
 <BaseLayout title="ご契約の流れ" jsonLd={jsonLd} description={desc}>
   <PageHero title="ご契約の流れ" lead={desc} crumbs={[{ label: 'ご契約の流れ' }]} />
+
+  <div class="mx-auto max-w-6xl px-4 pt-10">
+    <AnswerLead title="流れの要約">
+      <p>
+        相談受付 → 面談 → 契約 → サービス開始、の4ステップです。初回の相談は無料で、無理な勧誘はしません。有料になるのはサービス開始後です。
+      </p>
+    </AnswerLead>
+  </div>
 
   <Section eyebrow="4 Steps" title="安心につながる、わかりやすい手順">
     <div class="space-y-6">

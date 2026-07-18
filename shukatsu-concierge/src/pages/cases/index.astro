@@ -1,20 +1,40 @@
 ---
 import { withBase } from '../../lib/site';
-import { breadcrumbJsonLd } from '../../lib/schema';
+import { breadcrumbJsonLd, itemListJsonLd } from '../../lib/schema';
 import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import PageHero from '../../components/PageHero.astro';
 import Section from '../../components/Section.astro';
+import AnswerLead from '../../components/AnswerLead.astro';
 
 const desc = '地域包括・ケアマネ・病院MSW・ご本人からの相談を、相談内容→課題→対応→結果→ポイントで紹介します。掲載はすべてデモ用の架空事例です。';
 const all = (await getCollection('cases', ({ data }) => data.status === 'published'))
   .sort((a, b) => b.data.published_date.valueOf() - a.data.published_date.valueOf());
 const categories = ['すべて', '身元保証', '死後事務', '相続', '生活支援', 'その他'];
-const jsonLd = [breadcrumbJsonLd([{ name: 'ご相談・解決事例集', path: '/cases/' }])];
+const jsonLd = [
+  breadcrumbJsonLd([{ name: 'ご相談・解決事例集', path: '/cases/' }]),
+  itemListJsonLd(
+    '解決事例一覧',
+    all.map((item) => ({
+      name: item.data.title,
+      path: `/cases/${item.id}/`,
+      description: item.data.meta_description,
+    })),
+    '/cases/',
+  ),
+];
 ---
 
 <BaseLayout title="ご相談・解決事例集" jsonLd={jsonLd} description={desc}>
   <PageHero title="ご相談・解決事例集" lead={desc} crumbs={[{ label: 'ご相談・解決事例集' }]} />
+
+  <div class="mx-auto max-w-6xl px-4 pt-10">
+    <AnswerLead title="事例集について">
+      <p>
+        身元保証・死後事務・相続・生活支援など、相談の起点と対応の流れを事例形式で公開しています。専門職の方が「似たケースの進め方」を確認する用途を想定しています（デモ掲載）。
+      </p>
+    </AnswerLead>
+  </div>
 
   <Section eyebrow="Cases" title="事例一覧">
     <div class="mb-6 flex flex-wrap gap-2" role="group" aria-label="カテゴリ絞り込み">

@@ -1,39 +1,16 @@
 ---
-import { withBase } from '../../lib/site';
-import BaseLayout from '../../layouts/BaseLayout.astro';
-import PageHero from '../../components/PageHero.astro';
-import Section from '../../components/Section.astro';
-
-const label = "地域包括支援センター向け";
-const lead = "身寄りのない高齢者支援の連携先としてご活用ください。";
-const pains = ["保証人不在で入所・入院が進まない", "死後事務の相談先が見つからない", "本人の意思確認を丁寧に進めたい"];
-const offers = ["包括職員向けの勉強会実績あり", "本人面談前のヒアリング対応", "成年後見との違いも整理して説明"];
+import AudiencePage from '../../components/AudiencePage.astro';
 ---
 
-<BaseLayout title={label} description={`${lead}（対象者別ページ・デモ）`}>
-  <PageHero
-    title={label}
-    lead={lead}
-    crumbs={[{ label: '対象者別' }, { label }]}
-  />
-
-  <Section eyebrow="Challenges" title="現場でよくある課題">
-    <ul class="space-y-3">
-      {pains.map((p) => (
-        <li class="rounded-2xl border border-brand/10 bg-white px-5 py-4 text-muted">{p}</li>
-      ))}
-    </ul>
-  </Section>
-
-  <Section class="bg-white border-y border-brand/5" eyebrow="Support" title="終活コンシェルジュができること">
-    <ul class="grid gap-3 md:grid-cols-3">
-      {offers.map((o) => (
-        <li class="rounded-2xl bg-brand-light/60 p-5 font-medium text-brand-dark">{o}</li>
-      ))}
-    </ul>
-    <div class="mt-8 flex flex-wrap gap-3">
-      <a href={withBase("/cases/")} class="rounded-full border border-brand/30 px-5 py-2.5 text-sm text-brand">関連する解決事例</a>
-      <a href={withBase("/contact/")} class="rounded-full bg-brand px-5 py-2.5 text-sm font-medium text-white">連携・相談する</a>
-    </div>
-  </Section>
-</BaseLayout>
+<AudiencePage
+  label="地域包括支援センター向け"
+  slug="community-support"
+  lead="身寄りのない高齢者支援の連携先として。"
+  definition="地域包括支援センターの職員向けに、身元保証・死後事務・成年後見との違いの整理、勉強会・事例相談の連携先として終活コンシェルジュを利用できます。"
+  pains={['身寄りがなく入所・入院の保証人が見つからない', '成年後見と民間サポートの違いを説明しにくい', '緊急時の連絡・引受先が不安定']}
+  offers={['包括職員向けの勉強会実績あり', '本人面談前のヒアリング対応', '成年後見との違いも整理して説明']}
+  faqs={[
+    { question: '勉強会や研修の依頼はできますか？', answer: '可能です。エンディングノート、身元保証と成年後見の違いなど、現場向けテーマで講師派遣の実績があります。' },
+    { question: '相談のタイミングはいつがよいですか？', answer: '入所・入院の保証人探しが難航した時点、または見守り体制の見直し時にお問い合わせください。' },
+  ]}
+/>

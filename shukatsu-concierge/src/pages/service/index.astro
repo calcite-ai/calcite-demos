@@ -1,17 +1,46 @@
 ---
-import { withBase } from '../../lib/site';
-import { breadcrumbJsonLd } from '../../lib/schema';
+import { withBase, services } from '../../lib/site';
+import { breadcrumbJsonLd, serviceCatalogJsonLd, faqPageJsonLd } from '../../lib/schema';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import PageHero from '../../components/PageHero.astro';
 import Section from '../../components/Section.astro';
 import ServiceFlow from '../../components/ServiceFlow.astro';
+import AnswerLead from '../../components/AnswerLead.astro';
 
 const desc = '預託金不要の身元保証「ささえ」、生活支援、死後事務「むかえ」、オプションサービスと料金の目安をご案内します。';
-const jsonLd = [breadcrumbJsonLd([{ name: 'サービス概要', path: '/service/' }])];
+const serviceFaqs = [
+  {
+    question: '預託金は必要ですか？',
+    answer: '身元保証「ささえ」は預託金不要です。費用は契約金・保証料・管理費などを契約書と重要事項説明書で明示します。',
+  },
+  {
+    question: '主なサービスは何ですか？',
+    answer: '身元保証「ささえ」、生活支援「おとも」、死後事務「むかえ」の三つが柱です。必要に応じて組み合わせて利用できます。',
+  },
+];
+const jsonLd = [
+  breadcrumbJsonLd([{ name: 'サービス概要', path: '/service/' }]),
+  serviceCatalogJsonLd(
+    services.map((s) => ({
+      name: s.name,
+      description: s.summary,
+      path: s.href,
+    })),
+  ),
+  faqPageJsonLd(serviceFaqs, '/service/'),
+];
 ---
 
 <BaseLayout title="サービス概要" jsonLd={jsonLd} description={desc}>
   <PageHero title="サービス概要" lead={desc} crumbs={[{ label: 'サービス概要' }]} />
+
+  <div class="mx-auto max-w-6xl px-4 pt-10">
+    <AnswerLead title="サービス概要の答え">
+      <p>
+        終活コンシェルジュの中心サービスは、預託金不要の身元保証「ささえ」、日常の生活支援「おとも」、死後事務「むかえ」です。入院・施設入所の保証人から、見守り、葬儀・手続きまでを切れ目なく支えます。
+      </p>
+    </AnswerLead>
+  </div>
 
   <Section eyebrow="Overview" title="家族のように見守る安心を" lead="入院・老人ホームへの入所、引っ越しの際の身元保証人が見つからない——そんな声に応えるため、一人ひとりに合わせたプランをご提供します。">
     <ServiceFlow />
@@ -83,5 +112,17 @@ const jsonLd = [breadcrumbJsonLd([{ name: 'サービス概要', path: '/service/
       </article>
     </div>
     <p class="mt-6 text-xs text-muted">※料金は現行サイト掲載内容に基づくデモ表示です。正式契約時の最新料金は必ずご確認ください。</p>
+  </Section>
+
+  <Section class="bg-white border-y border-brand/5" eyebrow="FAQ" title="サービスについてのよくある質問">
+    <div class="space-y-3">
+      {serviceFaqs.map((f) => (
+        <details class="rounded-2xl border border-brand/10 bg-bg px-5 py-4">
+          <summary class="cursor-pointer font-medium text-brand-dark">{f.question}</summary>
+          <p class="mt-3 text-sm text-muted leading-relaxed border-t border-brand/10 pt-3">{f.answer}</p>
+        </details>
+      ))}
+    </div>
+    <p class="mt-6 text-sm"><a href={withBase('/faq/')} class="text-brand underline underline-offset-4">FAQ一覧を見る →</a></p>
   </Section>
 </BaseLayout>
