@@ -2,7 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Section from '../components/Section.astro';
 import AnswerLead from '../components/AnswerLead.astro';
-import BrandIcon from '../components/BrandIcon.astro';
+import PhotoFrame from '../components/PhotoFrame.astro';
 import { site, services, worries, audiencePages, flowSteps, withBase } from '../lib/site';
 import {
   organizationJsonLd,
@@ -153,11 +153,13 @@ const jsonLd = [
   <Section class="bg-white border-y border-brand/5" eyebrow="Service" title="三つの柱で、生涯を支えます" lead="生活上のお困りごとから、万が一の保証人まで。「家族のように見守る安心」を、一人ひとりに合わせたプランで。">
     <div class="grid gap-6 md:grid-cols-3">
       {services.map((s) => (
-        <a href={withBase(s.href)} class="group rounded-2xl border border-brand/10 bg-bg p-6 hover:border-brand/30 hover:shadow-md transition">
-          <BrandIcon name={s.icon} />
-          <h3 class="mt-5 text-lg font-bold text-brand-dark group-hover:text-brand">{s.name}</h3>
-          <p class="mt-2 text-sm text-muted leading-relaxed">{s.summary}</p>
-          <span class="mt-4 inline-block text-sm font-medium text-brand">詳しく見る →</span>
+        <a href={withBase(s.href)} class="group overflow-hidden rounded-2xl border border-brand/10 bg-white hover:border-brand/30 hover:shadow-md transition">
+          <PhotoFrame src={s.image} alt={s.name} class="h-40" />
+          <div class="p-5">
+            <h3 class="text-lg font-bold text-brand-dark group-hover:text-brand">{s.name}</h3>
+            <p class="mt-2 text-sm text-muted leading-relaxed">{s.summary}</p>
+            <span class="mt-4 inline-block text-sm font-medium text-brand">詳しく見る →</span>
+          </div>
         </a>
       ))}
     </div>
@@ -169,11 +171,13 @@ const jsonLd = [
   <Section eyebrow="Flow" title="ご契約までの流れ" lead="まずは無料相談から。無理な勧誘はいたしません。">
     <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
       {flowSteps.map((f) => (
-        <div class="rounded-2xl bg-white border border-brand/10 p-5">
-          <BrandIcon name={f.icon} class="max-w-[7.5rem]" />
-          <p class="mt-4 text-xs font-semibold tracking-wide text-accent">STEP {f.step}</p>
-          <h3 class="mt-1 font-bold text-brand-dark">{f.title}</h3>
-          <p class="mt-2 text-sm text-muted leading-relaxed">{f.body}</p>
+        <div class="overflow-hidden rounded-2xl bg-white border border-brand/10">
+          <PhotoFrame src={f.image} alt={f.title} class="h-36" />
+          <div class="p-4">
+            <p class="text-xs font-semibold tracking-wide text-accent">STEP {f.step}</p>
+            <h3 class="mt-1 font-bold text-brand-dark">{f.title}</h3>
+            <p class="mt-2 text-sm text-muted leading-relaxed">{f.body}</p>
+          </div>
         </div>
       ))}
     </div>

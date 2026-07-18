@@ -1,0 +1,19 @@
+---
+interface Props {
+  src: string;
+  alt: string;
+  class?: string;
+}
+import { withBase } from '../lib/site';
+const { src, alt, class: className = '' } = Astro.props;
+---
+
+<div class:list={['relative overflow-hidden bg-brand-dark', className]}>
+  <img
+    src={withBase(src)}
+    alt={alt}
+    class="h-full w-full object-cover"
+    loading="lazy"
+  />
+  <div class="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(31,63,54,0.08)_0%,rgba(31,63,54,0.35)_100%)]"></div>
+</div>

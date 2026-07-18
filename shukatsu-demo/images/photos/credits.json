@@ -1,0 +1,51 @@
+[
+  {
+    "id": "sasae",
+    "photographer": "Hush Naidoo Jade Photography",
+    "unsplash": "https://unsplash.com/photos/person-walking-on-hallway-in-blue-scrub-suit-near-incubator-ZCO_5Y29s8k",
+    "query": "elderly care nurse support hospital",
+    "file": "/images/photos/sasae.jpg"
+  },
+  {
+    "id": "otomo",
+    "photographer": "Jose Manuel Esp",
+    "unsplash": "https://unsplash.com/photos/young-woman-helps-elderly-man-in-wheelchair-XjoI1OjweWo",
+    "query": "caregiver helping senior walk outdoors",
+    "file": "/images/photos/otomo.jpg"
+  },
+  {
+    "id": "mukae",
+    "photographer": "Romain Dancre",
+    "unsplash": "https://unsplash.com/photos/person-in-orange-long-sleeve-shirt-writing-on-white-paper-doplSDELX7E",
+    "query": "signing documents will planning desk",
+    "file": "/images/photos/mukae.jpg"
+  },
+  {
+    "id": "consult",
+    "photographer": "BaljkanN 4",
+    "unsplash": "https://unsplash.com/photos/a-smiling-woman-wearing-a-headset-at-a-computer-wnpf3Q5pkXA",
+    "query": "phone consultation customer service office",
+    "file": "/images/photos/consult.jpg"
+  },
+  {
+    "id": "meeting",
+    "photographer": "Vitaly Gariev",
+    "unsplash": "https://unsplash.com/photos/doctor-consults-with-an-elderly-patient-on-a-couch-7M5YI0RM3uA",
+    "query": "home visit consultation elderly living room",
+    "file": "/images/photos/meeting.jpg"
+  },
+  {
+    "id": "contract",
+    "photographer": "Amina Atar",
+    "unsplash": "https://unsplash.com/photos/two-people-shaking-hands-over-a-piece-of-paper-4mEyvORkbN0",
+    "query": "contract signing handshake documents",
+    "file": "/images/photos/contract.jpg"
+  },
+  {
+    "id": "start",
+    "photographer": "Vitaly Gariev",
+    "unsplash": "https://unsplash.com/photos/three-seniors-looking-at-a-photo-album-together-IuocpNR7s74",
+    "query": "senior smiling support family home",
+    "file": "/images/photos/start.jpg"
+  }
+]
