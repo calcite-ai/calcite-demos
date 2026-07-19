@@ -7,7 +7,7 @@ import PageHero from '../../components/PageHero.astro';
 import Section from '../../components/Section.astro';
 import AnswerLead from '../../components/AnswerLead.astro';
 
-const desc = '地域包括・ケアマネ・病院MSW・ご本人からの相談を、相談内容→課題→対応→結果→ポイントで紹介します。掲載はすべてデモ用の架空事例です。';
+const desc = '身元保証・死後事務・相続・生活支援などの相談を、相談内容→課題→対応→結果→ポイントで紹介します。専門職・ご家族が「似たケースの進め方」を確認するための想定事例です。';
 const all = (await getCollection('cases', ({ data }) => data.status === 'published'))
   .sort((a, b) => b.data.published_date.valueOf() - a.data.published_date.valueOf());
 const categories = ['すべて', '身元保証', '死後事務', '相続', '生活支援', 'その他'];
@@ -31,7 +31,7 @@ const jsonLd = [
   <div class="mx-auto max-w-6xl px-4 pt-10">
     <AnswerLead title="事例集について">
       <p>
-        身元保証・死後事務・相続・生活支援など、相談の起点と対応の流れを事例形式で公開しています。専門職の方が「似たケースの進め方」を確認する用途を想定しています（デモ掲載）。
+        各事例の冒頭で「何が困り、どう整えたか」を先に示し、続いて背景・対応・結果・FAQを掲載します。個人が特定される実名情報は含みません。現場で起きやすい相談を、読みやすい形に再構成した想定事例です。
       </p>
     </AnswerLead>
   </div>
@@ -65,7 +65,7 @@ const jsonLd = [
         </a>
       ))}
     </div>
-    <p class="mt-8 text-xs text-muted">※実在の相談事例・個人情報は使用していません。上司提案用のダミーです。</p>
+    <p class="mt-8 text-xs text-muted">※個人が特定される実在情報は使用していません。相談現場で起きやすい状況を再構成した想定事例です。</p>
   </Section>
 </BaseLayout>
 
