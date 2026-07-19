@@ -4,7 +4,6 @@ import { getCollection, render } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import PageHero from '../../components/PageHero.astro';
 import { articleJsonLd, breadcrumbJsonLd } from '../../lib/schema';
-import ContactCTA from '../../components/ContactCTA.astro';
 
 export async function getStaticPaths() {
   const cases = await getCollection('cases', ({ data }) => data.status === 'published');
@@ -51,5 +50,4 @@ const jsonLd = [
     <p class="mt-8 text-xs text-muted">※個人が特定される実在情報は含みません。現場で起きやすい相談を再構成した想定事例です。</p>
     <p class="mt-6"><a href={withBase("/cases/")} class="text-brand font-medium underline underline-offset-4">事例一覧へ戻る</a></p>
   </article>
-  <ContactCTA />
 </BaseLayout>
