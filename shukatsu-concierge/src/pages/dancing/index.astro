@@ -7,10 +7,10 @@ import Section from '../../components/Section.astro';
 
 const desc = 'シニア社交ダンス「踊活（とうかつ）」。プロ講師によるレッスンで、からだを動かし、人とつながる時間をつくります。';
 const scenes = [
-  '/images/dancing/踊活風景_01.jpg',
-  '/images/dancing/踊活風景_02.jpg',
-  '/images/dancing/踊活風景_03.jpg',
-  '/images/dancing/踊活風景_04.jpg',
+  { src: '/images/dancing/踊活風景_01.jpg', alt: '踊活の開催風景（ダンスホールでのペアダンス）' },
+  { src: '/images/dancing/踊活風景_02.jpg', alt: '踊活の開催風景（レッスンの様子）' },
+  { src: '/images/dancing/踊活風景_03.jpg', alt: '踊活の開催風景（会場の参加者）' },
+  { src: '/images/dancing/踊活風景_04.jpg', alt: '踊活の開催風景（社交ダンスの指導）' },
 ];
 const jsonLd = [breadcrumbJsonLd([{ name: 'シニア社交ダンス「踊活」', path: '/dancing/' }])];
 ---
@@ -43,9 +43,10 @@ const jsonLd = [breadcrumbJsonLd([{ name: 'シニア社交ダンス「踊活」'
   </Section>
 
   <Section eyebrow="Gallery" title="踊活の風景">
+    <p class="mb-6 text-muted leading-relaxed">毎月4回ほど、プロの方がレッスンに来てくださり、三田や鶴見にてダンス教室を開催しております。詳しくはお問い合わせください。</p>
     <div class="grid gap-4 sm:grid-cols-2">
-      {scenes.map((src, i) => (
-        <img src={src} alt={`踊活のレッスン風景 ${i + 1}`} class="aspect-[4/3] w-full rounded-2xl object-cover border border-brand/10" loading="lazy" />
+      {scenes.map(({ src, alt }) => (
+        <img src={withBase(src)} alt={alt} class="aspect-[4/3] w-full rounded-2xl object-cover border border-brand/10" loading="lazy" width="800" height="600" />
       ))}
     </div>
   </Section>
