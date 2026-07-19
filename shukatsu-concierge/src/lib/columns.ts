@@ -8,6 +8,14 @@ const CATEGORY_SLUGS: Record<string, string> = {
   '制度・ガイドライン': 'seido-guideline',
   制度改正: 'seido-kaisei',
   終活の基礎: 'shukatsu-basics',
+  死後事務: 'shigo-jimu',
+  生活支援: 'seikatsu-shien',
+  相続: 'sozoku',
+  その他: 'other',
+  サービス全般: 'service-general',
+  契約: 'keiyaku',
+  専門職向け: 'professionals',
+  料金: 'price',
 };
 
 export type ColumnPost = CollectionEntry<'columns'>;

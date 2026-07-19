@@ -38,6 +38,14 @@ export const site = {
   logoDisplay: '/images/logo/終活コンシェルジュ_ロゴ.png',
 } as const;
 
+/** 絶対URL（site.url は base path 込み）。先頭 `/` でも origin 直下に飛ばない */
+export function absUrl(path = '/'): string {
+  if (path.startsWith('http://') || path.startsWith('https://')) return path;
+  const base = site.url.replace(/\/$/, '');
+  const normalized = path.startsWith('/') ? path : `/${path}`;
+  return `${base}${normalized}`;
+}
+
 export const navItems = [
   { href: '/about/', label: '私たちについて' },
   { href: '/service/', label: 'サービス' },

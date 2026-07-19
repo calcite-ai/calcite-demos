@@ -26,7 +26,7 @@ const jsonLd = [
     '終活セミナー・講座の最近の実績',
     recent.slice(0, 20).map((a) => ({
       name: `${a.date} ${a.theme || a.host}`,
-      path: '/activity/',
+      path: `/activity/#${a.date}`,
       description: [a.place, a.host, a.audience].filter(Boolean).join('／'),
     })),
     '/activity/',

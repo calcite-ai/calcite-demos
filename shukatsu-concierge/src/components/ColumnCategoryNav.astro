@@ -6,15 +6,24 @@ type CategoryItem = { name: string; slug: string; count: number };
 interface Props {
   categories: CategoryItem[];
   activeSlug?: string | null;
+  allHref?: string;
+  categoryBase?: string;
+  ariaLabel?: string;
 }
 
-const { categories, activeSlug = null } = Astro.props;
+const {
+  categories,
+  activeSlug = null,
+  allHref = '/columns/',
+  categoryBase = '/columns/category',
+  ariaLabel = 'カテゴリー',
+} = Astro.props;
 const allActive = !activeSlug;
 ---
 
-<nav aria-label="コラムのカテゴリー" class="flex flex-wrap gap-2">
+<nav aria-label={ariaLabel} class="flex flex-wrap gap-2">
   <a
-    href={withBase('/columns/')}
+    href={withBase(allHref)}
     class:list={[
       'rounded-full border px-3.5 py-2 text-sm font-medium transition',
       allActive
@@ -28,7 +37,7 @@ const allActive = !activeSlug;
     const active = activeSlug === cat.slug;
     return (
       <a
-        href={withBase(`/columns/category/${cat.slug}/`)}
+        href={withBase(`${categoryBase}/${cat.slug}/`)}
         class:list={[
           'rounded-full border px-3.5 py-2 text-sm font-medium transition',
           active

@@ -5,7 +5,7 @@ import PageHero from '../../components/PageHero.astro';
 import Section from '../../components/Section.astro';
 import { faqPageJsonLd, breadcrumbJsonLd } from '../../lib/schema';
 
-const desc = '身元保証・死後事務・ご契約・専門職連携など、よくある質問にお答えします。内容はデモ用です。';
+const desc = '身元保証・死後事務・ご契約・専門職連携など、よくある質問にお答えします。';
 const faqs = (await getCollection('faq', ({ data }) => data.status === 'published'))
   .sort((a, b) => a.data.order - b.data.order);
 const categories = ['すべて', ...Array.from(new Set(faqs.map((f) => f.data.category)))];
@@ -53,7 +53,7 @@ const jsonLd = [
         </details>
       ))}
     </div>
-    <p class="mt-8 text-xs text-muted">※回答はデモ用です。制度・料金の最終確認は必ず担当者にご確認ください。</p>
+    <p class="mt-8 text-xs text-muted">※料金・制度・対応範囲は変更される場合があります。最新情報はサービス概要またはお問い合わせでご確認ください。</p>
   </Section>
 </BaseLayout>
 

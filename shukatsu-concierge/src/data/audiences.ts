@@ -72,17 +72,17 @@ export const audiences: AudienceContent[] = [
     ],
     relatedCases: [
       {
-        title: '【デモ】救急搬送後、身元保証人が見つからない',
+        title: '救急搬送後に身元保証人が見つからない｜病院MSW連携の想定事例',
         path: '/cases/hospital-identity/',
         note: '病院起点の身元保証',
       },
       {
-        title: '【デモ】視力障害があり、施設入所前に手続きを終えたい',
+        title: '視力に不安があり施設入所前に手続きを終えたい｜生活支援の想定事例',
         path: '/cases/daily-support/',
         note: '生活支援と入所準備',
       },
       {
-        title: '【デモ】子どもがいない夫婦の遺言と相続準備',
+        title: '子どもがいない夫婦の遺言と相続準備｜死後の手続きまで見据えた想定事例',
         path: '/cases/inheritance-will/',
         note: '家族が少ない場合の備え',
       },
@@ -173,17 +173,17 @@ export const audiences: AudienceContent[] = [
     ],
     relatedCases: [
       {
-        title: '【デモ】高齢者住宅で身元保証人を求められた',
+        title: '高齢者住宅で身元保証人を求められた｜地域包括からの想定事例',
         path: '/cases/no-guarantor-housing/',
         note: '入所時の保証人',
       },
       {
-        title: '【デモ】救急搬送後、身元保証人が見つからない',
+        title: '救急搬送後に身元保証人が見つからない｜病院MSW連携の想定事例',
         path: '/cases/hospital-identity/',
         note: '入院時の保証',
       },
       {
-        title: '【デモ】視力障害があり、施設入所前に手続きを終えたい',
+        title: '視力に不安があり施設入所前に手続きを終えたい｜生活支援の想定事例',
         path: '/cases/daily-support/',
         note: '入所前の生活支援',
       },
@@ -274,12 +274,12 @@ export const audiences: AudienceContent[] = [
     ],
     relatedCases: [
       {
-        title: '【デモ】高齢者住宅で身元保証人を求められた',
+        title: '高齢者住宅で身元保証人を求められた｜地域包括からの想定事例',
         path: '/cases/no-guarantor-housing/',
         note: '身寄りなし入所',
       },
       {
-        title: '【デモ】救急搬送後、身元保証人が見つからない',
+        title: '救急搬送後に身元保証人が見つからない｜病院MSW連携の想定事例',
         path: '/cases/hospital-identity/',
         note: '緊急時の保証',
       },
@@ -375,17 +375,17 @@ export const audiences: AudienceContent[] = [
     ],
     relatedCases: [
       {
-        title: '【デモ】救急搬送後、身元保証人が見つからない',
+        title: '救急搬送後に身元保証人が見つからない｜病院MSW連携の想定事例',
         path: '/cases/hospital-identity/',
         note: '病院起点の典型例',
       },
       {
-        title: '【デモ】高齢者住宅で身元保証人を求められた',
+        title: '高齢者住宅で身元保証人を求められた｜地域包括からの想定事例',
         path: '/cases/no-guarantor-housing/',
         note: '退院先施設の保証',
       },
       {
-        title: '【デモ】ALS療養中、万が一に備えた身元保証と死後事務',
+        title: 'ALS療養中に備える身元保証と死後事務｜ケアマネ連携の想定事例',
         path: '/cases/als-after-death/',
         note: '医療・療養と死後事務',
       },
@@ -475,12 +475,12 @@ export const audiences: AudienceContent[] = [
     ],
     relatedCases: [
       {
-        title: '【デモ】高齢者住宅で身元保証人を求められた',
+        title: '高齢者住宅で身元保証人を求められた｜地域包括からの想定事例',
         path: '/cases/no-guarantor-housing/',
         note: '施設入居の保証',
       },
       {
-        title: '【デモ】視力障害があり、施設入所前に手続きを終えたい',
+        title: '視力に不安があり施設入所前に手続きを終えたい｜生活支援の想定事例',
         path: '/cases/daily-support/',
         note: '入所前準備',
       },
@@ -581,12 +581,12 @@ export const audiences: AudienceContent[] = [
         note: 'チェックリスト対応表',
       },
       {
-        title: '【デモ】高齢者住宅で身元保証人を求められた',
+        title: '高齢者住宅で身元保証人を求められた｜地域包括からの想定事例',
         path: '/cases/no-guarantor-housing/',
         note: '紹介後に起きやすい課題',
       },
       {
-        title: '【デモ】救急搬送後、身元保証人が見つからない',
+        title: '救急搬送後に身元保証人が見つからない｜病院MSW連携の想定事例',
         path: '/cases/hospital-identity/',
         note: '緊急ニーズ',
       },

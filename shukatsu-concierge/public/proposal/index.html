@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ホームページ改善案｜終活コンシェルジュ</title>
+  <meta name="description" content="終活コンシェルジュホームページの改善提案資料。情報設計・SEO・構造化データ・導線の見直しポイントをまとめています。" />
+  <meta property="og:title" content="ホームページ改善案｜終活コンシェルジュ" />
+  <meta property="og:description" content="終活コンシェルジュホームページの改善提案資料。情報設計・SEO・構造化データ・導線の見直しポイントをまとめています。" />
+  <style>
+    :root {
+      --bg: #f7f4ee;
+      --paper: #ffffff;
+      --ink: #1c2420;
+      --muted: #5a655e;
+      --line: #e4ddd2;
+      --green: #2f5d4a;
+      --green-soft: #e8f0eb;
+      --gold: #a67c3a;
+      --gold-soft: #f5efe4;
+      --accent: #c45c26;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Noto Sans JP", Meiryo, sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.8;
+      font-size: 17px;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .wrap {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 28px 18px 80px;
+    }
+
+    header.hero {
+      background: linear-gradient(160deg, #2f5d4a 0%, #3d735c 55%, #4a7d68 100%);
+      color: #fff;
+      border-radius: 20px;
+      padding: 36px 28px 32px;
+      margin-bottom: 28px;
+      box-shadow: 0 12px 40px rgba(47, 93, 74, 0.22);
+    }
+    header.hero .eyebrow {
+      font-size: 13px;
+      letter-spacing: 0.08em;
+      opacity: 0.85;
+      margin-bottom: 10px;
+    }
+    header.hero h1 {
+      margin: 0 0 14px;
+      font-size: clamp(22px, 5vw, 30px);
+      line-height: 1.45;
+      font-weight: 700;
+    }
+    header.hero p {
+      margin: 0;
+      opacity: 0.92;
+      font-size: 15px;
+    }
+    header.hero .meta {
+      margin-top: 18px;
+      padding-top: 16px;
+      border-top: 1px solid rgba(255,255,255,0.25);
+      font-size: 14px;
+      opacity: 0.88;
+    }
+
+    .toc {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 20px 22px;
+      margin-bottom: 24px;
+    }
+    .toc h2 {
+      margin: 0 0 12px;
+      font-size: 15px;
+      color: var(--green);
+    }
+    .toc ol {
+      margin: 0;
+      padding-left: 1.3em;
+    }
+    .toc a {
+      color: var(--ink);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+    }
+    .toc a:hover { border-bottom-color: var(--gold); color: var(--green); }
+
+    section.block {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 26px 24px 28px;
+      margin-bottom: 20px;
+    }
+    section.block h2 {
+      margin: 0 0 16px;
+      font-size: 20px;
+      color: var(--green);
+      padding-bottom: 12px;
+      border-bottom: 2px solid var(--green-soft);
+      line-height: 1.4;
+    }
+    section.block h3 {
+      margin: 22px 0 10px;
+      font-size: 17px;
+      color: var(--ink);
+    }
+    section.block p { margin: 0 0 12px; }
+    section.block ul, section.block ol {
+      margin: 0 0 12px;
+      padding-left: 1.35em;
+    }
+    section.block li { margin-bottom: 6px; }
+
+    .note {
+      background: var(--gold-soft);
+      border-left: 4px solid var(--gold);
+      border-radius: 0 10px 10px 0;
+      padding: 14px 16px;
+      font-size: 15px;
+      color: #4a3a22;
+      margin: 14px 0 0;
+    }
+    .warn {
+      background: #fff6f0;
+      border-left: 4px solid var(--accent);
+      border-radius: 0 10px 10px 0;
+      padding: 14px 16px;
+      font-size: 15px;
+      margin: 14px 0 0;
+    }
+
+    .compare {
+      display: grid;
+      gap: 12px;
+      margin: 16px 0;
+    }
+    @media (min-width: 560px) {
+      .compare { grid-template-columns: 1fr 1fr; }
+    }
+    .compare .card {
+      border-radius: 12px;
+      padding: 16px 18px;
+      border: 1px solid var(--line);
+    }
+    .compare .before {
+      background: #f3f3f3;
+    }
+    .compare .after {
+      background: var(--green-soft);
+      border-color: #c5d9ce;
+    }
+    .compare .label {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      margin-bottom: 8px;
+      color: var(--muted);
+    }
+    .compare .after .label { color: var(--green); }
+
+    .points {
+      list-style: none;
+      padding: 0;
+      margin: 16px 0 0;
+    }
+    .points li {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      background: var(--green-soft);
+      border-radius: 12px;
+      padding: 14px 16px;
+      margin-bottom: 10px;
+    }
+    .points .num {
+      flex-shrink: 0;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--green);
+      color: #fff;
+      font-size: 14px;
+      font-weight: 700;
+      display: grid;
+      place-items: center;
+      margin-top: 2px;
+    }
+
+    .btn-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 14px 0 8px;
+    }
+    a.btn {
+      display: inline-block;
+      padding: 12px 18px;
+      border-radius: 999px;
+      text-decoration: none;
+      font-size: 15px;
+      font-weight: 600;
+      line-height: 1.3;
+    }
+    a.btn-primary {
+      background: var(--green);
+      color: #fff;
+    }
+    a.btn-primary:hover { background: #254a3b; }
+    a.btn-secondary {
+      background: #fff;
+      color: var(--green);
+      border: 1.5px solid var(--green);
+    }
+    a.btn-secondary:hover { background: var(--green-soft); }
+    a.btn-ghost {
+      background: var(--gold-soft);
+      color: #6b4e24;
+      border: 1px solid #e0d0b4;
+    }
+
+    .step {
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 16px 18px;
+      margin: 12px 0;
+      background: #fafaf8;
+    }
+    .step .step-title {
+      font-weight: 700;
+      color: var(--green);
+      margin-bottom: 6px;
+    }
+    .step a {
+      color: var(--green);
+      word-break: break-all;
+      font-size: 14px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 15px;
+      margin: 12px 0;
+    }
+    th, td {
+      border: 1px solid var(--line);
+      padding: 12px 14px;
+      text-align: left;
+      vertical-align: top;
+    }
+    th {
+      background: var(--green-soft);
+      color: var(--green);
+      font-weight: 700;
+      white-space: nowrap;
+    }
+    tr:nth-child(even) td { background: #fafaf8; }
+
+    .checklist label {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      padding: 12px 14px;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      margin-bottom: 8px;
+      background: #fff;
+      cursor: default;
+    }
+    .checklist input { margin-top: 5px; width: 18px; height: 18px; }
+
+    footer {
+      text-align: center;
+      color: var(--muted);
+      font-size: 13px;
+      margin-top: 28px;
+      padding: 0 8px;
+    }
+
+    @media print {
+      body { background: #fff; font-size: 12pt; }
+      .wrap { padding: 0; max-width: none; }
+      header.hero { box-shadow: none; break-after: avoid; }
+      section.block { break-inside: avoid; box-shadow: none; }
+      a.btn { border: 1px solid #333; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header class="hero">
+      <div class="eyebrow">提案資料</div>
+      <h1>終活コンシェルジュ<br />ホームページ改善案</h1>
+      <p>いまの公式サイトと、改善した試作サイトの違いを、専門用語をできるだけ使わずにまとめた資料です。</p>
+      <div class="meta">2026年7月</div>
+    </header>
+
+    <nav class="toc" aria-label="目次">
+      <h2>この資料の目次</h2>
+      <ol>
+        <li><a href="#s1">はじめに（見比べるURL）</a></li>
+        <li><a href="#s2">一言で言うと、何が良くなったか</a></li>
+        <li><a href="#s3">画面で比べてほしいポイント</a></li>
+        <li><a href="#s4">変更点一覧</a></li>
+        <li><a href="#s5">「検索に強くなる」とは</a></li>
+        <li><a href="#s6">まだ本番ではない点</a></li>
+      </ol>
+    </nav>
+
+    <section class="block" id="s1">
+      <h2>1. はじめに（見比べるURL）</h2>
+      <p>下のボタンから、いまのサイトと改善案を開けます。</p>
+      <div class="btn-row">
+        <a class="btn btn-secondary" href="https://shukatsu.or.jp/" target="_blank" rel="noopener">いまの公式サイト</a>
+        <a class="btn btn-primary" href="https://calcite-ai.github.io/calcite-demos/shukatsu-demo/" target="_blank" rel="noopener">改善した試作サイト</a>
+      </div>
+      <p class="note">
+        ※試作サイトは「提案用の見本」です。まだ本番の住所（ドメイン）ではありません。<br />
+        ※スマホでも、上の試作URLをそのまま開けばOKです。
+      </p>
+    </section>
+
+    <section class="block" id="s2">
+      <h2>2. 一言で言うと、何が良くなったか</h2>
+      <div class="compare">
+        <div class="card before">
+          <div class="label">いまのサイト</div>
+          <p style="margin:0">会社案内とサービスの紹介が中心。</p>
+        </div>
+        <div class="card after">
+          <div class="label">改善した試作</div>
+          <p style="margin:0">それに加えて、下の4つを足したリニューアル案です。</p>
+        </div>
+      </div>
+      <ul class="points">
+        <li><span class="num">1</span><span><strong>誰向けかが分かりやすい</strong><br />ご家族／ケアマネ／病院など、立場ごとのページを用意</span></li>
+        <li><span class="num">2</span><span><strong>よくある質問が探しやすい</strong><br />FAQページを新設</span></li>
+        <li><span class="num">3</span><span><strong>スマホでも読みやすい</strong><br />文字・ボタン・余白を整えました</span></li>
+        <li><span class="num">4</span><span><strong>検索で得しやすい土台</strong><br />GoogleやAIに拾われやすい作りに</span></li>
+      </ul>
+    </section>
+
+    <section class="block" id="s3">
+      <h2>3. 画面で比べてほしいポイント</h2>
+      <p>試作サイトを、次の順で見ると違いが分かりやすいです。</p>
+
+      <div class="step">
+        <div class="step-title">① トップページ</div>
+        <a href="https://calcite-ai.github.io/calcite-demos/shukatsu-demo/" target="_blank" rel="noopener">試作トップを開く →</a>
+        <ul>
+          <li>明るすぎるオレンジではなく、サイト全体と揃った落ち着いた色</li>
+          <li>テレビ出演のYouTube動画はそのまま掲載</li>
+          <li>ガイドライン（国の指針）の説明を、サイトの雰囲気に合わせて整理</li>
+          <li>「この団体は何をする会社か」が最初に分かる要約を追加</li>
+        </ul>
+      </div>
+
+      <div class="step">
+        <div class="step-title">② よくある質問（新規）</div>
+        <a href="https://calcite-ai.github.io/calcite-demos/shukatsu-demo/faq/" target="_blank" rel="noopener">FAQページを開く →</a>
+        <ul>
+          <li>いまの公式サイトには、独立したFAQページがありません</li>
+          <li>試作では、疑問を自分で調べてから問い合わせできるようにしています</li>
+        </ul>
+      </div>
+
+      <div class="step">
+        <div class="step-title">③ ご家族向け・ケアマネ向けなど（新規）</div>
+        <div class="btn-row">
+          <a class="btn btn-ghost" href="https://calcite-ai.github.io/calcite-demos/shukatsu-demo/for/family/" target="_blank" rel="noopener">ご家族向け</a>
+          <a class="btn btn-ghost" href="https://calcite-ai.github.io/calcite-demos/shukatsu-demo/for/care-manager/" target="_blank" rel="noopener">ケアマネ向け</a>
+        </div>
+        <p>各ページに次を入れています。</p>
+        <ul>
+          <li>この立場の人向けの説明</li>
+          <li>よくある困りごと・具体的な場面</li>
+          <li>相談前に用意すると良いこと／相談の進み方</li>
+          <li>関連する解決事例・よくある質問</li>
+        </ul>
+        <p class="note">ねらい：「自分向けのページだ」と感じてもらいやすくすることです。</p>
+      </div>
+
+      <div class="step">
+        <div class="step-title">④ ガイドラインへの取組み（改善）</div>
+        <a href="https://calcite-ai.github.io/calcite-demos/shukatsu-demo/guideline/" target="_blank" rel="noopener">ガイドラインページを開く →</a>
+        <ul>
+          <li>いまはGoogleドライブのPDF中心</li>
+          <li>試作では「国のチェックリスト」と「当社の対応」を表で並べてウェブ化</li>
+          <li>国の公式PDFも残し、原文をすぐ見られるようにしています</li>
+        </ul>
+      </div>
+
+      <div class="step">
+        <div class="step-title">⑤ 活動実績（改善）</div>
+        <a href="https://calcite-ai.github.io/calcite-demos/shukatsu-demo/activity/" target="_blank" rel="noopener">活動実績を開く →</a>
+        <ul>
+          <li>直近だけでなく、過去の実績も年別に見られる</li>
+          <li>件数やエリアの要約を先に見せる（一目で「実績がある団体」と分かる）</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="block" id="s4">
+      <h2>4. 変更点一覧</h2>
+
+      <h3>A. 新しく追加したページ</h3>
+      <table>
+        <thead>
+          <tr><th>追加内容</th><th>ねらい</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>よくある質問（FAQ）</td><td>問い合わせ前の不安を減らす</td></tr>
+          <tr><td>対象者別ページ（6種類）</td><td>ご家族・専門職が迷わずたどり着く</td></tr>
+          <tr><td>成年後見／家族信託との違い</td><td>似た制度との違いを自分で理解できる</td></tr>
+          <tr><td>ガイドライン取組みページ</td><td>安心・信頼を文章と表で見せる</td></tr>
+          <tr><td>コラム（社内サイト想定）</td><td>ブログをAmebaだけに頼らない土台</td></tr>
+          <tr><td>解決事例（ウェブで読める形）</td><td>PDFを開かなくても事例が分かる</td></tr>
+        </tbody>
+      </table>
+
+      <h3>B. 既存ページの改善</h3>
+      <table>
+        <thead>
+          <tr><th>ページ</th><th>主な改善</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>トップ</td><td>色味の統一、要約、動画、ガイドライン案内の整理</td></tr>
+          <tr><td>サービス</td><td>イラスト中心→写真、料金・FAQも整理</td></tr>
+          <tr><td>ご契約の流れ</td><td>フリー素材イラスト→写真で4ステップ</td></tr>
+          <tr><td>活動実績</td><td>要約＋直近＋年別アーカイブ</td></tr>
+          <tr><td>会社概要</td><td>設立年・連絡先など基本情報を前面に</td></tr>
+        </tbody>
+      </table>
+
+      <h3>C. 見た目・使いやすさ</h3>
+      <ul>
+        <li>色：落ち着いた緑＋金（信頼感・統一感）</li>
+        <li>スマホ：指で押しやすいボタン、読みやすい文字量</li>
+        <li>写真：安っぽいイラストを減らし、ブログで使うような写真表現へ</li>
+      </ul>
+    </section>
+
+    <section class="block" id="s5">
+      <h2>5. 「検索に強くなる」とは（初心者向け）</h2>
+      <p>Googleの検索結果には、ときどき次のような表示が出ます。</p>
+      <ul>
+        <li><strong>よくある質問</strong>が開閉できる形で並ぶ</li>
+        <li><strong>ホーム › サービス</strong> のようなパンくず表示</li>
+      </ul>
+      <p>試作では、その表示に対応しやすい「仕組み」を入れています。</p>
+      <p class="warn">
+        <strong>必ず伝えること</strong><br />
+        仕組みを入れた＝必ず検索結果に出る、ではありません。<br />
+        Googleが「出してよい」と判断したときに出ます。<br />
+        本番の公式アドレスで公開し、Googleに登録されてからが本番です。
+      </p>
+      <p style="margin-top:16px">つまり今回は、<strong>「検索で得しやすいホームページの土台を作った」</strong>という改善です。</p>
+    </section>
+
+    <section class="block" id="s6">
+      <h2>6. まだ本番ではない点（正直に共有）</h2>
+      <p>試作なので、次は未完成／デモのままです。</p>
+      <ul>
+        <li>お問い合わせフォームは「見た目確認用」（本番送信には未接続）</li>
+        <li>代表写真は「準備中」</li>
+        <li>一部の解決事例は提案用デモ</li>
+        <li>URLが試作用（GitHub上の見本）</li>
+      </ul>
+      <p class="note">本番化では、ドメイン接続・フォーム本接続・写真差し替え・文言の最終確認が必要です。</p>
+    </section>
+
+    <footer>
+      一般社団法人終活コンシェルジュ コーポレートサイトリニューアル提案<br />
+      本資料は提案用です
+    </footer>
+  </div>
+</body>
+</html>

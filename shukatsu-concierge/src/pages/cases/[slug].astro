@@ -4,6 +4,7 @@ import { getCollection, render } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import PageHero from '../../components/PageHero.astro';
 import { articleJsonLd, breadcrumbJsonLd } from '../../lib/schema';
+import { categoryToSlug } from '../../lib/cases';
 
 export async function getStaticPaths() {
   const cases = await getCollection('cases', ({ data }) => data.status === 'published');
@@ -16,6 +17,7 @@ export async function getStaticPaths() {
 const { post } = Astro.props;
 const { Content } = await render(post);
 const path = `/cases/${post.id}/`;
+const categoryPath = `/cases/category/${categoryToSlug(post.data.category)}/`;
 const jsonLd = [
   articleJsonLd({
     title: post.data.title,
@@ -25,6 +27,7 @@ const jsonLd = [
   }),
   breadcrumbJsonLd([
     { name: 'ご相談・解決事例集', path: '/cases/' },
+    { name: post.data.category, path: categoryPath },
     { name: post.data.title, path },
   ]),
 ];
@@ -34,11 +37,20 @@ const jsonLd = [
   <PageHero
     title={post.data.title}
     lead={post.data.meta_description}
-    crumbs={[{ label: 'ご相談・解決事例集', href: '/cases/' }, { label: post.data.title }]}
+    crumbs={[
+      { label: 'ご相談・解決事例集', href: '/cases/' },
+      { label: post.data.category, href: categoryPath },
+      { label: post.data.title },
+    ]}
   />
   <article class="mx-auto max-w-3xl px-4 py-12">
     <div class="mb-8 flex flex-wrap gap-2 text-xs">
-      <span class="rounded-full bg-brand-light px-2.5 py-1 font-medium text-brand">{post.data.category}</span>
+      <a
+        href={withBase(categoryPath)}
+        class="rounded-full bg-brand-light px-2.5 py-1 font-medium text-brand hover:bg-accent-soft transition"
+      >
+        {post.data.category}
+      </a>
       <span class="rounded-full border border-brand/15 px-2.5 py-1 text-muted">相談元：{post.data.source}</span>
       <time class="rounded-full border border-brand/15 px-2.5 py-1 text-muted" datetime={post.data.published_date.toISOString()}>
         {post.data.published_date.toISOString().slice(0, 10)}
@@ -48,6 +60,11 @@ const jsonLd = [
       <Content />
     </div>
     <p class="mt-8 text-xs text-muted">※個人が特定される実在情報は含みません。現場で起きやすい相談を再構成した想定事例です。</p>
-    <p class="mt-6"><a href={withBase("/cases/")} class="text-brand font-medium underline underline-offset-4">事例一覧へ戻る</a></p>
+    <p class="mt-6 flex flex-wrap gap-4">
+      <a href={withBase(categoryPath)} class="text-brand font-medium underline underline-offset-4">
+        「{post.data.category}」の事例一覧
+      </a>
+      <a href={withBase('/cases/')} class="text-brand font-medium underline underline-offset-4">事例一覧へ戻る</a>
+    </p>
   </article>
 </BaseLayout>

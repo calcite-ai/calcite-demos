@@ -1,16 +1,20 @@
 ---
-import { withBase } from '../../lib/site';
 import { breadcrumbJsonLd, itemListJsonLd } from '../../lib/schema';
-import { getCollection } from 'astro:content';
+import {
+  filterCasesByCategory,
+  getCaseCategoryStats,
+  getPublishedCases,
+} from '../../lib/cases';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import PageHero from '../../components/PageHero.astro';
 import Section from '../../components/Section.astro';
 import AnswerLead from '../../components/AnswerLead.astro';
+import ColumnCategoryNav from '../../components/ColumnCategoryNav.astro';
+import { withBase } from '../../lib/site';
 
 const desc = '身元保証・死後事務・相続・生活支援などの相談を、相談内容→課題→対応→結果→ポイントで紹介します。専門職・ご家族が「似たケースの進め方」を確認するための想定事例です。';
-const all = (await getCollection('cases', ({ data }) => data.status === 'published'))
-  .sort((a, b) => b.data.published_date.valueOf() - a.data.published_date.valueOf());
-const categories = ['すべて', '身元保証', '死後事務', '相続', '生活支援', 'その他'];
+const all = await getPublishedCases();
+const categories = getCaseCategoryStats(all);
 const jsonLd = [
   breadcrumbJsonLd([{ name: 'ご相談・解決事例集', path: '/cases/' }]),
   itemListJsonLd(
@@ -28,32 +32,30 @@ const jsonLd = [
 <BaseLayout title="ご相談・解決事例集" jsonLd={jsonLd} description={desc}>
   <PageHero title="ご相談・解決事例集" lead={desc} crumbs={[{ label: 'ご相談・解決事例集' }]} />
 
-  <div class="mx-auto max-w-6xl px-4 pt-10">
+  <div class="mx-auto max-w-6xl px-4 pt-10 space-y-8">
     <AnswerLead title="事例集について">
       <p>
         各事例の冒頭で「何が困り、どう整えたか」を先に示し、続いて背景・対応・結果・FAQを掲載します。個人が特定される実名情報は含みません。現場で起きやすい相談を、読みやすい形に再構成した想定事例です。
       </p>
     </AnswerLead>
+
+    <div>
+      <p class="mb-3 text-sm font-medium text-brand-dark">カテゴリー</p>
+      <ColumnCategoryNav
+        categories={categories}
+        allHref="/cases/"
+        categoryBase="/cases/category"
+        ariaLabel="解決事例のカテゴリー"
+      />
+    </div>
   </div>
 
   <Section eyebrow="Cases" title="事例一覧">
-    <div class="mb-6 flex flex-wrap gap-2" role="group" aria-label="カテゴリ絞り込み">
-      {categories.map((cat) => (
-        <button
-          type="button"
-          data-filter={cat}
-          class="filter-btn rounded-full border border-brand/20 bg-white px-4 py-2 text-sm text-brand-dark hover:bg-brand-light transition aria-[current=true]:bg-brand aria-[current=true]:text-white aria-[current=true]:border-brand"
-          aria-current={cat === 'すべて' ? 'true' : undefined}
-        >{cat}</button>
-      ))}
-    </div>
-
-    <div class="grid gap-4" id="case-list">
+    <div class="grid gap-4">
       {all.map((item) => (
         <a
           href={withBase(`/cases/${item.id}/`)}
-          data-category={item.data.category}
-          class="case-card block rounded-2xl border border-brand/10 bg-white p-5 hover:border-brand hover:shadow-sm transition"
+          class="block rounded-2xl border border-brand/10 bg-white p-5 hover:border-brand hover:shadow-sm transition"
         >
           <div class="flex flex-wrap items-center gap-2 text-xs">
             <span class="rounded-full bg-brand-light px-2.5 py-1 font-medium text-brand">{item.data.category}</span>
@@ -68,18 +70,3 @@ const jsonLd = [
     <p class="mt-8 text-xs text-muted">※個人が特定される実在情報は使用していません。相談現場で起きやすい状況を再構成した想定事例です。</p>
   </Section>
 </BaseLayout>
-
-<script>
-  const buttons = document.querySelectorAll('.filter-btn');
-  const cards = document.querySelectorAll('.case-card');
-  buttons.forEach((btn) => {
-    btn.addEventListener('click', () => {
-      const cat = btn.getAttribute('data-filter');
-      buttons.forEach((b) => b.setAttribute('aria-current', b === btn ? 'true' : 'false'));
-      cards.forEach((card) => {
-        const show = cat === 'すべて' || card.getAttribute('data-category') === cat;
-        card.classList.toggle('hidden', !show);
-      });
-    });
-  });
-</script>

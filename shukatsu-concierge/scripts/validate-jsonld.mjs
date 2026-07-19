@@ -71,9 +71,20 @@ for (const page of pages) {
   const desc = html.match(/<meta name="description" content="([^"]*)"/);
   if (!desc || !desc[1].trim()) errors.push(`${rel}: missing meta description`);
   if (!html.includes('og:title')) errors.push(`${rel}: missing og:title`);
+  if (html.includes('content="https://calcite-ai.github.io/images/')) {
+    errors.push(`${rel}: og/twitter image missing site base path`);
+  }
 
   for (const block of blocks) {
     for (const t of typesOf(block)) pageTypes.add(t);
+    const dumped = JSON.stringify(block);
+    if (
+      dumped.includes('https://calcite-ai.github.io/') &&
+      !dumped.includes('/calcite-demos/shukatsu-demo/') &&
+      /https:\/\/calcite-ai\.github\.io\/(?!calcite-demos)/.test(dumped)
+    ) {
+      errors.push(`${rel}: JSON-LD URL missing site base path`);
+    }
 
     if (typesOf(block).includes('Organization') || typesOf(block).includes('NGO')) {
       orgPages++;
@@ -141,12 +152,17 @@ fs.mkdirSync(snippetsDir, { recursive: true });
 const targets = {
   home: 'index.html',
   faq: 'faq/index.html',
-  article: 'columns/hello-column/index.html',
+  article: 'columns/guarantor-basics/index.html',
   guide: 'guides/seinengoiken/index.html',
   case: 'cases/hospital-identity/index.html',
 };
 for (const [name, rel] of Object.entries(targets)) {
-  const html = fs.readFileSync(path.join(DIST, rel), 'utf8');
+  const full = path.join(DIST, rel);
+  if (!fs.existsSync(full)) {
+    errors.push(`Snippet target missing: ${rel}`);
+    continue;
+  }
+  const html = fs.readFileSync(full, 'utf8');
   const blocks = extractJsonLd(html);
   const snippet = `<!doctype html><html lang="ja"><head>
 <meta charset="utf-8" />

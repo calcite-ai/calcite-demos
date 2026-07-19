@@ -1,0 +1,87 @@
+---
+import { breadcrumbJsonLd, itemListJsonLd } from '../../../lib/schema';
+import {
+  filterCasesByCategory,
+  getCaseCategoryStats,
+  getPublishedCases,
+  slugToCategory,
+} from '../../../lib/cases';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import PageHero from '../../../components/PageHero.astro';
+import Section from '../../../components/Section.astro';
+import ColumnCategoryNav from '../../../components/ColumnCategoryNav.astro';
+import { withBase } from '../../../lib/site';
+
+export async function getStaticPaths() {
+  const posts = await getPublishedCases();
+  const categories = getCaseCategoryStats(posts);
+  return categories.map((cat) => ({
+    params: { category: cat.slug },
+    props: { categoryName: cat.name, categorySlug: cat.slug },
+  }));
+}
+
+const { categoryName, categorySlug } = Astro.props;
+const allPosts = await getPublishedCases();
+const categories = getCaseCategoryStats(allPosts);
+const posts = filterCasesByCategory(allPosts, categoryName);
+const path = `/cases/category/${categorySlug}/`;
+const desc = `「${categoryName}」カテゴリーの解決事例一覧。身元保証・死後事務などの相談の進め方を想定事例で紹介します。`;
+const jsonLd = [
+  breadcrumbJsonLd([
+    { name: 'ご相談・解決事例集', path: '/cases/' },
+    { name: categoryName, path },
+  ]),
+  itemListJsonLd(
+    `解決事例（${categoryName}）`,
+    posts.map((post) => ({
+      name: post.data.title,
+      path: `/cases/${post.id}/`,
+      description: post.data.meta_description,
+    })),
+    path,
+  ),
+];
+
+if (slugToCategory(categorySlug, categories.map((c) => c.name)) !== categoryName) {
+  throw new Error(`Case category slug mismatch: ${categorySlug}`);
+}
+---
+
+<BaseLayout title={`${categoryName}｜解決事例`} jsonLd={jsonLd} description={desc}>
+  <PageHero
+    title={categoryName}
+    lead={desc}
+    crumbs={[{ label: 'ご相談・解決事例集', href: '/cases/' }, { label: categoryName }]}
+  />
+
+  <div class="mx-auto max-w-6xl px-4 pt-10">
+    <p class="mb-3 text-sm font-medium text-brand-dark">カテゴリー</p>
+    <ColumnCategoryNav
+      categories={categories}
+      activeSlug={categorySlug}
+      allHref="/cases/"
+      categoryBase="/cases/category"
+      ariaLabel="解決事例のカテゴリー"
+    />
+  </div>
+
+  <Section eyebrow="Cases" title={`${categoryName}の事例（${posts.length}）`}>
+    <div class="grid gap-4">
+      {posts.map((item) => (
+        <a
+          href={withBase(`/cases/${item.id}/`)}
+          class="block rounded-2xl border border-brand/10 bg-white p-5 hover:border-brand hover:shadow-sm transition"
+        >
+          <div class="flex flex-wrap items-center gap-2 text-xs">
+            <span class="rounded-full bg-brand-light px-2.5 py-1 font-medium text-brand">{item.data.category}</span>
+            <span class="text-muted">{item.data.source}</span>
+            <span class="text-muted">{item.data.published_date.toISOString().slice(0, 10)}</span>
+          </div>
+          <h2 class="mt-3 text-lg font-bold text-brand-dark">{item.data.title}</h2>
+          <p class="mt-2 text-sm text-muted line-clamp-2">{item.data.meta_description}</p>
+        </a>
+      ))}
+    </div>
+  </Section>
+</BaseLayout>

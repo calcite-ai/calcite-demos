@@ -1,10 +1,7 @@
 
-import { site } from './site';
+import { absUrl, site } from './site';
 
-export function absUrl(path = '/'): string {
-  if (path.startsWith('http')) return path;
-  return new URL(path, site.url).href;
-}
+export { absUrl };
 
 export function organizationJsonLd() {
   return {
@@ -142,7 +139,17 @@ export function articleJsonLd(opts: {
     datePublished: published,
     dateModified: modified,
     author: { '@id': absUrl('/#organization') },
-    publisher: { '@id': absUrl('/#organization') },
+    publisher: {
+      '@type': 'Organization',
+      '@id': absUrl('/#organization'),
+      name: site.name,
+      logo: {
+        '@type': 'ImageObject',
+        url: absUrl(site.logo),
+        width: 350,
+        height: 120,
+      },
+    },
     mainEntityOfPage: {
       '@type': 'WebPage',
       '@id': absUrl(opts.path),

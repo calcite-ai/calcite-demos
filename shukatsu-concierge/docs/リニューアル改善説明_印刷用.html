@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <title>終活コンシェルジュ ホームページ改善案</title>
+  <style>
+    @page {
+      size: A4;
+      margin: 16mm 14mm 16mm 14mm;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      color: #1a1a1a;
+      font-family: "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic", "Noto Sans JP", Meiryo, sans-serif;
+      font-size: 10pt;
+      line-height: 1.7;
+      background: #fff;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    @media screen {
+      body { background: #e8e6e1; padding: 24px 0 48px; }
+      .sheet {
+        width: 210mm;
+        min-height: 297mm;
+        margin: 0 auto 24px;
+        padding: 16mm 14mm;
+        background: #fff;
+        box-shadow: 0 4px 24px rgba(0,0,0,.12);
+      }
+    }
+
+    @media print {
+      body { background: #fff; padding: 0; }
+      .sheet { width: auto; min-height: auto; margin: 0; padding: 0; box-shadow: none; }
+      .no-print { display: none !important; }
+      a { color: inherit; text-decoration: none; }
+    }
+
+    .no-print {
+      max-width: 210mm;
+      margin: 0 auto 16px;
+      padding: 12px 16px;
+      background: #2f5d4a;
+      color: #fff;
+      border-radius: 10px;
+      font-size: 14px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .no-print button {
+      background: #fff;
+      color: #2f5d4a;
+      border: none;
+      border-radius: 8px;
+      padding: 10px 18px;
+      font-weight: 700;
+      font-size: 14px;
+      cursor: pointer;
+    }
+
+    h1 {
+      margin: 0 0 6px;
+      font-size: 17pt;
+      line-height: 1.35;
+      color: #2f5d4a;
+      border-bottom: 2.5pt solid #2f5d4a;
+      padding-bottom: 8px;
+    }
+    .subtitle {
+      margin: 8px 0 2px;
+      font-size: 10.5pt;
+      color: #333;
+    }
+    .meta {
+      margin: 0 0 14px;
+      font-size: 8.5pt;
+      color: #666;
+    }
+
+    h2 {
+      margin: 16px 0 7px;
+      font-size: 12pt;
+      color: #2f5d4a;
+      border-left: 5px solid #2f5d4a;
+      padding-left: 9px;
+      line-height: 1.35;
+      break-after: avoid;
+      page-break-after: avoid;
+    }
+    h3 {
+      margin: 12px 0 5px;
+      font-size: 10.5pt;
+      color: #333;
+      break-after: avoid;
+      page-break-after: avoid;
+    }
+
+    p { margin: 0 0 7px; }
+    ul, ol { margin: 3px 0 8px; padding-left: 1.25em; }
+    li { margin-bottom: 2px; }
+
+    .box {
+      border: 1px solid #cfd8d3;
+      background: #f4f7f5;
+      border-radius: 6px;
+      padding: 8px 11px;
+      margin: 7px 0 10px;
+      break-inside: avoid;
+      page-break-inside: avoid;
+    }
+    .box-gold {
+      border-color: #d4c4a4;
+      background: #faf6ee;
+    }
+    .box-warn {
+      border-color: #e0b8a8;
+      background: #fff8f4;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 9pt;
+      margin: 5px 0 10px;
+    }
+    th, td {
+      border: 1px solid #ccc;
+      padding: 6px 8px;
+      text-align: left;
+      vertical-align: top;
+    }
+    th {
+      background: #e8f0eb;
+      color: #2f5d4a;
+      font-weight: 700;
+    }
+    th.bad { background: #f3e8e6; color: #8a3b2e; }
+    th.good { background: #e8f0eb; color: #2f5d4a; }
+    td.bad { background: #faf6f5; }
+    td.good { background: #f4f9f6; }
+
+    .term {
+      font-weight: 700;
+      color: #2f5d4a;
+    }
+    .term-def {
+      font-size: 8.5pt;
+      color: #555;
+    }
+
+    .url {
+      font-size: 8pt;
+      color: #444;
+      word-break: break-all;
+    }
+
+    .footer-note {
+      margin-top: 16px;
+      padding-top: 8px;
+      border-top: 1px solid #ccc;
+      font-size: 8pt;
+      color: #777;
+      text-align: center;
+    }
+
+    .keep-together {
+      break-inside: avoid;
+      page-break-inside: avoid;
+    }
+  </style>
+</head>
+<body>
+  <div class="no-print">
+    <span>紙渡し用資料です。「印刷してPDF保存」または印刷してください。</span>
+    <button type="button" onclick="window.print()">印刷 / PDF保存</button>
+  </div>
+
+  <div class="sheet">
+    <h1>終活コンシェルジュ<br />ホームページ改善案</h1>
+    <p class="subtitle">現行HPの課題と改善内容（専門用語は説明付き）</p>
+    <p class="meta">2026年7月　｜　対象：一般社団法人終活コンシェルジュ</p>
+
+    <h2>1. 見比べる場所</h2>
+    <table>
+      <tr><th style="width:30%">種類</th><th>URL</th></tr>
+      <tr><td>現行の公式サイト</td><td class="url">https://shukatsu.or.jp/</td></tr>
+      <tr><td>改善した試作サイト</td><td class="url">https://calcite-ai.github.io/calcite-demos/shukatsu-demo/</td></tr>
+    </table>
+    <div class="box box-gold">
+      ※試作は提案用の見本です。まだ本番のドメイン（インターネット上の正式な住所）ではありません。
+    </div>
+
+    <h2>2. この資料で使う専門用語（先に意味を確認）</h2>
+    <table>
+      <tr><th style="width:22%">用語</th><th>わかりやすい意味</th></tr>
+      <tr>
+        <td><span class="term">SEO</span></td>
+        <td>検索エンジン最適化。Googleなどで「身元保証」「終活 相談」と調べたときに、<strong>見つかりやすく・選ばれやすくする工夫</strong>のこと。</td>
+      </tr>
+      <tr>
+        <td><span class="term">GEO</span></td>
+        <td>生成AI最適化（Generative Engine Optimization）。ChatGPT・Gemini・Perplexityなどが答えを作るとき、<strong>自社の情報を正しく引用してもらいやすくする工夫</strong>のこと。</td>
+      </tr>
+      <tr>
+        <td><span class="term">構造化データ</span><br /><span class="term-def">（JSON-LD）</span></td>
+        <td>ページの裏側に入れる「機械向けの説明書」。人の目にはほとんど見えませんが、「これは会社情報」「これはFAQ」とGoogleやAIに伝えます。</td>
+      </tr>
+      <tr>
+        <td><span class="term">リッチリザルト</span></td>
+        <td>Google検索結果の「特別な見え方」。例：よくある質問が開閉で並ぶ、パンくず（ホーム › サービス）が表示される、など。</td>
+      </tr>
+      <tr>
+        <td><span class="term">FAQ</span></td>
+        <td>よくある質問と答えの一覧。問い合わせ前の不安を減らし、SEO・GEOの両方にも効きます。</td>
+      </tr>
+      <tr>
+        <td><span class="term">レスポンシブ</span></td>
+        <td>スマホ・タブレット・パソコンで画面幅に合わせて読みやすく表示する設計のこと。</td>
+      </tr>
+      <tr>
+        <td><span class="term">NAP情報</span></td>
+        <td>Name（正式名称）・Address（住所）・Phone（電話）など、団体の身元を示す基本情報。信頼・検索・AI引用の基礎になります。</td>
+      </tr>
+      <tr>
+        <td><span class="term">CV</span><br /><span class="term-def">（コンバージョン）</span></td>
+        <td>サイトの最終ゴール。このサイトでは「お問い合わせ・相談につながる」こと。</td>
+      </tr>
+    </table>
+
+    <h2>3. 一言まとめ</h2>
+    <div class="box">
+      現行サイトは「会社案内・サービス紹介」としては成立しています。<br />
+      一方で、<strong>誰向けかが弱い／FAQが弱い／PDF頼みが多い／検索・AI向けの土台が薄い</strong>ため、<br />
+      「見た人が迷わず相談できる」「GoogleやAIにも拾われやすい」形へ改めるのが今回のリニューアル案です。
+    </div>
+
+    <h2>4. 現行HPの課題と、試作での改善（対比表）</h2>
+    <p>左が「いま困っていること」、右が「試作でどう直したか」です。</p>
+
+    <table class="keep-together">
+      <tr>
+        <th class="bad" style="width:48%">現行HPの課題</th>
+        <th class="good">試作での改善</th>
+      </tr>
+      <tr>
+        <td class="bad">
+          <strong>「誰のためのページか」が弱い</strong><br />
+          ご家族・ケアマネ・病院MSW・施設など、立場の違う人が同じ文章を読む形になりやすい。自分ごと化しにくい。
+        </td>
+        <td class="good">
+          <strong>対象者別ページを6種類新設</strong><br />
+          ご家族／ケアマネ／病院／施設／包括／紹介者向けに、困りごと・場面例・手順・FAQまで分けて記載。
+        </td>
+      </tr>
+      <tr>
+        <td class="bad">
+          <strong>独立したFAQページがない</strong><br />
+          費用・違い・流れなど、問い合わせ前に自分で解消しにくい。結果として電話・メールが増えやすい／離脱しやすい。
+        </td>
+        <td class="good">
+          <strong>FAQページを新設</strong><br />
+          さらにサービス頁・対象者別ページにもFAQを配置。<span class="term">リッチリザルト</span>や<span class="term">GEO</span>にも効く形に。
+        </td>
+      </tr>
+      <tr>
+        <td class="bad">
+          <strong>ガイドライン説明がPDF中心</strong><br />
+          「取組み」がGoogleドライブ等のPDFに寄っている。スマホでは読みにくく、中身を開かずに離脱されやすい。
+        </td>
+        <td class="good">
+          <strong>ウェブ上の対照表に再構成</strong><br />
+          「国のチェックリスト」と「当社の対応」を表で並べて表示。国の公式PDFリンクも残して信頼感を確保。
+        </td>
+      </tr>
+      <tr>
+        <td class="bad">
+          <strong>解決事例がPDF依存になりやすい</strong><br />
+          PDFだとスマホで読みにくく、開く手間で離脱しやすい。<br />
+          さらに中身がホームページの「資産」として残りにくく、<span class="term">SEO</span>・<span class="term">GEO</span>（検索・AI）にも拾われにくい。
+        </td>
+        <td class="good">
+          <strong>解決事例をホームページ内のウェブページに移行</strong><br />
+          ブラウザだけで読める専用ページ化。あわせて本文をSEO・AI向けに最適化<br />
+          （結論先行、FAQ、関連ページへの誘導など）。詳しくは次の「5.」へ。
+        </td>
+      </tr>
+      <tr>
+        <td class="bad">
+          <strong>活動実績が一覧のまま長くなりやすい</strong><br />
+          「どれくらいやっている団体か」が一目で分かりにくい。
+        </td>
+        <td class="good">
+          <strong>要約 → 直近 → 年別アーカイブ</strong><br />
+          件数・エリアなどの要約を先に見せ、詳細は年別に整理（過去実績も掲載）。
+        </td>
+      </tr>
+      <tr>
+        <td class="bad">
+          <strong>見た目の統一感が弱い／素材が古く見えやすい</strong><br />
+          フリー素材イラストや色のバラバラ感があると、信頼業種でも「少し古いサイト」に見えやすい。
+        </td>
+        <td class="good">
+          <strong>色・写真・余白を統一</strong><br />
+          落ち着いた緑＋金でブランドを統一。写真中心に差し替え、スマホでも押しやすいボタン配置に。
+        </td>
+      </tr>
+      <tr>
+        <td class="bad">
+          <strong>SEO／GEOのための「裏側の仕組み」が薄い</strong><br />
+          文章はあっても、GoogleやAIが「会社か／FAQか／サービスか」を機械的に理解しにくい。
+        </td>
+        <td class="good">
+          <strong>構造化データと要点文を整備</strong><br />
+          会社情報・FAQ・サービス・パンくず等を埋め込み。各ページ冒頭に「このページの要点」を置いて引用されやすく。
+        </td>
+      </tr>
+      <tr>
+        <td class="bad">
+          <strong>似た制度との違いがサイト内で弱い</strong><br />
+          成年後見・家族信託などとの違いを自分で調べにくいと、相談前の不安が残る。
+        </td>
+        <td class="good">
+          <strong>違い説明ページを追加</strong><br />
+          「何が違うのか」をサイト内で読めるようにし、問い合わせの質も上がりやすくする。
+        </td>
+      </tr>
+    </table>
+
+    <h2>5. 解決事例：PDFからHP内へ。SEO・AI向けにも最適化</h2>
+    <p>
+      現行では解決事例がPDF中心になりやすく、<strong>読む負担が大きい</strong>うえ、
+      内容がホームページ本体の資産として蓄積しにくい、という課題があります。
+      試作では事例を<strong>サイト内のウェブページ</strong>にし、さらに検索・AIに拾われやすい書き方へ整えました。
+    </p>
+
+    <h3>（1）なぜPDFのままだと損か</h3>
+    <table>
+      <tr><th style="width:32%">課題</th><th>わかりやすい意味</th></tr>
+      <tr>
+        <td>スマホで読みにくい</td>
+        <td>拡大・スクロールが多く、開く前に離脱しやすい。</td>
+      </tr>
+      <tr>
+        <td>HPの資産になりにくい</td>
+        <td>記事がサイト内に積み上がらず、検索経由の入口が増えにくい。</td>
+      </tr>
+      <tr>
+        <td>SEOに乗りにくい</td>
+        <td>Googleが本文を読み取りにくく、「身元保証 事例」などで見つかりにくい。</td>
+      </tr>
+      <tr>
+        <td>AIに引用されにくい</td>
+        <td>ChatGPT等が答えを作るとき、PDFよりウェブ本文の方が抜き出しやすい傾向があります。</td>
+      </tr>
+      <tr>
+        <td>他ページとつながりにくい</td>
+        <td>ご家族向け・サービス・FAQへ誘導しづらく、相談（CV）まで届きにくい。</td>
+      </tr>
+    </table>
+
+    <h3>（2）試作でやったこと</h3>
+    <table>
+      <tr><th style="width:32%">対応</th><th>内容</th></tr>
+      <tr>
+        <td>ホームページ内に掲載</td>
+        <td>解決事例を専用の一覧＋個別ページ化（PDFを開かなくても読める）。</td>
+      </tr>
+      <tr>
+        <td>SEO向けの構成</td>
+        <td>タイトル・説明文を検索されやすい言葉に整え、見出しで場面・対応・結果を明示。</td>
+      </tr>
+      <tr>
+        <td>AI（GEO）向けの構成</td>
+        <td>冒頭で結論（何が困り、どう整えたか）を先出し。「この事例で分かること」とFAQを追加。</td>
+      </tr>
+      <tr>
+        <td>内部リンク</td>
+        <td>サービス・対象者別ページ・FAQなどへつなぎ、読み物を相談につなげる。</td>
+      </tr>
+      <tr>
+        <td>構造化データ</td>
+        <td>事例一覧・各記事を機械が理解しやすい形でマーク（ItemList／Article）。</td>
+      </tr>
+    </table>
+    <div class="box box-gold">
+      <strong>まとめ：</strong>解決事例は「添付PDF」ではなく、<strong>ホームページのコンテンツ資産</strong>として持つ。<br />
+      置き場所をHP内にしただけでなく、<span class="term">SEO</span>・<span class="term">GEO</span>に効く本文の型にも最適化しています。<br />
+      ※試作の事例は個人が特定されない想定事例です。本番では実事例（匿名化）への差し替えも可能です。
+    </div>
+
+    <h2>6. SEO・リッチリザルトで何が変わるか</h2>
+    <p>
+      <span class="term">SEO</span>の目的は、ただ「上位表示」ではなく、
+      <strong>困っている人に見つけてもらい、信頼してもらい、相談してもらう</strong>ことです。
+    </p>
+    <table>
+      <tr><th style="width:28%">仕組み</th><th>説明</th><th style="width:28%">試作での対応</th></tr>
+      <tr>
+        <td><span class="term">リッチリザルト</span><br />（FAQ・パンくず）</td>
+        <td>検索結果で目立ちやすくなり、クリックされやすくなることがあります。ただしGoogleの審査があり、<strong>必ず出る保証はありません</strong>。</td>
+        <td>FAQ構造／パンくず用の構造化データを実装</td>
+      </tr>
+      <tr>
+        <td><span class="term">構造化データ</span></td>
+        <td>「会社・サービス・記事・FAQ」などの種類を機械に伝える説明書。</td>
+        <td>Organization／FAQPage／Service／HowTo 等を配置</td>
+      </tr>
+      <tr>
+        <td><span class="term">NAP情報</span>の明示</td>
+        <td>正式名称・住所・電話などが揃っていると、実在団体として扱われやすい。</td>
+        <td>会社概要・トップで前面に記載</td>
+      </tr>
+      <tr>
+        <td>読みやすい見出し構成</td>
+        <td>人が読みやすいページは、検索エンジンにも内容が伝わりやすい。</td>
+        <td>要点→詳細の順に再構成</td>
+      </tr>
+      <tr>
+        <td>サイトの定期更新</td>
+        <td>新しい情報が増え続けるサイトは、「生きている・信頼できる情報源」と見なされやすくなります。放置サイトより有利になりやすい、という意味です（件数だけで順位は決まりません）。</td>
+        <td>コラム（自社ブログ）で継続更新する設計</td>
+      </tr>
+    </table>
+    <div class="box box-warn">
+      <strong>注意：</strong>仕組みを入れた＝必ず検索で1位になる／必ず特別表示が出る、ではありません。<br />
+      本番ドメインでの公開、内容の正確さ、継続更新があって初めて効いてきます。
+    </div>
+
+    <h2>7. コラム＝自社ブログ。定期更新がSEO・AIにも効く</h2>
+    <p>
+      試作の<strong>コラム</strong>は、Amebaなどの外部ブログの代わりになる
+      <strong>ホームページ内のブログ</strong>です。記事が自社ドメインに残るため、SEO・GEOの資産になります。
+    </p>
+    <p>
+      さらに運用としては、<strong>記事の下書きを自動生成し、人が確認してから公開する仕組み</strong>
+      （自動投稿に近い運用）を想定しています。ゼロから毎回書く負担を減らし、<strong>定期的に更新しやすくする</strong>のが目的です。
+    </p>
+    <table>
+      <tr><th style="width:28%">ポイント</th><th>わかりやすい意味</th></tr>
+      <tr>
+        <td>コラム＝自社ブログ</td>
+        <td>外部ブログ任せにせず、「終活コンシェルジュ公式サイトの一部」として発信する。</td>
+      </tr>
+      <tr>
+        <td>自動で下書き → 人が確認 → 公開</td>
+        <td>完全放置の自動公開ではなく、<strong>品質チェック付きの効率化</strong>です。制度・費用など誤ると困る内容は必ず人が見る前提。</td>
+      </tr>
+      <tr>
+        <td>定期更新がSEOに有利になりやすい</td>
+        <td>新しいページ・新しい回答が増えると、検索で拾われる入口が増えます。「このサイトは今も情報が更新されている」と見なされやすくなります。</td>
+      </tr>
+      <tr>
+        <td>定期更新がAI（GEO）にも有利になりやすい</td>
+        <td>AIは比較的新しい・具体的な説明を答えに使いやすい傾向があります。質問に答える文章が増えるほど、<strong>引用候補が増えます</strong>。</td>
+      </tr>
+      <tr>
+        <td>サービスのページへつなげる</td>
+        <td>コラムから「ご家族向け」「サービス」「お問い合わせ」へ誘導でき、読み物が相談（CV）につながりやすくなります。</td>
+      </tr>
+    </table>
+    <div class="box box-gold">
+      <strong>まとめ：</strong>コラムは「たまに書く読み物」ではなく、<br />
+      <strong>定期更新のための仕組み（自動下書き＋人の確認）付きの自社ブログ</strong>として位置づけています。<br />
+      これ自体がSEO・AI対策の一部です。ただし「毎週更新すれば必ず上位／必ずAIに載る」という保証ではありません。
+    </div>
+
+    <h2>8. GEO：なぜAIに引用されやすくなるか</h2>
+    <p>
+      いまはGoogleだけでなく、<strong>ChatGPT・Gemini・Perplexity</strong>などで
+      「身元保証とは？」「終活の相談先は？」と調べる人が増えています。
+      <span class="term">GEO</span>は、そのときに<strong>自社情報を正しく拾ってもらう確率を上げる準備</strong>です。
+    </p>
+    <table>
+      <tr><th style="width:26%">やっていないと起きやすいこと</th><th>試作で入れた対策</th><th style="width:30%">ねらい</th></tr>
+      <tr>
+        <td>長い文章の途中にしか答えがなく、AIが要約しにくい</td>
+        <td>各ページ冒頭に「このページの要点」（短い定義文）</td>
+        <td>一文で引用されやすくする</td>
+      </tr>
+      <tr>
+        <td>質問形式の答えがなく、AIが抜き出しにくい</td>
+        <td>FAQをサイト全体に整備</td>
+        <td>人が聞く言い方で答えを用意</td>
+      </tr>
+      <tr>
+        <td>「誰向けの説明か」が混ざる</td>
+        <td>対象者別ページに分離</td>
+        <td>家族向け／専門職向けを区別して引用</td>
+      </tr>
+      <tr>
+        <td>会社か・サービスか・記事かが機械に分かりにくい</td>
+        <td><span class="term">構造化データ</span>を埋め込み</td>
+        <td>取り違え・誤引用を減らす</td>
+      </tr>
+      <tr>
+        <td>具体的な事例がなく、抽象論だけになりやすい</td>
+        <td>解決事例をHP内に整備（結論・FAQ付き）</td>
+        <td>「こんな相談でこう整えた」を引用しやすく</td>
+      </tr>
+      <tr>
+        <td>団体の身元が弱いと信頼されにくい</td>
+        <td><span class="term">NAP</span>・設立年などを明確化</td>
+        <td>「実在する支援団体」として扱われやすく</td>
+      </tr>
+    </table>
+    <div class="box box-warn">
+      <strong>大切なお約束事項：</strong><br />
+      「GEO対応した」＝「必ずAIの回答に載る」ではありません。<br />
+      AIの判断・時期・質問の仕方で変わります。今回は<strong>載る確率を上げる土台作り</strong>です。
+    </div>
+
+    <h2>9. ページ単位の変更一覧</h2>
+    <h3>A. 新規追加</h3>
+    <table>
+      <tr><th style="width:40%">追加</th><th>ねらい（事業上の意味）</th></tr>
+      <tr><td>FAQページ</td><td>問い合わせ前の不安解消／SEO・GEO強化</td></tr>
+      <tr><td>対象者別ページ（6種）</td><td>自分ごと化→相談（CV）につなげる</td></tr>
+      <tr><td>成年後見／家族信託との違い</td><td>比較検討の迷いを減らす</td></tr>
+      <tr><td>ガイドライン取組みページ（ウェブ表）</td><td>安心・コンプライアンス訴求を読みやすく</td></tr>
+      <tr><td>コラム（自社ブログ）</td><td>Ameba依存を減らし、自動下書き＋定期更新でSEO・GEO資産を自社に蓄積</td></tr>
+      <tr><td>解決事例（HP内ページ＋本文最適化）</td><td>PDF依存をやめサイト資産化。結論先行・FAQ・内部リンクでSEO・AI対策</td></tr>
+    </table>
+
+    <h3>B. 既存改善</h3>
+    <table>
+      <tr><th style="width:22%">ページ</th><th>主な改善</th></tr>
+      <tr><td>トップ</td><td>要点要約、色の統一、YouTube、ガイドライン案内の整理</td></tr>
+      <tr><td>サービス</td><td>写真化、料金・FAQ整理、サービス内容の機械可読化</td></tr>
+      <tr><td>ご契約の流れ</td><td>4ステップを写真付きで明確化（HowTo対応）</td></tr>
+      <tr><td>活動実績</td><td>要約＋直近＋年別アーカイブ</td></tr>
+      <tr><td>会社概要</td><td>NAP・設立年など基本情報を前面に</td></tr>
+    </table>
+
+    <h2>10. 試作で特に見てほしい画面</h2>
+    <table>
+      <tr><th style="width:30%">画面</th><th>ここで確認すること</th></tr>
+      <tr><td>トップ<br /><span class="url">…/shukatsu-demo/</span></td><td>第一印象・要点・信頼性</td></tr>
+      <tr><td>FAQ<br /><span class="url">…/faq/</span></td><td>問い合わせ前に自分で解決できるか</td></tr>
+      <tr><td>ご家族向け／ケアマネ向け<br /><span class="url">…/for/family/ など</span></td><td>「自分向け」と感じられるか</td></tr>
+      <tr><td>解決事例<br /><span class="url">…/cases/</span></td><td>PDFなしで読めるか／結論・FAQがあり分かりやすいか</td></tr>
+      <tr><td>コラム<br /><span class="url">…/columns/</span></td><td>自社ブログとして記事が蓄積できる形か</td></tr>
+      <tr><td>ガイドライン<br /><span class="url">…/guideline/</span></td><td>PDFより表の方が分かりやすいか</td></tr>
+      <tr><td>活動実績<br /><span class="url">…/activity/</span></td><td>実績の多さが一目で伝わるか</td></tr>
+    </table>
+
+    <h2>11. まだ本番ではない点</h2>
+    <ul>
+      <li>お問い合わせフォームは見た目確認用（本番の送信処理には未接続）</li>
+      <li>代表写真は「準備中」</li>
+      <li>一部の解決事例は提案用の想定事例（個人が特定される実在情報は不含）</li>
+      <li>URLが試作用（本番ドメインではない）</li>
+    </ul>
+    <div class="box box-gold">
+      本番化では、ドメイン接続・フォーム本接続・写真差し替え・文言の最終確認が必要です。<br />
+      SEO／GEOの効果測定も、本番公開後に本格化します。
+    </div>
+
+    <p class="footer-note">
+      一般社団法人終活コンシェルジュ コーポレートサイトリニューアル提案｜本資料は提案用です
+    </p>
+  </div>
+</body>
+</html>
