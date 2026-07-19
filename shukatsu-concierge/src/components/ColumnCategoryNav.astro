@@ -1,0 +1,46 @@
+---
+import { withBase } from '../lib/site';
+
+type CategoryItem = { name: string; slug: string; count: number };
+
+interface Props {
+  categories: CategoryItem[];
+  activeSlug?: string | null;
+}
+
+const { categories, activeSlug = null } = Astro.props;
+const allActive = !activeSlug;
+---
+
+<nav aria-label="コラムのカテゴリー" class="flex flex-wrap gap-2">
+  <a
+    href={withBase('/columns/')}
+    class:list={[
+      'rounded-full border px-3.5 py-2 text-sm font-medium transition',
+      allActive
+        ? 'border-brand bg-brand text-white'
+        : 'border-brand/15 bg-white text-brand-dark hover:border-brand hover:bg-brand-light',
+    ]}
+  >
+    すべて
+  </a>
+  {categories.map((cat) => {
+    const active = activeSlug === cat.slug;
+    return (
+      <a
+        href={withBase(`/columns/category/${cat.slug}/`)}
+        class:list={[
+          'rounded-full border px-3.5 py-2 text-sm font-medium transition',
+          active
+            ? 'border-brand bg-brand text-white'
+            : 'border-brand/15 bg-white text-brand-dark hover:border-brand hover:bg-brand-light',
+        ]}
+      >
+        {cat.name}
+        <span class:list={['ml-1 tabular-nums', active ? 'text-white/80' : 'text-muted']}>
+          ({cat.count})
+        </span>
+      </a>
+    );
+  })}
+</nav>

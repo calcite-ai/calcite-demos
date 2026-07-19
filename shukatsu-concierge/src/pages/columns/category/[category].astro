@@ -1,0 +1,67 @@
+---
+import { breadcrumbJsonLd, itemListJsonLd } from '../../../lib/schema';
+import {
+  filterByCategory,
+  getCategoryStats,
+  getPublishedColumns,
+  slugToCategory,
+} from '../../../lib/columns';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import PageHero from '../../../components/PageHero.astro';
+import Section from '../../../components/Section.astro';
+import ColumnCategoryNav from '../../../components/ColumnCategoryNav.astro';
+import ColumnPostList from '../../../components/ColumnPostList.astro';
+
+export async function getStaticPaths() {
+  const posts = await getPublishedColumns();
+  const categories = getCategoryStats(posts);
+  return categories.map((cat) => ({
+    params: { category: cat.slug },
+    props: { categoryName: cat.name, categorySlug: cat.slug },
+  }));
+}
+
+const { categoryName, categorySlug } = Astro.props;
+const allPosts = await getPublishedColumns();
+const categories = getCategoryStats(allPosts);
+const posts = filterByCategory(allPosts, categoryName);
+const path = `/columns/category/${categorySlug}/`;
+const desc = `「${categoryName}」カテゴリーのコラム一覧。終活・身元保証などに関する解説記事です。`;
+const jsonLd = [
+  breadcrumbJsonLd([
+    { name: 'コラム', path: '/columns/' },
+    { name: categoryName, path },
+  ]),
+  itemListJsonLd(
+    `コラム（${categoryName}）`,
+    posts.map((post) => ({
+      name: post.data.title,
+      path: `/columns/${post.id}/`,
+      description: post.data.meta_description,
+    })),
+    path,
+  ),
+];
+
+// 念のためスラッグ整合を検証（ビルド時）
+if (slugToCategory(categorySlug, categories.map((c) => c.name)) !== categoryName) {
+  throw new Error(`Category slug mismatch: ${categorySlug}`);
+}
+---
+
+<BaseLayout title={`${categoryName}｜コラム`} jsonLd={jsonLd} description={desc}>
+  <PageHero
+    title={categoryName}
+    lead={desc}
+    crumbs={[{ label: 'コラム', href: '/columns/' }, { label: categoryName }]}
+  />
+
+  <div class="mx-auto max-w-6xl px-4 pt-10">
+    <p class="mb-3 text-sm font-medium text-brand-dark">カテゴリー</p>
+    <ColumnCategoryNav categories={categories} activeSlug={categorySlug} />
+  </div>
+
+  <Section eyebrow="Articles" title={`${categoryName}の記事（${posts.length}）`}>
+    <ColumnPostList posts={posts} />
+  </Section>
+</BaseLayout>

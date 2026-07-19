@@ -1,15 +1,16 @@
 ---
-import { withBase } from '../../lib/site';
 import { breadcrumbJsonLd, itemListJsonLd } from '../../lib/schema';
-import { getCollection } from 'astro:content';
+import { getCategoryStats, getPublishedColumns } from '../../lib/columns';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import PageHero from '../../components/PageHero.astro';
 import Section from '../../components/Section.astro';
 import AnswerLead from '../../components/AnswerLead.astro';
+import ColumnCategoryNav from '../../components/ColumnCategoryNav.astro';
+import ColumnPostList from '../../components/ColumnPostList.astro';
 
-const desc = '終活・身元保証・制度の見方など、ご本人・ご家族・専門職向けの解説記事（自社ブログ）。検索やAIに引用されやすいよう、各記事の冒頭で結論を示します。';
-const posts = (await getCollection('columns', ({ data }) => data.status === 'published'))
-  .sort((a, b) => b.data.published_date.valueOf() - a.data.published_date.valueOf());
+const desc = '終活・身元保証・制度の見方など、ご本人・ご家族・専門職向けの解説記事（自社ブログ）。検索やAIに引用されやすいよう、各記事の冒頭で結論を示します。カテゴリーから関連記事を探せます。';
+const posts = await getPublishedColumns();
+const categories = getCategoryStats(posts);
 const jsonLd = [
   breadcrumbJsonLd([{ name: 'コラム', path: '/columns/' }]),
   itemListJsonLd(
@@ -27,26 +28,20 @@ const jsonLd = [
 <BaseLayout title="コラム" jsonLd={jsonLd} description={desc}>
   <PageHero title="コラム" lead={desc} crumbs={[{ label: 'コラム' }]} />
 
-  <div class="mx-auto max-w-6xl px-4 pt-10">
+  <div class="mx-auto max-w-6xl px-4 pt-10 space-y-8">
     <AnswerLead title="コラムについて">
       <p>
-        終活・身元保証・制度の見方など、高齢者ご本人・ご家族・専門職向けの解説記事を掲載します。検索やAIに引用されやすいよう、各記事の冒頭で結論を示します。
+        終活・身元保証・制度の見方など、高齢者ご本人・ご家族・専門職向けの解説記事を掲載します。検索やAIに引用されやすいよう、各記事の冒頭で結論を示します。気になるテーマはカテゴリーから絞り込めます。
       </p>
     </AnswerLead>
+
+    <div>
+      <p class="mb-3 text-sm font-medium text-brand-dark">カテゴリー</p>
+      <ColumnCategoryNav categories={categories} />
+    </div>
   </div>
 
   <Section eyebrow="Articles" title="記事一覧">
-    <div class="grid gap-4">
-      {posts.map((post) => (
-        <a href={withBase(`/columns/${post.id}/`)} class="rounded-2xl border border-brand/10 bg-white p-5 hover:border-brand transition">
-          <div class="flex flex-wrap gap-2 text-xs text-muted">
-            <span class="rounded-full bg-accent-soft px-2.5 py-1 text-brand-dark font-medium">{post.data.category}</span>
-            <time datetime={post.data.published_date.toISOString()}>{post.data.published_date.toISOString().slice(0, 10)}</time>
-          </div>
-          <h2 class="mt-3 text-lg font-bold text-brand-dark">{post.data.title}</h2>
-          <p class="mt-2 text-sm text-muted">{post.data.meta_description}</p>
-        </a>
-      ))}
-    </div>
+    <ColumnPostList posts={posts} />
   </Section>
 </BaseLayout>
