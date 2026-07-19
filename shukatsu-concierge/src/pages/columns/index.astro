@@ -7,7 +7,7 @@ import PageHero from '../../components/PageHero.astro';
 import Section from '../../components/Section.astro';
 import AnswerLead from '../../components/AnswerLead.astro';
 
-const desc = '終活・高齢者支援に関するコラム。Amebaブログから自社ドメインへ移行する想定のデモです。';
+const desc = '終活・身元保証・制度の見方など、ご本人・ご家族・専門職向けの解説記事（自社ブログ）。検索やAIに引用されやすいよう、各記事の冒頭で結論を示します。';
 const posts = (await getCollection('columns', ({ data }) => data.status === 'published'))
   .sort((a, b) => b.data.published_date.valueOf() - a.data.published_date.valueOf());
 const jsonLd = [
