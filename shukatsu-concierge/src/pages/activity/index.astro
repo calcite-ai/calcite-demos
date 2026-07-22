@@ -64,12 +64,16 @@ const jsonLd = [
         <p class="text-xs text-muted">掲載年数</p>
         <p class="mt-2 text-3xl font-bold text-brand-dark">{summary.yearCount}<span class="text-base font-medium">年</span></p>
       </div>
-      <div class="rounded-2xl border border-brand/10 bg-white p-5">
+      <div class="rounded-2xl border border-brand/10 bg-white p-5 sm:col-span-2 lg:col-span-1">
         <p class="text-xs text-muted">主な活動エリア</p>
-        <p class="mt-2 text-sm font-medium text-brand-dark leading-relaxed">{summary.regionNames.join('・')}</p>
+        <p class="mt-2 text-sm font-medium text-brand-dark leading-relaxed break-words">
+          {summary.regionNames.join('・')}
+        </p>
       </div>
     </div>
-    <p class="mt-4 text-xs text-muted">※件数は現行サイトに公開されている活動報告の転記・集計です（デモ）。2013〜2014年は公開表が「開催月×開催地」形式のため、開催地ごとに1件として掲載しています（テーマ等の詳細は非公開のため「月次開催地まとめ」と表記）。</p>
+    <p class="mt-4 text-xs text-muted leading-relaxed">
+      ※件数は現行サイトに公開されている活動報告の転記・集計です（デモ）。2013〜2014年は公開表が「開催月×開催地」形式のため、開催地ごとに1件として掲載しています（テーマ等の詳細は非公開のため「月次開催地まとめ」と表記）。
+    </p>
   </Section>
 
   <Section
@@ -85,11 +89,13 @@ const jsonLd = [
     <div class="space-y-3">
       {byYear.map(({ year, items }) => (
         <details class="group rounded-2xl border border-brand/10 bg-white open:shadow-sm" open={openYears.has(year)}>
-          <summary class="cursor-pointer list-none px-5 py-4 flex items-center justify-between gap-4">
-            <span class="font-bold text-brand-dark">{year}年 <span class="font-medium text-muted">（{items.length}件）</span></span>
-            <span class="text-brand text-xl leading-none transition group-open:rotate-45">+</span>
+          <summary class="cursor-pointer list-none px-4 py-3.5 sm:px-5 sm:py-4 flex items-center justify-between gap-3">
+            <span class="font-bold text-brand-dark text-[15px] sm:text-base">
+              {year}年 <span class="font-medium text-muted">（{items.length}件）</span>
+            </span>
+            <span class="shrink-0 text-brand text-xl leading-none transition group-open:rotate-45" aria-hidden="true">+</span>
           </summary>
-          <div class="border-t border-brand/10 px-3 pb-4 pt-2 md:px-4">
+          <div class="border-t border-brand/10 px-3 pb-4 pt-3 sm:px-4">
             <ActivityTable items={items} />
           </div>
         </details>

@@ -5,9 +5,45 @@ interface Props {
   items: Activity[];
 }
 const { items } = Astro.props;
+
+function cardTitle(a: Activity) {
+  return a.theme || a.host || a.place;
+}
+
+function fields(a: Activity) {
+  const title = cardTitle(a);
+  return [
+    { label: '場所', value: a.place },
+    { label: '主宰', value: a.host },
+    { label: 'テーマ', value: a.theme },
+    { label: '対象', value: a.audience },
+    { label: '人数', value: a.count },
+  ].filter((f) => Boolean(f.value) && f.value !== title);
+}
 ---
 
-<div class="overflow-x-auto rounded-2xl border border-brand/10 bg-white shadow-sm">
+{/* スマホ：カード（横スクロール不要） */}
+<ul class="md:hidden space-y-3" role="list">
+  {items.map((a) => (
+    <li class="rounded-2xl border border-brand/10 bg-white p-4 shadow-sm">
+      <p class="text-xs font-semibold tracking-wide text-accent">{a.date}</p>
+      <p class="mt-1.5 text-[15px] font-bold leading-snug text-brand-dark break-words">
+        {cardTitle(a)}
+      </p>
+      <dl class="mt-3 space-y-2 text-sm">
+        {fields(a).map((f) => (
+          <div class="grid grid-cols-[4.25rem_minmax(0,1fr)] gap-x-3">
+            <dt class="shrink-0 text-muted">{f.label}</dt>
+            <dd class="min-w-0 break-words text-ink/90 leading-relaxed">{f.value}</dd>
+          </div>
+        ))}
+      </dl>
+    </li>
+  ))}
+</ul>
+
+{/* デスクトップ：表 */}
+<div class="hidden md:block overflow-x-auto rounded-2xl border border-brand/10 bg-white shadow-sm">
   <table class="min-w-full text-left text-sm">
     <thead class="bg-brand-light text-brand-dark">
       <tr>
@@ -22,12 +58,12 @@ const { items } = Astro.props;
     <tbody class="divide-y divide-brand/10 text-muted">
       {items.map((a) => (
         <tr class="hover:bg-bg/80">
-          <td class="px-4 py-3 whitespace-nowrap">{a.date}</td>
-          <td class="px-4 py-3">{a.place}</td>
-          <td class="px-4 py-3">{a.host}</td>
-          <td class="px-4 py-3">{a.theme}</td>
-          <td class="px-4 py-3">{a.audience || '—'}</td>
-          <td class="px-4 py-3 whitespace-nowrap">{a.count || '—'}</td>
+          <td class="px-4 py-3 whitespace-nowrap align-top">{a.date}</td>
+          <td class="px-4 py-3 align-top">{a.place}</td>
+          <td class="px-4 py-3 align-top">{a.host}</td>
+          <td class="px-4 py-3 align-top">{a.theme}</td>
+          <td class="px-4 py-3 align-top">{a.audience || '—'}</td>
+          <td class="px-4 py-3 whitespace-nowrap align-top">{a.count || '—'}</td>
         </tr>
       ))}
     </tbody>
