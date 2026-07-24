@@ -1,14 +1,15 @@
 @import "tailwindcss";
 
 @theme {
-  --color-brand: #2f5d50;
-  --color-brand-dark: #1f3f36;
-  --color-brand-light: #e8f0ed;
-  --color-accent: #c4a35a;
-  --color-accent-soft: #f3ead3;
+  /* ロゴ抽出色: 青 #1058A8 / 金 #F0A000 */
+  --color-brand: #0a58a8;
+  --color-brand-dark: #063a70;
+  --color-brand-light: #e8f1fa;
+  --color-accent: #f0a000;
+  --color-accent-soft: #fff3d6;
   --color-ink: #1c1c1c;
   --color-muted: #5a5a5a;
-  --color-bg: #f7f5f1;
+  --color-bg: #f5f7fb;
   --color-surface: #ffffff;
   --font-sans: "Noto Sans JP", "Hiragino Sans", "Hiragino Kaku Gothic ProN",
     "Yu Gothic", YuGothic, Meiryo, sans-serif;
