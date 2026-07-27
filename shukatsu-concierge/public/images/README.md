@@ -2,11 +2,15 @@
 
 現行サイト（shukatsu.or.jp）から流用した自社所有候補のみ。
 
+サービス／ご契約の流れのビジュアルは、写真ではなく自作SVGイラスト
+（`src/components/IllustrationFrame.astro`）を使用。
+
 ## 不使用（ストック）
 
 - Fotolia_*
 - iStock-*
 - pixta_*
+- Unsplash 等のストック写真（サービス／フロー枠）
 
 ## 未取得
 

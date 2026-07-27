@@ -2,8 +2,9 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Section from '../components/Section.astro';
 import AnswerLead from '../components/AnswerLead.astro';
-import PhotoFrame from '../components/PhotoFrame.astro';
+import IllustrationFrame from '../components/IllustrationFrame.astro';
 import { site, services, worries, audiencePages, flowSteps, withBase } from '../lib/site';
+import { topics } from '../data/topics';
 import {
   organizationJsonLd,
   webSiteJsonLd,
@@ -15,6 +16,8 @@ const jsonLd = [
   webSiteJsonLd(),
   professionalServiceJsonLd(),
 ];
+
+const latestTopics = topics.slice(0, 5);
 ---
 
 <BaseLayout title="ご高齢者と関係者のための支援・相談窓口" description={site.description} jsonLd={jsonLd}>
@@ -51,27 +54,44 @@ const jsonLd = [
 
   <section class="border-b border-brand/10 bg-white">
     <div class="mx-auto max-w-6xl px-4 py-12 md:py-16">
-      <p class="text-center text-sm md:text-base">
-        <a href="https://shushin-support.or.jp" class="font-semibold text-brand underline underline-offset-4 hover:text-brand-dark" target="_blank" rel="noopener noreferrer">
-          『一般社団法人全国高齢者支援団体連合会』に参画しています。
-        </a>
-      </p>
-      <p class="mt-6 text-center">
-        <a href="https://www.youtube.com/watch?v=k1L2JM7SV_M" class="text-sm md:text-base font-bold text-brand hover:text-brand-dark" target="_blank" rel="noopener noreferrer">
-          【この度6月19日に羽鳥慎一のモーニングショーにて紹介されました。】
-        </a>
-      </p>
-      <div class="mx-auto mt-6 aspect-video max-w-3xl overflow-hidden rounded-2xl shadow-md ring-1 ring-brand/10">
-        <iframe
-          class="h-full w-full"
-          src="https://www.youtube.com/embed/k1L2JM7SV_M"
-          title="「住む家がない」高齢者困惑　年齢理由に入居拒否　相談から転居までの支援サービスも【羽鳥慎一モーニングショー】(2026年6月19日)"
-          loading="lazy"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          referrerpolicy="strict-origin-when-cross-origin"
-          allowfullscreen
-        ></iframe>
+      <div class="flex flex-wrap items-end justify-between gap-3">
+        <div>
+          <p class="text-sm font-medium tracking-wide text-brand">TOPICS</p>
+          <h2 class="mt-1 text-xl sm:text-2xl font-bold text-brand-dark tracking-tight">お知らせ・進捗</h2>
+        </div>
+        <p class="text-xs text-muted">活動や取組みの進捗を随時掲載します</p>
       </div>
+      <ul class="mt-8 divide-y divide-brand/10 rounded-2xl border border-brand/10 bg-bg/60 overflow-hidden">
+        {latestTopics.map((t) => {
+          const href = t.href ? (t.external ? t.href : withBase(t.href)) : undefined;
+          const Tag = href ? 'a' : 'div';
+          const extra = href
+            ? {
+                href,
+                ...(t.external ? { target: '_blank', rel: 'noopener noreferrer' } : {}),
+              }
+            : {};
+          return (
+            <li>
+              <Tag
+                {...extra}
+                class:list={[
+                  'flex flex-col gap-1 px-4 py-4 sm:flex-row sm:items-baseline sm:gap-6 sm:px-5',
+                  href && 'hover:bg-brand-light/50 transition',
+                ]}
+              >
+                <time class="shrink-0 text-xs font-medium tabular-nums text-accent sm:w-28" datetime={t.date}>
+                  {t.date.replaceAll('-', '.')}
+                </time>
+                <span class="text-[15px] text-brand-dark leading-relaxed">
+                  {t.title}
+                  {t.external && <span class="ml-1 text-xs text-muted">↗</span>}
+                </span>
+              </Tag>
+            </li>
+          );
+        })}
+      </ul>
     </div>
   </section>
 
@@ -154,7 +174,7 @@ const jsonLd = [
     <div class="grid gap-6 md:grid-cols-3">
       {services.map((s) => (
         <a href={withBase(s.href)} class="group overflow-hidden rounded-2xl border border-brand/10 bg-white hover:border-brand/30 hover:shadow-md transition">
-          <PhotoFrame src={s.image} alt={s.name} class="h-40" />
+          <IllustrationFrame name={s.illustration} alt={s.name} class="h-40" />
           <div class="p-5">
             <h3 class="text-lg font-bold text-brand-dark group-hover:text-brand">{s.name}</h3>
             <p class="mt-2 text-sm text-muted leading-relaxed">{s.summary}</p>
@@ -172,7 +192,7 @@ const jsonLd = [
     <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
       {flowSteps.map((f) => (
         <div class="overflow-hidden rounded-2xl bg-white border border-brand/10">
-          <PhotoFrame src={f.image} alt={f.title} class="h-36" />
+          <IllustrationFrame name={f.illustration} alt={f.title} class="h-36" />
           <div class="p-4">
             <p class="text-xs font-semibold tracking-wide text-accent">STEP {f.step}</p>
             <h3 class="mt-1 font-bold text-brand-dark">{f.title}</h3>
