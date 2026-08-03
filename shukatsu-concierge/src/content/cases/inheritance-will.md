@@ -2,7 +2,7 @@
 title: 子どもがいない夫婦の遺言と相続準備｜死後の手続きまで見据えた解決事例
 meta_description: お子様のいないご夫婦が、遺言と死後事務を合わせて整え、残された側の負担を減らすために進めた解決事例です。
 category: 相続
-status: published
+status: draft
 source: 本人・家族
 published_date: 2026-02-08
 ---

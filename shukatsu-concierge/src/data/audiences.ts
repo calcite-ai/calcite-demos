@@ -87,7 +87,7 @@ export const audiences: AudienceContent[] = [
       },
       {
         title: '視力に不安があり施設入所前に手続きを終えたい｜生活支援の解決事例',
-        path: '/cases/daily-support/',
+        path: '/cases/jirei-06-vision-facility/',
         note: '生活支援と入所準備',
       },
     ],
@@ -181,17 +181,17 @@ export const audiences: AudienceContent[] = [
     relatedCases: [
       {
         title: '救急搬送後に身元保証人が見つからない｜病院MSW連携の解決事例',
-        path: '/cases/hospital-identity/',
+        path: '/cases/jirei-10-hospital-couple/',
         note: '病院起点の身元保証',
       },
       {
         title: '視力に不安があり施設入所前に手続きを終えたい｜生活支援の解決事例',
-        path: '/cases/daily-support/',
+        path: '/cases/jirei-06-vision-facility/',
         note: '生活支援と入所準備',
       },
       {
-        title: '子どもがいない夫婦の遺言と相続準備｜死後の手続きまで見据えた解決事例',
-        path: '/cases/inheritance-will/',
+        title: '緩和病棟入院前の身元保証と医療同意｜地域包括からの解決事例',
+        path: '/cases/jirei-02-palliative/',
         note: '家族が少ない場合の備え',
       },
     ],
@@ -285,17 +285,17 @@ export const audiences: AudienceContent[] = [
     relatedCases: [
       {
         title: '高齢者住宅で身元保証人を求められた｜地域包括からの解決事例',
-        path: '/cases/no-guarantor-housing/',
+        path: '/cases/jirei-01-no-guarantor-facility/',
         note: '入所時の保証人',
       },
       {
         title: '救急搬送後に身元保証人が見つからない｜病院MSW連携の解決事例',
-        path: '/cases/hospital-identity/',
+        path: '/cases/jirei-10-hospital-couple/',
         note: '入院時の保証',
       },
       {
         title: '視力に不安があり施設入所前に手続きを終えたい｜生活支援の解決事例',
-        path: '/cases/daily-support/',
+        path: '/cases/jirei-06-vision-facility/',
         note: '入所前の生活支援',
       },
     ],
@@ -389,12 +389,12 @@ export const audiences: AudienceContent[] = [
     relatedCases: [
       {
         title: '高齢者住宅で身元保証人を求められた｜地域包括からの解決事例',
-        path: '/cases/no-guarantor-housing/',
+        path: '/cases/jirei-01-no-guarantor-facility/',
         note: '身寄りなし入所',
       },
       {
         title: '救急搬送後に身元保証人が見つからない｜病院MSW連携の解決事例',
-        path: '/cases/hospital-identity/',
+        path: '/cases/jirei-10-hospital-couple/',
         note: '緊急時の保証',
       },
       {
@@ -493,17 +493,17 @@ export const audiences: AudienceContent[] = [
     relatedCases: [
       {
         title: '救急搬送後に身元保証人が見つからない｜病院MSW連携の解決事例',
-        path: '/cases/hospital-identity/',
+        path: '/cases/jirei-10-hospital-couple/',
         note: '病院起点の典型例',
       },
       {
         title: '高齢者住宅で身元保証人を求められた｜地域包括からの解決事例',
-        path: '/cases/no-guarantor-housing/',
+        path: '/cases/jirei-01-no-guarantor-facility/',
         note: '退院先施設の保証',
       },
       {
         title: 'ALS療養中に備える身元保証と死後事務｜ケアマネ連携の解決事例',
-        path: '/cases/als-after-death/',
+        path: '/cases/jirei-04-als/',
         note: '医療・療養と死後事務',
       },
     ],
@@ -596,12 +596,12 @@ export const audiences: AudienceContent[] = [
     relatedCases: [
       {
         title: '高齢者住宅で身元保証人を求められた｜地域包括からの解決事例',
-        path: '/cases/no-guarantor-housing/',
+        path: '/cases/jirei-01-no-guarantor-facility/',
         note: '施設入居の保証',
       },
       {
         title: '視力に不安があり施設入所前に手続きを終えたい｜生活支援の解決事例',
-        path: '/cases/daily-support/',
+        path: '/cases/jirei-06-vision-facility/',
         note: '入所前準備',
       },
       {
@@ -705,12 +705,12 @@ export const audiences: AudienceContent[] = [
       },
       {
         title: '高齢者住宅で身元保証人を求められた｜地域包括からの解決事例',
-        path: '/cases/no-guarantor-housing/',
+        path: '/cases/jirei-01-no-guarantor-facility/',
         note: '紹介後に起きやすい課題',
       },
       {
         title: '救急搬送後に身元保証人が見つからない｜病院MSW連携の解決事例',
-        path: '/cases/hospital-identity/',
+        path: '/cases/jirei-10-hospital-couple/',
         note: '緊急ニーズ',
       },
     ],

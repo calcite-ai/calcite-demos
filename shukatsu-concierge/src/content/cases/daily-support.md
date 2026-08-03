@@ -2,7 +2,7 @@
 title: 視力に不安があり施設入所前に手続きを終えたい｜生活支援の解決事例
 meta_description: 視力の不安から施設入所前の手続きが進まないケースで、生活支援と身元保証を組み合わせて入所準備を整えた解決事例です。
 category: 生活支援
-status: published
+status: draft
 source: 居宅介護
 published_date: 2026-01-18
 ---

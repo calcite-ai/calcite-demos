@@ -2,7 +2,7 @@
 title: 高齢者住宅で身元保証人を求められた｜地域包括からの解決事例
 meta_description: 住まいの継続と入院時の保証人が不安なケースで、地域包括支援センターと連携し保証の範囲と費用を整理した解決事例です。
 category: 身元保証
-status: published
+status: draft
 source: 地域包括
 published_date: 2026-03-20
 ---
