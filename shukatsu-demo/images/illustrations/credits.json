@@ -1,0 +1,66 @@
+[
+  {
+    "id": "sasae",
+    "type": "higgsfield",
+    "model": "nano_banana_pro",
+    "job_id": "70e817f7-e039-40bb-adce-24abc5a57d67",
+    "file": "/images/illustrations/sasae.png",
+    "note": "身元保証・保護のイラスト。自社発注生成（Higgsfield）。"
+  },
+  {
+    "id": "otomo",
+    "type": "higgsfield",
+    "model": "nano_banana_pro",
+    "job_id": "cd8e88a8-81c4-45df-a396-354526372a3d",
+    "file": "/images/illustrations/otomo.png",
+    "note": "生活支援・同行のイラスト。"
+  },
+  {
+    "id": "mukae",
+    "type": "higgsfield",
+    "model": "nano_banana_pro",
+    "job_id": "883b5d57-e033-4aef-be4a-7dac8a6835ce",
+    "file": "/images/illustrations/mukae.png",
+    "note": "死後事務・書類のイラスト。"
+  },
+  {
+    "id": "consult",
+    "type": "higgsfield",
+    "model": "nano_banana_pro",
+    "job_id": "10e422eb-4939-4982-8645-5f16e08a4a79",
+    "file": "/images/illustrations/consult.png",
+    "note": "相談受付のイラスト。"
+  },
+  {
+    "id": "meeting",
+    "type": "higgsfield",
+    "model": "nano_banana_pro",
+    "job_id": "2685e61e-5e44-49d3-a707-2230486416bf",
+    "file": "/images/illustrations/meeting.png",
+    "note": "ご面談のイラスト。"
+  },
+  {
+    "id": "contract",
+    "type": "higgsfield",
+    "model": "nano_banana_pro",
+    "job_id": "1aec0d25-95d5-4b37-a63b-f33567f644d2",
+    "file": "/images/illustrations/contract.png",
+    "note": "ご契約のイラスト。"
+  },
+  {
+    "id": "start",
+    "type": "higgsfield",
+    "model": "nano_banana_pro",
+    "job_id": "1a39ea1f-1123-4ed8-909f-e90ef57ea90c",
+    "file": "/images/illustrations/start.png",
+    "note": "サービス開始のイラスト。"
+  },
+  {
+    "id": "souzoku",
+    "type": "higgsfield",
+    "model": "nano_banana_pro",
+    "job_id": "ef8b8673-b8c7-4ce0-99ac-57a1d6d405bb",
+    "file": "/images/illustrations/souzoku.png",
+    "note": "解決事例カテゴリ「相続」用イラスト。"
+  }
+]

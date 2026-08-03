@@ -1,0 +1,97 @@
+[
+  {
+    "id": "family-01",
+    "audience": "ご家族向け",
+    "title": "無料相談で状況を整理"
+  },
+  {
+    "id": "family-02",
+    "audience": "ご家族向け",
+    "title": "身元保証・生活支援・死後事務の提案"
+  },
+  {
+    "id": "family-03",
+    "audience": "ご家族向け",
+    "title": "施設・病院との連絡窓口を一本化"
+  },
+  {
+    "id": "care-manager-01",
+    "audience": "ケアマネ向け",
+    "title": "入所・入院時の身元保証の受け皿"
+  },
+  {
+    "id": "care-manager-02",
+    "audience": "ケアマネ向け",
+    "title": "ケアマネとの情報共有"
+  },
+  {
+    "id": "care-manager-03",
+    "audience": "ケアマネ向け",
+    "title": "死後事務を含む切れ目ない支援"
+  },
+  {
+    "id": "community-support-01",
+    "audience": "地域包括向け",
+    "title": "包括職員向けの勉強会・講師派遣"
+  },
+  {
+    "id": "community-support-02",
+    "audience": "地域包括向け",
+    "title": "本人面談前のヒアリング"
+  },
+  {
+    "id": "community-support-03",
+    "audience": "地域包括向け",
+    "title": "制度比較の整理"
+  },
+  {
+    "id": "hospital-msw-01",
+    "audience": "病院MSW向け",
+    "title": "退院調整時の身元保証相談",
+    "model": "nano_banana_pro",
+    "job_id": "4d81ef06-df53-4876-b59e-28c39eeba337",
+    "note": "退院調整の相談シーンを再生成。浮遊していた漢字（支援・応・相談）を除去。参照画像＋nano_banana_pro。"
+  },
+  {
+    "id": "hospital-msw-02",
+    "audience": "病院MSW向け",
+    "title": "緊急時の連絡・引受の相談"
+  },
+  {
+    "id": "hospital-msw-03",
+    "audience": "病院MSW向け",
+    "title": "施設・在宅へのつなぎ支援"
+  },
+  {
+    "id": "nursing-home-01",
+    "audience": "老人ホーム向け",
+    "title": "入居時の身元保証"
+  },
+  {
+    "id": "nursing-home-02",
+    "audience": "老人ホーム向け",
+    "title": "緊急時の連絡・対応"
+  },
+  {
+    "id": "nursing-home-03",
+    "audience": "老人ホーム向け",
+    "title": "退去・死後事務の相談"
+  },
+  {
+    "id": "referral-01",
+    "audience": "紹介会社向け",
+    "title": "紹介フローに乗せる連携",
+    "note": "下段（ループ矢印・和装カップル）を削除。上段のみ残す。バックアップ: referral-01-old.png"
+  },
+  {
+    "id": "referral-02",
+    "audience": "紹介会社向け",
+    "title": "顧客への同席説明"
+  },
+  {
+    "id": "referral-03",
+    "audience": "紹介会社向け",
+    "title": "ガイドライン遵守の可視化",
+    "note": "チェック色ムラ・髪の欠けを解消。再生成ベース＋チェックを同一描画で統一（2026-07-28）"
+  }
+]
