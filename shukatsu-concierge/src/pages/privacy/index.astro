@@ -1,0 +1,102 @@
+---
+import { breadcrumbJsonLd } from '../../lib/schema';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHero from '../../components/PageHero.astro';
+import Section from '../../components/Section.astro';
+import { site } from '../../lib/site';
+
+const desc = `${site.name}における個人情報の取り扱いについてご説明します。`;
+const jsonLd = [breadcrumbJsonLd([{ name: 'プライバシーポリシー', path: '/privacy/' }])];
+const updated = '2026年8月3日';
+---
+
+<BaseLayout title="プライバシーポリシー" jsonLd={jsonLd} description={desc}>
+  <PageHero title="プライバシーポリシー" lead={desc} crumbs={[{ label: 'プライバシーポリシー' }]} />
+
+  <Section eyebrow="Policy" title="個人情報の取り扱いについて" lead={`制定・改定日：${updated}`}>
+    <div class="space-y-8 text-sm text-muted leading-relaxed">
+      <p>
+        {site.name}（以下「当法人」）は、ご相談・ご契約・お問い合わせ等を通じてお預かりする個人情報を大切に扱い、個人情報の保護に関する法律その他の関係法令を遵守します。
+      </p>
+
+      <div>
+        <h3 class="text-base font-bold text-brand-dark">1. 事業者の名称・所在地・代表者</h3>
+        <dl class="mt-3 space-y-1">
+          <div class="sm:grid sm:grid-cols-[8rem_1fr] gap-2"><dt class="font-medium text-brand-dark">名称</dt><dd>{site.name}</dd></div>
+          <div class="sm:grid sm:grid-cols-[8rem_1fr] gap-2"><dt class="font-medium text-brand-dark">所在地</dt><dd>{site.address.full}</dd></div>
+          <div class="sm:grid sm:grid-cols-[8rem_1fr] gap-2"><dt class="font-medium text-brand-dark">代表者</dt><dd>代表理事 {site.representative}</dd></div>
+        </dl>
+      </div>
+
+      <div>
+        <h3 class="text-base font-bold text-brand-dark">2. 取得する個人情報</h3>
+        <p class="mt-3">当法人は、事業の運営に必要な範囲で、次のような情報を取得することがあります。</p>
+        <ul class="mt-3 list-disc space-y-1 pl-5">
+          <li>氏名、住所、電話番号、メールアドレス、生年月日その他の連絡先情報</li>
+          <li>ご相談内容、ご家族・関係者に関する情報、健康状態・介護・医療に関する情報（ご相談に必要な範囲）</li>
+          <li>契約・サービス提供に関する情報</li>
+          <li>ウェブサイトのお問い合わせフォーム等から送信された情報</li>
+          <li>その他、サービス提供のために必要な情報</li>
+        </ul>
+      </div>
+
+      <div>
+        <h3 class="text-base font-bold text-brand-dark">3. 利用目的</h3>
+        <p class="mt-3">取得した個人情報は、次の目的で利用します。</p>
+        <ul class="mt-3 list-disc space-y-1 pl-5">
+          <li>お問い合わせ・ご相談への対応、資料送付、連絡</li>
+          <li>契約の締結・履行、サービス提供、アフターフォロー</li>
+          <li>本人確認、緊急時連絡、医療・介護・行政等との必要な連携</li>
+          <li>サービス改善、業務運営上の記録・管理</li>
+          <li>法令に基づく対応</li>
+        </ul>
+      </div>
+
+      <div>
+        <h3 class="text-base font-bold text-brand-dark">4. 第三者提供</h3>
+        <p class="mt-3">
+          当法人は、法令に基づく場合、ご本人の同意がある場合、またはサービス提供のために医療・介護・行政機関等へ必要な範囲で提供する場合を除き、個人情報を第三者に提供しません。
+        </p>
+      </div>
+
+      <div>
+        <h3 class="text-base font-bold text-brand-dark">5. 委託</h3>
+        <p class="mt-3">
+          当法人は、利用目的の達成に必要な範囲で、個人情報の取り扱いを外部に委託することがあります。委託先に対しては、適切な監督を行います。
+        </p>
+      </div>
+
+      <div>
+        <h3 class="text-base font-bold text-brand-dark">6. 安全管理措置</h3>
+        <p class="mt-3">
+          当法人は、個人情報の漏えい、滅失またはき損の防止その他の安全管理のため、組織的・人的・物理的・技術的な措置を講じます。
+        </p>
+      </div>
+
+      <div>
+        <h3 class="text-base font-bold text-brand-dark">7. 開示・訂正・利用停止等のご請求</h3>
+        <p class="mt-3">
+          ご本人から、保有個人データの開示、訂正、追加、削除、利用停止等のご請求があった場合は、法令に従い、本人確認のうえ、合理的な期間・範囲で対応します。
+        </p>
+      </div>
+
+      <div>
+        <h3 class="text-base font-bold text-brand-dark">8. お問い合わせ窓口</h3>
+        <p class="mt-3">個人情報の取り扱いに関するお問い合わせは、下記までご連絡ください。</p>
+        <dl class="mt-3 space-y-1">
+          <div class="sm:grid sm:grid-cols-[8rem_1fr] gap-2"><dt class="font-medium text-brand-dark">住所</dt><dd>{site.address.full}</dd></div>
+          <div class="sm:grid sm:grid-cols-[8rem_1fr] gap-2"><dt class="font-medium text-brand-dark">電話</dt><dd>{site.phone}（フリーダイヤル {site.phoneFree}）</dd></div>
+          <div class="sm:grid sm:grid-cols-[8rem_1fr] gap-2"><dt class="font-medium text-brand-dark">受付時間</dt><dd>{site.phoneHours}</dd></div>
+          <div class="sm:grid sm:grid-cols-[8rem_1fr] gap-2"><dt class="font-medium text-brand-dark">メール</dt><dd>{site.email}</dd></div>
+        </dl>
+      </div>
+
+      <div>
+        <h3 class="text-base font-bold text-brand-dark">9. 本ポリシーの改定</h3>
+        <p class="mt-3">
+          当法人は、法令の改正や事業内容の変更等に応じて、本ポリシーを改定することがあります。重要な変更がある場合は、当ウェブサイト上でお知らせします。
+        </p>
+      </div>
+    </div>
+  </Section>
+</BaseLayout>

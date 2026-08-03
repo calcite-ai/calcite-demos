@@ -30,6 +30,7 @@ import { site, audiencePages, withBase } from '../lib/site';
         <li><a class="hover:text-white" href={withBase('/guideline/')}>ガイドラインへの取組み</a></li>
         <li><a class="hover:text-white" href={withBase('/columns/')}>コラム</a></li>
         <li><a class="hover:text-white" href={withBase('/contact/')}>お問い合わせ</a></li>
+        <li><a class="hover:text-white" href={withBase('/privacy/')}>プライバシーポリシー</a></li>
       </ul>
     </div>
     <div class="md:col-span-5">
@@ -47,6 +48,7 @@ import { site, audiencePages, withBase } from '../lib/site';
       <div class="mt-8 rounded-xl bg-white/5 p-4 text-sm text-white/80">
         <p>{site.address.full}</p>
         <p class="mt-1">TEL {site.phone}　FAX {site.fax}</p>
+        <p class="mt-1">電話受付 {site.phoneHours}</p>
         <p class="mt-1">代表理事 {site.representative}</p>
       </div>
     </div>

@@ -26,6 +26,8 @@ export const site = {
   phoneFree: '0120-108-251',
   fax: '03-6276-8125',
   email: 'info@shukatsu.or.jp',
+  /** 電話受付（メールは時間外も受信可） */
+  phoneHours: '平日 10:00〜17:00（土日祝休み）',
   address: {
     region: '東京都',
     locality: '新宿区',

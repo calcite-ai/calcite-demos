@@ -10,6 +10,7 @@ import { site, withBase } from '../lib/site';
         一生涯の生活支援を窓口ひとつでお受けします。身元保証や死後の手続きのご相談も、その一環として対応します。専門職の方からのご相談も歓迎です。
       </p>
       <p class="mt-4 text-sm text-accent">フリーダイヤル {site.phoneFree}　／　TEL {site.phone}</p>
+      <p class="mt-1 text-xs text-white/65">電話受付 {site.phoneHours}</p>
     </div>
     <div class="flex flex-wrap gap-3">
       <a href={`tel:${site.phoneFree.replaceAll('-', '')}`} class="rounded-full bg-white px-6 py-3 text-sm font-semibold text-brand-dark hover:bg-accent-soft transition md:hidden">フリーダイヤルで相談</a>
