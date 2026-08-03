@@ -1,5 +1,23 @@
 [
   {
+    "id": "self-01",
+    "audience": "ご本人向け",
+    "title": "生活の支え「おとも」",
+    "note": "otomo.png を流用"
+  },
+  {
+    "id": "self-02",
+    "audience": "ご本人向け",
+    "title": "身元保証「ささえ」",
+    "note": "sasae.png を流用"
+  },
+  {
+    "id": "self-03",
+    "audience": "ご本人向け",
+    "title": "死後事務「むかえ」",
+    "note": "mukae.png を流用"
+  },
+  {
     "id": "family-01",
     "audience": "ご家族向け",
     "title": "無料相談で状況を整理"

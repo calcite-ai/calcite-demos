@@ -69,6 +69,12 @@ export const navItems = [
 
 export const audiencePages = [
   {
+    slug: 'self',
+    label: 'ご本人向け',
+    href: '/for/self/',
+    lead: '身元保証・生活の支え・死後の備えを、自分の意思で整えたい方へ。',
+  },
+  {
     slug: 'family',
     label: 'ご家族向け',
     href: '/for/family/',

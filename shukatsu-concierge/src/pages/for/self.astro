@@ -1,0 +1,5 @@
+---
+import AudiencePage from '../../components/AudiencePage.astro';
+import { getAudience } from '../../data/audiences';
+---
+<AudiencePage content={getAudience('self')} />
