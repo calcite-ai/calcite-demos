@@ -13,9 +13,8 @@ import { site, audiencePages, withBase } from '../lib/site';
         height="60"
       />
       <p class="mt-4 text-sm leading-relaxed text-white/75">
-        身元保証から死後事務まで。高齢者ご本人・ご家族・専門職のための総合相談窓口です。
+        一生涯の生活支援を軸に、身元保証や死後の手続きまで。ご本人・ご家族・専門職のための総合相談窓口です。
       </p>
-      <p class="mt-4 text-xs text-white/50">※本サイトはリニューアル提案用の試作デモです。</p>
     </div>
     <div class="md:col-span-3">
       <h2 class="text-xs font-semibold tracking-[0.15em] text-accent uppercase">Sitemap</h2>
@@ -34,11 +33,14 @@ import { site, audiencePages, withBase } from '../lib/site';
       </ul>
     </div>
     <div class="md:col-span-5">
-      <h2 class="text-xs font-semibold tracking-[0.15em] text-accent uppercase">For Professionals</h2>
+      <h2 class="text-xs font-semibold tracking-[0.15em] text-accent uppercase">対象者別</h2>
       <ul class="mt-4 grid gap-2 sm:grid-cols-2 text-sm text-white/80">
         {audiencePages.map((p) => (
           <li><a class="hover:text-white" href={withBase(p.href)}>{p.label}</a></li>
         ))}
+      </ul>
+      <h2 class="mt-8 text-xs font-semibold tracking-[0.15em] text-accent uppercase">制度解説</h2>
+      <ul class="mt-4 space-y-2 text-sm text-white/80">
         <li><a class="hover:text-white" href={withBase('/guides/seinengoiken/')}>成年後見制度との違い</a></li>
         <li><a class="hover:text-white" href={withBase('/guides/kazoku-shintaku/')}>家族信託との違い</a></li>
       </ul>

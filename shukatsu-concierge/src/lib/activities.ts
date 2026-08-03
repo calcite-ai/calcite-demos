@@ -56,7 +56,18 @@ export function activitySummary() {
     }
     if (pref) prefs.set(pref, (prefs.get(pref) ?? 0) + 1);
   }
+
+  /** 件数は少ない／遠方のため、「主な活動エリア」には載せない */
+  const excludeFromMainAreas = new Set([
+    '長崎県',
+    '岐阜県',
+    '新潟県',
+    '愛知県',
+    '三重県',
+  ]);
+
   const regions = [...prefs.entries()]
+    .filter(([name]) => !excludeFromMainAreas.has(name))
     .sort((a, b) => b[1] - a[1])
     .map(([name, count]) => ({ name, count }));
 

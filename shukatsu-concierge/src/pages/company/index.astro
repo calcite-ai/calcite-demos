@@ -17,7 +17,7 @@ const jsonLd = [
   <PageHero title="会社概要" lead={desc} crumbs={[{ label: '会社概要' }]} />
 
   <div class="mx-auto max-w-6xl px-4 pt-10">
-    <AnswerLead title="法人情報の要点">
+    <AnswerLead title="法人情報">
       <p>
         {site.name}は2012年設立の一般社団法人です。所在地は{site.address.full}、代表理事は{site.representative}。電話は{site.phone}（フリーダイヤル {site.phoneFree}）、メールは{site.email}です。
       </p>
@@ -69,13 +69,21 @@ const jsonLd = [
     <div class="rounded-2xl border border-brand/10 bg-white p-6">
       <p class="text-muted">{site.address.full}</p>
       <p class="mt-2 text-sm text-muted">お越しの際は事前にご連絡ください。</p>
+      <p class="mt-3 text-sm">
+        <a
+          href={site.maps.placeUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="text-brand font-medium underline underline-offset-4"
+        >Googleマップで開く</a>
+      </p>
       <div class="mt-5 aspect-[16/9] overflow-hidden rounded-xl border border-brand/10">
         <iframe
           title="終活コンシェルジュ所在地マップ"
           class="h-full w-full"
           loading="lazy"
           referrerpolicy="no-referrer-when-downgrade"
-          src={`https://maps.google.com/maps?q=${encodeURIComponent(site.address.full)}&output=embed`}
+          src={site.maps.embedUrl}
         ></iframe>
       </div>
     </div>

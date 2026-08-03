@@ -1,176 +1,24 @@
 ---
 /**
- * サービス／フロー用のフラットイラスト枠。
- * 写真ストックを使わず、ブランド色（青・アンバー）で統一。
+ * サービス／フロー用イラスト枠（Higgsfield生成・自社利用）
  */
 interface Props {
   name: 'sasae' | 'otomo' | 'mukae' | 'consult' | 'meeting' | 'contract' | 'start';
   alt: string;
   class?: string;
 }
+import { withBase } from '../lib/site';
 const { name, alt, class: className = '' } = Astro.props;
+const src = `/images/illustrations/${name}.png`;
 ---
 
-<div
-  class:list={['relative overflow-hidden rounded-inherit bg-[#e8f1fa]', className]}
-  role="img"
-  aria-label={alt}
->
-  <svg viewBox="0 0 400 220" class="h-full w-full" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-    <defs>
-      <linearGradient id={`sky-${name}`} x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0%" stop-color="#f7fbff" />
-        <stop offset="55%" stop-color="#e8f1fa" />
-        <stop offset="100%" stop-color="#d6e6f5" />
-      </linearGradient>
-      <linearGradient id={`glow-${name}`} x1="0.3" y1="0.2" x2="0.8" y2="1">
-        <stop offset="0%" stop-color="#fff3d6" stop-opacity="0.9" />
-        <stop offset="100%" stop-color="#fff3d6" stop-opacity="0" />
-      </linearGradient>
-    </defs>
-
-    <rect width="400" height="220" fill={`url(#sky-${name})`} />
-    <circle cx="320" cy="40" r="70" fill={`url(#glow-${name})`} />
-    <circle cx="60" cy="180" r="50" fill="#0A58A8" fill-opacity="0.06" />
-
-    {name === 'sasae' && (
-      <g>
-        <!-- soft ground -->
-        <ellipse cx="200" cy="190" rx="140" ry="18" fill="#0A58A8" fill-opacity="0.08" />
-        <!-- shield -->
-        <path
-          d="M200 38 L268 58 V108 C268 148 232 174 200 186 C168 174 132 148 132 108 V58 Z"
-          fill="#fff"
-          stroke="#0A58A8"
-          stroke-width="4"
-          stroke-linejoin="round"
-        />
-        <path
-          d="M200 52 L250 68 V108 C250 138 224 158 200 168 C176 158 150 138 150 108 V68 Z"
-          fill="#e8f1fa"
-        />
-        <!-- check -->
-        <path
-          d="M172 112 L192 132 L232 88"
-          fill="none"
-          stroke="#F0A000"
-          stroke-width="10"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-        />
-        <!-- small people silhouettes -->
-        <circle cx="118" cy="148" r="10" fill="#063A70" />
-        <path d="M100 188 C100 168 108 158 118 158 C128 158 136 168 136 188 Z" fill="#0A58A8" />
-        <circle cx="282" cy="148" r="10" fill="#063A70" />
-        <path d="M264 188 C264 168 272 158 282 158 C292 158 300 168 300 188 Z" fill="#5B7C99" />
-      </g>
-    )}
-
-    {name === 'otomo' && (
-      <g>
-        <ellipse cx="200" cy="192" rx="150" ry="16" fill="#0A58A8" fill-opacity="0.08" />
-        <!-- path -->
-        <path d="M40 175 Q200 145 360 175" fill="none" stroke="#0A58A8" stroke-opacity="0.15" stroke-width="10" stroke-linecap="round" />
-        <!-- elder -->
-        <circle cx="155" cy="108" r="16" fill="#063A70" />
-        <path d="M128 178 C128 145 140 132 155 132 C170 132 182 145 182 178 Z" fill="#0A58A8" />
-        <!-- cane -->
-        <path d="M182 140 L198 178" stroke="#F0A000" stroke-width="4" stroke-linecap="round" />
-        <!-- companion -->
-        <circle cx="235" cy="100" r="15" fill="#063A70" />
-        <path d="M210 178 C210 140 220 126 235 126 C250 126 260 140 260 178 Z" fill="#5B7C99" />
-        <!-- linked arms hint -->
-        <path d="M175 145 C190 138 210 138 225 145" fill="none" stroke="#F0A000" stroke-width="5" stroke-linecap="round" />
-        <!-- bag -->
-        <rect x="258" y="148" width="22" height="18" rx="4" fill="#F0A000" />
-      </g>
-    )}
-
-    {name === 'mukae' && (
-      <g>
-        <ellipse cx="200" cy="192" rx="140" ry="16" fill="#0A58A8" fill-opacity="0.08" />
-        <!-- document -->
-        <rect x="130" y="48" width="140" height="128" rx="10" fill="#fff" stroke="#0A58A8" stroke-width="3.5" />
-        <path d="M156 78 H244 M156 98 H244 M156 118 H210" stroke="#0A58A8" stroke-opacity="0.35" stroke-width="6" stroke-linecap="round" />
-        <!-- seal / check badge -->
-        <circle cx="248" cy="148" r="28" fill="#fff3d6" stroke="#F0A000" stroke-width="4" />
-        <path d="M236 148 L245 157 L264 136" fill="none" stroke="#F0A000" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" />
-        <!-- soft flower marks -->
-        <circle cx="98" cy="78" r="8" fill="#F0A000" fill-opacity="0.35" />
-        <circle cx="112" cy="68" r="5" fill="#0A58A8" fill-opacity="0.2" />
-        <circle cx="310" cy="86" r="7" fill="#0A58A8" fill-opacity="0.18" />
-      </g>
-    )}
-
-    {name === 'consult' && (
-      <g>
-        <ellipse cx="200" cy="192" rx="140" ry="16" fill="#0A58A8" fill-opacity="0.08" />
-        <!-- chat bubble -->
-        <path
-          d="M90 58 H250 A22 22 0 0 1 272 80 V118 A22 22 0 0 1 250 140 H168 L138 168 V140 H90 A22 22 0 0 1 68 118 V80 A22 22 0 0 1 90 58 Z"
-          fill="#fff"
-          stroke="#0A58A8"
-          stroke-width="3.5"
-        />
-        <path d="M108 90 H230 M108 112 H180" stroke="#F0A000" stroke-width="7" stroke-linecap="round" />
-        <!-- person at desk -->
-        <circle cx="310" cy="100" r="18" fill="#063A70" />
-        <path d="M278 178 C278 140 292 126 310 126 C328 126 342 140 342 178 Z" fill="#0A58A8" />
-        <!-- headset -->
-        <path d="M292 96 A18 18 0 0 1 328 96" fill="none" stroke="#F0A000" stroke-width="4" stroke-linecap="round" />
-        <circle cx="292" cy="100" r="5" fill="#F0A000" />
-      </g>
-    )}
-
-    {name === 'meeting' && (
-      <g>
-        <ellipse cx="200" cy="198" rx="150" ry="14" fill="#0A58A8" fill-opacity="0.08" />
-        <!-- table -->
-        <ellipse cx="200" cy="168" rx="120" ry="22" fill="#fff" stroke="#0A58A8" stroke-width="3" />
-        <rect x="188" y="168" width="24" height="28" rx="3" fill="#0A58A8" fill-opacity="0.25" />
-        <!-- left person -->
-        <circle cx="140" cy="98" r="16" fill="#063A70" />
-        <path d="M116 158 C116 128 126 116 140 116 C154 116 164 128 164 158 Z" fill="#0A58A8" />
-        <!-- right person -->
-        <circle cx="260" cy="98" r="16" fill="#063A70" />
-        <path d="M236 158 C236 128 246 116 260 116 C274 116 284 128 284 158 Z" fill="#5B7C99" />
-        <!-- cups -->
-        <rect x="170" y="150" width="14" height="12" rx="3" fill="#F0A000" />
-        <rect x="216" y="150" width="14" height="12" rx="3" fill="#F0A000" fill-opacity="0.7" />
-      </g>
-    )}
-
-    {name === 'contract' && (
-      <g>
-        <ellipse cx="200" cy="192" rx="140" ry="16" fill="#0A58A8" fill-opacity="0.08" />
-        <!-- paper -->
-        <path d="M128 42 H232 L272 82 V176 H128 Z" fill="#fff" stroke="#0A58A8" stroke-width="3.5" stroke-linejoin="round" />
-        <path d="M232 42 V82 H272" fill="none" stroke="#0A58A8" stroke-width="3.5" stroke-linejoin="round" />
-        <path d="M150 100 H240 M150 118 H240 M150 136 H200" stroke="#0A58A8" stroke-opacity="0.3" stroke-width="5" stroke-linecap="round" />
-        <!-- pen -->
-        <path d="M250 150 L310 98" stroke="#F0A000" stroke-width="8" stroke-linecap="round" />
-        <path d="M310 98 L322 110" stroke="#063A70" stroke-width="6" stroke-linecap="round" />
-        <!-- stamp -->
-        <circle cx="220" cy="156" r="16" fill="#fff3d6" stroke="#F0A000" stroke-width="3" />
-      </g>
-    )}
-
-    {name === 'start' && (
-      <g>
-        <ellipse cx="200" cy="192" rx="150" ry="16" fill="#0A58A8" fill-opacity="0.08" />
-        <!-- path ahead -->
-        <path d="M60 170 C140 140 200 120 340 90" fill="none" stroke="#0A58A8" stroke-opacity="0.2" stroke-width="14" stroke-linecap="round" />
-        <path d="M60 170 C140 140 200 120 340 90" fill="none" stroke="#F0A000" stroke-width="4" stroke-linecap="round" stroke-dasharray="10 12" />
-        <!-- person walking -->
-        <circle cx="150" cy="108" r="16" fill="#063A70" />
-        <path d="M128 168 C128 136 138 124 150 124 C162 124 172 136 172 168 Z" fill="#0A58A8" />
-        <!-- milestone flag -->
-        <path d="M300 60 V150" stroke="#0A58A8" stroke-width="4" stroke-linecap="round" />
-        <path d="M300 60 H348 L336 78 L348 96 H300 Z" fill="#F0A000" />
-        <!-- check circle -->
-        <circle cx="88" cy="150" r="22" fill="#fff" stroke="#0A58A8" stroke-width="3" />
-        <path d="M78 150 L86 158 L100 140" fill="none" stroke="#F0A000" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
-      </g>
-    )}
-  </svg>
+<div class:list={['relative overflow-hidden bg-[#e8f1fa]', className]}>
+  <img
+    src={withBase(src)}
+    alt={alt}
+    class="h-full w-full object-cover"
+    loading="lazy"
+    width="1280"
+    height="720"
+  />
 </div>

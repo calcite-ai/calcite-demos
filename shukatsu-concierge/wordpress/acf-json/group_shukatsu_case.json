@@ -1,0 +1,237 @@
+[
+  {
+    "key": "group_shukatsu_case_intake",
+    "title": "事例入力（Intake）",
+    "fields": [
+      {
+        "key": "field_case_audience",
+        "label": "相談者属性",
+        "name": "case_audience",
+        "type": "select",
+        "required": 1,
+        "choices": {
+          "本人": "本人",
+          "ご家族": "ご家族",
+          "ケアマネジャー": "ケアマネジャー",
+          "病院MSW": "病院MSW",
+          "地域包括支援センター": "地域包括支援センター",
+          "老人ホーム": "老人ホーム",
+          "紹介会社": "紹介会社"
+        },
+        "return_format": "value",
+        "ui": 1,
+        "wrapper": { "width": "50", "class": "", "id": "" }
+      },
+      {
+        "key": "field_case_age_band",
+        "label": "年代",
+        "name": "case_age_band",
+        "type": "select",
+        "required": 1,
+        "choices": {
+          "60代": "60代",
+          "70代": "70代",
+          "80代": "80代",
+          "90代以上": "90代以上"
+        },
+        "return_format": "value",
+        "ui": 1,
+        "wrapper": { "width": "50", "class": "", "id": "" }
+      },
+      {
+        "key": "field_case_categories",
+        "label": "相談カテゴリ（複数可）",
+        "name": "case_categories",
+        "type": "taxonomy",
+        "instructions": "フロントの絞り込みにも使います。",
+        "required": 1,
+        "taxonomy": "case_category",
+        "field_type": "checkbox",
+        "add_term": 0,
+        "save_terms": 1,
+        "load_terms": 1,
+        "return_format": "object",
+        "multiple": 1
+      },
+      {
+        "key": "field_case_family",
+        "label": "家族構成",
+        "name": "case_family",
+        "type": "select",
+        "required": 1,
+        "choices": {
+          "独居": "独居",
+          "配偶者あり": "配偶者あり",
+          "子と同居": "子と同居",
+          "子はいるが疎遠": "子はいるが疎遠",
+          "親族なし": "親族なし"
+        },
+        "return_format": "value",
+        "ui": 1,
+        "wrapper": { "width": "50", "class": "", "id": "" }
+      },
+      {
+        "key": "field_case_period",
+        "label": "対応にかかった期間",
+        "name": "case_period",
+        "type": "select",
+        "required": 1,
+        "choices": {
+          "即日": "即日",
+          "1週間以内": "1週間以内",
+          "1ヶ月以内": "1ヶ月以内",
+          "3ヶ月以内": "3ヶ月以内",
+          "3ヶ月以上": "3ヶ月以上"
+        },
+        "return_format": "value",
+        "ui": 1,
+        "wrapper": { "width": "50", "class": "", "id": "" }
+      },
+      {
+        "key": "field_case_actions",
+        "label": "主な対応内容（複数可）",
+        "name": "case_actions",
+        "type": "checkbox",
+        "required": 1,
+        "choices": {
+          "身元保証契約締結": "身元保証契約締結",
+          "施設入居手続き代行": "施設入居手続き代行",
+          "緊急連絡先対応": "緊急連絡先対応",
+          "死後事務委任契約": "死後事務委任契約",
+          "財産管理サポート": "財産管理サポート",
+          "成年後見制度利用支援": "成年後見制度利用支援"
+        },
+        "return_format": "value",
+        "layout": "vertical"
+      },
+      {
+        "key": "field_case_result",
+        "label": "結果ステータス",
+        "name": "case_result",
+        "type": "select",
+        "required": 1,
+        "choices": {
+          "解決・契約継続中": "解決・契約継続中",
+          "解決・支援終了": "解決・支援終了",
+          "他機関へ紹介": "他機関へ紹介",
+          "継続対応中": "継続対応中"
+        },
+        "return_format": "value",
+        "ui": 1
+      },
+      {
+        "key": "field_case_background",
+        "label": "相談の背景・きっかけ",
+        "name": "case_background",
+        "type": "textarea",
+        "instructions": "1〜2文。具体的に書くほどAI下書きの精度が上がります。",
+        "required": 1,
+        "rows": 3,
+        "new_lines": "br"
+      },
+      {
+        "key": "field_case_point_note",
+        "label": "対応のポイント・工夫した点",
+        "name": "case_point_note",
+        "type": "textarea",
+        "instructions": "1〜2文。",
+        "required": 1,
+        "rows": 3,
+        "new_lines": "br"
+      },
+      {
+        "key": "field_case_anonymized",
+        "label": "匿名化確認",
+        "name": "case_anonymized",
+        "type": "true_false",
+        "instructions": "個人が特定できる情報を含んでいないことを確認したらON。未チェックでは公開できません。",
+        "required": 1,
+        "default_value": 0,
+        "ui": 1,
+        "ui_on_text": "確認済み",
+        "ui_off_text": "未確認"
+      }
+    ],
+    "location": [
+      [
+        {
+          "param": "post_type",
+          "operator": "==",
+          "value": "shukatsu_case"
+        }
+      ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "手順書の入力項目に同期。AI下書きの材料になります。",
+    "show_in_rest": 1,
+    "modified": 1753620000
+  },
+  {
+    "key": "group_shukatsu_case_meta",
+    "title": "事例メタ（公開・SEO）",
+    "fields": [
+      {
+        "key": "field_case_meta_description",
+        "label": "meta description",
+        "name": "meta_description",
+        "type": "textarea",
+        "instructions": "検索結果用の要約（80〜120字目安）。",
+        "required": 0,
+        "rows": 2,
+        "new_lines": ""
+      },
+      {
+        "key": "field_case_ai_generated",
+        "label": "AI生成下書き",
+        "name": "ai_generated",
+        "type": "true_false",
+        "default_value": 0,
+        "ui": 1,
+        "wrapper": { "width": "50", "class": "", "id": "" }
+      },
+      {
+        "key": "field_case_needs_review",
+        "label": "要確認",
+        "name": "needs_review",
+        "type": "true_false",
+        "instructions": "AI下書き直後はON。確認後にOFFにして公開。",
+        "default_value": 1,
+        "ui": 1,
+        "wrapper": { "width": "50", "class": "", "id": "" }
+      },
+      {
+        "key": "field_case_og_image",
+        "label": "OGP画像",
+        "name": "og_image",
+        "type": "image",
+        "return_format": "array",
+        "preview_size": "medium",
+        "library": "all"
+      }
+    ],
+    "location": [
+      [
+        {
+          "param": "post_type",
+          "operator": "==",
+          "value": "shukatsu_case"
+        }
+      ]
+    ],
+    "menu_order": 1,
+    "position": "side",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "active": true,
+    "description": "",
+    "show_in_rest": 1,
+    "modified": 1753620000
+  }
+]

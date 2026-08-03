@@ -31,10 +31,10 @@ const latestTopics = topics.slice(0, 5);
     <div class="relative mx-auto flex min-h-[72vh] max-w-6xl flex-col justify-center px-4 py-20">
       <p class="text-accent text-sm tracking-[0.2em] font-medium">THE CONCIERGE FOR LIFE'S FINAL CHAPTER</p>
       <h1 class="mt-4 max-w-3xl text-[1.85rem] sm:text-4xl md:text-5xl font-bold leading-[1.35] tracking-tight">
-        身元保証から死後事務まで、<br class="hidden sm:block" />窓口ひとつで支える。
+        一生涯の生活支援を、<br class="hidden sm:block" />窓口ひとつで。
       </h1>
       <p class="mt-6 max-w-xl text-white/90 text-[15px] md:text-base leading-relaxed">
-        1,000件を超える相談実績を活かし、高齢者ご本人・ご家族・病院・地域包括・ケアマネの悩みを一括サポートします。
+        見守りや手続きの同行などの生活支援を軸に、身元保証や死後の手続きもその中で支えます。ご本人・ご家族・病院・地域包括・ケアマネのご相談に対応します。
       </p>
       <div class="mt-9 flex flex-wrap gap-3">
         <a href={withBase("/contact/")} class="rounded-full bg-accent px-7 py-3.5 text-sm font-bold text-brand-dark hover:brightness-105 transition">無料で相談する</a>
@@ -45,9 +45,9 @@ const latestTopics = topics.slice(0, 5);
   </section>
 
   <div class="mx-auto max-w-6xl px-4 py-10">
-    <AnswerLead title="終活コンシェルジュとは（要約）">
+    <AnswerLead title="終活コンシェルジュとは">
       <p>
-        一般社団法人終活コンシェルジュは、高齢者の身元保証・生活支援・死後事務を窓口ひとつで支える終活の総合相談窓口です。ご本人・ご家族だけでなく、地域包括支援センター・ケアマネジャー・病院MSWからの相談にも対応します。
+        一般社団法人終活コンシェルジュは、高齢者の一生涯の生活支援を軸に、身元保証や死後の手続きまでを窓口ひとつで支える総合相談窓口です。ご本人・ご家族だけでなく、地域包括支援センター・ケアマネジャー・病院MSWからの相談にも対応します。
       </p>
     </AnswerLead>
   </div>
@@ -205,17 +205,35 @@ const latestTopics = topics.slice(0, 5);
   </Section>
 
   <Section class="bg-brand-light/50" eyebrow="For You" title="あなたに合わせた入口" lead="ご本人・ご家族だけでなく、現場の専門職の方にも使いやすい導線を用意しました。">
-    <div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+    <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
       {audiencePages.map((p) => (
-        <a href={withBase(p.href)} class="rounded-2xl border border-brand/10 bg-white p-5 hover:border-brand transition">
-          <h3 class="font-bold text-brand-dark">{p.label}</h3>
-          <p class="mt-2 text-sm text-muted">{p.lead}</p>
+        <a href={withBase(p.href)} class="group overflow-hidden rounded-2xl border border-brand/10 bg-white hover:border-brand/30 hover:shadow-md transition">
+          <div class="relative h-40 overflow-hidden bg-[#e8f1fa]">
+            <img
+              src={withBase(`/images/illustrations/offers/${p.slug}-01.png`)}
+              alt=""
+              class="h-full w-full object-cover"
+              loading="lazy"
+              width="1376"
+              height="768"
+            />
+          </div>
+          <div class="p-5">
+            <h3 class="text-lg font-bold text-brand-dark group-hover:text-brand">{p.label}</h3>
+            <p class="mt-2 text-sm text-muted leading-relaxed">{p.lead}</p>
+            <span class="mt-4 inline-block text-sm font-medium text-brand">詳しく見る →</span>
+          </div>
         </a>
       ))}
     </div>
+    <div class="mt-8">
+      <h3 class="text-sm font-semibold text-brand-dark">制度解説</h3>
+      <div class="mt-3 flex flex-wrap gap-4 text-sm">
+        <a href={withBase("/guides/seinengoiken/")} class="text-brand underline underline-offset-4">成年後見制度との違い</a>
+        <a href={withBase("/guides/kazoku-shintaku/")} class="text-brand underline underline-offset-4">家族信託との違い</a>
+      </div>
+    </div>
     <div class="mt-6 flex flex-wrap gap-4 text-sm">
-      <a href={withBase("/guides/seinengoiken/")} class="text-brand underline underline-offset-4">成年後見制度との違い</a>
-      <a href={withBase("/guides/kazoku-shintaku/")} class="text-brand underline underline-offset-4">家族信託との違い</a>
       <a href={withBase("/faq/")} class="text-brand underline underline-offset-4">よくある質問</a>
       <a href={withBase("/dancing/")} class="text-brand underline underline-offset-4">シニア社交ダンス「踊活」</a>
     </div>

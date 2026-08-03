@@ -32,7 +32,10 @@ function isActive(href: string) {
     </nav>
 
     <div class="flex items-center gap-2">
-      <a href={`tel:${site.phone.replaceAll('-', '')}`} class="hidden sm:block text-xs text-brand font-medium">{site.phone}</a>
+      <div class="hidden sm:flex flex-col items-end leading-tight text-brand">
+        <span class="text-[10px] font-medium text-muted">フリーダイヤル</span>
+        <span class="text-xs font-bold tabular-nums tracking-wide">{site.phoneFree}</span>
+      </div>
       <a href={withBase('/contact/')} class="rounded-full bg-brand px-4 py-2.5 text-sm font-medium text-white hover:bg-brand-dark transition shadow-sm">無料相談</a>
       <details class="xl:hidden relative">
         <summary class="list-none cursor-pointer rounded-md border border-brand/20 bg-white px-3 py-2 text-sm">メニュー</summary>

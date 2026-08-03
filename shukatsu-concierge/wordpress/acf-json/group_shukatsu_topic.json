@@ -1,0 +1,108 @@
+[
+  {
+    "key": "group_shukatsu_topic",
+    "title": "トピックス項目",
+    "fields": [
+      {
+        "key": "field_topic_date",
+        "label": "表示日",
+        "name": "topic_date",
+        "aria-label": "",
+        "type": "date_picker",
+        "instructions": "トップのトピックス欄に出す日付です。",
+        "required": 1,
+        "conditional_logic": 0,
+        "wrapper": { "width": "33", "class": "", "id": "" },
+        "display_format": "Y.m.d",
+        "return_format": "Y-m-d",
+        "first_day": 1
+      },
+      {
+        "key": "field_topic_link_type",
+        "label": "リンク種類",
+        "name": "topic_link_type",
+        "type": "select",
+        "instructions": "リンクなし／サイト内／外部",
+        "required": 1,
+        "choices": {
+          "none": "なし",
+          "internal": "サイト内ページ",
+          "external": "外部URL"
+        },
+        "default_value": "none",
+        "return_format": "value",
+        "multiple": 0,
+        "allow_null": 0,
+        "ui": 1,
+        "wrapper": { "width": "33", "class": "", "id": "" }
+      },
+      {
+        "key": "field_topic_pin",
+        "label": "トップに固定",
+        "name": "topic_pin",
+        "type": "true_false",
+        "instructions": "ONにすると一覧の先頭に寄せます（任意）。",
+        "required": 0,
+        "default_value": 0,
+        "ui": 1,
+        "wrapper": { "width": "33", "class": "", "id": "" }
+      },
+      {
+        "key": "field_topic_internal_url",
+        "label": "サイト内リンク",
+        "name": "topic_internal_url",
+        "type": "page_link",
+        "required": 0,
+        "conditional_logic": [
+          [
+            {
+              "field": "field_topic_link_type",
+              "operator": "==",
+              "value": "internal"
+            }
+          ]
+        ],
+        "post_type": ["page", "shukatsu_case", "shukatsu_column", "shukatsu_guide"],
+        "allow_null": 1,
+        "multiple": 0,
+        "return_format": "url"
+      },
+      {
+        "key": "field_topic_external_url",
+        "label": "外部URL",
+        "name": "topic_external_url",
+        "type": "url",
+        "required": 0,
+        "conditional_logic": [
+          [
+            {
+              "field": "field_topic_link_type",
+              "operator": "==",
+              "value": "external"
+            }
+          ]
+        ]
+      }
+    ],
+    "location": [
+      [
+        {
+          "param": "post_type",
+          "operator": "==",
+          "value": "shukatsu_topic"
+        }
+      ]
+    ],
+    "menu_order": 0,
+    "position": "acf_after_title",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": ["the_content", "excerpt", "discussion", "comments", "slug", "author", "format", "page_attributes", "featured_image", "categories", "tags", "send-trackbacks"],
+    "active": true,
+    "description": "タイトル＝トピックスの1行文言。手順書: docs/トピックス_事例集_コラム_更新手順書.md",
+    "show_in_rest": 1,
+    "display_title": "",
+    "modified": 1753620000
+  }
+]

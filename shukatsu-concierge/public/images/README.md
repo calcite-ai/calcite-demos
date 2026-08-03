@@ -2,8 +2,8 @@
 
 現行サイト（shukatsu.or.jp）から流用した自社所有候補のみ。
 
-サービス／ご契約の流れのビジュアルは、写真ではなく自作SVGイラスト
-（`src/components/IllustrationFrame.astro`）を使用。
+サービス／ご契約の流れのビジュアルは Higgsfield 生成イラスト
+（`public/images/illustrations/`、クレジットは同フォルダの `credits.json`）。
 
 ## 不使用（ストック）
 

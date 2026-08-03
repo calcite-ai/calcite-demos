@@ -1,0 +1,67 @@
+---
+/**
+ * 解決事例カテゴリーのビジュアルカード
+ * 生活支援を先頭に、既存サービスイラストを流用
+ */
+import { withBase } from '../lib/site';
+
+type CategoryItem = { name: string; slug: string; count: number };
+
+interface Props {
+  categories: CategoryItem[];
+  activeSlug?: string | null;
+}
+
+/** カテゴリ名 → イラストファイル（illustrations/ 直下） */
+const categoryArt: Record<string, string> = {
+  生活支援: 'otomo',
+  身元保証: 'sasae',
+  死後事務: 'mukae',
+  相続: 'souzoku',
+  その他: 'consult',
+};
+
+/** 表示順：生活支援を軸に */
+const preferredOrder = ['生活支援', '身元保証', '死後事務', '相続', 'その他'];
+
+const { categories, activeSlug = null } = Astro.props;
+
+const ordered = [...categories].sort((a, b) => {
+  const ia = preferredOrder.indexOf(a.name);
+  const ib = preferredOrder.indexOf(b.name);
+  return (ia === -1 ? 99 : ia) - (ib === -1 ? 99 : ib);
+});
+---
+
+<div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+  {ordered.map((cat) => {
+    const art = categoryArt[cat.name] ?? 'consult';
+    const active = activeSlug === cat.slug;
+    return (
+      <a
+        href={withBase(`/cases/category/${cat.slug}/`)}
+        class:list={[
+          'group overflow-hidden rounded-2xl border bg-white transition',
+          active
+            ? 'border-brand shadow-sm ring-2 ring-brand/20'
+            : 'border-brand/10 hover:border-brand hover:shadow-sm',
+        ]}
+      >
+        <div class="aspect-[16/10] overflow-hidden bg-[#e8f1fa]">
+          <img
+            src={withBase(`/images/illustrations/${art}.png`)}
+            alt=""
+            class="h-full w-full object-cover transition group-hover:scale-[1.02]"
+            loading="lazy"
+            width="1376"
+            height="768"
+          />
+        </div>
+        <div class="flex items-center justify-between gap-2 px-4 py-3">
+          <span class="font-bold text-brand-dark">{cat.name}</span>
+          <span class="text-xs tabular-nums text-muted">{cat.count}件</span>
+        </div>
+      </a>
+    );
+  })}
+</div>

@@ -5,7 +5,7 @@ export type AudienceContent = {
   /** 冒頭の要約（2〜3段落） */
   summary: string[];
   pains: string[];
-  offers: { title: string; body: string }[];
+  offers: { title: string; body: string; illustration: string }[];
   scenarios: { title: string; body: string }[];
   checklist: string[];
   steps: { title: string; body: string }[];
@@ -34,14 +34,17 @@ export const audiences: AudienceContent[] = [
       {
         title: '無料相談で状況を整理',
         body: '入院・施設・見守り・死後のどこがボトルネックかを一緒に洗い出します。',
+        illustration: 'family-01',
       },
       {
         title: '身元保証・生活支援・死後事務の提案',
         body: '必要な範囲だけを組み合わせられます。預託金不要の身元保証もあります。',
+        illustration: 'family-02',
       },
       {
         title: '施設・病院との連絡窓口を一本化',
         body: 'ご家族は意思決定に集中し、日常の連絡や保証人役割を任せられます。',
+        illustration: 'family-03',
       },
     ],
     scenarios: [
@@ -72,17 +75,17 @@ export const audiences: AudienceContent[] = [
     ],
     relatedCases: [
       {
-        title: '救急搬送後に身元保証人が見つからない｜病院MSW連携の想定事例',
+        title: '救急搬送後に身元保証人が見つからない｜病院MSW連携の解決事例',
         path: '/cases/hospital-identity/',
         note: '病院起点の身元保証',
       },
       {
-        title: '視力に不安があり施設入所前に手続きを終えたい｜生活支援の想定事例',
+        title: '視力に不安があり施設入所前に手続きを終えたい｜生活支援の解決事例',
         path: '/cases/daily-support/',
         note: '生活支援と入所準備',
       },
       {
-        title: '子どもがいない夫婦の遺言と相続準備｜死後の手続きまで見据えた想定事例',
+        title: '子どもがいない夫婦の遺言と相続準備｜死後の手続きまで見据えた解決事例',
         path: '/cases/inheritance-will/',
         note: '家族が少ない場合の備え',
       },
@@ -135,14 +138,17 @@ export const audiences: AudienceContent[] = [
       {
         title: '入所・入院時の身元保証の受け皿',
         body: '連帯保証・身柄引受など、施設・病院が求める保証人役割を団体で担います。',
+        illustration: 'care-manager-01',
       },
       {
         title: 'ケアマネとの情報共有',
         body: 'ご本人・ご家族の同意のもと、必要な連絡を一本化し、現場の調整負荷を下げます。',
+        illustration: 'care-manager-02',
       },
       {
         title: '死後事務を含む切れ目ない支援',
         body: '看取り後の手続きまで見据えた提案が可能です。',
+        illustration: 'care-manager-03',
       },
     ],
     scenarios: [
@@ -173,17 +179,17 @@ export const audiences: AudienceContent[] = [
     ],
     relatedCases: [
       {
-        title: '高齢者住宅で身元保証人を求められた｜地域包括からの想定事例',
+        title: '高齢者住宅で身元保証人を求められた｜地域包括からの解決事例',
         path: '/cases/no-guarantor-housing/',
         note: '入所時の保証人',
       },
       {
-        title: '救急搬送後に身元保証人が見つからない｜病院MSW連携の想定事例',
+        title: '救急搬送後に身元保証人が見つからない｜病院MSW連携の解決事例',
         path: '/cases/hospital-identity/',
         note: '入院時の保証',
       },
       {
-        title: '視力に不安があり施設入所前に手続きを終えたい｜生活支援の想定事例',
+        title: '視力に不安があり施設入所前に手続きを終えたい｜生活支援の解決事例',
         path: '/cases/daily-support/',
         note: '入所前の生活支援',
       },
@@ -236,14 +242,17 @@ export const audiences: AudienceContent[] = [
       {
         title: '包括職員向けの勉強会・講師派遣',
         body: 'エンディングノート、身元保証と成年後見の違いなど、現場テーマに対応します。',
+        illustration: 'community-support-01',
       },
       {
         title: '本人面談前のヒアリング',
         body: '包括・関係者からの事前情報整理に対応し、面談をスムーズにします。',
+        illustration: 'community-support-02',
       },
       {
         title: '制度比較の整理',
         body: '後見・信託・民間サポートの違いを、説明しやすい形で整理します。',
+        illustration: 'community-support-03',
       },
     ],
     scenarios: [
@@ -274,12 +283,12 @@ export const audiences: AudienceContent[] = [
     ],
     relatedCases: [
       {
-        title: '高齢者住宅で身元保証人を求められた｜地域包括からの想定事例',
+        title: '高齢者住宅で身元保証人を求められた｜地域包括からの解決事例',
         path: '/cases/no-guarantor-housing/',
         note: '身寄りなし入所',
       },
       {
-        title: '救急搬送後に身元保証人が見つからない｜病院MSW連携の想定事例',
+        title: '救急搬送後に身元保証人が見つからない｜病院MSW連携の解決事例',
         path: '/cases/hospital-identity/',
         note: '緊急時の保証',
       },
@@ -337,14 +346,17 @@ export const audiences: AudienceContent[] = [
       {
         title: '退院調整時の身元保証相談',
         body: '施設・在宅への移行に必要な保証・連絡の受け皿を検討します。',
+        illustration: 'hospital-msw-01',
       },
       {
         title: '緊急時の連絡・引受の相談',
         body: '状況に応じて、可能な範囲で迅速にヒアリングします。',
+        illustration: 'hospital-msw-02',
       },
       {
         title: '施設・在宅へのつなぎ支援',
         body: '退院後の生活支援・死後事務まで見据えた提案ができます。',
+        illustration: 'hospital-msw-03',
       },
     ],
     scenarios: [
@@ -375,17 +387,17 @@ export const audiences: AudienceContent[] = [
     ],
     relatedCases: [
       {
-        title: '救急搬送後に身元保証人が見つからない｜病院MSW連携の想定事例',
+        title: '救急搬送後に身元保証人が見つからない｜病院MSW連携の解決事例',
         path: '/cases/hospital-identity/',
         note: '病院起点の典型例',
       },
       {
-        title: '高齢者住宅で身元保証人を求められた｜地域包括からの想定事例',
+        title: '高齢者住宅で身元保証人を求められた｜地域包括からの解決事例',
         path: '/cases/no-guarantor-housing/',
         note: '退院先施設の保証',
       },
       {
-        title: 'ALS療養中に備える身元保証と死後事務｜ケアマネ連携の想定事例',
+        title: 'ALS療養中に備える身元保証と死後事務｜ケアマネ連携の解決事例',
         path: '/cases/als-after-death/',
         note: '医療・療養と死後事務',
       },
@@ -437,14 +449,17 @@ export const audiences: AudienceContent[] = [
       {
         title: '入居時の身元保証',
         body: '連帯保証・身柄引受など、施設が求める保証人役割を担います。',
+        illustration: 'nursing-home-01',
       },
       {
         title: '緊急時の連絡・対応',
         body: '契約に基づき、連絡窓口として機能します。',
+        illustration: 'nursing-home-02',
       },
       {
         title: '退去・死後事務の相談',
         body: '看取り後の手続きまで含めた備えが可能です。',
+        illustration: 'nursing-home-03',
       },
     ],
     scenarios: [
@@ -475,12 +490,12 @@ export const audiences: AudienceContent[] = [
     ],
     relatedCases: [
       {
-        title: '高齢者住宅で身元保証人を求められた｜地域包括からの想定事例',
+        title: '高齢者住宅で身元保証人を求められた｜地域包括からの解決事例',
         path: '/cases/no-guarantor-housing/',
         note: '施設入居の保証',
       },
       {
-        title: '視力に不安があり施設入所前に手続きを終えたい｜生活支援の想定事例',
+        title: '視力に不安があり施設入所前に手続きを終えたい｜生活支援の解決事例',
         path: '/cases/daily-support/',
         note: '入所前準備',
       },
@@ -538,14 +553,17 @@ export const audiences: AudienceContent[] = [
       {
         title: '紹介フローに乗せる連携',
         body: '問い合わせから同席・契約までの役割分担を事前に決められます。',
+        illustration: 'referral-01',
       },
       {
         title: '顧客への同席説明',
         body: '保証内容・費用・解約条件をその場で明確に説明します。',
+        illustration: 'referral-02',
       },
       {
         title: 'ガイドライン遵守の可視化',
         body: 'チェックリストへの対応をウェブで公開しています。',
+        illustration: 'referral-03',
       },
     ],
     scenarios: [
@@ -581,12 +599,12 @@ export const audiences: AudienceContent[] = [
         note: 'チェックリスト対応表',
       },
       {
-        title: '高齢者住宅で身元保証人を求められた｜地域包括からの想定事例',
+        title: '高齢者住宅で身元保証人を求められた｜地域包括からの解決事例',
         path: '/cases/no-guarantor-housing/',
         note: '紹介後に起きやすい課題',
       },
       {
-        title: '救急搬送後に身元保証人が見つからない｜病院MSW連携の想定事例',
+        title: '救急搬送後に身元保証人が見つからない｜病院MSW連携の解決事例',
         path: '/cases/hospital-identity/',
         note: '緊急ニーズ',
       },
@@ -605,7 +623,7 @@ export const audiences: AudienceContent[] = [
       {
         question: '紹介手数料はありますか？',
         answer:
-          'デモ表記のため、個別の連携条件はお問い合わせください。',
+          '個別の連携条件はお問い合わせください。状況に合わせてご案内します。',
       },
       {
         question: '顧客説明用の短い言い回しはありますか？',

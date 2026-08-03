@@ -19,7 +19,7 @@ export const site = {
   shortName: '終活コンシェルジュ',
   titleTemplate: (page: string) => `${page} | 終活コンシェルジュ`,
   description:
-    '高齢者の身元保証・死後事務・生活支援まで、窓口ひとつでサポートする終活の総合相談窓口です。',
+    '高齢者の一生涯の生活支援を軸に、身元保証や死後の手続きまでを窓口ひとつで支える総合相談窓口です。',
   url: 'https://calcite-ai.github.io/calcite-demos/shukatsu-demo',
   locale: 'ja_JP',
   phone: '03-6276-8097',
@@ -36,6 +36,13 @@ export const site = {
   ogImage: '/images/og/og-default.jpg',
   logo: '/images/logo/logo.png',
   logoDisplay: '/images/logo/終活コンシェルジュ_ロゴ.png',
+  /** Google Maps（一般社団法人 終活コンシェルジュ） */
+  maps: {
+    placeUrl:
+      'https://www.google.com/maps/place/%E4%B8%80%E8%88%AC%E7%A4%BE%E5%9B%A3%E6%B3%95%E4%BA%BA+%E7%B5%82%E6%B4%BB%E3%82%B3%E3%83%B3%E3%82%B7%E3%82%A7%E3%83%AB%E3%82%B8%E3%83%A5/@35.685191,139.688012,17z/data=!3m1!4b1!4m6!3m5!1s0x6018f32c5adf6715:0x3fc35da9222e45a7!8m2!3d35.685191!4d139.688012!16s%2Fg%2F11g68zhs3g?entry=ttu',
+    embedUrl:
+      'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3241.6532918765432!2d139.68542417851562!3d35.685191!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6018f32c5adf6715%3A0x3fc35da9222e45a7!2s%E4%B8%80%E8%88%AC%E7%A4%BE%E5%9B%A3%E6%B3%95%E4%BA%BA%20%E7%B5%82%E6%B4%BB%E3%82%B3%E3%83%B3%E3%82%B7%E3%82%A7%E3%83%AB%E3%82%B8%E3%83%A5!5e0!3m2!1sja!2sjp!4v1730000000000!5m2!1sja!2sjp',
+  },
 } as const;
 
 /** 絶対URL（site.url は base path 込み）。先頭 `/` でも origin 直下に飛ばない */

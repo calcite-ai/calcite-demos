@@ -1,0 +1,157 @@
+[
+  {
+    "key": "group_shukatsu_column",
+    "title": "コラム項目",
+    "fields": [
+      {
+        "key": "field_column_meta_description",
+        "label": "meta description",
+        "name": "meta_description",
+        "type": "textarea",
+        "instructions": "検索結果用の要約（80〜120字目安）。",
+        "required": 1,
+        "rows": 2,
+        "new_lines": ""
+      },
+      {
+        "key": "field_column_source_url",
+        "label": "出典URL（一次ソース）",
+        "name": "source_url",
+        "type": "url",
+        "instructions": "制度・数字を含む記事では省庁発表等のURLを入れてください。",
+        "required": 0
+      },
+      {
+        "key": "field_column_ai_generated",
+        "label": "AI生成下書き",
+        "name": "ai_generated",
+        "type": "true_false",
+        "default_value": 0,
+        "ui": 1,
+        "wrapper": { "width": "50", "class": "", "id": "" }
+      },
+      {
+        "key": "field_column_needs_review",
+        "label": "要確認",
+        "name": "needs_review",
+        "type": "true_false",
+        "instructions": "自動下書き直後はON。一次ソース確認後にOFF。",
+        "default_value": 1,
+        "ui": 1,
+        "wrapper": { "width": "50", "class": "", "id": "" }
+      },
+      {
+        "key": "field_column_og_image",
+        "label": "OGP画像",
+        "name": "og_image",
+        "type": "image",
+        "return_format": "array",
+        "preview_size": "medium",
+        "library": "all"
+      }
+    ],
+    "location": [
+      [
+        {
+          "param": "post_type",
+          "operator": "==",
+          "value": "shukatsu_column"
+        }
+      ]
+    ],
+    "menu_order": 0,
+    "position": "side",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "active": true,
+    "description": "カテゴリは「コラムカテゴリ」タクソノミーを使用。",
+    "show_in_rest": 1,
+    "modified": 1753620000
+  },
+  {
+    "key": "group_shukatsu_faq",
+    "title": "FAQ項目",
+    "fields": [
+      {
+        "key": "field_faq_order",
+        "label": "表示順",
+        "name": "faq_order",
+        "type": "number",
+        "instructions": "小さい数字が先。",
+        "required": 0,
+        "default_value": 0,
+        "wrapper": { "width": "50", "class": "", "id": "" }
+      },
+      {
+        "key": "field_faq_meta_description",
+        "label": "meta description",
+        "name": "meta_description",
+        "type": "text",
+        "required": 0
+      }
+    ],
+    "location": [
+      [
+        {
+          "param": "post_type",
+          "operator": "==",
+          "value": "shukatsu_faq"
+        }
+      ]
+    ],
+    "menu_order": 0,
+    "position": "side",
+    "style": "default",
+    "active": true,
+    "description": "タイトル＝質問、本文＝回答。",
+    "show_in_rest": 1,
+    "modified": 1753620000
+  },
+  {
+    "key": "group_shukatsu_guide",
+    "title": "制度解説項目",
+    "fields": [
+      {
+        "key": "field_guide_meta_description",
+        "label": "meta description",
+        "name": "meta_description",
+        "type": "textarea",
+        "required": 1,
+        "rows": 2,
+        "new_lines": ""
+      },
+      {
+        "key": "field_guide_needs_review",
+        "label": "要確認",
+        "name": "needs_review",
+        "type": "true_false",
+        "default_value": 1,
+        "ui": 1
+      },
+      {
+        "key": "field_guide_og_image",
+        "label": "OGP画像",
+        "name": "og_image",
+        "type": "image",
+        "return_format": "array",
+        "preview_size": "medium"
+      }
+    ],
+    "location": [
+      [
+        {
+          "param": "post_type",
+          "operator": "==",
+          "value": "shukatsu_guide"
+        }
+      ]
+    ],
+    "menu_order": 0,
+    "position": "side",
+    "style": "default",
+    "active": true,
+    "show_in_rest": 1,
+    "modified": 1753620000
+  }
+]

@@ -39,7 +39,7 @@ const jsonLd = [
   <PageHero title={label} lead={lead} crumbs={[{ label: '対象者別' }, { label }]} />
 
   <div class="mx-auto max-w-6xl px-4 pt-10">
-    <AnswerLead title="このページの答え">
+    <AnswerLead title="はじめに">
       {summary.map((p) => <p>{p}</p>)}
     </AnswerLead>
   </div>
@@ -55,15 +55,27 @@ const jsonLd = [
   <Section class="bg-white border-y border-brand/5" eyebrow="Support" title="終活コンシェルジュができること">
     <div class="grid gap-4 md:grid-cols-3">
       {offers.map((o) => (
-        <article class="rounded-2xl bg-brand-light/60 p-5">
-          <h3 class="font-bold text-brand-dark">{o.title}</h3>
-          <p class="mt-2 text-sm text-muted leading-relaxed">{o.body}</p>
+        <article class="overflow-hidden rounded-2xl bg-brand-light/60">
+          <div class="aspect-[16/10] overflow-hidden bg-[#e8f1fa]">
+            <img
+              src={withBase(`/images/illustrations/offers/${o.illustration}.png`)}
+              alt=""
+              class="h-full w-full object-cover"
+              loading="lazy"
+              width="1376"
+              height="768"
+            />
+          </div>
+          <div class="p-5">
+            <h3 class="font-bold text-brand-dark">{o.title}</h3>
+            <p class="mt-2 text-sm text-muted leading-relaxed">{o.body}</p>
+          </div>
         </article>
       ))}
     </div>
   </Section>
 
-  <Section eyebrow="Scenarios" title="よくある場面" lead="抽象論ではなく、現場で起きやすい流れでイメージできるようにしました。">
+  <Section eyebrow="Scenarios" title="よくある場面" lead="現場で起きやすい流れを、具体例で紹介します。">
     <div class="space-y-4">
       {scenarios.map((s, i) => (
         <article class="rounded-2xl border border-brand/10 bg-white p-5 md:p-6">

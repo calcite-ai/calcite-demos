@@ -1,0 +1,23 @@
+---
+import { site } from '../lib/site';
+
+const telFree = `tel:${site.phoneFree.replaceAll('-', '')}`;
+---
+
+<nav
+  class="fixed inset-x-0 bottom-0 z-[60] border-t border-brand/15 bg-white/95 backdrop-blur-md md:hidden pb-[env(safe-area-inset-bottom)]"
+  aria-label="電話で相談"
+>
+  <div class="mx-auto flex max-w-6xl gap-2 px-3 py-2.5">
+    <a
+      href={telFree}
+      class="flex flex-1 items-center justify-center gap-2 rounded-full bg-brand px-4 py-3.5 text-sm font-bold text-white shadow-sm active:bg-brand-dark"
+    >
+      <span aria-hidden="true" class="text-base leading-none">☎</span>
+      <span class="flex flex-col items-start leading-tight">
+        <span class="text-[10px] font-medium tracking-wide text-white/85">フリーダイヤル（無料）</span>
+        <span class="tabular-nums tracking-wide">{site.phoneFree}</span>
+      </span>
+    </a>
+  </div>
+</nav>
