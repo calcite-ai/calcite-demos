@@ -8,7 +8,7 @@ import AnswerLead from '../../components/AnswerLead.astro';
 import ColumnCategoryNav from '../../components/ColumnCategoryNav.astro';
 import ColumnPostList from '../../components/ColumnPostList.astro';
 
-const desc = '終活・身元保証・制度の見方など、ご本人・ご家族・専門職向けの解説記事（自社ブログ）。検索やAIに引用されやすいよう、各記事の冒頭で結論を示します。カテゴリーから関連記事を探せます。';
+const desc = '終活・身元保証・制度の見方など、ご本人・ご家族・専門職向けの解説記事です。カテゴリーから関連記事を探せます。';
 const posts = await getPublishedColumns();
 const categories = getCategoryStats(posts);
 const jsonLd = [
@@ -31,7 +31,7 @@ const jsonLd = [
   <div class="mx-auto max-w-6xl px-4 pt-10 space-y-8">
     <AnswerLead title="コラムについて">
       <p>
-        終活・身元保証・制度の見方など、高齢者ご本人・ご家族・専門職向けの解説記事を掲載します。検索やAIに引用されやすいよう、各記事の冒頭で結論を示します。気になるテーマはカテゴリーから絞り込めます。
+        終活・身元保証・制度の見方など、高齢者ご本人・ご家族・専門職向けの解説記事を掲載しています。気になるテーマはカテゴリーから絞り込めます。
       </p>
     </AnswerLead>
 

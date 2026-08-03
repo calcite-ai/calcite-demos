@@ -85,7 +85,7 @@ const jsonLd = [
     <ActivityTable items={recent} />
   </Section>
 
-  <Section eyebrow="Archive" title="年別アーカイブ" lead="過去の実績は年ごとに開けます。地域名・主宰団体名・テーマは、連携先を探すときの手がかりになります。">
+  <Section eyebrow="Archive" title="年別アーカイブ" lead="過去の実績は年ごとにご覧いただけます。地域・主催・テーマから、これまでの活動をご確認ください。">
     <div class="space-y-3">
       {byYear.map(({ year, items }) => (
         <details class="group rounded-2xl border border-brand/10 bg-white open:shadow-sm" open={openYears.has(year)}>

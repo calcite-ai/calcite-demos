@@ -13,7 +13,7 @@ import ColumnCategoryNav from '../../components/ColumnCategoryNav.astro';
 import CaseCategoryCards from '../../components/CaseCategoryCards.astro';
 import { withBase } from '../../lib/site';
 
-const desc = '身元保証・死後事務・相続・生活支援などの相談を、相談内容→課題→対応→結果→ポイントで紹介します。専門職・ご家族が「似たケースの進め方」を確認するための解決事例です。';
+const desc = '身元保証・死後事務・相続・生活支援など、実際のご相談をもとにした解決事例です。ご家族や専門職の方が、似た状況の進め方を知る参考にしてください。';
 const all = await getPublishedCases();
 const categories = getCaseCategoryStats(all);
 const jsonLd = [
@@ -36,7 +36,7 @@ const jsonLd = [
   <div class="mx-auto max-w-6xl px-4 pt-10 space-y-8">
     <AnswerLead title="事例集について">
       <p>
-        各事例の冒頭で「何が困り、どう整えたか」を先に示し、続いて背景・対応・結果・FAQを掲載します。個人が特定される実名情報は含みません。相談現場で起きやすい状況を、読みやすい形に再構成した事例です。
+        身元保証・死後事務・生活支援などのご相談について、背景から対応・結果までを紹介します。個人が特定される実名情報は含みません。
       </p>
     </AnswerLead>
 
@@ -71,6 +71,6 @@ const jsonLd = [
         </a>
       ))}
     </div>
-    <p class="mt-8 text-xs text-muted">※個人が特定される実在情報は使用していません。相談現場で起きやすい状況を再構成した事例です。</p>
+    <p class="mt-8 text-xs text-muted">※個人が特定される実在情報は使用していません。内容は匿名化したうえで紹介しています。</p>
   </Section>
 </BaseLayout>
