@@ -41,9 +41,10 @@
 |---|---|---|
 | 済 | 新見工務店 | 2026-08-20 送信済 |
 | SKIP | マキノ／ダンデ等 | 新公式あり（C0） |
-| 1 | 福澤工務店 | qualified → デモ公開後に送信 |
-| 2 | 日南工務店 | qualified → デモ公開後に送信 |
-| 次 | Hunter補充 | 工務店・G1 C0〜C5通過のみ |
+| 1 | 福澤工務店 | qualified → クラウド実行でデモ公開→送信 |
+| 2 | 日南工務店 | qualified → 同上 |
+| 稼働 | Cursor Automation「Demo buyout daily send」 | **Active** / 毎日 10:00 JST / Gmail接続済 |
+| 予備 | ローカルループ | **停止済**（二重送信防止 2026-08-20） |
 
 診断ミス防止: [`demo_buyout_audit_checklist.md`](./demo_buyout_audit_checklist.md) / Hunter G1 C0〜C5。
 
