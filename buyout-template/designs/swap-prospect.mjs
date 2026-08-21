@@ -45,7 +45,18 @@ if (!name) {
 const telHref = `tel:${tel.replace(/[^0-9+]/g, "")}`;
 const outRoot = path.join(__dirname, "_prospects", slug);
 
+/** D Signboard hero is `アオイ<br />工房` — plain `アオイ工房` replace misses it. */
+function heroHtml(companyName) {
+  const m = companyName.match(/^(株式会社|有限会社)?(.+?)(工務店|建設|事務所|会館|祭典)$/);
+  if (m) return `${m[1] || ""}${m[2]}<br />${m[3]}`;
+  return companyName;
+}
+
 const replacements = [
+  // Line-broken hero first (before plain アオイ工房)
+  ["アオイ<br />工房", heroHtml(name)],
+  ["アオイ<br/>工房", heroHtml(name)],
+  ["アオイ<br>工房", heroHtml(name)],
   ["アオイ工房", name],
   ["地域の仕事を、丁寧に。", tag],
   ["03-0000-0000", tel],
