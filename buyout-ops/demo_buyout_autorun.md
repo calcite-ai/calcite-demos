@@ -21,7 +21,11 @@
 4. **送信直前:** G1の C0〜C2（正規サイト・HTTPS最終到達・tel:）を再確認。課題は audit_notes からのみ（`demo_buyout_audit_checklist.md` / `demo_buyout_hunter.md`）
 5. デモ未公開なら `buyout-template/designs/swap-prospect.mjs` → `publish-prospect.mjs` → **buyout-prospects のみ push**
 5b. **公開URLが HTTP 200 になるまで送らない**（404のままURLを書かない。2026-08-21 福澤で再発）
-6. `templates/email_demo_buyout_1_initial.txt` で送信（確認不要）。From: hello@calcite-ai.jp
+5c. **送信前ゲート必須:** `demo_buyout_pre_send_checklist.md` を満たし、次が PASS するまで送らない  
+   `node buyout-ops/verify-before-send.mjs --from-csv --company "<社名>"`  
+   （404・アオイ残存・社名未差し替えはここで落とす）
+6. `templates/email_demo_buyout_1_initial.txt` で送信（確認不要）。From: hello@calcite-ai.jp  
+   ※本文のデモURLは CSV の demo_url_a/b と同一にする
 7. CSV を `sent` に更新、notes に日付と message id。変更は commit & push
 8. **今日分が終わったら止まる**（同日2通目は送らない）
 ## キュー優先
@@ -47,7 +51,8 @@
 | 稼働 | Cursor Automation「Demo buyout daily send」 | **Active** / 毎日 10:00 JST / Gmail接続済 |
 | 予備 | ローカルループ | **停止済**（二重送信防止 2026-08-20） |
 
-診断ミス防止: [`demo_buyout_audit_checklist.md`](./demo_buyout_audit_checklist.md) / Hunter G1 C0〜C5。
+診断ミス防止: [`demo_buyout_audit_checklist.md`](./demo_buyout_audit_checklist.md) / Hunter G1 C0〜C5。  
+**送信前ゲート:** [`demo_buyout_pre_send_checklist.md`](./demo_buyout_pre_send_checklist.md) + `verify-before-send.mjs`
 
 文面確認は不要（オーナー指示 2026-08-20）。
 

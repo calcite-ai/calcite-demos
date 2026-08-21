@@ -1,0 +1,231 @@
+#!/usr/bin/env node
+/**
+ * Pre-send gate for buyout outreach demos.
+ * Exit 0 = PASS (ok to send). Non-zero = FAIL (do not send).
+ *
+ * Usage:
+ *   node buyout-ops/verify-before-send.mjs --slug fukuzawa-koumuten --name "株式会社福澤工務店"
+ *   node buyout-ops/verify-before-send.mjs --from-csv --company "株式会社福澤工務店"
+ *   node buyout-ops/verify-before-send.mjs --from-csv --queued
+ */
+import fs from "node:fs";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const repoRoot = path.resolve(__dirname, "..");
+
+function arg(name, fallback = "") {
+  const i = process.argv.indexOf(`--${name}`);
+  return i >= 0 ? process.argv[i + 1] : fallback;
+}
+function hasFlag(name) {
+  return process.argv.includes(`--${name}`);
+}
+
+function parseCsv(text) {
+  const lines = text.replace(/^\uFEFF/, "").split(/\r?\n/).filter(Boolean);
+  if (!lines.length) return [];
+  const headers = [];
+  let cur = "";
+  let inQ = false;
+  const row0 = lines[0];
+  for (let i = 0; i < row0.length; i++) {
+    const c = row0[i];
+    if (c === '"') {
+      inQ = !inQ;
+      continue;
+    }
+    if (c === "," && !inQ) {
+      headers.push(cur);
+      cur = "";
+      continue;
+    }
+    cur += c;
+  }
+  headers.push(cur);
+
+  const rows = [];
+  for (let li = 1; li < lines.length; li++) {
+    const cols = [];
+    cur = "";
+    inQ = false;
+    const line = lines[li];
+    for (let i = 0; i < line.length; i++) {
+      const c = line[i];
+      if (c === '"') {
+        inQ = !inQ;
+        continue;
+      }
+      if (c === "," && !inQ) {
+        cols.push(cur);
+        cur = "";
+        continue;
+      }
+      cur += c;
+    }
+    cols.push(cur);
+    const obj = {};
+    headers.forEach((h, idx) => {
+      obj[h] = cols[idx] ?? "";
+    });
+    rows.push(obj);
+  }
+  return rows;
+}
+
+function skinFromUrl(url) {
+  const m = String(url).match(/buyout-prospects\/[^/]+\/([^/]+)\/?$/);
+  return m ? m[1] : "";
+}
+
+function slugFromUrl(url) {
+  const m = String(url).match(/buyout-prospects\/([^/]+)\//);
+  return m ? m[1] : "";
+}
+
+async function fetchText(url) {
+  const res = await fetch(url, {
+    redirect: "follow",
+    headers: { "User-Agent": "CalciteBuyoutVerify/1.0" },
+  });
+  const text = await res.text();
+  return { status: res.status, finalUrl: res.url, text };
+}
+
+async function verifyProspect({ name, urlA, urlB, slug }) {
+  const fails = [];
+  const warns = [];
+
+  if (!urlA || !urlB) fails.push("V1 CSVに demo_url_a / demo_url_b がない");
+  if (!name) fails.push("V3 社名がない");
+
+  const derivedSlug = slug || slugFromUrl(urlA) || slugFromUrl(urlB);
+  if (derivedSlug) {
+    const local = path.join(repoRoot, "buyout-prospects", derivedSlug);
+    if (!fs.existsSync(local)) fails.push(`V5 ローカルに buyout-prospects/${derivedSlug} がない`);
+  } else {
+    fails.push("V5 slug を URL から特定できない");
+  }
+
+  const skinsCsv = [];
+  for (const [label, url] of [
+    ["A", urlA],
+    ["B", urlB],
+  ]) {
+    if (!url) continue;
+    const skin = skinFromUrl(url);
+    if (skin) skinsCsv.push(skin);
+    try {
+      const { status, text } = await fetchText(url);
+      if (status !== 200) {
+        fails.push(`V1 ${label} HTTP ${status}: ${url}`);
+        continue;
+      }
+      if (/アオイ工房|アオイ<br\s*\/?\s*>工房|アオイ/.test(text)) {
+        fails.push(`V2 ${label} にサンプル屋号「アオイ」が残っている: ${url}`);
+      }
+      if (/03-0000-0000|info@example\.com|東京都千代田区サンプル/.test(text)) {
+        fails.push(`V2 ${label} にサンプル連絡先が残っている: ${url}`);
+      }
+      // Name may be split across <br /> — strip tags for membership check
+      const plain = text.replace(/<[^>]+>/g, "");
+      const compactName = name.replace(/\s+/g, "");
+      const compactPlain = plain.replace(/\s+/g, "");
+      if (compactName && !compactPlain.includes(compactName)) {
+        // allow split: 株式会社福澤 + 工務店
+        const parts = name.match(/^(株式会社|有限会社)?(.+?)(工務店|建設|事務所|会館|祭典)$/);
+        const okSplit =
+          parts &&
+          compactPlain.includes((parts[1] || "") + parts[2]) &&
+          compactPlain.includes(parts[3]);
+        if (!okSplit) fails.push(`V3 ${label} トップHTMLに社名「${name}」が見つからない`);
+      }
+    } catch (e) {
+      fails.push(`V1 ${label} 取得失敗: ${url} (${e.message})`);
+    }
+  }
+
+  if (skinsCsv.length === 2 && skinsCsv[0] === skinsCsv[1]) {
+    warns.push("A/B の skin が同一（意図的なら可）");
+  }
+
+  return { fails, warns, slug: derivedSlug };
+}
+
+async function main() {
+  const csvPath = path.join(__dirname, "demo_buyout_leads.csv");
+  let targets = [];
+
+  if (hasFlag("from-csv")) {
+    const rows = parseCsv(fs.readFileSync(csvPath, "utf8"));
+    const company = arg("company");
+    if (hasFlag("queued")) {
+      targets = rows.filter(
+        (r) =>
+          (r.status === "queued" || r.status === "built") &&
+          String(r.do_not_contact).toLowerCase() !== "true"
+      );
+    } else if (company) {
+      targets = rows.filter((r) => (r.company || "").includes(company));
+    } else {
+      console.error("Need --company or --queued with --from-csv");
+      process.exit(2);
+    }
+    targets = targets.map((r) => ({
+      name: r.company,
+      urlA: r.demo_url_a,
+      urlB: r.demo_url_b,
+      slug: slugFromUrl(r.demo_url_a),
+      status: r.status,
+    }));
+  } else {
+    targets = [
+      {
+        name: arg("name"),
+        urlA: arg("url-a"),
+        urlB: arg("url-b"),
+        slug: arg("slug"),
+      },
+    ];
+    if (!targets[0].urlA || !targets[0].urlB) {
+      // derive from slug + default skins if provided via --skins
+      const slug = arg("slug");
+      const skins = arg("skins", "d-signboard,b-atelier")
+        .split(",")
+        .map((s) => s.trim())
+        .filter(Boolean);
+      if (slug && skins.length >= 2) {
+        const base = `https://calcite-ai.github.io/calcite-demos/buyout-prospects/${slug}`;
+        targets[0].urlA = `${base}/${skins[0]}/`;
+        targets[0].urlB = `${base}/${skins[1]}/`;
+      }
+    }
+  }
+
+  if (!targets.length) {
+    console.error("No targets");
+    process.exit(2);
+  }
+
+  let anyFail = false;
+  for (const t of targets) {
+    console.log(`\n=== ${t.name || t.slug} ===`);
+    const { fails, warns, slug } = await verifyProspect(t);
+    for (const w of warns) console.log("WARN", w);
+    if (fails.length) {
+      anyFail = true;
+      for (const f of fails) console.log("FAIL", f);
+      console.log("RESULT FAIL — do not send");
+    } else {
+      console.log(`RESULT PASS — ok to send (${slug})`);
+    }
+  }
+
+  process.exit(anyFail ? 1 : 0);
+}
+
+main().catch((e) => {
+  console.error(e);
+  process.exit(2);
+});
