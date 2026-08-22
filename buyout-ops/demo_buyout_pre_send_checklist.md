@@ -25,7 +25,7 @@ node buyout-ops/verify-inbox-reply.mjs --company "株式会社〇〇" --template
 ## 人手チェック（送信直前）
 
 ```
-□ P0  対象が queued/built で do_not_contact=false
+□ P0  対象が queued/built で do_not_contact=false かつ **prior_outreach_blocklist に未掲載**
 □ P1  Gmail: to:{email} from:me で過去送信なし
 □ P2  C0〜C2 再確認（正規サイト・最終HTTPS・tel:）
 □ P3  メール課題①〜③ = audit_notes の粗だけ（新規指摘を足していない）
@@ -52,6 +52,7 @@ node buyout-ops/verify-inbox-reply.mjs --company "株式会社〇〇" --template
 | O1〜O8 | `verify-ops-pack.mjs`（テンプレ・repo・GitHub main 一致） | push / 修正 |
 | I2 | `verify-inbox-reply.mjs`（旧価格コホートに66k checkout 禁止） | オーナー対応 |
 | V11/O11 | queued が **工務店（koumuten）** 以外 | 送信・昇格禁止 |
+| V12 | **`prior_outreach_blocklist.csv` に載る**（個人Gmail・hello@ 含む過去デモ営業済） | 送らない |
 
 ## 過去ミスとの対応
 

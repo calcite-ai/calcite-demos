@@ -51,8 +51,11 @@
 ## 除外（再送しない）
 
 - `do_not_contact=true` / `paused` / `sent`（フォロー待ちは別）
-- Gmail に過去のデモ営業がある先
+- **`prior_outreach_blocklist.csv` に載る先**（個人Gmail・hello@ 含む過去デモ営業済み。工務店・葬儀・士業すべて）
+- Gmail に過去のデモ営業がある先（`hello@` のみ見ても **kenta.hino1106@gmail.com 送信は blocklist で補完**）
 - 推測メール
+
+過去営業の追加: Gmail 実績確認 → `prior_outreach_blocklist.csv` に1行追加 → `sales_prospects.csv` 備考に「営業メール送信済→buyout再送禁止」
 
 ## 送信キュー（2026-08-20 時点）
 

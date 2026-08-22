@@ -6,6 +6,8 @@
 |---|---|
 | `demo_buyout_daily_schedule.md` | **9:00 キュー補充 / 10:00 送信** |
 | `demo_buyout_autorun.md` | 10:00 送信オペ |
+| `prior_outreach_blocklist.csv` | **過去デモ営業済み**（再送禁止リスト） |
+| `prior-outreach.mjs` | blocklist 照合 |
 | `refill-queue-if-empty.mjs` | 9:00 オーケストレータ |
 | `queue-status.mjs` | 送付先件数 |
 | `demo_buyout_leads.csv` | 送信キュー |

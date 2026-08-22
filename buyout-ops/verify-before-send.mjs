@@ -15,6 +15,7 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { spawnSync } from "node:child_process";
 import { ACTIVE_VERTICAL, isActiveVertical, rowVertical, verticalLabel } from "./vertical-config.mjs";
+import { matchPriorOutreach } from "./prior-outreach.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const repoRoot = path.resolve(__dirname, "..");
@@ -105,10 +106,17 @@ async function fetchText(url) {
   return { status: res.status, finalUrl: res.url, text };
 }
 
-async function verifyProspect({ name, urlA, urlB, slug, quotedPrice, status, vertical, pay_signals, audit_notes }) {
+async function verifyProspect({ name, email, urlA, urlB, slug, quotedPrice, status, vertical, pay_signals, audit_notes }) {
   const fails = [];
   const warns = [];
   const row = { company: name, vertical, pay_signals, audit_notes };
+
+  const prior = matchPriorOutreach({ company: name, email });
+  if (prior.blocked && status !== "sent") {
+    fails.push(
+      `V12 過去営業済み（${prior.row.sent_via} ${prior.row.sent_date}）— prior_outreach_blocklist.csv`
+    );
+  }
 
   if (!urlA || !urlB) fails.push("V1 CSVに demo_url_a / demo_url_b がない");
   if (!name) fails.push("V3 社名がない");
@@ -220,6 +228,7 @@ async function main() {
     }
     targets = targets.map((r) => ({
       name: r.company,
+      email: r.email,
       urlA: r.demo_url_a,
       urlB: r.demo_url_b,
       slug: slugFromUrl(r.demo_url_a),

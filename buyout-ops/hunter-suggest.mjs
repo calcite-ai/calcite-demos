@@ -10,6 +10,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { ACTIVE_VERTICAL } from "./vertical-config.mjs";
+import { isPriorOutreachBlocked } from "./prior-outreach.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const repoRoot = path.resolve(__dirname, "..");
@@ -90,6 +91,7 @@ const candidates = prospects
     if (!email.includes("@")) return false;
     if (/なし|フォーム|要確認/.test(email)) return false;
     if (known.has(p["社名"])) return false;
+    if (isPriorOutreachBlocked({ company: p["社名"], email: p["メール"] })) return false;
     const url = p["HP URL"] || "";
     if (!url.startsWith("http")) return false;
     const note = `${p["備考"] || ""} ${p["HP状態(詳細)"] || ""}`;

@@ -11,6 +11,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { ACTIVE_VERTICAL, isActiveVertical, verticalLabel } from "./vertical-config.mjs";
+import { isPriorOutreachBlocked } from "./prior-outreach.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -67,6 +68,7 @@ const queued = rows.filter(
   (r) =>
     (r.status === "queued" || r.status === "built") &&
     String(r.do_not_contact).toLowerCase() !== "true" &&
+    !isPriorOutreachBlocked({ company: r.company, email: r.email }) &&
     r.demo_url_a &&
     r.demo_url_b &&
     isActiveVertical(r)

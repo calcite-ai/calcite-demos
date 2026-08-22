@@ -10,6 +10,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { isActiveVertical, rowVertical, verticalLabel } from "./vertical-config.mjs";
+import { isPriorOutreachBlocked } from "./prior-outreach.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const apply = process.argv.includes("--apply");
@@ -88,6 +89,7 @@ const candidates = objects.filter((r) => {
   const notes = `${r.audit_notes || ""} ${r.notes || ""}`;
   if (EXCLUDE_NOTE.test(notes)) return false;
   if (!isActiveVertical(r)) return false;
+  if (isPriorOutreachBlocked({ company: r.company, email: r.email })) return false;
   return true;
 });
 
