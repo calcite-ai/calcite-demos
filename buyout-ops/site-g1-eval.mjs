@@ -126,13 +126,20 @@ const CONTACT_PATHS = [
   "/inquiry/",
   "/inquiry",
   "/company/",
+  "/company.html",
   "/about/",
   "/toiawase/",
   "/form/",
+  "/gaiyou/",
+  "/gaiyou.html",
+  "/profile/",
+  "/corporate/",
+  "/access/",
+  "/outline.html",
 ];
 
 export async function fetchSiteWithContacts(baseUrl) {
-  const base = baseUrl.replace(/\/$/, "");
+  let base = baseUrl.replace(/\/$/, "").replace(/\/index\.html?$/i, "");
   let bestSignals = null;
   let bestHtml = "";
   let emails = [];

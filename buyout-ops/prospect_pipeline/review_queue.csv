@@ -1,0 +1,9 @@
+approval_seq,company,url,email,defects,audit_draft,final_url,owner_ok,owner_notes
+1,株式会社中村工務店,https://nakamura.ohotk.com/,naka241359@ybb.ne.jp,viewportなし; tel:なし,粗:(1)viewportなし(2)tel:なし,https://nakamura.ohotk.com/,,
+2,株式会社ビルドテクト,http://www.sciencetect.jp/,mail.bildtct@clock.ocn.ne.jp,https未整備; tel:なし,粗:(1)https未整備(2)tel:なし,http://www.sciencetect.jp/company.html,,
+3,株式会社基工務店,http://mtd.jp/,motokou@mtd.jp,https未整備; tel:なし; 更新停止感(HTML内2018止),粗:(1)https未整備(2)tel:なし(3)更新停止感(HTML内2018止),http://mtd.jp/,,
+4,村上工務店,http://murakamikoumuten.jp/,murakamikoumuten4396@gmail.com,https未整備; tel:なし; 更新停止感(HTML内2019止),粗:(1)https未整備(2)tel:なし(3)更新停止感(HTML内2019止),http://murakamikoumuten.jp/,,
+5,中武建設株式会社,http://www.nakatake.co.jp/index.html,info@nakatake.co.jp,https未整備; viewportなし; tel:なし,粗:(1)https未整備(2)viewportなし(3)tel:なし,http://www.nakatake.co.jp/,,
+6,高野建設有限会社,http://www.takano-kensetu.jp/,takano.hiroshi@jade.plala.or.jp,https未整備; viewportなし; tel:なし,粗:(1)https未整備(2)viewportなし(3)tel:なし,http://www.takano-kensetu.jp/,,
+7,株式会社マゴメ工務店,http://www.magome-net.co.jp/,info@magome-net.co.jp,https未整備; viewportなし; tel:なし,粗:(1)https未整備(2)viewportなし(3)tel:なし,http://www.magome-net.co.jp/company/,,
+8,株式会社田代建築事務所,http://www.tashiro-kentiku-jimusho.info/,toraoumaru1970@cus4.tashiro-kentiku-jimusho.info,https未整備; tel:なし; 更新停止感(HTML内2017止),粗:(1)https未整備(2)tel:なし(3)更新停止感(HTML内2017止),http://www.tashiro-kentiku-jimusho.info/contact/,,

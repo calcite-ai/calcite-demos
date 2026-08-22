@@ -81,6 +81,18 @@ node buyout-ops/prospect-scan-batch.mjs --limit 10 --sleep-ms 1500
 
 **再開:** 同じコマンドで OK（スキャン済 URL はスキップ）。
 
+### 2-B2. CANDIDATE < 50 のとき — 商工会・公式リストで種＋メール補完
+
+**50件ライン未満**かつ NO_EMAIL が多いとき:
+
+1. **商工会議所 / 商工会** の会員一覧（建設・工務）から **公式HP URL** を拾う（メールは chamber ページに無いことが多い → 各社HPへ）
+2. **自治体PDF**（例: 十和田市 耐震改修事業者リスト）の **HP + Eメール** は公式ソースとして `seeds/koumuten_official_*.csv` に追加
+3. `node buyout-ops/merge-seed-files.mjs` → `prospect-scan-batch.mjs`
+4. NO_EMAIL 残り: `node buyout-ops/prospect-rescan-no-email.mjs`（/company.html 等の深いパス）
+5. FETCH_FAIL（index.html URL）: `node buyout-ops/prospect-rescan-fetch-fail.mjs`
+
+**禁止:** `info@ドメイン` の推測。PDF・会社概要ページに載ったメールのみ。
+
 ### 2-C. 朝イチ（CANDIDATE だけ・1社5分）
 
 1. `scan_results.csv` で `status=CANDIDATE` をフィルタ
@@ -132,7 +144,11 @@ Maps で種を集めるときも同じ欠陥を意識すると効率よい。
 | `seeds/koumuten_urls.csv` | 入力（company,url,prefecture,source） |
 | `extract-seeds-from-prospects.mjs` | prospects → seeds 同期 |
 | `prospect-scan-batch.mjs` | 夜間スキャン |
-| `prospect_pipeline/scan_results.csv` | 出力（自動追記） |
+| `prospect-rescan-no-email.mjs` | NO_EMAIL 再取得（深い contact パス） |
+| `prospect-rescan-fetch-fail.mjs` | FETCH_FAIL 再試行 |
+| `merge-seed-files.mjs` | seeds/*.csv → koumuten_urls.csv |
+| `prepare-review-sheet.mjs` | CANDIDATE → review_queue.csv |
+| `prospect_pipeline/review_queue.csv` | 朝レビュー（owner_ok=y） |
 | `site-g1-eval.mjs` | G1判定ロジック |
 | `verify-hunter-g1.mjs` | queued 前ゲート |
 

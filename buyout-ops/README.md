@@ -7,6 +7,7 @@
 | `demo_buyout_owner_workflow.md` | **オーナー承認キュー**（朝1回承認→毎日自動送信） |
 | `demo_buyout_daily_schedule.md` | **9:00 デモ制作 / 10:00 送信** |
 | `demo_buyout_autorun.md` | 10:00 送信オペ |
+| `prospect-rescan-fetch-fail.mjs` | 9:00 FETCH_FAIL 再試行 |
 | `prepare-review-sheet.mjs` | 夜スキャン → 朝レビュー用 CSV |
 | `import-review-approvals.mjs` | owner_ok=y → leads (status=approved) |
 | `next-approved.mjs` | 承認キュー先頭1社（9:00 デモ用） |
