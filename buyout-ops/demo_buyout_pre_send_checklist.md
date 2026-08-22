@@ -35,6 +35,8 @@ node buyout-ops/verify-before-send.mjs --from-csv --company "株式会社福澤�
 | V3 | 公開HTML（トップ）に **先方社名** が含まれる | swapやり直し |
 | V4 | CSV の skin と URL パスが一致（例: `.../d-signboard/`） | CSV or URL 修正 |
 | V5 | slug フォルダが `buyout-prospects/` に存在する（ローカル確認） | publish 漏れ |
+| V6 | 公開HTMLに **55,000 / 50,000** が残っていない | swap/publish やり直し |
+| V7 | 公開HTMLに **デモ案一覧** / picker バーが残っていない | publish やり直し |
 
 ## 過去ミスとの対応
 

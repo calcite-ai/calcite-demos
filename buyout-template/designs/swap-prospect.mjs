@@ -110,14 +110,8 @@ for (const skin of skins) {
 
     text = text
       .replace(/(\.\.\/)+shared\/images/g, sharedPrefix)
-      .replace(/href="\.\.\/"/g, 'href="../"')
-      .replace(/← 在庫一覧/g, "← デモ案一覧");
-
-    // Point picker to prospect index
-    text = text.replace(
-      /<p class="picker"><a href="[^"]*">← [^<]*<\/a>/,
-      `<p class="picker"><a href="../">← デモ案一覧</a>`
-    );
+      // Outreach demos: no back-link to chooser (recipients open skin URLs from email)
+      .replace(/<p class="picker">[\s\S]*?<\/p>\s*/g, "");
 
     fs.writeFileSync(file, text);
   });
@@ -154,7 +148,7 @@ const index = `<!DOCTYPE html>
 <body>
   <main>
     <h1>${name}</h1>
-    <p>雰囲気の違うデモを2案ご用意しました。どちらかでよければ、<strong style="color:#fff">55,000円（税込）</strong>で買い取りできます（デモ準拠の差し替え納品）。</p>
+    <p>雰囲気の違うデモを2案ご用意しました（社内プレビュー用）。先方にはメール記載の skin URL を直接開いてもらいます。</p>
     ${skins.map((s) => `<a href="${s}/">${labels[s] || s}</a>`).join("\n    ")}
     <p class="note">写真・文言はイメージです。ご購入後に御社情報へ差し替えます。</p>
   </main>

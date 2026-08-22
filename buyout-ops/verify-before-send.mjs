@@ -128,6 +128,12 @@ async function verifyProspect({ name, urlA, urlB, slug }) {
       if (/03-0000-0000|info@example\.com|東京都千代田区サンプル/.test(text)) {
         fails.push(`V2 ${label} にサンプル連絡先が残っている: ${url}`);
       }
+      if (/55,000|50,000|55000|50000/.test(text)) {
+        fails.push(`V6 ${label} に旧価格（55,000/50,000）が残っている: ${url}`);
+      }
+      if (/class="picker"|デモ案一覧|← 在庫一覧/.test(text)) {
+        fails.push(`V7 ${label} にデモ案一覧への戻りリンクが残っている: ${url}`);
+      }
       // Name may be split across <br /> — strip tags for membership check
       const plain = text.replace(/<[^>]+>/g, "");
       const compactName = name.replace(/\s+/g, "");
@@ -148,6 +154,18 @@ async function verifyProspect({ name, urlA, urlB, slug }) {
 
   if (skinsCsv.length === 2 && skinsCsv[0] === skinsCsv[1]) {
     warns.push("A/B の skin が同一（意図的なら可）");
+  }
+
+  const initialTpl = path.join(__dirname, "templates", "email_demo_buyout_1_initial.txt");
+  if (fs.existsSync(initialTpl)) {
+    const tpl = fs.readFileSync(initialTpl, "utf8");
+    const body = tpl.split("\n\n").slice(1).join("\n\n");
+    if (/55,000|50,000|55000|50000/.test(body)) {
+      fails.push("V8 初回メールテンプレに旧価格（55,000/50,000）が残っている");
+    }
+    if (!/66,000|66000/.test(body)) {
+      fails.push("V8 初回メールテンプレに現行価格66,000がない");
+    }
   }
 
   return { fails, warns, slug: derivedSlug };

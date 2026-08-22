@@ -55,17 +55,30 @@ copyDir(src, dest);
 const robots =
   '<meta name="robots" content="noindex,nofollow" />\n  <meta name="googlebot" content="noindex,nofollow" />';
 
+function stripPicker(html) {
+  return html.replace(/<p class="picker">[\s\S]*?<\/p>\s*/g, "");
+}
+
 walk(dest, (file) => {
   if (!file.endsWith(".html")) return;
   let html = fs.readFileSync(file, "utf8");
-  if (/name=["']robots["']/i.test(html)) return;
-  if (html.includes("</head>")) {
-    html = html.replace("</head>", `  ${robots}\n</head>`);
-  } else if (html.includes("<head>")) {
-    html = html.replace("<head>", `<head>\n  ${robots}`);
+  html = stripPicker(html);
+  if (!/name=["']robots["']/i.test(html)) {
+    if (html.includes("</head>")) {
+      html = html.replace("</head>", `  ${robots}\n</head>`);
+    } else if (html.includes("<head>")) {
+      html = html.replace("<head>", `<head>\n  ${robots}`);
+    }
   }
   fs.writeFileSync(file, html);
 });
+
+// Chooser index is for local preview only — do not publish to Pages
+const publishedIndex = path.join(dest, "index.html");
+if (fs.existsSync(publishedIndex)) {
+  fs.unlinkSync(publishedIndex);
+  console.log("removed published chooser index.html");
+}
 
 const base = `https://calcite-ai.github.io/calcite-demos/buyout-prospects/${slug}`;
 const skins = fs
