@@ -296,7 +296,7 @@ sent → replied → paid → intake → ready → delivered
 
 1. [ ] 分類した（A〜H）
 2. [ ] 該当テンプレを使った（新規文を書きすぎていない）
-3. [ ] **quoted_price=55000 なら 66k Checkout を送っていない**
+3. [ ] **quoted_price=55000 なら 66k Checkout を送っていない**（`verify-inbox-reply.mjs` PASS）
 4. [ ] 66,000円の範囲外を無理に引き受けていない
 5. [ ] 決済確認前に制作を始めていない
 6. [ ] 不要・怒りは追っていない

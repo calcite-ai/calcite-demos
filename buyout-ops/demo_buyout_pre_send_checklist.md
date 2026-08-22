@@ -7,9 +7,17 @@
 
 ```bash
 cd ~/claude/02_hp-sales/demos
+node buyout-ops/verify-ops-pack.mjs
 node buyout-ops/verify-before-send.mjs --slug <slug> --name "株式会社〇〇"
 # または CSV の1行から:
 node buyout-ops/verify-before-send.mjs --from-csv --company "株式会社福澤工務店"
+```
+
+`verify-before-send` は内部で **verify-ops-pack も実行** する。  
+返信で checkout / followup を送る前:
+
+```bash
+node buyout-ops/verify-inbox-reply.mjs --company "株式会社〇〇" --template checkout
 ```
 
 終了コード `0` 以外 → **送信禁止**。
@@ -21,9 +29,10 @@ node buyout-ops/verify-before-send.mjs --from-csv --company "株式会社福澤�
 □ P1  Gmail: to:{email} from:me で過去送信なし
 □ P2  C0〜C2 再確認（正規サイト・最終HTTPS・tel:）
 □ P3  メール課題①〜③ = audit_notes の粗だけ（新規指摘を足していない）
-□ P4  verify-before-send.mjs が PASS
+□ P4  verify-ops-pack.mjs + verify-before-send.mjs が PASS
 □ P5  デモ案A/B URL がメール本文と CSV で一致
 □ P6  今日すでに1通送っていない（週5以内）
+□ P7  テンプレ・buyout-prospects を変えた場合、**送信前に main へ push 済み**
 ```
 
 ## verify が見るもの（自動）
@@ -37,6 +46,11 @@ node buyout-ops/verify-before-send.mjs --from-csv --company "株式会社福澤�
 | V5 | slug フォルダが `buyout-prospects/` に存在する（ローカル確認） | publish 漏れ |
 | V6 | 公開HTMLに **55,000 / 50,000** が残っていない | swap/publish やり直し |
 | V7 | 公開HTMLに **デモ案一覧** / picker バーが残っていない | publish やり直し |
+| V8 | 初回メールテンプレに **66,000** があり旧価格がない | push / テンプレ修正 |
+| V9 | queued/built の **quoted_price=66000** | CSV修正 |
+| V10 | slug 直下 **index.html（中間ページ）がない** | publish やり直し |
+| O1〜O8 | `verify-ops-pack.mjs`（テンプレ・repo・GitHub main 一致） | push / 修正 |
+| I2 | `verify-inbox-reply.mjs`（旧価格コホートに66k checkout 禁止） | オーナー対応 |
 
 ## 過去ミスとの対応
 
@@ -47,3 +61,8 @@ node buyout-ops/verify-before-send.mjs --from-csv --company "株式会社福澤�
 | httpsなのにhttp指摘 | P2 / C1 |
 | tel:見逃し | P2 / C2 |
 | 新公式があるのに旧を突く | P2 / C0 |
+| **旧価格テンプレのまま送信** | **V8 / O8 / P7** |
+| **デモ中間ページ・picker** | **V7 / V10 / O3-O4** |
+| **旧価格先に66k決済** | **I2 / quoted_price** |
+
+詳細: [`demo_buyout_incidents.md`](./demo_buyout_incidents.md)

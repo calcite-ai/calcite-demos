@@ -1,0 +1,48 @@
+name: Buyout gates
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "buyout-ops/**"
+      - "buyout-prospects/**"
+      - "buyout-template/designs/swap-prospect.mjs"
+      - "buyout-template/designs/publish-prospect.mjs"
+      - ".github/workflows/buyout-gates.yml"
+  pull_request:
+    paths:
+      - "buyout-ops/**"
+      - "buyout-prospects/**"
+      - "buyout-template/designs/swap-prospect.mjs"
+      - "buyout-template/designs/publish-prospect.mjs"
+      - ".github/workflows/buyout-gates.yml"
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Ops pack (templates, repo hygiene)
+        run: node buyout-ops/verify-ops-pack.mjs
+
+      - name: Live demo gate (nichinan)
+        run: |
+          node buyout-ops/verify-before-send.mjs \
+            --slug nichinan-koumuten \
+            --name "株式会社日南工務店" \
+            --skins d-signboard,c-daylight
+
+      - name: Legacy cohort must block 66k checkout
+        run: |
+          if node buyout-ops/verify-inbox-reply.mjs \
+            --company "株式会社日南工務店" \
+            --template checkout; then
+            echo "expected verify-inbox-reply to fail for legacy cohort"
+            exit 1
+          fi
+          echo "legacy checkout correctly blocked"

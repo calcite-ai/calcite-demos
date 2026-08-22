@@ -7,13 +7,17 @@
  *   node buyout-ops/verify-before-send.mjs --slug fukuzawa-koumuten --name "株式会社福澤工務店"
  *   node buyout-ops/verify-before-send.mjs --from-csv --company "株式会社福澤工務店"
  *   node buyout-ops/verify-before-send.mjs --from-csv --queued
+ *
+ * Always run verify-ops-pack.mjs first in automation (template + repo hygiene).
  */
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { spawnSync } from "node:child_process";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const repoRoot = path.resolve(__dirname, "..");
+const SEND_PRICE = "66000";
 
 function arg(name, fallback = "") {
   const i = process.argv.indexOf(`--${name}`);
@@ -21,6 +25,13 @@ function arg(name, fallback = "") {
 }
 function hasFlag(name) {
   return process.argv.includes(`--${name}`);
+}
+
+function runOpsPack() {
+  const r = spawnSync(process.execPath, [path.join(__dirname, "verify-ops-pack.mjs")], {
+    stdio: "inherit",
+  });
+  return r.status === 0;
 }
 
 function parseCsv(text) {
@@ -93,17 +104,25 @@ async function fetchText(url) {
   return { status: res.status, finalUrl: res.url, text };
 }
 
-async function verifyProspect({ name, urlA, urlB, slug }) {
+async function verifyProspect({ name, urlA, urlB, slug, quotedPrice, status }) {
   const fails = [];
   const warns = [];
 
   if (!urlA || !urlB) fails.push("V1 CSVに demo_url_a / demo_url_b がない");
   if (!name) fails.push("V3 社名がない");
 
+  if ((status === "queued" || status === "built") && quotedPrice && quotedPrice !== SEND_PRICE) {
+    fails.push(`V9 新規送信対象の quoted_price=${quotedPrice}（${SEND_PRICE} 必須）`);
+  }
+
   const derivedSlug = slug || slugFromUrl(urlA) || slugFromUrl(urlB);
   if (derivedSlug) {
     const local = path.join(repoRoot, "buyout-prospects", derivedSlug);
     if (!fs.existsSync(local)) fails.push(`V5 ローカルに buyout-prospects/${derivedSlug} がない`);
+    const chooser = path.join(local, "index.html");
+    if (fs.existsSync(chooser)) {
+      fails.push(`V10 buyout-prospects/${derivedSlug}/index.html が残っている（中間ページ禁止）`);
+    }
   } else {
     fails.push("V5 slug を URL から特定できない");
   }
@@ -156,6 +175,7 @@ async function verifyProspect({ name, urlA, urlB, slug }) {
     warns.push("A/B の skin が同一（意図的なら可）");
   }
 
+  // V8: local initial template (verify-ops-pack also checks all templates)
   const initialTpl = path.join(__dirname, "templates", "email_demo_buyout_1_initial.txt");
   if (fs.existsSync(initialTpl)) {
     const tpl = fs.readFileSync(initialTpl, "utf8");
@@ -196,6 +216,7 @@ async function main() {
       urlB: r.demo_url_b,
       slug: slugFromUrl(r.demo_url_a),
       status: r.status,
+      quotedPrice: String(r.quoted_price || "").trim(),
     }));
   } else {
     targets = [
@@ -224,6 +245,11 @@ async function main() {
   if (!targets.length) {
     console.error("No targets");
     process.exit(2);
+  }
+
+  if (!runOpsPack()) {
+    console.error("RESULT FAIL — verify-ops-pack failed (fix templates/repo before send)");
+    process.exit(1);
   }
 
   let anyFail = false;

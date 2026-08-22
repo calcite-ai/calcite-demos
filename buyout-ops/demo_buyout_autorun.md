@@ -15,17 +15,21 @@
 
 ## エージェントへの指示（毎回）
 
+0. **`git pull origin main`**（クラウドは最新 main を使う）
 1. このリポジトリの `buyout-ops/demo_buyout_leads.csv` を開く
 2. `status=queued` の最古1件を取る（なければ Hunter で補充）
 3. Gmail で `to:{email} from:me` を再確認（過去送信があれば `paused`）
 4. **送信直前:** G1の C0〜C2（正規サイト・HTTPS最終到達・tel:）を再確認。課題は audit_notes からのみ（`demo_buyout_audit_checklist.md` / `demo_buyout_hunter.md`）
 5. デモ未公開なら `buyout-template/designs/swap-prospect.mjs` → `publish-prospect.mjs` → **buyout-prospects のみ push**
+5a. **テンプレ・verify スクリプトを変えたら、送信より先に push**（2026-08-22 旧価格事故）
 5b. **公開URLが HTTP 200 になるまで送らない**（404のままURLを書かない。2026-08-21 福澤で再発）
-5c. **送信前ゲート必須:** `demo_buyout_pre_send_checklist.md` を満たし、次が PASS するまで送らない  
+5c. **送信前ゲート必須（順番固定）:**  
+   `node buyout-ops/verify-ops-pack.mjs`  
    `node buyout-ops/verify-before-send.mjs --from-csv --company "<社名>"`  
-   （404・アオイ残存・社名未差し替えはここで落とす）
+   どちらか FAIL → **送らない**（[`demo_buyout_incidents.md`](./demo_buyout_incidents.md)）
 6. `templates/email_demo_buyout_1_initial.txt` で送信（確認不要）。From: hello@calcite-ai.jp  
-   ※本文のデモURLは CSV の demo_url_a/b と同一にする
+   ※本文のデモURLは CSV の demo_url_a/b と同一にする  
+   ※送信本文に **66,000円** が含まれることを目視1行確認（ゲート V8 の二重チェック）
 7. CSV を `sent` に更新、notes に日付と message id。変更は commit & push
 8. **今日分が終わったら止まる**（同日2通目は送らない）
 
@@ -33,6 +37,7 @@
 
 - 返信分類・テンプレ対応: [`demo_buyout_inbox.md`](./demo_buyout_inbox.md)
 - **旧価格コホート（新見・福澤・日南）:** `quoted_price=55000` → **66,000円決済メール禁止**。購入希望はオーナーへ。
+- checkout / followup 送信前: `node buyout-ops/verify-inbox-reply.mjs --company "…" --template checkout`
 ## キュー優先
 
 1. `queued`（デモURL入り）
