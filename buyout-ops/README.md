@@ -16,7 +16,8 @@
 | `demo_buyout_publish.md` | Pages 公開 |
 | `templates/email_demo_buyout_1_initial.txt` | 初回メール |
 
-ローカルの `02_hp-sales/sales/knowledge/` と同期すること。変更したらここも更新して push。
+ローカルの `02_hp-sales/sales/knowledge/` と同期すること。変更したらここも更新して push。  
+Hunter 用リスト: `buyout-ops/sales_prospects.csv`（クラウド Automation が読む正本）
 
 送信前:
 

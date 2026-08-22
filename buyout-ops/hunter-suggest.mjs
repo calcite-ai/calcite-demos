@@ -62,10 +62,14 @@ function parseCsvLines(text) {
 }
 
 const leadsPath = path.join(__dirname, "demo_buyout_leads.csv");
-const prospectsPath = path.join(repoRoot, "..", "sales", "knowledge", "sales_prospects.csv");
+const prospectsInOps = path.join(__dirname, "sales_prospects.csv");
+const prospectsLegacy = path.join(repoRoot, "..", "sales", "knowledge", "sales_prospects.csv");
+const prospectsPath = fs.existsSync(prospectsInOps)
+  ? prospectsInOps
+  : prospectsLegacy;
 
 if (!fs.existsSync(prospectsPath)) {
-  console.error("FAIL missing sales_prospects.csv at", prospectsPath);
+  console.error("FAIL missing sales_prospects.csv (expected buyout-ops/sales_prospects.csv)");
   process.exit(1);
 }
 

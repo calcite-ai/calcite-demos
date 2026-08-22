@@ -145,7 +145,7 @@ C4: update_signal=__  (year=__ / none)
 
 | 優先 | ソース | 取り方 |
 |---|---|---|
-| 1 | 既存 `sales_prospects.csv` のメールあり × S/A | 再診断して G1〜G5 を通す |
+| 1 | 既存 `sales_prospects.csv` のメールあり × S/A | 再診断して G1〜G5 を通す。クラウド正本: `buyout-ops/sales_prospects.csv` |
 | 2 | Googleマップ（地域×業種は可変） | GBP → サイト → メール抽出 → audit＋実機 |
 | 3 | 自社デモ実績の近傍（同エリアの類似粗） | 同欠陥タイプでバッチ学習 |
 | 4 | 紹介・既存関係 | 最優先だが数は少ない |
