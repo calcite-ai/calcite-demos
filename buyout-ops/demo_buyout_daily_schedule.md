@@ -41,7 +41,7 @@ node buyout-ops/refill-queue-if-empty.mjs
 4. `node buyout-ops/verify-before-send.mjs --from-csv --company "…"` が PASS するまで
 5. **commit & push**（10:00 前に main 反映）
 
-**1日1社まで。** 週5送信上限は 10:00 側で守る。
+**1日1社まで。** 週7送信上限（土日含む）は 10:00 側で守る。
 
 ### 機械補助コマンド
 
