@@ -1,12 +1,13 @@
-# デモ買い取り — 自動営業オペ（確認なし）
+# デモ買い取り — 自動営業オペ
 
-> 2026-08-20 オーナー指示: 文面確認なしで回す。  
+> 2026-08-23 運用: **リスト承認は人間1回**（[`demo_buyout_owner_workflow.md`](./demo_buyout_owner_workflow.md)）。承認後の **送信は自動**（文面確認なし）。  
 > 送信元: `hello@calcite-ai.jp`  
 > レート: **1日1通**（週最大7・土日含む）。スパム回避優先。  
 > **Phase 1: 工務店（vertical=koumuten）のみ送信。** 税理士・葬儀は雛形完成まで送らない。
 > 稼働: Cursor Automation（クラウド）  
-> - **9:00 JST** キュー補充 → [`demo_buyout_daily_schedule.md`](./demo_buyout_daily_schedule.md)  
-> - **10:00 JST** 1通送信（本ファイル）  
+> - **夜** 候補スキャン → **朝** オーナーが review_queue を承認  
+> - **9:00 JST** 承認キュー先頭のデモ制作 → [`demo_buyout_daily_schedule.md`](./demo_buyout_daily_schedule.md)  
+> - **10:00 JST** approval_seq 順に1通送信（本ファイル）  
 > このフォルダ（`buyout-ops/`）がクラウドエージェント用の正本。
 
 ## PCスリープについて
@@ -21,7 +22,7 @@
 0. **`git pull origin main`**
 1. `node buyout-ops/queue-status.mjs` → **sendable=0 なら送信せず終了**（9:00 補充失敗日）
 2. このリポジトリの `buyout-ops/demo_buyout_leads.csv` を開く
-3. `status=queued` の最古1件を取る
+3. `status=queued` の **`approval_seq` 最小** 1件を取る（`queue-status.mjs` の `next_send` と同じ）
 4. Gmail で `to:{email} from:me` を再確認（過去送信があれば `paused`）
 5. **送信直前:** G1の C0〜C2（正規サイト・HTTPS最終到達・tel:）を再確認。課題は audit_notes からのみ（`demo_buyout_audit_checklist.md` / `demo_buyout_hunter.md`）
 6. デモ未公開なら `buyout-template/designs/swap-prospect.mjs` → `publish-prospect.mjs` → **buyout-prospects のみ push**
@@ -45,9 +46,9 @@
 - checkout / followup 送信前: `node buyout-ops/verify-inbox-reply.mjs --company "…" --template checkout`
 ## キュー優先
 
-1. `queued`（デモURL入り）
-2. `built`（公開済・未送信）
-3. Hunter で新規 `qualified` → 制作
+1. オーナー承認済 `queued`（**approval_seq 昇順**・デモURL入り）
+2. レガシー `queued` / `built`（approval_seq なしは後ろ）
+3. 9:00 が `approved` → デモ制作（**承認リスト外の Hunter 禁止**）
 
 ## 除外（再送しない）
 

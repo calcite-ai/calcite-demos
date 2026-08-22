@@ -85,12 +85,20 @@ const { rows: prospects } = parseCsvLines(fs.readFileSync(prospectsPath, "utf8")
 
 const rankScore = { S: 3, A: 2, B: 1, C: 0 };
 
-const KOUMUTEN_INDUSTRY = /工務|建設|建築|工房|リフォーム|解体|型枠|塗装|屋根/i;
+const KOUMUTEN_INDUSTRY =
+  /工務|工務店|建設会社|総合建設|建築(?!士)|工房|リフォーム|解体|型枠|塗装|屋根/i;
+const NOT_KOUMUTEN_INDUSTRY = /税理士|会計|葬儀|司法|行政|士業|整骨|鍼灸/i;
+
+function isKoumutenProspect(p) {
+  const industry = p["業種"] || "";
+  if (NOT_KOUMUTEN_INDUSTRY.test(industry)) return false;
+  return KOUMUTEN_INDUSTRY.test(industry);
+}
 
 const prefiltered = prospects
   .filter((p) => {
     const industry = p["業種"] || "";
-    if (!KOUMUTEN_INDUSTRY.test(industry)) return false;
+    if (!isKoumutenProspect(p)) return false;
     const email = p["メール"] || "";
     if (!email.includes("@")) return false;
     if (/なし|フォーム|要確認/.test(email)) return false;

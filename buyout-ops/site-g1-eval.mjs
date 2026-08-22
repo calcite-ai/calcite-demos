@@ -91,6 +91,74 @@ export async function evaluateSiteG1(siteUrl) {
   return { pass: true, signals, fails: [] };
 }
 
+/** 機械検出できる粗（C1/C2/C3/C4 の一部）。2点以上で G1 候補 */
+export function detectMachineDefects(signals) {
+  const defects = [];
+  if (!signals.finalHttps) defects.push("https未整備");
+  if (!signals.hasViewport) defects.push("viewportなし");
+  if (signals.telCount === 0) defects.push("tel:なし");
+  if (signals.maxYear != null && signals.maxYear < 2020) {
+    defects.push(`更新停止感(HTML内${signals.maxYear}止)`);
+  }
+  return defects;
+}
+
+export function formatRoughAudit(defects) {
+  if (defects.length < 2) return "";
+  const parts = defects.slice(0, 3).map((d, i) => `(${i + 1})${d}`);
+  return `粗:${parts.join("")}`;
+}
+
+/** 公開メール抽出（推測禁止: HTML に載っているもののみ） */
+export function extractPublicEmails(html) {
+  const raw = [
+    ...html.matchAll(/mailto:([^\s"'?>]+)/gi),
+    ...html.matchAll(/[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/g),
+  ].map((m) => (m[1] || m[0]).replace(/^mailto:/i, "").trim().toLowerCase());
+  const bad = /example|wixpress|sentry|wordpress\.com|aaa\.jp|your@|xxx@/;
+  return [...new Set(raw.filter((e) => e.includes("@") && !bad.test(e)))];
+}
+
+const CONTACT_PATHS = [
+  "",
+  "/contact/",
+  "/contact",
+  "/inquiry/",
+  "/inquiry",
+  "/company/",
+  "/about/",
+  "/toiawase/",
+  "/form/",
+];
+
+export async function fetchSiteWithContacts(baseUrl) {
+  const base = baseUrl.replace(/\/$/, "");
+  let bestSignals = null;
+  let bestHtml = "";
+  let emails = [];
+  let fetchedFrom = baseUrl;
+
+  for (const p of CONTACT_PATHS) {
+    const url = p ? `${base}${p}` : `${base}/`;
+    try {
+      const signals = await fetchSiteSignals(url);
+      if (signals.status !== 200) continue;
+      const found = extractPublicEmails(signals.html);
+      if (found.length) emails = [...new Set([...emails, ...found])];
+      if (!bestSignals || found.length) {
+        bestSignals = signals;
+        bestHtml = signals.html;
+        fetchedFrom = url;
+      }
+      if (emails.length && p === "") break;
+    } catch {
+      /* skip path */
+    }
+  }
+
+  return { signals: bestSignals, emails, fetchedFrom };
+}
+
 /** queued/built 行の総合 G1（サイト再取得 + audit_notes） */
 export async function evaluateLeadG1({ site_url, audit_notes, status, asQueued = false }) {
   const fails = [];
