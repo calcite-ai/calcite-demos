@@ -4,7 +4,10 @@
 
 | ファイル | 用途 |
 |---|---|
-| `demo_buyout_autorun.md` | 日次オペ手順 |
+| `demo_buyout_daily_schedule.md` | **9:00 キュー補充 / 10:00 送信** |
+| `demo_buyout_autorun.md` | 10:00 送信オペ |
+| `refill-queue-if-empty.mjs` | 9:00 オーケストレータ |
+| `queue-status.mjs` | 送付先件数 |
 | `demo_buyout_leads.csv` | 送信キュー |
 | `demo_buyout_pre_send_checklist.md` | **送信前ゲート（必須）** |
 | `verify-before-send.mjs` | 送信前の機械チェック（404・アオイ残存など） |

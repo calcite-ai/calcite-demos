@@ -3,7 +3,9 @@
 > 2026-08-20 オーナー指示: 文面確認なしで回す。  
 > 送信元: `hello@calcite-ai.jp`  
 > レート: **1日1通**（週最大5）。スパム回避優先。  
-> 稼働: Cursor Automation（クラウド・毎日10:00 JST目安）を優先。ローカルループは予備。  
+> 稼働: Cursor Automation（クラウド）  
+> - **9:00 JST** キュー補充 → [`demo_buyout_daily_schedule.md`](./demo_buyout_daily_schedule.md)  
+> - **10:00 JST** 1通送信（本ファイル）  
 > このフォルダ（`buyout-ops/`）がクラウドエージェント用の正本。
 
 ## PCスリープについて
@@ -15,23 +17,24 @@
 
 ## エージェントへの指示（毎回）
 
-0. **`git pull origin main`**（クラウドは最新 main を使う）
-1. このリポジトリの `buyout-ops/demo_buyout_leads.csv` を開く
-2. `status=queued` の最古1件を取る（なければ Hunter で補充）
-3. Gmail で `to:{email} from:me` を再確認（過去送信があれば `paused`）
-4. **送信直前:** G1の C0〜C2（正規サイト・HTTPS最終到達・tel:）を再確認。課題は audit_notes からのみ（`demo_buyout_audit_checklist.md` / `demo_buyout_hunter.md`）
-5. デモ未公開なら `buyout-template/designs/swap-prospect.mjs` → `publish-prospect.mjs` → **buyout-prospects のみ push**
-5a. **テンプレ・verify スクリプトを変えたら、送信より先に push**（2026-08-22 旧価格事故）
-5b. **公開URLが HTTP 200 になるまで送らない**（404のままURLを書かない。2026-08-21 福澤で再発）
-5c. **送信前ゲート必須（順番固定）:**  
+0. **`git pull origin main`**
+1. `node buyout-ops/queue-status.mjs` → **sendable=0 なら送信せず終了**（9:00 補充失敗日）
+2. このリポジトリの `buyout-ops/demo_buyout_leads.csv` を開く
+3. `status=queued` の最古1件を取る
+4. Gmail で `to:{email} from:me` を再確認（過去送信があれば `paused`）
+5. **送信直前:** G1の C0〜C2（正規サイト・HTTPS最終到達・tel:）を再確認。課題は audit_notes からのみ（`demo_buyout_audit_checklist.md` / `demo_buyout_hunter.md`）
+6. デモ未公開なら `buyout-template/designs/swap-prospect.mjs` → `publish-prospect.mjs` → **buyout-prospects のみ push**
+7. **テンプレ・verify スクリプトを変えたら、送信より先に push**（2026-08-22 旧価格事故）
+8. **公開URLが HTTP 200 になるまで送らない**（404のままURLを書かない。2026-08-21 福澤で再発）
+9. **送信前ゲート必須（順番固定）:**  
    `node buyout-ops/verify-ops-pack.mjs`  
    `node buyout-ops/verify-before-send.mjs --from-csv --company "<社名>"`  
    どちらか FAIL → **送らない**（[`demo_buyout_incidents.md`](./demo_buyout_incidents.md)）
-6. `templates/email_demo_buyout_1_initial.txt` で送信（確認不要）。From: hello@calcite-ai.jp  
-   ※本文のデモURLは CSV の demo_url_a/b と同一にする  
-   ※送信本文に **66,000円** が含まれることを目視1行確認（ゲート V8 の二重チェック）
-7. CSV を `sent` に更新、notes に日付と message id。変更は commit & push
-8. **今日分が終わったら止まる**（同日2通目は送らない）
+10. `templates/email_demo_buyout_1_initial.txt` で送信（確認不要）。From: hello@calcite-ai.jp  
+    ※本文のデモURLは CSV の demo_url_a/b と同一にする  
+    ※送信本文に **66,000円** が含まれることを目視1行確認（ゲート V8 の二重チェック）
+11. CSV を `sent` に更新、notes に日付と message id。変更は commit & push
+12. **今日分が終わったら止まる**（同日2通目は送らない）
 
 ## 返信処理（Inbox）
 
