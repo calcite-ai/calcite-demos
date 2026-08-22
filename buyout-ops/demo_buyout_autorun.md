@@ -28,6 +28,11 @@
    ※本文のデモURLは CSV の demo_url_a/b と同一にする
 7. CSV を `sent` に更新、notes に日付と message id。変更は commit & push
 8. **今日分が終わったら止まる**（同日2通目は送らない）
+
+## 返信処理（Inbox）
+
+- 返信分類・テンプレ対応: [`demo_buyout_inbox.md`](./demo_buyout_inbox.md)
+- **旧価格コホート（新見・福澤・日南）:** `quoted_price=55000` → **66,000円決済メール禁止**。購入希望はオーナーへ。
 ## キュー優先
 
 1. `queued`（デモURL入り）

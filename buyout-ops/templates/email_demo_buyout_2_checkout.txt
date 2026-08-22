@@ -4,6 +4,9 @@
 # ポイント: ヒアリングしない。決済URLだけ返す。売り込みを足さない。
 # checkout: https://buy.stripe.com/aFa3cw803gDA7WP5oKbwk01
 # 旧¥55,000（無効化済み）: https://buy.stripe.com/6oUdRagwz2MKb91aJ4bwk00
+#
+# ⚠️ quoted_price=55000 の3社（新見・福澤・日南）には絶対に使わない。
+#    66,000円決済メール禁止。オーナーが55,000円で対応（demo_buyout_inbox.md 参照）。
 
 件名：Re: {前回の件名}
 
