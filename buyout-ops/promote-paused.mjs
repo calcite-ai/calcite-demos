@@ -11,6 +11,7 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { isActiveVertical, rowVertical, verticalLabel } from "./vertical-config.mjs";
 import { isPriorOutreachBlocked } from "./prior-outreach.mjs";
+import { evaluateLeadG1 } from "./site-g1-eval.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const apply = process.argv.includes("--apply");
@@ -68,7 +69,7 @@ function serializeRow(headers, obj) {
     .join(",");
 }
 
-const EXCLUDE_NOTE = /C0不合格|別公式|別URL|新公式|マキノ型|送らない|do_not_contact/i;
+const EXCLUDE_NOTE = /C0不合格|別公式|別URL|新公式|マキノ型|送らない|do_not_contact|G1不合格|G1見送り|サイト新し/i;
 
 const csvPath = path.join(__dirname, "demo_buyout_leads.csv");
 const raw = fs.readFileSync(csvPath, "utf8");
@@ -106,6 +107,18 @@ console.log(`  demo_b: ${pick.demo_url_b}`);
 if (!apply) {
   console.log("DRY-RUN — use --apply to set status=queued");
   process.exit(0);
+}
+
+const g1 = await evaluateLeadG1({
+  site_url: pick.site_url,
+  audit_notes: pick.audit_notes,
+  status: "queued",
+});
+if (!g1.pass) {
+  console.log("RESULT blocked — G1 FAIL (promote-paused)");
+  for (const f of g1.fails) console.log("  FAIL", f);
+  console.log("  → status=paused のまま。audit_notes またはサイトを再確認");
+  process.exit(1);
 }
 
 pick.status = "queued";

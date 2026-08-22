@@ -30,6 +30,9 @@ jobs:
       - name: Ops pack (templates, repo hygiene)
         run: node buyout-ops/verify-ops-pack.mjs
 
+      - name: G1 gate on queued leads (modern-site exclusion)
+        run: node buyout-ops/verify-hunter-g1.mjs --from-csv --queued
+
       - name: Live demo gate (nichinan)
         run: |
           node buyout-ops/verify-before-send.mjs \

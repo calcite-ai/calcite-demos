@@ -2,6 +2,32 @@
 
 > 同種ミスを二度起こさないための記録とゲート一覧。
 
+## 2026-08-23: 新しいサイトへの buyout キュー投入（石川工務店）
+
+### 起きたこと
+
+| # | 内容 | 影響 |
+|---|---|---|
+| 1 | [waraku-i.com](https://www.waraku-i.com/) を Hunter 対象に **queued** | HTTPS・viewport・tel:・2025更新 — buyout 訴求が刺さらない |
+| 2 | G1 は docs 上必須だが **スクリプト未実装** | verify(V1〜V12)はデモ側のみ → PASS |
+| 3 | `sendable=1` 優先で弱い粗を後付け | オーナー指摘まで気づかず |
+
+### 恒久対策（必須ゲート）
+
+| 層 | スクリプト | いつ |
+|---|---|---|
+| **Hunter前** | `verify-hunter-g1.mjs --prospect-company` | suggest 候補の queued 前 |
+| **suggest** | `hunter-suggest.mjs`（G1 オン） | モダンサイトを候補から除外 |
+| **昇格** | `promote-paused.mjs` 内 G1 | paused→queued |
+| **送信前** | `verify-before-send.mjs` **V13** | サイト再取得 + audit_notes |
+| **CI** | `verify-hunter-g1.mjs --from-csv --queued` | main に queued がある push |
+
+### モダン除外ルール（機械）
+
+`site-g1-eval.mjs`: **HTTPS + viewport + tel: + HTML内更新年≥2023** → G1 FAIL（Hunter§5）
+
+---
+
 ## 2026-08-22: 旧価格送信 + デモ中間ページ
 
 ### 起きたこと
@@ -26,9 +52,10 @@
 1. `git pull origin main`
 2. テンプレ・デモを変えたら **先に commit & push**（送信より前）
 3. `node buyout-ops/verify-ops-pack.mjs` → PASS
-4. `node buyout-ops/verify-before-send.mjs --from-csv --company "…"` → PASS
-5. 公開URLが **200** かつ picker なしを確認（V1/V7）
-6. 送信 → CSV 更新 → push
+4. `node buyout-ops/verify-hunter-g1.mjs --from-csv --company "…"` → PASS（G1）
+5. `node buyout-ops/verify-before-send.mjs --from-csv --company "…"` → PASS
+6. 公開URLが **200** かつ picker なしを確認（V1/V7）
+7. 送信 → CSV 更新 → push
 
 **verify が FAIL なら送らない。** オーナー確認なし運用でもこのゲートは省略不可。
 
@@ -43,3 +70,4 @@
 | V10/O3 | 中間 index.html 残存 |
 | O8 | GitHub main 上のテンプレが旧版 |
 | I2 | 旧価格コホートへの66k checkout |
+| V13 | G1 モダンサイト除外 / audit 粗不足 |

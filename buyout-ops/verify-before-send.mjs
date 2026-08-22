@@ -16,6 +16,7 @@ import { fileURLToPath } from "node:url";
 import { spawnSync } from "node:child_process";
 import { ACTIVE_VERTICAL, isActiveVertical, rowVertical, verticalLabel } from "./vertical-config.mjs";
 import { matchPriorOutreach } from "./prior-outreach.mjs";
+import { evaluateLeadG1 } from "./site-g1-eval.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const repoRoot = path.resolve(__dirname, "..");
@@ -106,7 +107,7 @@ async function fetchText(url) {
   return { status: res.status, finalUrl: res.url, text };
 }
 
-async function verifyProspect({ name, email, urlA, urlB, slug, quotedPrice, status, vertical, pay_signals, audit_notes }) {
+async function verifyProspect({ name, email, urlA, urlB, slug, quotedPrice, status, vertical, pay_signals, audit_notes, site_url }) {
   const fails = [];
   const warns = [];
   const row = { company: name, vertical, pay_signals, audit_notes };
@@ -204,6 +205,13 @@ async function verifyProspect({ name, email, urlA, urlB, slug, quotedPrice, stat
     }
   }
 
+  if (status === "queued" || status === "built") {
+    const g1 = await evaluateLeadG1({ site_url, audit_notes, status });
+    if (!g1.pass) {
+      for (const f of g1.fails) fails.push(`V13 G1 ${f}`);
+    }
+  }
+
   return { fails, warns, slug: derivedSlug };
 }
 
@@ -237,6 +245,7 @@ async function main() {
       vertical: r.vertical,
       pay_signals: r.pay_signals,
       audit_notes: r.audit_notes,
+      site_url: r.site_url,
     }));
   } else {
     targets = [

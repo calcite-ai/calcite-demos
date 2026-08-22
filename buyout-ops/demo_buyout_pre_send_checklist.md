@@ -8,6 +8,7 @@
 ```bash
 cd ~/claude/02_hp-sales/demos
 node buyout-ops/verify-ops-pack.mjs
+node buyout-ops/verify-hunter-g1.mjs --from-csv --company "株式会社〇〇"
 node buyout-ops/verify-before-send.mjs --slug <slug> --name "株式会社〇〇"
 # または CSV の1行から:
 node buyout-ops/verify-before-send.mjs --from-csv --company "株式会社福澤工務店"
@@ -53,6 +54,7 @@ node buyout-ops/verify-inbox-reply.mjs --company "株式会社〇〇" --template
 | I2 | `verify-inbox-reply.mjs`（旧価格コホートに66k checkout 禁止） | オーナー対応 |
 | V11/O11 | queued が **工務店（koumuten）** 以外 | 送信・昇格禁止 |
 | V12 | **`prior_outreach_blocklist.csv` に載る**（個人Gmail・hello@ 含む過去デモ営業済） | 送らない |
+| V13 | **G1**: 相手サイトがモダン除外 / audit_notes に粗2点未満 / G1不合格 | 送らない（石川型） |
 
 ## 過去ミスとの対応
 
@@ -66,5 +68,6 @@ node buyout-ops/verify-inbox-reply.mjs --company "株式会社〇〇" --template
 | **旧価格テンプレのまま送信** | **V8 / O8 / P7** |
 | **デモ中間ページ・picker** | **V7 / V10 / O3-O4** |
 | **旧価格先に66k決済** | **I2 / quoted_price** |
+| **新しいサイトに buyout 送信（石川）** | **V13 / verify-hunter-g1** |
 
 詳細: [`demo_buyout_incidents.md`](./demo_buyout_incidents.md)

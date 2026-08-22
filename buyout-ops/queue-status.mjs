@@ -71,7 +71,8 @@ const queued = rows.filter(
     !isPriorOutreachBlocked({ company: r.company, email: r.email }) &&
     r.demo_url_a &&
     r.demo_url_b &&
-    isActiveVertical(r)
+    isActiveVertical(r) &&
+    !/G1不合格|G1見送り|サイト新し/.test(`${r.audit_notes || ""} ${r.notes || ""}`)
 );
 
 const result = {

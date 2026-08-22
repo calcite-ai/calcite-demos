@@ -78,6 +78,24 @@ C4: update_signal=__  (year=__ / none)
 `audit_notes` には上記を短く残す（日付つき）。  
 初回メールの課題は `audit_notes` からコピーするだけ（新規の指摘をメール時に足さない）。
 
+### G1 機械ゲート（2026-08-23・石川型再発防止）
+
+**queued / 送信の前に必ず PASS:**
+
+```bash
+node buyout-ops/verify-hunter-g1.mjs --url <site_url>
+node buyout-ops/verify-hunter-g1.mjs --prospect-company "社名"
+node buyout-ops/verify-hunter-g1.mjs --from-csv --company "社名"
+```
+
+| 判定 | 条件 |
+|---|---|
+| **FAIL（モダン除外）** | HTTPS + viewport + tel: + HTML更新年≥2023 |
+| **FAIL** | audit_notes に `G1不合格` / 粗が2点未満 |
+| **PASS** | 上記以外（C0/C3/C5 は引き続き人手） |
+
+実装: `site-g1-eval.mjs` / 送信時は `verify-before-send` **V13** も実行。
+
 ---
 
 ## 3. スコア（収集時の優先付け）

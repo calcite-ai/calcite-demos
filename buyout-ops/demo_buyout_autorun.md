@@ -29,8 +29,9 @@
 8. **公開URLが HTTP 200 になるまで送らない**（404のままURLを書かない。2026-08-21 福澤で再発）
 9. **送信前ゲート必須（順番固定）:**  
    `node buyout-ops/verify-ops-pack.mjs`  
+   `node buyout-ops/verify-hunter-g1.mjs --from-csv --company "<社名>"`（queued 行の G1 再確認）  
    `node buyout-ops/verify-before-send.mjs --from-csv --company "<社名>"`  
-   どちらか FAIL → **送らない**（[`demo_buyout_incidents.md`](./demo_buyout_incidents.md)）
+   どれか FAIL → **送らない**（[`demo_buyout_incidents.md`](./demo_buyout_incidents.md)）
 10. `templates/email_demo_buyout_1_initial.txt` で送信（確認不要）。From: hello@calcite-ai.jp  
     ※本文のデモURLは CSV の demo_url_a/b と同一にする  
     ※送信本文に **66,000円** が含まれることを目視1行確認（ゲート V8 の二重チェック）

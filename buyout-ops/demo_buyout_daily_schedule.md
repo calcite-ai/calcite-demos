@@ -33,13 +33,14 @@ node buyout-ops/refill-queue-if-empty.mjs
 ### Hunter 1社（exit 3 のときだけ）
 
 1. `hunter-suggest.mjs` の **先頭1社** を対象に [`demo_buyout_hunter.md`](./demo_buyout_hunter.md) の G0〜G5 / C0〜C5 を実施
-2. `node ../tools/site-audit.mjs <url>`（`02_hp-sales/tools/`）で C1/C2 補助
-3. 合格なら:
+2. **`node buyout-ops/verify-hunter-g1.mjs --prospect-company "…"` が PASS**（モダン除外・石川型再発防止）
+3. `node ../tools/site-audit.mjs <url>`（`02_hp-sales/tools/`）で C1/C2 補助
+4. 合格なら:
    - `swap-prospect.mjs` → `publish-prospect.mjs` → **buyout-prospects push**
    - `demo_buyout_leads.csv` に行追加 or 更新、`status=queued`, `quoted_price=66000`
    - `demo_url_a/b` を Pages URL で埋める
-4. `node buyout-ops/verify-before-send.mjs --from-csv --company "…"` が PASS するまで
-5. **commit & push**（10:00 前に main 反映）
+5. `node buyout-ops/verify-hunter-g1.mjs --from-csv --company "…"` → `node buyout-ops/verify-before-send.mjs --from-csv --company "…"` が PASS するまで
+6. **commit & push**（10:00 前に main 反映）
 
 **1日1社まで。** 週7送信上限（土日含む）は 10:00 側で守る。
 

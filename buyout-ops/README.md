@@ -13,6 +13,8 @@
 | `demo_buyout_leads.csv` | 送信キュー |
 | `demo_buyout_pre_send_checklist.md` | **送信前ゲート（必須）** |
 | `verify-before-send.mjs` | 送信前の機械チェック（404・アオイ残存など） |
+| `verify-hunter-g1.mjs` | **G1必須**（モダンサイト除外・queued前） |
+| `site-g1-eval.mjs` | G1判定ロジック（上記から利用） |
 | `demo_buyout_audit_checklist.md` | 誤診防止 |
 | `demo_buyout_hunter.md` | 収集ゲート G0〜G5 / C0〜C5 |
 | `demo_buyout_publish.md` | Pages 公開 |
