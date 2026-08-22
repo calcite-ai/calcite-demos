@@ -6,6 +6,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { ACTIVE_VERTICAL, isActiveVertical, verticalLabel } from "./vertical-config.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const repoRoot = path.resolve(__dirname, "..");
@@ -132,6 +133,11 @@ if (fs.existsSync(csvPath)) {
       const notes = row.notes || "";
       if (notes.includes("旧価格55k") && qp !== "55000") {
         fails.push(`O9 ${row.company} は旧価格コホートだが quoted_price=${qp || "(empty)"}`);
+      }
+      if ((status === "queued" || status === "built") && !isActiveVertical(row)) {
+        fails.push(
+          `O11 queued/built の ${row.company} が vertical 外（現行=${ACTIVE_VERTICAL}のみ送信可）`
+        );
       }
       const skin = row.skin_pair || "";
       if (skin.includes(",")) {

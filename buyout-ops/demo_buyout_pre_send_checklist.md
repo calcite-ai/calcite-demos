@@ -51,6 +51,7 @@ node buyout-ops/verify-inbox-reply.mjs --company "株式会社〇〇" --template
 | V10 | slug 直下 **index.html（中間ページ）がない** | publish やり直し |
 | O1〜O8 | `verify-ops-pack.mjs`（テンプレ・repo・GitHub main 一致） | push / 修正 |
 | I2 | `verify-inbox-reply.mjs`（旧価格コホートに66k checkout 禁止） | オーナー対応 |
+| V11/O11 | queued が **工務店（koumuten）** 以外 | 送信・昇格禁止 |
 
 ## 過去ミスとの対応
 

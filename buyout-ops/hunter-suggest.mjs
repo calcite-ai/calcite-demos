@@ -9,6 +9,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { ACTIVE_VERTICAL } from "./vertical-config.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const repoRoot = path.resolve(__dirname, "..");
@@ -75,8 +76,12 @@ const { rows: prospects } = parseCsvLines(fs.readFileSync(prospectsPath, "utf8")
 
 const rankScore = { S: 3, A: 2, B: 1, C: 0 };
 
+const KOUMUTEN_INDUSTRY = /工務|建設|建築|工房|リフォーム|解体|型枠|塗装|屋根/i;
+
 const candidates = prospects
   .filter((p) => {
+    const industry = p["業種"] || "";
+    if (!KOUMUTEN_INDUSTRY.test(industry)) return false;
     const email = p["メール"] || "";
     if (!email.includes("@")) return false;
     if (/なし|フォーム|要確認/.test(email)) return false;
@@ -101,11 +106,11 @@ const candidates = prospects
   .slice(0, limit);
 
 if (!candidates.length) {
-  console.log("RESULT none — no new hunter candidates in sales_prospects");
+  console.log(`RESULT none — no new ${ACTIVE_VERTICAL} hunter candidates in sales_prospects`);
   process.exit(0);
 }
 
-console.log(`HUNTER_SUGGEST (${candidates.length}):`);
+console.log(`HUNTER_SUGGEST (${candidates.length}, vertical=${ACTIVE_VERTICAL}):`);
 for (const c of candidates) {
   console.log(`- [${c.rank}] ${c.company}`);
   console.log(`  email: ${c.email}`);

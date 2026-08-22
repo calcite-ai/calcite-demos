@@ -83,5 +83,6 @@ demo_buyout_autorun.md の手順どおり。sendable=0 なら送信しない。
 
 ## 補足
 
-- **paused 昇格**はデモURL済み・`quoted_price=66000`・C0不合格メモなしのみ（例: 片平・新居浜は対象、マキノは除外）
+- **paused 昇格**は `vertical=koumuten`・デモURL済み・`quoted_price=66000`・C0不合格メモなしのみ
+- 税理士・葬儀（`zeirishi` / `sougi`）は **Phase2まで送信・昇格禁止**
 - 9:00 で Hunter しても 10:00 前に verify PASS できなければ **その日は送らない**（無理送付防止）

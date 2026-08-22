@@ -3,6 +3,7 @@
 > 2026-08-20 オーナー指示: 文面確認なしで回す。  
 > 送信元: `hello@calcite-ai.jp`  
 > レート: **1日1通**（週最大5）。スパム回避優先。  
+> **Phase 1: 工務店（vertical=koumuten）のみ送信。** 税理士・葬儀は雛形完成まで送らない。
 > 稼働: Cursor Automation（クラウド）  
 > - **9:00 JST** キュー補充 → [`demo_buyout_daily_schedule.md`](./demo_buyout_daily_schedule.md)  
 > - **10:00 JST** 1通送信（本ファイル）  

@@ -10,6 +10,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { ACTIVE_VERTICAL, isActiveVertical, verticalLabel } from "./vertical-config.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -67,7 +68,8 @@ const queued = rows.filter(
     (r.status === "queued" || r.status === "built") &&
     String(r.do_not_contact).toLowerCase() !== "true" &&
     r.demo_url_a &&
-    r.demo_url_b
+    r.demo_url_b &&
+    isActiveVertical(r)
 );
 
 const result = {
@@ -82,7 +84,7 @@ const result = {
 if (process.argv.includes("--json")) {
   console.log(JSON.stringify(result, null, 2));
 } else {
-  console.log(`queued=${result.queued} built=${result.built} sendable=${result.sendable}`);
+  console.log(`queued=${result.queued} built=${result.built} sendable=${result.sendable} vertical=${ACTIVE_VERTICAL}(${verticalLabel(ACTIVE_VERTICAL)})`);
   if (result.next) {
     console.log(`next: ${result.next.company} (${result.next.status})`);
   }

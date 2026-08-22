@@ -14,6 +14,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { spawnSync } from "node:child_process";
+import { ACTIVE_VERTICAL, isActiveVertical, rowVertical, verticalLabel } from "./vertical-config.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const repoRoot = path.resolve(__dirname, "..");
@@ -104,15 +105,22 @@ async function fetchText(url) {
   return { status: res.status, finalUrl: res.url, text };
 }
 
-async function verifyProspect({ name, urlA, urlB, slug, quotedPrice, status }) {
+async function verifyProspect({ name, urlA, urlB, slug, quotedPrice, status, vertical, pay_signals, audit_notes }) {
   const fails = [];
   const warns = [];
+  const row = { company: name, vertical, pay_signals, audit_notes };
 
   if (!urlA || !urlB) fails.push("V1 CSVに demo_url_a / demo_url_b がない");
   if (!name) fails.push("V3 社名がない");
 
   if ((status === "queued" || status === "built") && quotedPrice && quotedPrice !== SEND_PRICE) {
     fails.push(`V9 新規送信対象の quoted_price=${quotedPrice}（${SEND_PRICE} 必須）`);
+  }
+
+  if ((status === "queued" || status === "built") && !isActiveVertical(row)) {
+    fails.push(
+      `V11 送信対象が現行vertical=${ACTIVE_VERTICAL}(${verticalLabel(ACTIVE_VERTICAL)})外: ${verticalLabel(rowVertical(row))}`
+    );
   }
 
   const derivedSlug = slug || slugFromUrl(urlA) || slugFromUrl(urlB);
@@ -217,6 +225,9 @@ async function main() {
       slug: slugFromUrl(r.demo_url_a),
       status: r.status,
       quotedPrice: String(r.quoted_price || "").trim(),
+      vertical: r.vertical,
+      pay_signals: r.pay_signals,
+      audit_notes: r.audit_notes,
     }));
   } else {
     targets = [

@@ -26,7 +26,9 @@ Proofset Hunter と同じ思想: 必須列が揃うまでリストに入れな�
 | 「勝手に作られたデモが嫌」 | 怒りの種を減らす除外（下表） |
 
 業種は固定しない。  
-ただし **学習のために「欠陥タイプ」でバッチを固める**（例: 今週は http + telなし だけ）。
+ただし **Phase 1（2026-08-22〜）は工務店（`vertical=koumuten`）のみ送信**。税理士・葬儀等は雛形完成まで Hunter しても `queued` にしない。
+
+**学習のために「欠陥タイプ」でバッチを固める**（例: 今週は http + telなし だけ）。
 
 ---
 
@@ -168,6 +170,7 @@ CSV（正本）: `sales/knowledge/demo_buyout_leads.csv`
 | pay_signals | ✅ | 0120 / 法人 / レビュー42 等 |
 | skin_pair | ✅ | `d-signboard,b-atelier` |
 | demo_url_a / demo_url_b | 送付直前 | 公開URL（ローカル不可） |
+| vertical | ✅ | Phase1は **`koumuten` のみ** queued 可（`vertical-config.mjs`） |
 | status | ✅ | `qualified` → 後で `built` / `sent`… |
 | source | ✅ | prospects / maps / referral |
 | do_not_contact | ✅ | false |

@@ -9,6 +9,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { isActiveVertical, rowVertical, verticalLabel } from "./vertical-config.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const apply = process.argv.includes("--apply");
@@ -86,16 +87,17 @@ const candidates = objects.filter((r) => {
   if (String(r.quoted_price || "").trim() !== "66000") return false;
   const notes = `${r.audit_notes || ""} ${r.notes || ""}`;
   if (EXCLUDE_NOTE.test(notes)) return false;
+  if (!isActiveVertical(r)) return false;
   return true;
 });
 
 if (!candidates.length) {
-  console.log("RESULT none — no paused rows ready to promote");
+  console.log(`RESULT none — no paused ${verticalLabel("koumuten")} rows ready to promote`);
   process.exit(0);
 }
 
 const pick = candidates[0];
-console.log(`candidate: ${pick.company}`);
+console.log(`candidate: ${pick.company} (${rowVertical(pick)})`);
 console.log(`  demo_a: ${pick.demo_url_a}`);
 console.log(`  demo_b: ${pick.demo_url_b}`);
 
