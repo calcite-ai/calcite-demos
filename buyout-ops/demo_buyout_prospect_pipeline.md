@@ -42,6 +42,7 @@
 | 既存 `sales_prospects.csv` | メール未公開でも URL あれば scan 対象 | `extract-seeds-from-prospects.mjs` |
 | 紹介・口コミサイト | 掲載URLのみ（メールは scan 任せ） | エリア偏り注意 |
 | 商工会・協会 | 会員一覧のリンク | 地方ほど粗が多い |
+| **住活協 builderlist** | `fetch-jyukatsukyo-builderlist.mjs` または `koumuten_jyukatsukyo_pref_cache.csv` | 404時は cache CSV |
 
 **47県ローテ例（2026-Q3）**
 
@@ -147,6 +148,9 @@ Maps で種を集めるときも同じ欠陥を意識すると効率よい。
 | `prospect-rescan-no-email.mjs` | NO_EMAIL 再取得（深い contact パス） |
 | `prospect-rescan-fetch-fail.mjs` | FETCH_FAIL 再試行 |
 | `merge-seed-files.mjs` | seeds/*.csv → koumuten_urls.csv |
+| `fetch-jyukatsukyo-builderlist.mjs` | 住活協 builderlist から種URL（404時は pref_cache） |
+| `seeds/koumuten_jyukatsukyo_pref_cache.csv` | 住活協キャッシュ（都道府県別・手動） |
+| `seeds/koumuten_gpt_verified.csv` | GPT再検証済み（G1 PASS） |
 | `prepare-review-sheet.mjs` | CANDIDATE → review_queue.csv |
 | `prospect_pipeline/review_queue.csv` | 朝レビュー（owner_ok=y） |
 | `site-g1-eval.mjs` | G1判定ロジック |

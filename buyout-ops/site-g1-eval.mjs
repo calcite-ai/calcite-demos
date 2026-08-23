@@ -94,7 +94,7 @@ export async function evaluateSiteG1(siteUrl) {
 /** 機械検出できる粗（C1/C2/C3/C4 の一部）。2点以上で G1 候補 */
 export function detectMachineDefects(signals) {
   const defects = [];
-  if (!signals.finalHttps) defects.push("https未整備");
+  if (!signals.finalHttps) defects.push("SSL未整備");
   if (!signals.hasViewport) defects.push("viewportなし");
   if (signals.telCount === 0) defects.push("tel:なし");
   if (signals.maxYear != null && signals.maxYear < 2020) {
@@ -106,7 +106,7 @@ export function detectMachineDefects(signals) {
 export function formatRoughAudit(defects) {
   if (defects.length < 2) return "";
   const parts = defects.slice(0, 3).map((d, i) => `(${i + 1})${d}`);
-  return `粗:${parts.join("")}`;
+  return `粗:${parts.join(";")}`;
 }
 
 /** 公開メール抽出（推測禁止: HTML に載っているもののみ） */
@@ -115,8 +115,8 @@ export function extractPublicEmails(html) {
     ...html.matchAll(/mailto:([^\s"'?>]+)/gi),
     ...html.matchAll(/[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/g),
   ].map((m) => (m[1] || m[0]).replace(/^mailto:/i, "").trim().toLowerCase());
-  const bad = /example|wixpress|sentry|wordpress\.com|aaa\.jp|your@|xxx@/;
-  return [...new Set(raw.filter((e) => e.includes("@") && !bad.test(e)))];
+  const bad = /example|wixpress|sentry|wordpress\.com|aaa\.jp|your@|xxx@|email@email\.me|info@email\.jp|you@company\.com|abcde@fghijk\.com|@[^@]*\.(png|jpg|jpeg|gif|webp|svg|ico)(?:\?|$)/i;
+  return [...new Set(raw.filter((e) => e.includes("@") && !bad.test(e) && /^[^\s@]+@[^\s@]+\.[a-z]{2,}$/i.test(e)))];
 }
 
 const CONTACT_PATHS = [

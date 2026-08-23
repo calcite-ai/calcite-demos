@@ -1,7 +1,8 @@
 #!/usr/bin/env node
 /**
  * 朝レビュー用シートを scan_results の CANDIDATE から生成。
- * オーナーが owner_ok 列に y を付けて import-review-approvals.mjs へ。
+ * 既存 review_queue の owner_ok / owner_notes は URL 単位で維持。
+ * scan_results に無い CANDIDATE は除外（DOMAIN_HIJACK 等）。
  *
  * Usage: node buyout-ops/prepare-review-sheet.mjs
  */
@@ -26,31 +27,55 @@ const HEADERS = [
   "owner_notes",
 ];
 
+function rowKey(r) {
+  return String(r.url || "").trim().toLowerCase();
+}
+
 if (!fs.existsSync(scanPath)) {
   console.log("RESULT none — run prospect-scan-batch.mjs first");
   process.exit(0);
 }
 
-const { rows } = parseCsv(fs.readFileSync(scanPath, "utf8"));
-const candidates = rows.filter((r) => r.status === "CANDIDATE");
+const { rows: scanRows } = parseCsv(fs.readFileSync(scanPath, "utf8"));
+const candidates = scanRows.filter((r) => r.status === "CANDIDATE");
 
-if (!candidates.length) {
-  console.log("RESULT none — no CANDIDATE in scan_results (種URLを増やして再スキャン)");
+let ownerByUrl = new Map();
+if (fs.existsSync(outPath)) {
+  for (const r of parseCsv(fs.readFileSync(outPath, "utf8")).rows) {
+    const k = rowKey(r);
+    if (!k) continue;
+    ownerByUrl.set(k, { owner_ok: r.owner_ok || "", owner_notes: r.owner_notes || "" });
+  }
+}
+
+const merged = candidates.map((r) => {
+  const k = rowKey(r);
+  const owner = ownerByUrl.get(k) || { owner_ok: "", owner_notes: "" };
+  return {
+    approval_seq: "",
+    company: r.company,
+    url: r.url,
+    email: r.email,
+    defects: r.defects,
+    audit_draft: r.audit_draft,
+    final_url: r.final_url,
+    owner_ok: owner.owner_ok,
+    owner_notes: owner.owner_notes,
+  };
+});
+
+merged.forEach((r, i) => {
+  r.approval_seq = String(i + 1);
+});
+
+if (!merged.length) {
+  console.log("RESULT none — no CANDIDATE in scan_results");
   process.exit(0);
 }
 
-const outRows = candidates.map((r, i) => ({
-  approval_seq: String(i + 1),
-  company: r.company,
-  url: r.url,
-  email: r.email,
-  defects: r.defects,
-  audit_draft: r.audit_draft,
-  final_url: r.final_url,
-  owner_ok: "",
-  owner_notes: "",
-}));
-
-fs.writeFileSync(outPath, serializeCsv(HEADERS, outRows) + "\n");
-console.log(`RESULT ${outRows.length} rows → ${outPath}`);
+fs.writeFileSync(
+  outPath,
+  serializeCsv(HEADERS, merged, { alwaysQuoteHeaders: ["url", "final_url", "email"] }) + "\n"
+);
+console.log(`RESULT ${merged.length} rows → ${outPath}`);
 console.log("Owner: owner_ok=y の行だけ import-review-approvals.mjs で承認キューへ");

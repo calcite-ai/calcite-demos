@@ -45,15 +45,23 @@ export function parseCsv(text) {
   return { headers, rows };
 }
 
-export function serializeCsv(headers, rows) {
-  const esc = (v) => {
+export function serializeCsv(headers, rows, opts = {}) {
+  const alwaysQuote = new Set(opts.alwaysQuoteHeaders || []);
+  const esc = (v, h) => {
     const s = String(v ?? "");
-    if (s.includes(",") || s.includes('"') || s.includes("\n")) {
+    const looksLikeUrl = /^https?:\/\//i.test(s);
+    if (
+      alwaysQuote.has(h) ||
+      looksLikeUrl ||
+      s.includes(",") ||
+      s.includes('"') ||
+      s.includes("\n")
+    ) {
       return `"${s.replace(/"/g, '""')}"`;
     }
     return s;
   };
-  return [headers.join(","), ...rows.map((r) => headers.map((h) => esc(r[h])).join(","))].join(
+  return [headers.join(","), ...rows.map((r) => headers.map((h) => esc(r[h], h)).join(","))].join(
     "\n"
   );
 }
