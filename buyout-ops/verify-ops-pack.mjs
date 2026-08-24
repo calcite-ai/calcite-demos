@@ -12,8 +12,9 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const repoRoot = path.resolve(__dirname, "..");
 const CURRENT_PRICE = "66,000";
 
+/** GitHub API raw（CDN遅延で旧テンプレを読む事故を避ける） */
 const REMOTE_TEMPLATE_URL =
-  "https://raw.githubusercontent.com/calcite-ai/calcite-demos/main/buyout-ops/templates/email_demo_buyout_1_initial.txt";
+  "https://api.github.com/repos/calcite-ai/calcite-demos/contents/buyout-ops/templates/email_demo_buyout_1_initial.txt?ref=main";
 
 const fails = [];
 
@@ -162,7 +163,10 @@ if (fs.existsSync(csvPath)) {
 async function checkRemoteTemplate() {
   try {
     const res = await fetch(REMOTE_TEMPLATE_URL, {
-      headers: { "User-Agent": "CalciteBuyoutVerify/1.0" },
+      headers: {
+        Accept: "application/vnd.github.raw",
+        "User-Agent": "CalciteBuyoutVerify/1.0",
+      },
     });
     if (!res.ok) {
       fails.push(`O8 GitHub上の初回テンプレ取得失敗 HTTP ${res.status}`);
