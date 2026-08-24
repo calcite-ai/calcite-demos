@@ -36,9 +36,8 @@ jobs:
       - name: Live demo gate (nichinan)
         run: |
           node buyout-ops/verify-before-send.mjs \
-            --slug nichinan-koumuten \
-            --name "株式会社日南工務店" \
-            --skins d-signboard,c-daylight
+            --from-csv \
+            --company "株式会社日南工務店"
 
       - name: Legacy cohort must block 66k checkout
         run: |
