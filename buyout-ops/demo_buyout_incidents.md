@@ -2,6 +2,27 @@
 
 > 同種ミスを二度起こさないための記録とゲート一覧。
 
+## 2026-08-24: メールリンクが「リダイレクトの警告」経由
+
+### 起きたこと
+
+| # | 内容 | 影響 |
+|---|---|---|
+| 1 | 送信本文に `https://www.google.com/url?q=…` が入った／Gmail閲覧でラップ | クリックすると「リダイレクトの警告」→もう一回タップ |
+| 2 | 公式URLが `https://calcite-ai.jp`（wwwなし） | WordPressが `https://www.calcite-ai.jp/` へ301 → 警告が出やすい |
+| 3 | デモURL末尾スラッシュ欠落 | GitHub Pages が 301 → 同上 |
+
+### 恒久対策
+
+| 層 | 内容 |
+|---|---|
+| **テンプレ** | `Web：https://www.calcite-ai.jp/`（apex禁止） |
+| **送信** | `render-outreach-email.mjs` → **text/plain のみ**（htmlBody禁止） |
+| **禁止** | 本文に `google.com/url` を貼らない（Gmail APIの取得結果をコピペしない） |
+| **ゲート** | O12 / V8 / V14（apex・ラップURL・デモURLの301） |
+
+---
+
 ## 2026-08-23: 新しいサイトへの buyout キュー投入（石川工務店）
 
 ### 起きたこと

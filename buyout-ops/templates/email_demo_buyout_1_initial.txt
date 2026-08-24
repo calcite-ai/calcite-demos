@@ -20,6 +20,11 @@
 #   - 「AIだから安い」「全部作り直します」系
 #   - カスタム価格（15〜60万）を初回に並べない
 #   - 旧価格55,000円や「サーバー設置は別料金」を書かない（v1.1切替込み）
+#
+# URL（必須）:
+#   - デモURLは CSV の demo_url_a/b をそのまま（末尾スラッシュ必須）
+#   - 公式HPは https://www.calcite-ai.jp/ （apex は www へ301 → Gmailでリダイレクト警告）
+#   - google.com/url は本文に書かない。送信は text/plain のみ（htmlBody 禁止）
 
 件名：{会社名}様のサイトを拝見し、簡易デモをお作りしました
 
@@ -89,7 +94,7 @@
 〒160-0023 東京都新宿区西新宿3-3-13 西新宿水間ビル6F
 TEL：090-8976-1275
 Mail：hello@calcite-ai.jp
-Web：https://calcite-ai.jp
+Web：https://www.calcite-ai.jp/
 送信者情報・配信停止の窓口は上記のとおりです。
 ━━━━━━━━━━━━━━━━━
 

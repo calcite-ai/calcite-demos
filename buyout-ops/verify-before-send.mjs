@@ -153,6 +153,21 @@ async function verifyProspect({ name, email, urlA, urlB, slug, quotedPrice, stat
     const skin = skinFromUrl(url);
     if (skin) skinsCsv.push(skin);
     try {
+      const noFollow = await fetch(url, {
+        redirect: "manual",
+        headers: { "User-Agent": "CalciteBuyoutVerify/1.0" },
+      });
+      if (noFollow.status >= 300 && noFollow.status < 400) {
+        fails.push(
+          `V14 ${label} がリダイレクトする（メールは最終URLを書く）: ${url} → ${noFollow.headers.get("location") || "?"}`
+        );
+      }
+      if (/google\.com\/url/i.test(url)) {
+        fails.push(`V14 ${label} が google.com/url（CSVに直接URLを入れる）: ${url}`);
+      }
+      if (!/\/$/.test(url.split(/[?#]/)[0])) {
+        fails.push(`V14 ${label} の末尾スラッシュがない（GitHub Pages が301する）: ${url}`);
+      }
       const { status, text } = await fetchText(url);
       if (status !== 200) {
         fails.push(`V1 ${label} HTTP ${status}: ${url}`);
@@ -202,6 +217,9 @@ async function verifyProspect({ name, email, urlA, urlB, slug, quotedPrice, stat
     }
     if (!/66,000|66000/.test(body)) {
       fails.push("V8 初回メールテンプレに現行価格66,000がない");
+    }
+    if (/https:\/\/(?!www\.)calcite-ai\.jp/.test(body)) {
+      fails.push("V8 初回メールの公式URLが apex（https://www.calcite-ai.jp/ 必須）");
     }
   }
 

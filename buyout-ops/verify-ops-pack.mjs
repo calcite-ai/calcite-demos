@@ -32,6 +32,12 @@ function checkTemplate(file, label) {
       fails.push(`O2 ${label} に現行価格66,000がない`);
     }
   }
+  if (/https:\/\/(?!www\.)calcite-ai\.jp/.test(body)) {
+    fails.push(`O12 ${label} の公式URLが apex（wwwなし）。https://www.calcite-ai.jp/ を使う`);
+  }
+  if (/google\.com\/url/i.test(body)) {
+    fails.push(`O12 ${label} に google.com/url がある（直接の最終URLを書く）`);
+  }
 }
 
 function walkProspects(fn) {
@@ -169,6 +175,12 @@ async function checkRemoteTemplate() {
     }
     if (!/66,000|66000/.test(body)) {
       fails.push(`O8 GitHub main の初回テンプレに ${CURRENT_PRICE} がない`);
+    }
+    if (/https:\/\/(?!www\.)calcite-ai\.jp/.test(body)) {
+      fails.push("O8 GitHub main の初回テンプレが apex URL（www 必須）");
+    }
+    if (/google\.com\/url/i.test(body)) {
+      fails.push("O8 GitHub main の初回テンプレに google.com/url がある");
     }
   } catch (e) {
     fails.push(`O8 GitHub上の初回テンプレ取得失敗: ${e.message}`);

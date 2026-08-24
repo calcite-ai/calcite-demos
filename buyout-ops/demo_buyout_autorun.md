@@ -33,8 +33,10 @@
    `node buyout-ops/verify-hunter-g1.mjs --from-csv --company "<社名>"`（queued 行の G1 再確認）  
    `node buyout-ops/verify-before-send.mjs --from-csv --company "<社名>"`  
    どれか FAIL → **送らない**（[`demo_buyout_incidents.md`](./demo_buyout_incidents.md)）
-10. `templates/email_demo_buyout_1_initial.txt` で送信（確認不要）。From: hello@calcite-ai.jp  
-    ※本文のデモURLは CSV の demo_url_a/b と同一にする  
+10. `node buyout-ops/render-outreach-email.mjs --company "<社名>"` で本文を生成し、**その text/plain をそのまま送信**（確認不要）。From: hello@calcite-ai.jp  
+    ※**htmlBody は渡さない**（Gmailが google.com/url に包むと「リダイレクトの警告」になる）  
+    ※デモURLは CSV の demo_url_a/b と同一（末尾 `/` 必須。`google.com/url` を貼らない）  
+    ※公式サイトは `https://www.calcite-ai.jp/`（apex `calcite-ai.jp` は www へ301するため警告が出る）  
     ※送信本文に **66,000円** が含まれることを目視1行確認（ゲート V8 の二重チェック）
 11. CSV を `sent` に更新、notes に日付と message id。変更は commit & push
 12. **今日分が終わったら止まる**（同日2通目は送らない）

@@ -31,7 +31,8 @@ node buyout-ops/verify-inbox-reply.mjs --company "株式会社〇〇" --template
 □ P2  C0〜C2 再確認（正規サイト・最終HTTPS・tel:）
 □ P3  メール課題①〜③ = audit_notes の粗だけ（新規指摘を足していない）
 □ P4  verify-ops-pack.mjs + verify-before-send.mjs が PASS
-□ P5  デモ案A/B URL がメール本文と CSV で一致
+□ P5  デモ案A/B URL がメール本文と CSV で一致（末尾/・google.com/urlなし・www.calcite-ai.jp）
+□ P5b `render-outreach-email.mjs` の本文を text/plain で送る（htmlBodyなし）
 □ P6  今日すでに1通送っていない（週7以内・土日含む）
 □ P7  テンプレ・buyout-prospects を変えた場合、**送信前に main へ push 済み**
 ```
