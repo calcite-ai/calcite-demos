@@ -2,12 +2,12 @@
 
 > 2026-08-23 運用: **リスト承認は人間1回**（[`demo_buyout_owner_workflow.md`](./demo_buyout_owner_workflow.md)）。承認後の **送信は自動**（文面確認なし）。  
 > 送信元: `hello@calcite-ai.jp`  
-> レート: **1日1通**（週最大7・土日含む）。スパム回避優先。  
+> レート: **`send-quota.csv` の当日枠**（初期は1日1通。途中から行を足して通数変更）。スパム回避優先。  
 > **Phase 1: 工務店（vertical=koumuten）のみ送信。** 税理士・葬儀は雛形完成まで送らない。
 > 稼働: Cursor Automation（クラウド）  
 > - **夜** 候補スキャン → **朝** オーナーが review_queue を承認  
 > - **9:00 JST** 承認キュー先頭のデモ制作 → [`demo_buyout_daily_schedule.md`](./demo_buyout_daily_schedule.md)  
-> - **10:00 JST** approval_seq 順に1通送信（本ファイル）  
+> - **10:00 JST** approval_seq 順に **当日残枠ぶん** 送信（本ファイル / `send-quota.csv`）  
 > このフォルダ（`buyout-ops/`）がクラウドエージェント用の正本。
 
 ## PCスリープについて
@@ -20,9 +20,9 @@
 ## エージェントへの指示（毎回）
 
 0. **`git pull origin main`**
-1. `node buyout-ops/queue-status.mjs` → **sendable=0 なら送信せず終了**（9:00 補充失敗日）
+1. `node buyout-ops/queue-status.mjs` → **remaining_today=0 または sendable=0 なら送信せず終了**
 2. このリポジトリの `buyout-ops/demo_buyout_leads.csv` を開く
-3. `status=queued` の **`approval_seq` 最小** 1件を取る（`queue-status.mjs` の `next_send` と同じ）
+3. `queue-status` の **next_send を残枠ぶん**、`approval_seq` 昇順に1社ずつ送る
 4. Gmail で `to:{email} from:me` を再確認（過去送信があれば `paused`）
 5. **送信直前:** G1の C0〜C2（正規サイト・HTTPS最終到達・tel:）を再確認。課題は audit_notes からのみ（`demo_buyout_audit_checklist.md` / `demo_buyout_hunter.md`）
 6. デモ未公開なら `buyout-template/designs/swap-prospect.mjs` → `publish-prospect.mjs` → **buyout-prospects のみ push**
@@ -39,7 +39,7 @@
     ※公式サイトは `https://www.calcite-ai.jp/`（apex `calcite-ai.jp` は www へ301するため警告が出る）  
     ※送信本文に **66,000円** が含まれることを目視1行確認（ゲート V8 の二重チェック）
 11. CSV を `sent` に更新、notes に日付と message id。変更は commit & push
-12. **今日分が終わったら止まる**（同日2通目は送らない）
+12. 1社送ったら CSV を push し、`node buyout-ops/send-quota.mjs` で **remaining=0 になるまで** 3〜11を繰り返す。残枠0で止まる
 
 ## 返信処理（Inbox）
 

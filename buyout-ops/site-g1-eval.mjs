@@ -5,6 +5,19 @@
 const UA = { "User-Agent": "Mozilla/5.0 (compatible; CalciteBuyoutG1/1.0)" };
 const RECENT_YEAR = 2023;
 
+export function httpToHttps(url) {
+  return String(url || "").replace(/^http:\/\//i, "https://");
+}
+
+export function originFromUrl(url) {
+  try {
+    const u = new URL(url);
+    return `${u.protocol}//${u.host}`;
+  } catch {
+    return String(url || "").replace(/\/$/, "");
+  }
+}
+
 export async function fetchSiteSignals(url) {
   const res = await fetch(url, { headers: UA, redirect: "follow" });
   const html = await res.text();
@@ -21,6 +34,55 @@ export async function fetchSiteSignals(url) {
     telCount: [...html.matchAll(/href=["']tel:([^"']+)["']/gi)].length,
     maxYear: years.length ? Math.max(...years) : null,
   };
+}
+
+async function trySignals(url) {
+  try {
+    const s = await fetchSiteSignals(url);
+    if (s.status === 200) return s;
+  } catch {
+    /* cert error / connection refused = https 未対応の可能性 */
+  }
+  return null;
+}
+
+/**
+ * Hunter C1（リスト収集時）: 種が http でも https を試し、通れば SSL未整備にしない。
+ * Chrome の自動 https 上げは Node では起きないので、こちらで明示する。
+ */
+export async function probeHttpsAvailable(seedUrl) {
+  const seed = String(seedUrl || "").trim();
+  if (!seed.startsWith("http")) {
+    return { ok: false, home: null, origin: seed };
+  }
+
+  const httpsSeed = httpToHttps(seed);
+  const httpsHome = await trySignals(httpsSeed);
+  if (httpsHome?.finalHttps) {
+    return { ok: true, home: httpsHome, origin: originFromUrl(httpsHome.finalUrl) };
+  }
+
+  const httpSeed = /^https:/i.test(seed) ? seed.replace(/^https:\/\//i, "http://") : seed;
+  const httpHome = await trySignals(httpSeed);
+  if (httpHome?.finalHttps) {
+    return { ok: true, home: httpHome, origin: originFromUrl(httpHome.finalUrl) };
+  }
+  if (httpHome) {
+    const httpsAfter = await trySignals(httpToHttps(httpHome.finalUrl));
+    if (httpsAfter?.finalHttps) {
+      return { ok: true, home: httpsAfter, origin: originFromUrl(httpsAfter.finalUrl) };
+    }
+    return { ok: false, home: httpHome, origin: originFromUrl(httpHome.finalUrl) };
+  }
+
+  if (httpsHome) {
+    return {
+      ok: Boolean(httpsHome.finalHttps),
+      home: httpsHome,
+      origin: originFromUrl(httpsHome.finalUrl),
+    };
+  }
+  return { ok: false, home: null, origin: originFromUrl(seed) };
 }
 
 /** Hunter §5 / スコア −5: モダンCMSで導線も良い */
@@ -139,31 +201,51 @@ const CONTACT_PATHS = [
 ];
 
 export async function fetchSiteWithContacts(baseUrl) {
-  let base = baseUrl.replace(/\/$/, "").replace(/\/index\.html?$/i, "");
-  let bestSignals = null;
-  let bestHtml = "";
-  let emails = [];
-  let fetchedFrom = baseUrl;
+  const probe = await probeHttpsAvailable(baseUrl);
+  const origins = [];
+  const pushOrigin = (o) => {
+    const n = String(o || "")
+      .replace(/\/index\.html?$/i, "")
+      .replace(/\/$/, "");
+    if (n && !origins.includes(n)) origins.push(n);
+  };
+  pushOrigin(probe.origin);
+  pushOrigin(originFromUrl(baseUrl));
+  if (probe.ok) pushOrigin(httpToHttps(originFromUrl(baseUrl)));
 
-  for (const p of CONTACT_PATHS) {
-    const url = p ? `${base}${p}` : `${base}/`;
-    try {
-      const signals = await fetchSiteSignals(url);
-      if (signals.status !== 200) continue;
-      const found = extractPublicEmails(signals.html);
-      if (found.length) emails = [...new Set([...emails, ...found])];
-      if (!bestSignals || found.length) {
-        bestSignals = signals;
-        bestHtml = signals.html;
-        fetchedFrom = url;
+  let bestSignals = probe.home;
+  let emails = bestSignals ? extractPublicEmails(bestSignals.html) : [];
+  let fetchedFrom = bestSignals?.finalUrl || baseUrl;
+  const seen = new Set(bestSignals ? [fetchedFrom, `${probe.origin}/`] : []);
+
+  for (const origin of origins) {
+    if (emails.length) break;
+    for (const p of CONTACT_PATHS) {
+      const url = p ? `${origin}${p}` : `${origin}/`;
+      if (seen.has(url)) continue;
+      seen.add(url);
+      try {
+        const signals = await fetchSiteSignals(url);
+        if (signals.status !== 200) continue;
+        const found = extractPublicEmails(signals.html);
+        if (found.length) emails = [...new Set([...emails, ...found])];
+        if (!bestSignals || found.length) {
+          bestSignals = signals;
+          fetchedFrom = url;
+        }
+        if (emails.length && p === "") break;
+      } catch {
+        /* skip path */
       }
-      if (emails.length && p === "") break;
-    } catch {
-      /* skip path */
     }
+    if (emails.length) break;
   }
 
-  return { signals: bestSignals, emails, fetchedFrom };
+  if (bestSignals && probe.ok) {
+    bestSignals = { ...bestSignals, finalHttps: true };
+  }
+
+  return { signals: bestSignals, emails, fetchedFrom, httpsOk: probe.ok };
 }
 
 /** queued/built 行の総合 G1（サイト再取得 + audit_notes） */

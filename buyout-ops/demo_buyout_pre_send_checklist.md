@@ -33,7 +33,7 @@ node buyout-ops/verify-inbox-reply.mjs --company "株式会社〇〇" --template
 □ P4  verify-ops-pack.mjs + verify-before-send.mjs が PASS
 □ P5  デモ案A/B URL がメール本文と CSV で一致（末尾/・google.com/urlなし・www.calcite-ai.jp）
 □ P5b `render-outreach-email.mjs` の本文を text/plain で送る（htmlBodyなし）
-□ P6  今日すでに1通送っていない（週7以内・土日含む）
+□ P6  今日の送信枠を超えていない（`send-quota.csv` / `node buyout-ops/send-quota.mjs`）
 □ P7  テンプレ・buyout-prospects を変えた場合、**送信前に main へ push 済み**
 ```
 
@@ -56,6 +56,7 @@ node buyout-ops/verify-inbox-reply.mjs --company "株式会社〇〇" --template
 | V11/O11 | queued が **工務店（koumuten）** 以外 | 送信・昇格禁止 |
 | V12 | **`prior_outreach_blocklist.csv` に載る**（個人Gmail・hello@ 含む過去デモ営業済） | 送らない |
 | V13 | **G1**: 相手サイトがモダン除外 / audit_notes に粗2点未満 / G1不合格 | 送らない（石川型） |
+| V15 | 今日の送信枠（`send-quota.csv`）に残がある | 残枠0なら送らない |
 
 ## 過去ミスとの対応
 

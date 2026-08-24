@@ -5,6 +5,7 @@
 | ファイル | 用途 |
 |---|---|
 | `demo_buyout_owner_workflow.md` | **オーナー承認キュー**（朝1回承認→毎日自動送信） |
+| `send-quota.csv` / `send-quota.mjs` | **1日の送信通数**（日付で切替。途中から行を足す） |
 | `demo_buyout_daily_schedule.md` | **9:00 デモ制作 / 10:00 送信** |
 | `demo_buyout_autorun.md` | 10:00 送信オペ |
 | `prospect-rescan-fetch-fail.mjs` | 9:00 FETCH_FAIL 再試行 |
@@ -21,7 +22,8 @@
 | `verify-hunter-g1.mjs` | **G1必須**（モダンサイト除外・queued前） |
 | `site-g1-eval.mjs` | G1判定ロジック（上記から利用） |
 | `demo_buyout_prospect_pipeline.md` | **全国リスト収集**（夜間スキャン手順） |
-| `prospect-scan-batch.mjs` | 夜間: 種URL → scan_results.csv |
+| `prospect-scan-batch.mjs` | 夜間: 種URL → scan_results.csv（C1: http種でも https を試す） |
+| `prospect-rescan-https.mjs` | 既存 SSL未整備行の C1 再判定 |
 | `extract-seeds-from-prospects.mjs` | prospects → seeds 同期 |
 | `demo_buyout_audit_checklist.md` | 誤診防止 |
 | `demo_buyout_hunter.md` | 収集ゲート G0〜G5 / C0〜C5 |

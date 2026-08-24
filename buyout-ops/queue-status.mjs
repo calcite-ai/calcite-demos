@@ -15,6 +15,7 @@ import { fileURLToPath } from "node:url";
 import { parseCsv, sortByApprovalSeq } from "./csv-util.mjs";
 import { ACTIVE_VERTICAL, isActiveVertical, verticalLabel } from "./vertical-config.mjs";
 import { isPriorOutreachBlocked } from "./prior-outreach.mjs";
+import { loadSendQuota } from "./send-quota.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const csvPath = path.join(__dirname, "demo_buyout_leads.csv");
@@ -48,19 +49,25 @@ const approvedWaiting = sortByApprovalSeq(
   )
 );
 
+const quota = loadSendQuota();
+const nextSends = sendableRows.slice(0, quota.remaining).map((r) => ({
+  company: r.company,
+  email: r.email,
+  status: r.status,
+  approval_seq: r.approval_seq || "",
+}));
+
 const result = {
   queued: rows.filter((r) => r.status === "queued").length,
   built: rows.filter((r) => r.status === "built").length,
   approved_waiting: approvedWaiting.length,
   sendable: sendableRows.length,
-  next: sendableRows[0]
-    ? {
-        company: sendableRows[0].company,
-        email: sendableRows[0].email,
-        status: sendableRows[0].status,
-        approval_seq: sendableRows[0].approval_seq || "",
-      }
-    : null,
+  daily_sends: quota.daily_sends,
+  sent_today: quota.sent_today,
+  remaining_today: quota.remaining,
+  quota_from: quota.effective_from,
+  next: nextSends[0] || null,
+  next_sends: nextSends,
   next_approved_build: approvedWaiting[0]
     ? {
         company: approvedWaiting[0].company,
@@ -74,12 +81,14 @@ if (process.argv.includes("--json")) {
   console.log(JSON.stringify(result, null, 2));
 } else {
   console.log(
-    `queued=${result.queued} built=${result.built} approved_waiting=${result.approved_waiting} sendable=${result.sendable} vertical=${ACTIVE_VERTICAL}(${verticalLabel(ACTIVE_VERTICAL)})`
+    `queued=${result.queued} built=${result.built} approved_waiting=${result.approved_waiting} sendable=${result.sendable} vertical=${ACTIVE_VERTICAL}(${verticalLabel(ACTIVE_VERTICAL)}) daily_sends=${result.daily_sends} sent_today=${result.sent_today} remaining_today=${result.remaining_today}`
   );
-  if (result.next) {
-    console.log(
-      `next_send: [${result.next.approval_seq || "-"}] ${result.next.company} (${result.next.status})`
-    );
+  if (result.next_sends?.length) {
+    for (const n of result.next_sends) {
+      console.log(`next_send: [${n.approval_seq || "-"}] ${n.company} (${n.status})`);
+    }
+  } else if (result.remaining_today === 0) {
+    console.log("next_send: (today quota full)");
   }
   if (result.next_approved_build) {
     console.log(
@@ -88,4 +97,4 @@ if (process.argv.includes("--json")) {
   }
 }
 
-process.exit(result.sendable > 0 ? 0 : 2);
+process.exit(result.remaining_today > 0 && result.sendable > 0 ? 0 : 2);

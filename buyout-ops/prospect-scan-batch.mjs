@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 /**
  * Overnight prospect scanner — 送信しない。種URLを G0/G1 機械判定して pipeline CSV へ。
+ * C1: 種が http でも https を試し、通れば defects に SSL未整備を付けない（site-g1-eval）。
  *
  * Usage:
  *   node buyout-ops/extract-seeds-from-prospects.mjs --merge

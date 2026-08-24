@@ -3,13 +3,14 @@
  * 9:00 JST refill orchestrator for Cursor Automation.
  *
  * Priority:
- * 1) sendable (queued+built with demos) exists → done
- * 2) owner-approved (status=approved) waiting for demo → agent builds 1 (exit 3)
- * 3) legacy: promote paused if no owner queue
- * 4) otherwise stop — wait for overnight scan + owner review (no random hunter)
+ * 1) today's send quota already filled → done
+ * 2) sendable >= remaining_today → done (10:00 send)
+ * 3) owner-approved waiting for demo → agent builds 1 (exit 3); Automation loops until 2)
+ * 4) legacy: promote paused if no owner queue
+ * 5) otherwise stop — wait for overnight scan + owner review
  *
  * Usage: node buyout-ops/refill-queue-if-empty.mjs
- * Exit 0 = sendable exists. Exit 3 = build demo for next approved. Exit 2 = nothing to do.
+ * Exit 0 = enough sendable for today (or quota full). Exit 3 = build demo. Exit 2 = nothing to do.
  */
 import { spawnSync } from "node:child_process";
 import fs from "node:fs";
@@ -18,14 +19,20 @@ import { fileURLToPath } from "node:url";
 import { parseCsv, sortByApprovalSeq } from "./csv-util.mjs";
 import { isPriorOutreachBlocked } from "./prior-outreach.mjs";
 import { isActiveVertical } from "./vertical-config.mjs";
+import { loadSendQuota } from "./send-quota.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
-function run(script, args = []) {
+function run(script, args = [], inherit = true) {
   const r = spawnSync(process.execPath, [path.join(__dirname, script), ...args], {
-    stdio: "inherit",
+    encoding: "utf8",
+    stdio: inherit ? ["ignore", "pipe", "pipe"] : ["ignore", "pipe", "pipe"],
   });
-  return r.status ?? 1;
+  if (inherit) {
+    if (r.stdout) process.stdout.write(r.stdout);
+    if (r.stderr) process.stderr.write(r.stderr);
+  }
+  return r;
 }
 
 function countApprovedWaiting() {
@@ -44,18 +51,40 @@ function countApprovedWaiting() {
 
 console.log("=== refill-queue-if-empty ===\n");
 
-const status = run("queue-status.mjs");
-if (status === 0) {
-  console.log("\nRESULT ok — send queue has targets (10:00 send)");
+const quota = loadSendQuota();
+run("queue-status.mjs");
+const need = Math.max(0, quota.remaining);
+console.log(
+  `\nquota: daily_sends=${quota.daily_sends} sent_today=${quota.sent_today} remaining=${need} from=${quota.effective_from}`
+);
+
+if (need === 0) {
+  console.log("\nRESULT ok — 今日の送信枠は満了（send-quota.csv）");
+  process.exit(0);
+}
+
+const statusJson = run("queue-status.mjs", ["--json"], false);
+let q;
+try {
+  q = JSON.parse(statusJson.stdout || "{}");
+} catch {
+  q = { sendable: 0 };
+}
+
+if ((q.sendable || 0) >= need) {
+  console.log(`\nRESULT ok — sendable=${q.sendable} >= remaining=${need}（10:00 send）`);
   process.exit(0);
 }
 
 const approvedCount = countApprovedWaiting();
 if (approvedCount > 0) {
-  console.log(`\nOwner queue: ${approvedCount} approved (demo未) → build next`);
+  const stillNeed = need - (q.sendable || 0);
+  console.log(
+    `\nOwner queue: ${approvedCount} approved (demo未) → build next (${stillNeed} more for today's quota)`
+  );
   run("next-approved.mjs");
   console.log(
-    "\nRESULT build — demo_buyout_owner_workflow.md §9:00: 先頭1社を G1→デモ→status=queued → push"
+    "\nRESULT build — demo_buyout_owner_workflow.md §9:00: 先頭1社を G1→デモ→status=queued → push。その後このスクリプトを再実行（残枠が埋まるまで）"
   );
   process.exit(3);
 }
@@ -63,14 +92,21 @@ if (approvedCount > 0) {
 console.log("\nNo owner queue → try legacy promote paused…");
 run("promote-paused.mjs", ["--apply"]);
 
-const status2 = run("queue-status.mjs");
-if (status2 === 0) {
+run("queue-status.mjs");
+const statusJson2 = run("queue-status.mjs", ["--json"], false);
+let q2;
+try {
+  q2 = JSON.parse(statusJson2.stdout || "{}");
+} catch {
+  q2 = { sendable: 0 };
+}
+if ((q2.sendable || 0) >= 1) {
   console.log("\nRESULT ok — promoted paused row to queued");
   process.exit(0);
 }
 
 console.log(
-  "\nRESULT idle — sendable=0・承認キューなし。夜間スキャン→朝レビュー待ち（hunter-suggest しない）"
+  "\nRESULT idle — sendable不足・承認キューなし。夜間スキャン→朝レビュー待ち（hunter-suggest しない）"
 );
-console.log("参照: demo_buyout_owner_workflow.md / demo_buyout_prospect_pipeline.md");
+console.log("参照: demo_buyout_owner_workflow.md / demo_buyout_prospect_pipeline.md / send-quota.csv");
 process.exit(2);

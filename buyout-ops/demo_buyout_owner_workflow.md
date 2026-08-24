@@ -1,18 +1,18 @@
 # デモ買い取り — オーナー承認キュー（人間1回・送信は自動）
 
-> 2026-08-23 確定: **リスト承認は人間1回**。承認後は **approval_seq 順に毎日1通** を自動送信（枯れるまで）。
+> 2026-08-23 確定: **リスト承認は人間1回**。承認後は **approval_seq 順に毎日 `send-quota.csv` の通数** を自動送信（枯れるまで）。
 
 ## 全体像
 
 ```
 夜（エージェント）  prospect-scan-batch → scan_results.csv (CANDIDATE)
 朝（オーナー）      review_queue.csv で owner_ok=y → import-review-approvals
-9:00（自動）        先頭 approved をデモ制作 → status=queued
-10:00（自動）       先頭 queued を verify → 送信 → sent
-翌日以降            同じ（上から1社/日）直到リスト枯れ
+9:00（自動）        当日残枠ぶん approved をデモ制作 → status=queued
+10:00（自動）       残枠ぶん queued を verify → 送信 → sent
+翌日以降            同じ（上から quota 社/日）直到リスト枯れ
 ```
 
-**毎日の送信確認は不要。** 承認した50社なら50日間、上から順に1社ずつ送る。
+**毎日の送信確認は不要。** 通数は `send-quota.csv`。承認した50社なら、1通/日なら約50日、3通/日なら約17日で消化。
 
 ---
 
@@ -54,8 +54,8 @@ git add buyout-ops/demo_buyout_leads.csv && git commit && git push   # オーナ
 
 | 状態 | 動作 |
 |---|---|
-| sendable > 0 | 何もしない（10:00へ） |
-| approved が残っている | **seq最小の1社** だけ Hunter/デモ制作 |
+| sendable >= 今日の残枠 | 何もしない（10:00へ） |
+| 残枠あり・approved が残っている | **seq最小から、残枠が埋まるまで** Hunter/デモ制作 |
 | 承認キューなし | paused 昇格（レガシー）→ それもなければ **待機** |
 
 ### エージェント手順（exit 3 = build）
@@ -75,9 +75,9 @@ git add buyout-ops/demo_buyout_leads.csv && git commit && git push   # オーナ
 
 [`demo_buyout_autorun.md`](./demo_buyout_autorun.md) どおり。
 
-- `queue-status.mjs` → **approval_seq 最小** の sendable 行が `next_send`
-- verify PASS → 初回メール1通 → `status=sent`
-- sendable=0 なら送らない
+- `queue-status.mjs` → **next_send を残枠ぶん**
+- verify PASS → 初回メール → `status=sent`（1社ごと）
+- remaining_today=0 または sendable=0 なら送らない
 
 ---
 
@@ -105,8 +105,18 @@ node buyout-ops/import-review-approvals.mjs --dry-run
 
 ## レート
 
-- **1日1通**（週最大7・土日含む）— ドメイン warmup（`hello@calcite-ai.jp`）
-- 50社承認 → 約50営業日で消化（週7なら約7週）
+正本: [`send-quota.csv`](./send-quota.csv)（JST。`effective_from` 以降の最新行が当日枠）。
+
+| 開始日 | 1日あたり |
+|---|---|
+| 2026-08-20 | **1通**（warmup） |
+
+途中から変えるときは CSV に1行足して push。例: `2026-09-01,3,warmup後`  
+9:00 は残枠ぶんデモを作り、10:00 は残枠ぶん送る。
+
+```bash
+node buyout-ops/send-quota.mjs
+```
 
 ---
 

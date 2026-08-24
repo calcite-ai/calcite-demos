@@ -17,6 +17,7 @@ import { spawnSync } from "node:child_process";
 import { ACTIVE_VERTICAL, isActiveVertical, rowVertical, verticalLabel } from "./vertical-config.mjs";
 import { matchPriorOutreach } from "./prior-outreach.mjs";
 import { evaluateLeadG1 } from "./site-g1-eval.mjs";
+import { loadSendQuota } from "./send-quota.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const repoRoot = path.resolve(__dirname, "..");
@@ -130,6 +131,15 @@ async function verifyProspect({ name, email, urlA, urlB, slug, quotedPrice, stat
     fails.push(
       `V11 送信対象が現行vertical=${ACTIVE_VERTICAL}(${verticalLabel(ACTIVE_VERTICAL)})外: ${verticalLabel(rowVertical(row))}`
     );
+  }
+
+  const quota = loadSendQuota();
+  if (status === "queued" || status === "built") {
+    if (quota.remaining <= 0) {
+      fails.push(
+        `V15 今日の送信枠が満了（daily_sends=${quota.daily_sends} sent_today=${quota.sent_today} / send-quota.csv）`
+      );
+    }
   }
 
   const derivedSlug = slug || slugFromUrl(urlA) || slugFromUrl(urlB);

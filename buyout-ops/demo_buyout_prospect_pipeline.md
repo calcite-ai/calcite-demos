@@ -17,12 +17,12 @@
     ↓
 【Hunter】verify-hunter-g1 → デモ → queued
     ↓
-【送信】verify-before-send V13 → 1通/日
+【送信】verify-before-send V13/V15 → 当日枠（send-quota.csv）
 ```
 
 | 層 | 誰 | 止めるミス |
 |---|---|---|
-| 夜間 | 機械 | モダンサイト（石川型）・メール推測・粗1点 |
+| 夜間 | 機械 | モダンサイト（石川型）・メール推測・粗1点。**C1: 種が http でも https を試し、通れば SSL未整備と書かない**（`site-g1-eval` / 既存誤診は `prospect-rescan-https.mjs`） |
 | 朝 | 人間 | 別公式（マキノ型）・スマホ実機 |
 | Hunter | 機械+人 | blocklist・G1再確認 |
 | 送信 | 機械 | デモ404・旧価格 |
@@ -160,7 +160,7 @@ Maps で種を集めるときも同じ欠陥を意識すると効率よい。
 
 ## 6. 送信ペースとの関係
 
-- 送信: **1通/日・週7**（既存 Automation）
+- 送信: **`send-quota.csv` の当日枠**（既存 Automation）
 - 収集: **週20〜50 CANDIDATE** あれば十分（convert率を見て調整）
 - 夜間: **seed 100件/夜** 程度が現実的（礼儀 + 負荷）
 
