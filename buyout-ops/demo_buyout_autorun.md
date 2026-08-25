@@ -25,9 +25,9 @@
 3. `queue-status` の **next_send を残枠ぶん**、`approval_seq` 昇順に1社ずつ送る
 4. Gmail で `to:{email} from:me` を再確認（過去送信があれば `paused`）
 5. **送信直前:** G1の C0〜C2（正規サイト・HTTPS最終到達・tel:）を再確認。課題は audit_notes からのみ（`demo_buyout_audit_checklist.md` / `demo_buyout_hunter.md`）
-6. デモ未公開なら `buyout-template/designs/swap-prospect.mjs` → `publish-prospect.mjs` → **buyout-prospects のみ push**
+6. デモ未公開なら `buyout-template/designs/swap-prospect.mjs` → `publish-prospect.mjs` → **buyout-prospects を main へ直接 push（Draft PR 禁止）**
 7. **テンプレ・verify スクリプトを変えたら、送信より先に push**（2026-08-22 旧価格事故）
-8. **公開URLが HTTP 200 になるまで送らない**（404のままURLを書かない。2026-08-21 福澤で再発）
+8. **公開URLが HTTP 200 になるまで送らない**（404のままURLを書かない。2026-08-21 福澤で再発。**2026-08-25 ビルドテクト: PR未マージで Pages 404 → 送信不可**）
 9. **送信前ゲート必須（順番固定）:**  
    `node buyout-ops/verify-ops-pack.mjs`  
    `node buyout-ops/verify-hunter-g1.mjs --from-csv --company "<社名>"`（queued 行の G1 再確認）  

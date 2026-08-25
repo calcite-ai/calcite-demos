@@ -98,10 +98,10 @@ cd buyout-ops がある calcite-demos リポジトリ root で作業する。
    - node buyout-ops/verify-hunter-g1.mjs --from-csv --company "<社名>" PASS
    - 税理士・葬儀は絶対に queued にしない（vertical=koumuten のみ）
    - 承認リスト外の hunter-suggest は使わない
-   - buyout-template/designs/swap-prospect.mjs → publish-prospect.mjs → buyout-prospects を push
+   - buyout-template/designs/swap-prospect.mjs → publish-prospect.mjs → buyout-prospects を **main へ直接 push**（Draft PR 禁止。Pages は main 反映後しか 200 にならない）
    - demo_buyout_leads.csv: status=queued, quoted_price=66000, vertical=koumuten, demo_url_a/b 記入（approval_seq は変えない）
-   - node buyout-ops/verify-before-send.mjs --from-csv --company "<社名>" が PASS まで
-   - commit & push（10:00 前に main 反映）
+   - node buyout-ops/verify-before-send.mjs --from-csv --company "<社名>" が PASS まで（Pages 200 必須）
+   - **同じコミットで** leads CSV も main へ push（10:00 前）
    - 再度 1) に戻る（sendable が残枠以上になるまで）
 
 禁止:
@@ -109,6 +109,7 @@ cd buyout-ops がある calcite-demos リポジトリ root で作業する。
 - quoted_price=55000 の3社への決済メール
 - verify FAIL のまま送付先を queued のまま放置せず、失敗理由を notes に残す
 - オーナー未承認の hunter-suggest で queued を増やさない
+- **PR / Draft PR で止めること**（必ず main push。今日の事故: PR#6 未マージで Pages 404 → 送信不可）
 ```
 
 ## Cursor Automation プロンプト（10:00 用・コピペ）
