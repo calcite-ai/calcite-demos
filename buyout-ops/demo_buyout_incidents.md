@@ -2,7 +2,27 @@
 
 > 同種ミスを二度起こさないための記録とゲート一覧。
 
+## 2026-08-25: plugin-gmail 送信で再び「リダイレクトの警告」
+
+### 起きたこと
+
+| # | 内容 | 影響 |
+|---|---|---|
+| 1 | ビルドテクト初回を `plugin-gmail-gmail` の `send_message` で送信 | MIME が `multipart/alternative`（text/html 付き）になった |
+| 2 | 送信時点の text/plain 本文に既に `https://www.google.com/url?q=…` が入っていた | クリックで「リダイレクトの警告」 |
+
+### 恒久対策
+
+| 層 | 内容 |
+|---|---|
+| **送信経路** | buyout 初回は **`user-gmail` の `send_email` + `mimeType=text/plain` のみ**（`htmlBody` 禁止） |
+| **禁止** | `plugin-gmail-gmail` / `send_message` で初回営業を送らない（URLラップする） |
+| **確認** | 送信直後に RAW MIME を見て `google.com/url` と `text/html` が無いこと |
+
+---
+
 ## 2026-08-24: メールリンクが「リダイレクトの警告」経由
+
 
 ### 起きたこと
 
