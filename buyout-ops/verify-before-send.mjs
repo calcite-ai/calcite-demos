@@ -287,7 +287,7 @@ async function main() {
     if (!targets[0].urlA || !targets[0].urlB) {
       // derive from slug + default skins if provided via --skins
       const slug = arg("slug");
-      const skins = arg("skins", "d-signboard,b-atelier")
+      const skins = arg("skins", "b-atelier,c-daylight")
         .split(",")
         .map((s) => s.trim())
         .filter(Boolean);

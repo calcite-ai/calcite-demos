@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>お問い合わせ｜アオイ工房</title>
+  <meta name="description" content="アオイ工房へのお問い合わせ（デモ雛形）。" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+JP:wght@400;600;700&family=Shippori+Mincho:wght@500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../styles.css" />
+</head>
+<body>
+  <div class="demo-ribbon" hidden>社内用｜送付前に削除</div>
+  <header class="site-header">
+    <div class="container site-header__inner">
+      <a class="brand" href="../index.html">
+        <span class="brand__name">アオイ工房</span>
+        <span class="brand__tag">地域の仕事を、丁寧に。</span>
+      </a>
+      <nav class="nav" aria-label="メインメニュー">
+        <a href="../index.html">ホーム</a>
+        <a href="../services/index.html">サービス</a>
+        <a href="../about/index.html">会社概要</a>
+        <a href="index.html" class="nav__cta" aria-current="page">お問い合わせ</a>
+      </nav>
+      <button class="menu-btn" type="button" aria-label="メニュー" data-menu-toggle><span></span><span></span><span></span></button>
+    </div>
+    <div class="container mobile-nav" data-mobile-nav>
+      <a href="../index.html">ホーム</a>
+      <a href="../services/index.html">サービス</a>
+      <a href="../about/index.html">会社概要</a>
+      <a href="index.html">お問い合わせ</a>
+      <a href="../privacy/index.html">プライバシーポリシー</a>
+    </div>
+  </header>
+
+  <section class="page-hero">
+    <div class="container">
+      <h1>お問い合わせ</h1>
+      <p>ご相談・お見積りは、お電話またはメールで受け付けています。</p>
+    </div>
+  </section>
+
+  <section class="section section--tight">
+    <div class="container contact-box">
+      <div>
+        <p class="section__label">PHONE</p>
+        <a class="phone" href="tel:0300000000">03-0000-0000</a>
+        <p class="meta">受付: 平日 9:00–18:00（定休日: 土日祝）</p>
+        <p style="margin-top:1rem"><a class="btn btn--solid" href="tel:0300000000">タップして発信</a></p>
+      </div>
+      <div>
+        <p class="section__label">EMAIL</p>
+        <p><a href="mailto:info@example.com"><strong>info@example.com</strong></a></p>
+        <p class="meta">件名に「ホームページを見た」と入れていただけるとスムーズです。</p>
+        <p style="margin-top:1rem"><a class="btn btn--outline" href="mailto:info@example.com">メールを送る</a></p>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container site-footer__grid">
+      <div><strong>アオイ工房</strong></div>
+      <div><p>〒100-0001 東京都千代田区サンプル1-2-3</p></div>
+      <div><p><a href="../privacy/index.html">プライバシーポリシー</a></p></div>
+    </div>
+  </footer>
+  <nav class="bottom-bar" aria-label="スマートフォン用連絡">
+    <a href="tel:0300000000">電話する</a>
+    <a href="mailto:info@example.com">メール</a>
+  </nav>
+  <script src="../site.js"></script>
+</body>
+</html>

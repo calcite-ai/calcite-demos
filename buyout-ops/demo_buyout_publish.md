@@ -12,8 +12,8 @@ https://calcite-ai.github.io/calcite-demos/buyout-prospects/{slug}/{skin}/
 
 例:
 - 一覧: `.../buyout-prospects/ishizaka-koumuten/`
-- A案: `.../buyout-prospects/ishizaka-koumuten/d-signboard/`
-- B案: `.../buyout-prospects/ishizaka-koumuten/b-atelier/`
+- A案: `.../buyout-prospects/ishizaka-koumuten/b-atelier/`
+- B案: `.../buyout-prospects/ishizaka-koumuten/c-daylight/`
 
 ローカル生成物 `buyout-template/designs/_prospects/` は **送らない・pushしない**（作業用）。  
 送付用の正本はリポジトリ直下の **`buyout-prospects/`**。
@@ -25,7 +25,7 @@ cd ~/claude/02_hp-sales/demos/buyout-template/designs
 
 # 1. 差し替え（在庫2骨格）
 node swap-prospect.mjs \
-  --skins d-signboard,b-atelier \
+  --skins b-atelier,c-daylight \
   --name "株式会社サンプル" \
   --tag "地域の〇〇を支えます" \
   --tel "03-1234-5678" \

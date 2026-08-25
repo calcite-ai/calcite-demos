@@ -4,7 +4,7 @@
  *
  * Usage:
  *   node designs/swap-prospect.mjs \
- *     --skins a-sumi,d-signboard \
+ *     --skins b-atelier,c-daylight \
  *     --name "株式会社サンプル" \
  *     --tag "地域の〇〇を支えます" \
  *     --tel "03-1234-5678" \
@@ -26,12 +26,12 @@ function arg(name, fallback = "") {
   return i >= 0 ? process.argv[i + 1] : fallback;
 }
 
-const skins = arg("skins", "d-signboard,b-atelier")
+const skins = arg("skins", "b-atelier,c-daylight")
   .split(",")
   .map((s) => s.trim())
   .filter(Boolean);
 const name = arg("name");
-const tag = arg("tag", "地域の仕事を、丁寧に。");
+const tag = arg("tag", "地域の家づくりを、まっすぐ。");
 const tel = arg("tel", "03-0000-0000");
 const email = arg("email", "info@example.com");
 const address = arg("address", "〒100-0001 東京都千代田区サンプル1-2-3");
@@ -58,6 +58,7 @@ const replacements = [
   ["アオイ<br/>工房", heroHtml(name)],
   ["アオイ<br>工房", heroHtml(name)],
   ["アオイ工房", name],
+  ["地域の家づくりを、まっすぐ。", tag],
   ["地域の仕事を、丁寧に。", tag],
   ["03-0000-0000", tel],
   ["tel:0300000000", telHref],
