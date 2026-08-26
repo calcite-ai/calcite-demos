@@ -54,15 +54,16 @@ jobs:
 
       - name: Commit sent CSV / escalate if changed
         run: |
-          if git diff --quiet -- \
+          git config user.name "buyout-daily-send"
+          git config user.email "hello@calcite-ai.jp"
+          for f in \
             buyout-ops/demo_buyout_leads.csv \
-            buyout-ops/metrics/inbox-escalate.md; then
+            buyout-ops/metrics/inbox-escalate.md; do
+            if [ -e "$f" ]; then git add -- "$f"; fi
+          done
+          if git diff --cached --quiet; then
             echo "No CSV changes"
             exit 0
           fi
-          git config user.name "buyout-daily-send"
-          git config user.email "hello@calcite-ai.jp"
-          git add buyout-ops/demo_buyout_leads.csv \
-            buyout-ops/metrics/inbox-escalate.md || true
           git commit -m "Mark buyout lead sent (GitHub Actions 10:00)."
           git push origin HEAD:main

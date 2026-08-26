@@ -64,17 +64,18 @@ jobs:
 
       - name: Commit CSV / escalate / state if changed
         run: |
-          if git diff --quiet -- \
+          git config user.name "buyout-inbox"
+          git config user.email "hello@calcite-ai.jp"
+          # Add only paths that exist (missing escalate used to fail the whole git add)
+          for f in \
             buyout-ops/demo_buyout_leads.csv \
             buyout-ops/metrics/inbox-processed.json \
-            buyout-ops/metrics/inbox-escalate.md; then
+            buyout-ops/metrics/inbox-escalate.md; do
+            if [ -e "$f" ]; then git add -- "$f"; fi
+          done
+          if git diff --cached --quiet; then
             echo "No changes"
             exit 0
           fi
-          git config user.name "buyout-inbox"
-          git config user.email "hello@calcite-ai.jp"
-          git add buyout-ops/demo_buyout_leads.csv \
-            buyout-ops/metrics/inbox-processed.json \
-            buyout-ops/metrics/inbox-escalate.md || true
           git commit -m "Process buyout inbox replies (IMAP)."
           git push origin HEAD:main

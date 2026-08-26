@@ -114,6 +114,36 @@ function extractText(source) {
   return body.slice(0, 20000);
 }
 
+/** Prefer DSN Final-Recipient lines — never match any random address in the bounce body. */
+function bounceRecipientHits(bodyText, emailSet) {
+  const hits = [];
+  const push = (raw) => {
+    const e = String(raw || "")
+      .trim()
+      .toLowerCase()
+      .replace(/^<|>$/g, "");
+    if (emailSet.has(e) && !hits.includes(e)) hits.push(e);
+  };
+  const structured =
+    bodyText.matchAll(
+      /(?:Final-Recipient|Original-Recipient|X-Failed-Recipients):\s*(?:rfc822;\s*)?<?([\w.+-]+@[\w.-]+\.\w+)>?/gi
+    ) || [];
+  for (const m of structured) push(m[1]);
+  if (hits.length) return hits;
+
+  for (const line of bodyText.split(/\r?\n/)) {
+    if (
+      !/550|551|552|553|5\.1\.1|5\.2\.1|5\.2\.2|mailbox full|user unknown|undeliverable|permanent failure|配信でき|届きません/i.test(
+        line
+      )
+    ) {
+      continue;
+    }
+    for (const em of line.match(/[\w.+-]+@[\w.-]+\.\w+/g) || []) push(em);
+  }
+  return hits;
+}
+
 const user = requireEnv("BUYOUT_SMTP_USER");
 const pass = requireEnv("BUYOUT_SMTP_PASS");
 const smtpHost = process.env.BUYOUT_SMTP_HOST || "mail1004.conoha.ne.jp";
@@ -165,23 +195,35 @@ try {
 
     // Bounce / DSN
     if (/mailer-daemon|postmaster|mail delivery|undelivered/i.test(fromAddr + subject)) {
-      const m = bodyText.match(/[\w.+-]+@[\w.-]+\.\w+/g) || [];
-      const hit = m.map((x) => x.toLowerCase()).find((e) => byEmail.has(e));
-      if (hit) {
+      const hits = bounceRecipientHits(bodyText, byEmail);
+      for (const hit of hits) {
         const row = byEmail.get(hit);
         headers = ensureMetrics(headers, row);
         const bounceKind = classifyBounceText(bodyText);
-        row.bounce_at = row.bounce_at || jstDateString();
-        row.bounce_type = row.bounce_type || bounceKind;
+        const already = Boolean(row.bounce_at) || row.status === "paused";
+        if (already) {
+          // Do not re-trigger same-day failover every 2h
+          actions.push({
+            type: "bounce_already",
+            company: row.company,
+            email: hit,
+            bounce_type: row.bounce_type || bounceKind,
+            failover: false,
+          });
+          continue;
+        }
+        row.bounce_at = jstDateString();
+        row.bounce_type = bounceKind;
         row.status = "paused";
         // Free today's quota: successful-send counter only counts status=sent
         row.notes = `${row.notes || ""} / IMAP bounce ${jstDateString()} kind=${bounceKind}`.trim();
+        const doFailover = bounceAllowsFailover(bounceKind);
         actions.push({
           type: "bounce",
           company: row.company,
           email: hit,
           bounce_type: bounceKind,
-          failover: bounceAllowsFailover(bounceKind),
+          failover: doFailover,
         });
         if (bounceKind === "spam") {
           appendEscalate(
@@ -195,7 +237,7 @@ try {
         }
         touched = true;
       }
-      state.ids[key] = { at: jstDateString(), kind: "bounce_scan", messageId };
+      state.ids[key] = { at: jstDateString(), kind: "bounce_scan", messageId, hits };
       if (!dryRun) {
         await client.messageFlagsAdd(uid, ["\\Seen"], { uid: true });
       }
