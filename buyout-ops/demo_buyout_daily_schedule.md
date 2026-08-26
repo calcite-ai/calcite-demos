@@ -19,6 +19,15 @@
 | **9:00** | Demo buyout queue refill | 承認キュー先頭のデモ制作 |
 | **10:00** | Demo buyout daily send | approval_seq 順に **当日残枠** 送信（`send-quota.csv`） |
 
+### Automation UI 必須設定（docs だけでは足りない）
+
+2026-08-25/26 連続事故: クラウド側が **Draft PR** を開き、Pages が 404 のまま 10:00 が空振り。
+
+- 9:00 ID: `3e92e8d0-9e28-11f1-a7d1-d6b4613131ce`
+- UI で **Open as pull request / Draft PR をオフ**し、**main へ直接 push** する運用にする
+- プロンプト末尾にも「PR 作成 = 失敗。必ず main push 後に verify-before-send PASS」を残す
+- repo の `demo_buyout_daily_schedule.md` を直しただけでは再発する（UI 側の既定が勝つ）
+
 ---
 
 ## 9:00 — デモ制作（承認キュー）

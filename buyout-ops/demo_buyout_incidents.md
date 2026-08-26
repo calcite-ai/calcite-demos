@@ -2,6 +2,32 @@
 
 > 同種ミスを二度起こさないための記録とゲート一覧。
 
+## 2026-08-25〜26: 9:00 が Draft PR で止まり 10:00 が送れない（連続）
+
+### 起きたこと
+
+| # | 日付 | 内容 | 影響 |
+|---|---|---|---|
+| 1 | 8/25 | 9:00 がビルドテクトを制作したが [PR #6](https://github.com/calcite-ai/calcite-demos/pull/6) で停止（main 未反映） | Pages 404 → 10:00 送信不可。夜に手動マージ＋送信 |
+| 2 | 8/26 | 同経路で基工務店を [PR #7](https://github.com/calcite-ai/calcite-demos/pull/7)（Draft）に作成。本文に「マージして」と書きつつ PR のまま終了 | 再び `sendable=0`。夕方にマージ後も `user-gmail` `invalid_grant` で自動送信不可 |
+| 3 | 8/25 夜 | docs に「Draft PR 禁止・main 直 push」を追記（`ed9e5f2`） | **リポジトリ内プロンプトだけでは足りない**。Automation UI / クラウド既定が PR 作成を優先 |
+
+### 根本原因
+
+- 10:00 の不具合ではなく、**9:00 の公開経路が `main` でない**こと
+- Cursor Automation は変更を **Draft PR にする既定**があり、repo の禁止文より強い
+
+### 恒久対策
+
+| 層 | 内容 |
+|---|---|
+| **Automation UI** | 9:00「Demo buyout queue refill」(`3e92e8d0-9e28-11f1-a7d1-d6b4613131ce`) を開き、**PR を作らず main へ直接 commit/push** する設定・プロンプトにする（docs 更新だけでは再発する） |
+| **エージェント** | exit 3 のあと `verify-before-send` が Pages 200 になるまで終了しない。PR URL を出したら失敗扱い |
+| **10:00** | `sendable=0` のとき「9:00 が main 未反映かも」を notes / ログに残す |
+| **送信** | buyout は `user-gmail` `send_email` + text/plain。`invalid_grant` なら送らず再認証（plugin-gmail で初回を送らない） |
+
+---
+
 ## 2026-08-25: plugin-gmail 送信で再び「リダイレクトの警告」
 
 ### 起きたこと

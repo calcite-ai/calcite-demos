@@ -71,7 +71,7 @@ const issues = parseRoughItems(row.audit_notes).slice(0, 3).map(issueLine);
 while (issues.length < 3) issues.push("");
 
 const region = arg("region") || "地域の工務店";
-const strength = arg("strength") || "地域で施工を手がける実力が感じられました";
+const strength = arg("strength") || "地域で施工を手がける実力がある";
 const addressee = arg("addressee") || "ご担当者";
 
 let out = mailBodyFromTemplate(tpl)
