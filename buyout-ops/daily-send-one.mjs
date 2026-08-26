@@ -99,7 +99,26 @@ if (idx < 0) {
   process.exit(1);
 }
 rows[idx].status = "sent";
+rows[idx].sent_at = today;
+rows[idx].template_version = rows[idx].template_version || "v1_initial_66k";
 rows[idx].notes = `初回送信済 ${today} / SMTP ${messageId} / GitHub Actions daily-send`;
-fs.writeFileSync(leadsPath, serializeCsv(headers, rows) + "\n");
+const ensure = [
+  "sent_at",
+  "bounce_at",
+  "bounce_type",
+  "reply_at",
+  "reply_type",
+  "meeting_at",
+  "quote_at",
+  "order_at",
+  "order_amount_yen",
+  "template_version",
+];
+let hdrs = headers;
+for (const col of ensure) {
+  if (!hdrs.includes(col)) hdrs = [...hdrs, col];
+  if (rows[idx][col] == null) rows[idx][col] = "";
+}
+fs.writeFileSync(leadsPath, serializeCsv(hdrs, rows) + "\n");
 console.log(`RESULT marked sent: ${company}`);
 process.exit(0);

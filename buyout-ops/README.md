@@ -4,7 +4,7 @@
 
 | ファイル | 用途 |
 |---|---|
-| `demo_buyout_owner_workflow.md` | **オーナー承認キュー**（朝1回承認→毎日自動送信） |
+| `demo_buyout_metrics.md` | **効果測定**（会社単位ファネル・開封率は測らない） |
 | `send-quota.csv` / `send-quota.mjs` | **1日の送信通数**（日付で切替。途中から行を足す） |
 | `demo_buyout_daily_schedule.md` | **9:00 デモ制作 / 10:00 送信** |
 | `demo_buyout_autorun.md` | 10:00 送信オペ |
