@@ -1,0 +1,65 @@
+# Daily buyout outreach send (10:00 JST)
+#
+# Requires repo secrets:
+#   BUYOUT_SMTP_USER / BUYOUT_SMTP_PASS / BUYOUT_SMTP_HOST / BUYOUT_SMTP_PORT
+#
+# Sends text/plain only via ConoHa SMTP (no Gmail MCP / no htmlBody).
+
+name: Buyout daily send
+
+on:
+  schedule:
+    # 10:00 JST = 01:00 UTC
+    - cron: "0 1 * * *"
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Dry run (do not send / do not mark sent)"
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: buyout-daily-send
+  cancel-in-progress: false
+
+jobs:
+  send:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install SMTP deps
+        working-directory: buyout-ops
+        run: npm install --omit=dev
+
+      - name: Daily send (remaining quota)
+        env:
+          BUYOUT_SMTP_USER: ${{ secrets.BUYOUT_SMTP_USER }}
+          BUYOUT_SMTP_PASS: ${{ secrets.BUYOUT_SMTP_PASS }}
+          BUYOUT_SMTP_HOST: ${{ secrets.BUYOUT_SMTP_HOST }}
+          BUYOUT_SMTP_PORT: ${{ secrets.BUYOUT_SMTP_PORT }}
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ] && [ "${{ inputs.dry_run }}" = "true" ]; then
+            node buyout-ops/daily-send-one.mjs --dry-run
+          else
+            node buyout-ops/daily-send-one.mjs
+          fi
+
+      - name: Commit sent CSV if changed
+        run: |
+          if git diff --quiet -- buyout-ops/demo_buyout_leads.csv; then
+            echo "No CSV changes"
+            exit 0
+          fi
+          git config user.name "buyout-daily-send"
+          git config user.email "hello@calcite-ai.jp"
+          git add buyout-ops/demo_buyout_leads.csv
+          git commit -m "Mark buyout lead sent (GitHub Actions 10:00)."
+          git push origin HEAD:main

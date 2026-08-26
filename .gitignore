@@ -1,0 +1,3 @@
+# local secrets — never commit
+secrets/
+buyout-ops/node_modules/

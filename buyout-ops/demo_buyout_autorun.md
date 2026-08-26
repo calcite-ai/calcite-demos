@@ -1,21 +1,21 @@
 # デモ買い取り — 自動営業オペ
 
 > 2026-08-23 運用: **リスト承認は人間1回**（[`demo_buyout_owner_workflow.md`](./demo_buyout_owner_workflow.md)）。承認後の **送信は自動**（文面確認なし）。  
-> 送信元: `hello@calcite-ai.jp`  
+> 送信元: `hello@calcite-ai.jp`（ConoHa SMTP / GitHub Secrets `BUYOUT_SMTP_*`）  
 > レート: **`send-quota.csv` の当日枠**（初期は1日1通。途中から行を足して通数変更）。スパム回避優先。  
-> **Phase 1: 工務店（vertical=koumuten）のみ送信。** 税理士・葬儀は雛形完成まで送らない。
-> 稼働: Cursor Automation（クラウド）  
-> - **夜** 候補スキャン → **朝** オーナーが review_queue を承認  
-> - **9:00 JST** 承認キュー先頭のデモ制作 → [`demo_buyout_daily_schedule.md`](./demo_buyout_daily_schedule.md)  
-> - **10:00 JST** approval_seq 順に **当日残枠ぶん** 送信（本ファイル / `send-quota.csv`）  
-> このフォルダ（`buyout-ops/`）がクラウドエージェント用の正本。
+> **Phase 1: 工務店（vertical=koumuten）のみ送信。** 税理士・葬儀は雛形完成まで送らない。  
+> 稼働:  
+> - **9:00 JST** Cursor Automation デモ制作 → [`demo_buyout_daily_schedule.md`](./demo_buyout_daily_schedule.md)（**main 直 push**）  
+> - **10:00 JST** **GitHub Actions** [`buyout-daily-send.yml`](../.github/workflows/buyout-daily-send.yml) が残枠ぶん SMTP text/plain 送信  
+> このフォルダ（`buyout-ops/`）が正本。
 
 ## PCスリープについて
 
 | 方式 | Macスリープ | 備考 |
 |---|---|---|
-| **Cursor Automation（クラウド）** | **スリープOK** | 推奨。PC不要で時刻実行 |
-| セッション内ループ | しない方がよい | 予備。このチャットが生きている必要あり |
+| **GitHub Actions（10:00 送信）** | **スリープOK** | 推奨。SMTP Secrets 必須 |
+| **Cursor Automation（9:00 デモ）** | **スリープOK** | Draft PR 禁止・Open PR ツール削除 |
+| セッション内ループ | しない方がよい | 予備 |
 
 ## エージェントへの指示（毎回）
 
