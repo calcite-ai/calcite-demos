@@ -1,3 +1,30 @@
 {
-  "ids": {}
+  "ids": {
+    "uid:1": {
+      "at": "2026-08-27",
+      "kind": "ignored_unknown",
+      "from": "kennta80@yahoo.co.jp"
+    },
+    "uid:2": {
+      "at": "2026-08-27",
+      "kind": "ignored_unknown",
+      "from": "gmail-noreply@google.com"
+    },
+    "uid:3": {
+      "at": "2026-08-27",
+      "kind": "bounce_scan",
+      "messageId": "<20260825120856.F0131BDD55@mailgw1027.conoha.ne.jp>",
+      "hits": [
+        "mail.bildtct@clock.ocn.ne.jp"
+      ]
+    },
+    "uid:4": {
+      "at": "2026-08-27",
+      "kind": "bounce_scan",
+      "messageId": "<20260826131900.B145749656E@mail22.conoha.ne.jp>",
+      "hits": [
+        "motokou@mtd.jp"
+      ]
+    }
+  }
 }
