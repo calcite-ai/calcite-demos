@@ -40,7 +40,7 @@ const meeting = process.argv.includes("--meeting");
 const quote = process.argv.includes("--quote");
 const optOut = process.argv.includes("--opt-out");
 
-const REPLY_OK = new Set(["a_hope", "b_hope", "question", "custom", "decline", "opt_out", "other"]);
+const REPLY_OK = new Set(["a_hope", "b_hope", "buy", "question", "custom", "decline", "opt_out", "other"]);
 const BOUNCE_OK = new Set(["hard", "soft", "mailbox_full"]);
 
 if (reply && !REPLY_OK.has(reply)) {

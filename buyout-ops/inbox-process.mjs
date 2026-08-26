@@ -1,0 +1,302 @@
+#!/usr/bin/env node
+/**
+ * Poll ConoHa IMAP for replies to buyout outreach, classify, and auto-handle.
+ *
+ * - Purchase (A/B/buy) + quoted_price!=55000 → SMTP checkout reply (text/plain)
+ * - Legacy 55000 → escalate file only (no 66k checkout)
+ * - opt_out / bounce → update CSV
+ * - question/custom/other → escalate for human/agent
+ *
+ * Env: BUYOUT_SMTP_USER / BUYOUT_SMTP_PASS / BUYOUT_SMTP_HOST
+ *      BUYOUT_IMAP_HOST (optional, default = SMTP host)
+ *      BUYOUT_IMAP_PORT (optional, default 993)
+ *
+ * Usage:
+ *   node buyout-ops/inbox-process.mjs
+ *   node buyout-ops/inbox-process.mjs --dry-run
+ *   node buyout-ops/inbox-process.mjs --since-days 14
+ */
+import fs from "node:fs";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
+import { ImapFlow } from "imapflow";
+import nodemailer from "nodemailer";
+import { parseCsv, serializeCsv } from "./csv-util.mjs";
+import { METRICS_COLUMNS } from "./metrics-columns.mjs";
+import { jstDateString } from "./send-quota.mjs";
+import {
+  classifyReplyBody,
+  isPurchaseIntent,
+  selectedDemoLabel,
+} from "./classify-reply.mjs";
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const leadsPath = path.join(__dirname, "demo_buyout_leads.csv");
+const statePath = path.join(__dirname, "metrics", "inbox-processed.json");
+const escalatePath = path.join(__dirname, "metrics", "inbox-escalate.md");
+const checkoutTplPath = path.join(__dirname, "templates", "email_demo_buyout_2_checkout.txt");
+const CHECKOUT_URL = "https://buy.stripe.com/aFa3cw803gDA7WP5oKbwk01";
+
+const dryRun = process.argv.includes("--dry-run");
+const sinceDays = Number(
+  (() => {
+    const i = process.argv.indexOf("--since-days");
+    return i >= 0 ? process.argv[i + 1] : "21";
+  })()
+);
+
+function requireEnv(name) {
+  const v = process.env[name];
+  if (!v) {
+    console.error(`FAIL missing env ${name}`);
+    process.exit(1);
+  }
+  return v;
+}
+
+function loadState() {
+  if (!fs.existsSync(statePath)) return { ids: {} };
+  try {
+    return JSON.parse(fs.readFileSync(statePath, "utf8"));
+  } catch {
+    return { ids: {} };
+  }
+}
+
+function saveState(state) {
+  fs.mkdirSync(path.dirname(statePath), { recursive: true });
+  fs.writeFileSync(statePath, JSON.stringify(state, null, 2) + "\n");
+}
+
+function appendEscalate(block) {
+  fs.mkdirSync(path.dirname(escalatePath), { recursive: true });
+  const prev = fs.existsSync(escalatePath) ? fs.readFileSync(escalatePath, "utf8") : "# Inbox escalate\n\n";
+  fs.writeFileSync(escalatePath, prev + block + "\n");
+}
+
+function ensureMetrics(headers, row) {
+  let hdrs = headers;
+  for (const col of METRICS_COLUMNS) {
+    if (!hdrs.includes(col)) hdrs = [...hdrs, col];
+    if (row[col] == null) row[col] = "";
+  }
+  return hdrs;
+}
+
+function renderCheckout(subjectIn) {
+  let tpl = fs.readFileSync(checkoutTplPath, "utf8");
+  const start = tpl.indexOf("件名：");
+  tpl = start >= 0 ? tpl.slice(start) : tpl;
+  const cut = tpl.search(/\n# -----/);
+  if (cut >= 0) tpl = tpl.slice(0, cut);
+  const subjLine = tpl.split("\n")[0];
+  const body = tpl.split("\n").slice(1).join("\n").replace(/^\n+/, "");
+  const subject = subjLine
+    .replace(/^件名：/, "")
+    .trim()
+    .replace("{前回の件名}", subjectIn.replace(/^Re:\s*/i, "").trim());
+  return {
+    subject: subject.startsWith("Re:") ? subject : `Re: ${subjectIn.replace(/^Re:\s*/i, "")}`,
+    body: body
+      .replaceAll("{担当者名}", "ご担当者")
+      .replace(/https:\/\/buy\.stripe\.com\/[^\s]+/g, CHECKOUT_URL)
+      .trim() + "\n",
+  };
+}
+
+function extractText(source) {
+  const s = String(source || "");
+  // Prefer text/plain part roughly
+  const plain = s.match(/Content-Type:\s*text\/plain[\s\S]*?\r?\n\r?\n([\s\S]*?)(?:\r?\n--|\r?\nContent-Type:|$)/i);
+  let body = plain ? plain[1] : s;
+  body = body.replace(/=\r?\n/g, "").replace(/=([0-9A-F]{2})/gi, (_, h) => String.fromCharCode(parseInt(h, 16)));
+  return body.slice(0, 20000);
+}
+
+const user = requireEnv("BUYOUT_SMTP_USER");
+const pass = requireEnv("BUYOUT_SMTP_PASS");
+const smtpHost = process.env.BUYOUT_SMTP_HOST || "mail1004.conoha.ne.jp";
+const imapHost = process.env.BUYOUT_IMAP_HOST || smtpHost;
+const imapPort = Number(process.env.BUYOUT_IMAP_PORT || "993");
+const smtpPort = Number(process.env.BUYOUT_SMTP_PORT || "465");
+
+let { headers, rows } = parseCsv(fs.readFileSync(leadsPath, "utf8"));
+const byEmail = new Map();
+for (const row of rows) {
+  const em = String(row.email || "")
+    .trim()
+    .toLowerCase();
+  if (em) byEmail.set(em, row);
+}
+
+const state = loadState();
+const since = new Date(Date.now() - sinceDays * 864e5);
+let touched = false;
+const actions = [];
+
+const client = new ImapFlow({
+  host: imapHost,
+  port: imapPort,
+  secure: true,
+  auth: { user, pass },
+  logger: false,
+});
+
+await client.connect();
+const lock = await client.getMailboxLock("INBOX");
+try {
+  const uids = await client.search({ since }, { uid: true });
+  for (const uid of uids) {
+    const key = `uid:${uid}`;
+    if (state.ids[key]) continue;
+
+    const msg = await client.fetchOne(
+      uid,
+      { source: true, envelope: true, uid: true },
+      { uid: true }
+    );
+    if (!msg) continue;
+
+    const fromAddr = (msg.envelope?.from?.[0]?.address || "").toLowerCase();
+    const subject = msg.envelope?.subject || "";
+    const messageId = msg.envelope?.messageId || key;
+    const bodyText = extractText(msg.source?.toString("utf8") || "");
+
+    // Bounce / DSN
+    if (/mailer-daemon|postmaster|mail delivery|undelivered/i.test(fromAddr + subject)) {
+      const m = bodyText.match(/[\w.+-]+@[\w.-]+\.\w+/g) || [];
+      const hit = m.map((x) => x.toLowerCase()).find((e) => byEmail.has(e));
+      if (hit) {
+        const row = byEmail.get(hit);
+        headers = ensureMetrics(headers, row);
+        row.bounce_at = row.bounce_at || jstDateString();
+        row.bounce_type =
+          row.bounce_type ||
+          (/quota|mailbox full|5\.2\.2/i.test(bodyText) ? "mailbox_full" : "soft");
+        row.status = "paused";
+        row.notes = `${row.notes || ""} / IMAP bounce ${jstDateString()}`.trim();
+        actions.push({ type: "bounce", company: row.company, email: hit });
+        touched = true;
+      }
+      state.ids[key] = { at: jstDateString(), kind: "bounce_scan", messageId };
+      if (!dryRun) {
+        await client.messageFlagsAdd(uid, ["\\Seen"], { uid: true });
+      }
+      continue;
+    }
+
+    if (!byEmail.has(fromAddr)) {
+      state.ids[key] = { at: jstDateString(), kind: "ignored_unknown", from: fromAddr };
+      continue;
+    }
+
+    const row = byEmail.get(fromAddr);
+    if (row.status !== "sent" && row.status !== "paused") {
+      // only process outreach we marked sent (or paused after bounce attempt)
+      if (!row.sent_at && row.status !== "sent") {
+        state.ids[key] = { at: jstDateString(), kind: "ignored_not_sent" };
+        continue;
+      }
+    }
+
+    const replyType = classifyReplyBody(bodyText);
+    headers = ensureMetrics(headers, row);
+    actions.push({
+      type: "reply",
+      company: row.company,
+      email: fromAddr,
+      replyType,
+      subject,
+    });
+
+    row.reply_type = replyType;
+    row.reply_at = row.reply_at || jstDateString();
+    row.reply_class = replyType;
+    row.notes = `${row.notes || ""} / IMAP reply=${replyType} ${jstDateString()}`.trim();
+    touched = true;
+
+    if (replyType === "opt_out") {
+      row.do_not_contact = "true";
+      row.status = "paused";
+    } else if (isPurchaseIntent(replyType)) {
+      const demo = selectedDemoLabel(replyType);
+      if (demo) row.notes = `${row.notes} / selected_demo=${demo}`;
+
+      if (String(row.quoted_price) === "55000") {
+        appendEscalate(
+          [
+            `## ${jstDateString()} LEGACY 55k purchase — ${row.company}`,
+            `- email: ${fromAddr}`,
+            `- reply_type: ${replyType}`,
+            `- subject: ${subject}`,
+            `- action: owner must handle 55k checkout (do NOT send 66k)`,
+            "",
+          ].join("\n")
+        );
+        actions.push({ type: "escalate_legacy", company: row.company });
+      } else if (row.checkout_status === "checkout_sent") {
+        actions.push({ type: "skip_checkout_already_sent", company: row.company });
+      } else {
+        const mail = renderCheckout(subject);
+        if (/google\.com\/url/i.test(mail.body)) {
+          console.error("FAIL checkout body wrapped");
+          process.exit(1);
+        }
+        if (dryRun) {
+          actions.push({ type: "dry_checkout", company: row.company, to: fromAddr });
+        } else {
+          const transporter = nodemailer.createTransport({
+            host: smtpHost,
+            port: smtpPort,
+            secure: smtpPort === 465,
+            auth: { user, pass },
+          });
+          await transporter.sendMail({
+            from: `"カルサイト 日野 研太" <${user}>`,
+            to: fromAddr,
+            subject: mail.subject,
+            text: mail.body,
+            inReplyTo: messageId,
+            references: messageId,
+          });
+          row.checkout_status = "checkout_sent";
+          row.notes = `${row.notes} / checkout_sent ${jstDateString()}`;
+          actions.push({ type: "checkout_sent", company: row.company, to: fromAddr });
+        }
+      }
+    } else {
+      appendEscalate(
+        [
+          `## ${jstDateString()} needs human — ${row.company}`,
+          `- email: ${fromAddr}`,
+          `- reply_type: ${replyType}`,
+          `- subject: ${subject}`,
+          `- snippet: ${bodyText.replace(/\s+/g, " ").slice(0, 240)}`,
+          "",
+        ].join("\n")
+      );
+      actions.push({ type: "escalate", company: row.company, replyType });
+    }
+
+    state.ids[key] = {
+      at: jstDateString(),
+      kind: replyType,
+      company: row.company,
+      messageId,
+    };
+    if (!dryRun) {
+      await client.messageFlagsAdd(uid, ["\\Seen"], { uid: true });
+    }
+  }
+} finally {
+  lock.release();
+  await client.logout();
+}
+
+if (touched && !dryRun) {
+  fs.writeFileSync(leadsPath, serializeCsv(headers, rows) + "\n");
+}
+if (!dryRun) saveState(state);
+
+console.log(JSON.stringify({ dryRun, actions, count: actions.length }, null, 2));
+console.log(`RESULT ok — processed actions=${actions.length}`);

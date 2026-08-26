@@ -61,6 +61,25 @@
 | H 怒り・法務 | **オーナー** | |
 | **旧価格コホート（55,000円）の A/B/決済** | **オーナーのみ** | 66,000円決済メール禁止 |
 
+### 自動処理（2026-08-26〜）
+
+GitHub Actions [`buyout-inbox.yml`](../.github/workflows/buyout-inbox.yml) が **約2時間ごと**に ConoHa IMAP を確認する。
+
+| 分類 | 自動 | 備考 |
+|---|---|---|
+| A希望 / B希望 / 購入希望 | **Checkout（66k）を SMTP text/plain で返信** | `quoted_price=55000` は送らず `metrics/inbox-escalate.md` へ |
+| 配信停止 | CSV `opt_out` + paused | |
+| バウンス | CSV bounce + paused | |
+| 質問・カスタム・その他 | **送らず** escalate ファイルへ | 人が／エージェントが対応 |
+
+```bash
+node buyout-ops/inbox-process.mjs --dry-run
+node buyout-ops/inbox-process.mjs
+```
+
+IMAP は SMTP と同じ `BUYOUT_SMTP_USER` / `PASS`。ホスト違いなら Secret `BUYOUT_IMAP_HOST` を追加。
+
+
 ---
 
 ## 旧価格コホート（2026-08-22 オーナー指示）

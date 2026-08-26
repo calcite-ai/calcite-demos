@@ -3,6 +3,7 @@
   "private": true,
   "type": "module",
   "dependencies": {
+    "imapflow": "^1.7.6",
     "nodemailer": "^9.0.5"
   }
 }

@@ -34,7 +34,12 @@ function isBounce(r) {
   return Boolean(r.bounce_at) || /bounce|mailbox full|Quota exceeded/i.test(r.notes || "");
 }
 function isReply(r) {
-  return Boolean(r.reply_at || r.reply_type) || ["a_hope", "b_hope", "question", "custom", "decline", "opt_out", "other"].includes(r.reply_class);
+  return (
+    Boolean(r.reply_at || r.reply_type) ||
+    ["a_hope", "b_hope", "buy", "question", "custom", "decline", "opt_out", "other"].includes(
+      r.reply_class
+    )
+  );
 }
 function isOrder(r) {
   return Boolean(r.order_at) || (Number(r.order_amount_yen) > 0);

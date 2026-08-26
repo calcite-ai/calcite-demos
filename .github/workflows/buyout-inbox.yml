@@ -1,0 +1,66 @@
+# Poll ConoHa IMAP for buyout replies; auto-send 66k checkout when safe.
+name: Buyout inbox process
+
+on:
+  schedule:
+    # every 2 hours
+    - cron: "20 */2 * * *"
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Dry run (no SMTP send / no CSV write)"
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: buyout-inbox
+  cancel-in-progress: false
+
+jobs:
+  inbox:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install deps
+        working-directory: buyout-ops
+        run: npm install --omit=dev
+
+      - name: Process inbox
+        env:
+          BUYOUT_SMTP_USER: ${{ secrets.BUYOUT_SMTP_USER }}
+          BUYOUT_SMTP_PASS: ${{ secrets.BUYOUT_SMTP_PASS }}
+          BUYOUT_SMTP_HOST: ${{ secrets.BUYOUT_SMTP_HOST }}
+          BUYOUT_SMTP_PORT: ${{ secrets.BUYOUT_SMTP_PORT }}
+          BUYOUT_IMAP_HOST: ${{ secrets.BUYOUT_IMAP_HOST }}
+          BUYOUT_IMAP_PORT: ${{ secrets.BUYOUT_IMAP_PORT }}
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ] && [ "${{ inputs.dry_run }}" = "true" ]; then
+            node buyout-ops/inbox-process.mjs --dry-run
+          else
+            node buyout-ops/inbox-process.mjs
+          fi
+
+      - name: Commit CSV / escalate / state if changed
+        run: |
+          if git diff --quiet -- \
+            buyout-ops/demo_buyout_leads.csv \
+            buyout-ops/metrics/inbox-processed.json \
+            buyout-ops/metrics/inbox-escalate.md; then
+            echo "No changes"
+            exit 0
+          fi
+          git config user.name "buyout-inbox"
+          git config user.email "hello@calcite-ai.jp"
+          git add buyout-ops/demo_buyout_leads.csv \
+            buyout-ops/metrics/inbox-processed.json \
+            buyout-ops/metrics/inbox-escalate.md || true
+          git commit -m "Process buyout inbox replies (IMAP)."
+          git push origin HEAD:main
