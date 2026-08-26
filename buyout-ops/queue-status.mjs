@@ -50,12 +50,16 @@ const approvedWaiting = sortByApprovalSeq(
 );
 
 const quota = loadSendQuota();
-const nextSends = sendableRows.slice(0, quota.remaining).map((r) => ({
+const mapSend = (r) => ({
   company: r.company,
   email: r.email,
   status: r.status,
   approval_seq: r.approval_seq || "",
-}));
+});
+const nextSends = sendableRows.slice(0, quota.remaining).map(mapSend);
+// Extra candidates for same-day failover (recipient reject / verify skip)
+const failoverCap = Math.min(5, Math.max(1, quota.remaining) + 2);
+const failoverCandidates = sendableRows.slice(0, failoverCap).map(mapSend);
 
 const result = {
   queued: rows.filter((r) => r.status === "queued").length,
@@ -68,6 +72,7 @@ const result = {
   quota_from: quota.effective_from,
   next: nextSends[0] || null,
   next_sends: nextSends,
+  failover_candidates: failoverCandidates,
   next_approved_build: approvedWaiting[0]
     ? {
         company: approvedWaiting[0].company,

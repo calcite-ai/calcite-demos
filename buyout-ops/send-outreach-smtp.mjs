@@ -105,13 +105,22 @@ const transporter = nodemailer.createTransport({
   auth: { user: fromUser, pass },
 });
 
-const info = await transporter.sendMail({
-  from: `"カルサイト 日野 研太" <${fromUser}>`,
-  to: row.email,
-  subject,
-  text: body,
-});
+import { classifySmtpError, exitCodeForKind } from "./smtp-error-kind.mjs";
 
-const id = info.messageId || info.response || "";
-console.log(`RESULT sent messageId=${id}`);
-console.log(`SMTP_MESSAGE_ID=${id}`);
+try {
+  const info = await transporter.sendMail({
+    from: `"カルサイト 日野 研太" <${fromUser}>`,
+    to: row.email,
+    subject,
+    text: body,
+  });
+
+  const id = info.messageId || info.response || "";
+  console.log(`RESULT sent messageId=${id}`);
+  console.log(`SMTP_MESSAGE_ID=${id}`);
+} catch (err) {
+  const kind = classifySmtpError(err);
+  console.error(`FAIL_KIND=${kind}`);
+  console.error(err?.response || err?.message || err);
+  process.exit(exitCodeForKind(kind));
+}

@@ -52,14 +52,17 @@ jobs:
             node buyout-ops/daily-send-one.mjs
           fi
 
-      - name: Commit sent CSV if changed
+      - name: Commit sent CSV / escalate if changed
         run: |
-          if git diff --quiet -- buyout-ops/demo_buyout_leads.csv; then
+          if git diff --quiet -- \
+            buyout-ops/demo_buyout_leads.csv \
+            buyout-ops/metrics/inbox-escalate.md; then
             echo "No CSV changes"
             exit 0
           fi
           git config user.name "buyout-daily-send"
           git config user.email "hello@calcite-ai.jp"
-          git add buyout-ops/demo_buyout_leads.csv
+          git add buyout-ops/demo_buyout_leads.csv \
+            buyout-ops/metrics/inbox-escalate.md || true
           git commit -m "Mark buyout lead sent (GitHub Actions 10:00)."
           git push origin HEAD:main

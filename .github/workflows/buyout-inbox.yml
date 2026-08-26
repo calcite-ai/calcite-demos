@@ -34,6 +34,7 @@ jobs:
         run: npm install --omit=dev
 
       - name: Process inbox
+        id: inbox
         env:
           BUYOUT_SMTP_USER: ${{ secrets.BUYOUT_SMTP_USER }}
           BUYOUT_SMTP_PASS: ${{ secrets.BUYOUT_SMTP_PASS }}
@@ -44,9 +45,22 @@ jobs:
         run: |
           if [ "${{ github.event_name }}" = "workflow_dispatch" ] && [ "${{ inputs.dry_run }}" = "true" ]; then
             node buyout-ops/inbox-process.mjs --dry-run
+            echo "dry=1" >> "$GITHUB_OUTPUT"
           else
             node buyout-ops/inbox-process.mjs
+            echo "dry=0" >> "$GITHUB_OUTPUT"
           fi
+
+      # Only when this run recorded a recipient bounce (mailbox full / hard / soft).
+      # Spam-like bounce → escalate only (bounce_failover=0). Never pre-10:00 blast.
+      - name: Same-day failover send if bounce freed quota
+        if: steps.inbox.outputs.dry != '1' && steps.inbox.outputs.bounce_failover == '1'
+        env:
+          BUYOUT_SMTP_USER: ${{ secrets.BUYOUT_SMTP_USER }}
+          BUYOUT_SMTP_PASS: ${{ secrets.BUYOUT_SMTP_PASS }}
+          BUYOUT_SMTP_HOST: ${{ secrets.BUYOUT_SMTP_HOST }}
+          BUYOUT_SMTP_PORT: ${{ secrets.BUYOUT_SMTP_PORT }}
+        run: node buyout-ops/daily-send-one.mjs
 
       - name: Commit CSV / escalate / state if changed
         run: |

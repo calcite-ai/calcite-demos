@@ -41,6 +41,18 @@
 11. CSV を `sent` に更新、notes に日付と message id。変更は commit & push
 12. 1社送ったら CSV を push し、`node buyout-ops/send-quota.mjs` で **remaining=0 になるまで** 3〜11を繰り返す。残枠0で止まる
 
+### 送れなかったときの差し替え（failover）
+
+| 失敗種別 | 動き |
+|---|---|
+| 受信者エラー（mailbox full / user unknown 等） | その社を `paused` → **同日に次の sendable へ**（枠は成功通数のみ消費） |
+| 遅延バウンス（IMAP） | 同上。inbox が `paused` にしたあと残枠があれば同ジョブで再送 |
+| **スパム / 認証 / 不明** | **即停止**。次社へは送らない（リストを食い潰さない） |
+| verify 失敗・一時エラー | その社はキューに残し、次社を試す |
+
+上限: 1回の実行で試行は **残枠+2（最大5）**。当日枠（`send-quota.csv`）を超えて成功送信しない。  
+→ スパム扱いで拒否されても **永遠には送らない**。
+
 ## 返信処理（Inbox）
 
 - 返信分類・テンプレ対応: [`demo_buyout_inbox.md`](./demo_buyout_inbox.md)

@@ -69,7 +69,8 @@ GitHub Actions [`buyout-inbox.yml`](../.github/workflows/buyout-inbox.yml) が *
 |---|---|---|
 | A希望 / B希望 / 購入希望 | **Checkout（66k）を SMTP text/plain で返信** | `quoted_price=55000` は送らず `metrics/inbox-escalate.md` へ |
 | 配信停止 | CSV `opt_out` + paused | |
-| バウンス | CSV bounce + paused | |
+| バウンス（mailbox full / hard / soft） | CSV bounce + `paused` → **同日残枠があれば次社へ自動送信**（`daily-send-one` failover） | |
+| バウンス（spam 系 DSN） | CSV bounce + `paused` + escalate。**次社へは送らない** | |
 | 質問・カスタム・その他 | **送らず** escalate ファイルへ | 人が／エージェントが対応 |
 
 ```bash

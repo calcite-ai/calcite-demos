@@ -24,6 +24,7 @@ import nodemailer from "nodemailer";
 import { parseCsv, serializeCsv } from "./csv-util.mjs";
 import { METRICS_COLUMNS } from "./metrics-columns.mjs";
 import { jstDateString } from "./send-quota.mjs";
+import { classifyBounceText, bounceAllowsFailover } from "./smtp-error-kind.mjs";
 import {
   classifyReplyBody,
   isPurchaseIntent,
@@ -169,13 +170,29 @@ try {
       if (hit) {
         const row = byEmail.get(hit);
         headers = ensureMetrics(headers, row);
+        const bounceKind = classifyBounceText(bodyText);
         row.bounce_at = row.bounce_at || jstDateString();
-        row.bounce_type =
-          row.bounce_type ||
-          (/quota|mailbox full|5\.2\.2/i.test(bodyText) ? "mailbox_full" : "soft");
+        row.bounce_type = row.bounce_type || bounceKind;
         row.status = "paused";
-        row.notes = `${row.notes || ""} / IMAP bounce ${jstDateString()}`.trim();
-        actions.push({ type: "bounce", company: row.company, email: hit });
+        // Free today's quota: successful-send counter only counts status=sent
+        row.notes = `${row.notes || ""} / IMAP bounce ${jstDateString()} kind=${bounceKind}`.trim();
+        actions.push({
+          type: "bounce",
+          company: row.company,
+          email: hit,
+          bounce_type: bounceKind,
+          failover: bounceAllowsFailover(bounceKind),
+        });
+        if (bounceKind === "spam") {
+          appendEscalate(
+            [
+              `## ${jstDateString()} bounce spam-like — ${row.company}`,
+              `- email: ${hit}`,
+              `- action: paused; do NOT auto-failover blast`,
+              "",
+            ].join("\n")
+          );
+        }
         touched = true;
       }
       state.ids[key] = { at: jstDateString(), kind: "bounce_scan", messageId };
@@ -298,5 +315,13 @@ if (touched && !dryRun) {
 }
 if (!dryRun) saveState(state);
 
-console.log(JSON.stringify({ dryRun, actions, count: actions.length }, null, 2));
-console.log(`RESULT ok — processed actions=${actions.length}`);
+const bounceFailover = actions.some((a) => a.type === "bounce" && a.failover);
+console.log(JSON.stringify({ dryRun, actions, count: actions.length, bounceFailover }, null, 2));
+console.log(`RESULT ok — processed actions=${actions.length} bounceFailover=${bounceFailover ? 1 : 0}`);
+console.log(`BOUNCE_FAILOVER=${bounceFailover ? 1 : 0}`);
+if (process.env.GITHUB_OUTPUT) {
+  fs.appendFileSync(
+    process.env.GITHUB_OUTPUT,
+    `bounce_failover=${bounceFailover ? 1 : 0}\n`
+  );
+}
