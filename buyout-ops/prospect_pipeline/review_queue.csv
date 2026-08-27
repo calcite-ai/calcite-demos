@@ -44,3 +44,6 @@ approval_seq,company,url,email,defects,audit_draft,final_url,owner_ok,owner_note
 43,株式会共豊エポック,"http://www.kyoho-epoch.co.jp/","info@kyoho-epoch.co.jp",SSL未整備; 更新停止感(HTML内2017止),粗:(1)SSL未整備;(2)更新停止感(HTML内2017止),"http://www.kyoho-epoch.co.jp/company/",,
 44,中田ホームズ有限会社,"http://www.nakata-homes.com/","info@nakata-homes.com",SSL未整備; viewportなし; tel:なし,粗:(1)SSL未整備;(2)viewportなし;(3)tel:なし,"http://www.nakata-homes.com/company.html",,
 45,株式会社にしかわ,"http://nishikawa-inc.com/","nishikawa@abcd.com",tel:なし; 更新停止感(HTML内2000止),粗:(1)tel:なし;(2)更新停止感(HTML内2000止),"https://nishikawa-inc.com/contact",,
+46,星和住研(株),"http://www.e-seiwa.net/","yourmail@sample.co.jp",tel:なし; 更新停止感(HTML内2019止),粗:(1)tel:なし;(2)更新停止感(HTML内2019止),"https://www.e-seiwa.net/form",,
+47,(有)内山工務店,"https://www.v-hf.com/k/uchiyama389/","miyazaki@uchiyama-k.co.jp",viewportなし; tel:なし,粗:(1)viewportなし;(2)tel:なし,"https://www.v-hf.com/k/uchiyama389/",,
+48,(株)山﨑建設,"http://yamasaki-1972.co.jp/profile/","yamasaki03ys@wind.ocn.ne.jp",SSL未整備; viewportなし; tel:なし; 更新停止感(HTML内2011止),粗:(1)SSL未整備;(2)viewportなし;(3)tel:なし,"http://yamasaki-1972.co.jp/profile/",,
