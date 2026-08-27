@@ -313,6 +313,7 @@ try {
           await transporter.sendMail({
             from: `"カルサイト 日野 研太" <${user}>`,
             to: fromAddr,
+            bcc: process.env.BUYOUT_BCC || "kenta.hino1106@gmail.com",
             subject: mail.subject,
             text: mail.body,
             inReplyTo: messageId,

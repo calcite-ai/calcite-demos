@@ -8,6 +8,7 @@
  *   BUYOUT_SMTP_PASS  ConoHa mailbox password
  *   BUYOUT_SMTP_HOST  mail1004.conoha.ne.jp
  *   BUYOUT_SMTP_PORT  465
+ *   BUYOUT_BCC        optional (default kenta.hino1106@gmail.com) — Gmail archive copy
  *
  * Usage:
  *   node buyout-ops/send-outreach-smtp.mjs --company "村上工務店"
@@ -19,9 +20,11 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import nodemailer from "nodemailer";
 import { parseCsv } from "./csv-util.mjs";
+import { classifySmtpError, exitCodeForKind } from "./smtp-error-kind.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.join(__dirname, "..");
+const DEFAULT_BCC = "kenta.hino1106@gmail.com";
 
 function arg(name, fallback = "") {
   const i = process.argv.indexOf(`--${name}`);
@@ -86,8 +89,10 @@ const fromUser = requireEnv("BUYOUT_SMTP_USER");
 const pass = requireEnv("BUYOUT_SMTP_PASS");
 const host = process.env.BUYOUT_SMTP_HOST || "mail1004.conoha.ne.jp";
 const port = Number(process.env.BUYOUT_SMTP_PORT || "465");
+const bcc = String(process.env.BUYOUT_BCC || DEFAULT_BCC).trim();
 
 console.log(`to=${row.email}`);
+console.log(`bcc=${bcc || "(none)"}`);
 console.log(`from=${fromUser}`);
 console.log(`subject=${subject}`);
 console.log(`host=${host} port=${port}`);
@@ -105,15 +110,16 @@ const transporter = nodemailer.createTransport({
   auth: { user: fromUser, pass },
 });
 
-import { classifySmtpError, exitCodeForKind } from "./smtp-error-kind.mjs";
-
 try {
-  const info = await transporter.sendMail({
+  const mail = {
     from: `"カルサイト 日野 研太" <${fromUser}>`,
     to: row.email,
     subject,
     text: body,
-  });
+  };
+  if (bcc) mail.bcc = bcc;
+
+  const info = await transporter.sendMail(mail);
 
   const id = info.messageId || info.response || "";
   console.log(`RESULT sent messageId=${id}`);

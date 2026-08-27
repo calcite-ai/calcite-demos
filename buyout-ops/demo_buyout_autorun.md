@@ -7,6 +7,7 @@
 > 稼働:  
 > - **9:00 JST** Cursor Automation デモ制作 → [`demo_buyout_daily_schedule.md`](./demo_buyout_daily_schedule.md)（**main 直 push**）  
 > - **10:00 JST** **GitHub Actions** [`buyout-daily-send.yml`](../.github/workflows/buyout-daily-send.yml) が残枠ぶん SMTP text/plain 送信  
+> - 送信は **BCC `kenta.hino1106@gmail.com`**（Gmail受信箱で履歴確認。URLは text/plain のまま）  
 > このフォルダ（`buyout-ops/`）が正本。
 
 ## PCスリープについて
