@@ -19,21 +19,34 @@ export function originFromUrl(url) {
 }
 
 export async function fetchSiteSignals(url) {
-  const res = await fetch(url, { headers: UA, redirect: "follow" });
-  const html = await res.text();
-  const finalUrl = res.url;
-  const years = [...html.matchAll(/20[0-9]{2}/g)]
-    .map((m) => +m[0])
-    .filter((y) => y >= 2000 && y <= 2030);
-  return {
-    status: res.status,
-    finalUrl,
-    html,
-    finalHttps: finalUrl.startsWith("https://"),
-    hasViewport: /name=["']viewport["']/i.test(html),
-    telCount: [...html.matchAll(/href=["']tel:([^"']+)["']/gi)].length,
-    maxYear: years.length ? Math.max(...years) : null,
-  };
+  let lastErr;
+  for (let i = 0; i < 3; i++) {
+    try {
+      const res = await fetch(url, {
+        headers: UA,
+        redirect: "follow",
+        signal: AbortSignal.timeout(20000),
+      });
+      const html = await res.text();
+      const finalUrl = res.url;
+      const years = [...html.matchAll(/20[0-9]{2}/g)]
+        .map((m) => +m[0])
+        .filter((y) => y >= 2000 && y <= 2030);
+      return {
+        status: res.status,
+        finalUrl,
+        html,
+        finalHttps: finalUrl.startsWith("https://"),
+        hasViewport: /name=["']viewport["']/i.test(html),
+        telCount: [...html.matchAll(/href=["']tel:([^"']+)["']/gi)].length,
+        maxYear: years.length ? Math.max(...years) : null,
+      };
+    } catch (e) {
+      lastErr = e;
+      await new Promise((r) => setTimeout(r, 800 * (i + 1)));
+    }
+  }
+  throw lastErr || new Error("fetch failed");
 }
 
 async function trySignals(url) {

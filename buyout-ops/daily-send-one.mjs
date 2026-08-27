@@ -213,19 +213,29 @@ while (successes < need && attempts < attemptCap) {
     continue;
   }
 
-  // spam / auth / unknown → stop (never walk the list)
+  // spam / auth / geo / unknown → stop (never walk the list)
   const kind =
     code === SMTP_EXIT.spam
       ? "spam"
       : code === SMTP_EXIT.auth
         ? "auth"
-        : "unknown";
+        : code === SMTP_EXIT.geo
+          ? "geo"
+          : "unknown";
+  const geoHint =
+    kind === "geo"
+      ? [
+          `- cause: ConoHa rejected GitHub Actions IP (US) — Incorrect country code`,
+          `- fix: ConoHa メール設定で hello@ の「国外IP制限」を OFF → workflow 再実行`,
+          `- alt: 日本IPのマシンから node buyout-ops/daily-send-one.mjs`,
+        ]
+      : [`- action: do NOT auto-failover further (${kind})`];
   appendEscalate(
     [
       `## ${jstDateString()} daily-send STOP — ${kind}`,
       `- company: ${company}`,
       `- smtp_exit: ${code}`,
-      `- action: do NOT auto-failover further (spam/auth/unknown)`,
+      ...geoHint,
       `- quota: loadSendQuota remaining was ${loadSendQuota().remaining}`,
       "",
     ].join("\n")

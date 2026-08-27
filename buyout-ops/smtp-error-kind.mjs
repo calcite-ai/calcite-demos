@@ -13,6 +13,10 @@ export function classifySmtpError(err) {
   if (/invalid login|authentication|auth failed|535|534/.test(msg) || code === 535 || code === 534) {
     return "auth";
   }
+  // ConoHa / GMO: GitHub Actions (US) blocked when 国外IP制限 is ON
+  if (/incorrect country code|country code|国外/.test(msg)) {
+    return "geo";
+  }
   if (
     /spam|junk|blacklist|blocklist|reputation|policy violation|content rejected|5\.7\.|rejected as spam/.test(
       msg
@@ -57,6 +61,7 @@ export const SMTP_EXIT = {
   transient: 13,
   spam: 10,
   auth: 11,
+  geo: 15,
   unknown: 14,
 };
 
