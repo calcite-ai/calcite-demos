@@ -5,13 +5,14 @@
  * Exit 2 = still free on/after warn date (needs Essentials upgrade).
  *
  * Env: SENDGRID_API_KEY
- * Optional: SENDGRID_UPGRADE_WARN_FROM=2026-10-15 (JST date YYYY-MM-DD)
+ * Optional: SENDGRID_UPGRADE_WARN_FROM=2026-10-08 (JST date YYYY-MM-DD)
+ *   Default warn starts ~3 weeks before trial end so vetting (24–72h) has room.
  *
  * Usage:
  *   node buyout-ops/check-sendgrid-plan.mjs
  *   node buyout-ops/check-sendgrid-plan.mjs --json
  */
-const WARN_FROM = process.env.SENDGRID_UPGRADE_WARN_FROM || "2026-10-15";
+const WARN_FROM = process.env.SENDGRID_UPGRADE_WARN_FROM || "2026-10-08";
 const DEADLINE = "2026-10-29";
 const jsonOut = process.argv.includes("--json");
 

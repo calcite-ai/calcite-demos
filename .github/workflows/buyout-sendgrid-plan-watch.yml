@@ -26,7 +26,7 @@ jobs:
         id: plan
         env:
           SENDGRID_API_KEY: ${{ secrets.SENDGRID_API_KEY }}
-          SENDGRID_UPGRADE_WARN_FROM: "2026-10-15"
+          SENDGRID_UPGRADE_WARN_FROM: "2026-10-08"
         run: |
           if [ -z "$SENDGRID_API_KEY" ]; then
             echo "SKIP no SENDGRID_API_KEY secret yet"
