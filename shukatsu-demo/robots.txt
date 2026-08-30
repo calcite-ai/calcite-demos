@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://calcite-ai.github.io/calcite-demos/shukatsu-demo/sitemap-index.xml

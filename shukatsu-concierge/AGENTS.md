@@ -1,6 +1,6 @@
-# 終活コンシェルジュ リニューアル試作
+# 終活コンシェルジュ リニューアル（本番運用）
 
-カルサイト HP制作カテゴリのクライアントデモ。上司提案用。
+カルサイト HP制作カテゴリ。本番サイト運用用。
 
 ## ルール
 
@@ -10,9 +10,10 @@
 - 代表理事の顔写真は現行サイトに無し → 提供があるまでプレースホルダ
 - 段階実行: 各 Step 完了後に確認を取ってから次へ
 - **最終チェック時はスマホ表示も必ず確認する**（幅〜390px想定。表の横スクロール強制・文字切れ・余白の偏り・タップ不能をブラウザ／スクショで見る。実機の触り心地確認はオーナー側）
-- **git push はしない**。ビルド・ローカル確認まで。`shukatsu-demo` への同期・push は、オーナーがローカル確認し上司確認の段階に入るときに指示があったときだけ行う
+- **git push はしない**（`calcite-demos` への公開は不要。本番反映は FTP。push はオーナー指示時のみ）
 
 ## 参照
 
-- 現行: https://shukatsu.or.jp/
+- 本番: https://shukatsu.or.jp/
 - プロンプト元: ~/Downloads/claude_code_prompt.md
+- コラム・解決事例の SEO/GEO 執筆: [`docs/seo-geo-writing.md`](docs/seo-geo-writing.md) / [`.cursor/rules/seo-geo-content.mdc`](.cursor/rules/seo-geo-content.mdc)
