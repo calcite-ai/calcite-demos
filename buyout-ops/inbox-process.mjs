@@ -7,8 +7,9 @@
  * - opt_out / bounce → update CSV
  * - question/custom/other → escalate for human/agent
  *
- * Env: BUYOUT_SMTP_USER / BUYOUT_SMTP_PASS / BUYOUT_SMTP_HOST
- *      BUYOUT_IMAP_HOST (optional, default = SMTP host)
+ * Env: BUYOUT_SMTP_USER / BUYOUT_SMTP_PASS — ConoHa mailbox (IMAP always)
+ *      BUYOUT_MAIL_PROVIDER / SENDGRID_API_KEY — outbound (see mail-transport.mjs)
+ *      BUYOUT_IMAP_HOST (optional, default ConoHa mail host)
  *      BUYOUT_IMAP_PORT (optional, default 993)
  *
  * Usage:
@@ -22,6 +23,7 @@ import { fileURLToPath } from "node:url";
 import { ImapFlow } from "imapflow";
 import nodemailer from "nodemailer";
 import { parseCsv, serializeCsv } from "./csv-util.mjs";
+import { resolveTransport } from "./mail-transport.mjs";
 import { METRICS_COLUMNS } from "./metrics-columns.mjs";
 import { jstDateString } from "./send-quota.mjs";
 import { classifyBounceText, bounceAllowsFailover } from "./smtp-error-kind.mjs";
@@ -146,10 +148,9 @@ function bounceRecipientHits(bodyText, emailSet) {
 
 const user = requireEnv("BUYOUT_SMTP_USER");
 const pass = requireEnv("BUYOUT_SMTP_PASS");
-const smtpHost = process.env.BUYOUT_SMTP_HOST || "mail1004.conoha.ne.jp";
-const imapHost = process.env.BUYOUT_IMAP_HOST || smtpHost;
+const imapHost = process.env.BUYOUT_IMAP_HOST || "mail1004.conoha.ne.jp";
 const imapPort = Number(process.env.BUYOUT_IMAP_PORT || "993");
-const smtpPort = Number(process.env.BUYOUT_SMTP_PORT || "465");
+const outbound = resolveTransport();
 
 let { headers, rows } = parseCsv(fs.readFileSync(leadsPath, "utf8"));
 const byEmail = new Map();
@@ -305,13 +306,13 @@ try {
           actions.push({ type: "dry_checkout", company: row.company, to: fromAddr });
         } else {
           const transporter = nodemailer.createTransport({
-            host: smtpHost,
-            port: smtpPort,
-            secure: smtpPort === 465,
-            auth: { user, pass },
+            host: outbound.host,
+            port: outbound.port,
+            secure: outbound.port === 465,
+            auth: { user: outbound.user, pass: outbound.pass },
           });
           await transporter.sendMail({
-            from: `"カルサイト 日野 研太" <${user}>`,
+            from: `"カルサイト 日野 研太" <${outbound.fromUser}>`,
             to: fromAddr,
             bcc: process.env.BUYOUT_BCC || "kenta.hino1106@gmail.com",
             subject: mail.subject,

@@ -36,6 +36,8 @@ jobs:
       - name: Process inbox
         id: inbox
         env:
+          BUYOUT_MAIL_PROVIDER: ${{ secrets.BUYOUT_MAIL_PROVIDER }}
+          SENDGRID_API_KEY: ${{ secrets.SENDGRID_API_KEY }}
           BUYOUT_SMTP_USER: ${{ secrets.BUYOUT_SMTP_USER }}
           BUYOUT_SMTP_PASS: ${{ secrets.BUYOUT_SMTP_PASS }}
           BUYOUT_SMTP_HOST: ${{ secrets.BUYOUT_SMTP_HOST }}

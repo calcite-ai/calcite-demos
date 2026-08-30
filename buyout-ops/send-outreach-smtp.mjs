@@ -1,14 +1,20 @@
 #!/usr/bin/env node
 /**
- * Send buyout initial outreach as text/plain via ConoHa SMTP.
+ * Send buyout initial outreach as text/plain.
  * Never use htmlBody — avoids google.com/url wrapping.
  *
- * Env (GitHub Actions secrets):
- *   BUYOUT_SMTP_USER  hello@calcite-ai.jp
- *   BUYOUT_SMTP_PASS  ConoHa mailbox password
- *   BUYOUT_SMTP_HOST  mail1004.conoha.ne.jp
- *   BUYOUT_SMTP_PORT  465
- *   BUYOUT_BCC        optional (default kenta.hino1106@gmail.com) — Gmail archive copy
+ * Providers (BUYOUT_MAIL_PROVIDER):
+ *   conoha   (default) — ConoHa SMTP
+ *   sendgrid — smtp.sendgrid.net (user=apikey, pass=SENDGRID_API_KEY)
+ *   ※ SENDGRID_API_KEY があっても provider 未指定なら conoha のまま（誤切替防止）
+ *
+ * Env:
+ *   BUYOUT_SMTP_USER   From address (and ConoHa mailbox user)
+ *   BUYOUT_SMTP_PASS   ConoHa pass (IMAP / conoha SMTP). Keep even on SendGrid.
+ *   BUYOUT_SMTP_HOST   mail1004… (conoha) / smtp.sendgrid.net (optional override)
+ *   BUYOUT_SMTP_PORT   465
+ *   SENDGRID_API_KEY   required when provider=sendgrid
+ *   BUYOUT_BCC         optional (default kenta.hino1106@gmail.com)
  *
  * Usage:
  *   node buyout-ops/send-outreach-smtp.mjs --company "村上工務店"
@@ -20,6 +26,7 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import nodemailer from "nodemailer";
 import { parseCsv } from "./csv-util.mjs";
+import { resolveTransport } from "./mail-transport.mjs";
 import { classifySmtpError, exitCodeForKind } from "./smtp-error-kind.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -29,15 +36,6 @@ const DEFAULT_BCC = "kenta.hino1106@gmail.com";
 function arg(name, fallback = "") {
   const i = process.argv.indexOf(`--${name}`);
   return i >= 0 ? process.argv[i + 1] : fallback;
-}
-
-function requireEnv(name) {
-  const v = process.env[name];
-  if (!v) {
-    console.error(`FAIL missing env ${name}`);
-    process.exit(1);
-  }
-  return v;
 }
 
 function renderEmail(company) {
@@ -85,17 +83,15 @@ if (!row?.email) {
   process.exit(1);
 }
 
-const fromUser = requireEnv("BUYOUT_SMTP_USER");
-const pass = requireEnv("BUYOUT_SMTP_PASS");
-const host = process.env.BUYOUT_SMTP_HOST || "mail1004.conoha.ne.jp";
-const port = Number(process.env.BUYOUT_SMTP_PORT || "465");
+const transport = resolveTransport();
 const bcc = String(process.env.BUYOUT_BCC || DEFAULT_BCC).trim();
 
+console.log(`provider=${transport.provider}`);
 console.log(`to=${row.email}`);
 console.log(`bcc=${bcc || "(none)"}`);
-console.log(`from=${fromUser}`);
+console.log(`from=${transport.fromUser}`);
 console.log(`subject=${subject}`);
-console.log(`host=${host} port=${port}`);
+console.log(`host=${transport.host} port=${transport.port}`);
 console.log(`mime=text/plain htmlBody=none`);
 
 if (dryRun) {
@@ -104,15 +100,15 @@ if (dryRun) {
 }
 
 const transporter = nodemailer.createTransport({
-  host,
-  port,
-  secure: port === 465,
-  auth: { user: fromUser, pass },
+  host: transport.host,
+  port: transport.port,
+  secure: transport.port === 465,
+  auth: { user: transport.user, pass: transport.pass },
 });
 
 try {
   const mail = {
-    from: `"カルサイト 日野 研太" <${fromUser}>`,
+    from: `"カルサイト 日野 研太" <${transport.fromUser}>`,
     to: row.email,
     subject,
     text: body,

@@ -2,8 +2,11 @@
 #
 # Requires repo secrets:
 #   BUYOUT_SMTP_USER / BUYOUT_SMTP_PASS / BUYOUT_SMTP_HOST / BUYOUT_SMTP_PORT
+#   (9/11〜) BUYOUT_MAIL_PROVIDER=sendgrid + SENDGRID_API_KEY
+#            BUYOUT_SMTP_USER=hello@calcite-mail.jp
+#            BUYOUT_SMTP_PASS は IMAP用にConoHaのまま残す（daily-sendでは未使用可）
 #
-# Sends text/plain only via ConoHa SMTP (no Gmail MCP / no htmlBody).
+# Sends text/plain only (no Gmail MCP / no htmlBody).
 # remaining_today=0 なら即 skip（二重送信なし）。
 
 name: Buyout daily send
@@ -44,6 +47,8 @@ jobs:
 
       - name: Daily send (remaining quota)
         env:
+          BUYOUT_MAIL_PROVIDER: ${{ secrets.BUYOUT_MAIL_PROVIDER }}
+          SENDGRID_API_KEY: ${{ secrets.SENDGRID_API_KEY }}
           BUYOUT_SMTP_USER: ${{ secrets.BUYOUT_SMTP_USER }}
           BUYOUT_SMTP_PASS: ${{ secrets.BUYOUT_SMTP_PASS }}
           BUYOUT_SMTP_HOST: ${{ secrets.BUYOUT_SMTP_HOST }}
