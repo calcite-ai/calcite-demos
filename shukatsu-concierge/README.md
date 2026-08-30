@@ -36,6 +36,7 @@ npm run generate:drafts          # コラム下書き（既定 dry-run / モッ�
 詳細:
 - 構造化データ: `docs/GEO-structured-data.md`
 - コラム半自動: [`docs/column-draft-pipeline.md`](docs/column-draft-pipeline.md)
+- ニュース月次自動公開: [`docs/monthly-news-auto.md`](docs/monthly-news-auto.md)
 - Secrets / 接続: [`docs/content-ops-secrets.md`](docs/content-ops-secrets.md)
 - キー到着前: [`docs/pre-api-key-week.md`](docs/pre-api-key-week.md)
 - Phase3 接続: [`docs/phase3-connect-checklist.md`](docs/phase3-connect-checklist.md)

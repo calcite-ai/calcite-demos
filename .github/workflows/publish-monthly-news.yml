@@ -1,0 +1,55 @@
+name: Publish monthly news column
+
+# 毎月1日 10:00 JST = 01:00 UTC。WP側でも同刻にスケジュール。
+# Secrets: SHUKATSU_NEWS_CRON_TOKEN（必須）, SHUKATSU_NEWS_CRON_URL（任意）
+
+on:
+  schedule:
+    - cron: '0 1 1 * *'
+  workflow_dispatch:
+    inputs:
+      force:
+        description: '同月でも強制再実行する'
+        required: false
+        default: 'false'
+        type: choice
+        options:
+          - 'false'
+          - 'true'
+
+permissions:
+  contents: read
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger WordPress monthly news
+        env:
+          TOKEN: ${{ secrets.SHUKATSU_NEWS_CRON_TOKEN }}
+          URL: ${{ secrets.SHUKATSU_NEWS_CRON_URL }}
+          FORCE: ${{ github.event.inputs.force || 'false' }}
+        run: |
+          set -euo pipefail
+          if [ -z "${TOKEN:-}" ]; then
+            echo "SHUKATSU_NEWS_CRON_TOKEN secret is missing" >&2
+            exit 1
+          fi
+          ENDPOINT="${URL:-https://shukatsu.or.jp/wp-json/shukatsu/v1/monthly-news/run}"
+          BODY='{}'
+          if [ "$FORCE" = "true" ]; then
+            BODY='{"force":true}'
+          fi
+          echo "POST $ENDPOINT force=$FORCE"
+          curl -sS -f -X POST \
+            -H "Content-Type: application/json" \
+            -H "X-Shukatsu-Cron-Token: ${TOKEN}" \
+            -d "$BODY" \
+            "$ENDPOINT" | tee /tmp/monthly-news-result.json
+          python3 - <<'PY'
+          import json
+          data = json.load(open("/tmp/monthly-news-result.json"))
+          print(data.get("message", data))
+          if not data.get("ok", False):
+              raise SystemExit(1)
+          PY
