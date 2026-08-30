@@ -111,7 +111,20 @@ function markSent(company, messageId) {
 
 function maxAttempts(remaining) {
   // Cap so spam/misc failures cannot walk the whole approved list in one run.
-  return Math.min(5, Math.max(1, remaining) + 2);
+  // 2通/日でも failover 余地を残す（remaining+3、最大8）
+  return Math.min(8, Math.max(1, remaining) + 3);
+}
+
+function sleepSync(ms) {
+  const sec = Math.max(1, Math.ceil(ms / 1000));
+  spawnSync("sleep", [String(sec)], { stdio: "ignore" });
+}
+
+function isTransientG1FetchFail(stdout, stderr) {
+  const blob = `${stdout || ""}\n${stderr || ""}`;
+  return /サイト取得失敗|fetch failed|AbortError|TimeoutError|ECONNRESET|ETIMEDOUT|ENOTFOUND/i.test(
+    blob
+  );
 }
 
 let status = queueStatus();
@@ -157,12 +170,23 @@ while (successes < need && attempts < attemptCap) {
   attempts += 1;
   console.log(`\n=== attempt ${attempts}/${attemptCap}: ${company} (need ${need - successes} more) ===`);
 
-  const g1 = runCapture([
-    path.join(__dirname, "verify-hunter-g1.mjs"),
-    "--from-csv",
-    "--company",
-    company,
-  ]);
+  const G1_FETCH_RETRIES = 3;
+  let g1 = null;
+  for (let g1Try = 1; g1Try <= G1_FETCH_RETRIES; g1Try++) {
+    g1 = runCapture([
+      path.join(__dirname, "verify-hunter-g1.mjs"),
+      "--from-csv",
+      "--company",
+      company,
+    ]);
+    if (g1.status === 0) break;
+    if (!isTransientG1FetchFail(g1.stdout, g1.stderr) || g1Try === G1_FETCH_RETRIES) break;
+    const waitMs = 30000 * g1Try;
+    console.log(
+      `RETRY verify-hunter-g1 fetch fail ${g1Try}/${G1_FETCH_RETRIES} — wait ${waitMs / 1000}s then same company`
+    );
+    sleepSync(waitMs);
+  }
   if (g1.status !== 0) {
     console.log(`SKIP verify-hunter-g1 FAIL — try next (${company} stays sendable)`);
     continue;

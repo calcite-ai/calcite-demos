@@ -20,12 +20,13 @@ export function originFromUrl(url) {
 
 export async function fetchSiteSignals(url) {
   let lastErr;
-  for (let i = 0; i < 3; i++) {
+  // Actions runner からの一時不通対策（マゴメ 2026-08-29 fetch failed）
+  for (let i = 0; i < 5; i++) {
     try {
       const res = await fetch(url, {
         headers: UA,
         redirect: "follow",
-        signal: AbortSignal.timeout(20000),
+        signal: AbortSignal.timeout(25000),
       });
       const html = await res.text();
       const finalUrl = res.url;
@@ -43,7 +44,7 @@ export async function fetchSiteSignals(url) {
       };
     } catch (e) {
       lastErr = e;
-      await new Promise((r) => setTimeout(r, 800 * (i + 1)));
+      await new Promise((r) => setTimeout(r, 1500 * (i + 1)));
     }
   }
   throw lastErr || new Error("fetch failed");
@@ -190,7 +191,8 @@ export function extractPublicEmails(html) {
     ...html.matchAll(/mailto:([^\s"'?>]+)/gi),
     ...html.matchAll(/[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/g),
   ].map((m) => (m[1] || m[0]).replace(/^mailto:/i, "").trim().toLowerCase());
-  const bad = /example|wixpress|sentry|wordpress\.com|aaa\.jp|your@|xxx@|email@email\.me|info@email\.jp|you@company\.com|abcde@fghijk\.com|@[^@]*\.(png|jpg|jpeg|gif|webp|svg|ico)(?:\?|$)/i;
+  const bad =
+    /example|exsample|sample@|test@|dummy@|wixpress|sentry|wordpress\.com|aaa@bbb|aaa\.jp|your@|xxx@|email@email\.me|info@email\.jp|you@company\.com|abcde@fghijk\.com|@[^@]*\.(png|jpg|jpeg|gif|webp|svg|ico)(?:\?|$)/i;
   return [...new Set(raw.filter((e) => e.includes("@") && !bad.test(e) && /^[^\s@]+@[^\s@]+\.[a-z]{2,}$/i.test(e)))];
 }
 

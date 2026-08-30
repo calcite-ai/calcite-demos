@@ -18,6 +18,7 @@
 |---|---|---|
 | **9:00** | Demo buyout queue refill | 承認キュー先頭のデモ制作 |
 | **10:00** | Demo buyout daily send | approval_seq 順に **当日残枠** 送信（`send-quota.csv`） |
+| **15:00** | 同上（catch-up） | 残枠があれば再実行。0なら即 skip |
 
 ### Automation UI 必須設定（docs だけでは足りない）
 

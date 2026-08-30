@@ -58,7 +58,7 @@ const mapSend = (r) => ({
 });
 const nextSends = sendableRows.slice(0, quota.remaining).map(mapSend);
 // Extra candidates for same-day failover (recipient reject / verify skip)
-const failoverCap = Math.min(5, Math.max(1, quota.remaining) + 2);
+const failoverCap = Math.min(8, Math.max(1, quota.remaining) + 3);
 const failoverCandidates = sendableRows.slice(0, failoverCap).map(mapSend);
 
 const result = {

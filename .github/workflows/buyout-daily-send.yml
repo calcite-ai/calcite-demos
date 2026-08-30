@@ -1,16 +1,19 @@
-# Daily buyout outreach send (10:00 JST)
+# Daily buyout outreach send (10:00 JST + afternoon catch-up)
 #
 # Requires repo secrets:
 #   BUYOUT_SMTP_USER / BUYOUT_SMTP_PASS / BUYOUT_SMTP_HOST / BUYOUT_SMTP_PORT
 #
 # Sends text/plain only via ConoHa SMTP (no Gmail MCP / no htmlBody).
+# remaining_today=0 なら即 skip（二重送信なし）。
 
 name: Buyout daily send
 
 on:
   schedule:
-    # 10:00 JST = 01:00 UTC
+    # 10:00 JST = 01:00 UTC（本命）
     - cron: "0 1 * * *"
+    # 15:00 JST = 06:00 UTC（Actions遅延・朝の一時fetch失敗の取りこぼし回収）
+    - cron: "0 6 * * *"
   workflow_dispatch:
     inputs:
       dry_run:
@@ -65,5 +68,5 @@ jobs:
             echo "No CSV changes"
             exit 0
           fi
-          git commit -m "Mark buyout lead sent (GitHub Actions 10:00)."
+          git commit -m "Mark buyout lead sent (GitHub Actions daily send)."
           git push origin HEAD:main

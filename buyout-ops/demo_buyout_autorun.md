@@ -2,7 +2,10 @@
 
 > 2026-08-23 運用: **リスト承認は人間1回**（[`demo_buyout_owner_workflow.md`](./demo_buyout_owner_workflow.md)）。承認後の **送信は自動**（文面確認なし）。  
 > 送信元: `hello@calcite-ai.jp`（ConoHa SMTP / GitHub Secrets `BUYOUT_SMTP_*`）  
-> レート: **`send-quota.csv` の当日枠**（初期は1日1通。途中から行を足して通数変更）。スパム回避優先。  
+> **2026-08-28:** 営業専用ドメインへ移行予定（`sales/knowledge/demo_buyout_outreach_domain.md`）。切替日まで現行 From のまま。
+> レート: **`send-quota.csv` の当日枠**（2026-08-31〜 **1日2通**。途中から行を足して通数変更）。スパム回避優先。  
+> 送信: GitHub Actions `buyout-daily-send`（**01:00 UTC / 06:00 UTC**＝10:00・15:00 JST 目安。残枠0なら skip）  
+> G1取得失敗時は同一社を最大3回リトライしてから次候補へ。
 > **Phase 1: 工務店（vertical=koumuten）のみ送信。** 税理士・葬儀は雛形完成まで送らない。  
 > 稼働:  
 > - **9:00 JST** Cursor Automation デモ制作 → [`demo_buyout_daily_schedule.md`](./demo_buyout_daily_schedule.md)（**main 直 push**）  
@@ -52,7 +55,9 @@
 | **国外IP制限（geo）** | **即停止**。ConoHa が Actions（米国IP）を拒否。`国外IP制限` を OFF にして再実行 |
 | verify 失敗・一時エラー | その社はキューに残し、次社を試す |
 
-上限: 1回の実行で試行は **残枠+2（最大5）**。当日枠（`send-quota.csv`）を超えて成功送信しない。  
+上限: 1回の実行で試行は **残枠+3（最大8）**。当日枠（`send-quota.csv`）を超えて成功送信しない。  
+G1のサイト取得失敗（一時不通）は **同一社を最大3回** リトライしてから次へ。  
+スケジュールは 10:00 JST 本命＋15:00 JST 取りこぼし回収（残枠があれば再実行）。
 → スパム扱いで拒否されても **永遠には送らない**。
 
 ## 返信処理（Inbox）
