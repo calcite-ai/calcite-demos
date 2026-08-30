@@ -25,6 +25,11 @@
       "hits": [
         "motokou@mtd.jp"
       ]
+    },
+    "uid:5": {
+      "at": "2026-08-30",
+      "kind": "ignored_unknown",
+      "from": "hello@calcite-mail.jp"
     }
   }
 }
