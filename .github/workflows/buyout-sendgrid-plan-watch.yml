@@ -1,0 +1,70 @@
+# Warn if SendGrid is still on free trial near / after upgrade window.
+# Does not send mail. Soft-fail (exit 2) only on/after 2026-10-15 while type=free.
+name: Buyout SendGrid plan watch
+
+on:
+  schedule:
+    # Mondays 09:00 JST = Sunday 00:00 UTC
+    - cron: "0 0 * * 1"
+  workflow_dispatch:
+
+permissions:
+  issues: write
+  contents: read
+
+jobs:
+  watch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Check SendGrid plan
+        id: plan
+        env:
+          SENDGRID_API_KEY: ${{ secrets.SENDGRID_API_KEY }}
+          SENDGRID_UPGRADE_WARN_FROM: "2026-10-15"
+        run: |
+          if [ -z "$SENDGRID_API_KEY" ]; then
+            echo "SKIP no SENDGRID_API_KEY secret yet"
+            echo "status=skip" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          set +e
+          out=$(node buyout-ops/check-sendgrid-plan.mjs --json)
+          code=$?
+          set -e
+          echo "$out"
+          echo "exit=$code" >> "$GITHUB_OUTPUT"
+          type=$(echo "$out" | node -e "let s='';process.stdin.on('data',d=>s+=d);process.stdin.on('end',()=>{const j=JSON.parse(s);console.log(j.account_type||'')})")
+          echo "account_type=$type" >> "$GITHUB_OUTPUT"
+          if [ "$code" = "2" ]; then
+            echo "status=needs_upgrade" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          if [ "$code" != "0" ]; then
+            echo "status=error" >> "$GITHUB_OUTPUT"
+            exit 1
+          fi
+          echo "status=ok" >> "$GITHUB_OUTPUT"
+
+      - name: Comment on upgrade issue if still free after warn date
+        if: steps.plan.outputs.status == 'needs_upgrade'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          body=$(cat <<EOF
+          ## SendGrid plan watch — still free
+
+          Account type is still **free** on/after 2026-10-15.
+          Trial ends **2026-10-29**. Upgrade Email API → Essentials so buyout sending does not stop.
+
+          Checklist: https://github.com/calcite-ai/calcite-demos/issues/8
+          EOF
+          )
+          gh issue comment 8 --repo "${{ github.repository }}" --body "$body"
+          # Fail the job so Actions shows red (notification), without breaking daily-send.
+          exit 1
