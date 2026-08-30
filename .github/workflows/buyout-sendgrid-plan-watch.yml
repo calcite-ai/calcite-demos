@@ -42,14 +42,9 @@ jobs:
           set -e
           echo "$out"
           echo "exit=$code" >> "$GITHUB_OUTPUT"
-          eval "$(echo "$out" | node -e "
-            let s='';process.stdin.on('data',d=>s+=d);process.stdin.on('end',()=>{
-              const j=JSON.parse(s);
-              console.log('account_type='+(j.account_type||''));
-              console.log('today_jst='+(j.today_jst||''));
-              console.log('is_free='+(j.is_free?'true':'false'));
-            });
-          ")"
+          account_type=$(echo "$out" | node -e "let s='';process.stdin.on('data',d=>s+=d);process.stdin.on('end',()=>console.log(JSON.parse(s).account_type||''))")
+          today_jst=$(echo "$out" | node -e "let s='';process.stdin.on('data',d=>s+=d);process.stdin.on('end',()=>console.log(JSON.parse(s).today_jst||''))")
+          is_free=$(echo "$out" | node -e "let s='';process.stdin.on('data',d=>s+=d);process.stdin.on('end',()=>console.log(JSON.parse(s).is_free?'true':'false'))")
           echo "account_type=$account_type" >> "$GITHUB_OUTPUT"
           echo "today_jst=$today_jst" >> "$GITHUB_OUTPUT"
           echo "is_free=$is_free" >> "$GITHUB_OUTPUT"
