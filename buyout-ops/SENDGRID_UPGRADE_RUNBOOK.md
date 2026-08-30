@@ -2,6 +2,14 @@
 
 > In-repo copy for agents on `calcite-demos`. Full notes also live under HP sales knowledge.
 
+## Decision (locked 2026-08-31)
+
+**B — execute ~2026-10-15** (per Goal text). Do not upgrade early unless the owner says otherwise.
+Paid spend still needs owner approval on the day.
+
+Agent work until then is complete: watch cron, secrets, runbook, issue #8.
+Blocked items: SendGrid dashboard login (2FA/billing) + Essentials purchase on ~10/15.
+
 ## Dates
 
 | When | What |

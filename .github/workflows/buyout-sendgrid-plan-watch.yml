@@ -1,11 +1,14 @@
 # Warn if SendGrid is still on free trial near / after upgrade window.
-# Does not send mail. Soft-fail (exit 2) only on/after 2026-10-15 while type=free.
+# Does not send mail. Soft-fail (exit 2) when still free on/after warn date.
+# Extra cron on 2026-10-15 posts an upgrade-day ping.
 name: Buyout SendGrid plan watch
 
 on:
   schedule:
     # Mondays 09:00 JST = Sunday 00:00 UTC
     - cron: "0 0 * * 1"
+    # 2026-10-15 09:00 JST = 00:00 UTC (also fires later years; gate by date in script)
+    - cron: "0 0 15 10 *"
   workflow_dispatch:
 
 permissions:
@@ -39,8 +42,21 @@ jobs:
           set -e
           echo "$out"
           echo "exit=$code" >> "$GITHUB_OUTPUT"
-          type=$(echo "$out" | node -e "let s='';process.stdin.on('data',d=>s+=d);process.stdin.on('end',()=>{const j=JSON.parse(s);console.log(j.account_type||'')})")
-          echo "account_type=$type" >> "$GITHUB_OUTPUT"
+          eval "$(echo "$out" | node -e "
+            let s='';process.stdin.on('data',d=>s+=d);process.stdin.on('end',()=>{
+              const j=JSON.parse(s);
+              console.log('account_type='+(j.account_type||''));
+              console.log('today_jst='+(j.today_jst||''));
+              console.log('is_free='+(j.is_free?'true':'false'));
+            });
+          ")"
+          echo "account_type=$account_type" >> "$GITHUB_OUTPUT"
+          echo "today_jst=$today_jst" >> "$GITHUB_OUTPUT"
+          echo "is_free=$is_free" >> "$GITHUB_OUTPUT"
+          if [ "$today_jst" = "2026-10-15" ] && [ "$is_free" = "true" ]; then
+            echo "status=upgrade_day" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
           if [ "$code" = "2" ]; then
             echo "status=needs_upgrade" >> "$GITHUB_OUTPUT"
             exit 0
@@ -51,20 +67,36 @@ jobs:
           fi
           echo "status=ok" >> "$GITHUB_OUTPUT"
 
+      - name: Upgrade-day ping (2026-10-15)
+        if: steps.plan.outputs.status == 'upgrade_day'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh issue comment 8 --repo "${{ github.repository }}" --body "$(cat <<'EOF'
+          ## 本日 2026-10-15 — SendGrid Essentials へアップグレード
+
+          方針どおり **今日** Email API → Essentials 50K（~$19.95）を実行してください。
+          トライアル終了は **2026-10-29**。未対応だと buyout 送信が止まります。
+
+          手順: `buyout-ops/SENDGRID_UPGRADE_RUNBOOK.md`
+          Dashboard: https://app.sendgrid.com/settings/account
+          EOF
+          )"
+          exit 1
+
       - name: Comment on upgrade issue if still free after warn date
         if: steps.plan.outputs.status == 'needs_upgrade'
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          body=$(cat <<EOF
+          gh issue comment 8 --repo "${{ github.repository }}" --body "$(cat <<'EOF'
           ## SendGrid plan watch — still free
 
-          Account type is still **free** on/after 2026-10-15.
-          Trial ends **2026-10-29**. Upgrade Email API → Essentials so buyout sending does not stop.
+          Account type is still **free** on/after 2026-10-08.
+          Trial ends **2026-10-29**. Upgrade Email API → Essentials (~10/15 target).
 
-          Checklist: https://github.com/calcite-ai/calcite-demos/issues/8
+          Runbook: `buyout-ops/SENDGRID_UPGRADE_RUNBOOK.md`
+          Issue: https://github.com/calcite-ai/calcite-demos/issues/8
           EOF
-          )
-          gh issue comment 8 --repo "${{ github.repository }}" --body "$body"
-          # Fail the job so Actions shows red (notification), without breaking daily-send.
+          )"
           exit 1
