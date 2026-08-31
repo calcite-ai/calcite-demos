@@ -161,13 +161,21 @@ if (fs.existsSync(csvPath)) {
 }
 
 async function checkRemoteTemplate() {
+  // Actions では checkout 済み — O1/O2 と同内容。API 403（未認証）で gates が赤くなるのを防ぐ。
+  if (process.env.GITHUB_ACTIONS === "true") {
+    return;
+  }
+
+  const headers = {
+    Accept: "application/vnd.github.raw",
+    "User-Agent": "CalciteBuyoutVerify/1.0",
+  };
+  if (process.env.GITHUB_TOKEN) {
+    headers.Authorization = `Bearer ${process.env.GITHUB_TOKEN}`;
+  }
+
   try {
-    const res = await fetch(REMOTE_TEMPLATE_URL, {
-      headers: {
-        Accept: "application/vnd.github.raw",
-        "User-Agent": "CalciteBuyoutVerify/1.0",
-      },
-    });
+    const res = await fetch(REMOTE_TEMPLATE_URL, { headers });
     if (!res.ok) {
       fails.push(`O8 GitHub上の初回テンプレ取得失敗 HTTP ${res.status}`);
       return;
