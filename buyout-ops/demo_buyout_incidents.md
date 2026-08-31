@@ -2,6 +2,32 @@
 
 > 同種ミスを二度起こさないための記録とゲート一覧。
 
+## 2026-08-31: 10:00 Actions が未実行 — 営業メール0通
+
+### 起きたこと
+
+| # | 内容 | 影響 |
+|---|---|---|
+| 1 | 8/31 10:00 JST 時点で `Buyout daily send` の schedule 実行が **0件**（GitHub API 確認） | 当日枠2通が未送信 |
+| 2 | 過去4日の schedule も **01:00 UTC（10:00 JST）で一度も成功していない**。05:57〜12:18 UTC の1回/日のみ | 実質「午後 slot のみ」依存 |
+| 3 | `origin/main` には田代・髙須が **queued + デモURLあり**（sendable=2）だったが送信 workflow が走らなかった | git 遅れではなく **未送信** |
+| 4 | 8/30 夜〜8/31 未明に `buyout-daily-send.yml` を複数回変更（2通/日・SendGrid 配線） | public repo の schedule 不安定化要因の一つ |
+
+### 根本原因
+
+- **GitHub Actions schedule の信頼性**（public repo で 01:00 UTC がスキップされがち）
+- **9:00 デモ push → 10:00 送信** の連携が schedule のみで、push トリガーがなかった
+
+### 恒久対策
+
+| 層 | 内容 |
+|---|---|
+| **workflow** | `buyout-daily-send.yml` に **push trigger**（`demo_buyout_leads.csv` / `buyout-prospects/**`）＋ 02–04 UTC バックアップ cron |
+| **冪等** | `remaining_today=0` / sendable=0 なら skip（push 連鎖でも二重送信しない） |
+| **運用** | 取りこぼし時は `workflow_dispatch` で手動実行 |
+
+---
+
 ## 2026-08-25〜26: 9:00 が Draft PR で止まり 10:00 が送れない（連続）
 
 ### 起きたこと

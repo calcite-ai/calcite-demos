@@ -133,7 +133,7 @@ if (status.remaining_today <= 0) {
   process.exit(0);
 }
 if (!status.next?.company) {
-  console.log("RESULT skip — no sendable (9:00 refill may have failed)");
+  console.log("RESULT skip — no sendable (9:00 refill may have failed; check approval_seq queue + demo URLs on main)");
   process.exit(0);
 }
 

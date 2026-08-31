@@ -6,6 +6,10 @@
 #            BUYOUT_SMTP_USER=hello@calcite-mail.jp
 #            BUYOUT_SMTP_PASS は IMAP用にConoHaのまま残す（daily-sendでは未使用可）
 #
+# Triggers:
+#   - schedule: GitHub cron is flaky on public repos (01:00 UTC often skipped). Multiple slots + 15:00 JST catch-up.
+#   - push main: fires after 9:00 demo queue push (demo_buyout_leads / buyout-prospects). Idempotent via remaining_today.
+#
 # Sends text/plain only (no Gmail MCP / no htmlBody).
 # remaining_today=0 なら即 skip（二重送信なし）。
 
@@ -13,10 +17,19 @@ name: Buyout daily send
 
 on:
   schedule:
-    # 10:00 JST = 01:00 UTC（本命）
+    # 10:00 JST = 01:00 UTC（本命 — 遅延・スキップ多い）
     - cron: "0 1 * * *"
-    # 15:00 JST = 06:00 UTC（Actions遅延・朝の一時fetch失敗の取りこぼし回収）
+    # 11:00–13:00 JST バックアップ（01:00 が飛んだ日の回収）
+    - cron: "0 2 * * *"
+    - cron: "0 3 * * *"
+    - cron: "0 4 * * *"
+    # 15:00 JST = 06:00 UTC（午後 catch-up）
     - cron: "0 6 * * *"
+  push:
+    branches: [main]
+    paths:
+      - "buyout-ops/demo_buyout_leads.csv"
+      - "buyout-prospects/**"
   workflow_dispatch:
     inputs:
       dry_run:
