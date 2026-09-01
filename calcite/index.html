@@ -145,6 +145,7 @@ nav a:hover::after{width:100%;}
 .stagger.in > *:nth-child(2){transition-delay:.14s}
 .stagger.in > *:nth-child(3){transition-delay:.22s}
 .stagger.in > *:nth-child(4){transition-delay:.30s}
+.stagger.in > *:nth-child(5){transition-delay:.38s}
 .line-mask{overflow:hidden;display:block;}
 .line-mask .inner{display:block;transform:translateY(108%);transition:transform .85s var(--ease);}
 .line-mask.in .inner{transform:translateY(0);}
@@ -271,6 +272,10 @@ footer{background:#050505;color:rgba(245,242,236,.5);padding:64px 40px 28px;}
 .foot-nav{display:flex;gap:28px;flex-wrap:wrap;}
 .foot-nav a{color:rgba(245,242,236,.45);text-decoration:none;font-size:.8rem;transition:color .3s;}
 .foot-nav a:hover{color:var(--warn);}
+.foot-info{width:100%;margin-top:8px;}
+.foot-info p{font-size:.75rem;color:rgba(245,242,236,.4);line-height:1.9;}
+.foot-info a{color:rgba(245,242,236,.5);text-decoration:none;transition:color .3s;}
+.foot-info a:hover{color:var(--warn);}
 .foot-bottom{max-width:1200px;margin:44px auto 0;padding-top:20px;border-top:1px solid rgba(245,242,236,.06);
   font-size:.7rem;color:rgba(245,242,236,.3);display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;}
 
@@ -560,8 +565,8 @@ footer{background:#050505;color:rgba(245,242,236,.5);padding:64px 40px 28px;}
           <div class="svc-no">01</div>
           <h3>Web制作・リニューアル</h3>
           <span class="en">WEB CREATION</span>
-          <p>御社の魅力を引き出す、スマホ完全対応の本格的なホームページを制作します。新規制作からリニューアル、公開後の保守運用まで一貫対応。</p>
-          <ul><li>企業サイト新規制作</li><li>既存サイトのリニューアル</li><li>スマートフォン対応</li><li>公開後の保守・更新代行</li></ul>
+          <p>御社の魅力を引き出す、スマホ完全対応の本格的なホームページを制作します。完成イメージを先にお見せするプランから、新規制作・リニューアル、公開後の保守運用まで一貫対応。採用ページや会社概要など、必要な部分だけ整えるご相談も承ります。</p>
+          <ul><li>企業サイト新規制作</li><li>既存サイトのリニューアル</li><li>会社概要・信頼導線の部分整理</li><li>採用ページの改善</li><li>スマートフォン対応</li><li>公開後の保守・更新代行</li></ul>
         </div>
         <div class="svc-row-visual reveal-right">
           <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80" alt="Web制作イメージ" loading="lazy">
@@ -574,7 +579,7 @@ footer{background:#050505;color:rgba(245,242,236,.5);padding:64px 40px 28px;}
           <div class="svc-no">02</div>
           <h3>業務自動化・DX支援</h3>
           <span class="en">AUTOMATION / DX</span>
-          <p>手作業で時間がかかっている業務を仕組み化。日々のルーティンを自動化して、本業に集中できる環境をつくります。</p>
+          <p>問い合わせ受付後の確認・返信・社内共有の整理から、手作業で時間がかかっている業務を仕組み化。日々のルーティンを自動化して、本業に集中できる環境をつくります。</p>
           <ul><li>見積書・請求書の自動作成</li><li>顧客管理・データ集計の効率化</li><li>業務フローの見直し・改善</li><li>クラウドツール導入支援</li></ul>
         </div>
         <div class="svc-row-visual reveal-left">
@@ -612,6 +617,7 @@ footer{background:#050505;color:rgba(245,242,236,.5);padding:64px 40px 28px;}
       <div class="appr"><div class="num">02</div><div><h3>Webも業務もAIも、一括相談</h3><p>ホームページのことも、業務効率化のことも、AIのことも。窓口を分ける必要がなく、デジタルに関するお悩みをまとめてご相談いただけます。</p></div></div>
       <div class="appr"><div class="num">03</div><div><h3>相談から実行まで、迅速に</h3><p>お悩みを伺ったその場で解決の方向性をご提案。確認待ちや担当者間のたらい回しがなく、スムーズにプロジェクトが進みます。</p></div></div>
       <div class="appr"><div class="num">04</div><div><h3>専門用語なし、わかりやすく</h3><p>「ITは苦手で…」という方でも安心。難しい言葉を使わず、丁寧にご説明します。まず何に困っているかを聞くところから始めます。</p></div></div>
+      <div class="appr"><div class="num">05</div><div><h3>必要なページだけから着手</h3><p>採用ページ、会社概要、問い合わせ導線、受付後の業務整理など、いま困っている部分から着手します。全体の作り直しを前提にしないご相談も歓迎です。</p></div></div>
     </div>
   </div>
 </section>
@@ -643,7 +649,7 @@ footer{background:#050505;color:rgba(245,242,236,.5);padding:64px 40px 28px;}
     <div class="about-grid">
       <div class="about-photo reveal-left">
         <div class="ap-img">
-          <img src="https://images.unsplash.com/photo-1652118845377-72608dad7ea8?auto=format&fit=crop&w=600&q=60" alt="方解石の結晶" loading="lazy">
+          <img src="assets/about/founder-mark.svg" alt="代表 日野 研太" loading="lazy">
           <div class="ap-img-overlay"></div>
         </div>
         <svg class="ap-canvas" viewBox="0 0 300 400" preserveAspectRatio="xMidYMid slice">
@@ -666,6 +672,7 @@ footer{background:#050505;color:rgba(245,242,236,.5);padding:64px 40px 28px;}
         </svg>
       </div>
       <div class="about-text reveal-right">
+        <div class="name">日野 研太 <small>KENTA HINO</small></div>
         <div class="role">カルサイト 代表</div>
         <p>中小企業の皆さまが抱える「デジタルの困りごと」を、まるごと引き受けるパートナーでありたいと考えています。</p>
         <p>ホームページ制作はもちろん、日々の業務の効率化やAIの活用提案まで。一社一社のお話をじっくり伺い、その企業に合った解決策をご提案します。専門用語をできるだけ使わず、丁寧にご説明することを心がけています。</p>
@@ -705,6 +712,12 @@ footer{background:#050505;color:rgba(245,242,236,.5);padding:64px 40px 28px;}
       <a href="#approach">特徴</a>
       <a href="#about">代表紹介</a>
       <a href="#contact">お問い合わせ</a>
+    </div>
+    <div class="foot-info">
+      <p>カルサイト（Web制作・業務改善）｜代表 日野 研太</p>
+      <p>〒160-0023 東京都新宿区西新宿3-3-13 西新宿水間ビル6F</p>
+      <p>TEL <a href="tel:09089761275">090-8976-1275</a> ／ Mail <a href="mailto:hello@calcite-mail.jp">hello@calcite-mail.jp</a></p>
+      <p><a href="privacy.html">プライバシーポリシー</a></p>
     </div>
   </div>
   <div class="foot-bottom">
