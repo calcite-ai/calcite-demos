@@ -49,7 +49,7 @@ taisei-re,"info@taisei-re.com","https://www.taisei-re.com/company/",東京,G1_WE
 Tamada工房株式会社,"info@tamadakoubou.com","https://tamadakoubou.com/company/",福山,G1_WEAK,inside,2,4,3,recruit,"採用URL:/recruit/; 採用キーワード; 工務店・建設",recruit,approved,"/ owner承認 2026-08-31 採用改善 queue_seq=10",,A
 tokyo-chumon,"info@regard-home.com","https://tokyo-chumon.com/company",東京,G1_WEAK,inside,2,1,2,skip,"全スコア不足(hp=2,recruit=1,ai=2)",,pool_skip,"",,hold
 アイルホーム株式会社,"abc@i-llhome.jp","https://i-llhome.jp/contact/",札幌,G1_WEAK,inside,2,3,2,recruit,"採用キーワード; 採用リンクあり(深掘り要); 工務店・建設",recruit,approved,"/ owner承認 2026-08-31 採用改善 queue_seq=76",,A
-アドバン株式会社,"info@advan-works.jp","https://advan-works.jp/company/",埼玉,G1_WEAK,inside,2,6,4,recruit,"採用URL:/recruit/; 採用キーワード; 採用ページ更新古い(2013); 工務店・建設",recruit,approved,"/ owner承認 2026-08-31 採用改善 queue_seq=1",,S
+アドバン株式会社,"info@advan-works.jp","https://advan-works.jp/company/",埼玉,G1_WEAK,inside,2,6,4,recruit,"採用URL:/recruit/; 採用キーワード; 採用ページ更新古い(2013); 工務店・建設",recruit,sent,"/ owner承認 2026-08-31 採用改善 queue_seq=1 / 初回送信 2026-09-01 SMTP <51c571fe-cad7-5e22-adf4-0cb6dc5d5032@calcite-ai.jp>",2026-09-01,S
 いなばハウジング株式会社,"info@xxx.com","https://inabahousing.com/contact/",鳥取,G1_MODERN,inside,0,1,4,ai_ops,"HP整備済(G1_MODERN); FAX表記; 問合せ・見積導線",ai_ops,approved,"/ owner承認 2026-08-31 AI業務改善 queue_seq=146",,A
 インデュアホーム秋田茂木建設株式会社,"akita@e-motegi.com","https://eh-akita.com/",秋田,G1_WEAK,inside,2,1,3,ai_ops,"HP導線おおむね整備; FAX表記; 問合せ・見積導線",ai_ops,approved,"/ owner承認 2026-08-31 AI業務改善 queue_seq=118",,A
 エコワークス(株),"info@eco-works.jp","https://www.eco-works.jp/",福岡,G1_MODERN,inside,0,3,3,recruit,"採用キーワード; 採用リンクあり(深掘り要); 工務店・建設",recruit,approved,"/ owner承認 2026-08-31 採用改善 queue_seq=129",,A
