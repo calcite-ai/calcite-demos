@@ -76,7 +76,8 @@ function mailBodyFromTemplate(tpl) {
   const start = tpl.indexOf("件名：");
   if (start < 0) throw new Error("テンプレに 件名： がない");
   const rest = tpl.slice(start);
-  const cut = rest.search(/\n# -----|\n━━━/);
+  // 社内メモ（# -----）のみ除去。署名の ━━━ 行は本文に含める（buyout と同じ）
+  const cut = rest.search(/\n# -----/);
   return (cut >= 0 ? rest.slice(0, cut) : rest).trim() + "\n";
 }
 
