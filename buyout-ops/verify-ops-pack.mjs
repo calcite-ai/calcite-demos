@@ -76,6 +76,13 @@ walkProspects((slug, dir) => {
     }
   }
   walkHtml(dir);
+  const bAbout = path.join(dir, "b-atelier", "about", "index.html");
+  const bContact = path.join(dir, "b-atelier", "contact", "index.html");
+  if (fs.existsSync(path.join(dir, "b-atelier", "index.html"))) {
+    if (!fs.existsSync(bAbout) || !fs.existsSync(bContact)) {
+      fails.push(`O16 buyout-prospects/${slug}/b-atelier に about/contact がありません`);
+    }
+  }
 });
 
 const csvPath = path.join(__dirname, "demo_buyout_leads.csv");

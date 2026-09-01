@@ -160,13 +160,61 @@ Maps で種を集めるときも同じ欠陥を意識すると効率よい。
 
 ---
 
-## 6. 送信ペースとの関係
+## 6. 送信ペースとの関係（2026-09-01 更新 — buyout 1 + inside 1/日）
 
-- 送信: **`send-quota.csv` の当日枠**（既存 Automation）
-- 収集: **週20〜50 CANDIDATE** あれば十分（convert率を見て調整）
-- 夜間: **seed 100件/夜** 程度が現実的（礼儀 + 負荷）
+確認: `node buyout-ops/collection-status.mjs`
 
-**在庫が sendable=0 でも OK。** 捏造より **0 の日を許容** する。
+### 逆算の前提
+
+| 項目 | 値 |
+|---|---|
+| 送信 | **buyout 1 + inside 1 / 日**（`send-quota.csv`） |
+| 月間 | 約 **60通**（各30） |
+| 在庫バッファ | **90日分** を目安に種URL・承認を管理 |
+
+### 現状の結論（2026-09-01 時点）
+
+| トラック | 在庫 | 収集 |
+|---|---|---|
+| **inside** | approved **〜174社**（約6ヶ月分） | **停止** — 新規 owner_ok 不要。S→A→B の送信消化優先 |
+| **buyout** | CANDIDATE **61** は review 済。送信可能 **queued 1** | **新規種URLは buyout 用に継続**。ボトルネックは **9:00 デモAutomation**（approved 41 デモ未） |
+
+**inside を増やし続けると承認だけ溜まり送信が追いつかない。** buyout は「リスト不足」より **9:00 デモAutomationが approved 41 を順次 queued 化** が先（手動週次制作ではない）。
+
+### 週次オペレーション（最適）
+
+| 優先 | 作業 | 目安 |
+|---|---|---|
+| 1 | **9:00 Cursor Automation** — `refill-queue-if-empty.mjs` exit 3 → 1社デモ→queued（**当日 buyout 残枠ぶん**） | **自動**（`demo_buyout_daily_schedule.md`） |
+| 2 | **10:00 GitHub Actions** — buyout + inside 送信 | **自動** |
+| 3 | **新種URL** — Maps 手動 / 住活協 / 公式PDF（メール欄あり） | 週 **25〜35 URL**（CANDIDATE率〜6% → buyout 月1〜2社 + inside 分岐） |
+| 4 | **NO_EMAIL 再スキャン** — `prospect-rescan-no-email.mjs` | 週 **40件** バッチ（全338一括は不要） |
+| 5 | **FETCH_FAIL 再試行** — `prospect-rescan-fetch-fail.mjs` | 週 **30件** |
+| — | inside 新規承認 | **90日分を下回るまで不要** |
+
+### 夜間バッチ（変更なし）
+
+```bash
+node buyout-ops/merge-seed-files.mjs
+caffeinate -i node buyout-ops/prospect-scan-batch.mjs --sleep-ms 2000   # 新種がある週のみ
+node buyout-ops/run-campaign-pipeline.mjs   # enrich + split（--scan は新種追加週）
+```
+
+**inside 承認:** `inside_sales_review_queue.csv` への bulk owner_ok は **pause**。返信・手動例外のみ。
+
+### ソース優先度
+
+| 優先 | ソース | 理由 |
+|---|---|---|
+| 高 | 手動 Maps / http_research | CANDIDATE 転換率高 |
+| 高 | 住活協 builderlist（`jyukatsukyo_*`） | URL 公式・一定の粗 |
+| 中 | 商工会・自治体PDF（Eメール欄） | NO_EMAIL 回避 |
+| 低 | sahn / 大規模会員一覧のみ | NO_EMAIL 多（3%未満 CANDIDATE） |
+
+### 旧メモ
+
+- 収集: 週20〜50 CANDIDATE 想定は **buyout単独1/日** 時代の目安。dual-track では **inside 収集停止 + buyout 種25/週** に再配分。
+- **在庫 sendable=0 でも OK。** 捏造より 0 の日を許容。
 
 ---
 

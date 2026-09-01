@@ -2,6 +2,9 @@
  * デモHP用: 御社サイトを拝見したうえでのリード文・改善点（事実ベース）。
  * defects / pay_signals は scan または audit_notes から。推測で足さない。
  */
+import { humanStrengthLine, humanStrengthAudit } from "./strength-line.mjs";
+
+export const AUDIT_SECTION_KICKER = "サイト改善のポイント";
 
 const FIX_BY_DEFECT = {
   SSL未整備:
@@ -48,13 +51,10 @@ export function buildAuditDemoCopy({
   fixes.push("お問い合わせフォームへの導線をトップから辿りやすくしています");
 
   const uniqFixes = [...new Set(fixes)].slice(0, 4);
-  const strength =
-    String(pay_signals || "")
-      .split(/[、,]/)[0]
-      ?.trim() || "地域で施工を手がれる";
+  const strength = humanStrengthAudit({ pay_signals });
 
   const lede = company
-    ? `${company}のホームページを拝見し、${strength}と感じました。このデモでは、御社の強みが問い合わせにつながりやすいよう、以下の点を意識して構成しています。`
+    ? `${company}のホームページを拝見し、${strength}などがうかがえました。このデモでは、御社の強みが問い合わせにつながりやすいよう、以下の点を意識して構成しています。`
     : `御社のホームページを拝見したうえで、問い合わせにつながりやすい改善イメージをこのデモに反映しています。`;
 
   const fixesHtml = uniqFixes.map((t) => `<li>${t}</li>`).join("\n          ");
@@ -64,6 +64,8 @@ export function buildAuditDemoCopy({
 
 export function injectAuditIntoHtml(html, copy) {
   return String(html || "")
+    .replace(/__AUDIT_KICKER__/g, AUDIT_SECTION_KICKER)
+    .replace(/Site review/g, AUDIT_SECTION_KICKER)
     .replace(/__AUDIT_LEDE__/g, copy.lede)
     .replace(/__AUDIT_FIXES_LI__/g, copy.fixesHtml);
 }

@@ -127,3 +127,9 @@ node buyout-ops/inside-queue-status.mjs      # 今日の next と tier 内訳
 ```
 
 手動上書き: `inside_sales_review_queue.csv` または `inside_sales_poc_leads.csv` の `send_tier` 列に `S` / `A` / `B` / `hold` を直接書ける（再実行時も尊重）。
+
+### リスト収集（2026-09-01）
+
+**approved が 90日分（≈90社）ある間は inside の新規承認・種URL収集を止める。** 現状 174社 ≒ 6ヶ月分 → **収集 pause**。
+
+buyout 側の種URL・CANDIDATE は継続（`demo_buyout_prospect_pipeline.md` §6）。在庫確認: `node buyout-ops/collection-status.mjs`

@@ -1,29 +1,29 @@
 #!/usr/bin/env node
 /**
- * Copy c-refresh skin to each buyout-prospects/<slug>/ using company data
- * from an existing skin (c-daylight > b-atelier > d-signboard).
- * Also patches b-atelier index + styles with Site review band when present.
+ * Copy c-refresh + b-atelier skins to buyout-prospects/<slug>/ with company swap,
+ * サイト改善のポイント band, human strength line, optional site photos.
  *
- * Usage: node buyout-ops/rollout-c-refresh.mjs [--slug takasu-koumuten]
+ * Usage:
+ *   node buyout-ops/rollout-c-refresh.mjs [--slug takasu-koumuten] [--fetch-images]
+ *   node buyout-ops/rollout-c-refresh.mjs --no-fetch-images
  */
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { parseCsv } from "./csv-util.mjs";
 import { buildAuditDemoCopy, injectAuditIntoHtml } from "./audit-demo-copy.mjs";
+import {
+  fetchProspectSiteImages,
+  prospectImageReplacements,
+} from "./prospect-site-images.mjs";
 
 const repoRoot = path.join(path.dirname(fileURLToPath(import.meta.url)), "..");
 const templateRoot = path.join(repoRoot, "buyout-template/designs/c-refresh");
 const bAtelierTemplateRoot = path.join(repoRoot, "buyout-template/designs/b-atelier");
+const sharedTemplateRoot = path.join(repoRoot, "buyout-template/designs/shared");
 const prospectsRoot = path.join(repoRoot, "buyout-prospects");
 const leadsPath = path.join(repoRoot, "buyout-ops/demo_buyout_leads.csv");
-const sourceSkins = ["c-daylight", "b-atelier", "d-signboard"];
-
-function loadLeadByCompany(name) {
-  if (!fs.existsSync(leadsPath)) return null;
-  const { rows } = parseCsv(fs.readFileSync(leadsPath, "utf8"));
-  return rows.find((r) => r.company === name) || null;
-}
+const sourceSkins = ["c-daylight", "b-atelier", "d-signboard", "c-refresh"];
 
 const templatePlaceholders = {
   name: "アオイ工房",
@@ -38,6 +38,28 @@ const templatePlaceholders = {
 function arg(name) {
   const i = process.argv.indexOf(`--${name}`);
   return i >= 0 ? process.argv[i + 1] : "";
+}
+
+function hasFlag(name) {
+  return process.argv.includes(`--${name}`);
+}
+
+function loadLeadByCompany(name) {
+  if (!fs.existsSync(leadsPath)) return null;
+  const { rows } = parseCsv(fs.readFileSync(leadsPath, "utf8"));
+  return rows.find((r) => r.company === name) || null;
+}
+
+function loadLeadBySlug(slug) {
+  if (!fs.existsSync(leadsPath)) return null;
+  const { rows } = parseCsv(fs.readFileSync(leadsPath, "utf8"));
+  return (
+    rows.find((r) => {
+      const a = String(r.demo_url_a || "");
+      const b = String(r.demo_url_b || "");
+      return a.includes(`/buyout-prospects/${slug}/`) || b.includes(`/buyout-prospects/${slug}/`);
+    }) || null
+  );
 }
 
 function copyDir(src, dest) {
@@ -106,36 +128,28 @@ function swapCompany(text, from, to) {
   return out;
 }
 
-const AUDIT_BAND_HTML = `  <section class="narrow hp-audit" aria-label="御社サイトを拝見したうえでの改善イメージ">
-    <div class="rule"></div>
-    <p class="section-kicker">Site review</p>
-    <h2>御社のサイトを拝見し、改善イメージを反映しました</h2>
-    <p class="body hp-audit__lede">__AUDIT_LEDE__</p>
-    <ul class="hp-audit__list">
-      __AUDIT_FIXES_LI__
-    </ul>
-    <p class="hp-audit__note">※写真・事例はイメージです。御社の実績・文言に差し替え可能です。</p>
-  </section>`;
+function applyImageReplacements(text, imageReplacements) {
+  let out = text;
+  for (const [a, b] of imageReplacements) out = out.split(a).join(b);
+  return out;
+}
 
-function patchBAatelier(slugDir, company, auditCopy) {
-  const indexPath = path.join(slugDir, "b-atelier", "index.html");
-  const stylesPath = path.join(slugDir, "b-atelier", "styles.css");
-  if (!fs.existsSync(indexPath)) return false;
-
-  let html = fs.readFileSync(indexPath, "utf8");
-  if (!html.includes("hp-audit")) {
-    html = html.replace(
-      /(<section class="split-hero">[\s\S]*?<\/section>)/,
-      `$1\n\n${AUDIT_BAND_HTML}\n`
-    );
-  }
-  html = injectAuditIntoHtml(html, auditCopy);
-  fs.writeFileSync(indexPath, html);
-
-  if (fs.existsSync(path.join(bAtelierTemplateRoot, "styles.css"))) {
-    fs.copyFileSync(path.join(bAtelierTemplateRoot, "styles.css"), stylesPath);
-  }
-  return true;
+function applySkinDir({ skinDest, auditCopy, company, imageReplacements, injectAuditAll = false }) {
+  walk(skinDest, (file) => {
+    if (!/\.(html|css|js)$/i.test(file)) return;
+    const rel = path.relative(skinDest, path.dirname(file));
+    const depth = rel === "" ? 0 : rel.split(path.sep).length;
+    const sharedPrefix = depth === 0 ? "../shared/images" : "../../shared/images";
+    let text = fs.readFileSync(file, "utf8");
+    text = swapCompany(text, templatePlaceholders, company);
+    text = text.replace(/(\.\.\/)+shared\/images/g, sharedPrefix);
+    text = applyImageReplacements(text, imageReplacements);
+    text = text.replace(/<p class="picker">[\s\S]*?<\/p>\s*/g, "");
+    if (file.endsWith(".html") && (injectAuditAll || path.basename(file) === "index.html")) {
+      text = injectAuditIntoHtml(text, auditCopy);
+    }
+    fs.writeFileSync(file, text);
+  });
 }
 
 function normalizeTemplate(dir) {
@@ -149,12 +163,70 @@ function normalizeTemplate(dir) {
   });
 }
 
+function ensureSharedImages(slugDir, imageReplacements) {
+  const sharedDir = path.join(slugDir, "shared", "images");
+  if (!fs.existsSync(sharedDir)) {
+    copyDir(path.join(sharedTemplateRoot, "images"), sharedDir);
+  }
+  return sharedDir;
+}
+
+async function refreshSlug(slug, { fetchImages }) {
+  const slugDir = path.join(prospectsRoot, slug);
+  const sourceIndex = findSourceIndex(slugDir);
+  if (!sourceIndex) {
+    console.warn("skip", slug, "(no source skin)");
+    return;
+  }
+
+  const company = extractCompany(fs.readFileSync(sourceIndex, "utf8"));
+  const lead = loadLeadByCompany(company.name) || loadLeadBySlug(slug);
+  const auditCopy = buildAuditDemoCopy({
+    defects: "",
+    pay_signals: lead?.pay_signals || "",
+    audit_notes: lead?.audit_notes || "",
+    company: company.name,
+  });
+
+  const imagesDir = ensureSharedImages(slugDir, []);
+  let prospectImages = { hero: null, photo2: null };
+  if (fetchImages && lead?.site_url) {
+    prospectImages = await fetchProspectSiteImages(lead.site_url, imagesDir);
+    if (prospectImages.hero || prospectImages.photo2) {
+      console.log(
+        "  images",
+        prospectImages.hero || "-",
+        prospectImages.photo2 || "-",
+        "←",
+        lead.site_url
+      );
+    }
+  }
+  const imageReplacements = prospectImageReplacements(imagesDir, prospectImages);
+
+  const cDest = path.join(slugDir, "c-refresh");
+  fs.rmSync(cDest, { recursive: true, force: true });
+  copyDir(templateRoot, cDest);
+  applySkinDir({ skinDest: cDest, auditCopy, company, imageReplacements, injectAuditAll: false });
+
+  const bDest = path.join(slugDir, "b-atelier");
+  if (fs.existsSync(bAtelierTemplateRoot)) {
+    fs.rmSync(bDest, { recursive: true, force: true });
+    copyDir(bAtelierTemplateRoot, bDest);
+    applySkinDir({ skinDest: bDest, auditCopy, company, imageReplacements, injectAuditAll: false });
+  }
+
+  fs.rmSync(path.join(slugDir, "g-hp"), { recursive: true, force: true });
+  console.log("refreshed", slug, company.name);
+}
+
 if (!fs.existsSync(templateRoot)) {
   console.error("Missing template:", templateRoot);
   process.exit(1);
 }
 
 const onlySlug = arg("slug");
+const fetchImages = !hasFlag("no-fetch-images");
 const slugs = onlySlug
   ? [onlySlug]
   : fs.readdirSync(prospectsRoot).filter((name) => {
@@ -176,41 +248,5 @@ if (seed) {
 }
 
 for (const slug of slugs.sort()) {
-  const slugDir = path.join(prospectsRoot, slug);
-  const sourceIndex = findSourceIndex(slugDir);
-  if (!sourceIndex) {
-    console.warn("skip", slug, "(no source skin)");
-    continue;
-  }
-
-  const company = extractCompany(fs.readFileSync(sourceIndex, "utf8"));
-  const lead = loadLeadByCompany(company.name);
-  const auditCopy = buildAuditDemoCopy({
-    defects: "",
-    pay_signals: lead?.pay_signals || "",
-    audit_notes: lead?.audit_notes || "",
-    company: company.name,
-  });
-  const dest = path.join(slugDir, "c-refresh");
-  fs.rmSync(dest, { recursive: true, force: true });
-  copyDir(templateRoot, dest);
-
-  walk(dest, (file) => {
-    if (!/\.(html|css|js)$/i.test(file)) return;
-    const rel = path.relative(dest, path.dirname(file));
-    const depth = rel === "" ? 0 : rel.split(path.sep).length;
-    const sharedPrefix = depth === 0 ? "../shared/images" : "../../shared/images";
-    let text = fs.readFileSync(file, "utf8");
-    text = swapCompany(text, templatePlaceholders, company);
-    text = text.replace(/(\.\.\/)+shared\/images/g, sharedPrefix);
-    text = injectAuditIntoHtml(text, auditCopy);
-    fs.writeFileSync(file, text);
-  });
-
-  fs.rmSync(path.join(slugDir, "g-hp"), { recursive: true, force: true });
-  console.log("c-refresh", slug, "←", path.basename(path.dirname(sourceIndex)), company.name);
-
-  if (patchBAatelier(slugDir, company, auditCopy)) {
-    console.log("b-atelier audit", slug, company.name);
-  }
+  await refreshSlug(slug, { fetchImages });
 }

@@ -19,6 +19,10 @@ import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { buildAuditDemoCopy, injectAuditIntoHtml } from "../../buyout-ops/audit-demo-copy.mjs";
+import {
+  fetchProspectSiteImages,
+  prospectImageReplacements,
+} from "../../buyout-ops/prospect-site-images.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -40,6 +44,7 @@ const slug = arg("slug", "prospect");
 const defects = arg("defects", "");
 const paySignals = arg("pay-signals", arg("pay_signals", ""));
 const auditNotes = arg("audit-notes", arg("audit_notes", ""));
+const siteUrl = arg("site-url", arg("site_url", ""));
 
 if (!name) {
   console.error("Required: --name");
@@ -101,6 +106,20 @@ fs.mkdirSync(outRoot, { recursive: true });
 // Shared photos once per prospect
 copyDir(path.join(__dirname, "shared"), path.join(outRoot, "shared"));
 
+const imagesDir = path.join(outRoot, "shared", "images");
+let prospectImages = { hero: null, photo2: null };
+if (siteUrl) {
+  prospectImages = await fetchProspectSiteImages(siteUrl, imagesDir);
+  if (prospectImages.hero || prospectImages.photo2) {
+    console.log(
+      "prospect images:",
+      prospectImages.hero || "(none)",
+      prospectImages.photo2 || "(none)"
+    );
+  }
+}
+const imageReplacements = prospectImageReplacements(imagesDir, prospectImages);
+
 for (const skin of skins) {
   const src = path.join(__dirname, skin);
   if (!fs.existsSync(src)) {
@@ -114,6 +133,7 @@ for (const skin of skins) {
     if (!/\.(html|css|js|md)$/i.test(file)) return;
     let text = fs.readFileSync(file, "utf8");
     for (const [a, b] of replacements) text = text.split(a).join(b);
+    for (const [a, b] of imageReplacements) text = text.split(a).join(b);
 
     text = injectAuditIntoHtml(text, auditCopy);
 
