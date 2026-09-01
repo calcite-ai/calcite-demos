@@ -1,3 +1,4 @@
-effective_from,daily_sends,notes
-2026-08-20,1,hello@ calcite-ai.jp warmup（1日1通）
-2026-08-31,2,warmup継続・1日2通（G1リトライ＋午後回収cron併用）
+effective_from,daily_sends,daily_buyout,daily_inside,notes
+2026-08-20,1,1,0,hello@ calcite-ai.jp warmup（1日1通）
+2026-08-31,2,2,0,warmup継続・buyoutのみ2通/日
+2026-09-01,2,1,1,HP買い取り1+インサイド1/日

@@ -128,8 +128,8 @@ function isTransientG1FetchFail(stdout, stderr) {
 }
 
 let status = queueStatus();
-if (status.remaining_today <= 0) {
-  console.log("RESULT skip — remaining_today=0");
+if (status.buyout_remaining <= 0) {
+  console.log("RESULT skip — buyout_remaining=0");
   process.exit(0);
 }
 if (!status.next?.company) {
@@ -137,7 +137,7 @@ if (!status.next?.company) {
   process.exit(0);
 }
 
-const need = status.remaining_today;
+const need = status.buyout_remaining;
 const attemptCap = maxAttempts(need);
 let successes = 0;
 let attempts = 0;
@@ -153,8 +153,8 @@ if (runCapture([path.join(__dirname, "verify-ops-pack.mjs")]).status !== 0) {
 
 while (successes < need && attempts < attemptCap) {
   status = queueStatus();
-  if (status.remaining_today <= 0) {
-    console.log("RESULT done — remaining_today=0");
+  if (status.buyout_remaining <= 0) {
+    console.log("RESULT done — buyout_remaining=0");
     break;
   }
   const candidates = status.failover_candidates?.length

@@ -1,4 +1,5 @@
-# Daily buyout outreach send (10:00 JST + afternoon catch-up)
+# Daily outreach send (10:00 JST + afternoon catch-up)
+# HP buyout + inside sales: 1+1/day from 2026-09-01 (send-quota.csv)
 #
 # Requires repo secrets:
 #   BUYOUT_SMTP_USER / BUYOUT_SMTP_PASS / BUYOUT_SMTP_HOST / BUYOUT_SMTP_PORT
@@ -29,6 +30,7 @@ on:
     branches: [main]
     paths:
       - "buyout-ops/demo_buyout_leads.csv"
+      - "buyout-ops/inside_sales_poc_leads.csv"
       - "buyout-prospects/**"
   workflow_dispatch:
     inputs:
@@ -58,7 +60,7 @@ jobs:
         working-directory: buyout-ops
         run: npm install --omit=dev
 
-      - name: Daily send (remaining quota)
+      - name: Daily send buyout (remaining quota)
         env:
           BUYOUT_MAIL_PROVIDER: ${{ secrets.BUYOUT_MAIL_PROVIDER }}
           SENDGRID_API_KEY: ${{ secrets.SENDGRID_API_KEY }}
@@ -73,12 +75,28 @@ jobs:
             node buyout-ops/daily-send-one.mjs
           fi
 
+      - name: Daily send inside (remaining quota)
+        env:
+          BUYOUT_MAIL_PROVIDER: ${{ secrets.BUYOUT_MAIL_PROVIDER }}
+          SENDGRID_API_KEY: ${{ secrets.SENDGRID_API_KEY }}
+          BUYOUT_SMTP_USER: ${{ secrets.BUYOUT_SMTP_USER }}
+          BUYOUT_SMTP_PASS: ${{ secrets.BUYOUT_SMTP_PASS }}
+          BUYOUT_SMTP_HOST: ${{ secrets.BUYOUT_SMTP_HOST }}
+          BUYOUT_SMTP_PORT: ${{ secrets.BUYOUT_SMTP_PORT }}
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ] && [ "${{ inputs.dry_run }}" = "true" ]; then
+            node buyout-ops/daily-send-inside-one.mjs --dry-run
+          else
+            node buyout-ops/daily-send-inside-one.mjs
+          fi
+
       - name: Commit sent CSV / escalate if changed
         run: |
           git config user.name "buyout-daily-send"
           git config user.email "hello@calcite-ai.jp"
           for f in \
             buyout-ops/demo_buyout_leads.csv \
+            buyout-ops/inside_sales_poc_leads.csv \
             buyout-ops/metrics/inbox-escalate.md; do
             if [ -e "$f" ]; then git add -- "$f"; fi
           done
@@ -86,5 +104,5 @@ jobs:
             echo "No CSV changes"
             exit 0
           fi
-          git commit -m "Mark buyout lead sent (GitHub Actions daily send)."
+          git commit -m "Mark outreach lead sent (GitHub Actions daily send)."
           git push origin HEAD:main

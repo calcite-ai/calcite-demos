@@ -18,6 +18,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { buildAuditDemoCopy, injectAuditIntoHtml } from "../../buyout-ops/audit-demo-copy.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -36,6 +37,9 @@ const tel = arg("tel", "03-0000-0000");
 const email = arg("email", "info@example.com");
 const address = arg("address", "〒100-0001 東京都千代田区サンプル1-2-3");
 const slug = arg("slug", "prospect");
+const defects = arg("defects", "");
+const paySignals = arg("pay-signals", arg("pay_signals", ""));
+const auditNotes = arg("audit-notes", arg("audit_notes", ""));
 
 if (!name) {
   console.error("Required: --name");
@@ -44,6 +48,12 @@ if (!name) {
 
 const telHref = `tel:${tel.replace(/[^0-9+]/g, "")}`;
 const outRoot = path.join(__dirname, "_prospects", slug);
+const auditCopy = buildAuditDemoCopy({
+  defects,
+  pay_signals: paySignals,
+  audit_notes: auditNotes,
+  company: name,
+});
 
 /** D Signboard hero is `アオイ<br />工房` — plain `アオイ工房` replace misses it. */
 function heroHtml(companyName) {
@@ -105,6 +115,8 @@ for (const skin of skins) {
     let text = fs.readFileSync(file, "utf8");
     for (const [a, b] of replacements) text = text.split(a).join(b);
 
+    text = injectAuditIntoHtml(text, auditCopy);
+
     const rel = path.relative(dest, path.dirname(file));
     const depth = rel === "" ? 0 : rel.split(path.sep).length;
     const sharedPrefix = depth === 0 ? "../shared/images" : "../../shared/images";
@@ -124,6 +136,7 @@ const labels = {
   "a-sumi": "A案 Sumi Editorial",
   "b-atelier": "B案 Cool Atelier",
   "c-daylight": "C案 Neighborhood Daylight",
+  "c-refresh": "C案 Refresh（刷新レイアウト）",
   "d-signboard": "D案 Bold Signboard",
 };
 

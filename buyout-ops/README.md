@@ -23,6 +23,15 @@
 | `site-g1-eval.mjs` | G1判定ロジック（上記から利用） |
 | `demo_buyout_prospect_pipeline.md` | **全国リスト収集**（夜間スキャン手順） |
 | `prospect-scan-batch.mjs` | 夜間: 種URL → scan_results.csv（C1: http種でも https を試す） |
+| `inside_sales_campaign_routing.md` | **インサイド PoC** — 商材振り分け（HP/採用/AI） |
+| `campaign-score.mjs` | 商材スコア・トラック判定 |
+| `enrich-scan-campaign.mjs` | inside候補の採用/AIシグナル深掘り |
+| `split-scan-tracks.mjs` | buyout / inside リスト分割 |
+| `run-campaign-pipeline.mjs` | merge → enrich → split → review 一括 |
+| `inside_sales_poc_leads.csv` | インサイド PoC 候補プール |
+| `import-inside-approvals.mjs` | inside owner_ok=y → approved |
+| `inside-hp-signals.mjs` | hp_improve 観察文・スコア用シグナル |
+| `templates/email_inside_hp_improve_1_initial.txt` | インサイド初回（信頼設計・発注者目線） |
 | `prospect-rescan-https.mjs` | 既存 SSL未整備行の C1 再判定 |
 | `extract-seeds-from-prospects.mjs` | prospects → seeds 同期 |
 | `demo_buyout_audit_checklist.md` | 誤診防止 |

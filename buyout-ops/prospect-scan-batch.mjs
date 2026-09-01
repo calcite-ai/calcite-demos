@@ -84,10 +84,17 @@ function serializeRow(obj) {
   return OUT_FIELDS.map((h) => csvEscape(obj[h])).join(",");
 }
 
+function normUrl(url) {
+  return String(url || "")
+    .trim()
+    .toLowerCase()
+    .replace(/\/$/, "");
+}
+
 function loadScannedUrls() {
   if (!fs.existsSync(outPath)) return new Set();
   const rows = parseCsv(fs.readFileSync(outPath, "utf8"));
-  return new Set(rows.map((r) => r.url).filter(Boolean));
+  return new Set(rows.map((r) => normUrl(r.url)).filter(Boolean));
 }
 
 function sleep(ms) {
@@ -205,13 +212,32 @@ async function main() {
   console.log(`seeds: ${seeds.length}, already scanned: ${scanned.size}\n`);
 
   for (const seed of seeds) {
-    if (scanned.has(seed.url)) continue;
+    const seedKey = normUrl(seed.url);
+    if (scanned.has(seedKey)) continue;
     if (n >= limit) continue;
 
     process.stdout.write(`scan ${seed.company} … `);
-    const result = await scanOne(seed);
+    // Hard ceiling so one sticky host cannot stall the whole batch
+    // (AbortSignal on fetch alone is not always enough for hung sockets).
+    const result = await Promise.race([
+      scanOne(seed),
+      sleep(90000).then(() => ({
+        scanned_at: new Date().toISOString().slice(0, 19),
+        vertical,
+        company: seed.company,
+        url: seed.url,
+        prefecture: seed.prefecture || "",
+        source: seed.source || "",
+        email: "",
+        defects: "",
+        audit_draft: "",
+        final_url: "",
+        notes: "scan_hard_timeout_90s",
+        status: "FETCH_FAIL",
+      })),
+    ]);
     fs.appendFileSync(outPath, serializeRow(result) + "\n");
-    scanned.add(seed.url);
+    scanned.add(seedKey);
 
     stats[result.status] = (stats[result.status] || 0) + 1;
     if (result.status === "CANDIDATE") candidates++;

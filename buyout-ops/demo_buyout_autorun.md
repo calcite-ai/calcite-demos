@@ -3,13 +3,13 @@
 > 2026-08-23 運用: **リスト承認は人間1回**（[`demo_buyout_owner_workflow.md`](./demo_buyout_owner_workflow.md)）。承認後の **送信は自動**（文面確認なし）。  
 > 送信元: `hello@calcite-ai.jp`（ConoHa SMTP / GitHub Secrets `BUYOUT_SMTP_*`）  
 > **2026-08-28:** 営業専用ドメインへ移行予定（`sales/knowledge/demo_buyout_outreach_domain.md`）。切替日まで現行 From のまま。
-> レート: **`send-quota.csv` の当日枠**（2026-08-31〜 **1日2通**。途中から行を足して通数変更）。スパム回避優先。  
+> レート: **`send-quota.csv` の当日枠**（2026-09-01〜 **HP買い取り1 + インサイド1 / 日**）。スパム回避優先。  
 > 送信: GitHub Actions `buyout-daily-send`（**01:00 UTC / 06:00 UTC**＝10:00・15:00 JST 目安。残枠0なら skip）  
 > G1取得失敗時は同一社を最大3回リトライしてから次候補へ。
 > **Phase 1: 工務店（vertical=koumuten）のみ送信。** 税理士・葬儀は雛形完成まで送らない。  
 > 稼働:  
 > - **9:00 JST** Cursor Automation デモ制作 → [`demo_buyout_daily_schedule.md`](./demo_buyout_daily_schedule.md)（**main 直 push**）  
-> - **10:00 JST** **GitHub Actions** [`buyout-daily-send.yml`](../.github/workflows/buyout-daily-send.yml) が残枠ぶん SMTP text/plain 送信  
+> - **10:00 JST** **GitHub Actions** [`buyout-daily-send.yml`](../.github/workflows/buyout-daily-send.yml) が残枠ぶん SMTP text/plain 送信（**buyout → inside の順**）  
 > - 送信は **BCC `kenta.hino1106@gmail.com`**（Gmail受信箱で履歴確認。URLは text/plain のまま）  
 > このフォルダ（`buyout-ops/`）が正本。
 

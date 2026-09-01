@@ -82,6 +82,8 @@ node buyout-ops/prospect-scan-batch.mjs --limit 10 --sleep-ms 1500
 
 **再開:** 同じコマンドで OK（スキャン済 URL はスキップ）。
 
+**インサイド PoC（HP溢れ → 採用/AI/HP改善）:** スキャン後に `run-campaign-pipeline.mjs` または `enrich-scan-campaign.mjs` → `split-scan-tracks.mjs`。詳細は [`inside_sales_campaign_routing.md`](./inside_sales_campaign_routing.md)。
+
 ### 2-B2. CANDIDATE < 50 のとき — 商工会・公式リストで種＋メール補完
 
 **50件ライン未満**かつ NO_EMAIL が多いとき:

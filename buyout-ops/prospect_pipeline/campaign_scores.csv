@@ -1,0 +1,990 @@
+url,company,scan_status,track,email,prefecture,final_url,hp_score,recruit_score,ai_score,recommended_campaign,campaign_evidence,enriched_at
+"http://ban-kenchikukobo.com/",(株)Ban建築工房,G1_MODERN,skip,"",福岡,"https://ban-kenchikukobo.com/",0,0,0,skip,"track=skip",
+"https://fukuoka-e-house.jp/",(株)e-house,G1_MODERN,skip,"",福岡,"https://fukuoka-e-house.jp/",0,0,0,skip,"track=skip",
+"http://www.e-m-lumber.com/",(株)E・M・LUMBER,NO_EMAIL,skip,"",神奈川,"https://e-m-lumber.com/",0,0,0,skip,"track=skip",
+"https://m-house.jp/",（株）M-HOUSE,G1_WEAK,inside,"info@m-house.jp",神奈川,"https://m-house.jp/assessment/form/",1,4,3,recruit,"採用URL:/recruit/; 採用キーワード; 工務店・建設",2026-08-31T10:48:05
+"https://marukan-life.jp/",(株)marukan,NO_EMAIL,skip,"",神奈川,"https://marukan-life.jp/",0,0,0,skip,"track=skip",
+"https://www.mp-gr.jp/",(株)MP,G1_WEAK,inside,"info@mp-gr.jp",神奈川,"https://www.mp-gr.jp/",2,4,2,recruit,"採用URL:/recruitment/; 採用キーワード; 工務店・建設",2026-08-31T10:47:27
+"https://samepicture.co.jp/",(株)SamePictureCompany,NO_EMAIL,skip,"",神奈川,"https://bldrs.co.jp/",0,0,0,skip,"track=skip",
+"https://www.tnp-kyusyu.com/",(株)WELLNEST HOME九州,G1_MODERN,skip,"",福岡,"https://tnp-kyusyu.com/",0,0,0,skip,"track=skip",
+"https://architex.co.jp/",(株)アーキテックス,G1_WEAK,inside,"abc@architex.co.jp",福岡,"https://architex.co.jp/contact/",2,4,1,recruit,"採用URL:/recruit/; 採用キーワード; 工務店・建設",2026-08-31T10:47:18
+"https://ishome.yokohama/",(株)アイズホーム,G1_MODERN,skip,"",神奈川,"https://ishome.yokohama/",0,0,0,skip,"track=skip",
+"http://sekio.cocolog-nifty.com/",(株)あすなろ建築工房,FETCH_FAIL,skip,"",神奈川,"http://sekio.cocolog-nifty.com/",0,0,0,skip,"track=skip",
+"http://arqana.jp/",(株)アルカナデザイン,NO_EMAIL,skip,"",福岡,"https://arqana.jp/",0,0,0,skip,"track=skip",
+"http://www.al-fine.jp/",(株)アルシスホーム,G1_MODERN,skip,"",福岡,"https://www.al-fine.jp/",0,0,0,skip,"track=skip",
+"https://k-ichiken.jp/",（株）イチケン,NO_EMAIL,skip,"",神奈川,"https://k-ichiken.jp/",0,0,0,skip,"track=skip",
+"http://www.an-home.jp/",(株)エー・エヌ・ホーム,G1_WEAK,inside,"an@an-home.jp",福岡,"https://an-home.jp/company-profile/company",2,4,3,recruit,"採用URL:/recruit; 採用キーワード; 工務店・建設",2026-08-31T10:46:33
+"https://acehome.net/",(株)エースホーム,G1_WEAK,inside,"info@acehome.net",福岡,"https://acehome.net/",2,1,1,skip,"全スコア不足(hp=2,recruit=1,ai=1)",2026-08-31T10:46:47
+"http://www.oaks-cnst.com/index.php",(株)オークス建設,NO_EMAIL,skip,"",福岡,"https://oaks-cnst.com/",0,0,0,skip,"track=skip",
+"http://www.eco-cure.net/",(株)グリーン企画,G1_MODERN,skip,"",福岡,"https://www.eco-cure.net/",0,0,0,skip,"track=skip",
+"http://www.sunken.co.jp/index.html",(株)サン建築工房,G1_MODERN,inside,"info@sunken.co.jp",福岡,"https://www.sunken.co.jp/",0,3,4,ai_ops,"HP整備済(G1_MODERN); FAX表記; 問合せ・見積導線",2026-08-31T10:46:15
+"https://www.daitec.co.jp/index.html",(株)ダイテック,NO_EMAIL,skip,"",神奈川,"https://www.daitec.co.jp/",0,0,0,skip,"track=skip",
+"http://www.takanohome.co.jp/index.php",(株)タカノホーム,G1_MODERN,inside,"info@takanohome.co.jp",福岡,"https://www.takanohome.co.jp/toiawase/index.html",0,2,4,ai_ops,"HP整備済(G1_MODERN); FAX表記; 問合せ・見積導線",2026-08-31T10:46:04
+"http://www.art-nakaken.co.jp/",(株)ナカケン,NO_EMAIL,skip,"",福岡,"http://www.art-nakaken.co.jp/",0,0,0,skip,"track=skip",
+"https://n-techno.net/",(株)ナカジマ建設,G1_MODERN,skip,"",福岡,"https://n-techno.net/",0,0,0,skip,"track=skip",
+"http://www.h-land.jp/index.html",(株)ハウスランド社,FETCH_FAIL,skip,"",福岡,"http://www.h-land.jp/index.html",0,0,0,skip,"track=skip",
+"http://www.frontier-house.co.jp/",(株)フロンティアハウス,NO_EMAIL,skip,"",神奈川,"https://www.frontier-house.co.jp/",0,0,0,skip,"track=skip",
+"http://e-besthome.jp",(株)ベストホーム,G1_MODERN,inside,"info@e-besthome.jp",福岡,"https://e-besthome.jp/contact/",0,4,4,recruit,"採用URL:/recruit/; 採用キーワード; 工務店・建設",2026-08-31T10:46:25
+"http://www.ma2ura.com/",(株)マツウラ,G1_WEAK,inside,"info@ma2ura.com",福岡,"https://ma2ura.com/about/",2,1,2,skip,"全スコア不足(hp=2,recruit=1,ai=2)",2026-08-31T10:47:16
+"https://marudai-fuji.co.jp/",(株)マルダイ,NO_EMAIL,skip,"",神奈川,"https://marudai-fuji.co.jp/",0,0,0,skip,"track=skip",
+"https://mi-rise.biz/",(株)ミライズ,NO_EMAIL,skip,"",福岡,"https://mi-rise.biz/",0,0,0,skip,"track=skip",
+"https://www.yamato-kensetu.com/",(株)ヤマト建設,G1_WEAK,inside,"yamatokensetu@wine.ocn.ne.jp",福岡,"https://www.yamato-kensetu.com/",2,1,2,skip,"全スコア不足(hp=2,recruit=1,ai=2)",2026-08-31T10:47:00
+"http://www.lifeplaza.co.jp/",(株)ライフプラザパートナーズ,NO_EMAIL,skip,"",神奈川,"https://www.lifeplaza.co.jp/",0,0,0,skip,"track=skip",
+"http://www.lakuju.jp/",(株)ラクジュ,G1_MODERN,inside,"lakuju@gmail.com",神奈川,"https://lakuju.jp/",0,2,5,ai_ops,"HP整備済(G1_MODERN); FAX表記; PDF資料; 問合せ・見積導線",2026-08-31T10:47:31
+"http://libertygroup.jp/",(株)リバティーホーム,G1_MODERN,inside,"yourname@yourdomain.com",福岡,"https://libertygroup.jp/company/",0,1,4,ai_ops,"HP整備済(G1_MODERN); FAX表記; 問合せ・見積導線",2026-08-31T10:46:37
+"https://www.yasunari-komuten.com/",(株)安成工務店 福岡支店,G1_WEAK,inside,"yasunari@yasunari.co.jp",福岡,"https://www.yasunari-komuten.com/inquiry",2,3,2,recruit,"採用キーワード; 採用リンクあり(深掘り要); 工務店・建設",2026-08-31T10:46:27
+"http://itohouse.jp/",(株)伊都住建,NO_EMAIL,skip,"",福岡,"https://itohouse.jp/",0,0,0,skip,"track=skip",
+"http://www.ekimaekoumuten.co.jp/",(株)駅前工務店,G1_MODERN,inside,"yourname@yourdomain.com",福岡,"https://www.ekimaekoumuten.co.jp/inquiry/",0,3,3,recruit,"採用キーワード; 採用リンクあり(深掘り要); 工務店・建設",2026-08-31T10:47:02
+"http://www.miyabi-con.jp/",(株)雅建設,G1_WEAK,inside,"ogunisugi-ism@miyabi-con.jp",福岡,"https://miyabi-con.jp/company/",2,1,1,skip,"全スコア不足(hp=2,recruit=1,ai=1)",2026-08-31T10:46:20
+"http://www.kaneko-mk.co.jp/",(株)金子建設,NO_EMAIL,skip,"",神奈川,"https://kaneko-mk.co.jp/",0,0,0,skip,"track=skip",
+"http://www.anai.co.jp/",(株)穴井工務店,G1_MODERN,skip,"",福岡,"https://www.anai.co.jp/",0,0,0,skip,"track=skip",
+"http://yamashitaya.co.jp",(株)建築工房やました屋,G1_MODERN,skip,"",福岡,"https://yamashitaya.co.jp/",0,0,0,skip,"track=skip",
+"https://www.tnk-koei.co.jp/",(株)光栄建設,FETCH_FAIL,skip,"",福岡,"https://www.tnk-koei.co.jp/",0,0,0,skip,"track=skip",
+"http://miyake-koubou.com/",(株)三宅建築工房,G1_WEAK,inside,"shin@miyake-koubou.com",福岡,"https://miyake-koubou.com/company/",2,4,2,recruit,"採用URL:/recruit; 採用キーワード; 工務店・建設",2026-08-31T10:46:22
+"http://yamasaki-1972.co.jp/profile/",(株)山﨑建設,CANDIDATE,buyout,"yamasaki03ys@wind.ocn.ne.jp",福岡,"http://yamasaki-1972.co.jp/profile/",7,0,0,hp_buyout_66k,"SSL未整備; viewportなし; tel:なし; 更新停止感(HTML内2011止); 粗2点以上",
+"https://ichikawa-ya.com/",(株)市川屋,G1_WEAK,inside,"zaimokuya@gd6.so-net.ne.jp",神奈川,"https://ichikawa-ya.com/company/",1,4,3,recruit,"採用URL:/recruit/; 採用キーワード; 工務店・建設",2026-08-31T10:47:43
+"https://www.select-home.net/",(株)重永建設,G1_MODERN,skip,"",福岡,"https://select-home.net/",0,0,0,skip,"track=skip",
+"https://www.kiyotake.co.jp/",(株)清武建設,G1_MODERN,inside,"info@kiyotake.co.jp",福岡,"https://www.kiyotake.co.jp/",0,2,5,ai_ops,"HP整備済(G1_MODERN); FAX表記; PDF資料; 問合せ・見積導線",2026-08-31T10:46:49
+"http://nishie-housing.com/",(株)西江ハウジング,G1_WEAK,inside,"info@nishie-housing.com",福岡,"https://nishie-housing.com/",1,1,3,ai_ops,"HP導線おおむね整備; FAX表記; 問合せ・見積導線",2026-08-31T10:47:23
+"http://nishijima-kou.jp",(株)西島工務店,G1_MODERN,skip,"",神奈川,"https://nishijima-kou.jp/",0,0,0,skip,"track=skip",
+"http://www.eto-web.com/",(株)大幸商事,G1_MODERN,inside,"contact@eto-web.com",福岡,"https://eto-web.com/",0,1,4,ai_ops,"HP整備済(G1_MODERN); FAX表記; 問合せ・見積導線",2026-08-31T10:47:10
+"https://www.okawa-ss.co.jp/index2.html",(株)大川,G1_MODERN,inside,"info@okawa-ss.co.jp",神奈川,"https://www.okawa-ss.co.jp/",0,3,3,recruit,"採用キーワード; 採用リンクあり(深掘り要); 工務店・建設",2026-08-31T10:47:41
+"http://www.d-futaba.co.jp/index.html",(株)第一双葉,NO_EMAIL,skip,"",福岡,"https://www.d-futaba.co.jp/",0,0,0,skip,"track=skip",
+"http://www.takkenhome.net/company.html",(株)拓建ホーム,NO_EMAIL,skip,"",福岡,"https://takkenhome.net/",0,0,0,skip,"track=skip",
+"https://nakaken-nh.jp/",(株)中山建設,G1_MODERN,inside,"nk@nakaken.info",神奈川,"https://nakaken-nh.jp/about/",0,1,4,ai_ops,"HP整備済(G1_MODERN); FAX表記; 問合せ・見積導線",2026-08-31T10:47:33
+"http://www.nagasakizaimokuten.co.jp/",(株)長崎材木店,G1_MODERN,inside,"info@nagasakizaimokuten.co.jp",福岡,"https://www.nagasakizaimokuten.co.jp/",0,4,6,ai_ops,"HP整備済(G1_MODERN); FAX表記; PDF資料; 問合せ・見積導線; 見積・対応エリア訴求",2026-08-31T10:47:12
+"http://www.i-hasegawa.com/index.html",(株)長谷川洋工務店,NO_EMAIL,skip,"",神奈川,"http://i-hasegawa.com/",0,0,0,skip,"track=skip",
+"http://www.tsujico.jp",(株)辻本工務店,G1_MODERN,skip,"",神奈川,"https://www.tsujico.jp/",0,0,0,skip,"track=skip",
+"https://www.uchida-kentiku.com/",(株)内田材木店,G1_MODERN,skip,"",神奈川,"https://www.uchida-kentiku.com/",0,0,0,skip,"track=skip",
+"http://nihonbussan.co.jp",(株)日本物産,G1_WEAK,inside,"info@nihonbussan.co.jp",神奈川,"https://www.nihonbussan.co.jp/form/",2,4,3,recruit,"採用URL:/recruit; 採用キーワード; 工務店・建設",2026-08-31T10:47:45
+"http://oyamanoie.com/",(株)尾山建設,G1_MODERN,inside,"mail@oyamanoie.com",福岡,"https://oyamanoie.com/contact/",0,4,5,ai_ops,"HP整備済(G1_MODERN); FAX表記; PDF資料; 問合せ・見積導線",2026-08-31T10:46:29
+"https://www.fukuoka-k.jp/",(株)福岡工務店,G1_MODERN,inside,"info@fukuoka-k.jp",福岡,"https://www.fukuoka-k.jp/",0,2,4,ai_ops,"HP整備済(G1_MODERN); FAX表記; 問合せ・見積導線",2026-08-31T10:46:54
+"http://hiraharahome.jp/",(株)平原ホーム,NO_EMAIL,skip,"",福岡,"https://hiraharahome.jp/",0,0,0,skip,"track=skip",
+"http://eco-h.jp/",(株)平田住宅,NO_EMAIL,skip,"",福岡,"http://eco-h.jp/",0,0,0,skip,"track=skip",
+"https://houei-home.jp/",(株)宝栄工業,NO_EMAIL,skip,"",福岡,"https://houei-home.jp/",0,0,0,skip,"track=skip",
+"http://ki-kobo.jp/",(株)北村建築工房,G1_MODERN,inside,"info@ki-kobo.jp",神奈川,"https://ki-kobo.jp/",0,4,4,recruit,"採用URL:/recruit/; 採用キーワード; 工務店・建設",2026-08-31T10:47:39
+"http://www.honda300year.co.jp/",(株)本田工務店,FETCH_FAIL,skip,"",神奈川,"http://www.honda300year.co.jp/",0,0,0,skip,"track=skip",
+"http://www.mirai-kohboh.co.jp",(株)未来工房,NO_EMAIL,skip,"",福岡,"https://www.mirai-kohboh.co.jp/",0,0,0,skip,"track=skip",
+"http://koumuten.hayama.co.jp/",(株)葉山工務店,NO_EMAIL,skip,"",神奈川,"http://koumuten.hayama.co.jp/",0,0,0,skip,"track=skip",
+"http://www.tohsei-k.bz/index.html",(株)梁,FETCH_FAIL,skip,"",福岡,"http://www.tohsei-k.bz/index.html",0,0,0,skip,"track=skip",
+"https://www.reiwa-corporation.tokyo/",(株)令和コーポレーション,G1_WEAK,inside,"info@mysite.com",神奈川,"https://www.reiwa-corporation.tokyo/",2,1,1,skip,"全スコア不足(hp=2,recruit=1,ai=1)",2026-08-31T10:47:38
+"https://rokka-sumika.com/",(株)六花,G1_WEAK,inside,"toiawase@rokka.homes",福岡,"https://www.rokka.homes/",2,2,2,skip,"全スコア不足(hp=2,recruit=2,ai=2)",2026-08-31T10:47:21
+"http://www.assisthome-wb.jp",(有)アシストホーム,G1_MODERN,skip,"",神奈川,"https://www.assisthome-wb.jp/",0,0,0,skip,"track=skip",
+"http://www.daitoc.jp/",(有)ダイトク建設,FETCH_FAIL,skip,"",神奈川,"http://www.daitoc.jp/",0,0,0,skip,"track=skip",
+"http://tanaka-kenchiku-kikaku.com/",(有)タナカ建築企画,NO_EMAIL,skip,"",福岡,"https://tanaka-kenchiku-kikaku.com/",0,0,0,skip,"track=skip",
+"http://makinghouse.jp",(有)メイキングハウス湘南,NO_EMAIL,skip,"",神奈川,"http://makinghouse.jp/",0,0,0,skip,"track=skip",
+"http://okui-ken.net/",(有)奥井建設,NO_EMAIL,skip,"",福岡,"https://okui-ken.net/",0,0,0,skip,"track=skip",
+"https://yuuzansou.jp/",(有)建築工房 悠山想,G1_MODERN,skip,"",福岡,"https://yuuzansou.jp/",0,0,0,skip,"track=skip",
+"http://www.sanyoukoumuten.co.jp/company/company.html",(有)三陽工務店,G1_MODERN,inside,"info-34@sanyoukoumuten.co.jp",神奈川,"https://www.sanyoukoumuten.co.jp/company/company.html",0,2,4,ai_ops,"HP整備済(G1_MODERN); FAX表記; 問合せ・見積導線",2026-08-31T10:47:24
+"http://tedukuri-kobo.com/",(有)手作り工房いぐち,CANDIDATE,buyout,"support@netrun.ne.jp",神奈川,"https://tedukuri-kobo.com/",4,0,0,hp_buyout_66k,"viewportなし; tel:なし; 粗2点以上",
+"http://www.morita-koumuten.net",(有)森田工務店,NO_EMAIL,skip,"",神奈川,"https://www.morita-koumuten.net/",0,0,0,skip,"track=skip",
+"https://shiinokenchiku.com/",(有)椎野建築,NO_EMAIL,skip,"",神奈川,"https://shiinokenchiku.com/",0,0,0,skip,"track=skip",
+"https://tenryojutaku.com/",(有)天領住宅,G1_MODERN,skip,"",福岡,"https://tenryojutaku.com/",0,0,0,skip,"track=skip",
+"https://www.v-hf.com/k/uchiyama389/",(有)内山工務店,CANDIDATE,buyout,"miyazaki@uchiyama-k.co.jp",福岡,"https://www.v-hf.com/k/uchiyama389/",4,0,0,hp_buyout_66k,"viewportなし; tel:なし; 粗2点以上",
+"http://www.mokusho.com",(有)木匠工務店,G1_MODERN,inside,"info@mokusho.com",神奈川,"https://www.mokusho.com/",0,1,5,ai_ops,"HP整備済(G1_MODERN); FAX表記; 問合せ・見積導線; 見積・対応エリア訴求",2026-08-31T10:47:26
+"https://www.nomura-komuten.com/",(有)野村工務店,G1_MODERN,skip,"",福岡,"https://www.nomura-komuten.com/",0,0,0,skip,"track=skip",
+"https://111ie.com/",111ie,G1_MODERN,inside,"kentaro@horikiri.co.jp",東京,"https://111ie.com/contact/",0,1,3,ai_ops,"HP整備済(G1_MODERN); 問合せ・見積導線",2026-08-31T10:49:23
+"https://abicnet.co.jp/",abicnet,FETCH_FAIL,skip,"",東京,"https://abicnet.co.jp/",0,0,0,skip,"track=skip",
+"https://eiji-arch.com/",Ag-工務店,G1_MODERN,inside,"watanabe@eiji-arch.com",新潟,"https://eiji-arch.com/contact/",0,4,5,ai_ops,"HP整備済(G1_MODERN); FAX表記; PDF資料; 問合せ・見積導線",2026-08-31T06:13:06
+"https://aibaeco.co.jp/",aibaeco,G1_MODERN,skip,"",東京,"https://aibaeco.co.jp/",0,0,0,skip,"track=skip",
+"https://www.athome-arai.jp/",athome-arai,CANDIDATE,buyout,"yoshiwa@athome-arai.jp",東京,"https://www.athome-arai.jp/",4,0,0,hp_buyout_66k,"viewportなし; tel:なし; 粗2点以上",
+"https://craftsman-inc.jp",ＣＲＡＦＴＳＭＡＮ株式会社,FETCH_FAIL,skip,"",神奈川,"https://craftsman-inc.jp",0,0,0,skip,"track=skip",
+"https://www.daiei-con.jp/",daiei-con,NO_EMAIL,skip,"",東京,"https://www.daiei-con.jp/",0,0,0,skip,"track=skip",
+"http://www.daisan-k.com/",daisan-k,G1_MODERN,skip,"",東京,"https://www.daisan-k.com/",0,0,0,skip,"track=skip",
+"http://demo.delfino-hc.com/",Delfinoホームコンサルタント株式会社,NO_EMAIL,skip,"",神奈川,"http://demo.delfino-hc.com/",0,0,0,skip,"track=skip",
+"https://www.e-cube-group.com/ht/",e-cubeホームテクノ株式会社,G1_MODERN,inside,"info@e-cube-group.com",埼玉,"https://www.e-cube-group.com/ht/",0,3,4,ai_ops,"HP整備済(G1_MODERN); FAX表記; 問合せ・見積導線",2026-08-31T06:20:18
+"https://www.e-marusei.jp/",e-marusei,G1_MODERN,inside,"mocomoko@e-marusei.jp",東京,"https://www.e-marusei.jp/",0,3,4,ai_ops,"HP整備済(G1_MODERN); FAX表記; 問合せ・見積導線",2026-08-31T10:49:34
+"https://earth-official.net/",earth-official,G1_MODERN,skip,"",東京,"https://earth-official.net/",0,0,0,skip,"track=skip",
+"https://www.fabworks.co.jp/",fabworks,G1_MODERN,inside,"info@fabworks.co.jp",東京,"https://www.fabworks.co.jp/company/",0,1,4,ai_ops,"HP整備済(G1_MODERN); FAX表記; 問合せ・見積導線",2026-08-31T10:49:36
+"https://www.foryou-home.jp/",GAT,G1_MODERN,inside,"gat@xxxxx.com",久慈,"https://www.foryou-home.jp/",0,1,3,ai_ops,"HP整備済(G1_MODERN); 問合せ・見積導線",2026-08-31T06:12:44
+"https://www.harada-koumuten.co.jp/",harada-koumuten,NO_EMAIL,skip,"",東京,"https://www.harada-koumuten.co.jp/",0,0,0,skip,"track=skip",
+"https://www.haseman.co.jp/",haseman,G1_MODERN,inside,"post@haseman.co.jp",東京,"https://www.haseman.co.jp/",0,4,4,recruit,"採用URL:/recruit/; 採用キーワード; 工務店・建設",2026-08-31T10:49:38
+"https://www.housetecs.co.jp/",housetecs,G1_MODERN,skip,"",東京,"https://www.housetecs.co.jp/",0,0,0,skip,"track=skip",
+"https://i-sumu.jp/company/",i-sumu設計株式会社,G1_WEAK,inside,"inspection@i-sumu.co.jp",埼玉,"https://i-sumu.jp/company/",2,4,2,recruit,"採用URL:/recruit; 採用キーワード; 工務店・建設",2026-08-31T06:20:12
+"https://www.iko-home.co.jp/",iko-home,G1_MODERN,skip,"",東京,"https://www.iko-home.co.jp/",0,0,0,skip,"track=skip",
+"https://www.isahomes.co.jp/",isahomes,NO_EMAIL,skip,"",東京,"https://www.isahomes.co.jp/",0,0,0,skip,"track=skip",
+"https://ishibashi-koumuten.com/",ishibashi-koumuten,G1_WEAK,inside,"yourmail@sample.co.jp",東京,"https://ishibashi-koumuten.com/",2,4,2,recruit,"採用URL:/recruit; 採用キーワード; 工務店・建設",2026-08-31T10:49:25
+"http://ito-shouten.co.jp/",ito-shouten,NO_EMAIL,skip,"",東京,"http://ito-shouten.co.jp/",0,0,0,skip,"track=skip",
+"https://www.juutaku.co.jp/",juutaku,G1_MODERN,skip,"",東京,"https://www.juutaku.co.jp/",0,0,0,skip,"track=skip",
+"https://kaz-inc.jp/",kaz-inc,G1_MODERN,skip,"",東京,"https://kaz-inc.jp/",0,0,0,skip,"track=skip",
+"http://www.kaz-kuukan.com",ＫＡＺ空間企画,CANDIDATE,buyout,"mail@kaz-kuukan.com",会津若松,"http://www.kaz-kuukan.com/",7,0,0,hp_buyout_66k,"SSL未整備; viewportなし; tel:なし; 更新停止感(HTML内2018止); 粗2点以上",
+"https://keio-united.jp/",keio-united,G1_WEAK,inside,"info@keio-united.jp",東京,"https://www.keio-united.jp/",2,2,2,skip,"全スコア不足(hp=2,recruit=2,ai=2)",2026-08-31T10:49:27
+"https://kiyobishi.co.jp/",kiyobishi,G1_MODERN,skip,"",東京,"https://kiyobishi.co.jp/",0,0,0,skip,"track=skip",
+"https://www.kk-daimaru.co.jp/",kk-daimaru,NO_EMAIL,skip,"",東京,"https://www.kk-daimaru.co.jp/",0,0,0,skip,"track=skip",
+"https://kkmarunaka.co.jp/",kkmarunaka,NO_EMAIL,skip,"",東京,"https://kkmarunaka.co.jp/",0,0,0,skip,"track=skip",
+"https://www.kurashi-koubou.com/",kurashi-koubou,NO_EMAIL,skip,"",東京,"https://www.kurashi-koubou.com/",0,0,0,skip,"track=skip",
+"https://kurasu.co.jp/",kurasu,G1_MODERN,inside,"info@kurasu.co.jp",東京,"https://kurasu.co.jp/",0,2,3,ai_ops,"HP整備済(G1_MODERN); 問合せ・見積導線",2026-08-31T10:49:29
+"https://www.magara-koumuten.co.jp/",magara-koumuten,G1_MODERN,skip,"",東京,"https://www.magara-koumuten.co.jp/",0,0,0,skip,"track=skip",
+"https://www.marukitokyo.com/",marukitokyo,NO_EMAIL,skip,"",東京,"https://www.marukitokyo.com/",0,0,0,skip,"track=skip",
+"https://marutomihome.jp/",marutomihome,G1_MODERN,inside,"info@kubodera.jp",東京,"https://www.marutomihome.jp/contact",0,3,5,ai_ops,"HP整備済(G1_MODERN); FAX表記; PDF資料; 問合せ・見積導線",2026-08-31T10:49:31
+"https://www.maruyama-koumuten.co.jp/",maruyama-koumuten,G1_MODERN,inside,"maruyamakomuten.info@gmail.com",東京,"https://www.maruyama-koumuten.co.jp/",0,4,5,ai_ops,"HP整備済(G1_MODERN); FAX表記; PDF資料; 問合せ・見積導線",2026-08-31T10:49:40
+"https://www.maruyamakoumuten.co.jp/",maruyamakoumuten,NO_EMAIL,skip,"",東京,"https://www.maruyamakoumuten.co.jp/",0,0,0,skip,"track=skip",
+"https://matsumoto-sekkei.com/",matsumoto-sekkei,NO_EMAIL,skip,"",東京,"https://matsumoto-sekkei.com/",0,0,0,skip,"track=skip",
+"https://mikiken.co.jp/",mikiken,NO_EMAIL,skip,"",東京,"https://mikiken.co.jp/",0,0,0,skip,"track=skip",
+"http://www.ms-matsunaga.j/",ms-matsunaga,FETCH_FAIL,skip,"",東京,"http://www.ms-matsunaga.j/",0,0,0,skip,"track=skip",
+"https://www.ms-matsunaga.jp/",ms-matsunaga,G1_MODERN,skip,"",東京,"https://www.ms-matsunaga.jp/",0,0,0,skip,"track=skip",
+"https://www.nagasaki5693344.com/",nagasaki5693344,NO_EMAIL,skip,"",東京,"https://www.nagasaki5693344.com/",0,0,0,skip,"track=skip",
+"http://www.nittsu-ene-kanto.com/",ＮＸエネルギー関東株式会社,NO_EMAIL,skip,"",埼玉,"https://www.nittsu-ene-kanto.com/",0,0,0,skip,"track=skip",
+"https://www.ogawara.co.jp/",ogawara,G1_MODERN,skip,"",東京,"https://www.ogawara.co.jp/",0,0,0,skip,"track=skip",
+"https://www.okaniwa.jp/",okaniwa,G1_MODERN,inside,"mail@okaniwa.jp",東京,"https://www.okaniwa.jp/company/",0,4,4,recruit,"採用URL:/採用/; 採用キーワード; 工務店・建設",2026-08-31T10:49:42
+"https://pure-wood.jp/",pure wood株式会社,FETCH_FAIL,skip,"",埼玉,"https://pure-wood.jp/",0,0,0,skip,"track=skip",
+"https://www.r-station.net/",r-station,G1_MODERN,inside,"info@r-station.net",東京,"https://www.r-station.net/",0,2,4,ai_ops,"HP整備済(G1_MODERN); 問合せ・見積導線; 見積・対応エリア訴求",2026-08-31T10:49:43
+"http://www.recom.ne.jp/",ＲＥＣＯＭ株式会社,FETCH_FAIL,skip,"",加古川,"http://www.recom.ne.jp/",0,0,0,skip,"track=skip",
+"https://rin-k.co.jp/",Rin建築,NO_EMAIL,skip,"",福岡,"https://rin-k.co.jp/",0,0,0,skip,"track=skip",
+"https://www.sedia-system.co.jp/",sedia-system,NO_EMAIL,skip,"",東京,"https://www.sedia-system.co.jp/",0,0,0,skip,"track=skip",
+"https://www.soukensya.jp/",soukensya,G1_MODERN,skip,"",東京,"https://www.soukensya.jp/",0,0,0,skip,"track=skip",
+"https://www.taisei-re.com/",taisei-re,G1_WEAK,inside,"info@taisei-re.com",東京,"https://www.taisei-re.com/company/",2,1,3,ai_ops,"FAX表記; PDF資料; 問合せ・見積導線",2026-08-31T10:49:47
+"http://www.takakigroup.net/",takakigroup,G1_MODERN,skip,"",東京,"https://www.takakigroup.net/",0,0,0,skip,"track=skip",
+"http://tama-kenchiku.jp/",tama-kenchiku,CANDIDATE,buyout,"tamaoki@mtj.biglobe.ne.jp",東京,"http://tama-kenchiku.jp/",7,0,0,hp_buyout_66k,"SSL未整備; viewportなし; tel:なし; 更新停止感(HTML内2009止); 粗2点以上",
+"http://tamadakoubou.com/",Tamada工房株式会社,G1_WEAK,inside,"info@tamadakoubou.com",福山,"https://tamadakoubou.com/company/",2,4,3,recruit,"採用URL:/recruit/; 採用キーワード; 工務店・建設",2026-08-31T06:14:14
+"https://tamura-bco.co.jp/",tamura-bco,G1_MODERN,skip,"",東京,"https://tamura-bco.co.jp/",0,0,0,skip,"track=skip",
+"https://www.tanaka-kinoie.co.jp/",tanaka-kinoie,G1_MODERN,skip,"",東京,"https://www.tanaka-kinoie.co.jp/",0,0,0,skip,"track=skip",
+"https://tatsuken.biz/",tatsuken,NO_EMAIL,skip,"",東京,"https://tatsuken.biz/",0,0,0,skip,"track=skip",
+"https://www.thinktown.co.jp/",thinktown,G1_MODERN,skip,"",東京,"https://thinktown.co.jp/",0,0,0,skip,"track=skip",
+"https://third-gear-builders.jp/",third.gear.builders株式会社,G1_WEAK,skip,"test@third-gear-builders.jp",山口,"https://third-gear-builders.jp/contact/",2,0,0,skip,"track=skip",
+"https://tokyo-chumon.com/",tokyo-chumon,G1_WEAK,inside,"info@regard-home.com",東京,"https://tokyo-chumon.com/company",2,1,2,skip,"全スコア不足(hp=2,recruit=1,ai=2)",2026-08-31T10:49:32
+"https://touto-home.com/",touto-home,G1_MODERN,skip,"",東京,"https://touto-home.com/",0,0,0,skip,"track=skip",
+"https://www.waibi.co.jp/",waibi,NO_EMAIL,skip,"",東京,"https://www.waibi.co.jp/",0,0,0,skip,"track=skip",
+"https://watosuru.com/",watosuru,G1_MODERN,skip,"",東京,"https://watosuru.com/",0,0,0,skip,"track=skip",
+"http://www.woody-koike.co.jp/",woody-koike,NO_EMAIL,skip,"",東京,"http://www.woody-koike.co.jp/",0,0,0,skip,"track=skip",
+"https://www.yamashita-sc.com/",yamashita-sc,G1_MODERN,skip,"",東京,"https://www.yamashita-sc.com/",0,0,0,skip,"track=skip",
+"https://yoshida-c.com/",yoshida-c,NO_EMAIL,skip,"",東京,"https://yoshida-c.com/",0,0,0,skip,"track=skip",
+"https://www.arterracehome.jp/",アートテラスホーム株式会社,G1_MODERN,skip,"",神奈川,"https://www.arterracehome.jp/",0,0,0,skip,"track=skip",
+"http://ainai.jp/index.html",アイナイ工務店 株式会社,FETCH_FAIL,skip,"",神奈川,"http://ainai.jp/index.html",0,0,0,skip,"track=skip",
+"https://i-llhome.jp/",アイルホーム株式会社,G1_WEAK,inside,"abc@i-llhome.jp",札幌,"https://i-llhome.jp/contact/",2,3,2,recruit,"採用キーワード; 採用リンクあり(深掘り要); 工務店・建設",2026-08-31T06:13:28
+"http://aiwakensetsu.com/",アイワ建設株式会社,NO_EMAIL,skip,"",水戸,"https://aiwakensetsu.com/",0,0,0,skip,"track=skip",
+"http://asahiworks.co.jp/",あさひワークス株式会社,CANDIDATE,buyout,"info@asahiworks.co.jp",千葉,"https://asahiworks.co.jp/company/",4,0,0,hp_buyout_66k,"viewportなし; tel:なし; 粗2点以上",
+"http://www.adoc-cp.co.jp",アドック株式会社,NO_EMAIL,skip,"",埼玉,"https://adoc-cp.co.jp/",0,0,0,skip,"track=skip",
+"http://www.advan-works.jp",アドバン株式会社,G1_WEAK,inside,"info@advan-works.jp",埼玉,"https://advan-works.jp/company/",2,6,4,recruit,"採用URL:/recruit/; 採用キーワード; 採用ページ更新古い(2013); 工務店・建設",2026-08-31T06:20:07
+"http://www.kenkoutatemono.co.jp",アレス有限会社,CANDIDATE,buyout,"info@kenkoutatemono.co.jp",埼玉,"https://www.kenkoutatemono.co.jp/",5,0,0,hp_buyout_66k,"viewportなし; tel:なし; 更新停止感(HTML内2014止); 粗2点以上",
+"http://izumi-ju.com/",いずみ住宅,FETCH_FAIL,skip,"",千葉,"http://izumi-ju.com/",0,0,0,skip,"track=skip",
+"http://ichikou.com/",イチコウ建設株式会社,NO_EMAIL,skip,"",一宮市,"http://ichikou.com/",0,0,0,skip,"track=skip",
+"https://inabahousing.com/",いなばハウジング株式会社,G1_MODERN,inside,"info@xxx.com",鳥取,"https://inabahousing.com/contact/",0,1,4,ai_ops,"HP整備済(G1_MODERN); FAX表記; 問合せ・見積導線",2026-08-31T06:12:54
+"http://www.iriya-const.co.jp",イリヤ建設株式会社,NO_EMAIL,skip,"",名古屋市,"https://www.iriya-const.co.jp/",0,0,0,skip,"track=skip",
+"http://eh-akita.com",インデュアホーム秋田茂木建設株式会社,G1_WEAK,inside,"akita@e-motegi.com",秋田,"https://eh-akita.com/",2,1,3,ai_ops,"HP導線おおむね整備; FAX表記; 問合せ・見積導線",2026-08-31T06:14:36
+"http://eh-chuno.com/",インデュアホーム中濃原建販株式会社,FETCH_FAIL,skip,"",郡上,"http://eh-chuno.com/",0,0,0,skip,"track=skip",
+"http://www.usukura-kensetsu.co.jp/",ウスクラ建設株式会社,FETCH_FAIL,skip,"",千葉,"http://www.usukura-kensetsu.co.jp/",0,0,0,skip,"track=skip",
+"https://www.utsumi-h.com/",ウツミ工務店,G1_MODERN,skip,"badge181_25@2x.png",宮城,"https://www.utsumi-h.com/",0,0,0,skip,"track=skip",
+"http://www.eco-works.jp/",エコワークス(株),G1_MODERN,inside,"info@eco-works.jp",福岡,"https://www.eco-works.jp/",0,3,3,recruit,"採用キーワード; 採用リンクあり(深掘り要); 工務店・建設",2026-08-31T10:46:07
+"http://www.mfk.co.jp/",エムエフ建設(株),NO_EMAIL,skip,"",神奈川,"https://www.mfk.co.jp/",0,0,0,skip,"track=skip",
+"http://emhouse.jp/",エムハウス株式会社,NO_EMAIL,skip,"",佐賀,"https://www.emhouse.jp/",0,0,0,skip,"track=skip",
+"http://www.odani.co.jp/",オダニホーム株式会社,NO_EMAIL,skip,"",魚津,"http://www.odani.co.jp/",0,0,0,skip,"track=skip",
+"http://www.kaneko-home.co.jp/",カネコホーム株式会社,FETCH_FAIL,skip,"",富山,"http://www.kaneko-home.co.jp/",0,0,0,skip,"track=skip",
+"http://green-market.net/",グリーンマーケット株式会社,NO_EMAIL,skip,"",水戸,"http://green-market.net/",0,0,0,skip,"track=skip",
+"http://www.coretechnos.com/",コアテクノス株式会社,NO_EMAIL,skip,"",大阪,"http://www.coretechnos.com/",0,0,0,skip,"track=skip",
+"https://kuturogi.jp/",コスモレーベン(株),G1_MODERN,skip,"",福岡,"https://kuturogi.jp/",0,0,0,skip,"track=skip",
+"https://www.sashiyoshi.jp",サシヨシエ業株式会社,CANDIDATE,skip,"aaa@bbb.jp",愛西市,"https://www.sashiyoshi.jp/contact/",4,0,0,skip,"track=skip",
+"https://www.san-ei-kk.co.jp",サンエイ株式会社,NO_EMAIL,skip,"",刈谷市,"https://www.san-ei-kk.co.jp/",0,0,0,skip,"track=skip",
+"http://www.san-m.net/",サンエム建設株式会社,FETCH_FAIL,skip,"",埼玉,"http://www.san-m.net/",0,0,0,skip,"track=skip",
+"https://www.sankihome.co.jp/",サンキホーム(株),NO_EMAIL,skip,"",神奈川,"https://www.sankihome.co.jp/",0,0,0,skip,"track=skip",
+"http://www.sanmoku.info/wwwsanmoku/",サンモクエ業株式会社,NO_EMAIL,skip,"",岡崎市,"http://www.sanmoku.info/wwwsanmoku/",0,0,0,skip,"track=skip",
+"https://www.e-house.co.jp/thank-life/",サンライフ株式会社,NO_EMAIL,skip,"",十日町,"https://www.e-house.co.jp/thank-life/",0,0,0,skip,"track=skip",
+"https://www.sumaikankyo.net/",すまい環境設計(株),NO_EMAIL,skip,"",神奈川,"https://www.sumaikankyo.net/",0,0,0,skip,"track=skip",
+"http://daikunohattori.com/",だいくのハットリ,G1_MODERN,skip,"",燕,"https://daikunohattori.com/",0,0,0,skip,"track=skip",
+"https://www.taise-housing.co.jp/",タイセーハウジング(株),G1_MODERN,skip,"",神奈川,"https://www.taise-housing.co.jp/",0,0,0,skip,"track=skip",
+"https://www.daitomojuko.co.jp/",だいとも住工株式会社,G1_MODERN,skip,"sample@sample.com",鳥取,"https://www.daitomojuko.co.jp/contact/",0,0,0,skip,"track=skip",
+"http://www2.ocn.ne.jp/~takahiro/index.html",タカヒロ建築,FETCH_FAIL,skip,"",北上市,"http://www2.ocn.ne.jp/~takahiro/index.html",0,0,0,skip,"track=skip",
+"http://takakenchiku.jp",タカ建築工房,FETCH_FAIL,skip,"",みやき,"http://takakenchiku.jp",0,0,0,skip,"track=skip",
+"http://www.tatsumi-kensetsu.net/",タツミ建設株式会社,NO_EMAIL,skip,"",国分寺,"https://tatsumi-kensetsu.net/",0,0,0,skip,"track=skip",
+"https://www.d-a-h.com/",ディー・アンド・エイチ(株),G1_MODERN,skip,"",福岡,"https://www.d-a-h.com/",0,0,0,skip,"track=skip",
+"http://www.technical-home.co.jp/",テクニカルホーム 株式会社,G1_MODERN,inside,"info@technical-home.co.jp",神奈川,"https://www.technical-home.co.jp/company/",0,1,4,ai_ops,"HP整備済(G1_MODERN); FAX表記; 問合せ・見積導線",2026-08-31T10:47:46
+"http://www.technowoodworks.com/",テクノウッドワークス株式会社,CANDIDATE,buyout,"sales@technowoodworks.com",鹿沼,"http://technowoodworks.com/inquiry/",5,0,0,hp_buyout_66k,"SSL未整備; 更新停止感(HTML内2013止); 粗2点以上",
+"https://www.denhome.jp/",でんホーム(株),NO_EMAIL,skip,"",福岡,"https://www.denhome.jp/",0,0,0,skip,"track=skip",
+"http://www.familyhouse-1978.jp/",トシ企画インテリア(株),G1_MODERN,skip,"",福岡,"https://www.familyhouse-1978.jp/",0,0,0,skip,"track=skip",
+"http://www.studio-depot.net/",とみた建築工房,NO_EMAIL,skip,"",水戸,"http://www.studio-depot.net/",0,0,0,skip,"track=skip",
+"http://www.navihome-oomiya.jp",ナビホーム株式会社,NO_EMAIL,skip,"",埼玉,"http://www.navihome-oomiya.jp/",0,0,0,skip,"track=skip",
+"http://www.nishikenhome.com/",ニシケンホーム,NO_EMAIL,skip,"",潮来,"https://www.nishikenhome.com/",0,0,0,skip,"track=skip",
+"http://www.nissetsu-co.jp/",ニッセツ株式会社,NO_EMAIL,skip,"",名古屋市,"http://www.nissetsu-co.jp/",0,0,0,skip,"track=skip",
+"https://www.nomoto-homes.co.jp",ノモトホームズ,G1_WEAK,inside,"info@nomoto-homes.co.jp",新潟,"https://www.nomoto-homes.co.jp/about/",2,2,1,skip,"全スコア不足(hp=2,recruit=2,ai=1)",2026-08-31T06:14:32
+"http://www.hivic.co.jp/",ハイビック株式会社,G1_MODERN,skip,"",小山,"https://hivic.co.jp/",0,0,0,skip,"track=skip",
+"http://www.housing-staff.co.jp/",ハウジング・スタッフ株式会社,NO_EMAIL,skip,"",松江,"http://www.housing-staff.co.jp/",0,0,0,skip,"track=skip",
+"https://www.enjoy-ev.com/",パワーコントロールテクニック 株式会社 Ｅファシリティ事業部,G1_WEAK,inside,"enjoy-ev@autobacs-dh.com",東京,"https://www.enjoy-ev.com/",2,1,2,skip,"全スコア不足(hp=2,recruit=1,ai=2)",2026-08-31T10:48:13
+"https://hinoken.co.jp/",ヒノケン株式会社,G1_WEAK,inside,"sato@hinoken.co.jp",石巻,"https://hinoken.co.jp/form/",2,4,3,recruit,"採用URL:/recruit/; 採用キーワード; 工務店・建設",2026-08-31T06:14:18
+"https://www.rehome-plaza.co.jp",ひらいリノベーション株式会社,FETCH_FAIL,skip,"",千葉,"https://www.rehome-plaza.co.jp",0,0,0,skip,"track=skip",
+"https://builds.co.jp",ビルズ東京株式会社,G1_MODERN,skip,"",東京,"https://builds.co.jp/",0,0,0,skip,"track=skip",
+"http://www.first-juhken.co.jp",ファースト住建株式会社,G1_MODERN,inside,"info@first-juhken.co.jp",高崎,"https://www.first-juhken.co.jp/profile/",0,2,4,ai_ops,"HP整備済(G1_MODERN); FAX表記; 問合せ・見積導線",2026-08-31T06:14:48
+"http://www.t-eizen.com/",ファミリア建設株式会社,NO_EMAIL,skip,"",東村山,"https://t-eizen.com/",0,0,0,skip,"track=skip",
+"https://matsumi.com",マツミハウジング株式会社,G1_WEAK,inside,"info@matsumi.com",東京,"https://www.matsumi.com/",2,6,1,recruit,"採用URL:/recruit; 採用キーワード; 採用ページ更新古い(2004); 工務店・建設",2026-08-31T10:48:15
+"http://mamianakensetsu.co.jp/",マミアナ建設株式会社,FETCH_FAIL,skip,"",つくばみらい,"http://mamianakensetsu.co.jp/",0,0,0,skip,"track=skip",
+"https://marumo-kensetsu.com",マルモ建設株式会社,G1_MODERN,skip,"",三条,"https://marumo-kensetsu.com/",0,0,0,skip,"track=skip",
+"https://www.mannami.net",まんなみ一級建築設計室,FETCH_FAIL,skip,"",柏崎,"https://www.mannami.net",0,0,0,skip,"track=skip",
+"http://muraji.net/",ムラジ建設株式会社,G1_MODERN,skip,"",金沢,"https://muraji.net/",0,0,0,skip,"track=skip",
+"http://www.yamaki-ie.com/",やまき家工房,G1_MODERN,skip,"",筑西,"https://yamaki-ie.com/",0,0,0,skip,"track=skip",
+"http://www.maple.bz",リフォームギャラリーメープル,NO_EMAIL,skip,"",福山,"https://www.maple.bz/",0,0,0,skip,"track=skip",
+"http://www.washino-con.co.jp",ワシノ建設株式会社,G1_MODERN,skip,"",愛西市,"https://washino-con.co.jp/",0,0,0,skip,"track=skip",
+"http://www.wadakenhome.co.jp/",ワダケンホーム(有限会社和田建設),BLOCKLIST,skip,"",新居浜,"http://www.wadakenhome.co.jp/",0,0,0,skip,"track=skip",
+"http://www.ito-kenzai.jp/pc/",伊藤建材(株),NO_EMAIL,skip,"",神奈川,"http://www.ito-kenzai.jp/",0,0,0,skip,"track=skip",
+"http://www.ito-kensetsu.com",伊藤建設株式会社,NO_EMAIL,skip,"",豊田市,"http://www.ito-kensetsu.com/",0,0,0,skip,"track=skip",
+"http://www.e-itokoumuten.net/",伊藤工務店,G1_WEAK,inside,"info@e-itokoumuten.net",あま,"https://e-itokoumuten.net/aboutus/",2,4,2,recruit,"採用URL:/recruit/; 採用キーワード; 工務店・建設",2026-08-31T06:13:19
+"http://www.itouaki-koumuten.com/",伊藤昭工務店,FETCH_FAIL,skip,"",大崎,"http://www.itouaki-koumuten.com/",0,0,0,skip,"track=skip",
+"https://www.iguchi-kensetsu.co.jp",井ロ建設株式会社,NO_EMAIL,skip,"",豊橋市,"https://www.iguchi-kensetsu.co.jp/contact/",0,0,0,skip,"track=skip",
+"https://inaken21.com/",稲沢建設株式会社,G1_WEAK,inside,"inaken@inaken21.com",稲沢市,"https://inaken21.com/gaiyou/",2,3,3,recruit,"採用キーワード; 採用リンクあり(深掘り要); 工務店・建設",2026-08-31T06:15:56
+"http://inatou.com",稲東建設株式会社,G1_MODERN,inside,"info@inatou.com",稲沢市,"https://www.inatou.com/",0,1,3,ai_ops,"HP整備済(G1_MODERN); 問合せ・見積導線",2026-08-31T06:15:59
+"http://www.ugawakougyou.co.jp/",鵜川興業株式会社,NO_EMAIL,skip,"",前橋,"https://www.ugawakougyou.co.jp/",0,0,0,skip,"track=skip",
+"http://web.fp-group.gr.jp/uk/",浦山建設株式会社,NO_EMAIL,skip,"",仙台,"http://web.fp-group.gr.jp/uk/",0,0,0,skip,"track=skip",
+"http://www.yokomizo-painting.co.jp",横溝塗装株式会社,NO_EMAIL,skip,"",埼玉,"http://www.yokomizo-painting.co.jp/",0,0,0,skip,"track=skip",
+"http://www.yokoo-ke.co.jp/",横尾建設株式会社,G1_MODERN,inside,"soumu@yokoo-ke.co.jp",埼玉,"https://www.yokoo-ke.co.jp/",0,6,3,recruit,"採用URL:/recruit/; 採用キーワード; 採用ページ更新古い(2000); 工務店・建設",2026-08-31T06:20:37
+"http://www.reform-makasete.com/",横浜テックワンサービス株式会社,NO_EMAIL,skip,"",横浜,"http://www.reform-makasete.com/",0,0,0,skip,"track=skip",
+"http://www.ii-ie.net/okayamahouse",岡山ハウス工業株式会社,NO_EMAIL,skip,"",岡山,"https://www.ii-ie2.net/",0,0,0,skip,"track=skip",
+"https://www.oka-ken.co.jp",岡田建設株式会社,NO_EMAIL,skip,"",豊川市,"https://www.oka-ken.co.jp/",0,0,0,skip,"track=skip",
+"http://www.ondolife.jp/",温戸ライフ,G1_WEAK,inside,"info@ondolife.jp",岡崎,"https://ondolife.jp/",2,2,2,skip,"全スコア不足(hp=2,recruit=2,ai=2)",2026-08-31T06:13:21
+"https://shimosatokensetsu.com",下里建設株式会社,G1_MODERN,skip,"",弥富市,"https://shimosatokensetsu.com/",0,0,0,skip,"track=skip",
+"http://www.orihime.ne.jp/~kamo/",加茂建設株式会社,CANDIDATE,buyout,"kamo@orihime.ne.jp",一宮市,"http://www.orihime.ne.jp/~kamo/",6,0,0,hp_buyout_66k,"SSL未整備; viewportなし; tel:なし; 粗2点以上",
+"https://www.yeshasegawa.co.jp/",家'Sハセガワ株式会社,G1_MODERN,skip,"",妙高,"https://www.yeshasegawa.co.jp/",0,0,0,skip,"track=skip",
+"https://www.1-ino.co.jp/",家工房猪野工務店,NO_EMAIL,skip,"",高知,"https://www.1-ino.co.jp/",0,0,0,skip,"track=skip",
+"http://www.kawai-building.com/",河井工務店,G1_WEAK,inside,"info@kawai-building.com",天理,"https://www.kawai-building.com/contact",2,1,1,skip,"全スコア不足(hp=2,recruit=1,ai=1)",2026-08-31T06:19:41
+"http://www.koumura-tochi.jp/",河村工務店,FETCH_FAIL,skip,"",関,"http://www.koumura-tochi.jp/",0,0,0,skip,"track=skip",
+"http://www.adoken.co.jp",会津土建株式会社,G1_MODERN,skip,"",会津若松,"https://www.adoken.co.jp/",0,0,0,skip,"track=skip",
+"http://www.kaitekikukan.co.jp",快適空間株式会社,G1_WEAK,inside,"abc@abc.com",埼玉,"https://kaitekikukan.co.jp/contact/",1,4,2,recruit,"採用URL:/recruit; 採用キーワード; 工務店・建設",2026-08-31T06:20:15
+"http://www.hobbystyle-kadoya.jp/",角屋工業株式会社,NO_EMAIL,skip,"",沼田,"https://www.hobbystyle-kadoya.jp/",0,0,0,skip,"track=skip",
+"http://www.tsunoken.co.jp/",角田建築株式会社,NO_EMAIL,skip,"",名古屋,"http://www.tsunoken.co.jp/",0,0,0,skip,"track=skip",
+"https://www.kakubun.com",角文株式会社,NO_EMAIL,skip,"",刈谷市,"https://www.kakubun.com/",0,0,0,skip,"track=skip",
+"https://www.kajinokoumuten.com/",梶野工務店,G1_WEAK,inside,"t.kajino@mable.ne.jp",松江,"https://www.kajinokoumuten.com/company/",2,4,2,recruit,"採用URL:/recruit/; 採用キーワード; 工務店・建設",2026-08-31T06:12:58
+"http://www.kyoho-epoch.co.jp/",株式会共豊エポック,CANDIDATE,buyout,"info@kyoho-epoch.co.jp",豊橋,"http://www.kyoho-epoch.co.jp/company/",5,0,0,hp_buyout_66k,"SSL未整備; 更新停止感(HTML内2017止); 粗2点以上",
+"https://lifework-architect.com/",株式会社 LIFE WORK,NO_EMAIL,skip,"",高松,"https://www.lifework-architect.com/",0,0,0,skip,"track=skip",
+"https://low-eco-home.com/",株式会社 N.style,G1_MODERN,skip,"",神奈川,"https://low-eco-home.com/",0,0,0,skip,"track=skip",
+"http://www.asunaro-studio.com/",株式会社 あすなろ建築工房,NO_EMAIL,skip,"",神奈川,"https://www.asunaro-studio.com/",0,0,0,skip,"track=skip",
+"https://kakizawa-sc.co.jp/",株式会社 カキザワ工務店,G1_MODERN,skip,"",神奈川,"https://kakizawa-sc.co.jp/",0,0,0,skip,"track=skip",
+"http://www.kirigaya.jp/",株式会社 キリガヤ,G1_MODERN,inside,"home@kirigaya.co.jp",神奈川,"https://kirigaya.jp/contact/",0,2,5,ai_ops,"HP整備済(G1_MODERN); FAX表記; PDF資料; 問合せ・見積導線",2026-08-31T10:47:52
+"http://www.jrc6101.com/",株式会社 ジェー･アール･シー,G1_MODERN,skip,"",神奈川,"https://jrc6101.com/",0,0,0,skip,"track=skip",
+"https://smilede.com/",株式会社 スマイル,G1_WEAK,inside,"info@smilede.com",神奈川,"https://smilede.com/company",2,1,2,skip,"全スコア不足(hp=2,recruit=1,ai=2)",2026-08-31T10:47:55
+"http://www.trecasa.co.jp",株式会社 トレカーサ工事,CANDIDATE,buyout,"post@trecasa.co.jp",神奈川,"https://www.trecasa.co.jp/company",4,0,0,hp_buyout_66k,"viewportなし; tel:なし; 粗2点以上",
+"http://www.iguchijuken.co.jp",株式会社 井口住研,G1_MODERN,skip,"",神奈川,"https://iguchijuken.co.jp/",0,0,0,skip,"track=skip",
+"http://www14.ocn.ne.jp/~daikuima",株式会社 今井工務店,FETCH_FAIL,skip,"",神奈川,"http://www14.ocn.ne.jp/~daikuima",0,0,0,skip,"track=skip",
+"http://www.yamada-kensetsu.com/",株式会社 山田建設,G1_MODERN,inside,"user@sample.jp",神奈川,"https://yamada-kensetsu.com/company/",0,4,4,recruit,"採用URL:/recruit; 採用キーワード; 工務店・建設",2026-08-31T10:47:57
+"http://www.kasugakensetu.jp/",株式会社 春日建設,FETCH_FAIL,skip,"",神奈川,"http://www.kasugakensetu.jp/",0,0,0,skip,"track=skip",
+"http://www.morinomegumi.jp/",株式会社 森の恵,NO_EMAIL,skip,"",神奈川,"http://www.morinomegumi.jp/",0,0,0,skip,"track=skip",
+"http://www.yamato-aoki.co.jp/",株式会社 青木工務店,NO_EMAIL,skip,"",神奈川,"https://yamato-aoki.co.jp/",0,0,0,skip,"track=skip",
+"http://www.kashiko-home.com/",株式会社 柏木工務店,NO_EMAIL,skip,"",神奈川,"https://www.kashiko-home.com/",0,0,0,skip,"track=skip",
+"https://www.aqura.co.jp/",株式会社AQ Group,NO_EMAIL,skip,"",埼玉,"https://www.aqura.co.jp/",0,0,0,skip,"track=skip",
+"http://www.arxist.jp/",株式会社Ａｒｘｉｓｔ,G1_WEAK,inside,"info@axt1.co.jp",東京,"https://www.arxist.jp/company.html",2,4,1,recruit,"採用URL:/recruit; 採用キーワード; 工務店・建設",2026-08-31T10:48:36
+"http://www.uruwashi.co.jp/",株式会社ＡＵ建築設計事務所,NO_EMAIL,skip,"",ひたちなか,"https://www.uruwashi.co.jp/",0,0,0,skip,"track=skip",
+"http://js-w.biz/index.html",株式会社beyond,FETCH_FAIL,skip,"",能美,"http://js-w.biz/index.html",0,0,0,skip,"track=skip",
+"http://www.bemodel.jp/kaisya-gaiyo.html",株式会社Ｂｅハウス・リモデル,FETCH_FAIL,skip,"",牛久,"http://www.bemodel.jp/kaisya-gaiyo.html",0,0,0,skip,"track=skip",
+"https://clear-realty.studio.site/",株式会社CLEAR,NO_EMAIL,skip,"",埼玉,"https://clear-realty.studio.site/",0,0,0,skip,"track=skip",
+"https://sda-suenaga.co.jp",株式会社CONIQ,NO_EMAIL,skip,"",福岡,"https://sda-suenaga.co.jp/",0,0,0,skip,"track=skip",
+"https://www.k-cozy.co.jp/",株式会社Cozy,G1_WEAK,inside,"kurata@k-cozy.co.jp",広島,"https://www.k-cozy.co.jp/",2,1,1,skip,"全スコア不足(hp=2,recruit=1,ai=1)",2026-08-31T06:14:16
+"https://www.k-zone2015.co.jp/",株式会社Ｋ-ＺＯＮＥ,FETCH_FAIL,skip,"",埼玉,"https://www.k-zone2015.co.jp/",0,0,0,skip,"track=skip",
+"https://matsuikikaku.jp/",株式会社MATSUI企画設計,NO_EMAIL,skip,"",上越,"https://matsuikikaku.jp/",0,0,0,skip,"track=skip",
+"http://www.okuta.com",株式会社ＯＫＵＴＡ,G1_MODERN,skip,"",埼玉,"https://www.okuta.com/",0,0,0,skip,"track=skip",
+"http://www.ozkoumuten.com/",株式会社ＯＺ工務店,G1_MODERN,skip,"",福岡,"https://www.ozkoumuten.com/",0,0,0,skip,"track=skip",
+"http://www.team-shinwa.net/",株式会社TeamShinwa,NO_EMAIL,skip,"",埼玉,"https://www.team-shinwa.net/",0,0,0,skip,"track=skip",
+"https://ykmeister.main.jp/",株式会社YK Meister,G1_MODERN,skip,"",埼玉,"https://ykmeister.main.jp/",0,0,0,skip,"track=skip",
+"http://archision.co.jp/",株式会社アーキジョン,NO_EMAIL,skip,"",金沢,"https://archision.co.jp/",0,0,0,skip,"track=skip",
+"https://www.art-kenko.com/",株式会社アート建工,NO_EMAIL,skip,"",米子,"https://www.art-kenko.com/",0,0,0,skip,"track=skip",
+"http://www.art-gr.co.jp",株式会社アート設計事務所,NO_EMAIL,skip,"",埼玉,"http://www.art-gr.co.jp/",0,0,0,skip,"track=skip",
+"http://www.aisai-home.net/",株式会社あいさいほーむ,FETCH_FAIL,skip,"",愛西,"http://www.aisai-home.net/",0,0,0,skip,"track=skip",
+"http://www.in-ex.co.jp",株式会社アイネックス,NO_EMAIL,skip,"",厚木,"https://in-ex.co.jp/",0,0,0,skip,"track=skip",
+"https://in-ex.co.jp",株式会社アイネックス,FETCH_FAIL,skip,"",神奈川,"https://in-ex.co.jp",0,0,0,skip,"track=skip",
+"http://www.ai-life.co.jp",株式会社アイライフ,G1_MODERN,inside,"uketsuke@ai-life.co.jp",埼玉,"https://www.ai-life.co.jp/contact/",0,2,6,ai_ops,"HP整備済(G1_MODERN); FAX表記; PDF資料; 問合せ・見積導線; 見積・対応エリア訴求",2026-08-31T06:20:27
+"http://www.akisim.co.jp/",株式会社アキシム,NO_EMAIL,skip,"",埼玉,"http://www.akisim.co.jp/",0,0,0,skip,"track=skip",
+"https://www.aquahome.biz/",株式会社アクアホーム,NO_EMAIL,skip,"",東京,"https://www.aquahome.biz/",0,0,0,skip,"track=skip",
+"https://www.apple-h.co.jp/",株式会社アップルホーム,G1_MODERN,inside,"info@apple-h.co.jp",埼玉,"https://www.apple-h.co.jp/",0,4,4,recruit,"採用URL:/recruit/; 採用キーワード; 工務店・建設",2026-08-31T06:20:20
+"https://atelier-hibiki.com",株式会社アトリエ響,G1_MODERN,skip,"",東京,"https://atelier-hibiki.com/",0,0,0,skip,"track=skip",
+"https://www.after-1115.com/",株式会社アフター,FETCH_FAIL,skip,"",十日町,"https://www.after-1115.com/",0,0,0,skip,"track=skip",
+"https://www.alpha-as.jp",株式会社アルファ建築空間,G1_WEAK,inside,"info@mail.co.jp",鹿島,"https://alpha-as.jp/contact/",2,2,2,skip,"全スコア不足(hp=2,recruit=2,ai=2)",2026-08-31T06:14:03
+"http://www.iizawa.co.jp/",株式会社イイザワ建築企画,FETCH_FAIL,skip,"",八王子,"http://www.iizawa.co.jp/",0,0,0,skip,"track=skip",
+"https://iizukakazuki.net",株式会社イイヅカカズキ建築事務所,G1_MODERN,skip,"",三条,"https://iizukakazuki.net/",0,0,0,skip,"track=skip",
+"https://www.igusakensetsu.com/",株式会社いぐさ建設,NO_EMAIL,skip,"",葛飾区,"https://www.igusakensetsu.com/",0,0,0,skip,"track=skip",
+"http://www.isaka-home.co.jp/",株式会社イサカホーム,G1_MODERN,skip,"",水戸,"https://www.isaka-home.co.jp/",0,0,0,skip,"track=skip",
+"https://www.ishitomidori.com/",株式会社イシトミドリ,G1_WEAK,inside,"info@mysite.co.jp",札幌,"https://www.ishitomidori.com/",2,1,1,skip,"全スコア不足(hp=2,recruit=1,ai=1)",2026-08-31T06:13:26
+"http://i-d-l.co.jp/",株式会社イチオリデザインラボ,G1_WEAK,inside,"info@i-d-l.co.jp",練馬,"https://i-d-l.co.jp/",2,4,3,recruit,"採用URL:/recruit/; 採用キーワード; 工務店・建設",2026-08-31T06:13:16
+"http://www.ichimaruhome.com",株式会社イチマルホーム,G1_MODERN,inside,".abcd@sample.co.jp",赤磐,"https://www.ichimaruhome.com/contact/",0,1,4,ai_ops,"HP整備済(G1_MODERN); FAX表記; 問合せ・見積導線",2026-08-31T06:14:54
+"http://www.sumai-nagomi.com/",株式会社いとう建匠,NO_EMAIL,skip,"",名古屋,"http://www.sumai-nagomi.com/",0,0,0,skip,"track=skip",
+"https://acreation-group.com/plus/",株式会社エークリエーションプラス,FETCH_FAIL,skip,"",神奈川,"https://acreation-group.com/plus/",0,0,0,skip,"track=skip",
+"http://www.acehome.net/",株式会社エースホーム,G1_WEAK,inside,"info@acehome.net",神埼,"https://acehome.net/",2,1,1,skip,"全スコア不足(hp=2,recruit=1,ai=1)",2026-08-31T06:14:04
+"http://www.atm-home.co.jp/",株式会社エーティーエム建築,FETCH_FAIL,skip,"",奈良,"http://www.atm-home.co.jp/",0,0,0,skip,"track=skip",
+"http://www.eco-house.co.jp/",株式会社エコハウス,CANDIDATE,buyout,"info@eco-house.co.jp",千葉,"http://www.eco-house.co.jp/",6,0,0,hp_buyout_66k,"SSL未整備; viewportなし; tel:なし; 粗2点以上",
+"http://eco-nibu.jp",株式会社エコライフ・ニブ,G1_WEAK,inside,"info@econibu.jp",伊万里,"https://eco-nibu.jp/",2,2,2,skip,"全スコア不足(hp=2,recruit=2,ai=2)",2026-08-31T06:14:00
+"https://ouchilabo.co.jp/company",株式会社おうちLABO,NO_EMAIL,skip,"",所沢,"https://ouchilabo.co.jp/company",0,0,0,skip,"track=skip",
+"https://ouchi-park-reform.com",株式会社おうちのリフォーム,FETCH_FAIL,skip,"",埼玉,"https://ouchi-park-reform.com",0,0,0,skip,"track=skip",
+"http://www.ooibashi.jp/",株式会社オオイバシ,NO_EMAIL,skip,"",横浜,"http://www.ooibashi.jp/",0,0,0,skip,"track=skip",
+"http://www.onuki-wood.com/",株式会社オーヌキ,NO_EMAIL,skip,"",東海,"https://www.onuki-wood.com/",0,0,0,skip,"track=skip",
+"http://www.oda-ken.jp/",株式会社オダ建設,FETCH_FAIL,skip,"",千葉,"http://www.oda-ken.jp/",0,0,0,skip,"track=skip",
+"https://www.onocom.co.jp/",株式会社オノコム,G1_MODERN,inside,"onocom@onocom.co.jp",豊橋市,"https://www.onocom.co.jp/contact/",0,4,4,recruit,"採用URL:/recruit; 採用キーワード; 工務店・建設",2026-08-31T06:18:59
+"http://www.kaitekihome.jp/",株式会社カイテキホーム,G1_MODERN,skip,"",つくば,"https://www.kaitekihome.jp/",0,0,0,skip,"track=skip",
+"http://www.kanetake-kensetu.com/",株式会社カネタケ建設,G1_WEAK,inside,"info@kanetake-kensetu.com",十日町,"https://kanetake-kensetu.com/company/",1,1,3,ai_ops,"HP導線おおむね整備; FAX表記; 問合せ・見積導線",2026-08-31T06:13:12
+"https://kanematak.com/",株式会社カネマタ工務店,G1_MODERN,skip,"",魚沼,"https://kanematak.com/",0,0,0,skip,"track=skip",
+"http://www.archi-kawasaki.com/",株式会社かわさき組,NO_EMAIL,skip,"",新潟,"https://www.archi-kawasaki.com/",0,0,0,skip,"track=skip",
+"http://www.cats.co.jp",株式会社キャッツ,G1_MODERN,skip,"",埼玉,"https://www.cats.co.jp/",0,0,0,skip,"track=skip",
+"http://www.good-donguri.com",株式会社グッドリビング,NO_EMAIL,skip,"",野田,"http://www.good-donguri.com/",0,0,0,skip,"track=skip",
+"https://clavis.co.jp/",株式会社クラヴィス,NO_EMAIL,skip,"",倉吉,"https://clavis.co.jp/",0,0,0,skip,"track=skip",
+"http://iwate-crafthouse.co.jp",株式会社クラフト・ハウス,G1_MODERN,inside,"iwate.crafthouse@gmail.com",矢巾,"https://www.iwate-crafthouse.co.jp/contact/",0,1,3,ai_ops,"HP整備済(G1_MODERN); 問合せ・見積導線",2026-08-31T06:14:44
+"http://www.kurieito-jutaku.jp/",株式会社クリエイト住宅,G1_MODERN,inside,"info@kurieito-jutaku.jp",酒田,"https://kurieito-jutaku.jp/",0,4,4,recruit,"採用URL:/採用/; 採用キーワード; 工務店・建設",2026-08-31T06:13:41
+"http://www.crie-s.co.jp/",株式会社クリエすずき建設,G1_MODERN,inside,"crie@crie-s.co.jp",柏,"https://www.crie-s.co.jp/contact/",0,4,5,ai_ops,"HP整備済(G1_MODERN); PDF資料; 問合せ・見積導線; 見積・対応エリア訴求",2026-08-31T06:14:58
+"https://www.kurita-living.jp/",株式会社クリタリビング,NO_EMAIL,skip,"",埼玉,"https://www.kurita-living.jp/",0,0,0,skip,"track=skip",
+"http://www.creahome.jp/",株式会社クレアホーム,FETCH_FAIL,skip,"",西東京,"http://www.creahome.jp/",0,0,0,skip,"track=skip",
+"http://crewahomes.com/",株式会社クレワホームズ,FETCH_FAIL,skip,"",神奈川,"http://crewahomes.com/",0,0,0,skip,"track=skip",
+"http://www.kuwaken.jp",株式会社クワケン,G1_WEAK,inside,"kuwaken@gix.or.jp",江南市,"https://kuwaken.jp/company/",1,4,2,recruit,"採用URL:/recruit/; 採用キーワード; 工務店・建設",2026-08-31T06:16:01
+"https://k-assist.pro/",株式会社ケイアシスト,G1_MODERN,skip,"",埼玉,"https://k-assist.pro/",0,0,0,skip,"track=skip",
+"http://www.kohdai-home.co.jp/",株式会社コーダイホーム,NO_EMAIL,skip,"",相模原,"http://www.kohdai-home.co.jp/",0,0,0,skip,"track=skip",
+"http://www.koga-jutaku.co.jp/",株式会社コガ住宅機器産業,NO_EMAIL,skip,"",埼玉,"https://www.koga-jutaku.co.jp/",0,0,0,skip,"track=skip",
+"https://gojyou.co.jp",株式会社ゴジョウ,G1_MODERN,skip,"",広島,"https://gojyou.co.jp/",0,0,0,skip,"track=skip",
+"http://www.comhousing.com",株式会社コムハウジング,G1_MODERN,inside,"request@comhousing.com",岡山,"https://www.comhousing.com/toiawase/index.html",0,1,4,ai_ops,"HP整備済(G1_MODERN); FAX表記; 問合せ・見積導線",2026-08-31T06:14:52
+"http://sunhouse0038.com/",株式会社サン・ハウス,G1_MODERN,skip,"",佐世保,"https://sunhouse0038.com/",0,0,0,skip,"track=skip",
+"https://sunwood-n.co.jp/",株式会社サンウッド新潟,NO_EMAIL,skip,"",十日町,"https://sunwood-n.co.jp/",0,0,0,skip,"track=skip",
+"http://www.suntopiahome.co.jp/",株式会社サントピアホーム,CANDIDATE,buyout,"info@www.suntopiahome.co.jp",津,"http://www.suntopiahome.co.jp/contact",5,0,0,hp_buyout_66k,"SSL未整備; tel:なし; 粗2点以上",
+"http://www.sanmaru-kaihatu.com/",株式会社サンマル開発,FETCH_FAIL,skip,"",菰野,"http://www.sanmaru-kaihatu.com/",0,0,0,skip,"track=skip",
+"http://www.shibata-home.co.jp/",株式会社シバタホーム,FETCH_FAIL,skip,"",ときがわ,"http://www.shibata-home.co.jp/",0,0,0,skip,"track=skip",
+"http://www.shimada-k.com",株式会社シマダ工務所,NO_EMAIL,skip,"",みどり,"https://www.shimada-k.com/",0,0,0,skip,"track=skip",
+"http://www.simomura.co.jp/",株式会社シモムラ・プランニング社,G1_WEAK,inside,"info@simomura.co.jp",一宮,"https://www.simomura.co.jp/",2,1,3,ai_ops,"FAX表記; PDF資料; 問合せ・見積導線",2026-08-31T06:19:44
+"https://kk-juken.co.jp/",株式会社ジューケン,G1_MODERN,skip,"img1@2x.png",鳥取,"https://kk-juken.co.jp/",0,0,0,skip,"track=skip",
+"https://www.jun-planning.biz/",株式会社ジュンプランニング,CANDIDATE,buyout,"itoch@lemon.plala.or.jp",千葉,"https://www.jun-planning.biz/about/",4,0,0,hp_buyout_66k,"viewportなし; tel:なし; 粗2点以上",
+"http://www.shinso.net",株式会社シンソー,DOMAIN_HIJACK,skip,"",出雲,"https://www.shinso.ai/",2,0,0,skip,"track=skip",
+"http://www.sumailand.com/",株式会社すまいランド,FETCH_FAIL,skip,"",南砺,"http://www.sumailand.com/",0,0,0,skip,"track=skip",
+"http://smile-life.jp/",株式会社すまいるほーむ,G1_MODERN,inside,"info@smile-life.jp",富山,"https://smile-life.jp/",0,2,3,ai_ops,"HP整備済(G1_MODERN); 問合せ・見積導線",2026-08-31T06:15:09
+"http://slowlife-fukuoka.com/",株式会社スローライフ住宅設計,G1_WEAK,inside,"nishikawa@slowlife-fukuoka.co.jp",那珂川,"https://slowlife-fukuoka.co.jp/company/",2,1,2,skip,"全スコア不足(hp=2,recruit=1,ai=2)",2026-08-31T06:19:55
+"http://serara.jp/",株式会社せらら工房,G1_MODERN,inside,"serara@100kj.co.jp",神奈川,"https://serara.jp/contact/",0,4,5,ai_ops,"HP整備済(G1_MODERN); FAX表記; PDF資料; 問合せ・見積導線",2026-08-31T10:47:59
+"http://www.selecthome.co.jp/",株式会社セレクトホーム,G1_MODERN,inside,"select@selecthome.co.jp",神戸,"https://selecthome.co.jp/company/",0,4,4,recruit,"採用URL:/recruit; 採用キーワード; 工務店・建設",2026-08-31T06:19:32
+"http://www.centralhouse.co.jp/",株式会社セントラルハウス,FETCH_FAIL,skip,"",小松,"http://www.centralhouse.co.jp/",0,0,0,skip,"track=skip",
+"http://www.1townhouse.com",株式会社タウンハウス,FETCH_FAIL,skip,"",岡山,"http://www.1townhouse.com",0,0,0,skip,"track=skip",
+"https://www.yume-town.net/",株式会社タウン建設,G1_WEAK,inside,"info@yume-town.net",鳥取,"https://www.yume-town.net/access/",2,3,2,recruit,"採用URL:/recruit/; 工務店・建設",2026-08-31T06:12:57
+"https://www.takano-ken.jp",株式会社タカノ建築,NO_EMAIL,skip,"",柏崎,"https://www.takano-ken.jp/",0,0,0,skip,"track=skip",
+"http://www.claria.jp",株式会社タカハシ建築事務所,NO_EMAIL,skip,"",新潟,"https://www.claria.jp/",0,0,0,skip,"track=skip",
+"http://takumi-k.com/",株式会社たくみ工房,NO_EMAIL,skip,"",千葉,"https://takumi-k.com/",0,0,0,skip,"track=skip",
+"http://www.danderise.co.jp/",株式会社ダンデ・ライズ,CANDIDATE,buyout,"info@danderise.co.jp",川崎,"https://www.danderise.co.jp/company/",4,0,0,hp_buyout_66k,"viewportなし; tel:なし; 粗2点以上",
+"https://yanekabeya.com",株式会社テイガク,G1_MODERN,inside,"info@teigaku.co.jp",埼玉,"https://yanekabeya.com/about/company/",0,3,4,ai_ops,"HP整備済(G1_MODERN); 問合せ・見積導線; 見積・対応エリア訴求",2026-08-31T06:20:00
+"http://www.eye-techno.co.jp",株式会社テクノ,NO_EMAIL,skip,"",埼玉,"http://www.eye-techno.co.jp/",0,0,0,skip,"track=skip",
+"http://www.kenchikuka.co.jp/",株式会社テラジマアーキテクツ,G1_MODERN,inside,"pr@terajima.co.jp",世田谷,"https://www.kenchikuka.co.jp/",0,4,3,recruit,"採用URL:/recruit/; 採用キーワード; 工務店・建設",2026-08-31T06:15:36
+"http://sh-tajimi.com/",株式会社テラホート,FETCH_FAIL,skip,"",多治見,"http://sh-tajimi.com/",0,0,0,skip,"track=skip",
+"http://kobekko.ibis-group.jp/",株式会社トキタホーム,FETCH_FAIL,skip,"",神戸,"http://kobekko.ibis-group.jp/",0,0,0,skip,"track=skip",
+"http://www.tomitake-k.jp/",株式会社トミタケ建設,FETCH_FAIL,skip,"",甲府,"http://www.tomitake-k.jp/",0,0,0,skip,"track=skip",
+"http://www.nice-reform.jp/",株式会社ナイスリフォーム,G1_MODERN,skip,"",徳島,"https://www.nice-reform.jp/",0,0,0,skip,"track=skip",
+"http://www.nackplanning.co.jp",株式会社ナックプランニング,G1_MODERN,skip,"",埼玉,"https://www.nackplanning.co.jp/",0,0,0,skip,"track=skip",
+"http://www.naffics-co.jp",株式会社ナフィックス,G1_WEAK,inside,"naffics-customer@noda-co.jp",東京,"https://www.naffics-co.jp/naffics/",2,4,2,recruit,"採用URL:/recruit/; 採用キーワード; 工務店・建設",2026-08-31T10:48:22
+"http://www.narusecorp.com/",株式会社ナルセコーポレーション,NO_EMAIL,skip,"",安城,"http://www.narusecorp.com/",0,0,0,skip,"track=skip",
+"http://www.need-home.com/",株式会社ニードホーム,NO_EMAIL,skip,"",射水,"http://www.need-home.com/",0,0,0,skip,"track=skip",
+"http://nishikawa-inc.com/",株式会社にしかわ,CANDIDATE,buyout,"nishikawa@abcd.com",下関,"https://nishikawa-inc.com/contact",4,0,0,hp_buyout_66k,"tel:なし; 更新停止感(HTML内2000止); 粗2点以上",
+"http://www.neohouse.jp",株式会社ネオハウス,CANDIDATE,buyout,"info@neohouse.jp",見附,"https://www.neohouse.jp/",4,0,0,hp_buyout_66k,"viewportなし; tel:なし; 粗2点以上",
+"http://heart-co.com/",株式会社ハート・コーポレーション,G1_MODERN,skip,"",山形,"https://www.heart-co.com/",0,0,0,skip,"track=skip",
+"http://www.housetecs.co.jp/",株式会社ハウステックス,G1_MODERN,skip,"",杉並,"https://www.housetecs.co.jp/",0,0,0,skip,"track=skip",
+"https://haseko-koumuten.jp",株式会社ハセコウ工務店,G1_WEAK,inside,"haseko@nichiai.jp",一宮市,"https://haseko-koumuten.jp/",1,1,2,skip,"全スコア不足(hp=1,recruit=1,ai=2)",2026-08-31T06:16:15
+"http://lohas-in.net/",株式会社ハヤシ工務店,NO_EMAIL,skip,"",千葉,"https://lohas-in.net/",0,0,0,skip,"track=skip",
+"http://maruka-woodsystems.com/",株式会社ハヤタウッドユーホーム,CANDIDATE,buyout,"maruka.woodsystems@gmail.com",亀岡,"http://maruka-woodsystems.com/",6,0,0,hp_buyout_66k,"SSL未整備; viewportなし; tel:なし; 粗2点以上",
+"https://hidamari-sekkei.com/",株式会社ひだまり設計工房,G1_WEAK,inside,"info@hidamari-sekkei.com",千葉,"https://hidamari-sekkei.com/",2,1,1,skip,"全スコア不足(hp=2,recruit=1,ai=1)",2026-08-31T10:49:11
+"https://hutec-inc.jp/",株式会社ヒューテック,NO_EMAIL,skip,"",知多郡東浦町,"https://hutec-inc.jp/",0,0,0,skip,"track=skip",
+"http://www.hirai-gnet.co.jp/",株式会社ひらい君津サポートセンター,NO_EMAIL,skip,"",君津,"https://www.hirai-gnet.co.jp/",0,0,0,skip,"track=skip",
+"http://www.sciencetect.jp/",株式会社ビルドテクト,CANDIDATE,buyout,"mail.bildtct@clock.ocn.ne.jp",鳥取,"http://www.sciencetect.jp/company.html",5,0,0,hp_buyout_66k,"SSL未整備; tel:なし; 粗2点以上",
+"http://www.hilohouse.net/",株式会社ヒロハウス,G1_MODERN,inside,"info@hilohouse.net",久山,"https://www.hilohouse.net/",0,1,4,ai_ops,"HP整備済(G1_MODERN); FAX表記; 問合せ・見積導線",2026-08-31T06:19:49
+"https://hirobase.co.jp/",株式会社ヒロベース,FETCH_FAIL,skip,"",埼玉,"https://hirobase.co.jp/",0,0,0,skip,"track=skip",
+"http://www.fuziki.co.jp",株式会社フジキ建設,G1_WEAK,inside,"info@fuziki.co.jp",埼玉,"https://www.fuziki.co.jp/",2,3,2,recruit,"採用URL:/recruit/; 工務店・建設",2026-08-31T06:20:09
+"https://www.fujikengroup.co.jp",株式会社フジケン,NO_EMAIL,skip,"",岡崎市,"https://www.fujikengroup.co.jp/",0,0,0,skip,"track=skip",
+"http://breath-home.com/",株式会社ブレスホーム,FETCH_FAIL,skip,"",豊田,"http://breath-home.com/",0,0,0,skip,"track=skip",
+"http://www.pro-duce.net/",株式会社プロデュース,NO_EMAIL,skip,"",高岡,"https://www.pro-duce.net/",0,0,0,skip,"track=skip",
+"https://www.homes-maruho.jp/",株式会社ホームズマルホ,FETCH_FAIL,skip,"",埼玉,"https://www.homes-maruho.jp/",0,0,0,skip,"track=skip",
+"http://hometech-sumai.com/",株式会社ホームテック,NO_EMAIL,skip,"",米子,"http://hometech-sumai.com/",0,0,0,skip,"track=skip",
+"http://www.polus-reform.com",株式会社ポラスのリフォーム,G1_MODERN,skip,"",埼玉,"https://www.polus-reform.com/",0,0,0,skip,"track=skip",
+"http://www.holzbau.jp/",株式会社ホルツバウ,NO_EMAIL,skip,"",会津若松,"https://www.holzbau.jp/",0,0,0,skip,"track=skip",
+"http://www.magome-net.co.jp/",株式会社マゴメ工務店,CANDIDATE,buyout,"info@magome-net.co.jp",大田,"http://www.magome-net.co.jp/company/",6,0,0,hp_buyout_66k,"SSL未整備; viewportなし; tel:なし; 粗2点以上",
+"https://aksuper.jp/",株式会社マツモト工務店,G1_MODERN,inside,"aksuper@aksuper.jp",鳥取,"https://aksuper.jp/",0,4,3,recruit,"採用URL:/recruit; 採用キーワード; 工務店・建設",2026-08-31T06:12:46
+"http://www.yurick.co.jp/",株式会社マリモハウス,FETCH_FAIL,skip,"",高松,"http://www.yurick.co.jp/",0,0,0,skip,"track=skip",
+"http://www.marukei55.co.jp/",株式会社マルケイ,G1_WEAK,inside,"e-mail@domain.jp",名古屋市,"https://www.marukei55.co.jp/contact",2,2,1,skip,"全スコア不足(hp=2,recruit=2,ai=1)",2026-08-31T06:19:21
+"http://www.yagi-kobo.co.jp",株式会社まるたけ,FETCH_FAIL,skip,"",藤枝,"http://www.yagi-kobo.co.jp",0,0,0,skip,"track=skip",
+"https://maru-moto.jp/",株式会社マルモト,FETCH_FAIL,skip,"",米原,"https://maru-moto.jp/",0,0,0,skip,"track=skip",
+"http://maruyuuhome.co.jp/",株式会社マルユーホーム,FETCH_FAIL,skip,"",盛岡,"http://maruyuuhome.co.jp/",0,0,0,skip,"track=skip",
+"https://miyake-web.com/",株式会社みやけ工務店,NO_EMAIL,skip,"",鳥取,"https://miyake-web.com/",0,0,0,skip,"track=skip",
+"https://www.meidai-net.co.jp",株式会社メイダイ,G1_MODERN,skip,"",豊田市,"https://www.meidai-net.co.jp/",0,0,0,skip,"track=skip",
+"http://www.modern-style0201.jp/",株式会社モダンスタイル,FETCH_FAIL,skip,"",藤枝,"http://www.modern-style0201.jp/",0,0,0,skip,"track=skip",
+"http://mo-house.com/",株式会社モリハウジング,G1_WEAK,inside,"info@nust.jp",日立,"https://nust.jp/company/",2,4,2,recruit,"採用URL:/recruit; 採用キーワード; 工務店・建設",2026-08-31T06:15:30
+"https://www.iiiezukuri.com/",株式会社やないＮｅｘｔ Ｈｏｍｅ,FETCH_FAIL,skip,"",埼玉,"https://www.iiiezukuri.com/",0,0,0,skip,"track=skip",
+"http://www.yanekabe-honpo.jp",株式会社やねかべ本舗,NO_EMAIL,skip,"",埼玉,"https://yanekabe-honpo.jp/",0,0,0,skip,"track=skip",
+"http://www.yamaki-yk.sv.bigsite.jp/",株式会社やまき工務店,FETCH_FAIL,skip,"",伊達,"http://www.yamaki-yk.sv.bigsite.jp/",0,0,0,skip,"track=skip",
+"http://yawata-home.co.jp",株式会社ヤワタホーム,G1_MODERN,skip,"sample@yawata-home.co.jp",香取,"https://yawata-home.co.jp/contact/",0,0,0,skip,"track=skip",
+"http://www.k5.dion.ne.jp/~yoshiken/",株式会社ヨシケン企画,FETCH_FAIL,skip,"",旭,"http://www.k5.dion.ne.jp/~yoshiken/",0,0,0,skip,"track=skip",
+"http://lakuju.jp",株式会社ラクジュ,FETCH_FAIL,skip,"",神奈川,"http://lakuju.jp",0,0,0,skip,"track=skip",
+"http://www.lead-up.co.jp/",株式会社リード,G1_MODERN,skip,"",千葉,"https://lead-up.co.jp/",0,0,0,skip,"track=skip",
+"http://www.linux-group.co.jp/",株式会社リナックスホーム,G1_MODERN,skip,"",明石,"https://www.linux-group.co.jp/",0,0,0,skip,"track=skip",
+"https://refomaru.co.jp/",株式会社リフォまる,G1_MODERN,skip,"",埼玉,"https://refomaru.co.jp/",0,0,0,skip,"track=skip",
+"http://www.e-robin.com/",株式会社ロビン,NO_EMAIL,skip,"",高山,"http://www.e-robin.com/",0,0,0,skip,"track=skip",
+"http://www.ysplan-sp.com/",株式会社ワイズプランＳＰ,FETCH_FAIL,skip,"",伊万里,"http://www.ysplan-sp.com/",0,0,0,skip,"track=skip",
+"http://www.waitsu.com/",株式会社ワイツ,G1_MODERN,inside,"otoiawase@waitsu.com",平群,"https://waitsu.com/",0,1,5,ai_ops,"HP整備済(G1_MODERN); FAX表記; PDF資料; 問合せ・見積導線",2026-08-31T06:19:35
+"http://www.abekensetu.co.jp",株式会社阿部建設,NO_EMAIL,skip,"",上越,"https://www.abekensetu.co.jp/",0,0,0,skip,"track=skip",
+"http://www.aichikoumuten.com",株式会社愛知工務店,NO_EMAIL,skip,"",大府市,"https://www.aichikoumuten.com/",0,0,0,skip,"track=skip",
+"http://www.and-y.jp",株式会社安藤工務店,G1_MODERN,skip,"",江南市,"https://www.big-advance.site/c/202/2479",0,0,0,skip,"track=skip",
+"https://ishou-h.com/",株式会社意匠計画Horigami,G1_WEAK,skip,"exsample@ishou-h.com",高松,"https://ishou-h.com/contact/",2,0,0,skip,"track=skip",
+"http://www.hihomes.co.jp",株式会社育暮家ハイホームス,G1_MODERN,inside,"e-mail.hihomes@tokai.or.jp",藤枝,"https://hihomes.co.jp/",0,1,4,ai_ops,"HP整備済(G1_MODERN); FAX表記; 問合せ・見積導線",2026-08-31T06:14:56
+"http://www.eiken-fp.co.jp/",株式会社栄建,G1_MODERN,skip,"",長久手,"https://www.eiken-fp.co.jp/",0,0,0,skip,"track=skip",
+"http://eishin-kensetsu.co.jp/",株式会社栄伸建設,NO_EMAIL,skip,"",武蔵野,"https://eishin-kensetsu.co.jp/",0,0,0,skip,"track=skip",
+"http://www.eishin-kensetsu.co.jp/landing/",株式会社栄伸建設,NO_EMAIL,skip,"",東京,"https://www.eishin-kensetsu.co.jp/landing/",0,0,0,skip,"track=skip",
+"https://www.nagaken.com",株式会社永賢組,NO_EMAIL,skip,"",春日井市,"https://www.nagaken.com/",0,0,0,skip,"track=skip",
+"http://www.hkr.co.jp/naganohouse/",株式会社永野ハウス,FETCH_FAIL,skip,"",白河,"http://www.hkr.co.jp/naganohouse/",0,0,0,skip,"track=skip",
+"https://yokoyamakensetu.jp/",株式会社横山建設,NO_EMAIL,skip,"",青森,"https://yokoyamakensetu.jp/",0,0,0,skip,"track=skip",
+"http://yokoken3190.jimdo.com/",株式会社横山建設,FETCH_FAIL,skip,"",安中,"http://yokoken3190.jimdo.com/",0,0,0,skip,"track=skip",
+"http://yokoyamakoumuten.com/",株式会社横山工務店,NO_EMAIL,skip,"",埼玉,"http://yokoyamakoumuten.com/",0,0,0,skip,"track=skip",
+"http://covo-simo.com/",株式会社下田住宅工房,NO_EMAIL,skip,"",下関,"https://covo-simo.com/",0,0,0,skip,"track=skip",
+"http://www.kato-kensetu.co.jp",株式会社加藤建設,NO_EMAIL,skip,"",海部郡蟹江町大字蟹江新田字下市,"https://www.kato-kensetu.co.jp/",0,0,0,skip,"track=skip",
+"https://kato-arc-storage.jp/",株式会社加藤建築,G1_WEAK,inside,"info@kato-arc-storage.jp",山形,"https://kato-arc-storage.jp/contact",2,1,2,skip,"全スコア不足(hp=2,recruit=1,ai=2)",2026-08-31T06:13:57
+"https://katotekken.com/",株式会社加藤鉄建,NO_EMAIL,skip,"",日野,"https://katotekken.com/",0,0,0,skip,"track=skip",
+"http://www.kawaikoumuten.co.jp/",株式会社河合工務店,G1_MODERN,skip,"",豊橋,"https://www.kawaikoumuten.co.jp/",0,0,0,skip,"track=skip",
+"http://kawamura-ss.co.jp",株式会社河村産業所,NO_EMAIL,skip,"",あま市,"http://kawamura-ss.co.jp/",0,0,0,skip,"track=skip",
+"https://ha-net.co.jp/hanada/",株式会社花田工務店,G1_MODERN,skip,"",豊橋市,"https://www.ha-net.co.jp/hanada/",0,0,0,skip,"track=skip",
+"http://www.k-haujing.com/",株式会社垣本ハウジング,G1_MODERN,skip,"",香芝,"https://www.k-haujing.com/",0,0,0,skip,"track=skip",
+"http://tanoshiisumai.com/",株式会社楽しい住まいわが家,FETCH_FAIL,skip,"",粕屋,"http://tanoshiisumai.com/",0,0,0,skip,"track=skip",
+"http://www.rs-knj.com/",株式会社笠原建設,G1_MODERN,skip,"",新潟,"https://www.rs-knj.com/",0,0,0,skip,"track=skip",
+"http://www.kasahara-koumuten.co.jp/",株式会社笠原工務店,CANDIDATE,buyout,"info@kasahara-koumuten.co.jp",横浜,"https://www.kasahara-koumuten.co.jp/",4,0,0,hp_buyout_66k,"viewportなし; tel:なし; 粗2点以上",
+"http://kamata.to/",株式会社鎌田工務店,NO_EMAIL,skip,"",山形,"https://kamata.to/",0,0,0,skip,"track=skip",
+"https://www.marukahome.com/",株式会社丸加木材製作所,G1_MODERN,skip,"",一宮市,"https://www.marukahome.com/",0,0,0,skip,"track=skip",
+"http://www.maruyamakoumuten.co.jp/index.html",株式会社丸山工務店,NO_EMAIL,skip,"",世田谷,"http://www.maruyamakoumuten.co.jp/",0,0,0,skip,"track=skip",
+"https://www.marug.co.jp",株式会社丸山組,G1_MODERN,skip,"",安城市,"https://www.marug.co.jp/",0,0,0,skip,"track=skip",
+"http://www.kkmarunaka.co.jp/",株式会社丸中工務店,NO_EMAIL,skip,"",足立,"http://www.kkmarunaka.co.jp/",0,0,0,skip,"track=skip",
+"http://www.fiacehome-kamo.com/",株式会社丸統建,FETCH_FAIL,skip,"",可児,"http://www.fiacehome-kamo.com/",0,0,0,skip,"track=skip",
+"http://xs774102.xsrv.jp/",株式会社丸末組,NO_EMAIL,skip,"",刈谷市,"http://xs774102.xsrv.jp/",0,0,0,skip,"track=skip",
+"http://www.iwaken-ht.co.jp",株式会社岩建ホームテック,NO_EMAIL,skip,"",埼玉,"https://www.iwaken-ht.co.jp/",0,0,0,skip,"track=skip",
+"http://mtd.jp/",株式会社基工務店,CANDIDATE,buyout,"motokou@mtd.jp",鶴岡,"http://mtd.jp/",6,0,0,hp_buyout_66k,"SSL未整備; tel:なし; 更新停止感(HTML内2018止); 粗2点以上",
+"http://www16.ocn.ne.jp/~kesennum/",株式会社気仙沼工務店,FETCH_FAIL,skip,"",仙台,"http://www16.ocn.ne.jp/~kesennum/",0,0,0,skip,"track=skip",
+"https://yoshihara-building.co.jp/",株式会社吉原建築,NO_EMAIL,skip,"",鳥取,"https://yoshihara-building.co.jp/",0,0,0,skip,"track=skip",
+"https://www.yoshidagumi.com",株式会社吉田組,G1_MODERN,inside,"info@yoshidagumi.com",西尾市,"https://www.yoshidagumi.com/",0,2,4,ai_ops,"HP整備済(G1_MODERN); FAX表記; 問合せ・見積導線",2026-08-31T06:16:23
+"http://kk-yoshidagumi.co.jp",株式会社吉田組,G1_WEAK,skip,"sample@kk-yoshidagumi.co.jp",一宮市,"https://kk-yoshidagumi.co.jp/contact.html",2,0,0,skip,"track=skip",
+"http://www.yoshizawa-kk.co.jp",株式会社吉澤建設工業,G1_MODERN,inside,"info@yoshizawa-kk.co.jp",埼玉,"https://www.yoshizawa-kk.co.jp/",0,1,4,ai_ops,"HP整備済(G1_MODERN); FAX表記; 問合せ・見積導線",2026-08-31T10:48:48
+"https://www.kubota-koumuten.biz/topics_detail13/",株式会社久保田工務店,FETCH_FAIL,skip,"",神奈川,"https://www.kubota-koumuten.biz/topics_detail13/",0,0,0,skip,"track=skip",
+"http://www.Kyouwa-const.com",株式会社協和建築,FETCH_FAIL,skip,"",埼玉,"http://www.Kyouwa-const.com",0,0,0,skip,"track=skip",
+"http://www.ohmiwall-group.com/",株式会社近江ウォール,NO_EMAIL,skip,"",東近江,"https://www.ohmiwall-group.com/",0,0,0,skip,"track=skip",
+"http://www.kondo-kk.com",株式会社近藤建設興業,G1_MODERN,skip,"sample@sample.com",岡山,"https://www.kondo-kk.com/contact/",0,0,0,skip,"track=skip",
+"http://www.kondo.co.jp",株式会社近藤組,G1_MODERN,skip,"",刈谷市,"https://www.kondo.co.jp/",0,0,0,skip,"track=skip",
+"http://www.kuwakou.co.jp/",株式会社桑原工務店,NO_EMAIL,skip,"",津南,"https://www.kuwakou.co.jp/",0,0,0,skip,"track=skip",
+"http://www.kenchikuno-fujisawa.co.jp/",株式会社建築のフジサワ,G1_MODERN,skip,"",大船渡,"https://kenchikuno-fujisawa.co.jp/",0,0,0,skip,"track=skip",
+"http://www.kuu.e-arc.jp/",株式会社建築工房空,NO_EMAIL,skip,"",瀬戸,"http://www.kuu.e-arc.jp/",0,0,0,skip,"track=skip",
+"https://kenpan.jp/",株式会社建販,G1_MODERN,inside,"info@kenpan.jp",鳥取,"https://kenpan.jp/company",0,2,4,ai_ops,"HP整備済(G1_MODERN); FAX表記; 問合せ・見積導線",2026-08-31T06:12:55
+"https://www.kk-harada.com",株式会社原田工務店,NO_EMAIL,skip,"",名古屋市,"https://www.kk-harada.com/",0,0,0,skip,"track=skip",
+"http://www.tomoro.co.jp/",株式会社戸諸工務店,CANDIDATE,buyout,"tomoro.net@abeam.ocn.ne.jp",千葉,"https://www.tomoro.co.jp/",4,0,0,hp_buyout_66k,"viewportなし; tel:なし; 粗2点以上",
+"http://www.chachakiki.com/",株式会社五十嵐建築,CANDIDATE,buyout,"chachakiki0320@yahoo.co.jp",会津若松,"http://www.chachakiki.com/",7,0,0,hp_buyout_66k,"SSL未整備; viewportなし; tel:なし; 更新停止感(HTML内2008止); 粗2点以上",
+"http://www.ii-ie.net/~igarashi/",株式会社五十嵐工匠,G1_WEAK,inside,"glt@lixil.com",会津若松,"https://www.ii-ie2.net/about/",2,2,3,ai_ops,"PDF資料; 問合せ・見積導線; 見積・対応エリア訴求",2026-08-31T06:15:46
+"https://www.godai-home.com/",株式会社五大工務店,NO_EMAIL,skip,"",埼玉,"https://www.godai-home.com/",0,0,0,skip,"track=skip",
+"http://kousankensetsu.com/",株式会社幸三建設,NO_EMAIL,skip,"",津,"http://kousankensetsu.com/",0,0,0,skip,"track=skip",
+"http://www.miyuki-juken.net/",株式会社幸住研,NO_EMAIL,skip,"",熊本,"https://miyuki-juken.net/",0,0,0,skip,"track=skip",
+"http://hirose-sc.com/",株式会社広瀬住宅計画,G1_MODERN,inside,"info@hirose-sc.com",前橋,"https://hirose-sc.com/company/",0,1,4,ai_ops,"HP整備済(G1_MODERN); FAX表記; 問合せ・見積導線",2026-08-31T06:14:45
+"https://www.kk-arakawa.co.jp",株式会社荒川工務店,G1_WEAK,inside,"yourmail@sample.co.jp",豊橋市,"https://www.kk-arakawa.co.jp/contact",2,4,1,recruit,"採用URL:/recruit; 採用キーワード; 工務店・建設",2026-08-31T06:18:57
+"http://www.takahashi-sekkei.jp/",株式会社高橋政雄設計事務所,G1_MODERN,skip,"",さいたま,"https://www.takahashi-sekkei.jp/",0,0,0,skip,"track=skip",
+"http://www.takamoku.com/",株式会社高橋木工所,G1_MODERN,skip,"",津南,"https://takamoku.com/",0,0,0,skip,"track=skip",
+"http://www.takasagokensetu.co.jp",株式会社高砂建設,G1_MODERN,skip,"",埼玉,"https://www.takasagokensetu.co.jp/",0,0,0,skip,"track=skip",
+"http://www.takashima-zaimoku.jp/",株式会社高嶋材木店,CANDIDATE,buyout,"info@takashima-zaimoku.jp",取手,"http://www.takashima-zaimoku.jp/",6,0,0,hp_buyout_66k,"SSL未整備; viewportなし; tel:なし; 粗2点以上",
+"http://www.takamune.co.jp/",株式会社高棟建設工業,G1_WEAK,inside,"info@takamune.co.jp",横浜,"https://www.takamune.co.jp/",2,1,2,skip,"全スコア不足(hp=2,recruit=1,ai=2)",2026-08-31T06:19:26
+"http://www.takayanagi.co.jp",株式会社高柳組,CANDIDATE,buyout,"info@takayanagi.co.jp",春日井市,"http://www.takayanagi.co.jp/company/",5,0,0,hp_buyout_66k,"SSL未整備; tel:なし; 粗2点以上",
+"http://www.goda-koumuten.com/",株式会社合田工務店,G1_MODERN,skip,"",京都,"https://www.goda-koumuten.com/",0,0,0,skip,"track=skip",
+"http://www.k-kunimatsu.jp/",株式会社国松工務店,CANDIDATE,buyout,"kunimatsu@k-kunimatsu.jp",西宮,"http://www.k-kunimatsu.jp/",5,0,0,hp_buyout_66k,"SSL未整備; tel:なし; 粗2点以上",
+"http://www.kuro-yanagi.com/",株式会社黒柳建設,NO_EMAIL,skip,"",小金井,"https://kuro-yanagi.com/",0,0,0,skip,"track=skip",
+"http://www.kon-koum.co.jp/",株式会社今工務所,G1_WEAK,inside,"info@kon-koum.co.jp",青森,"https://www.kon-koum.co.jp/form",2,4,2,recruit,"採用URL:/recruit; 採用キーワード; 工務店・建設",2026-08-31T06:12:43
+"http://sakumakoumuten.jp/",株式会社佐久間工務店,CANDIDATE,buyout,"soumu@sakuma.co.jp",千葉,"https://sakumakoumuten.jp/company/",4,0,0,hp_buyout_66k,"tel:なし; 更新停止感(HTML内2014止); 粗2点以上",
+"http://www.sazen.co.jp/",株式会社佐善工務店,NO_EMAIL,skip,"",仙台,"http://sazen.co.jp/",0,0,0,skip,"track=skip",
+"https://sato-kanemasa.co.jp/",株式会社佐藤工務店,G1_MODERN,skip,"",新潟,"https://sato-kanemasa.co.jp/",0,0,0,skip,"track=skip",
+"https://sato-koumu.com",株式会社佐藤工務店,NO_EMAIL,skip,"",弥富市,"https://sato-koumu.com/",0,0,0,skip,"track=skip",
+"https://sanokoumuten.co.jp/",株式会社佐野工務店,G1_MODERN,skip,"",千葉,"https://sanokoumuten.co.jp/",0,0,0,skip,"track=skip",
+"http://www.zaihan.co.jp/",株式会社材半建設,FETCH_FAIL,skip,"",海津,"http://www.zaihan.co.jp/",0,0,0,skip,"track=skip",
+"http://www.sakata-koumuten.jp/",株式会社坂田工務店,G1_MODERN,skip,"",五條,"https://www.sakata-koumuten.jp/",0,0,0,skip,"track=skip",
+"http://www.sakaki-j.co.jp/",株式会社榊住建,G1_MODERN,skip,"",さいたま,"https://www.sakaki-j.co.jp/",0,0,0,skip,"track=skip",
+"http://www.mitsuwa-net.co.jp/",株式会社三ツワ金砂郷工場,CANDIDATE,buyout,"keiri@mitsuwa-net.jp",常陸太田,"http://www.mitsuwa-net.jp/",5,0,0,hp_buyout_66k,"SSL未整備; tel:なし; 粗2点以上",
+"http://san-ki.com/",株式会社三喜工務店,G1_MODERN,skip,"",武蔵村山,"https://san-ki.com/",0,0,0,skip,"track=skip",
+"http://www.sanko-cc.com/",株式会社三幸建設,NO_EMAIL,skip,"",岡崎市,"https://www.sanko-cc.com/",0,0,0,skip,"track=skip",
+"http://www.mikami-k.jp/",株式会社三上工務店,NO_EMAIL,skip,"",三鷹,"http://www.mikami-k.jp/",0,0,0,skip,"track=skip",
+"http://www.yks.co.jp/",株式会社山口企画設計,G1_MODERN,skip,"",所沢,"https://www.yks.co.jp/",0,0,0,skip,"track=skip",
+"http://yamasyou.biz/",株式会社山匠エコシステム,FETCH_FAIL,skip,"",寒河江,"http://yamasyou.biz/",0,0,0,skip,"track=skip",
+"http://www.yamasyou-koumuten.co.jp",株式会社山正工務店,NO_EMAIL,skip,"",豊橋市,"http://www.yamasyou-koumuten.co.jp/",0,0,0,skip,"track=skip",
+"https://yamakawakoumuten.com/",株式会社山川工務店,G1_WEAK,inside,"yamakawakomutenn@gmail.com",荒尾,"https://yamakawakoumuten.com/company/",2,1,2,skip,"全スコア不足(hp=2,recruit=1,ai=2)",2026-08-31T06:13:10
+"http://www.co-ichinose.com/",株式会社市之瀬工務店,G1_MODERN,skip,"",埼玉,"https://www.co-ichinose.com/",0,0,0,skip,"track=skip",
+"https://www.comjapan.net/",株式会社氏家,G1_WEAK,inside,"mail_to@ujiie.com",福島,"https://www.comjapan.net/",2,1,1,skip,"全スコア不足(hp=2,recruit=1,ai=1)",2026-08-31T06:12:42
+"https://www.hichiban.jp",株式会社七番組,G1_MODERN,skip,"sample@hichibangumi.co.jp",半田市,"https://www.hichiban.jp/contact/",0,0,0,skip,"track=skip",
+"http://www.moriyakoumuten.com/",株式会社守屋工務店,CANDIDATE,buyout,"info@moriyakoumuten.com",小金井,"https://www.moriyakoumuten.com/",4,0,0,hp_buyout_66k,"viewportなし; tel:なし; 粗2点以上",
+"https://www.morisigekensetu.jp/",株式会社守重建設,G1_MODERN,inside,"t_yamada@sample.jp",東京,"https://www.morisigekensetu.jp/inquiry/",0,1,3,ai_ops,"HP整備済(G1_MODERN); 問合せ・見積導線",2026-08-31T10:48:32
+"http://www.sososya.com/",株式会社手嶋組,G1_MODERN,skip,"",朝倉,"https://sososya.com/",0,0,0,skip,"track=skip",
+"http://www.reform-jyuken.com/",株式会社住建,G1_MODERN,inside,"info@reform-jyuken.com",甲斐,"https://reform-jyuken.com/about/",0,3,5,ai_ops,"HP整備済(G1_MODERN); FAX表記; 問合せ・見積導線; 見積・対応エリア訴求",2026-08-31T06:15:14
+"https://shun-style.com/",株式会社旬style,G1_MODERN,skip,"",彦根,"https://shun-style.com/",0,0,0,skip,"track=skip",
+"http://www.shouya.jp/",株式会社匠家,NO_EMAIL,skip,"",笛吹,"https://www.shouya.jp/",0,0,0,skip,"track=skip",
+"http://www.takumigiken.com/",株式会社匠技建,G1_WEAK,inside,"info@takumigiken.com",立川,"https://www.takumigiken.com/contact",2,4,1,recruit,"採用URL:/recruit; 採用キーワード; 工務店・建設",2026-08-31T06:15:41
+"https://www.takumigiken.com/",株式会社匠技建,G1_WEAK,inside,"info@takumigiken.com",東京,"https://www.takumigiken.com/contact",2,4,1,recruit,"採用URL:/recruit; 採用キーワード; 工務店・建設",2026-08-31T10:48:24
+"http://www.obarahaujing.com",株式会社小原ハウジング,NO_EMAIL,skip,"",豊田市,"http://www.obarahaujing.com/",0,0,0,skip,"track=skip",
+"https://kosuda-kk.com",株式会社小須田建設工業,G1_WEAK,inside,"info@kosuda-kk.com",埼玉,"https://kosuda-kk.com/inquiry/",2,3,1,recruit,"採用URL:/recruit/; 工務店・建設",2026-08-31T10:48:51
+"https://www.odaharakoumuten.co.jp/",株式会社小田原工務店,G1_MODERN,skip,"",米子,"https://www.odaharakoumuten.co.jp/",0,0,0,skip,"track=skip",
+"https://www.odashimakoumuten.jp/",株式会社小田島工務店,NO_EMAIL,skip,"",盛岡,"https://www.odashimakoumuten.jp/",0,0,0,skip,"track=skip",
+"http://koitabasi-koumuten.life.coocan.jp/",株式会社小板橋工務店,NO_EMAIL,skip,"",千葉,"https://koitabasi-koumuten.life.coocan.jp/",0,0,0,skip,"track=skip",
+"http://www.ogura-build.co.jp/",株式会社小椋建築,G1_WEAK,inside,"info@ogura-build.com",富山,"https://ogura-build.co.jp/about/company/",2,1,2,skip,"全スコア不足(hp=2,recruit=1,ai=2)",2026-08-31T06:15:03
+"http://www.kobaken.co.jp",株式会社小林建設,G1_MODERN,skip,"",東京,"https://www.kobaken.co.jp/",0,0,0,skip,"track=skip",
+"http://www.0561569111.com/",株式会社小林工務店,CANDIDATE,buyout,"yourmail@sample.co.jp",日進,"https://www.0561569111.com/form",4,0,0,hp_buyout_66k,"tel:なし; 更新停止感(HTML内2019止); 粗2点以上",
+"http://www.matsumura-k.co.jp/",株式会社松村建設,NO_EMAIL,skip,"",日野,"http://www.matsumura-k.co.jp/",0,0,0,skip,"track=skip",
+"https://matsumotok.co.jp/",株式会社松本工務店,G1_MODERN,inside,"info@matsumotok.co.jp",白河,"https://matsumotok.co.jp/",0,2,4,ai_ops,"HP整備済(G1_MODERN); FAX表記; 問合せ・見積導線",2026-08-31T06:12:37
+"http://www.jonangumi.co.jp/",株式会社城南組,CANDIDATE,buyout,"info@jonangumi.co.jp",京都,"http://www.jonangumi.co.jp/company/",6,0,0,hp_buyout_66k,"SSL未整備; tel:なし; 更新停止感(HTML内2009止); 粗2点以上",
+"http://sinanojutaku.co.jp/",株式会社信濃住宅,FETCH_FAIL,skip,"",埼玉,"http://sinanojutaku.co.jp/",0,0,0,skip,"track=skip",
+"http://www.new-archi.com/",株式会社新建築,NO_EMAIL,skip,"",京都,"http://www.new-archi.com/Error/NotFoundError",0,0,0,skip,"track=skip",
+"http://niimikoumuten.com/",株式会社新見工務店,BLOCKLIST,skip,"",小平,"http://niimikoumuten.com/",0,0,0,skip,"track=skip",
+"https://www.shin-sobi.co.jp",株式会社新創美デザイン事務所,G1_MODERN,skip,"",三条,"https://www.shin-sobi.co.jp/",0,0,0,skip,"track=skip",
+"http://www17.plala.or.jp/morishita-co/index.html",株式会社森下工務店,FETCH_FAIL,skip,"",田原市,"http://www17.plala.or.jp/morishita-co/index.html",0,0,0,skip,"track=skip",
+"http://morikawa-ie.com",株式会社森川建築事務所,G1_WEAK,inside,"info@morikawa-ie.com",秋田,"https://morikawa-ie.com/contact",2,1,1,skip,"全スコア不足(hp=2,recruit=1,ai=1)",2026-08-31T06:14:42
+"http://www.k2-homes.com/hp/shineijuuken/",株式会社真栄住研,FETCH_FAIL,skip,"",津山,"http://www.k2-homes.com/hp/shineijuuken/",0,0,0,skip,"track=skip",
+"https://www.jinno-koumuten.com/",株式会社神野工務店,NO_EMAIL,skip,"",大分,"https://www.jinno-koumuten.com/",0,0,0,skip,"track=skip",
+"http://www.suto-k.co.jp",株式会社須藤建設,CANDIDATE,buyout,"finfo@suto-k.co.jp",山形,"http://www.suto-k.co.jp/",6,0,0,hp_buyout_66k,"SSL未整備; viewportなし; tel:なし; 粗2点以上",
+"http://www.mizuno-co.com",株式会社水野建設,NO_EMAIL,skip,"",名古屋市,"https://www.mizuno-co.com/",0,0,0,skip,"track=skip",
+"http://www.mizuno-co.jp",株式会社水野工務店,NO_EMAIL,skip,"",名古屋市,"http://www.mizuno-co.jp/",0,0,0,skip,"track=skip",
+"http://www.sugimotogumi.co.jp/",株式会社杉本組,G1_WEAK,inside,"honsya@sugimotogumi.co.jp",名古屋市,"https://www.sugimotogumi.co.jp/company.php/",2,4,2,recruit,"採用URL:/recruit/; 採用キーワード; 工務店・建設",2026-08-31T06:19:10
+"http://sugawara-koumuten.com/",株式会社菅原工務店,G1_WEAK,inside,"info@sugawara-koumuten.com",大崎,"https://www.sugawara-koumuten.com/contact/",1,1,3,ai_ops,"HP導線おおむね整備; FAX表記; 問合せ・見積導線",2026-08-31T06:13:32
+"http://www.centerhome.jp/",株式会社菅谷工務店,FETCH_FAIL,skip,"",香取,"http://www.centerhome.jp/",0,0,0,skip,"track=skip",
+"https://hoshinohome.co.jp",株式会社星野工務店,G1_MODERN,skip,"",見附,"https://hoshinohome.co.jp/",0,0,0,skip,"track=skip",
+"http://www.hoshinokoumuten.co.jp",株式会社星野工務店,CANDIDATE,buyout,"info@hoshinokoumuten.co.jp",豊川市,"http://www.hoshinokoumuten.co.jp/company.html",7,0,0,hp_buyout_66k,"SSL未整備; viewportなし; tel:なし; 更新停止感(HTML内2007止); 粗2点以上",
+"http://www.sho-ken.co.jp/",株式会社正建工業,NO_EMAIL,skip,"",神戸,"https://www.sho-ken.co.jp/",0,0,0,skip,"track=skip",
+"http://www.cac-net.ne.jp/~seikyu/",株式会社清久建設,NO_EMAIL,skip,"",半田市,"http://www.cac-net.ne.jp/~seikyu/",0,0,0,skip,"track=skip",
+"http://www.seiken-jutaku.com/",株式会社清建,FETCH_FAIL,skip,"",白山,"http://www.seiken-jutaku.com/",0,0,0,skip,"track=skip",
+"http://www.shimizu-kk.com",株式会社清水建設工業,NO_EMAIL,skip,"",東京,"http://www.shimizu-kk.com/",0,0,0,skip,"track=skip",
+"http://www.shimizu21.com/",株式会社清水工務店,G1_MODERN,skip,"",富山,"https://shimizu21.com/",0,0,0,skip,"track=skip",
+"http://www1.m1.mediacat.ne.jp/shimizu",株式会社清水工務店,FETCH_FAIL,skip,"",名古屋市,"http://www1.m1.mediacat.ne.jp/shimizu",0,0,0,skip,"track=skip",
+"http://www.ishii-builder.co.jp/index.php",株式会社石井工務店,NO_EMAIL,skip,"",大阪,"http://www.ishii-builder.co.jp/index.php/",0,0,0,skip,"track=skip",
+"http://www.ishizaka-info.com/",株式会社石坂工務店,BLOCKLIST,skip,"",八王子,"http://www.ishizaka-info.com/",0,0,0,skip,"track=skip",
+"http://www.sigoto-kitiri.com/",株式会社石山工業所,G1_WEAK,inside,"info@sigoto-kitiri.com",さいたま,"https://www.sigoto-kitiri.com/corporate/",2,1,3,ai_ops,"HP導線おおむね整備; FAX表記; 問合せ・見積導線",2026-08-31T06:15:00
+"http://ishikawa-reform.jp/",株式会社石川商会住宅機材,G1_MODERN,inside,"info@ishikawa-reform.jp",千葉,"https://ishikawa-reform.jp/company/",0,4,4,recruit,"採用URL:/recruit/; 採用キーワード; 工務店・建設",2026-08-31T10:49:15
+"http://homepage3.nifty.com/k-ishida-kenchiku/",株式会社石田建築事務所,FETCH_FAIL,skip,"",神戸,"http://homepage3.nifty.com/k-ishida-kenchiku/",0,0,0,skip,"track=skip",
+"https://ishidagumi.co.jp",株式会社石田組,NO_EMAIL,skip,"",名古屋市,"https://ishidagumi.co.jp/",0,0,0,skip,"track=skip",
+"https://www.setsukou.nagoya/",株式会社設幸工務店,NO_EMAIL,skip,"",名古屋市,"https://www.setsukou.nagoya/",0,0,0,skip,"track=skip",
+"https://www.sendaiya1000.com/",株式会社仙臺屋,G1_MODERN,inside,"info@sendaiya1000.com",仙台,"https://sendaiya1000.com/about-us/",0,2,4,ai_ops,"HP整備済(G1_MODERN); FAX表記; 問合せ・見積導線",2026-08-31T06:14:21
+"https://www.mukunoie.net/",株式会社先本組,G1_WEAK,skip,"bn_img@2x.jpg",米子,"https://www.mukunoie.net/",2,0,0,skip,"track=skip",
+"http://www.sennokura.com/",株式会社千の蔵,NO_EMAIL,skip,"",大船渡,"http://www.sennokura.com/",0,0,0,skip,"track=skip",
+"http://www.sendakensetsu.jp/",株式会社千田建設,G1_MODERN,inside,"info@sendakensetsu.jp",倉敷,"https://sendakensetsu.jp/",0,1,3,ai_ops,"HP整備済(G1_MODERN); 問合せ・見積導線",2026-08-31T06:15:54
+"http://www.chiba-arc.co.jp/",株式会社千葉工務店,NO_EMAIL,skip,"",越谷,"https://www.chiba-arc.co.jp/",0,0,0,skip,"track=skip",
+"https://www.zaimoku.co.jp",株式会社川島材木店,FETCH_FAIL,skip,"",神奈川,"https://www.zaimoku.co.jp",0,0,0,skip,"track=skip",
+"https://www.re-sou0706.com/",株式会社創,FETCH_FAIL,skip,"",埼玉,"https://www.re-sou0706.com/",0,0,0,skip,"track=skip",
+"http://aizawa-koumuten.co.jp/",株式会社相澤工務店,NO_EMAIL,skip,"",北見,"http://aizawa-koumuten.co.jp/",0,0,0,skip,"track=skip",
+"https://www.masuki-ltd.net/",株式会社増木,G1_MODERN,skip,"",埼玉,"https://masuki-ltd.net/",0,0,0,skip,"track=skip",
+"http://www.asunaro-fukuyama.jp/",株式会社蔵王工務店,FETCH_FAIL,skip,"",福山,"http://www.asunaro-fukuyama.jp/",0,0,0,skip,"track=skip",
+"http://www.skillful.co.jp",株式会社太陽建設,NO_EMAIL,skip,"",新潟,"http://skillful.co.jp/",0,0,0,skip,"track=skip",
+"http://www.daietu-kk.com/",株式会社大悦工務店,FETCH_FAIL,skip,"",杉並,"http://www.daietu-kk.com/",0,0,0,skip,"track=skip",
+"http://daietu-kk.co.jp/",株式会社大悦工務店,G1_WEAK,inside,"info@daietu-kk.co.jp",東京,"https://daietu-kk.co.jp/",2,3,1,recruit,"採用キーワード; 採用リンクあり(深掘り要); 工務店・建設",2026-08-31T10:48:27
+"https://ohdate-koumu.com/",株式会社大舘工務,G1_MODERN,skip,"",日野,"https://ohdate-koumu.com/",0,0,0,skip,"track=skip",
+"http://www.kk-daimaru.co.jp/",株式会社大丸建設,NO_EMAIL,skip,"",稲城,"https://www.kk-daimaru.co.jp/",0,0,0,skip,"track=skip",
+"https://www.taikoh3.com/",株式会社大幸,G1_MODERN,skip,"",豊田市,"https://www.taikoh3.com/",0,0,0,skip,"track=skip",
+"http://www.daishin-21.com",株式会社大進,G1_WEAK,inside,"info@daishin-21.com",半田市,"https://daishin-21.com/",2,1,2,skip,"全スコア不足(hp=2,recruit=1,ai=2)",2026-08-31T06:18:49
+"http://www.ootakoumuten.jp/",株式会社大田工務店,NO_EMAIL,skip,"",千歳,"http://www.ootakoumuten.jp/",0,0,0,skip,"track=skip",
+"http://www.liberalhome.com/",株式会社大東装建,G1_MODERN,skip,"",日進,"https://liberalhome.com/",0,0,0,skip,"track=skip",
+"https://www.oyukoumuten.jp/",株式会社大湯工務店,G1_MODERN,skip,"",弘前,"https://www.oyukoumuten.jp/",0,0,0,skip,"track=skip",
+"http://www.oh-yabu.co.jp/",株式会社大藪組,G1_MODERN,inside,"info@oh-yabu.co.jp",筑後,"https://oh-yabu.co.jp/contact/",0,4,4,recruit,"採用URL:/recruit/; 採用キーワード; 工務店・建設",2026-08-31T06:19:53
+"https://www.dai1kenchikugyou.com/",株式会社第一建築業,G1_MODERN,skip,"",柏崎,"https://www.dai1kenchikugyou.com/",0,0,0,skip,"track=skip",
+"https://www.takahoko.net/",株式会社鷹架工務店,G1_MODERN,skip,"",青森,"https://www.takahoko.net/",0,0,0,skip,"track=skip",
+"https://www.niwakomuten.co.jp",株式会社丹羽工務店,G1_MODERN,skip,"",岩倉市,"https://www.niwakomuten.co.jp/",0,0,0,skip,"track=skip",
+"http://www9.plala.or.jp/chiken/",株式会社智建,FETCH_FAIL,skip,"",熊本,"http://www9.plala.or.jp/chiken/",0,0,0,skip,"track=skip",
+"https://takeuchigumi.co/",株式会社竹内組,NO_EMAIL,skip,"",知多郡東浦町,"https://takeuchigumi.co/",0,0,0,skip,"track=skip",
+"https://www.nakaisogo.com/",株式会社中井総合建築,G1_WEAK,inside,"info@nakaisogo.com",越前,"https://www.nakaisogo.com/",2,1,2,skip,"全スコア不足(hp=2,recruit=1,ai=2)",2026-08-31T06:14:09
+"http://www.chuokenko.jp/",株式会社中央建工,CANDIDATE,buyout,"info@chuokenko.jp",千葉,"http://www.chuokenko.jp/profile",7,0,0,hp_buyout_66k,"SSL未整備; viewportなし; tel:なし; 更新停止感(HTML内2013止); 粗2点以上",
+"http://nakasho-kk.jp",株式会社中祥建設,CANDIDATE,buyout,"waraoya@nifty.com",倉敷,"https://nakasho-kk.jp/company",4,0,0,hp_buyout_66k,"tel:なし; 更新停止感(HTML内2015止); 粗2点以上",
+"http://nakamura-k.co.jp",株式会社中村工業,G1_MODERN,skip,"",一宮市,"https://nakamura-k.co.jp/",0,0,0,skip,"track=skip",
+"https://nakamura.ohotk.com/",株式会社中村工務店,CANDIDATE,buyout,"naka241359@ybb.ne.jp",北見,"https://nakamura.ohotk.com/",4,0,0,hp_buyout_66k,"viewportなし; tel:なし; 粗2点以上",
+"http://www.e-katsuura.net/nakamura-koumuten/",株式会社中村工務店,NO_EMAIL,skip,"",勝浦,"http://www.e-katsuura.net/nakamura-koumuten/",0,0,0,skip,"track=skip",
+"http://www.alberi-shounan.com/",株式会社中藤材木店 alberi+R HOME,FETCH_FAIL,skip,"",神奈川,"http://www.alberi-shounan.com/",0,0,0,skip,"track=skip",
+"http://www.nakano-komuten.co.jp/",株式会社中野工務店,NO_EMAIL,skip,"",千葉,"https://www.nakano-komuten.co.jp/",0,0,0,skip,"track=skip",
+"http://www.asahi-saga.jp/",株式会社朝日工業,FETCH_FAIL,skip,"",武雄,"http://www.asahi-saga.jp/",0,0,0,skip,"track=skip",
+"https://asamoto.co.jp",株式会社朝本組,G1_MODERN,skip,"",津島市,"https://asamoto.co.jp/",0,0,0,skip,"track=skip",
+"http://nagaokakoumuten.com/",株式会社長岡工務店,NO_EMAIL,skip,"",金沢,"http://nagaokakoumuten.com/",0,0,0,skip,"track=skip",
+"http://www.nagasegumi.co.jp/",株式会社長瀬組,NO_EMAIL,skip,"",名古屋市,"http://www.nagasegumi.co.jp/",0,0,0,skip,"track=skip",
+"http://www.haseman.co.jp/",株式会社長谷川萬治商店,G1_MODERN,inside,"post@haseman.co.jp",江東,"https://www.haseman.co.jp/",0,4,4,recruit,"採用URL:/recruit/; 採用キーワード; 工務店・建設",2026-08-31T06:15:38
+"https://www.osada-k.co.jp/",株式会社長田工務店,BLOCKLIST,skip,"",日野,"https://www.osada-k.co.jp/",0,0,0,skip,"track=skip",
+"http://www1.ocn.ne.jp/~tsukijyu/",株式会社槻川住建工業,FETCH_FAIL,skip,"",日高,"http://www1.ocn.ne.jp/~tsukijyu/",0,0,0,skip,"track=skip",
+"http://amatake.jp/",株式会社天竹工務店,NO_EMAIL,skip,"",神戸,"http://amatake.jp/",0,0,0,skip,"track=skip",
+"http://www.tamura-kenzai.co.jp/",株式会社田村ビルズ,G1_WEAK,inside,"info@tmrkz.com",山口,"https://tamura-builds.co.jp/contact/",2,4,1,recruit,"採用URL:/recruit/; 採用キーワード; 工務店・建設",2026-08-31T06:19:58
+"http://www.tashiro-kentiku-jimusho.info/",株式会社田代建築事務所,CANDIDATE,buyout,"toraoumaru1970@cus4.tashiro-kentiku-jimusho.info",新発田,"http://www.tashiro-kentiku-jimusho.info/contact/",6,0,0,hp_buyout_66k,"SSL未整備; tel:なし; 更新停止感(HTML内2017止); 粗2点以上",
+"https://www.tanabe-koumuten.co.jp",株式会社田辺工務店,FETCH_FAIL,skip,"",神奈川,"https://www.tanabe-koumuten.co.jp",0,0,0,skip,"track=skip",
+"https://www.t-midoriya.co.jp/",株式会社塗装のミドリヤ,G1_MODERN,skip,"",埼玉,"https://www.t-midoriya.co.jp/",0,0,0,skip,"track=skip",
+"https://www.watanabekomu.co.jp/",株式会社渡邊工務店,CANDIDATE,skip,"sample@sample.ne.jp",海部郡飛島村,"https://www.watanabekomu.co.jp/contact/",4,0,0,skip,"track=skip",
+"http://www.aitonukumorinoie.net/",株式会社登昭建設,G1_MODERN,inside,"cozy@aitonukumorinoie.net",岐阜,"https://aitonukumorinoie.net/company/",0,2,4,ai_ops,"HP整備済(G1_MODERN); FAX表記; 問合せ・見積導線",2026-08-31T06:15:27
+"http://www.urban-1.co.jp",株式会社都市建設,FETCH_FAIL,skip,"",豊明市,"http://www.urban-1.co.jp",0,0,0,skip,"track=skip",
+"http://www.shimakenkoumuten.com/",株式会社島ケン工務店,FETCH_FAIL,skip,"",東京,"http://www.shimakenkoumuten.com/",0,0,0,skip,"track=skip",
+"https://shimadugumi.co.jp",株式会社島津組,NO_EMAIL,skip,"",新潟,"https://shimadugumi.co.jp/",0,0,0,skip,"track=skip",
+"https://www.tokaiecon.com",株式会社東海エコン,G1_MODERN,inside,"econ@wine.ocn.ne.jp",常滑市,"https://www.tokaiecon.com/",0,4,4,recruit,"採用URL:/recruit; 採用キーワード; 工務店・建設",2026-08-31T06:18:50
+"http://www.tokyojuken.co.jp",株式会社東京住建,NO_EMAIL,skip,"",東京,"https://www.tokyojuken.co.jp/",0,0,0,skip,"track=skip",
+"https://www.toyokomuten.com/",株式会社東洋工務店,NO_EMAIL,skip,"",岡崎市,"https://www.toyokomuten.com/",0,0,0,skip,"track=skip",
+"http://www.kk-tosho.co.jp/",株式会社棟匠,G1_MODERN,inside,"info@kk-tosho.co.jp",水戸,"https://www.kk-tosho.co.jp/contact/",0,4,5,ai_ops,"HP整備済(G1_MODERN); FAX表記; PDF資料; 問合せ・見積導線",2026-08-31T06:15:33
+"https://tsutsui-k.co.jp/",株式会社筒井工務店,G1_WEAK,inside,"info@tsutsui-k.co.jp",新城市,"https://tsutsui-k.co.jp/company/",2,3,2,recruit,"採用URL:/recruit/; 工務店・建設",2026-08-31T06:19:05
+"https://www.tutui.co.jp/",株式会社筒井工務店,NO_EMAIL,skip,"",葛飾区,"https://www.tutui.co.jp/",0,0,0,skip,"track=skip",
+"https://www.fujishiro-k.jp",株式会社藤城工務店,G1_MODERN,skip,"",豊橋市,"https://www.fujishiro-k.jp/",0,0,0,skip,"track=skip",
+"https://fujishima-kensetsu.co.jp",株式会社藤島建設,G1_MODERN,inside,"t_yamada@gmail.com",埼玉,"https://fujishima-kensetsu.co.jp/contact/",0,4,4,recruit,"採用URL:/recruit/; 採用キーワード; 工務店・建設",2026-08-31T06:20:01
+"http://www.tochimou.jp/",株式会社栃毛木材工業,G1_MODERN,inside,"info@tochimou.jp",鹿沼,"https://tochimou.jp/contact/",0,4,4,recruit,"採用URL:/recruit/; 採用キーワード; 工務店・建設",2026-08-31T06:15:32
+"https://www.uchiyama-home.com",株式会社内山ホーム,G1_MODERN,inside,"t_yamada@sample.jp",南魚沼,"https://www.uchiyama-home.com/inquiry",0,4,3,recruit,"採用URL:/recruit/; 採用キーワード; 工務店・建設",2026-08-31T06:14:29
+"https://www.nitto-kensetsu.co.jp/",株式会社日東建設,G1_MODERN,inside,"info@nitto-kensetsu.co.jp",名古屋市,"https://www.nitto-kensetsu.co.jp/",0,4,5,ai_ops,"HP整備済(G1_MODERN); FAX表記; PDF資料; 問合せ・見積導線",2026-08-31T06:19:11
+"http://www.nichinankoumuten.jp/",株式会社日南工務店,BLOCKLIST,skip,"",厚木,"http://www.nichinankoumuten.jp/",0,0,0,skip,"track=skip",
+"https://nippon-kukan.co.jp",株式会社日本空間,G1_MODERN,inside,"info@nippon-kukan.co.jp",東京,"https://nippon-kukan.co.jp/",0,4,3,recruit,"採用URL:/recruit/; 採用キーワード; 工務店・建設",2026-08-31T10:48:35
+"http://hadanogumi.com",株式会社波多野組,NO_EMAIL,skip,"",豊川市,"http://www.hadanogumi.com/",0,0,0,skip,"track=skip",
+"http://www.hagiwara-k.com/",株式会社萩原工務店,G1_WEAK,inside,"info@hagiwara-k.com",岡崎,"https://www.hagiwara-k.com/contact/",2,1,2,skip,"全スコア不足(hp=2,recruit=1,ai=2)",2026-08-31T06:19:46
+"http://www.santaclub.co.jp",株式会社白鳥工務店,NO_EMAIL,skip,"",春日井市,"http://www.santaclub.co.jp/",0,0,0,skip,"track=skip",
+"http://www.hm3.aitai.ne.jp/~kabuhaku/",株式会社白武,NO_EMAIL,skip,"",豊田市,"http://www.hm3.aitai.ne.jp/~kabuhaku/",0,0,0,skip,"track=skip",
+"https://yaehata.jp/",株式会社八重働工務店,G1_MODERN,skip,"loadinglogo@2x.png",盛岡,"https://yaehata.jp/",0,0,0,skip,"track=skip",
+"https://kk-kuroyanagi.daa.jp",株式会社畔柳組,FETCH_FAIL,skip,"",岡崎市,"https://kk-kuroyanagi.daa.jp",0,0,0,skip,"track=skip",
+"https://www.daikudon.com",株式会社番場建築,G1_MODERN,skip,"",五泉,"https://www.daikudon.com/",0,0,0,skip,"track=skip",
+"http://asukalife.com/",株式会社飛鳥,G1_MODERN,inside,"asuka5511@voice.ocn.ne.jp",桜井,"https://www.asukalife.com/",0,1,4,ai_ops,"HP整備済(G1_MODERN); FAX表記; 問合せ・見積導線",2026-08-31T06:19:37
+"https://asuka-kk.com/",株式会社飛鳥建築,G1_MODERN,inside,"info@asuka-kk.com",狭山,"https://asuka-kk.com/",0,3,3,recruit,"採用キーワード; 採用リンクあり(深掘り要); 工務店・建設",2026-08-31T06:13:22
+"http://www.e-ozeki.com",株式会社尾関工務店,G1_MODERN,skip,"",玉野,"https://www.e-ozeki.com/",0,0,0,skip,"track=skip",
+"https://mihamakensetsu-reform.net/company/",株式会社美浜建設,G1_MODERN,skip,"",千葉,"https://mihamakensetsu-reform.net/company/",0,0,0,skip,"track=skip",
+"https://www.hattori-koumuten.net/",株式会社服部工務店,G1_WEAK,inside,"hk-kouzi@xpost.plala.or.jp",春日井市,"https://www.hattori-koumuten.net/about/",2,4,3,recruit,"採用URL:/recruit; 採用キーワード; 工務店・建設",2026-08-31T06:19:25
+"http://www.hattori-koumuten.com",株式会社服部工務店,NO_EMAIL,skip,"",名古屋市,"https://www.hattori-koumuten.com/",0,0,0,skip,"track=skip",
+"https://www.3door.jp",株式会社福山Three door,G1_MODERN,inside,"info@fukuyamathreedoor.co.jp",福山,"https://www.3door.jp/contact/",0,1,4,ai_ops,"HP整備済(G1_MODERN); FAX表記; 問合せ・見積導線",2026-08-31T06:14:11
+"http://www.k-fukuzawa.co.jp/",株式会社福澤工務店,BLOCKLIST,skip,"",厚木,"http://www.k-fukuzawa.co.jp/",0,0,0,skip,"track=skip",
+"http://www.hiratuka-k.co.jp/",株式会社平塚建設,FETCH_FAIL,skip,"",鉾田,"http://www.hiratuka-k.co.jp/",0,0,0,skip,"track=skip",
+"http://www.kata-ken.co.jp/",株式会社片山建設,NO_EMAIL,skip,"",藤枝,"https://www.kata-ken.co.jp/",0,0,0,skip,"track=skip",
+"https://www.toyodagumi.co.jp",株式会社豊田組,NO_EMAIL,skip,"",豊橋市,"https://www.toyodagumi.co.jp/",0,0,0,skip,"track=skip",
+"http://www.mochizuki-koumuten.jp/",株式会社望月工務店,G1_WEAK,inside,"hikaru@mochizuki-koumuten.jp",山梨,"https://www.mochizuki-koumuten.jp/",2,1,2,skip,"全スコア不足(hp=2,recruit=1,ai=2)",2026-08-31T06:15:11
+"http://www.tombo-kitaya.co.jp/",株式会社北屋建設,NO_EMAIL,skip,"",岡山,"http://tombo-kitaya.co.jp/",0,0,0,skip,"track=skip",
+"http://kitagawa-gumi.co.jp/",株式会社北川組,NO_EMAIL,skip,"",名古屋市,"https://www.kitagawa-gumi.co.jp/",0,0,0,skip,"track=skip",
+"https://makino-sc.com/",株式会社牧野製材所,FETCH_FAIL,skip,"",神奈川,"https://makino-sc.com/",0,0,0,skip,"track=skip",
+"https://honmakomuten.jp/",株式会社本間工務店,G1_MODERN,skip,"",新潟,"https://honmakomuten.jp/",0,0,0,skip,"track=skip",
+"http://www.honda-yatabe.com/",株式会社本田谷田部,CANDIDATE,buyout,"info01@honda-yatabe.com",つくば,"https://www.honda-yatabe.com/company.html",5,0,0,hp_buyout_66k,"viewportなし; tel:なし; 更新停止感(HTML内2007止); 粗2点以上",
+"http://www.masutoku.jp",株式会社桝徳,G1_MODERN,skip,"",埼玉,"https://www.masutoku.jp/",0,0,0,skip,"track=skip",
+"http://www.suehiro-koumuten.com",株式会社末広工務店,NO_EMAIL,skip,"",東京,"http://www.suehiro-koumuten.com/",0,0,0,skip,"track=skip",
+"http://www.yume-kobo.co.jp/",株式会社夢工房キッチンくらぶ,G1_MODERN,skip,"",名古屋,"https://www.yume-kobo.co.jp/",0,0,0,skip,"track=skip",
+"http://www.kinokuni-koubou.com/",株式会社木の国工房,FETCH_FAIL,skip,"",千葉,"http://www.kinokuni-koubou.com/",0,0,0,skip,"track=skip",
+"http://kizukoumuten.jp/",株式会社木津工務店,NO_EMAIL,skip,"",名古屋市,"https://kizukoumuten.jp/",0,0,0,skip,"track=skip",
+"https://www.e-house.co.jp/monma-koumuten/",株式会社門間工務店,NO_EMAIL,skip,"",埼玉,"https://www.e-house.co.jp/monma-koumuten/",0,0,0,skip,"track=skip",
+"http://nonogawa-koumuten.com/",株式会社野々川工務店,G1_WEAK,inside,"nonogawa@space.ne.jp",小牧市,"https://nonogawa-koumuten.com/",2,2,3,ai_ops,"FAX表記; PDF資料; 問合せ・見積導線",2026-08-31T06:19:23
+"http://www.yajimakoumuten.co.jp",株式会社矢島工務店,NO_EMAIL,skip,"",埼玉,"http://www.yajimakoumuten.co.jp/",0,0,0,skip,"track=skip",
+"https://www.yanai-koumuten.com/",株式会社矢内工務店,G1_MODERN,skip,"",日野,"https://www.yanai-koumuten.com/",0,0,0,skip,"track=skip",
+"http://www.cozy-h.com/",株式会社由久,NO_EMAIL,skip,"",新潟,"https://www.cozy-h.com/",0,0,0,skip,"track=skip",
+"http://tsubasasouken.co.jp/",株式会社翼創建,NO_EMAIL,skip,"",伊勢崎,"https://www.tsubasasouken.co.jp/",1,0,0,skip,"track=skip",
+"http://aikoumuten.com/",株式会社藍工務店,NO_EMAIL,skip,"",甲府,"https://aikoumuten.com/",0,0,0,skip,"track=skip",
+"http://www.tatsuba.co.jp/",株式会社竜場工務店,NO_EMAIL,skip,"",千葉,"http://www.tatsuba.co.jp/",0,0,0,skip,"track=skip",
+"http://hayashikoumuten.co.jp/",株式会社林工務店,NO_EMAIL,skip,"",高山,"http://hayashikoumuten.co.jp/",0,0,0,skip,"track=skip",
+"http://suzumasa.cc/",株式会社鈴正,NO_EMAIL,skip,"",盛岡,"http://suzumasa.cc/",0,0,0,skip,"track=skip",
+"https://www.i-and-i-suzuki.com/",株式会社鈴木建設,NO_EMAIL,skip,"",東京,"https://www.i-and-i-suzuki.com/",0,0,0,skip,"track=skip",
+"http://www.okumaya.co.jp/",株式会社鈴木工務店,G1_WEAK,inside,"info@okumaya.co.jp",鋸南,"https://www.okumaya.co.jp/contact",2,2,2,skip,"全スコア不足(hp=2,recruit=2,ai=2)",2026-08-31T06:13:29
+"http://www.suzuki-koumuten.jp/",株式会社鈴木工務店,NO_EMAIL,skip,"",日進市,"https://suzuki-koumuten.jp/",0,0,0,skip,"track=skip",
+"http://www.suzukiseihan.jp/",株式会社鈴木製板工場,FETCH_FAIL,skip,"",一関,"http://www.suzukiseihan.jp/",0,0,0,skip,"track=skip",
+"https://www.rokkasha.com/",株式会社六花舎設計,G1_MODERN,inside,"info@rokkasha.com",久喜,"https://www.rokkasha.com/contact/",0,4,4,recruit,"採用URL:/recruit/; 採用キーワード; 工務店・建設",2026-08-31T06:13:24
+"http://www.wakana-k.com",株式会社和奏建設,FETCH_FAIL,skip,"",太田,"http://www.wakana-k.com",0,0,0,skip,"track=skip",
+"http://www.hirokami.com",株式会社廣神建設,FETCH_FAIL,skip,"",高崎,"http://www.hirokami.com",0,0,0,skip,"track=skip",
+"http://www.takatohome.co.jp",株式会社髙藤建設,G1_MODERN,inside,"yourname@takatohome.co.jp",太田,"https://takatohome.co.jp/contact/",0,4,3,recruit,"採用URL:/recruit/; 採用キーワード; 工務店・建設",2026-08-31T06:14:50
+"https://maruyokk.com",丸ヨ建設工業株式会社,G1_MODERN,skip,"",岡崎市,"https://www.maruyokk.com/",0,0,0,skip,"track=skip",
+"http://marunaga.co.jp/",丸永建設株式会社,NO_EMAIL,skip,"",岐阜,"https://marunaga.co.jp/",0,0,0,skip,"track=skip",
+"https://hinoki-home.jp/",丸岡建興(株),G1_MODERN,skip,"",神奈川,"https://hinoki-home.jp/",0,0,0,skip,"track=skip",
+"http://www.014wood.com/",丸石木材住宅株式会社,G1_MODERN,skip,"",橋本,"https://www.014wood.com/",0,0,0,skip,"track=skip",
+"http://www.marunakagr.jp/",丸中建設株式会社,NO_EMAIL,skip,"",豊橋市,"https://www.marunakagr.jp/",0,0,0,skip,"track=skip",
+"http://www.shiwadaiku.com",丸中建設有限会社,G1_MODERN,skip,"sample@email.com",紫波,"https://shiwadaiku.com/contact/",0,0,0,skip,"track=skip",
+"http://maruyoukensetu.jp/",丸洋建設株式会社,G1_MODERN,skip,"",西尾市,"https://www.maruyoukensetu.jp/",0,0,0,skip,"track=skip",
+"http://www.iwatasuidou.co.jp/",岩田水道工務店,CANDIDATE,buyout,"info@iwatasuidou.co.jp",一宮,"https://www.iwatasuidou.co.jp/company.html",5,0,0,hp_buyout_66k,"viewportなし; tel:なし; 更新停止感(HTML内2019止); 粗2点以上",
+"https://www.iwabe.co.jp",岩部建設株式会社,G1_WEAK,inside,"iis@iwabe.co.jp",知多郡武豊町,"https://www.iwabe.co.jp/access",2,4,2,recruit,"採用URL:/recruit; 採用キーワード; 工務店・建設",2026-08-31T06:16:27
+"https://kenmokujyu.jp/",企業組合県木住,G1_MODERN,skip,"",島根,"https://kenmokujyu.jp/",0,0,0,skip,"track=skip",
+"https://ycc-yoshihara.co.jp/",吉原建設株式会社,G1_WEAK,inside,"info@ycc-yoshihara.co.jp",刈谷市,"https://ycc-yoshihara.co.jp/company/",2,6,3,recruit,"採用URL:/recruit/; 採用キーワード; 採用ページ更新古い(2018); 工務店・建設",2026-08-31T06:16:25
+"http://www.menshin-jutaku.com/",吉次建設,FETCH_FAIL,skip,"",稲沢,"http://www.menshin-jutaku.com/",0,0,0,skip,"track=skip",
+"http://www.yoshima.co.jp",吉真建設株式会社,G1_MODERN,skip,"",埼玉,"https://www.yoshima.co.jp/",0,0,0,skip,"track=skip",
+"https://www.yoshiken.ws/",吉田建設株式会社,NO_EMAIL,skip,"",三条,"https://www.yoshiken.ws/",0,0,0,skip,"track=skip",
+"https://kirakensetsu.com/",吉良建設株式会社,G1_MODERN,skip,"",西尾市,"https://kirakensetsu.com/",0,0,0,skip,"track=skip",
+"https://kkcc.jp/",久留米建設(株),NO_EMAIL,skip,"",福岡,"https://www.kkcc.jp/http2https.html",0,0,0,skip,"track=skip",
+"http://miyazaki-kensetu.jp/",宮崎建設株式会社,NO_EMAIL,skip,"",三鷹,"http://www.miyazaki-kensetu.jp/",0,0,0,skip,"track=skip",
+"http://www.miyazaki-kensetu.jp/",宮崎建設株式会社,NO_EMAIL,skip,"",東京,"https://www.miyazaki-kensetu.jp/",0,0,0,skip,"track=skip",
+"http://miyagawa-home.main.jp",宮川建設株式会社,CANDIDATE,buyout,"miyagawa-co@wind.ocn.ne.jp",豊田市,"https://miyagawa-home.main.jp/",5,0,0,hp_buyout_66k,"viewportなし; tel:なし; 更新停止感(HTML内2015止); 粗2点以上",
+"http://www.miyata-kk.com/",宮田建設(株),NO_EMAIL,skip,"",福岡,"https://www.miyata-kk.com/",0,0,0,skip,"track=skip",
+"https://www.miyazakikenchiku.com",宮﨑建築株式会社,G1_WEAK,inside,"info@miyazakikenchiku.com",阿賀野,"https://www.miyazakikenchiku.com/",2,1,2,skip,"全スコア不足(hp=2,recruit=1,ai=2)",2026-08-31T06:14:24
+"http://pearl-home.com/",共和建設工業株式会社,NO_EMAIL,skip,"",知立,"https://expireddomains.com/domain/pearl-home.com?utm_source=redi",0,0,0,skip,"track=skip",
+"http://kyowanoie.com/",共和木材工業株式会社,G1_MODERN,skip,"",大津,"https://kyowanoie.com/",0,0,0,skip,"track=skip",
+"http://www.kenpoku.or.jp/",協同組合秋田県北木材センター,FETCH_FAIL,skip,"",大館,"http://www.kenpoku.or.jp/",0,0,0,skip,"track=skip",
+"http://www.hashimotokousan.co.jp",橋本興産株式会社,NO_EMAIL,skip,"",岡山,"https://www.hashimotokousan.co.jp/",0,0,0,skip,"track=skip",
+"http://www.100kj.co.jp/",近代ホーム株式会社,G1_MODERN,inside,"info@100kj.co.jp",神奈川,"https://www.100kj.co.jp/",0,4,3,recruit,"採用URL:/recruit/; 採用キーワード; 工務店・建設",2026-08-31T10:48:01
+"https://www.kondo-refre.co.jp/",近藤リフレサービス株式会社,NO_EMAIL,skip,"",埼玉,"https://www.kondo-refre.co.jp/",0,0,0,skip,"track=skip",
+"http://www.kyushu-yaesu.co.jp/",九州八重洲(株),G1_MODERN,inside,"info@kyushu-yaesu.co.jp",福岡,"https://www.y98.jp/contact/",0,1,4,ai_ops,"HP整備済(G1_MODERN); FAX表記; 問合せ・見積導線",2026-08-31T10:46:42
+"http://www.sarchitecture.jp",空間建築工房,FETCH_FAIL,skip,"",鉾田,"http://www.sarchitecture.jp",0,0,0,skip,"track=skip",
+"http://www.rnac.ne.jp/~kumagai/",熊谷建設株式会社,NO_EMAIL,skip,"",能代,"http://www.rnac.ne.jp/~kumagai/",0,0,0,skip,"track=skip",
+"http://www.kenkoh-jutaku.co.jp/",健康住宅(株),NO_EMAIL,skip,"",福岡,"https://www.kenkoh-jutaku.co.jp/",0,0,0,skip,"track=skip",
+"https://www.kenso-shimane.co.jp/",建装,NO_EMAIL,skip,"",島根,"https://www.kenso-shimane.co.jp/",0,0,0,skip,"track=skip",
+"http://www.kpkp.co.jp/",建築プランナー(株),G1_MODERN,inside,"info@kpkp.co.jp",福岡,"https://kpkp.co.jp/company/",0,1,3,ai_ops,"HP整備済(G1_MODERN); 問合せ・見積導線",2026-08-31T10:47:05
+"http://www14.ocn.ne.jp/~kenwa",建和工業有限会社,FETCH_FAIL,skip,"",福井,"http://www14.ocn.ne.jp/~kenwa",0,0,0,skip,"track=skip",
+"http://www.gokow.com/",五光ハウジング株式会社,NO_EMAIL,skip,"",神奈川,"https://www.gokow.com/",0,0,0,skip,"track=skip",
+"http://www.koyokensetsu.com",光洋建設株式会社,NO_EMAIL,skip,"",埼玉,"http://www.koyokensetsu.com/",0,0,0,skip,"track=skip",
+"https://kouseikensetsu.business.site",向正建設株式会社,FETCH_FAIL,skip,"",豊橋市,"https://kouseikensetsu.business.site",0,0,0,skip,"track=skip",
+"https://www.yukiyasu.co.jp/",幸保工務店,G1_MODERN,skip,"",熊本,"https://www.yukiyasu.co.jp/",0,0,0,skip,"track=skip",
+"http://kohshin-kenchiku.com/",弘新建築,NO_EMAIL,skip,"",魚津,"http://kohshin-kenchiku.com/",0,0,0,skip,"track=skip",
+"http://www.ko-yo-kk.com/",紅葉建設株式会社,G1_MODERN,skip,"",豊田,"https://ko-yo-kk.com/",0,0,0,skip,"track=skip",
+"http://www.tkdkk.com/",高田建設株式会社,NO_EMAIL,skip,"",金沢,"https://www.tkdkk.com/",0,0,0,skip,"track=skip",
+"http://www.takano-kensetu.jp/",高野建設有限会社,CANDIDATE,buyout,"takano.hiroshi@jade.plala.or.jp",伊勢崎,"http://www.takano-kensetu.jp/",6,0,0,hp_buyout_66k,"SSL未整備; viewportなし; tel:なし; 粗2点以上",
+"http://kurotakoumuten.web.fc2.com/",黒田工務店,CANDIDATE,buyout,"kurota-koumuten@hb.tp1.jp",大船渡,"https://kurotakoumuten.web.fc2.com/",5,0,0,hp_buyout_66k,"viewportなし; tel:なし; 更新停止感(HTML内2012止); 粗2点以上",
+"http://www.shirakami.or.jp/~imai/",今井ヒロカズ設計事務所,NO_EMAIL,skip,"",能代,"http://www.shirakami.or.jp/~imai/",0,0,0,skip,"track=skip",
+"https://www.sasakicc.co.jp",佐々木建設株式会社,NO_EMAIL,skip,"",刈谷市,"https://www.sasakicc.co.jp/",0,0,0,skip,"track=skip",
+"http://www.sato-kensetu.com/",佐藤建設株式会社,FETCH_FAIL,skip,"",牛久,"http://www.sato-kensetu.com/",0,0,0,skip,"track=skip",
+"http://satoarc.com/",佐藤建築設計事務所,G1_MODERN,skip,"h_site_logo_01@2x.png",十日町,"https://satoarc.com/",0,0,0,skip,"track=skip",
+"http://yumekoumuten.com/",佐藤工夢店株式会社,NO_EMAIL,skip,"",一関,"https://yumekoumuten.com/",0,0,0,skip,"track=skip",
+"http://park7.wakwak.com/~sunamoku/",砂押木材株式会社,NO_EMAIL,skip,"",ひたちなか,"http://park7.wakwak.com/~sunamoku/",0,0,0,skip,"track=skip",
+"http://bantake.co.jp/",坂猛建設有限会社,G1_WEAK,inside,"info@xxx.com",東海,"https://bantake.co.jp/company/",2,3,3,recruit,"採用URL:/recruit/; 工務店・建設",2026-08-31T06:19:43
+"https://www.sakakibara-cons.co.jp",榊原建設株式会社,G1_WEAK,inside,"info@sakakibara-cons.co.jp",一宮市,"https://www.sakakibara-cons.co.jp/contact",2,4,1,recruit,"採用URL:/recruit/; 採用キーワード; 工務店・建設",2026-08-31T06:16:03
+"http://www.sakura-kensetsu.com/",桜建設株式会社,NO_EMAIL,skip,"",日野,"http://www.sakura-kensetsu.com/",0,0,0,skip,"track=skip",
+"http://www.mikajima.co.jp/",三ヶ島製材株式会社,G1_WEAK,inside,"mikajima@ictv.ne.jp",埼玉,"https://www.mikajima.co.jp/",2,4,2,recruit,"採用URL:/採用/; 採用キーワード; 工務店・建設",2026-08-31T06:20:31
+"http://www.mikawa-bld.co.jp/",三河建設工業株式会社,NO_EMAIL,skip,"",新城市,"http://www.mikawa-bld.co.jp/",0,0,0,skip,"track=skip",
+"https://www.mikawa-doken.co.jp",三河土建株式会社,NO_EMAIL,skip,"",豊橋市,"https://mikawa-doken.co.jp/",0,0,0,skip,"track=skip",
+"http://www.minoken.jp/",三濃建設株式会社,NO_EMAIL,skip,"",豊田市,"http://www.minoken.jp/",0,0,0,skip,"track=skip",
+"http://tsanwa.com",三和テクノス株式会社,NO_EMAIL,skip,"",東京,"https://www.tsanwa.com/",0,0,0,skip,"track=skip",
+"http://yukigunisanwa.com/",三和建設株式会社,FETCH_FAIL,skip,"",喜多方,"http://yukigunisanwa.com/",0,0,0,skip,"track=skip",
+"http://www.7-yu.net/yamanote/index.html",山の手宮田建築,FETCH_FAIL,skip,"",神戸,"http://www.7-yu.net/yamanote/index.html",0,0,0,skip,"track=skip",
+"https://kotaeruhouse.jp/",山岸工業株式会社,FETCH_FAIL,skip,"",埼玉,"https://kotaeruhouse.jp/",0,0,0,skip,"track=skip",
+"http://www.okayamajuuken.co.jp",山佐産業株式会社,FETCH_FAIL,skip,"",岡山,"http://www.okayamajuuken.co.jp",0,0,0,skip,"track=skip",
+"https://yamaken1111.com",山崎建設株式会社,G1_WEAK,inside,"kuwagaiweb@gmail.com",岡崎市,"https://yamaken1111.com/",2,2,2,skip,"全スコア不足(hp=2,recruit=2,ai=2)",2026-08-31T06:16:22
+"https://www.e-house.co.jp/yamasho-kensetsu/",山匠建設有限会社,NO_EMAIL,skip,"",千葉,"https://www.e-house.co.jp/yamasho-kensetsu/",0,0,0,skip,"track=skip",
+"https://yamanobukensetsu.com/",山信建設株式会社,NO_EMAIL,skip,"",津島市,"https://yamanobukensetsu.com/",0,0,0,skip,"track=skip",
+"http://www.sansei-34.co.jp",山晴建設株式会社,G1_MODERN,skip,"",福山,"https://sansei-34.co.jp/",0,0,0,skip,"track=skip",
+"http://yamawa-kensetu.com/",山和建設工業株式会社,FETCH_FAIL,skip,"",茂原,"http://yamawa-kensetu.com/",0,0,0,skip,"track=skip",
+"https://itoshima-architecture.com/",糸島建築,NO_EMAIL,skip,"",福岡,"https://itoshima-architecture.com/",0,0,0,skip,"track=skip",
+"https://teranishikensetsu.jp",寺西建設株式会社,G1_MODERN,skip,"",稲沢市,"https://teranishikensetsu.jp/",0,0,0,skip,"track=skip",
+"https://sk-const.com/",酒井建設株式会社,G1_MODERN,skip,"",岡崎市,"https://sk-const.com/",0,0,0,skip,"track=skip",
+"http://www.akiyamalumbers.co.jp/",秋山木材産業株式会社,G1_MODERN,skip,"",千葉,"https://www.akiyamalumbers.co.jp/",0,0,0,skip,"track=skip",
+"https://smile-komuten.com/",住まいる工務店,G1_MODERN,skip,"",新居浜,"https://smile-komuten.com/",0,0,0,skip,"track=skip",
+"https://www.toirokenchiku.com",十色建築株式会社,G1_WEAK,inside,"info@toirokenchiku.com",神奈川,"https://www.toirokenchiku.com/",2,1,1,skip,"全スコア不足(hp=2,recruit=1,ai=1)",2026-08-31T10:48:40
+"http://www.towa-kensetsu.co.jp/",十和建設株式会社,G1_WEAK,inside,"towa448@green.ocn.ne.jp",鶴岡,"https://www.towa-kensetsu.co.jp/company/",2,4,2,recruit,"採用URL:/recruit/; 採用キーワード; 工務店・建設",2026-08-31T06:13:43
+"https://haruta-kk.com/",春田建設株式会社,G1_MODERN,inside,"haruta@haruta-kk.com",名古屋市,"https://haruta-kk.com/",0,4,3,recruit,"採用URL:/recruit/; 採用キーワード; 工務店・建設",2026-08-31T06:19:14
+"http://e-takumido.com/",匠堂合同会社,FETCH_FAIL,skip,"",米原,"http://e-takumido.com/",0,0,0,skip,"track=skip",
+"http://www.kodama-kensetsu.jp",小玉建設株式会社,FETCH_FAIL,skip,"",藤枝,"http://www.kodama-kensetsu.jp",0,0,0,skip,"track=skip",
+"https://www.obara-group.com/",小原建設株式会社,NO_EMAIL,skip,"",岡崎市,"https://www.obara-group.com/",0,0,0,skip,"track=skip",
+"http://obaramokuzai.jp/",小原木材株式会社,G1_WEAK,inside,"info@obaramokuzai.co.jp",岡崎市,"https://obaramokuzai.jp/company/access/",2,3,3,recruit,"採用URL:/recruit/; 工務店・建設",2026-08-31T06:16:17
+"https://www.komatsu-co.com/",小松建設株式会社,G1_MODERN,inside,"info@komatsu-co.com",東京,"https://www.komatsu-co.com/company/",0,2,4,ai_ops,"HP整備済(G1_MODERN); FAX表記; 問合せ・見積導線",2026-08-31T10:48:18
+"http://www.ogawahomes.com",小川工業株式会社,G1_MODERN,skip,"",埼玉,"https://www.ogawahomes.com/",0,0,0,skip,"track=skip",
+"https://www.woodmeister.jp/",小泉木材(株),G1_MODERN,inside,"info@woodmeister.jp",神奈川,"https://kizuki-home.co.jp/terracehouse/access/",0,3,4,ai_ops,"HP整備済(G1_MODERN); 問合せ・見積導線; 見積・対応エリア訴求",2026-08-31T10:47:50
+"http://www.ozawakk.jp",小沢工業株式会社,NO_EMAIL,skip,"",埼玉,"https://www.ozawakk.jp/",0,0,0,skip,"track=skip",
+"http://oza-kou.com/",小沢工務店,NO_EMAIL,skip,"",埼玉,"https://oza-kou.com/",0,0,0,skip,"track=skip",
+"http://www.konakade.co.jp/",小中出建設株式会社,NO_EMAIL,skip,"",加賀,"http://konakade.co.jp/",0,0,0,skip,"track=skip",
+"http://www.kojima-kc.sv.bigsite.jp/",小島建築センター,FETCH_FAIL,skip,"",会津美里,"http://www.kojima-kc.sv.bigsite.jp/",0,0,0,skip,"track=skip",
+"http://www.kobazei.net/",小林隆行税理士事務所,BLOCKLIST,skip,"",練馬区,"http://www.kobazei.net/",0,0,0,skip,"track=skip",
+"http://www.nl-showa.co.jp/",昭和工務店,NO_EMAIL,skip,"",大阪,"http://www.nl-showa.co.jp/",0,0,0,skip,"track=skip",
+"https://www.showa-j.jp/outline/",昭和住宅(株),NO_EMAIL,skip,"",福岡,"https://www.showa-j.jp/outline/",0,0,0,skip,"track=skip",
+"http://www.showa-jyutaku.co.jp/",昭和住宅(株),G1_MODERN,skip,"",福岡,"https://www.showa-jyutaku.co.jp/",0,0,0,skip,"track=skip",
+"http://www.showadoken.co.jp",昭和土建株式会社,NO_EMAIL,skip,"",一宮市,"https://www.showadoken.co.jp/",0,0,0,skip,"track=skip",
+"http://www.m-kentaku.co.jp",松井建拓株式会社,NO_EMAIL,skip,"",新城市,"https://www.m-kentaku.co.jp/",0,0,0,skip,"track=skip",
+"http://www.matsuoka-kensetsu.jp/",松岡建設株式会社,NO_EMAIL,skip,"",江南市,"http://www.matsuoka-kensetsu.jp/",0,0,0,skip,"track=skip",
+"http://www.picolle.biz/",松江土建株式会社,FETCH_FAIL,skip,"",松江,"http://www.picolle.biz/",0,0,0,skip,"track=skip",
+"http://www.matsuken2581.sakura.ne.jp",松本建設株式会社,CANDIDATE,buyout,"kenji-m@car.ocn.ne.jp",春日井市,"http://www.matsuken2581.sakura.ne.jp/",6,0,0,hp_buyout_66k,"SSL未整備; tel:なし; 更新停止感(HTML内2015止); 粗2点以上",
+"https://matsuno-koumuten.com/",松野工務店,NO_EMAIL,skip,"",平内,"https://matsuno-koumuten.com/",0,0,0,skip,"track=skip",
+"http://jobu.la.coocan.jp/",上武・リフォーム,G1_WEAK,inside,"mmytoka@nifty.com",埼玉,"https://jobu.la.coocan.jp/",2,1,3,ai_ops,"FAX表記; 問合せ・見積導線; 見積・対応エリア訴求",2026-08-31T06:20:38
+"http://www.uekifudousan.co.jp",植木不動産株式会社,NO_EMAIL,skip,"",柏崎,"https://www.uekifudousan.co.jp/",0,0,0,skip,"track=skip",
+"http://www.nobukenchiku.com/",伸建築,NO_EMAIL,skip,"",筑紫野,"https://www.nobukenchiku.com/",0,0,0,skip,"track=skip",
+"https://www.k-shinko.co.jp",伸光建設株式会社,NO_EMAIL,skip,"",豊橋市,"https://www.k-shinko.co.jp/",0,0,0,skip,"track=skip",
+"http://www.taguchi-const.co.jp/",新英田口工務店株式会社,NO_EMAIL,skip,"",北区,"http://www.taguchi-const.co.jp/",0,0,0,skip,"track=skip",
+"http://www.shinkou-home.co.jp/",新幸ホーム株式会社,G1_MODERN,skip,"",大垣,"https://shinkou-home.co.jp/",0,0,0,skip,"track=skip",
+"https://kamiyagumi.co.jp/",神谷組工業株式会社,G1_MODERN,skip,"",豊田市,"https://kamiyagumi.co.jp/",0,0,0,skip,"track=skip",
+"http://www.kamiyagumi.co.jp/index.html",神谷組工業株式会社,G1_MODERN,skip,"",豊田,"https://kamiyagumi.co.jp/",0,0,0,skip,"track=skip",
+"https://www.k-ecohouse.co.jp/",神奈川エコハウス(株),NO_EMAIL,skip,"",神奈川,"https://www.k-ecohouse.co.jp/",0,0,0,skip,"track=skip",
+"https://www.jinno.sala.jp",神野建設株式会社,NO_EMAIL,skip,"",豊橋市,"https://www.jinno.sala.jp/",0,0,0,skip,"track=skip",
+"https://jin-gr.com/",仁・幸夢店株式会社,G1_MODERN,inside,"abc@mail.com",千葉,"https://jin-gr.com/contact/",0,2,4,ai_ops,"HP整備済(G1_MODERN); 問合せ・見積導線; 見積・対応エリア訴求",2026-08-31T10:48:54
+"http://www.sudoh-corp.jp",須藤建設工業株式会社,NO_EMAIL,skip,"",豊田市,"http://www.sudoh-corp.jp/",0,0,0,skip,"track=skip",
+"https://mizushimanoie.jp/",水嶋建設株式会社,G1_WEAK,skip,"sample@mizushima-jp.net",豊田市,"https://mizushimanoie.jp/contact/",1,0,0,skip,"track=skip",
+"http://daiku-sugiyama.com/",杉山建築,NO_EMAIL,skip,"",城里,"http://daiku-sugiyama.com/",0,0,0,skip,"track=skip",
+"https://www.sugibayashi.co.jp/",杉林建設株式会社,G1_WEAK,inside,"yyy@zzz.co.jp",岡崎市,"https://www.sugibayashi.co.jp/contact",2,4,3,recruit,"採用URL:/recruit/; 採用キーワード; 工務店・建設",2026-08-31T06:16:19
+"https://sumikawakensetsu.com/",澄川建設株式会社,NO_EMAIL,skip,"",稲沢市,"https://sumikawakensetsu.com/",0,0,0,skip,"track=skip",
+"https://www.sega-k.jp/",瀬賀工務店,NO_EMAIL,skip,"",新潟,"https://www.sega-k.jp/",0,0,0,skip,"track=skip",
+"https://nalumi.jp/index.html",成真株式会社,G1_WEAK,inside,"info@nalumi.jp",柏崎,"https://nalumi.jp/",2,1,1,skip,"全スコア不足(hp=2,recruit=1,ai=1)",2026-08-31T06:14:25
+"http://www.seiyu-k.com/",成友建設株式会社,G1_MODERN,skip,"",富山,"https://www.seiyu-k.com/",0,0,0,skip,"track=skip",
+"http://www.e-seiwa.net/",星和住研(株),CANDIDATE,buyout,"yourmail@sample.co.jp",福岡,"https://www.e-seiwa.net/form",4,0,0,hp_buyout_66k,"tel:なし; 更新停止感(HTML内2019止); 粗2点以上",
+"https://www.igosso-masaoka.jp/",正岡工務店,G1_MODERN,skip,"",新居浜,"https://www.igosso-masaoka.jp/",0,0,0,skip,"track=skip",
+"http://ayahome.com/",正三建設株式会社,NO_EMAIL,skip,"",大船渡,"http://ayahome.com/",0,0,0,skip,"track=skip",
+"https://www.seikokensetsu.jp/",清興建設(株),G1_MODERN,skip,"",神奈川,"https://seikokensetsu.co.jp/",0,0,0,skip,"track=skip",
+"https://shimizutk.com/",清水匠工務所,G1_MODERN,skip,"",世田谷区,"https://shimizutk.com/",0,0,0,skip,"track=skip",
+"https://www.e-nishibuchi.co.jp/",西渕工務店,G1_MODERN,inside,"info@e-nishibuchi.co.jp",愛媛,"https://www.e-nishibuchi.co.jp/",0,4,5,ai_ops,"HP整備済(G1_MODERN); FAX表記; PDF資料; 問合せ・見積導線",2026-08-31T06:13:08
+"https://www.aoyama-const.com/",青山建設株式会社,NO_EMAIL,skip,"",豊橋市,"https://www.aoyama-const.com/",0,0,0,skip,"track=skip",
+"https://www.aoyamax.com/",青山都市建設株式会社,NO_EMAIL,skip,"",千葉,"https://aoyamax.com/",0,0,0,skip,"track=skip",
+"https://www.waraku-i.com/",石川工務店,G1_MODERN,inside,"info@waraku-i.com",西条,"https://www.waraku-i.com/",0,4,4,recruit,"採用URL:/recruit/; 採用キーワード; 工務店・建設",2026-08-31T06:12:32
+"http://www.isi-ken.jp/",石田建築,NO_EMAIL,skip,"",新発田,"http://www.isi-ken.jp/",0,0,0,skip,"track=skip",
+"https://www.ishidamokuzai.com/index.html",石田木材(株),NO_EMAIL,skip,"",神奈川,"https://www.ishidamokuzai.com/index.html",0,0,0,skip,"track=skip",
+"http://www.kawamoku.com",川木建設株式会社,NO_EMAIL,skip,"",埼玉,"https://kawamoku.com/",0,0,0,skip,"track=skip",
+"https://zenke-koumuten.com/",善家工務店,NO_EMAIL,skip,"",鬼北,"https://zenke-koumuten.com/",0,0,0,skip,"track=skip",
+"https://www.ie-ah.com/aboutus/company.html",創建築工房株式会社,G1_MODERN,skip,"",千葉,"https://www.ie-ah.com/aboutus/company.html",0,0,0,skip,"track=skip",
+"http://soukakoubou.com/",想家工房株式会社,G1_MODERN,skip,"",春日,"https://soukakoubou.com/",0,0,0,skip,"track=skip",
+"http://www.e-house.co.jp/hayakawa-mokuzai/",早川木材株式会社,FETCH_FAIL,skip,"",横浜,"http://www.e-house.co.jp/hayakawa-mokuzai/",0,0,0,skip,"track=skip",
+"https://hayakawamokuzai.co.jp/",早川木材株式会社,G1_WEAK,inside,"t_yamada@sample.jp",神奈川,"https://www.hayakawamokuzai.co.jp/inquiry",2,4,4,recruit,"採用URL:/recruit/; 採用キーワード; 工務店・建設",2026-08-31T10:48:44
+"http://www.soyo-inc.co.jp/",相陽建設株式会社,G1_MODERN,skip,"",相模原,"https://www.soyo-inc.co.jp/",0,0,0,skip,"track=skip",
+"https://sole-living.soyo-inc.co.jp/",相陽建設株式会社,FETCH_FAIL,skip,"",神奈川,"https://sole-living.soyo-inc.co.jp/",0,0,0,skip,"track=skip",
+"http://murakamikoumuten.jp/",村上工務店,CANDIDATE,buyout,"murakamikoumuten4396@gmail.com",不明,"http://murakamikoumuten.jp/",6,0,0,hp_buyout_66k,"SSL未整備; tel:なし; 更新停止感(HTML内2019止); 粗2点以上",
+"http://www.taikei-con.co.jp",太啓建設株式会社,G1_MODERN,inside,"info@taikei-con.co.jp",豊田市,"https://www.taikei-con.co.jp/contact/",0,4,3,recruit,"採用URL:/recruit/; 採用キーワード; 工務店・建設",2026-08-31T06:19:08
+"http://www.taiheihome.co.jp/",太平ホーム株式会社,G1_MODERN,skip,"",埼玉,"https://www.taiheihome.co.jp/",0,0,0,skip,"track=skip",
+"http://www.ooi-k.co.jp",大井建設株式会社,NO_EMAIL,skip,"",名古屋市,"https://www.ooi-k.co.jp/",0,0,0,skip,"track=skip",
+"https://daiei-kensetsu.com",大栄建設株式会社,G1_WEAK,inside,"daiei@hyper.ocn.ne.jp",弥富市,"https://daiei-kensetsu.com/company.html",2,3,2,recruit,"採用キーワード; 採用リンクあり(深掘り要); 工務店・建設",2026-08-31T06:18:54
+"http://www.daiei-co.com/",大栄建設株式会社,NO_EMAIL,skip,"",神奈川,"https://www.daiei-co.com/",0,0,0,skip,"track=skip",
+"https://www.r-home-y.com",大建ホーム株式会社,NO_EMAIL,skip,"",埼玉,"https://www.r-home-y.com/",0,0,0,skip,"track=skip",
+"http://www.daigoro-kensetu.com/",大五郎建設有限会社,G1_WEAK,inside,"info@daigoro-kensetu.com",千葉,"https://www.daigoro-kensetu.com/",2,1,3,ai_ops,"FAX表記; PDF資料; 問合せ・見積導線",2026-08-31T10:48:56
+"http://www.daikokuya-k.co.jp/",大黒屋建設株式会社,G1_MODERN,skip,"",岡崎市,"https://daikokuya-k.co.jp/",0,0,0,skip,"track=skip",
+"http://daiju-home.com/index.html",大重建築,G1_MODERN,skip,"",四日市,"https://daiju-home.com/",0,0,0,skip,"track=skip",
+"http://ohkazu.jp",大数建設株式会社,NO_EMAIL,skip,"",瀬戸市,"https://ohkazu.jp/",0,0,0,skip,"track=skip",
+"https://taisei1920.co.jp/",大精建設株式会社,G1_WEAK,inside,"kk.taisei@usiwakamaru.or.jp",一宮市,"https://taisei1920.co.jp/contact/",1,6,4,recruit,"採用URL:/recruit/; 採用キーワード; 採用ページ更新古い(2014); 工務店・建設",2026-08-31T06:16:04
+"http://www.oobakensetsu.com/",大庭建設(株),NO_EMAIL,skip,"",福岡,"https://www.oobakensetsu.com/",0,0,0,skip,"track=skip",
+"http://www.daitoohome.com/",大東建設株式会社,FETCH_FAIL,skip,"",朝日,"http://www.daitoohome.com/",0,0,0,skip,"track=skip",
+"http://daitojyutaku.co.jp/",大東住宅株式会社,G1_MODERN,inside,"info@daitojyutaku.co.jp",大和,"https://www.daitojyutaku.co.jp/",0,3,5,ai_ops,"HP整備済(G1_MODERN); FAX表記; PDF資料; 問合せ・見積導線",2026-08-31T06:15:50
+"http://www.daitou-net.co.jp",大藤建設株式会社,G1_WEAK,inside,"info@daitou-net.co.jp",愛西市,"https://www.daitou-net.co.jp/contact/",2,3,2,recruit,"採用URL:/recruit/; 工務店・建設",2026-08-31T06:18:56
+"http://okusu.jp/",大楠建業,G1_MODERN,skip,"",北九州,"https://okusu.jp/",0,0,0,skip,"track=skip",
+"https://www.oono.gr.jp",大野建設株式会社,G1_WEAK,inside,"yourname@yourdomain.jp",埼玉,"https://www.oono.gr.jp/contact/",2,4,1,recruit,"採用URL:/recruit/; 採用キーワード; 工務店・建設",2026-08-31T06:20:34
+"http://dk-k.com",大和建設工業株式会社,NO_EMAIL,skip,"",埼玉,"https://dk-k.com/",0,0,0,skip,"track=skip",
+"https://www.taki-kensetsu.co.jp/",滝建設株式会社,NO_EMAIL,skip,"",小牧市,"https://www.taki-kensetsu.co.jp/",0,0,0,skip,"track=skip",
+"https://swdgc.jp/",沢田建設株式会社,G1_MODERN,skip,"",瀬戸市,"https://swdgc.jp/",0,0,0,skip,"track=skip",
+"http://www.chiryu-mokuzai.com/",知立木材合資会社,NO_EMAIL,skip,"",知立,"https://www.chiryu-mokuzai.com/",0,0,0,skip,"track=skip",
+"http://ikedagiken.com/",池田技建,G1_MODERN,skip,"",黒部,"https://ikedagiken.com/",0,0,0,skip,"track=skip",
+"https://www.chuo-ken.com/",中央建設株式会社,G1_WEAK,skip,"sample@mail.com",豊橋市,"https://www.chuo-ken.com/contact/",2,0,0,skip,"track=skip",
+"https://www.c-ca.jp",中央建設協同組合,NO_EMAIL,skip,"",埼玉,"https://www.c-ca.jp/",0,0,0,skip,"track=skip",
+"http://www.i-nakahara.com/",中原工務店,G1_WEAK,inside,"info@i-nakahara.com",福岡,"https://www.i-nakahara.com/about/",2,3,2,recruit,"採用URL:/recruit/; 工務店・建設",2026-08-31T10:46:56
+"http://www.nakata-homes.com/",中田ホームズ有限会社,CANDIDATE,buyout,"info@nakata-homes.com",宮若,"http://www.nakata-homes.com/company.html",6,0,0,hp_buyout_66k,"SSL未整備; viewportなし; tel:なし; 粗2点以上",
+"https://www.nakada-kk.com/",中田建設株式会社,G1_MODERN,skip,"",上越,"https://www.nakada-kk.com/",0,0,0,skip,"track=skip",
+"http://www.nakatake.co.jp/index.html",中武建設株式会社,CANDIDATE,buyout,"info@nakatake.co.jp",宮崎,"http://www.nakatake.co.jp/index.html",6,0,0,hp_buyout_66k,"SSL未整備; viewportなし; tel:なし; 粗2点以上",
+"http://nakanokensetsu.co.jp",中野建設株式会社,G1_WEAK,inside,"info@nakanokensetsu.co.jp",一宮市,"https://nakanokensetsu.co.jp/form/",1,4,3,recruit,"採用URL:/recruit; 採用キーワード; 工務店・建設",2026-08-31T06:16:14
+"http://www.chu-so.co.jp/",忠創建設株式会社,FETCH_FAIL,skip,"",千葉,"http://www.chu-so.co.jp/",0,0,0,skip,"track=skip",
+"https://www.nagakita.co.jp/",長北工務店,G1_WEAK,inside,"abc@domain.com",新潟,"https://www.nagakita.co.jp/contact/",2,2,2,skip,"全スコア不足(hp=2,recruit=2,ai=2)",2026-08-31T06:13:04
+"https://torikaiken.co.jp/",鳥飼建設(株),G1_MODERN,inside,"torikaihome@torikaiken.co.jp",福岡,"https://torikaiken.co.jp/company/",0,4,4,recruit,"採用URL:/recruit/; 採用キーワード; 工務店・建設",2026-08-31T10:46:39
+"http://www3.ocn.ne.jp/~chokuyou/",直洋建設株式会社,FETCH_FAIL,skip,"",大館,"http://www3.ocn.ne.jp/~chokuyou/",0,0,0,skip,"track=skip",
+"https://tamura-koumuten.com/",田村工務店,NO_EMAIL,skip,"",盛岡,"https://tamura-koumuten.com/",0,0,0,skip,"track=skip",
+"http://tanakahiroto.com",田中洋人建築設計室,NO_EMAIL,skip,"",新潟,"http://tanakahiroto.com/",0,0,0,skip,"track=skip",
+"http://www.dichousing.co.jp",土橋産業株式会社,FETCH_FAIL,skip,"",武雄,"http://www.dichousing.co.jp",0,0,0,skip,"track=skip",
+"https://www.respec.co.jp",東栄建設工業株式会社,FETCH_FAIL,skip,"",神奈川,"https://www.respec.co.jp",0,0,0,skip,"track=skip",
+"http://alphahomeplus.co.jp/",東海スマート企業グループ株式会社,G1_MODERN,inside,"info@alphahome-plus.com",刈谷,"https://www.alphahomeplus.co.jp/contact/",0,4,4,recruit,"採用URL:/recruit/; 採用キーワード; 工務店・建設",2026-08-31T06:13:17
+"http://www.tg-smilereform.com/",東京ガスすまいるサポート株式会社,NO_EMAIL,skip,"",埼玉,"http://www.tg-smilereform.com/",0,0,0,skip,"track=skip",
+"http://www.tohoku-h.co.jp/",東北ホーム株式会社,FETCH_FAIL,skip,"",一関,"http://www.tohoku-h.co.jp/",0,0,0,skip,"track=skip",
+"http://www.tohoku-kogyo.co.jp/",東北工業株式会社,NO_EMAIL,skip,"",柏崎,"https://www.tohoku-kogyo.co.jp/",0,0,0,skip,"track=skip",
+"https://www.touwabill.com/",東和ビルテック株式会社,G1_MODERN,skip,"",東京,"https://www.touwabill.com/",0,0,0,skip,"track=skip",
+"http://www.fujikensetsu-tahara.com",藤建設株式会社,NO_EMAIL,skip,"",田原市,"https://www.fujikensetsu-tahara.com/",0,0,0,skip,"track=skip",
+"https://fujishiro-kk.co.jp/",藤城建設株式会社,G1_MODERN,skip,"",豊橋市,"https://fujishiro-kk.co.jp/",0,0,0,skip,"track=skip",
+"http://www.k-uchiken.com",内田建設株式会社,G1_MODERN,inside,"info@k-uchiken.com",東京,"https://www.k-uchiken.com/company/",0,4,5,ai_ops,"HP整備済(G1_MODERN); FAX表記; PDF資料; 問合せ・見積導線",2026-08-31T10:48:17
+"http://www.ninomiya-kensetsu.co.jp/",二宮建設株式会社,NO_EMAIL,skip,"",金沢,"http://ninomiya-kensetsu.co.jp/",0,0,0,skip,"track=skip",
+"http://www.ninomiyamokuzai.com/",二宮木材株式会社,FETCH_FAIL,skip,"",那須塩原,"http://www.ninomiyamokuzai.com/",0,0,0,skip,"track=skip",
+"https://nichiai.jp",日愛工業株式会社,NO_EMAIL,skip,"",一宮市,"https://nichiai.jp/",0,0,0,skip,"track=skip",
+"http://www.hiyamahome.jp/",日山ホーム(株),NO_EMAIL,skip,"",福岡,"https://www.hiyamahome.jp/",0,0,0,skip,"track=skip",
+"http://www.hiten-maru.com",日天建設株式会社,FETCH_FAIL,skip,"",仙北,"http://www.hiten-maru.com",0,0,0,skip,"track=skip",
+"http://www.nichido-kensetsu.com/",日動建設株式会社,G1_MODERN,inside,"mail@nichido-kensetsu.com",千葉,"https://nichido-kensetsu.com/company/",0,3,4,ai_ops,"HP整備済(G1_MODERN); FAX表記; 問合せ・見積導線",2026-08-31T10:48:59
+"https://tomoehome.com/",巴ホーム,G1_MODERN,skip,"",鳥取,"https://tomoehome.com/",0,0,0,skip,"track=skip",
+"http://umehara-cc.jp/",梅原建設(株),G1_MODERN,inside,"info@umehara-cc.jp",福岡,"https://umehara-cc.jp/company/",0,4,4,recruit,"採用URL:/recruit/; 採用キーワード; 工務店・建設",2026-08-31T10:46:45
+"http://www.kashiwaya-s.com/",柏屋商事株式会社,FETCH_FAIL,skip,"",埼玉,"http://www.kashiwaya-s.com/",0,0,0,skip,"track=skip",
+"http://www7.ocn.ne.jp/~sfa/",白神森林組合,FETCH_FAIL,skip,"",能代,"http://www7.ocn.ne.jp/~sfa/",0,0,0,skip,"track=skip",
+"https://www.hakutake.com",白竹建設株式会社,G1_MODERN,skip,"",碧南市,"https://hakutake.com/",0,0,0,skip,"track=skip",
+"http://www.e-hakuba.com/",白馬建設株式会社,G1_WEAK,inside,"privacy@e-hakuba.com",東村山,"https://www.e-hakuba.com/group/contact/",2,4,2,recruit,"採用URL:/recruit; 採用キーワード; 工務店・建設",2026-08-31T06:15:42
+"https://www.hakuhan.com",白半建設株式会社,NO_EMAIL,skip,"",刈谷市,"https://www.hakuhan.com/",0,0,0,skip,"track=skip",
+"https://www.big-advance.site/s/127/1523/company",白龍建設株式会社,G1_MODERN,skip,"",岡崎市,"https://www.big-advance.site/c/127/1523/profile",0,0,0,skip,"track=skip",
+"https://www.yashimaltd.com/",八洲建設株式会社,NO_EMAIL,skip,"",半田市,"https://www.yashimaltd.com/",0,0,0,skip,"track=skip",
+"http://yagami-kk.jp",八神建築株式会社,CANDIDATE,buyout,"info@yagami-kk.jp",名古屋市,"http://yagami-kk.jp/",5,0,0,hp_buyout_66k,"SSL未整備; 更新停止感(HTML内2017止); 粗2点以上",
+"http://www.ozuka.jp/会社概要/",尾塚建設,NO_EMAIL,skip,"",福岡,"https://www.ozuka.jp/%E4%BC%9A%E7%A4%BE%E6%A6%82%E8%A6%81/",0,0,0,skip,"track=skip",
+"http://www.ono-ehouse.com/",尾野建築設計事務所,NO_EMAIL,skip,"",豊山,"http://www.ono-ehouse.com/",0,0,0,skip,"track=skip",
+"https://miyoshi-kk.com",美吉建設株式会社,NO_EMAIL,skip,"",稲沢市,"https://miyoshi-kk.com/",0,0,0,skip,"track=skip",
+"https://www.bikuken.co.jp/",美空建株式会社,G1_MODERN,inside,"info.bikuken@bikuken.co.jp",東京,"https://www.bikuken.co.jp/company.html",0,2,4,ai_ops,"HP整備済(G1_MODERN); FAX表記; 問合せ・見積導線",2026-08-31T10:48:38
+"http://www.fco.co.jp",富士コントロール株式会社,NO_EMAIL,skip,"",埼玉,"https://www.fco.co.jp/",0,0,0,skip,"track=skip",
+"http://www.fsh.co.jp/info",富士ソーラーハウス 株式会社,NO_EMAIL,skip,"",神奈川,"https://www.fsh.co.jp/",0,0,0,skip,"track=skip",
+"https://www.fsh.co.jp/",富士ソーラーハウス(株),NO_EMAIL,skip,"",神奈川,"https://www.fsh.co.jp/",0,0,0,skip,"track=skip",
+"http://www.fujikohei.jp/",富士工営株式会社,FETCH_FAIL,skip,"",前橋,"http://www.fujikohei.jp/",0,0,0,skip,"track=skip",
+"https://www.tomikawaken.jp/",富川建設株式会社,G1_MODERN,skip,"",見附,"https://www.tomikawaken.jp/",0,0,0,skip,"track=skip",
+"http://www.fukuoka-kk.jp",福岡建設株式会社,NO_EMAIL,skip,"",愛西市,"https://fukuoka-kk.jp/",0,0,0,skip,"track=skip",
+"https://fukuchukyo.com/",福岡中小建設業協同組合,G1_MODERN,skip,"",福岡,"https://fukuchukyo.com/",0,0,0,skip,"track=skip",
+"http://ie-daisuki.com/",福建住宅(株),G1_MODERN,skip,"",福岡,"https://ie-daisuki.com/",0,0,0,skip,"track=skip",
+"https://www.o-fukuyama.com/",福山建築,G1_MODERN,skip,"",倉吉,"https://www.o-fukuyama.com/",0,0,0,skip,"track=skip",
+"http://www.fukushima-koumuten.jp/",福嶋工務店,NO_EMAIL,skip,"",桜井,"https://www.fukushima-koumuten.jp/",0,0,0,skip,"track=skip",
+"https://www.hirabayasi.net/",平林建設株式会社,FETCH_FAIL,skip,"",千葉,"https://www.hirabayasi.net/",0,0,0,skip,"track=skip",
+"http://www.kataoka-ken.co.jp/",片岡健工務店,NO_EMAIL,skip,"",東京,"http://www.kataoka-ken.co.jp/",0,0,0,skip,"track=skip",
+"http://www.hokoku-eng.jp/",報告エンジニアリング(株),G1_WEAK,inside,"hokoku@sample.jp",神奈川,"https://www.hokoku-eng.jp/form/",2,4,2,recruit,"採用URL:/recruit/; 採用キーワード; 工務店・建設",2026-08-31T10:47:48
+"http://www.howa-dome.com",宝和工務株式会社,NO_EMAIL,skip,"",東海市,"https://www.howa-dome.com/",0,0,0,skip,"track=skip",
+"http://www.toyo-ken.com/",豊橋建設工業株式会社,G1_WEAK,inside,"info@toyo-ken.com",豊橋市,"https://www.toyo-ken.com/contact",2,4,2,recruit,"採用URL:/recruit; 採用キーワード; 工務店・建設",2026-08-31T06:19:02
+"http://www.kitazima-kenchiku.com",北嶋洋一建築設計,FETCH_FAIL,skip,"",秋田,"http://www.kitazima-kenchiku.com",0,0,0,skip,"track=skip",
+"http://kitaken1970.com",北本建設株式会社,NO_EMAIL,skip,"",埼玉,"https://kitaken1970.com/",0,0,0,skip,"track=skip",
+"https://mirai-art.co.jp",未来アート株式会社,G1_MODERN,inside,"info@mirai-art.co.jp",埼玉,"https://mirai-art.co.jp/",0,1,4,ai_ops,"HP整備済(G1_MODERN); FAX表記; 問合せ・見積導線",2026-08-31T06:20:05
+"http://www.muku.co.jp",無垢スタイル建築設計株式会社,G1_MODERN,skip,"",埼玉,"https://www.muku.co.jp/",0,0,0,skip,"track=skip",
+"http://www.meito-510.com",名稲建設株式会社,G1_MODERN,skip,"",犬山市,"https://www.meito-510.com/",0,0,0,skip,"track=skip",
+"http://www.meisyo-kensetsu.jp/",盟章建設株式会社,G1_MODERN,skip,"",上尾,"https://www.meisyo-kensetsu.jp/",0,0,0,skip,"track=skip",
+"http://www.meikenkogyo.com/",銘建工業株式会社,NO_EMAIL,skip,"",真庭,"https://www.meikenkogyo.com/",0,0,0,skip,"track=skip",
+"http://www.kimura-lan.co.jp/",木村建設株式会社,NO_EMAIL,skip,"",碧南市,"http://www.kimura-lan.co.jp/",0,0,0,skip,"track=skip",
+"http://www.nozue.info/",野末建築,G1_MODERN,inside,"info@nozue.info",滑川,"https://nozue.info/company/",0,2,4,ai_ops,"HP整備済(G1_MODERN); FAX表記; 問合せ・見積導線",2026-08-31T06:15:04
+"http://www.yajimac.co.jp/",矢島建設興業株式会社,G1_WEAK,skip,"sample@yajimac.co.jp",岐阜,"https://www.yajimac.co.jp/contact/",2,0,0,skip,"track=skip",
+"http://www.yajima-k.jp/",矢島工務店,G1_WEAK,inside,"info@yajima-k.jp",三芳,"https://www.yajima-k.jp/",7,1,2,hp_improve,"tel:なし; 更新停止感(HTML内2018止); ワンページ構成; httpsサイト内http混在; テンプレート残骸; 英語メニュー; ISO・公共工事・資本金; 粗1点",
+"http://www.kh.rim.or.jp/~yanakenn/",柳原建設株式会社,NO_EMAIL,skip,"",神戸,"http://www.kh.rim.or.jp/~yanakenn/",0,0,0,skip,"track=skip",
+"https://www.yumishoji.co.jp",優美商事株式会社,FETCH_FAIL,skip,"",東京,"https://www.yumishoji.co.jp",0,0,0,skip,"track=skip",
+"http://www.e-yushin.net",友伸建設株式会社,NO_EMAIL,skip,"",東京,"https://www.e-yushin.net/",0,0,0,skip,"track=skip",
+"http://www.token-h.jp/",有限会社 トーケンホーム,NO_EMAIL,skip,"",神奈川,"http://www.token-h.jp/",0,0,0,skip,"track=skip",
+"http://daisei-kanai.com/",有限会社 大清金井建設,NO_EMAIL,skip,"",神奈川,"https://daisei-kanai.com/",0,0,0,skip,"track=skip",
+"http://www.atozplanning.com/",有限会社AtoZプランニング,NO_EMAIL,skip,"",中津,"http://atozplanning.com/",0,0,0,skip,"track=skip",
+"http://www.archi-rise.co.jp/",有限会社アーキ・ライズ,NO_EMAIL,skip,"",柏崎,"https://www.archi-rise.co.jp/",0,0,0,skip,"track=skip",
+"http://akutohome.com/index.html",有限会社アクトホーム,NO_EMAIL,skip,"",小千谷,"http://akutohome.com/",0,0,0,skip,"track=skip",
+"https://r.goope.jp/abesekkeisitsu",有限会社アベ設計室,G1_WEAK,inside,"aabe@plum.plala.or.jp",南魚沼,"https://r.goope.jp/abesekkeisitsu/",2,3,2,recruit,"採用URL:/recruit/; 工務店・建設",2026-08-31T06:14:31
+"http://eneken.co.jp/",有限会社アライ,NO_EMAIL,skip,"",埼玉,"https://eneken.co.jp/",0,0,0,skip,"track=skip",
+"http://www.warehouse-k.jp/",有限会社ウェアハウス,G1_WEAK,inside,"info@warehouse-k.jp",京都,"https://warehouse-k.jp/",2,1,1,skip,"全スコア不足(hp=2,recruit=1,ai=1)",2026-08-31T06:19:30
+"http://www.uedahome.com/",有限会社ウエダホーム,NO_EMAIL,skip,"",御船,"http://www.uedahome.com/",0,0,0,skip,"track=skip",
+"http://www.ms-factory.info",有限会社エムズファクトリー,FETCH_FAIL,skip,"",埼玉,"http://www.ms-factory.info",0,0,0,skip,"track=skip",
+"http://www.qbe-net.co.jp/",有限会社キューブ,NO_EMAIL,skip,"",横浜,"http://qbe-net.co.jp/",0,0,0,skip,"track=skip",
+"http://www.corehouse.jp/",有限会社コアハウス,G1_MODERN,skip,"",福山,"https://www.corehouse.jp/",0,0,0,skip,"track=skip",
+"http://www.cosmo-home-care.com/",有限会社コスモホームケア,FETCH_FAIL,skip,"",埼玉,"http://www.cosmo-home-care.com/",0,0,0,skip,"track=skip",
+"http://www.sanko-kn.com",有限会社サンコー建築店,NO_EMAIL,skip,"",埼玉,"http://www.sanko-kn.com/",0,0,0,skip,"track=skip",
+"http://www.cmi11.com/company",有限会社シーエムアイ,FETCH_FAIL,skip,"",埼玉,"http://www.cmi11.com/company",0,0,0,skip,"track=skip",
+"http://www.sumireco.co.jp/",有限会社すみれ建築工房,NO_EMAIL,skip,"",神戸,"http://www.sumireco.co.jp/",0,0,0,skip,"track=skip",
+"http://takewaki-j.co.jp/",有限会社タケワキ住宅建設,FETCH_FAIL,skip,"",千葉,"http://takewaki-j.co.jp/",0,0,0,skip,"track=skip",
+"http://www.ie-nakamura.jp/",有限会社ナカムラ,G1_MODERN,skip,"",富山,"https://www.ie-nakamura.jp/",0,0,0,skip,"track=skip",
+"http://newchip.jp",有限会社ニューチップ,G1_MODERN,inside,"info@sample.co.jp",越前,"https://www.newchip.jp/contact/",0,4,4,recruit,"採用URL:/recruit; 採用キーワード; 工務店・建設",2026-08-31T06:14:06
+"http://www.housefit.jp",有限会社ハウスフィット,NO_EMAIL,skip,"",市原,"https://www.housefit.jp/",0,0,0,skip,"track=skip",
+"http://www.hanabusa-kensetsu.com/",有限会社はなぶさ建設,FETCH_FAIL,skip,"",神奈川,"http://www.hanabusa-kensetsu.com/",0,0,0,skip,"track=skip",
+"http://www.manahome.jp/",有限会社ハラ建築,FETCH_FAIL,skip,"",千葉,"http://www.manahome.jp/",0,0,0,skip,"track=skip",
+"http://www.fukamihome.co.jp/",有限会社フカミホーム,NO_EMAIL,skip,"",岡崎,"http://www.fukamihome.co.jp/",0,0,0,skip,"track=skip",
+"http://www3.plala.or.jp/hinokiie/",有限会社フジイ建築,FETCH_FAIL,skip,"",白川,"http://www3.plala.or.jp/hinokiie/",0,0,0,skip,"track=skip",
+"http://www.izzat.co.jp/",有限会社ベストホーム,FETCH_FAIL,skip,"",立山,"http://www.izzat.co.jp/",0,0,0,skip,"track=skip",
+"http://www.makibi.co.jp",有限会社まきび住建,G1_MODERN,skip,"",岡山,"https://soraie-design.com/",0,0,0,skip,"track=skip",
+"http://www.maruwajyuken.co.jp/",有限会社マルワ住建,FETCH_FAIL,skip,"",高岡,"http://www.maruwajyuken.co.jp/",0,0,0,skip,"track=skip",
+"http://miki10taku.jp/",有限会社ミキ住宅環境サービス,NO_EMAIL,skip,"",葛飾,"https://miki10taku.jp/",0,0,0,skip,"track=skip",
+"http://minoru-arch.com/",有限会社ミノル建築,G1_MODERN,skip,"",由利本荘,"https://www.minoru-arch.com/",0,0,0,skip,"track=skip",
+"http://www.ryo-kenchiku.jp",有限会社リョウ建築事務所,NO_EMAIL,skip,"",新潟,"http://www.ryo-kenchiku.jp/",0,0,0,skip,"track=skip",
+"http://www.watanabereform.jp/",有限会社ワタナベリフォーム技建,NO_EMAIL,skip,"",埼玉,"https://www.watanabereform.jp/",0,0,0,skip,"track=skip",
+"http://www.yasumatsu.co.jp",有限会社安松託建,G1_MODERN,skip,"sample@yasumatsu.co.jp",前橋,"https://yasumatsu.co.jp/contact/",0,0,0,skip,"track=skip",
+"http://ijimakentiku.com/",有限会社伊島建築,FETCH_FAIL,skip,"",千葉,"http://ijimakentiku.com/",0,0,0,skip,"track=skip",
+"http://www.ito-yo.com/",有限会社伊藤与工務店,FETCH_FAIL,skip,"",多賀城,"http://www.ito-yo.com/",0,0,0,skip,"track=skip",
+"https://imotokoumuten.jp/",有限会社井本工務店,NO_EMAIL,skip,"",鳥取,"https://imotokoumuten.jp/",0,0,0,skip,"track=skip",
+"http://www.endo-koumuten.co.jp/",有限会社遠藤工務店,NO_EMAIL,skip,"",魚沼,"https://www.endo-koumuten.co.jp/",0,0,0,skip,"track=skip",
+"http://www2.ocn.ne.jp/~ecc/",有限会社遠藤工務店,FETCH_FAIL,skip,"",石巻,"http://www2.ocn.ne.jp/~ecc/",0,0,0,skip,"track=skip",
+"https://shimohara.biz",有限会社下原建設,NO_EMAIL,skip,"",新潟,"https://shimohara.biz/",0,0,0,skip,"track=skip",
+"https://www.katoukenchiku.jp/",有限会社加藤建築,G1_WEAK,inside,"info@katoukenchiku.jp",埼玉,"https://www.katoukenchiku.jp/company.html",2,1,3,ai_ops,"FAX表記; 問合せ・見積導線; 見積・対応エリア訴求",2026-08-31T06:20:33
+"http://www.katoukenchiku.jp",有限会社加藤建築,FETCH_FAIL,skip,"",埼玉,"http://www.katoukenchiku.jp",0,0,0,skip,"track=skip",
+"http://www.woody-katoh.com",有限会社加藤木材,G1_WEAK,inside,"woody@woody-katoh.com",埼玉,"https://woody-katoh.com/contact/",2,1,1,skip,"全スコア不足(hp=2,recruit=1,ai=1)",2026-08-31T06:20:25
+"http://www.e-house.co.jp/todokoro/index.html",有限会社外處建設,NO_EMAIL,skip,"",埼玉,"https://www.e-house.co.jp/todokoro/index.html",0,0,0,skip,"track=skip",
+"https://www.kamata-k.jp/",有限会社鎌田工務店,G1_MODERN,inside,"info@kamata-k.jp",仙台,"https://www.kamata-k.jp/",0,1,4,ai_ops,"HP整備済(G1_MODERN); FAX表記; 問合せ・見積導線",2026-08-31T06:12:35
+"http://www.iwa-ken.net/",有限会社岩田建築,NO_EMAIL,skip,"",浜松,"http://www.iwa-ken.net/",0,0,0,skip,"track=skip",
+"http://www.mariko.co.jp/",有限会社鞠子建設,NO_EMAIL,skip,"",岡山,"http://www.mariko.co.jp/",0,0,0,skip,"track=skip",
+"http://oikou.jp",有限会社及川工務店,NO_EMAIL,skip,"",一関,"https://oikou.jp/",0,0,0,skip,"track=skip",
+"http://www.miyajima-moku.jp/",有限会社宮嶋木材,G1_MODERN,skip,"",柏崎,"https://www.miyajima-moku.jp/",0,0,0,skip,"track=skip",
+"http://www.k2-homes.com/hp/kyowa-k/",有限会社共和建工,FETCH_FAIL,skip,"",塩釜,"http://www.k2-homes.com/hp/kyowa-k/",0,0,0,skip,"track=skip",
+"http://www.anadakoumuten.com/",有限会社穴田工務店,NO_EMAIL,skip,"",富山,"https://anadakoumuten.com/",0,0,0,skip,"track=skip",
+"http://www.souan.ne.jp/",有限会社建築工房想庵,NO_EMAIL,skip,"",立山,"http://souan.ne.jp/",0,0,0,skip,"track=skip",
+"http://www.furugori-koumuten.com/",有限会社古郡工務店,FETCH_FAIL,skip,"",海老名,"http://www.furugori-koumuten.com/",0,0,0,skip,"track=skip",
+"http://www.furusawa-living.co.jp",有限会社古澤リビング,CANDIDATE,buyout,"info@furusawa-living.co.jp",埼玉,"http://www.furusawa-living.co.jp/",7,0,0,hp_buyout_66k,"SSL未整備; viewportなし; tel:なし; 更新停止感(HTML内2005止); 粗2点以上",
+"http://www.sasashin.sv.bigsite.jp/",有限会社佐々進建業,FETCH_FAIL,skip,"",加美,"http://www.sasashin.sv.bigsite.jp/",0,0,0,skip,"track=skip",
+"http://sasaki-koumuten.fte.jp/",有限会社佐々木工務店,FETCH_FAIL,skip,"",大仙,"http://sasaki-koumuten.fte.jp/",0,0,0,skip,"track=skip",
+"http://skct.jp/",有限会社佐藤建築店,FETCH_FAIL,skip,"",北塩原,"http://skct.jp/",0,0,0,skip,"track=skip",
+"http://e-sato-k.com/",有限会社佐藤工務店,NO_EMAIL,skip,"",奥州,"https://e-sato-k.com/",0,0,0,skip,"track=skip",
+"http://www.bluemoon-s.com/",有限会社佐藤工務店,CANDIDATE,buyout,"info@bluemoon-s.com",さいたま,"http://www.bluemoon-s.com/",6,0,0,hp_buyout_66k,"SSL未整備; viewportなし; tel:なし; 粗2点以上",
+"http://www.mihori.co.jp/",有限会社三堀工務店,G1_MODERN,inside,"info@mihori.co.jp",千葉,"https://mihori.co.jp/",0,2,4,ai_ops,"HP整備済(G1_MODERN); FAX表記; 問合せ・見積導線",2026-08-31T10:49:00
+"https://www.yamamoto-t.net/",有限会社山本工務店,NO_EMAIL,skip,"",鳥取,"https://www.yamamoto-t.net/",0,0,0,skip,"track=skip",
+"https://www.yamaryou.jp",有限会社山良工務店,G1_MODERN,skip,"",魚沼,"https://www.yamaryou.jp/",0,0,0,skip,"track=skip",
+"http://woodtec30.jp/",有限会社山和,NO_EMAIL,skip,"",甲府,"http://woodtec30.jp/",0,0,0,skip,"track=skip",
+"https://saneikoumuten.com/",有限会社山榮工務店,G1_MODERN,skip,"",久万,"https://saneikoumuten.com/",0,0,0,skip,"track=skip",
+"https://www.ichikawakenchikuten.com/",有限会社市川建築店,G1_MODERN,skip,"",三条,"https://www.ichikawakenchikuten.com/",0,0,0,skip,"track=skip",
+"http://www.ichikawa-1515.com/",有限会社市川工務店,NO_EMAIL,skip,"",京都,"https://www.ichikawa-1515.com/",0,0,0,skip,"track=skip",
+"http://www.na-style.co.jp/",有限会社自然と住まい研究所,G1_MODERN,skip,"",千葉,"https://www.na-style.co.jp/",0,0,0,skip,"track=skip",
+"https://www.sakai-kensetsu.com/",有限会社酒井建設,G1_WEAK,inside,"info@email.jp",倉吉,"https://www.sakai-kensetsu.com/toi/",2,1,2,skip,"全スコア不足(hp=2,recruit=1,ai=2)",2026-08-31T06:12:50
+"http://www.jyuutaku-kankyou.com/",有限会社住宅環境,FETCH_FAIL,skip,"",新発田,"http://www.jyuutaku-kankyou.com/",0,0,0,skip,"track=skip",
+"http://www.ideura.com/",有限会社出浦商事,CANDIDATE,buyout,"info@ideura.com",調布,"http://ideura.com/",5,0,0,hp_buyout_66k,"SSL未整備; 更新停止感(HTML内2005止); 粗2点以上",
+"http://www.syunwa.jp",有限会社春和建業,G1_WEAK,inside,"info@syunwa.jp",にかほ,"https://www.syunwa.jp/",2,1,2,skip,"全スコア不足(hp=2,recruit=1,ai=2)",2026-08-31T06:14:40
+"http://www.takumikensetu-kouji.com/",有限会社匠建設工事,FETCH_FAIL,skip,"",多治見,"http://www.takumikensetu-kouji.com/",0,0,0,skip,"track=skip",
+"http://kojima-ie.com/",有限会社小島工務店,NO_EMAIL,skip,"",会津美里,"http://kojima-ie.com/",0,0,0,skip,"track=skip",
+"http://www.obata-buildersoffice.com/",有限会社小畑工務店,CANDIDATE,buyout,"obata-k@topaz.bforth.com",名取,"http://www.obata-buildersoffice.com/company.html",7,0,0,hp_buyout_66k,"SSL未整備; viewportなし; tel:なし; 更新停止感(HTML内2009止); 粗2点以上",
+"https://syo-ken.jp/",有限会社尚建工務店,G1_MODERN,inside,"info@sho-ken.jp",日吉津,"https://syo-ken.jp/contact-us/",0,3,3,recruit,"採用URL:/recruit/; 工務店・建設",2026-08-31T06:12:48
+"http://www.matsumikoumuten.info/",有限会社松見工務店,FETCH_FAIL,skip,"",川口,"http://www.matsumikoumuten.info/",0,0,0,skip,"track=skip",
+"http://matsuda-takken.jp",有限会社松田宅建センター,G1_WEAK,inside,"info@matsuda-takken.jp",山形,"https://www.matsuda-takken.jp/company/",2,1,2,skip,"全スコア不足(hp=2,recruit=1,ai=2)",2026-08-31T06:13:55
+"http://www.ueno-kenchiku.co.jp/",有限会社上野建築事務所,CANDIDATE,buyout,"info@ueno-kenchiku.co.jp",練馬,"http://www.ueno-kenchiku.co.jp/",7,0,0,hp_buyout_66k,"SSL未整備; viewportなし; tel:なし; 更新停止感(HTML内2010止); 粗2点以上",
+"http://tedukuri-shinmei.com/",有限会社神明工務店,FETCH_FAIL,skip,"",神奈川,"http://tedukuri-shinmei.com/",0,0,0,skip,"track=skip",
+"http://mitok.jp/",有限会社水戸工務店,G1_MODERN,inside,"info@mitok.jp",千葉,"https://mitok.jp/about/",0,2,4,ai_ops,"HP整備済(G1_MODERN); FAX表記; 問合せ・見積導線",2026-08-31T10:49:09
+"https://mizuochi-jyuuken.jp/",有限会社水落住建,G1_MODERN,skip,"",十日町,"https://mizuochi-jyuuken.jp/",0,0,0,skip,"track=skip",
+"http://www.hoshiken-koumuten.co.jp/",有限会社星建工務店,G1_MODERN,skip,"",魚沼,"https://www.hoshiken-koumuten.co.jp/",0,0,0,skip,"track=skip",
+"http://simizu-k.com",有限会社清水建築,G1_MODERN,skip,"",一関,"https://simizu-k.com/",0,0,0,skip,"track=skip",
+"http://www.nishio-koumuten.com",有限会社西尾工務店,NO_EMAIL,skip,"",天童,"http://www.nishio-koumuten.com/",0,0,0,skip,"track=skip",
+"http://www.kawado-k.co.jp/",有限会社川戸工務店,NO_EMAIL,skip,"",伊勢原,"https://kawado-k.co.jp/",0,0,0,skip,"track=skip",
+"http://www.kawanishi1.jp/",有限会社川西工務店,FETCH_FAIL,skip,"",さぬき,"http://www.kawanishi1.jp/",0,0,0,skip,"track=skip",
+"http://www.homestylezen.com/",有限会社川﨑木工,FETCH_FAIL,skip,"",熊本,"http://www.homestylezen.com/",0,0,0,skip,"track=skip",
+"http://www.kurata-home.jp/",有限会社倉田住建,FETCH_FAIL,skip,"",大仙,"http://www.kurata-home.jp/",0,0,0,skip,"track=skip",
+"http://www.ttm-plan.com/",有限会社増永工務店,G1_MODERN,skip,"sample@email.com",京都,"https://www.ttm-plan.com/contact/",0,0,0,skip,"track=skip",
+"http://www.daiken1.com/",有限会社大建,BLOCKLIST,skip,"",秋田,"http://www.daiken1.com/",0,0,0,skip,"track=skip",
+"https://www.office-daiken.jp/",有限会社大賢工務店,G1_MODERN,inside,"info@daiken-nc.com",千葉,"https://office-daiken.jp/company/",0,4,4,recruit,"採用URL:/recruit/; 採用キーワード; 工務店・建設",2026-08-31T10:49:03
+"http://daijyu.exblog.jp",有限会社大樹ホーム,NO_EMAIL,skip,"",会津若松,"https://daijyu.exblog.jp/",0,0,0,skip,"track=skip",
+"http://www.tanimura-sc.com/",有限会社谷村工務店,G1_MODERN,inside,"info@tanimura-sc.com",東村山,"https://tanimura-sc.com/",0,1,4,ai_ops,"HP整備済(G1_MODERN); FAX表記; 問合せ・見積導線",2026-08-31T06:15:44
+"https://www.tanimura-sc.com",有限会社谷村工務店,G1_MODERN,inside,"info@tanimura-sc.com",東京,"https://tanimura-sc.com/",0,1,4,ai_ops,"HP整備済(G1_MODERN); FAX表記; 問合せ・見積導線",2026-08-31T10:48:20
+"http://ikedas16.com/",有限会社池田建築店,NO_EMAIL,skip,"",能代,"http://ikedas16.com/",0,0,0,skip,"track=skip",
+"http://www.lumber-h.com/",有限会社長谷川材木店,NO_EMAIL,skip,"",出雲崎,"http://www.lumber-h.com/",0,0,0,skip,"track=skip",
+"http://www.tanaka-j.com/",有限会社田中住プランニング,FETCH_FAIL,skip,"",千葉,"http://www.tanaka-j.com/",0,0,0,skip,"track=skip",
+"http://www.s-ef.co.jp/",有限会社島田工務店,G1_MODERN,skip,"",伊勢,"https://s-ef.co.jp/",0,0,0,skip,"track=skip",
+"http://sikisizen.jp/",有限会社当木建設,FETCH_FAIL,skip,"",神奈川,"http://sikisizen.jp/",0,0,0,skip,"track=skip",
+"http://fujikawakensetu.com/",有限会社藤川建設,CANDIDATE,buyout,"fujikawa-kensetu@jcom.home.ne.jp",神奈川,"https://fujikawakensetu.com/gaiyou.html",5,0,0,hp_buyout_66k,"viewportなし; tel:なし; 更新停止感(HTML内2009止); 粗2点以上",
+"http://www.kasiwadai-a.co.jp/",有限会社柏台工務店,FETCH_FAIL,skip,"",神奈川,"http://www.kasiwadai-a.co.jp/",0,0,0,skip,"track=skip",
+"https://bikouageo.com/",有限会社美光,G1_MODERN,skip,"",埼玉,"https://bikouageo.com/",0,0,0,skip,"track=skip",
+"http://web.fp-group.gr.jp/takeda/",有限会社武田建築,NO_EMAIL,skip,"",山形,"http://web.fp-group.gr.jp/takeda/",3,0,0,skip,"track=skip",
+"http://www3.ocn.ne.jp/~taira/",有限会社平建設,FETCH_FAIL,skip,"",盛岡,"http://www3.ocn.ne.jp/~taira/",0,0,0,skip,"track=skip",
+"http://www.hosawamokuzai.com/",有限会社法澤木材工業,FETCH_FAIL,skip,"",滑川,"http://www.hosawamokuzai.com/",0,0,0,skip,"track=skip",
+"http://mocca-house.com/",有限会社木香,CANDIDATE,buyout,"info@mocca-house.com",大分,"http://mocca-house.com/",6,0,0,hp_buyout_66k,"SSL未整備; viewportなし; tel:なし; 粗2点以上",
+"http://wagakensetu.ftw.jp/",有限会社和賀建設,FETCH_FAIL,skip,"",大崎,"http://wagakensetu.ftw.jp/",0,0,0,skip,"track=skip",
+"http://www.saigasekkei.co.jp/",有限会社齋賀設計工務,FETCH_FAIL,skip,"",日高,"http://www.saigasekkei.co.jp/",0,0,0,skip,"track=skip",
+"https://tateishi-con.co.jp/",立石工務店,FETCH_FAIL,skip,"",熊本,"https://tateishi-con.co.jp/",0,0,0,skip,"track=skip",
+"http://suzuki-kankyo.co.jp",鈴木環境建設株式会社,G1_WEAK,inside,"info@suzuki-kankyo.co.jp",石巻,"https://suzuki-kankyo.co.jp/about/",2,2,3,ai_ops,"FAX表記; 問合せ・見積導線; 見積・対応エリア訴求",2026-08-31T06:15:48
+"https://www.suzukiko-muten.co.jp/",鈴木工務店,NO_EMAIL,skip,"",塩竈,"https://www.suzukiko-muten.co.jp/",0,0,0,skip,"track=skip",
+"https://suzukidaiken.amebaownd.com/",鈴木大建興業株式会社,BLOCKLIST,skip,"",葛飾区,"https://suzukidaiken.amebaownd.com/",0,0,0,skip,"track=skip",
+"https://waibi.co.jp",和以美株式会社,NO_EMAIL,skip,"",東京,"https://www.waibi.co.jp/",0,0,0,skip,"track=skip",
+"http://www.kotobuki-kogyo.co.jp/",壽鑛業株式会社,NO_EMAIL,skip,"",田原市,"https://www.kotobuki-kogyo.co.jp/",0,0,0,skip,"track=skip",
+"http://www.widespacehome.com",廣居建設株式会社,G1_WEAK,inside,"info@widespacehome.com",米沢,"https://widespacehome.com/",2,1,1,skip,"全スコア不足(hp=2,recruit=1,ai=1)",2026-08-31T06:13:35
+"http://www.manabe-k.com/",眞鍋建設(株),G1_MODERN,inside,"info@manabe-k.com",福岡,"https://manabe-k.com/company/",0,4,4,recruit,"採用URL:/recruit; 採用キーワード; 工務店・建設",2026-08-31T10:46:52
+"http://www.kura-ya.net/",藏家,G1_MODERN,inside,"info@kura-ya.net",大阪,"https://kura-ya.net/",0,2,3,ai_ops,"HP整備済(G1_MODERN); 問合せ・見積導線",2026-08-31T06:19:28
+"http://tessyu.jp/",鐵舟株式会社,G1_WEAK,inside,"m.koga@tessyu.jp",久留米,"https://tessyu.jp/",2,6,2,recruit,"採用URL:/recruit/; 採用キーワード; 採用ページ更新古い(2013); 工務店・建設",2026-08-31T06:19:50
+"https://takayama-ind.co.jp/rhouse-yamaguchi/",髙山産業株式会社,G1_MODERN,skip,"",山口,"https://takayama-ind.co.jp/rhouse-yamaguchi/realestate/",0,0,0,skip,"track=skip",
+"http://www.takas.co.jp/",髙須工務店,CANDIDATE,buyout,"info@takas.co.jp",大田,"http://www.takas.co.jp/",6,0,0,hp_buyout_66k,"SSL未整備; tel:なし; 更新停止感(HTML内2018止); 粗2点以上",

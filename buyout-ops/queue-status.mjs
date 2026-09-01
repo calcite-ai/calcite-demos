@@ -56,9 +56,9 @@ const mapSend = (r) => ({
   status: r.status,
   approval_seq: r.approval_seq || "",
 });
-const nextSends = sendableRows.slice(0, quota.remaining).map(mapSend);
-// Extra candidates for same-day failover (recipient reject / verify skip)
-const failoverCap = Math.min(8, Math.max(1, quota.remaining) + 3);
+const buyoutNeed = quota.buyout_remaining;
+const nextSends = sendableRows.slice(0, buyoutNeed).map(mapSend);
+const failoverCap = Math.min(8, Math.max(1, buyoutNeed) + 3);
 const failoverCandidates = sendableRows.slice(0, failoverCap).map(mapSend);
 
 const result = {
@@ -67,8 +67,12 @@ const result = {
   approved_waiting: approvedWaiting.length,
   sendable: sendableRows.length,
   daily_sends: quota.daily_sends,
-  sent_today: quota.sent_today,
-  remaining_today: quota.remaining,
+  daily_buyout: quota.daily_buyout,
+  daily_inside: quota.daily_inside,
+  sent_today: quota.buyout_sent_today,
+  remaining_today: quota.buyout_remaining,
+  buyout_remaining: quota.buyout_remaining,
+  inside_remaining: quota.inside_remaining,
   quota_from: quota.effective_from,
   next: nextSends[0] || null,
   next_sends: nextSends,
@@ -86,7 +90,7 @@ if (process.argv.includes("--json")) {
   console.log(JSON.stringify(result, null, 2));
 } else {
   console.log(
-    `queued=${result.queued} built=${result.built} approved_waiting=${result.approved_waiting} sendable=${result.sendable} vertical=${ACTIVE_VERTICAL}(${verticalLabel(ACTIVE_VERTICAL)}) daily_sends=${result.daily_sends} sent_today=${result.sent_today} remaining_today=${result.remaining_today}`
+    `queued=${result.queued} built=${result.built} approved_waiting=${result.approved_waiting} sendable=${result.sendable} vertical=${ACTIVE_VERTICAL}(${verticalLabel(ACTIVE_VERTICAL)}) daily_buyout=${result.daily_buyout} buyout_sent=${result.sent_today} buyout_remaining=${result.remaining_today} inside_remaining=${result.inside_remaining}`
   );
   if (result.next_sends?.length) {
     for (const n of result.next_sends) {

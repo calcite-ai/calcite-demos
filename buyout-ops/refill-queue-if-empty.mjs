@@ -53,13 +53,20 @@ console.log("=== refill-queue-if-empty ===\n");
 
 const quota = loadSendQuota();
 run("queue-status.mjs");
-const need = Math.max(0, quota.remaining);
+const statusJsonEarly = run("queue-status.mjs", ["--json"], false);
+let qEarly;
+try {
+  qEarly = JSON.parse(statusJsonEarly.stdout || "{}");
+} catch {
+  qEarly = { buyout_remaining: quota.buyout_remaining };
+}
+const need = Math.max(0, qEarly.buyout_remaining ?? quota.buyout_remaining);
 console.log(
-  `\nquota: daily_sends=${quota.daily_sends} sent_today=${quota.sent_today} remaining=${need} from=${quota.effective_from}`
+  `\nquota: daily_buyout=${quota.daily_buyout} buyout_sent_today=${quota.buyout_sent_today} buyout_remaining=${need} inside_remaining=${quota.inside_remaining} from=${quota.effective_from}`
 );
 
-if (need === 0) {
-  console.log("\nRESULT ok — 今日の送信枠は満了（send-quota.csv）");
+if (need === 0 && quota.buyout_remaining === 0) {
+  console.log("\nRESULT ok — 今日の buyout 送信枠は満了（send-quota.csv）");
   process.exit(0);
 }
 
