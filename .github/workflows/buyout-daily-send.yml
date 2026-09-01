@@ -2,11 +2,13 @@
 # HP buyout + inside sales: 1+1/day from 2026-09-01 (send-quota.csv)
 #
 # Requires repo secrets:
-#   BUYOUT_SMTP_USER / BUYOUT_SMTP_PASS / BUYOUT_SMTP_HOST / BUYOUT_SMTP_PORT
-#   (9/11〜) BUYOUT_MAIL_PROVIDER=sendgrid + SENDGRID_API_KEY
-#            BUYOUT_SMTP_USER=hello@calcite-mail.jp
-#            BUYOUT_SMTP_PASS は IMAP用にConoHaのまま残す（daily-sendでは未使用可）
+#   BUYOUT_MAIL_PROVIDER=sendgrid
+#   SENDGRID_API_KEY
+#   BUYOUT_SMTP_USER=hello@calcite-mail.jp
+#   BUYOUT_SMTP_PASS — ConoHa IMAP/SMTP mailbox（IMAP用。APIキーに置き換えない）
+#   BUYOUT_SMTP_HOST / BUYOUT_SMTP_PORT — SendGrid時は host 空可（既定 smtp.sendgrid.net）
 #
+# 2026-09-01: 営業 From を calcite-mail.jp へ切替。署名 Web は calcite-ai.jp のまま。
 # Triggers:
 #   - schedule: GitHub cron is flaky on public repos (01:00 UTC often skipped). Multiple slots + 15:00 JST catch-up.
 #   - push main: fires after 9:00 demo queue push (demo_buyout_leads / buyout-prospects). Idempotent via remaining_today.
@@ -93,7 +95,7 @@ jobs:
       - name: Commit sent CSV / escalate if changed
         run: |
           git config user.name "buyout-daily-send"
-          git config user.email "hello@calcite-ai.jp"
+          git config user.email "hello@calcite-mail.jp"
           for f in \
             buyout-ops/demo_buyout_leads.csv \
             buyout-ops/inside_sales_poc_leads.csv \

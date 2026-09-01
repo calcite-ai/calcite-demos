@@ -154,7 +154,7 @@ cd buyout-ops がある calcite-demos リポジトリ root で作業する。
    node buyout-ops/verify-before-send.mjs --from-csv --company "<社名>"
 
 8) node buyout-ops/render-outreach-email.mjs --company "<社名>" で本文生成し、
-   その text/plain をそのまま送信（オーナー確認不要）。From: hello@calcite-ai.jp
+   その text/plain をそのまま送信（オーナー確認不要）。From: hello@calcite-mail.jp
    - htmlBody は渡さない（Gmail の google.com/url でリダイレクト警告になる）
    - デモURLは CSV の demo_url_a/b と同一（末尾 / 必須。google.com/url を貼らない）
    - 公式サイトは https://www.calcite-ai.jp/（apex 禁止）

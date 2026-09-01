@@ -1,6 +1,8 @@
 /** Direct https URLs for outreach. Gmail の google.com/url は本文に書かない。 */
 
 export const CALCITE_SITE = "https://www.calcite-ai.jp/";
+/** コールド営業・inside 送信専用（From / 署名 Mail）。Web は CALCITE_SITE のまま。 */
+export const OUTREACH_MAIL = "hello@calcite-mail.jp";
 
 export function unwrapGmailRedirect(url) {
   const s = String(url || "").trim();

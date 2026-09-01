@@ -67,7 +67,7 @@ jobs:
       - name: Commit CSV / escalate / state if changed
         run: |
           git config user.name "buyout-inbox"
-          git config user.email "hello@calcite-ai.jp"
+          git config user.email "hello@calcite-mail.jp"
           # Add only paths that exist (missing escalate used to fail the whole git add)
           for f in \
             buyout-ops/demo_buyout_leads.csv \

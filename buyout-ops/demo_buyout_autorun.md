@@ -1,8 +1,9 @@
 # デモ買い取り — 自動営業オペ
 
 > 2026-08-23 運用: **リスト承認は人間1回**（[`demo_buyout_owner_workflow.md`](./demo_buyout_owner_workflow.md)）。承認後の **送信は自動**（文面確認なし）。  
-> 送信元: `hello@calcite-ai.jp`（ConoHa SMTP / GitHub Secrets `BUYOUT_SMTP_*`）  
-> **2026-08-28:** 営業専用ドメインへ移行予定（`sales/knowledge/demo_buyout_outreach_domain.md`）。切替日まで現行 From のまま。
+> 送信元: `hello@calcite-mail.jp`（SendGrid SMTP / GitHub Secrets `BUYOUT_MAIL_PROVIDER=sendgrid`）  
+> 署名 Web: `https://www.calcite-ai.jp/`（コーポレート） / Mail: `hello@calcite-mail.jp`（営業専用）  
+> **2026-09-01:** 営業ドメインへ切替済み（`sales/knowledge/demo_buyout_outreach_domain.md`）。
 > レート: **`send-quota.csv` の当日枠**（2026-09-01〜 **HP買い取り1 + インサイド1 / 日**）。スパム回避優先。  
 > 送信: GitHub Actions `buyout-daily-send`（**01:00 UTC / 06:00 UTC**＝10:00・15:00 JST 目安。残枠0なら skip）  
 > G1取得失敗時は同一社を最大3回リトライしてから次候補へ。
@@ -37,7 +38,7 @@
    `node buyout-ops/verify-hunter-g1.mjs --from-csv --company "<社名>"`（queued 行の G1 再確認）  
    `node buyout-ops/verify-before-send.mjs --from-csv --company "<社名>"`  
    どれか FAIL → **送らない**（[`demo_buyout_incidents.md`](./demo_buyout_incidents.md)）
-10. `node buyout-ops/render-outreach-email.mjs --company "<社名>"` で本文を生成し、**その text/plain をそのまま送信**（確認不要）。From: hello@calcite-ai.jp  
+10. `node buyout-ops/render-outreach-email.mjs --company "<社名>"` で本文を生成し、**その text/plain をそのまま送信**（確認不要）。From: hello@calcite-mail.jp  
     ※**htmlBody は渡さない**（Gmailが google.com/url に包むと「リダイレクトの警告」になる）  
     ※デモURLは CSV の demo_url_a/b と同一（末尾 `/` 必須。`google.com/url` を貼らない）  
     ※公式サイトは `https://www.calcite-ai.jp/`（apex `calcite-ai.jp` は www へ301するため警告が出る）  

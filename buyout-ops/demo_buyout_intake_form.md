@@ -182,7 +182,7 @@
 
 カルサイト
 日野 研太
-hello@calcite-ai.jp
+hello@calcite-mail.jp
 ```
 
 ### B. 48時間リマインド（未提出時）
