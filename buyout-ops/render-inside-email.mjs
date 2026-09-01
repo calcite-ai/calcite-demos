@@ -10,6 +10,12 @@ import { fileURLToPath } from "node:url";
 import { parseCsv } from "./csv-util.mjs";
 import { CALCITE_SITE } from "./canonical-url.mjs";
 import { hpImproveObservationLines, hpImproveStrengthLine } from "./inside-hp-signals.mjs";
+import {
+  approachSteps,
+  fixIdeaLines,
+  formatBulletBlock,
+  trustParagraph,
+} from "./inside-fix-ideas.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -110,12 +116,18 @@ const evidence = row.campaign_evidence || "";
 const obs = observationLines(campaign, evidence);
 const prefecture = row.prefecture || "地域";
 const strength = strengthLine(campaign, evidence);
+const fixBlock = formatBulletBlock(fixIdeaLines(campaign, evidence));
+const stepsBlock = approachSteps(campaign).join("\n");
+const trust = trustParagraph(campaign);
 
 let out = mailBodyFromTemplate(tpl)
   .replaceAll("{会社名}", company)
   .replaceAll("{担当者名}", arg("addressee") || "ご担当者")
   .replaceAll("{都道府県}", prefecture)
-  .replaceAll("{強み1行}", strength);
+  .replaceAll("{強み1行}", strength)
+  .replaceAll("{具体策ブロック}", fixBlock)
+  .replaceAll("{進め方ブロック}", stepsBlock)
+  .replaceAll("{信頼の一言}", trust);
 
 if (campaign === "hp_improve") {
   out = out
