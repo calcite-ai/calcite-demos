@@ -156,7 +156,7 @@ tokyo-chumon,"info@regard-home.com","https://tokyo-chumon.com/company",東京,G1
 株式会社六花舎設計,"info@rokkasha.com","https://www.rokkasha.com/contact/",久喜,G1_MODERN,inside,0,4,4,recruit,"採用URL:/recruit/; 採用キーワード; 工務店・建設",recruit,approved,"/ owner承認 2026-08-31 採用改善 queue_seq=30",,A
 株式会社髙藤建設,"yourname@takatohome.co.jp","https://takatohome.co.jp/contact/",太田,G1_MODERN,inside,0,4,3,recruit,"採用URL:/recruit/; 採用キーワード; 工務店・建設",recruit,approved,"/ owner承認 2026-08-31 採用改善 queue_seq=79",,A
 岩部建設株式会社,"iis@iwabe.co.jp","https://www.iwabe.co.jp/access",知多郡武豊町,G1_WEAK,inside,2,4,2,recruit,"採用URL:/recruit; 採用キーワード; 工務店・建設",recruit,approved,"/ owner承認 2026-08-31 採用改善 queue_seq=43",,A
-吉原建設株式会社,"info@ycc-yoshihara.co.jp","https://ycc-yoshihara.co.jp/company/",刈谷市,G1_WEAK,inside,2,6,3,recruit,"採用URL:/recruit/; 採用キーワード; 採用ページ更新古い(2018); 工務店・建設",recruit,approved,"/ owner承認 2026-08-31 採用改善 queue_seq=3",,S
+吉原建設株式会社,"info@ycc-yoshihara.co.jp","https://ycc-yoshihara.co.jp/company/",刈谷市,G1_WEAK,inside,2,6,3,recruit,"採用URL:/recruit/; 採用キーワード; 採用ページ更新古い(2018); 工務店・建設",recruit,sent,"/ owner承認 2026-08-31 採用改善 queue_seq=3 / 初回送信 2026-09-03 SMTP <2f83e790-4cc7-13ec-71f5-836b2bc389c0@calcite-mail.jp>",2026-09-03,S
 宮﨑建築株式会社,"info@miyazakikenchiku.com","https://www.miyazakikenchiku.com/",阿賀野,G1_WEAK,inside,2,1,2,skip,"全スコア不足(hp=2,recruit=1,ai=2)",,pool_skip,"",,hold
 近代ホーム株式会社,"info@100kj.co.jp","https://www.100kj.co.jp/",神奈川,G1_MODERN,inside,0,4,3,recruit,"採用URL:/recruit/; 採用キーワード; 工務店・建設",recruit,approved,"/ owner承認 2026-08-31 採用改善 queue_seq=107",,A
 九州八重洲(株),"info@kyushu-yaesu.co.jp","https://www.y98.jp/contact/",福岡,G1_MODERN,inside,0,1,4,ai_ops,"HP整備済(G1_MODERN); FAX表記; 問合せ・見積導線",ai_ops,approved,"/ owner承認 2026-08-31 AI業務改善 queue_seq=161",,A
