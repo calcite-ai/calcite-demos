@@ -30,10 +30,15 @@ export function resolveTransport() {
       console.error("FAIL missing SENDGRID_API_KEY (or BUYOUT_SMTP_PASS for SendGrid)");
       process.exit(1);
     }
+    const hostOverride = String(process.env.BUYOUT_SMTP_HOST || "").trim();
+    const host =
+      hostOverride && hostOverride.toLowerCase().includes("sendgrid")
+        ? hostOverride
+        : "smtp.sendgrid.net";
     return {
       provider: "sendgrid",
       fromUser,
-      host: process.env.BUYOUT_SMTP_HOST || "smtp.sendgrid.net",
+      host,
       port: Number(process.env.BUYOUT_SMTP_PORT || "465"),
       user: "apikey",
       pass,
