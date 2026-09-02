@@ -23,7 +23,7 @@ const bAtelierTemplateRoot = path.join(repoRoot, "buyout-template/designs/b-atel
 const sharedTemplateRoot = path.join(repoRoot, "buyout-template/designs/shared");
 const prospectsRoot = path.join(repoRoot, "buyout-prospects");
 const leadsPath = path.join(repoRoot, "buyout-ops/demo_buyout_leads.csv");
-const sourceSkins = ["c-daylight", "b-atelier", "d-signboard", "c-refresh"];
+const sourceSkins = ["c-daylight", "b-atelier", "d-signboard", "c-refresh", "e-taisei", "f-sanyu"];
 
 const templatePlaceholders = {
   name: "アオイ工房",

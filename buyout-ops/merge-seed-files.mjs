@@ -15,7 +15,13 @@ const HEADER = ["company", "url", "prefecture", "source"];
 
 const files = fs
   .readdirSync(seedsDir)
-  .filter((f) => f.endsWith(".csv") && f !== "koumuten_urls.csv")
+  .filter(
+    (f) =>
+      f.endsWith(".csv") &&
+      f !== "koumuten_urls.csv" &&
+      f !== "koumuten_kanto_municipalities.csv" &&
+      f !== "koumuten_major_cities_master.csv"
+  )
   .map((f) => path.join(seedsDir, f));
 
 let rows = [];

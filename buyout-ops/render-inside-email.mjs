@@ -10,12 +10,7 @@ import { fileURLToPath } from "node:url";
 import { parseCsv } from "./csv-util.mjs";
 import { CALCITE_SITE } from "./canonical-url.mjs";
 import { hpImproveObservationLines, hpImproveStrengthLine } from "./inside-hp-signals.mjs";
-import {
-  approachSteps,
-  fixIdeaLines,
-  formatBulletBlock,
-  trustParagraph,
-} from "./inside-fix-ideas.mjs";
+import { fixIdeaLines, formatBulletBlock } from "./inside-fix-ideas.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -26,10 +21,11 @@ function arg(name, fallback = "") {
 
 const RECRUIT_LINES = {
   "採用ページ更新古い": (y) =>
-    `採用ページの更新が ${y ? y + "年" : "以前"} 止まっており、いま募集している印象が伝わりにくい`,
-  採用URL: () => "採用・求人のページはあるものの、応募までの導線が分かりにくい",
-  採用キーワード: () => "採用に言及はあるものの、働くイメージや募集状況が具体的に伝わりにくい",
-  "採用リンクあり": () => "メニューに採用リンクはあるものの、中身が薄く離脱されやすい",
+    `採用ページの更新が ${y ? y + "年" : "以前"} あたりで止まっており、「いま募集しているか」が判断しづらい`,
+  採用URL: () => "採用・求人のページはあるものの、応募までの流れが少し分かりにくい",
+  採用キーワード: () =>
+    "採用への言及はある一方、働くイメージや募集状況が、施工実績ほどには伝わりにくい",
+  "採用リンクあり": () => "メニューに採用リンクはあるものの、中身が薄く応募判断がしづらい",
 };
 
 const AIOPS_LINES = {
@@ -51,25 +47,27 @@ function observationLines(campaign, evidence) {
     return hpImproveObservationLines(evidence);
   }
 
+  const max = campaign === "recruit" ? 3 : 2;
   const parts = String(evidence || "").split(/;\s*/).filter(Boolean);
   const map = campaign === "recruit" ? RECRUIT_LINES : AIOPS_LINES;
   const lines = [];
   for (const p of parts) {
     for (const [key, fn] of Object.entries(map)) {
-      if (p.includes(key) && lines.length < 2) {
+      if (p.includes(key) && lines.length < max) {
         const line = key === "採用ページ更新古い" ? fn(staleYear(p)) : fn();
         if (!lines.includes(line)) lines.push(line);
       }
     }
   }
-  while (lines.length < 2) {
+  while (lines.length < Math.min(2, max)) {
     lines.push(
       campaign === "recruit"
-        ? "応募者向けの情報（働くイメージ・募集状況）が、施工実績ほど伝わりにくい"
+        ? "応募者向けの情報（働くイメージ・募集状況）が、施工実績ほどには伝わりにくい"
         : "問い合わせ内容の整理・返信に、電話やFAXなど複数チャネルが混在しやすい"
     );
   }
-  return lines.slice(0, 2).map((t, i) => `${["①", "②"][i]} ${t}`);
+  const marks = ["①", "②", "③"];
+  return lines.slice(0, max).map((t, i) => `${marks[i]} ${t}`);
 }
 
 function strengthLine(campaign, evidence) {
@@ -117,8 +115,6 @@ const obs = observationLines(campaign, evidence);
 const prefecture = row.prefecture || "地域";
 const strength = strengthLine(campaign, evidence);
 const fixBlock = formatBulletBlock(fixIdeaLines(campaign, evidence));
-const stepsBlock = approachSteps(campaign).join("\n");
-const trust = trustParagraph(campaign);
 
 let out = mailBodyFromTemplate(tpl)
   .replaceAll("{会社名}", company)
@@ -126,21 +122,15 @@ let out = mailBodyFromTemplate(tpl)
   .replaceAll("{都道府県}", prefecture)
   .replaceAll("{強み1行}", strength)
   .replaceAll("{具体策ブロック}", fixBlock)
-  .replaceAll("{進め方ブロック}", stepsBlock)
-  .replaceAll("{信頼の一言}", trust);
-
-if (campaign === "hp_improve") {
-  out = out
-    .replaceAll("{観察①}", obs[0] || "")
-    .replaceAll("{観察②}", obs[1] || "")
-    .replaceAll("{観察③}", obs[2] || "");
-} else {
-  out = out.replaceAll("{観察①}", obs[0] || "").replaceAll("{観察②}", obs[1] || "");
-}
+  .replaceAll("{観察①}", obs[0] || "")
+  .replaceAll("{観察②}", obs[1] || "")
+  .replaceAll("{観察③}", obs[2] || "");
 
 out = out
   .replace(/https:\/\/(?!www\.)calcite-ai\.jp\/?/g, CALCITE_SITE)
-  .replace(/\n{3,}/g, "\n\n");
+  .replace(/\n{3,}/g, "\n\n")
+  // 観察が2件だけのとき、空の③行を落とす
+  .replace(/\n③\s*\n/g, "\n");
 
 const [subjectLine, ...bodyLines] = out.split("\n");
 const subject = subjectLine.replace(/^件名：/, "").trim();

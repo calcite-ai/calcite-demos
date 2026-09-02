@@ -20,6 +20,7 @@ import { isPriorOutreachBlocked } from "./prior-outreach.mjs";
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const outPath = path.join(__dirname, "prospect_pipeline", "scan_results.csv");
 const sleepMs = Number(process.argv.find((a, i) => process.argv[i - 1] === "--sleep-ms") || "1500");
+const limit = Number(process.argv.find((a, i) => process.argv[i - 1] === "--limit") || "0") || Infinity;
 
 async function rescanRow(row) {
   const url = row.final_url || row.url;
@@ -80,9 +81,12 @@ async function main() {
   const { headers, rows } = parseCsv(fs.readFileSync(outPath, "utf8"));
   let updated = 0;
   let newCandidates = 0;
+  let processed = 0;
 
   for (let i = 0; i < rows.length; i++) {
     if (rows[i].status !== "NO_EMAIL") continue;
+    if (processed >= limit) break;
+    processed++;
     process.stdout.write(`rescan ${rows[i].company} … `);
     const next = await rescanRow(rows[i]);
     if (next.status !== rows[i].status) {

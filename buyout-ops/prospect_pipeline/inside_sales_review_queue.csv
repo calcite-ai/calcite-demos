@@ -1,178 +1,239 @@
-queue_seq,company,email,url,final_url,prefecture,scan_status,track,hp_score,recruit_score,ai_score,recommended_campaign,campaign_evidence,owner_campaign,owner_ok,owner_notes,send_tier
-1,アドバン株式会社,"info@advan-works.jp","http://www.advan-works.jp","https://advan-works.jp/company/",埼玉,G1_WEAK,inside,2,6,4,recruit,"採用URL:/recruit/; 採用キーワード; 採用ページ更新古い(2013); 工務店・建設",recruit,y,,S
-2,大精建設株式会社,"kk.taisei@usiwakamaru.or.jp","https://taisei1920.co.jp/","https://taisei1920.co.jp/contact/",一宮市,G1_WEAK,inside,1,6,4,recruit,"採用URL:/recruit/; 採用キーワード; 採用ページ更新古い(2014); 工務店・建設",recruit,y,,S
-3,吉原建設株式会社,"info@ycc-yoshihara.co.jp","https://ycc-yoshihara.co.jp/","https://ycc-yoshihara.co.jp/company/",刈谷市,G1_WEAK,inside,2,6,3,recruit,"採用URL:/recruit/; 採用キーワード; 採用ページ更新古い(2018); 工務店・建設",recruit,y,,S
-4,鐵舟株式会社,"m.koga@tessyu.jp","http://tessyu.jp/","https://tessyu.jp/",久留米,G1_WEAK,inside,2,6,2,recruit,"採用URL:/recruit/; 採用キーワード; 採用ページ更新古い(2013); 工務店・建設",recruit,y,,S
-5,(株)長崎材木店,"info@nagasakizaimokuten.co.jp","http://www.nagasakizaimokuten.co.jp/","https://www.nagasakizaimokuten.co.jp/",福岡,G1_MODERN,inside,0,4,6,ai_ops,"HP整備済(G1_MODERN); FAX表記; PDF資料; 問合せ・見積導線; 見積・対応エリア訴求",ai_ops,y,,S
-6,早川木材株式会社,"t_yamada@sample.jp","https://hayakawamokuzai.co.jp/","https://www.hayakawamokuzai.co.jp/inquiry",神奈川,G1_WEAK,inside,2,4,4,recruit,"採用URL:/recruit/; 採用キーワード; 工務店・建設",recruit,y,,A
-7,Ag-工務店,"watanabe@eiji-arch.com","https://eiji-arch.com/","https://eiji-arch.com/contact/",新潟,G1_MODERN,inside,0,4,5,ai_ops,"HP整備済(G1_MODERN); FAX表記; PDF資料; 問合せ・見積導線",ai_ops,y,,S
-8,西渕工務店,"info@e-nishibuchi.co.jp","https://www.e-nishibuchi.co.jp/","https://www.e-nishibuchi.co.jp/",愛媛,G1_MODERN,inside,0,4,5,ai_ops,"HP整備済(G1_MODERN); FAX表記; PDF資料; 問合せ・見積導線",ai_ops,y,,S
-9,株式会社イチオリデザインラボ,"info@i-d-l.co.jp","http://i-d-l.co.jp/","https://i-d-l.co.jp/",練馬,G1_WEAK,inside,2,4,3,recruit,"採用URL:/recruit/; 採用キーワード; 工務店・建設",recruit,y,,A
-10,Tamada工房株式会社,"info@tamadakoubou.com","http://tamadakoubou.com/","https://tamadakoubou.com/company/",福山,G1_WEAK,inside,2,4,3,recruit,"採用URL:/recruit/; 採用キーワード; 工務店・建設",recruit,y,,A
-11,ヒノケン株式会社,"sato@hinoken.co.jp","https://hinoken.co.jp/","https://hinoken.co.jp/form/",石巻,G1_WEAK,inside,2,4,3,recruit,"採用URL:/recruit/; 採用キーワード; 工務店・建設",recruit,y,,A
-12,株式会社クリエすずき建設,"crie@crie-s.co.jp","http://www.crie-s.co.jp/","https://www.crie-s.co.jp/contact/",柏,G1_MODERN,inside,0,4,5,ai_ops,"HP整備済(G1_MODERN); PDF資料; 問合せ・見積導線; 見積・対応エリア訴求",ai_ops,y,,A
-13,株式会社棟匠,"info@kk-tosho.co.jp","http://www.kk-tosho.co.jp/","https://www.kk-tosho.co.jp/contact/",水戸,G1_MODERN,inside,0,4,5,ai_ops,"HP整備済(G1_MODERN); FAX表記; PDF資料; 問合せ・見積導線",ai_ops,y,,S
-14,杉林建設株式会社,"yyy@zzz.co.jp","https://www.sugibayashi.co.jp/","https://www.sugibayashi.co.jp/contact",岡崎市,G1_WEAK,inside,2,4,3,recruit,"採用URL:/recruit/; 採用キーワード; 工務店・建設",recruit,y,,A
-15,株式会社日東建設,"info@nitto-kensetsu.co.jp","https://www.nitto-kensetsu.co.jp/","https://www.nitto-kensetsu.co.jp/",名古屋市,G1_MODERN,inside,0,4,5,ai_ops,"HP整備済(G1_MODERN); FAX表記; PDF資料; 問合せ・見積導線",ai_ops,y,,S
-16,株式会社服部工務店,"hk-kouzi@xpost.plala.or.jp","https://www.hattori-koumuten.net/","https://www.hattori-koumuten.net/about/",春日井市,G1_WEAK,inside,2,4,3,recruit,"採用URL:/recruit; 採用キーワード; 工務店・建設",recruit,y,,A
-17,横尾建設株式会社,"soumu@yokoo-ke.co.jp","http://www.yokoo-ke.co.jp/","https://www.yokoo-ke.co.jp/",埼玉,G1_MODERN,inside,0,6,3,recruit,"採用URL:/recruit/; 採用キーワード; 採用ページ更新古い(2000); 工務店・建設",recruit,y,,S
-18,(株)尾山建設,"mail@oyamanoie.com","http://oyamanoie.com/","https://oyamanoie.com/contact/",福岡,G1_MODERN,inside,0,4,5,ai_ops,"HP整備済(G1_MODERN); FAX表記; PDF資料; 問合せ・見積導線",ai_ops,y,,S
-19,(株)エー・エヌ・ホーム,"an@an-home.jp","http://www.an-home.jp/","https://an-home.jp/company-profile/company",福岡,G1_WEAK,inside,2,4,3,recruit,"採用URL:/recruit; 採用キーワード; 工務店・建設",recruit,y,,A
-20,(株)日本物産,"info@nihonbussan.co.jp","http://nihonbussan.co.jp","https://www.nihonbussan.co.jp/form/",神奈川,G1_WEAK,inside,2,4,3,recruit,"採用URL:/recruit; 採用キーワード; 工務店・建設",recruit,y,,A
-21,株式会社せらら工房,"serara@100kj.co.jp","http://serara.jp/","https://serara.jp/contact/",神奈川,G1_MODERN,inside,0,4,5,ai_ops,"HP整備済(G1_MODERN); FAX表記; PDF資料; 問合せ・見積導線",ai_ops,y,,S
-22,マツミハウジング株式会社,"info@matsumi.com","https://matsumi.com","https://www.matsumi.com/",東京,G1_WEAK,inside,2,6,1,recruit,"採用URL:/recruit; 採用キーワード; 採用ページ更新古い(2004); 工務店・建設",recruit,y,,S
-23,内田建設株式会社,"info@k-uchiken.com","http://www.k-uchiken.com","https://www.k-uchiken.com/company/",東京,G1_MODERN,inside,0,4,5,ai_ops,"HP整備済(G1_MODERN); FAX表記; PDF資料; 問合せ・見積導線",ai_ops,y,,S
-24,maruyama-koumuten,"maruyamakomuten.info@gmail.com","https://www.maruyama-koumuten.co.jp/","https://www.maruyama-koumuten.co.jp/",東京,G1_MODERN,inside,0,4,5,ai_ops,"HP整備済(G1_MODERN); FAX表記; PDF資料; 問合せ・見積導線",ai_ops,y,,S
-25,石川工務店,"info@waraku-i.com","https://www.waraku-i.com/","https://www.waraku-i.com/",西条,G1_MODERN,inside,0,4,4,recruit,"採用URL:/recruit/; 採用キーワード; 工務店・建設",recruit,y,,A
-26,株式会社今工務所,"info@kon-koum.co.jp","http://www.kon-koum.co.jp/","https://www.kon-koum.co.jp/form",青森,G1_WEAK,inside,2,4,2,recruit,"採用URL:/recruit; 採用キーワード; 工務店・建設",recruit,y,,A
-27,梶野工務店,"t.kajino@mable.ne.jp","https://www.kajinokoumuten.com/","https://www.kajinokoumuten.com/company/",松江,G1_WEAK,inside,2,4,2,recruit,"採用URL:/recruit/; 採用キーワード; 工務店・建設",recruit,y,,A
-28,東海スマート企業グループ株式会社,"info@alphahome-plus.com","http://alphahomeplus.co.jp/","https://www.alphahomeplus.co.jp/contact/",刈谷,G1_MODERN,inside,0,4,4,recruit,"採用URL:/recruit/; 採用キーワード; 工務店・建設",recruit,y,,A
-29,伊藤工務店,"info@e-itokoumuten.net","http://www.e-itokoumuten.net/","https://e-itokoumuten.net/aboutus/",あま,G1_WEAK,inside,2,4,2,recruit,"採用URL:/recruit/; 採用キーワード; 工務店・建設",recruit,y,,A
-30,株式会社六花舎設計,"info@rokkasha.com","https://www.rokkasha.com/","https://www.rokkasha.com/contact/",久喜,G1_MODERN,inside,0,4,4,recruit,"採用URL:/recruit/; 採用キーワード; 工務店・建設",recruit,y,,A
-31,株式会社クリエイト住宅,"info@kurieito-jutaku.jp","http://www.kurieito-jutaku.jp/","https://kurieito-jutaku.jp/",酒田,G1_MODERN,inside,0,4,4,recruit,"採用URL:/採用/; 採用キーワード; 工務店・建設",recruit,y,,A
-32,十和建設株式会社,"towa448@green.ocn.ne.jp","http://www.towa-kensetsu.co.jp/","https://www.towa-kensetsu.co.jp/company/",鶴岡,G1_WEAK,inside,2,4,2,recruit,"採用URL:/recruit/; 採用キーワード; 工務店・建設",recruit,y,,A
-33,有限会社ニューチップ,"info@sample.co.jp","http://newchip.jp","https://www.newchip.jp/contact/",越前,G1_MODERN,inside,0,4,4,recruit,"採用URL:/recruit; 採用キーワード; 工務店・建設",recruit,y,,A
-34,株式会社住建,"info@reform-jyuken.com","http://www.reform-jyuken.com/","https://reform-jyuken.com/about/",甲斐,G1_MODERN,inside,0,3,5,ai_ops,"HP整備済(G1_MODERN); FAX表記; 問合せ・見積導線; 見積・対応エリア訴求",ai_ops,y,,S
-35,株式会社モリハウジング,"info@nust.jp","http://mo-house.com/","https://nust.jp/company/",日立,G1_WEAK,inside,2,4,2,recruit,"採用URL:/recruit; 採用キーワード; 工務店・建設",recruit,y,,A
-36,株式会社栃毛木材工業,"info@tochimou.jp","http://www.tochimou.jp/","https://tochimou.jp/contact/",鹿沼,G1_MODERN,inside,0,4,4,recruit,"採用URL:/recruit/; 採用キーワード; 工務店・建設",recruit,y,,A
-37,株式会社長谷川萬治商店,"post@haseman.co.jp","http://www.haseman.co.jp/","https://www.haseman.co.jp/",江東,G1_MODERN,inside,0,4,4,recruit,"採用URL:/recruit/; 採用キーワード; 工務店・建設",recruit,y,,A
-38,白馬建設株式会社,"privacy@e-hakuba.com","http://www.e-hakuba.com/","https://www.e-hakuba.com/group/contact/",東村山,G1_WEAK,inside,2,4,2,recruit,"採用URL:/recruit; 採用キーワード; 工務店・建設",recruit,y,,A
-39,大東住宅株式会社,"info@daitojyutaku.co.jp","http://daitojyutaku.co.jp/","https://www.daitojyutaku.co.jp/",大和,G1_MODERN,inside,0,3,5,ai_ops,"HP整備済(G1_MODERN); FAX表記; PDF資料; 問合せ・見積導線",ai_ops,y,,S
-40,稲沢建設株式会社,"inaken@inaken21.com","https://inaken21.com/","https://inaken21.com/gaiyou/",稲沢市,G1_WEAK,inside,2,3,3,recruit,"採用キーワード; 採用リンクあり(深掘り要); 工務店・建設",recruit,y,,A
-41,中野建設株式会社,"info@nakanokensetsu.co.jp","http://nakanokensetsu.co.jp","https://nakanokensetsu.co.jp/form/",一宮市,G1_WEAK,inside,1,4,3,recruit,"採用URL:/recruit; 採用キーワード; 工務店・建設",recruit,y,,A
-42,小原木材株式会社,"info@obaramokuzai.co.jp","http://obaramokuzai.jp/","https://obaramokuzai.jp/company/access/",岡崎市,G1_WEAK,inside,2,3,3,recruit,"採用URL:/recruit/; 工務店・建設",recruit,y,,A
-43,岩部建設株式会社,"iis@iwabe.co.jp","https://www.iwabe.co.jp","https://www.iwabe.co.jp/access",知多郡武豊町,G1_WEAK,inside,2,4,2,recruit,"採用URL:/recruit; 採用キーワード; 工務店・建設",recruit,y,,A
-44,株式会社東海エコン,"econ@wine.ocn.ne.jp","https://www.tokaiecon.com","https://www.tokaiecon.com/",常滑市,G1_MODERN,inside,0,4,4,recruit,"採用URL:/recruit; 採用キーワード; 工務店・建設",recruit,y,,A
-45,株式会社オノコム,"onocom@onocom.co.jp","https://www.onocom.co.jp/","https://www.onocom.co.jp/contact/",豊橋市,G1_MODERN,inside,0,4,4,recruit,"採用URL:/recruit; 採用キーワード; 工務店・建設",recruit,y,,A
-46,豊橋建設工業株式会社,"info@toyo-ken.com","http://www.toyo-ken.com/","https://www.toyo-ken.com/contact",豊橋市,G1_WEAK,inside,2,4,2,recruit,"採用URL:/recruit; 採用キーワード; 工務店・建設",recruit,y,,A
-47,株式会社杉本組,"honsya@sugimotogumi.co.jp","http://www.sugimotogumi.co.jp/","https://www.sugimotogumi.co.jp/company.php/",名古屋市,G1_WEAK,inside,2,4,2,recruit,"採用URL:/recruit/; 採用キーワード; 工務店・建設",recruit,y,,A
-48,株式会社セレクトホーム,"select@selecthome.co.jp","http://www.selecthome.co.jp/","https://selecthome.co.jp/company/",神戸,G1_MODERN,inside,0,4,4,recruit,"採用URL:/recruit; 採用キーワード; 工務店・建設",recruit,y,,A
-49,坂猛建設有限会社,"info@xxx.com","http://bantake.co.jp/","https://bantake.co.jp/company/",東海,G1_WEAK,inside,2,3,3,recruit,"採用URL:/recruit/; 工務店・建設",recruit,y,,A
-50,株式会社大藪組,"info@oh-yabu.co.jp","http://www.oh-yabu.co.jp/","https://oh-yabu.co.jp/contact/",筑後,G1_MODERN,inside,0,4,4,recruit,"採用URL:/recruit/; 採用キーワード; 工務店・建設",recruit,y,,A
-51,株式会社藤島建設,"t_yamada@gmail.com","https://fujishima-kensetsu.co.jp","https://fujishima-kensetsu.co.jp/contact/",埼玉,G1_MODERN,inside,0,4,4,recruit,"採用URL:/recruit/; 採用キーワード; 工務店・建設",recruit,y,,A
-52,i-sumu設計株式会社,"inspection@i-sumu.co.jp","https://i-sumu.jp/company/","https://i-sumu.jp/company/",埼玉,G1_WEAK,inside,2,4,2,recruit,"採用URL:/recruit; 採用キーワード; 工務店・建設",recruit,y,,A
-53,株式会社アップルホーム,"info@apple-h.co.jp","https://www.apple-h.co.jp/","https://www.apple-h.co.jp/",埼玉,G1_MODERN,inside,0,4,4,recruit,"採用URL:/recruit/; 採用キーワード; 工務店・建設",recruit,y,,A
-54,株式会社アイライフ,"uketsuke@ai-life.co.jp","http://www.ai-life.co.jp","https://www.ai-life.co.jp/contact/",埼玉,G1_MODERN,inside,0,2,6,ai_ops,"HP整備済(G1_MODERN); FAX表記; PDF資料; 問合せ・見積導線; 見積・対応エリア訴求",ai_ops,y,,S
-55,三ヶ島製材株式会社,"mikajima@ictv.ne.jp","http://www.mikajima.co.jp/","https://www.mikajima.co.jp/",埼玉,G1_WEAK,inside,2,4,2,recruit,"採用URL:/採用/; 採用キーワード; 工務店・建設",recruit,y,,A
-56,(株)三宅建築工房,"shin@miyake-koubou.com","http://miyake-koubou.com/","https://miyake-koubou.com/company/",福岡,G1_WEAK,inside,2,4,2,recruit,"採用URL:/recruit; 採用キーワード; 工務店・建設",recruit,y,,A
-57,(株)ベストホーム,"info@e-besthome.jp","http://e-besthome.jp","https://e-besthome.jp/contact/",福岡,G1_MODERN,inside,0,4,4,recruit,"採用URL:/recruit/; 採用キーワード; 工務店・建設",recruit,y,,A
-58,鳥飼建設(株),"torikaihome@torikaiken.co.jp","https://torikaiken.co.jp/","https://torikaiken.co.jp/company/",福岡,G1_MODERN,inside,0,4,4,recruit,"採用URL:/recruit/; 採用キーワード; 工務店・建設",recruit,y,,A
-59,梅原建設(株),"info@umehara-cc.jp","http://umehara-cc.jp/","https://umehara-cc.jp/company/",福岡,G1_MODERN,inside,0,4,4,recruit,"採用URL:/recruit/; 採用キーワード; 工務店・建設",recruit,y,,A
-60,眞鍋建設(株),"info@manabe-k.com","http://www.manabe-k.com/","https://manabe-k.com/company/",福岡,G1_MODERN,inside,0,4,4,recruit,"採用URL:/recruit; 採用キーワード; 工務店・建設",recruit,y,,A
-61,(株)MP,"info@mp-gr.jp","https://www.mp-gr.jp/","https://www.mp-gr.jp/",神奈川,G1_WEAK,inside,2,4,2,recruit,"採用URL:/recruitment/; 採用キーワード; 工務店・建設",recruit,y,,A
-62,(株)北村建築工房,"info@ki-kobo.jp","http://ki-kobo.jp/","https://ki-kobo.jp/",神奈川,G1_MODERN,inside,0,4,4,recruit,"採用URL:/recruit/; 採用キーワード; 工務店・建設",recruit,y,,A
-63,(株)市川屋,"zaimokuya@gd6.so-net.ne.jp","https://ichikawa-ya.com/","https://ichikawa-ya.com/company/",神奈川,G1_WEAK,inside,1,4,3,recruit,"採用URL:/recruit/; 採用キーワード; 工務店・建設",recruit,y,,A
-64,報告エンジニアリング(株),"hokoku@sample.jp","http://www.hokoku-eng.jp/","https://www.hokoku-eng.jp/form/",神奈川,G1_WEAK,inside,2,4,2,recruit,"採用URL:/recruit/; 採用キーワード; 工務店・建設",recruit,y,,A
-65,株式会社 山田建設,"user@sample.jp","http://www.yamada-kensetsu.com/","https://yamada-kensetsu.com/company/",神奈川,G1_MODERN,inside,0,4,4,recruit,"採用URL:/recruit; 採用キーワード; 工務店・建設",recruit,y,,A
-66,（株）M-HOUSE,"info@m-house.jp","https://m-house.jp/","https://m-house.jp/assessment/form/",神奈川,G1_WEAK,inside,1,4,3,recruit,"採用URL:/recruit/; 採用キーワード; 工務店・建設",recruit,y,,A
-67,株式会社ナフィックス,"naffics-customer@noda-co.jp","http://www.naffics-co.jp","https://www.naffics-co.jp/naffics/",東京,G1_WEAK,inside,2,4,2,recruit,"採用URL:/recruit/; 採用キーワード; 工務店・建設",recruit,y,,A
-68,有限会社大賢工務店,"info@daiken-nc.com","https://www.office-daiken.jp/","https://office-daiken.jp/company/",千葉,G1_MODERN,inside,0,4,4,recruit,"採用URL:/recruit/; 採用キーワード; 工務店・建設",recruit,y,,A
-69,株式会社石川商会住宅機材,"info@ishikawa-reform.jp","http://ishikawa-reform.jp/","https://ishikawa-reform.jp/company/",千葉,G1_MODERN,inside,0,4,4,recruit,"採用URL:/recruit/; 採用キーワード; 工務店・建設",recruit,y,,A
-70,ishibashi-koumuten,"yourmail@sample.co.jp","https://ishibashi-koumuten.com/","https://ishibashi-koumuten.com/",東京,G1_WEAK,inside,2,4,2,recruit,"採用URL:/recruit; 採用キーワード; 工務店・建設",recruit,y,,A
-71,marutomihome,"info@kubodera.jp","https://marutomihome.jp/","https://www.marutomihome.jp/contact",東京,G1_MODERN,inside,0,3,5,ai_ops,"HP整備済(G1_MODERN); FAX表記; PDF資料; 問合せ・見積導線",ai_ops,y,,S
-72,haseman,"post@haseman.co.jp","https://www.haseman.co.jp/","https://www.haseman.co.jp/",東京,G1_MODERN,inside,0,4,4,recruit,"採用URL:/recruit/; 採用キーワード; 工務店・建設",recruit,y,,A
-73,okaniwa,"mail@okaniwa.jp","https://www.okaniwa.jp/","https://www.okaniwa.jp/company/",東京,G1_MODERN,inside,0,4,4,recruit,"採用URL:/採用/; 採用キーワード; 工務店・建設",recruit,y,,A
-74,株式会社マツモト工務店,"aksuper@aksuper.jp","https://aksuper.jp/","https://aksuper.jp/",鳥取,G1_MODERN,inside,0,4,3,recruit,"採用URL:/recruit; 採用キーワード; 工務店・建設",recruit,y,,A
-75,株式会社タウン建設,"info@yume-town.net","https://www.yume-town.net/","https://www.yume-town.net/access/",鳥取,G1_WEAK,inside,2,3,2,recruit,"採用URL:/recruit/; 工務店・建設",recruit,y,,A
-76,アイルホーム株式会社,"abc@i-llhome.jp","https://i-llhome.jp/","https://i-llhome.jp/contact/",札幌,G1_WEAK,inside,2,3,2,recruit,"採用キーワード; 採用リンクあり(深掘り要); 工務店・建設",recruit,y,,A
-77,株式会社内山ホーム,"t_yamada@sample.jp","https://www.uchiyama-home.com","https://www.uchiyama-home.com/inquiry",南魚沼,G1_MODERN,inside,0,4,3,recruit,"採用URL:/recruit/; 採用キーワード; 工務店・建設",recruit,y,,A
-78,有限会社アベ設計室,"aabe@plum.plala.or.jp","https://r.goope.jp/abesekkeisitsu","https://r.goope.jp/abesekkeisitsu/",南魚沼,G1_WEAK,inside,2,3,2,recruit,"採用URL:/recruit/; 工務店・建設",recruit,y,,A
-79,株式会社髙藤建設,"yourname@takatohome.co.jp","http://www.takatohome.co.jp","https://takatohome.co.jp/contact/",太田,G1_MODERN,inside,0,4,3,recruit,"採用URL:/recruit/; 採用キーワード; 工務店・建設",recruit,y,,A
-80,株式会社テラジマアーキテクツ,"pr@terajima.co.jp","http://www.kenchikuka.co.jp/","https://www.kenchikuka.co.jp/",世田谷,G1_MODERN,inside,0,4,3,recruit,"採用URL:/recruit/; 採用キーワード; 工務店・建設",recruit,y,,A
-81,株式会社匠技建,"info@takumigiken.com","http://www.takumigiken.com/","https://www.takumigiken.com/contact",立川,G1_WEAK,inside,2,4,1,recruit,"採用URL:/recruit; 採用キーワード; 工務店・建設",recruit,y,,A
-82,株式会社五十嵐工匠,"glt@lixil.com","http://www.ii-ie.net/~igarashi/","https://www.ii-ie2.net/about/",会津若松,G1_WEAK,inside,2,2,3,ai_ops,"PDF資料; 問合せ・見積導線; 見積・対応エリア訴求",ai_ops,y,,A
-83,鈴木環境建設株式会社,"info@suzuki-kankyo.co.jp","http://suzuki-kankyo.co.jp","https://suzuki-kankyo.co.jp/about/",石巻,G1_WEAK,inside,2,2,3,ai_ops,"FAX表記; 問合せ・見積導線; 見積・対応エリア訴求",ai_ops,y,,A
-84,株式会社クワケン,"kuwaken@gix.or.jp","http://www.kuwaken.jp","https://kuwaken.jp/company/",江南市,G1_WEAK,inside,1,4,2,recruit,"採用URL:/recruit/; 採用キーワード; 工務店・建設",recruit,y,,A
-85,榊原建設株式会社,"info@sakakibara-cons.co.jp","https://www.sakakibara-cons.co.jp","https://www.sakakibara-cons.co.jp/contact",一宮市,G1_WEAK,inside,2,4,1,recruit,"採用URL:/recruit/; 採用キーワード; 工務店・建設",recruit,y,,A
-86,大栄建設株式会社,"daiei@hyper.ocn.ne.jp","https://daiei-kensetsu.com","https://daiei-kensetsu.com/company.html",弥富市,G1_WEAK,inside,2,3,2,recruit,"採用キーワード; 採用リンクあり(深掘り要); 工務店・建設",recruit,y,,A
-87,大藤建設株式会社,"info@daitou-net.co.jp","http://www.daitou-net.co.jp","https://www.daitou-net.co.jp/contact/",愛西市,G1_WEAK,inside,2,3,2,recruit,"採用URL:/recruit/; 工務店・建設",recruit,y,,A
-88,株式会社荒川工務店,"yourmail@sample.co.jp","https://www.kk-arakawa.co.jp","https://www.kk-arakawa.co.jp/contact",豊橋市,G1_WEAK,inside,2,4,1,recruit,"採用URL:/recruit; 採用キーワード; 工務店・建設",recruit,y,,A
-89,株式会社筒井工務店,"info@tsutsui-k.co.jp","https://tsutsui-k.co.jp/","https://tsutsui-k.co.jp/company/",新城市,G1_WEAK,inside,2,3,2,recruit,"採用URL:/recruit/; 工務店・建設",recruit,y,,A
-90,太啓建設株式会社,"info@taikei-con.co.jp","http://www.taikei-con.co.jp","https://www.taikei-con.co.jp/contact/",豊田市,G1_MODERN,inside,0,4,3,recruit,"採用URL:/recruit/; 採用キーワード; 工務店・建設",recruit,y,,A
-91,春田建設株式会社,"haruta@haruta-kk.com","https://haruta-kk.com/","https://haruta-kk.com/",名古屋市,G1_MODERN,inside,0,4,3,recruit,"採用URL:/recruit/; 採用キーワード; 工務店・建設",recruit,y,,A
-92,株式会社野々川工務店,"nonogawa@space.ne.jp","http://nonogawa-koumuten.com/","https://nonogawa-koumuten.com/",小牧市,G1_WEAK,inside,2,2,3,ai_ops,"FAX表記; PDF資料; 問合せ・見積導線",ai_ops,y,,A
-93,株式会社田村ビルズ,"info@tmrkz.com","http://www.tamura-kenzai.co.jp/","https://tamura-builds.co.jp/contact/",山口,G1_WEAK,inside,2,4,1,recruit,"採用URL:/recruit/; 採用キーワード; 工務店・建設",recruit,y,,A
-94,株式会社テイガク,"info@teigaku.co.jp","https://yanekabeya.com","https://yanekabeya.com/about/company/",埼玉,G1_MODERN,inside,0,3,4,ai_ops,"HP整備済(G1_MODERN); 問合せ・見積導線; 見積・対応エリア訴求",ai_ops,y,,A
-95,株式会社フジキ建設,"info@fuziki.co.jp","http://www.fuziki.co.jp","https://www.fuziki.co.jp/",埼玉,G1_WEAK,inside,2,3,2,recruit,"採用URL:/recruit/; 工務店・建設",recruit,y,,A
-96,快適空間株式会社,"abc@abc.com","http://www.kaitekikukan.co.jp","https://kaitekikukan.co.jp/contact/",埼玉,G1_WEAK,inside,1,4,2,recruit,"採用URL:/recruit; 採用キーワード; 工務店・建設",recruit,y,,A
-97,e-cubeホームテクノ株式会社,"info@e-cube-group.com","https://www.e-cube-group.com/ht/","https://www.e-cube-group.com/ht/",埼玉,G1_MODERN,inside,0,3,4,ai_ops,"HP整備済(G1_MODERN); FAX表記; 問合せ・見積導線",ai_ops,y,,A
-98,大野建設株式会社,"yourname@yourdomain.jp","https://www.oono.gr.jp","https://www.oono.gr.jp/contact/",埼玉,G1_WEAK,inside,2,4,1,recruit,"採用URL:/recruit/; 採用キーワード; 工務店・建設",recruit,y,,A
-99,(株)サン建築工房,"info@sunken.co.jp","http://www.sunken.co.jp/index.html","https://www.sunken.co.jp/",福岡,G1_MODERN,inside,0,3,4,ai_ops,"HP整備済(G1_MODERN); FAX表記; 問合せ・見積導線",ai_ops,y,,A
-100,(株)安成工務店 福岡支店,"yasunari@yasunari.co.jp","https://www.yasunari-komuten.com/","https://www.yasunari-komuten.com/inquiry",福岡,G1_WEAK,inside,2,3,2,recruit,"採用キーワード; 採用リンクあり(深掘り要); 工務店・建設",recruit,y,,A
-101,(株)清武建設,"info@kiyotake.co.jp","https://www.kiyotake.co.jp/","https://www.kiyotake.co.jp/",福岡,G1_MODERN,inside,0,2,5,ai_ops,"HP整備済(G1_MODERN); FAX表記; PDF資料; 問合せ・見積導線",ai_ops,y,,S
-102,中原工務店,"info@i-nakahara.com","http://www.i-nakahara.com/","https://www.i-nakahara.com/about/",福岡,G1_WEAK,inside,2,3,2,recruit,"採用URL:/recruit/; 工務店・建設",recruit,y,,A
-103,(株)アーキテックス,"abc@architex.co.jp","https://architex.co.jp/","https://architex.co.jp/contact/",福岡,G1_WEAK,inside,2,4,1,recruit,"採用URL:/recruit/; 採用キーワード; 工務店・建設",recruit,y,,A
-104,(株)ラクジュ,"lakuju@gmail.com","http://www.lakuju.jp/","https://lakuju.jp/",神奈川,G1_MODERN,inside,0,2,5,ai_ops,"HP整備済(G1_MODERN); FAX表記; PDF資料; 問合せ・見積導線",ai_ops,y,,S
-105,小泉木材(株),"info@woodmeister.jp","https://www.woodmeister.jp/","https://kizuki-home.co.jp/terracehouse/access/",神奈川,G1_MODERN,inside,0,3,4,ai_ops,"HP整備済(G1_MODERN); 問合せ・見積導線; 見積・対応エリア訴求",ai_ops,y,,A
-106,株式会社 キリガヤ,"home@kirigaya.co.jp","http://www.kirigaya.jp/","https://kirigaya.jp/contact/",神奈川,G1_MODERN,inside,0,2,5,ai_ops,"HP整備済(G1_MODERN); FAX表記; PDF資料; 問合せ・見積導線",ai_ops,y,,S
-107,近代ホーム株式会社,"info@100kj.co.jp","http://www.100kj.co.jp/","https://www.100kj.co.jp/",神奈川,G1_MODERN,inside,0,4,3,recruit,"採用URL:/recruit/; 採用キーワード; 工務店・建設",recruit,y,,A
-108,株式会社匠技建,"info@takumigiken.com","https://www.takumigiken.com/","https://www.takumigiken.com/contact",東京,G1_WEAK,inside,2,4,1,recruit,"採用URL:/recruit; 採用キーワード; 工務店・建設",recruit,y,,A
-109,株式会社日本空間,"info@nippon-kukan.co.jp","https://nippon-kukan.co.jp","https://nippon-kukan.co.jp/",東京,G1_MODERN,inside,0,4,3,recruit,"採用URL:/recruit/; 採用キーワード; 工務店・建設",recruit,y,,A
-110,株式会社Ａｒｘｉｓｔ,"info@axt1.co.jp","http://www.arxist.jp/","https://www.arxist.jp/company.html",東京,G1_WEAK,inside,2,4,1,recruit,"採用URL:/recruit; 採用キーワード; 工務店・建設",recruit,y,,A
-111,日動建設株式会社,"mail@nichido-kensetsu.com","http://www.nichido-kensetsu.com/","https://nichido-kensetsu.com/company/",千葉,G1_MODERN,inside,0,3,4,ai_ops,"HP整備済(G1_MODERN); FAX表記; 問合せ・見積導線",ai_ops,y,,A
-112,e-marusei,"mocomoko@e-marusei.jp","https://www.e-marusei.jp/","https://www.e-marusei.jp/",東京,G1_MODERN,inside,0,3,4,ai_ops,"HP整備済(G1_MODERN); FAX表記; 問合せ・見積導線",ai_ops,y,,A
-113,株式会社松本工務店,"info@matsumotok.co.jp","https://matsumotok.co.jp/","https://matsumotok.co.jp/",白河,G1_MODERN,inside,0,2,4,ai_ops,"HP整備済(G1_MODERN); FAX表記; 問合せ・見積導線",ai_ops,y,,A
-114,有限会社尚建工務店,"info@sho-ken.jp","https://syo-ken.jp/","https://syo-ken.jp/contact-us/",日吉津,G1_MODERN,inside,0,3,3,recruit,"採用URL:/recruit/; 工務店・建設",recruit,y,,A
-115,株式会社建販,"info@kenpan.jp","https://kenpan.jp/","https://kenpan.jp/company",鳥取,G1_MODERN,inside,0,2,4,ai_ops,"HP整備済(G1_MODERN); FAX表記; 問合せ・見積導線",ai_ops,y,,A
-116,株式会社飛鳥建築,"info@asuka-kk.com","https://asuka-kk.com/","https://asuka-kk.com/",狭山,G1_MODERN,inside,0,3,3,recruit,"採用キーワード; 採用リンクあり(深掘り要); 工務店・建設",recruit,y,,A
-117,株式会社仙臺屋,"info@sendaiya1000.com","https://www.sendaiya1000.com/","https://sendaiya1000.com/about-us/",仙台,G1_MODERN,inside,0,2,4,ai_ops,"HP整備済(G1_MODERN); FAX表記; 問合せ・見積導線",ai_ops,y,,A
-118,インデュアホーム秋田茂木建設株式会社,"akita@e-motegi.com","http://eh-akita.com","https://eh-akita.com/",秋田,G1_WEAK,inside,2,1,3,ai_ops,"HP導線おおむね整備; FAX表記; 問合せ・見積導線",ai_ops,y,,A
-119,ファースト住建株式会社,"info@first-juhken.co.jp","http://www.first-juhken.co.jp","https://www.first-juhken.co.jp/profile/",高崎,G1_MODERN,inside,0,2,4,ai_ops,"HP整備済(G1_MODERN); FAX表記; 問合せ・見積導線",ai_ops,y,,A
-120,株式会社石山工業所,"info@sigoto-kitiri.com","http://www.sigoto-kitiri.com/","https://www.sigoto-kitiri.com/corporate/",さいたま,G1_WEAK,inside,2,1,3,ai_ops,"HP導線おおむね整備; FAX表記; 問合せ・見積導線",ai_ops,y,,A
-121,野末建築,"info@nozue.info","http://www.nozue.info/","https://nozue.info/company/",滑川,G1_MODERN,inside,0,2,4,ai_ops,"HP整備済(G1_MODERN); FAX表記; 問合せ・見積導線",ai_ops,y,,A
-122,株式会社登昭建設,"cozy@aitonukumorinoie.net","http://www.aitonukumorinoie.net/","https://aitonukumorinoie.net/company/",岐阜,G1_MODERN,inside,0,2,4,ai_ops,"HP整備済(G1_MODERN); FAX表記; 問合せ・見積導線",ai_ops,y,,A
-123,株式会社吉田組,"info@yoshidagumi.com","https://www.yoshidagumi.com","https://www.yoshidagumi.com/",西尾市,G1_MODERN,inside,0,2,4,ai_ops,"HP整備済(G1_MODERN); FAX表記; 問合せ・見積導線",ai_ops,y,,A
-124,株式会社ワイツ,"otoiawase@waitsu.com","http://www.waitsu.com/","https://waitsu.com/",平群,G1_MODERN,inside,0,1,5,ai_ops,"HP整備済(G1_MODERN); FAX表記; PDF資料; 問合せ・見積導線",ai_ops,y,,S
-125,株式会社シモムラ・プランニング社,"info@simomura.co.jp","http://www.simomura.co.jp/","https://www.simomura.co.jp/",一宮,G1_WEAK,inside,2,1,3,ai_ops,"FAX表記; PDF資料; 問合せ・見積導線",ai_ops,y,,A
-126,有限会社加藤建築,"info@katoukenchiku.jp","https://www.katoukenchiku.jp/","https://www.katoukenchiku.jp/company.html",埼玉,G1_WEAK,inside,2,1,3,ai_ops,"FAX表記; 問合せ・見積導線; 見積・対応エリア訴求",ai_ops,y,,A
-127,上武・リフォーム,"mmytoka@nifty.com","http://jobu.la.coocan.jp/","https://jobu.la.coocan.jp/",埼玉,G1_WEAK,inside,2,1,3,ai_ops,"FAX表記; 問合せ・見積導線; 見積・対応エリア訴求",ai_ops,y,,A
-128,(株)タカノホーム,"info@takanohome.co.jp","http://www.takanohome.co.jp/index.php","https://www.takanohome.co.jp/toiawase/index.html",福岡,G1_MODERN,inside,0,2,4,ai_ops,"HP整備済(G1_MODERN); FAX表記; 問合せ・見積導線",ai_ops,y,,A
-129,エコワークス(株),"info@eco-works.jp","http://www.eco-works.jp/","https://www.eco-works.jp/",福岡,G1_MODERN,inside,0,3,3,recruit,"採用キーワード; 採用リンクあり(深掘り要); 工務店・建設",recruit,y,,A
-130,(株)福岡工務店,"info@fukuoka-k.jp","https://www.fukuoka-k.jp/","https://www.fukuoka-k.jp/",福岡,G1_MODERN,inside,0,2,4,ai_ops,"HP整備済(G1_MODERN); FAX表記; 問合せ・見積導線",ai_ops,y,,A
-131,(株)駅前工務店,"yourname@yourdomain.com","http://www.ekimaekoumuten.co.jp/","https://www.ekimaekoumuten.co.jp/inquiry/",福岡,G1_MODERN,inside,0,3,3,recruit,"採用キーワード; 採用リンクあり(深掘り要); 工務店・建設",recruit,y,,A
-132,(有)三陽工務店,"info-34@sanyoukoumuten.co.jp","http://www.sanyoukoumuten.co.jp/company/company.html","https://www.sanyoukoumuten.co.jp/company/company.html",神奈川,G1_MODERN,inside,0,2,4,ai_ops,"HP整備済(G1_MODERN); FAX表記; 問合せ・見積導線",ai_ops,y,,A
-133,(有)木匠工務店,"info@mokusho.com","http://www.mokusho.com","https://www.mokusho.com/",神奈川,G1_MODERN,inside,0,1,5,ai_ops,"HP整備済(G1_MODERN); FAX表記; 問合せ・見積導線; 見積・対応エリア訴求",ai_ops,y,,S
-134,(株)大川,"info@okawa-ss.co.jp","https://www.okawa-ss.co.jp/index2.html","https://www.okawa-ss.co.jp/",神奈川,G1_MODERN,inside,0,3,3,recruit,"採用キーワード; 採用リンクあり(深掘り要); 工務店・建設",recruit,y,,A
-135,小松建設株式会社,"info@komatsu-co.com","https://www.komatsu-co.com/","https://www.komatsu-co.com/company/",東京,G1_MODERN,inside,0,2,4,ai_ops,"HP整備済(G1_MODERN); FAX表記; 問合せ・見積導線",ai_ops,y,,A
-136,株式会社大悦工務店,"info@daietu-kk.co.jp","http://daietu-kk.co.jp/","https://daietu-kk.co.jp/",東京,G1_WEAK,inside,2,3,1,recruit,"採用キーワード; 採用リンクあり(深掘り要); 工務店・建設",recruit,y,,A
-137,美空建株式会社,"info.bikuken@bikuken.co.jp","https://www.bikuken.co.jp/","https://www.bikuken.co.jp/company.html",東京,G1_MODERN,inside,0,2,4,ai_ops,"HP整備済(G1_MODERN); FAX表記; 問合せ・見積導線",ai_ops,y,,A
-138,株式会社小須田建設工業,"info@kosuda-kk.com","https://kosuda-kk.com","https://kosuda-kk.com/inquiry/",埼玉,G1_WEAK,inside,2,3,1,recruit,"採用URL:/recruit/; 工務店・建設",recruit,y,,A
-139,仁・幸夢店株式会社,"abc@mail.com","https://jin-gr.com/","https://jin-gr.com/contact/",千葉,G1_MODERN,inside,0,2,4,ai_ops,"HP整備済(G1_MODERN); 問合せ・見積導線; 見積・対応エリア訴求",ai_ops,y,,A
-140,大五郎建設有限会社,"info@daigoro-kensetu.com","http://www.daigoro-kensetu.com/","https://www.daigoro-kensetu.com/",千葉,G1_WEAK,inside,2,1,3,ai_ops,"FAX表記; PDF資料; 問合せ・見積導線",ai_ops,y,,A
-141,有限会社三堀工務店,"info@mihori.co.jp","http://www.mihori.co.jp/","https://mihori.co.jp/",千葉,G1_MODERN,inside,0,2,4,ai_ops,"HP整備済(G1_MODERN); FAX表記; 問合せ・見積導線",ai_ops,y,,A
-142,有限会社水戸工務店,"info@mitok.jp","http://mitok.jp/","https://mitok.jp/about/",千葉,G1_MODERN,inside,0,2,4,ai_ops,"HP整備済(G1_MODERN); FAX表記; 問合せ・見積導線",ai_ops,y,,A
-143,r-station,"info@r-station.net","https://www.r-station.net/","https://www.r-station.net/",東京,G1_MODERN,inside,0,2,4,ai_ops,"HP整備済(G1_MODERN); 問合せ・見積導線; 見積・対応エリア訴求",ai_ops,y,,A
-144,taisei-re,"info@taisei-re.com","https://www.taisei-re.com/","https://www.taisei-re.com/company/",東京,G1_WEAK,inside,2,1,3,ai_ops,"FAX表記; PDF資料; 問合せ・見積導線",ai_ops,y,,A
-145,有限会社鎌田工務店,"info@kamata-k.jp","https://www.kamata-k.jp/","https://www.kamata-k.jp/",仙台,G1_MODERN,inside,0,1,4,ai_ops,"HP整備済(G1_MODERN); FAX表記; 問合せ・見積導線",ai_ops,y,,A
-146,いなばハウジング株式会社,"info@xxx.com","https://inabahousing.com/","https://inabahousing.com/contact/",鳥取,G1_MODERN,inside,0,1,4,ai_ops,"HP整備済(G1_MODERN); FAX表記; 問合せ・見積導線",ai_ops,y,,A
-147,株式会社カネタケ建設,"info@kanetake-kensetu.com","http://www.kanetake-kensetu.com/","https://kanetake-kensetu.com/company/",十日町,G1_WEAK,inside,1,1,3,ai_ops,"HP導線おおむね整備; FAX表記; 問合せ・見積導線",ai_ops,y,,A
-148,株式会社菅原工務店,"info@sugawara-koumuten.com","http://sugawara-koumuten.com/","https://www.sugawara-koumuten.com/contact/",大崎,G1_WEAK,inside,1,1,3,ai_ops,"HP導線おおむね整備; FAX表記; 問合せ・見積導線",ai_ops,y,,A
-149,株式会社福山Three door,"info@fukuyamathreedoor.co.jp","https://www.3door.jp","https://www.3door.jp/contact/",福山,G1_MODERN,inside,0,1,4,ai_ops,"HP整備済(G1_MODERN); FAX表記; 問合せ・見積導線",ai_ops,y,,A
-150,株式会社広瀬住宅計画,"info@hirose-sc.com","http://hirose-sc.com/","https://hirose-sc.com/company/",前橋,G1_MODERN,inside,0,1,4,ai_ops,"HP整備済(G1_MODERN); FAX表記; 問合せ・見積導線",ai_ops,y,,A
-151,株式会社コムハウジング,"request@comhousing.com","http://www.comhousing.com","https://www.comhousing.com/toiawase/index.html",岡山,G1_MODERN,inside,0,1,4,ai_ops,"HP整備済(G1_MODERN); FAX表記; 問合せ・見積導線",ai_ops,y,,A
-152,株式会社イチマルホーム,".abcd@sample.co.jp","http://www.ichimaruhome.com","https://www.ichimaruhome.com/contact/",赤磐,G1_MODERN,inside,0,1,4,ai_ops,"HP整備済(G1_MODERN); FAX表記; 問合せ・見積導線",ai_ops,y,,A
-153,株式会社育暮家ハイホームス,"e-mail.hihomes@tokai.or.jp","http://www.hihomes.co.jp","https://hihomes.co.jp/",藤枝,G1_MODERN,inside,0,1,4,ai_ops,"HP整備済(G1_MODERN); FAX表記; 問合せ・見積導線",ai_ops,y,,A
-154,株式会社すまいるほーむ,"info@smile-life.jp","http://smile-life.jp/","https://smile-life.jp/",富山,G1_MODERN,inside,0,2,3,ai_ops,"HP整備済(G1_MODERN); 問合せ・見積導線",ai_ops,y,,A
-155,有限会社谷村工務店,"info@tanimura-sc.com","http://www.tanimura-sc.com/","https://tanimura-sc.com/",東村山,G1_MODERN,inside,0,1,4,ai_ops,"HP整備済(G1_MODERN); FAX表記; 問合せ・見積導線",ai_ops,y,,A
-156,藏家,"info@kura-ya.net","http://www.kura-ya.net/","https://kura-ya.net/",大阪,G1_MODERN,inside,0,2,3,ai_ops,"HP整備済(G1_MODERN); 問合せ・見積導線",ai_ops,y,,A
-157,株式会社飛鳥,"asuka5511@voice.ocn.ne.jp","http://asukalife.com/","https://www.asukalife.com/",桜井,G1_MODERN,inside,0,1,4,ai_ops,"HP整備済(G1_MODERN); FAX表記; 問合せ・見積導線",ai_ops,y,,A
-158,株式会社ヒロハウス,"info@hilohouse.net","http://www.hilohouse.net/","https://www.hilohouse.net/",久山,G1_MODERN,inside,0,1,4,ai_ops,"HP整備済(G1_MODERN); FAX表記; 問合せ・見積導線",ai_ops,y,,A
-159,未来アート株式会社,"info@mirai-art.co.jp","https://mirai-art.co.jp","https://mirai-art.co.jp/",埼玉,G1_MODERN,inside,0,1,4,ai_ops,"HP整備済(G1_MODERN); FAX表記; 問合せ・見積導線",ai_ops,y,,A
-160,(株)リバティーホーム,"yourname@yourdomain.com","http://libertygroup.jp/","https://libertygroup.jp/company/",福岡,G1_MODERN,inside,0,1,4,ai_ops,"HP整備済(G1_MODERN); FAX表記; 問合せ・見積導線",ai_ops,y,,A
-161,九州八重洲(株),"info@kyushu-yaesu.co.jp","http://www.kyushu-yaesu.co.jp/","https://www.y98.jp/contact/",福岡,G1_MODERN,inside,0,1,4,ai_ops,"HP整備済(G1_MODERN); FAX表記; 問合せ・見積導線",ai_ops,y,,A
-162,(株)大幸商事,"contact@eto-web.com","http://www.eto-web.com/","https://eto-web.com/",福岡,G1_MODERN,inside,0,1,4,ai_ops,"HP整備済(G1_MODERN); FAX表記; 問合せ・見積導線",ai_ops,y,,A
-163,(株)西江ハウジング,"info@nishie-housing.com","http://nishie-housing.com/","https://nishie-housing.com/",福岡,G1_WEAK,inside,1,1,3,ai_ops,"HP導線おおむね整備; FAX表記; 問合せ・見積導線",ai_ops,y,,A
-164,(株)中山建設,"nk@nakaken.info","https://nakaken-nh.jp/","https://nakaken-nh.jp/about/",神奈川,G1_MODERN,inside,0,1,4,ai_ops,"HP整備済(G1_MODERN); FAX表記; 問合せ・見積導線",ai_ops,y,,A
-165,テクニカルホーム 株式会社,"info@technical-home.co.jp","http://www.technical-home.co.jp/","https://www.technical-home.co.jp/company/",神奈川,G1_MODERN,inside,0,1,4,ai_ops,"HP整備済(G1_MODERN); FAX表記; 問合せ・見積導線",ai_ops,y,,A
-166,有限会社谷村工務店,"info@tanimura-sc.com","https://www.tanimura-sc.com","https://tanimura-sc.com/",東京,G1_MODERN,inside,0,1,4,ai_ops,"HP整備済(G1_MODERN); FAX表記; 問合せ・見積導線",ai_ops,y,,A
-167,株式会社吉澤建設工業,"info@yoshizawa-kk.co.jp","http://www.yoshizawa-kk.co.jp","https://www.yoshizawa-kk.co.jp/",埼玉,G1_MODERN,inside,0,1,4,ai_ops,"HP整備済(G1_MODERN); FAX表記; 問合せ・見積導線",ai_ops,y,,A
-168,kurasu,"info@kurasu.co.jp","https://kurasu.co.jp/","https://kurasu.co.jp/",東京,G1_MODERN,inside,0,2,3,ai_ops,"HP整備済(G1_MODERN); 問合せ・見積導線",ai_ops,y,,A
-169,fabworks,"info@fabworks.co.jp","https://www.fabworks.co.jp/","https://www.fabworks.co.jp/company/",東京,G1_MODERN,inside,0,1,4,ai_ops,"HP整備済(G1_MODERN); FAX表記; 問合せ・見積導線",ai_ops,y,,A
-170,GAT,"gat@xxxxx.com","https://www.foryou-home.jp/","https://www.foryou-home.jp/",久慈,G1_MODERN,inside,0,1,3,ai_ops,"HP整備済(G1_MODERN); 問合せ・見積導線",ai_ops,y,,A
-171,株式会社クラフト・ハウス,"iwate.crafthouse@gmail.com","http://iwate-crafthouse.co.jp","https://www.iwate-crafthouse.co.jp/contact/",矢巾,G1_MODERN,inside,0,1,3,ai_ops,"HP整備済(G1_MODERN); 問合せ・見積導線",ai_ops,y,,A
-172,株式会社千田建設,"info@sendakensetsu.jp","http://www.sendakensetsu.jp/","https://sendakensetsu.jp/",倉敷,G1_MODERN,inside,0,1,3,ai_ops,"HP整備済(G1_MODERN); 問合せ・見積導線",ai_ops,y,,A
-173,稲東建設株式会社,"info@inatou.com","http://inatou.com","https://www.inatou.com/",稲沢市,G1_MODERN,inside,0,1,3,ai_ops,"HP整備済(G1_MODERN); 問合せ・見積導線",ai_ops,y,,A
-174,建築プランナー(株),"info@kpkp.co.jp","http://www.kpkp.co.jp/","https://kpkp.co.jp/company/",福岡,G1_MODERN,inside,0,1,3,ai_ops,"HP整備済(G1_MODERN); 問合せ・見積導線",ai_ops,y,,A
-175,株式会社守重建設,"t_yamada@sample.jp","https://www.morisigekensetu.jp/","https://www.morisigekensetu.jp/inquiry/",東京,G1_MODERN,inside,0,1,3,ai_ops,"HP整備済(G1_MODERN); 問合せ・見積導線",ai_ops,y,,A
-176,111ie,"kentaro@horikiri.co.jp","https://111ie.com/","https://111ie.com/contact/",東京,G1_MODERN,inside,0,1,3,ai_ops,"HP整備済(G1_MODERN); 問合せ・見積導線",ai_ops,y,,A
-177,矢島工務店,"info@yajima-k.jp","http://www.yajima-k.jp/","https://www.yajima-k.jp/",埼玉,G1_WEAK,inside,7,1,2,hp_improve,"tel:なし; 更新停止感(HTML内2018止); ワンページ構成; httpsサイト内http混在; テンプレート残骸; 英語メニュー; ISO・公共工事・資本金; 粗1点",hp_improve,y,buyout paused→信頼設計 inside,B
+queue_seq,company,email,url,final_url,prefecture,scan_status,track,hp_score,recruit_score,ai_score,recommended_campaign,campaign_evidence,owner_campaign,send_tier,owner_ok,owner_notes
+1,アドバン株式会社,"info@advan-works.jp","http://www.advan-works.jp","https://advan-works.jp/company/",埼玉,G1_WEAK,inside,2,6,4,recruit,"採用URL:/recruit/; 採用キーワード; 採用ページ更新古い(2013); 工務店・建設",recruit,S,y,
+2,大精建設株式会社,"kk.taisei@usiwakamaru.or.jp","https://taisei1920.co.jp/","https://taisei1920.co.jp/contact/",一宮市,G1_WEAK,inside,1,6,4,recruit,"採用URL:/recruit/; 採用キーワード; 採用ページ更新古い(2014); 工務店・建設",recruit,S,y,
+3,吉原建設株式会社,"info@ycc-yoshihara.co.jp","https://ycc-yoshihara.co.jp/","https://ycc-yoshihara.co.jp/company/",刈谷市,G1_WEAK,inside,2,6,3,recruit,"採用URL:/recruit/; 採用キーワード; 採用ページ更新古い(2018); 工務店・建設",recruit,S,y,
+4,建木工務店,"info@tatsuki-k.com","https://tatsuki-k.com/","https://www.tatsuki-k.com/",立川,G1_MODERN,inside,0,6,5,recruit,"採用URL:/recruit/; 採用キーワード; 採用ページ更新古い(2018); 工務店・建設",,S,,
+5,有限会社福島建設,"info@fukushima-k.jp","https://fukushima-k.jp/","https://fukushima-k.jp/",寄居町,G1_WEAK,inside,3,6,2,recruit,"採用URL:/recruit/; 採用キーワード; 採用ページ更新古い(2000); 工務店・建設",,S,,
+6,矢島工務店,"info@yajima-k.jp","http://www.yajima-k.jp/","https://www.yajima-k.jp/",三芳,CANDIDATE,inside,7,1,2,hp_improve,"tel:なし; 更新停止感(HTML内2018止); ワンページ構成; httpsサイト内http混在; テンプレート残骸; 英語メニュー; ISO・公共工事・資本金; 粗1点",hp_improve,B,y,buyout paused→信頼設計 inside
+7,鐵舟株式会社,"m.koga@tessyu.jp","http://tessyu.jp/","https://tessyu.jp/",久留米,G1_WEAK,inside,2,6,2,recruit,"採用URL:/recruit/; 採用キーワード; 採用ページ更新古い(2013); 工務店・建設",recruit,S,y,
+8,(株)長崎材木店,"info@nagasakizaimokuten.co.jp","http://www.nagasakizaimokuten.co.jp/","https://www.nagasakizaimokuten.co.jp/",福岡,G1_MODERN,inside,0,4,6,ai_ops,"HP整備済(G1_MODERN); FAX表記; PDF資料; 問合せ・見積導線; 見積・対応エリア訴求",ai_ops,S,y,
+9,早川木材株式会社,"t_yamada@sample.jp","https://hayakawamokuzai.co.jp/","https://www.hayakawamokuzai.co.jp/inquiry",神奈川,G1_WEAK,inside,2,4,4,recruit,"採用URL:/recruit/; 採用キーワード; 工務店・建設",recruit,A,y,
+10,木のすまい工房,"nattoku@kinosumaikoubou.com","https://kinosumaikoubou.jp/","https://kinosumaikoubou.jp/",千葉市,G1_MODERN,inside,0,4,6,ai_ops,"HP整備済(G1_MODERN); FAX表記; PDF資料; 問合せ・見積導線; 見積・対応エリア訴求",,S,,
+11,工藤工務店,"info@kudostyle.jp","https://www.kudostyle.jp/","https://www.kudostyle.jp/",八街市,G1_WEAK,inside,3,4,3,recruit,"採用URL:/recruit/; 採用キーワード; 工務店・建設",,A,,
+12,株式会社白石工務店,"siraisi@poem.ocn.ne.jp","https://shiraishik.xsrv.jp/","https://shiraishik.xsrv.jp/company",幸手市,G1_MODERN,inside,0,6,4,recruit,"採用URL:/saiyo; 採用キーワード; 採用ページ更新古い(2019); 工務店・建設",,S,,
+13,Ag-工務店,"watanabe@eiji-arch.com","https://eiji-arch.com/","https://eiji-arch.com/contact/",新潟,G1_MODERN,inside,0,4,5,ai_ops,"HP整備済(G1_MODERN); FAX表記; PDF資料; 問合せ・見積導線",ai_ops,S,y,
+14,西渕工務店,"info@e-nishibuchi.co.jp","https://www.e-nishibuchi.co.jp/","https://www.e-nishibuchi.co.jp/",愛媛,G1_MODERN,inside,0,4,5,ai_ops,"HP整備済(G1_MODERN); FAX表記; PDF資料; 問合せ・見積導線",ai_ops,S,y,
+15,株式会社イチオリデザインラボ,"info@i-d-l.co.jp","http://i-d-l.co.jp/","https://i-d-l.co.jp/",練馬,G1_WEAK,inside,2,4,3,recruit,"採用URL:/recruit/; 採用キーワード; 工務店・建設",recruit,A,y,
+16,Tamada工房株式会社,"info@tamadakoubou.com","http://tamadakoubou.com/","https://tamadakoubou.com/company/",福山,G1_WEAK,inside,2,4,3,recruit,"採用URL:/recruit/; 採用キーワード; 工務店・建設",recruit,A,y,
+17,ヒノケン株式会社,"sato@hinoken.co.jp","https://hinoken.co.jp/","https://hinoken.co.jp/form/",石巻,G1_WEAK,inside,2,4,3,recruit,"採用URL:/recruit/; 採用キーワード; 工務店・建設",recruit,A,y,
+18,株式会社クリエすずき建設,"crie@crie-s.co.jp","http://www.crie-s.co.jp/","https://www.crie-s.co.jp/contact/",柏,G1_MODERN,inside,0,4,5,ai_ops,"HP整備済(G1_MODERN); PDF資料; 問合せ・見積導線; 見積・対応エリア訴求",ai_ops,A,y,
+19,株式会社棟匠,"info@kk-tosho.co.jp","http://www.kk-tosho.co.jp/","https://www.kk-tosho.co.jp/contact/",水戸,G1_MODERN,inside,0,4,5,ai_ops,"HP整備済(G1_MODERN); FAX表記; PDF資料; 問合せ・見積導線",ai_ops,S,y,
+20,杉林建設株式会社,"yyy@zzz.co.jp","https://www.sugibayashi.co.jp/","https://www.sugibayashi.co.jp/contact",岡崎市,G1_WEAK,inside,2,4,3,recruit,"採用URL:/recruit/; 採用キーワード; 工務店・建設",recruit,A,y,
+21,株式会社日東建設,"info@nitto-kensetsu.co.jp","https://www.nitto-kensetsu.co.jp/","https://www.nitto-kensetsu.co.jp/",名古屋市,G1_MODERN,inside,0,4,5,ai_ops,"HP整備済(G1_MODERN); FAX表記; PDF資料; 問合せ・見積導線",ai_ops,S,y,
+22,株式会社服部工務店,"hk-kouzi@xpost.plala.or.jp","https://www.hattori-koumuten.net/","https://www.hattori-koumuten.net/about/",春日井市,G1_WEAK,inside,2,4,3,recruit,"採用URL:/recruit; 採用キーワード; 工務店・建設",recruit,A,y,
+23,横尾建設株式会社,"soumu@yokoo-ke.co.jp","http://www.yokoo-ke.co.jp/","https://www.yokoo-ke.co.jp/",埼玉,G1_MODERN,inside,0,6,3,recruit,"採用URL:/recruit/; 採用キーワード; 採用ページ更新古い(2000); 工務店・建設",recruit,S,y,
+24,(株)尾山建設,"mail@oyamanoie.com","http://oyamanoie.com/","https://oyamanoie.com/contact/",福岡,G1_MODERN,inside,0,4,5,ai_ops,"HP整備済(G1_MODERN); FAX表記; PDF資料; 問合せ・見積導線",ai_ops,S,y,
+25,(株)エー・エヌ・ホーム,"an@an-home.jp","http://www.an-home.jp/","https://an-home.jp/company-profile/company",福岡,G1_WEAK,inside,2,4,3,recruit,"採用URL:/recruit; 採用キーワード; 工務店・建設",recruit,A,y,
+26,(株)日本物産,"info@nihonbussan.co.jp","http://nihonbussan.co.jp","https://www.nihonbussan.co.jp/form/",神奈川,G1_WEAK,inside,2,4,3,recruit,"採用URL:/recruit; 採用キーワード; 工務店・建設",recruit,A,y,
+27,株式会社せらら工房,"serara@100kj.co.jp","http://serara.jp/","https://serara.jp/contact/",神奈川,G1_MODERN,inside,0,4,5,ai_ops,"HP整備済(G1_MODERN); FAX表記; PDF資料; 問合せ・見積導線",ai_ops,S,y,
+28,マツミハウジング株式会社,"info@matsumi.com","https://matsumi.com","https://www.matsumi.com/",東京,G1_WEAK,inside,2,6,1,recruit,"採用URL:/recruit; 採用キーワード; 採用ページ更新古い(2004); 工務店・建設",recruit,S,y,
+29,内田建設株式会社,"info@k-uchiken.com","http://www.k-uchiken.com","https://www.k-uchiken.com/company/",東京,G1_MODERN,inside,0,4,5,ai_ops,"HP整備済(G1_MODERN); FAX表記; PDF資料; 問合せ・見積導線",ai_ops,S,y,
+30,maruyama-koumuten,"maruyamakomuten.info@gmail.com","https://www.maruyama-koumuten.co.jp/","https://www.maruyama-koumuten.co.jp/",東京,G1_MODERN,inside,0,4,5,ai_ops,"HP整備済(G1_MODERN); FAX表記; PDF資料; 問合せ・見積導線",ai_ops,S,y,
+31,大堀工務店,"info@o-horikoumuten.jp","https://o-horikoumuten.jp/","https://o-horikoumuten.jp/company.html",大宮,G1_MODERN,inside,0,4,5,ai_ops,"HP整備済(G1_MODERN); FAX表記; 問合せ・見積導線; 見積・対応エリア訴求",,S,,
+32,よしこホーム,".furuya.m@alto.ocn.ne.jp","https://furuyamokuzai.com/","https://furuyamokuzai.com/contact/",横芝光町,G1_WEAK,inside,2,4,3,recruit,"採用URL:/recruit/; 採用キーワード; 工務店・建設",,A,,
+33,白木建設株式会社,"info@shiraki-kensetu.co.jp","https://www.shiraki-kensetu.co.jp/","https://www.shiraki-kensetu.co.jp/",国分寺市,G1_WEAK,inside,3,4,2,recruit,"採用URL:/recruit/; 採用キーワード; 工務店・建設",,A,,
+34,株式会社中川工務店,"n@nakagawakoumuten.odawara","https://www.nakagawakoumuten.jp/","https://www.nakagawakoumuten.jp/",小田原市,G1_WEAK,inside,2,4,3,recruit,"採用URL:/recruit/; 採用キーワード; 工務店・建設",,A,,
+35,株式会社カネザワ,"info@kanezawa.co.jp","https://kanezawa.co.jp/","https://kanezawa.co.jp/",神川町,G1_WEAK,inside,3,4,2,recruit,"採用URL:/recruit/; 採用キーワード; 工務店・建設",,A,,
+36,石川工務店,"info@waraku-i.com","https://www.waraku-i.com/","https://www.waraku-i.com/",西条,G1_MODERN,inside,0,4,4,recruit,"採用URL:/recruit/; 採用キーワード; 工務店・建設",recruit,A,y,
+37,株式会社今工務所,"info@kon-koum.co.jp","http://www.kon-koum.co.jp/","https://www.kon-koum.co.jp/form",青森,G1_WEAK,inside,2,4,2,recruit,"採用URL:/recruit; 採用キーワード; 工務店・建設",recruit,A,y,
+38,梶野工務店,"t.kajino@mable.ne.jp","https://www.kajinokoumuten.com/","https://www.kajinokoumuten.com/company/",松江,G1_WEAK,inside,2,4,2,recruit,"採用URL:/recruit/; 採用キーワード; 工務店・建設",recruit,A,y,
+39,東海スマート企業グループ株式会社,"info@alphahome-plus.com","http://alphahomeplus.co.jp/","https://www.alphahomeplus.co.jp/contact/",刈谷,G1_MODERN,inside,0,4,4,recruit,"採用URL:/recruit/; 採用キーワード; 工務店・建設",recruit,A,y,
+40,伊藤工務店,"info@e-itokoumuten.net","http://www.e-itokoumuten.net/","https://e-itokoumuten.net/aboutus/",あま,G1_WEAK,inside,2,4,2,recruit,"採用URL:/recruit/; 採用キーワード; 工務店・建設",recruit,A,y,
+41,株式会社六花舎設計,"info@rokkasha.com","https://www.rokkasha.com/","https://www.rokkasha.com/contact/",久喜,G1_MODERN,inside,0,4,4,recruit,"採用URL:/recruit/; 採用キーワード; 工務店・建設",recruit,A,y,
+42,株式会社クリエイト住宅,"info@kurieito-jutaku.jp","http://www.kurieito-jutaku.jp/","https://kurieito-jutaku.jp/",酒田,G1_MODERN,inside,0,4,4,recruit,"採用URL:/採用/; 採用キーワード; 工務店・建設",recruit,A,y,
+43,十和建設株式会社,"towa448@green.ocn.ne.jp","http://www.towa-kensetsu.co.jp/","https://www.towa-kensetsu.co.jp/company/",鶴岡,G1_WEAK,inside,2,4,2,recruit,"採用URL:/recruit/; 採用キーワード; 工務店・建設",recruit,A,y,
+44,有限会社ニューチップ,"info@sample.co.jp","http://newchip.jp","https://www.newchip.jp/contact/",越前,G1_MODERN,inside,0,4,4,recruit,"採用URL:/recruit; 採用キーワード; 工務店・建設",recruit,A,y,
+45,株式会社住建,"info@reform-jyuken.com","http://www.reform-jyuken.com/","https://reform-jyuken.com/about/",甲斐,G1_MODERN,inside,0,3,5,ai_ops,"HP整備済(G1_MODERN); FAX表記; 問合せ・見積導線; 見積・対応エリア訴求",ai_ops,S,y,
+46,株式会社モリハウジング,"info@nust.jp","http://mo-house.com/","https://nust.jp/company/",日立,G1_WEAK,inside,2,4,2,recruit,"採用URL:/recruit; 採用キーワード; 工務店・建設",recruit,A,y,
+47,株式会社栃毛木材工業,"info@tochimou.jp","http://www.tochimou.jp/","https://tochimou.jp/contact/",鹿沼,G1_MODERN,inside,0,4,4,recruit,"採用URL:/recruit/; 採用キーワード; 工務店・建設",recruit,A,y,
+48,株式会社長谷川萬治商店,"post@haseman.co.jp","http://www.haseman.co.jp/","https://www.haseman.co.jp/",江東,G1_MODERN,inside,0,4,4,recruit,"採用URL:/recruit/; 採用キーワード; 工務店・建設",recruit,A,y,
+49,白馬建設株式会社,"privacy@e-hakuba.com","http://www.e-hakuba.com/","https://www.e-hakuba.com/group/contact/",東村山,G1_WEAK,inside,2,4,2,recruit,"採用URL:/recruit; 採用キーワード; 工務店・建設",recruit,A,y,
+50,大東住宅株式会社,"info@daitojyutaku.co.jp","http://daitojyutaku.co.jp/","https://www.daitojyutaku.co.jp/",大和,G1_MODERN,inside,0,3,5,ai_ops,"HP整備済(G1_MODERN); FAX表記; PDF資料; 問合せ・見積導線",ai_ops,S,y,
+51,稲沢建設株式会社,"inaken@inaken21.com","https://inaken21.com/","https://inaken21.com/gaiyou/",稲沢市,G1_WEAK,inside,2,3,3,recruit,"採用キーワード; 採用リンクあり(深掘り要); 工務店・建設",recruit,A,y,
+52,中野建設株式会社,"info@nakanokensetsu.co.jp","http://nakanokensetsu.co.jp","https://nakanokensetsu.co.jp/form/",一宮市,G1_WEAK,inside,1,4,3,recruit,"採用URL:/recruit; 採用キーワード; 工務店・建設",recruit,A,y,
+53,小原木材株式会社,"info@obaramokuzai.co.jp","http://obaramokuzai.jp/","https://obaramokuzai.jp/company/access/",岡崎市,G1_WEAK,inside,2,3,3,recruit,"採用URL:/recruit/; 工務店・建設",recruit,A,y,
+54,岩部建設株式会社,"iis@iwabe.co.jp","https://www.iwabe.co.jp","https://www.iwabe.co.jp/access",知多郡武豊町,G1_WEAK,inside,2,4,2,recruit,"採用URL:/recruit; 採用キーワード; 工務店・建設",recruit,A,y,
+55,株式会社東海エコン,"econ@wine.ocn.ne.jp","https://www.tokaiecon.com","https://www.tokaiecon.com/",常滑市,G1_MODERN,inside,0,4,4,recruit,"採用URL:/recruit; 採用キーワード; 工務店・建設",recruit,A,y,
+56,株式会社オノコム,"onocom@onocom.co.jp","https://www.onocom.co.jp/","https://www.onocom.co.jp/contact/",豊橋市,G1_MODERN,inside,0,4,4,recruit,"採用URL:/recruit; 採用キーワード; 工務店・建設",recruit,A,y,
+57,豊橋建設工業株式会社,"info@toyo-ken.com","http://www.toyo-ken.com/","https://www.toyo-ken.com/contact",豊橋市,G1_WEAK,inside,2,4,2,recruit,"採用URL:/recruit; 採用キーワード; 工務店・建設",recruit,A,y,
+58,株式会社杉本組,"honsya@sugimotogumi.co.jp","http://www.sugimotogumi.co.jp/","https://www.sugimotogumi.co.jp/company.php/",名古屋市,G1_WEAK,inside,2,4,2,recruit,"採用URL:/recruit/; 採用キーワード; 工務店・建設",recruit,A,y,
+59,株式会社セレクトホーム,"select@selecthome.co.jp","http://www.selecthome.co.jp/","https://selecthome.co.jp/company/",神戸,G1_MODERN,inside,0,4,4,recruit,"採用URL:/recruit; 採用キーワード; 工務店・建設",recruit,A,y,
+60,坂猛建設有限会社,"info@xxx.com","http://bantake.co.jp/","https://bantake.co.jp/company/",東海,G1_WEAK,inside,2,3,3,recruit,"採用URL:/recruit/; 工務店・建設",recruit,A,y,
+61,株式会社大藪組,"info@oh-yabu.co.jp","http://www.oh-yabu.co.jp/","https://oh-yabu.co.jp/contact/",筑後,G1_MODERN,inside,0,4,4,recruit,"採用URL:/recruit/; 採用キーワード; 工務店・建設",recruit,A,y,
+62,株式会社藤島建設,"t_yamada@gmail.com","https://fujishima-kensetsu.co.jp","https://fujishima-kensetsu.co.jp/contact/",埼玉,G1_MODERN,inside,0,4,4,recruit,"採用URL:/recruit/; 採用キーワード; 工務店・建設",recruit,A,y,
+63,i-sumu設計株式会社,"inspection@i-sumu.co.jp","https://i-sumu.jp/company/","https://i-sumu.jp/company/",埼玉,G1_WEAK,inside,2,4,2,recruit,"採用URL:/recruit; 採用キーワード; 工務店・建設",recruit,A,y,
+64,株式会社アップルホーム,"info@apple-h.co.jp","https://www.apple-h.co.jp/","https://www.apple-h.co.jp/",埼玉,G1_MODERN,inside,0,4,4,recruit,"採用URL:/recruit/; 採用キーワード; 工務店・建設",recruit,A,y,
+65,株式会社アイライフ,"uketsuke@ai-life.co.jp","http://www.ai-life.co.jp","https://www.ai-life.co.jp/contact/",埼玉,G1_MODERN,inside,0,2,6,ai_ops,"HP整備済(G1_MODERN); FAX表記; PDF資料; 問合せ・見積導線; 見積・対応エリア訴求",ai_ops,S,y,
+66,三ヶ島製材株式会社,"mikajima@ictv.ne.jp","http://www.mikajima.co.jp/","https://www.mikajima.co.jp/",埼玉,G1_WEAK,inside,2,4,2,recruit,"採用URL:/採用/; 採用キーワード; 工務店・建設",recruit,A,y,
+67,(株)三宅建築工房,"shin@miyake-koubou.com","http://miyake-koubou.com/","https://miyake-koubou.com/company/",福岡,G1_WEAK,inside,2,4,2,recruit,"採用URL:/recruit; 採用キーワード; 工務店・建設",recruit,A,y,
+68,(株)ベストホーム,"info@e-besthome.jp","http://e-besthome.jp","https://e-besthome.jp/contact/",福岡,G1_MODERN,inside,0,4,4,recruit,"採用URL:/recruit/; 採用キーワード; 工務店・建設",recruit,A,y,
+69,鳥飼建設(株),"torikaihome@torikaiken.co.jp","https://torikaiken.co.jp/","https://torikaiken.co.jp/company/",福岡,G1_MODERN,inside,0,4,4,recruit,"採用URL:/recruit/; 採用キーワード; 工務店・建設",recruit,A,y,
+70,梅原建設(株),"info@umehara-cc.jp","http://umehara-cc.jp/","https://umehara-cc.jp/company/",福岡,G1_MODERN,inside,0,4,4,recruit,"採用URL:/recruit/; 採用キーワード; 工務店・建設",recruit,A,y,
+71,眞鍋建設(株),"info@manabe-k.com","http://www.manabe-k.com/","https://manabe-k.com/company/",福岡,G1_MODERN,inside,0,4,4,recruit,"採用URL:/recruit; 採用キーワード; 工務店・建設",recruit,A,y,
+72,(株)MP,"info@mp-gr.jp","https://www.mp-gr.jp/","https://www.mp-gr.jp/",神奈川,G1_WEAK,inside,2,4,2,recruit,"採用URL:/recruitment/; 採用キーワード; 工務店・建設",recruit,A,y,
+73,(株)北村建築工房,"info@ki-kobo.jp","http://ki-kobo.jp/","https://ki-kobo.jp/",神奈川,G1_MODERN,inside,0,4,4,recruit,"採用URL:/recruit/; 採用キーワード; 工務店・建設",recruit,A,y,
+74,(株)市川屋,"zaimokuya@gd6.so-net.ne.jp","https://ichikawa-ya.com/","https://ichikawa-ya.com/company/",神奈川,G1_WEAK,inside,1,4,3,recruit,"採用URL:/recruit/; 採用キーワード; 工務店・建設",recruit,A,y,
+75,報告エンジニアリング(株),"hokoku@sample.jp","http://www.hokoku-eng.jp/","https://www.hokoku-eng.jp/form/",神奈川,G1_WEAK,inside,2,4,2,recruit,"採用URL:/recruit/; 採用キーワード; 工務店・建設",recruit,A,y,
+76,株式会社 山田建設,"user@sample.jp","http://www.yamada-kensetsu.com/","https://yamada-kensetsu.com/company/",神奈川,G1_MODERN,inside,0,4,4,recruit,"採用URL:/recruit; 採用キーワード; 工務店・建設",recruit,A,y,
+77,（株）M-HOUSE,"info@m-house.jp","https://m-house.jp/","https://m-house.jp/assessment/form/",神奈川,G1_WEAK,inside,1,4,3,recruit,"採用URL:/recruit/; 採用キーワード; 工務店・建設",recruit,A,y,
+78,株式会社ナフィックス,"naffics-customer@noda-co.jp","http://www.naffics-co.jp","https://www.naffics-co.jp/naffics/",東京,G1_WEAK,inside,2,4,2,recruit,"採用URL:/recruit/; 採用キーワード; 工務店・建設",recruit,A,y,
+79,有限会社大賢工務店,"info@daiken-nc.com","https://www.office-daiken.jp/","https://office-daiken.jp/company/",千葉,G1_MODERN,inside,0,4,4,recruit,"採用URL:/recruit/; 採用キーワード; 工務店・建設",recruit,A,y,
+80,株式会社石川商会住宅機材,"info@ishikawa-reform.jp","http://ishikawa-reform.jp/","https://ishikawa-reform.jp/company/",千葉,G1_MODERN,inside,0,4,4,recruit,"採用URL:/recruit/; 採用キーワード; 工務店・建設",recruit,A,y,
+81,ishibashi-koumuten,"yourmail@sample.co.jp","https://ishibashi-koumuten.com/","https://ishibashi-koumuten.com/",東京,G1_WEAK,inside,2,4,2,recruit,"採用URL:/recruit; 採用キーワード; 工務店・建設",recruit,A,y,
+82,marutomihome,"info@kubodera.jp","https://marutomihome.jp/","https://www.marutomihome.jp/contact",東京,G1_MODERN,inside,0,3,5,ai_ops,"HP整備済(G1_MODERN); FAX表記; PDF資料; 問合せ・見積導線",ai_ops,S,y,
+83,haseman,"post@haseman.co.jp","https://www.haseman.co.jp/","https://www.haseman.co.jp/",東京,G1_MODERN,inside,0,4,4,recruit,"採用URL:/recruit/; 採用キーワード; 工務店・建設",recruit,A,y,
+84,okaniwa,"mail@okaniwa.jp","https://www.okaniwa.jp/","https://www.okaniwa.jp/company/",東京,G1_MODERN,inside,0,4,4,recruit,"採用URL:/採用/; 採用キーワード; 工務店・建設",recruit,A,y,
+85,株式会社鈴木工務店,"info@suzuki-koumuten.co.jp","https://www.suzuki-koumuten.co.jp/","https://www.suzuki-koumuten.co.jp/aboutus/",町田,G1_MODERN,inside,0,4,4,recruit,"採用URL:/recruit; 採用キーワード; 工務店・建設",,A,,
+86,株式会社秋葉工務店,"info@akibakoumuten.com","https://www.akibakoumuten.com/","https://www.akibakoumuten.com/",千葉,G1_MODERN,inside,0,4,4,recruit,"採用URL:/recruit; 採用キーワード; 工務店・建設",,A,,
+87,羽山工務店,"haya-kou@haya-kou.co.jp","https://haya-kou.co.jp/","https://haya-kou.co.jp/contact/",立川,G1_MODERN,inside,0,4,4,recruit,"採用URL:/recruit/; 採用キーワード; 工務店・建設",,A,,
+88,川正工務店,"info@xxxxxx.com","https://kawasyou-co.com/","https://kawasyou-co.com/contact/",浦和,G1_MODERN,inside,0,4,4,recruit,"採用URL:/recruit; 採用キーワード; 工務店・建設",,A,,
+89,ウェッジホーム,"lien@wedgehome.co.jp","https://www.wedgehome.co.jp/","https://www.wedgehome.co.jp/company/",木更津市,G1_MODERN,inside,0,4,4,recruit,"採用URL:/recruit/; 採用キーワード; 工務店・建設",,A,,
+90,阿部工業,"hanako@mobara-taro.com","https://abe-kougyou.com/","https://abe-kougyou.com/work/toiawase/",茂原市,G1_WEAK,inside,2,4,2,recruit,"採用URL:/採用/; 採用キーワード; 工務店・建設",,A,,
+91,岩澤工務店,"1030@iwasawa-woody.jp","https://iwasawa-woody.jp/","https://iwasawa-woody.jp/company",香取市,G1_MODERN,inside,0,2,6,ai_ops,"HP整備済(G1_MODERN); FAX表記; PDF資料; 問合せ・見積導線; 見積・対応エリア訴求",,S,,
+92,鎌形建設株式会社,"info@kamagatakk.jp","https://www.kamagatakk.jp/","https://www.kamagatakk.jp/profile/",多古町,G1_WEAK,inside,2,4,2,recruit,"採用URL:/recruitment/; 採用キーワード; 工務店・建設",,A,,
+93,株式会社貴建築工房,"info@taka-kenchiku.co.jp","https://taka-kenchiku.co.jp/","https://taka-kenchiku.co.jp/",調布市,G1_MODERN,inside,0,3,5,ai_ops,"HP整備済(G1_MODERN); FAX表記; PDF資料; 問合せ・見積導線",,S,,
+94,株式会社横和工務店,"info@yokowa.co.jp","http://www.yokowa.co.jp/","http://www.yokowa.co.jp/",横須賀市,G1_WEAK,inside,3,4,1,recruit,"採用URL:/recruit/; 採用キーワード; 工務店・建設",,A,,
+95,株式会社飯塚工務店,"iizuka-koumuten2011@cocoa.ocn.ne.jp","https://www.tsuru-iizuka.co.jp/","https://www.tsuru-iizuka.co.jp/company",秦野市,G1_MODERN,inside,0,3,5,ai_ops,"HP整備済(G1_MODERN); FAX表記; 問合せ・見積導線; 見積・対応エリア訴求",,S,,
+96,株式会社若井工務店,"wakai002@green.ocn.ne.jp","https://www.wakai-koumuten.com/","https://www.wakai-koumuten.com/company.html",真鶴町,G1_WEAK,inside,2,3,3,recruit,"採用キーワード; 採用リンクあり(深掘り要); 工務店・建設",,A,,
+97,丸山工務店,"info@my-works.co.jp","https://www.my-works.co.jp/","https://www.my-works.co.jp/",秩父市,G1_MODERN,inside,0,4,4,recruit,"採用URL:/recruit/; 採用キーワード; 工務店・建設",,A,,
+98,株式会社松崎工務店,"info@matsuzaki-koumuten1968.jp","https://www.matsuzaki-koumuten1968.jp/","https://www.matsuzaki-koumuten1968.jp/contact",狭山市,G1_MODERN,inside,0,4,4,recruit,"採用URL:/recruit; 採用キーワード; 工務店・建設",,A,,
+99,菱沼建設,"hisinuma@hisinuma.co.jp","https://www.hisinuma.co.jp/","https://www.hisinuma.co.jp/inquiry/",白岡市,G1_MODERN,inside,0,3,5,ai_ops,"HP整備済(G1_MODERN); FAX表記; 問合せ・見積導線; 見積・対応エリア訴求",,S,,
+100,株式会社猪狩工務店,"info@igarikoumuten.co.jp","https://igarikoumuten.co.jp/","https://igarikoumuten.co.jp/company/",伊奈町,G1_MODERN,inside,0,4,4,recruit,"採用URL:/recruit/; 採用キーワード; 工務店・建設",,A,,
+101,高橋建築株式会社,"info@ta-k.jp","http://www.ta-k.jp/","https://www.ta-k.jp/company/",小鹿野町,G1_MODERN,inside,0,4,4,recruit,"採用URL:/recruit/; 採用キーワード; 工務店・建設",,A,,
+102,株式会社小沢工務店,"otoiawase@ozaco.jp","https://ozaco.jp/","https://ozaco.jp/company/",睦沢町,G1_MODERN,inside,0,4,4,recruit,"採用URL:/recruit/; 採用キーワード; 工務店・建設",,A,,
+103,株式会社マツモト工務店,"aksuper@aksuper.jp","https://aksuper.jp/","https://aksuper.jp/",鳥取,G1_MODERN,inside,0,4,3,recruit,"採用URL:/recruit; 採用キーワード; 工務店・建設",recruit,A,y,
+104,株式会社タウン建設,"info@yume-town.net","https://www.yume-town.net/","https://www.yume-town.net/access/",鳥取,G1_WEAK,inside,2,3,2,recruit,"採用URL:/recruit/; 工務店・建設",recruit,A,y,
+105,アイルホーム株式会社,"abc@i-llhome.jp","https://i-llhome.jp/","https://i-llhome.jp/contact/",札幌,G1_WEAK,inside,2,3,2,recruit,"採用キーワード; 採用リンクあり(深掘り要); 工務店・建設",recruit,A,y,
+106,株式会社内山ホーム,"t_yamada@sample.jp","https://www.uchiyama-home.com","https://www.uchiyama-home.com/inquiry",南魚沼,G1_MODERN,inside,0,4,3,recruit,"採用URL:/recruit/; 採用キーワード; 工務店・建設",recruit,A,y,
+107,有限会社アベ設計室,"aabe@plum.plala.or.jp","https://r.goope.jp/abesekkeisitsu","https://r.goope.jp/abesekkeisitsu/",南魚沼,G1_WEAK,inside,2,3,2,recruit,"採用URL:/recruit/; 工務店・建設",recruit,A,y,
+108,株式会社髙藤建設,"yourname@takatohome.co.jp","http://www.takatohome.co.jp","https://takatohome.co.jp/contact/",太田,G1_MODERN,inside,0,4,3,recruit,"採用URL:/recruit/; 採用キーワード; 工務店・建設",recruit,A,y,
+109,株式会社テラジマアーキテクツ,"pr@terajima.co.jp","http://www.kenchikuka.co.jp/","https://www.kenchikuka.co.jp/",世田谷,G1_MODERN,inside,0,4,3,recruit,"採用URL:/recruit/; 採用キーワード; 工務店・建設",recruit,A,y,
+110,株式会社匠技建,"info@takumigiken.com","http://www.takumigiken.com/","https://www.takumigiken.com/contact",立川,G1_WEAK,inside,2,4,1,recruit,"採用URL:/recruit; 採用キーワード; 工務店・建設",recruit,A,y,
+111,株式会社五十嵐工匠,"glt@lixil.com","http://www.ii-ie.net/~igarashi/","https://www.ii-ie2.net/about/",会津若松,G1_WEAK,inside,2,2,3,ai_ops,"PDF資料; 問合せ・見積導線; 見積・対応エリア訴求",ai_ops,A,y,
+112,鈴木環境建設株式会社,"info@suzuki-kankyo.co.jp","http://suzuki-kankyo.co.jp","https://suzuki-kankyo.co.jp/about/",石巻,G1_WEAK,inside,2,2,3,ai_ops,"FAX表記; 問合せ・見積導線; 見積・対応エリア訴求",ai_ops,A,y,
+113,株式会社クワケン,"kuwaken@gix.or.jp","http://www.kuwaken.jp","https://kuwaken.jp/company/",江南市,G1_WEAK,inside,1,4,2,recruit,"採用URL:/recruit/; 採用キーワード; 工務店・建設",recruit,A,y,
+114,榊原建設株式会社,"info@sakakibara-cons.co.jp","https://www.sakakibara-cons.co.jp","https://www.sakakibara-cons.co.jp/contact",一宮市,G1_WEAK,inside,2,4,1,recruit,"採用URL:/recruit/; 採用キーワード; 工務店・建設",recruit,A,y,
+115,大栄建設株式会社,"daiei@hyper.ocn.ne.jp","https://daiei-kensetsu.com","https://daiei-kensetsu.com/company.html",弥富市,G1_WEAK,inside,2,3,2,recruit,"採用キーワード; 採用リンクあり(深掘り要); 工務店・建設",recruit,A,y,
+116,大藤建設株式会社,"info@daitou-net.co.jp","http://www.daitou-net.co.jp","https://www.daitou-net.co.jp/contact/",愛西市,G1_WEAK,inside,2,3,2,recruit,"採用URL:/recruit/; 工務店・建設",recruit,A,y,
+117,株式会社荒川工務店,"yourmail@sample.co.jp","https://www.kk-arakawa.co.jp","https://www.kk-arakawa.co.jp/contact",豊橋市,G1_WEAK,inside,2,4,1,recruit,"採用URL:/recruit; 採用キーワード; 工務店・建設",recruit,A,y,
+118,株式会社筒井工務店,"info@tsutsui-k.co.jp","https://tsutsui-k.co.jp/","https://tsutsui-k.co.jp/company/",新城市,G1_WEAK,inside,2,3,2,recruit,"採用URL:/recruit/; 工務店・建設",recruit,A,y,
+119,太啓建設株式会社,"info@taikei-con.co.jp","http://www.taikei-con.co.jp","https://www.taikei-con.co.jp/contact/",豊田市,G1_MODERN,inside,0,4,3,recruit,"採用URL:/recruit/; 採用キーワード; 工務店・建設",recruit,A,y,
+120,春田建設株式会社,"haruta@haruta-kk.com","https://haruta-kk.com/","https://haruta-kk.com/",名古屋市,G1_MODERN,inside,0,4,3,recruit,"採用URL:/recruit/; 採用キーワード; 工務店・建設",recruit,A,y,
+121,株式会社野々川工務店,"nonogawa@space.ne.jp","http://nonogawa-koumuten.com/","https://nonogawa-koumuten.com/",小牧市,G1_WEAK,inside,2,2,3,ai_ops,"FAX表記; PDF資料; 問合せ・見積導線",ai_ops,A,y,
+122,株式会社田村ビルズ,"info@tmrkz.com","http://www.tamura-kenzai.co.jp/","https://tamura-builds.co.jp/contact/",山口,G1_WEAK,inside,2,4,1,recruit,"採用URL:/recruit/; 採用キーワード; 工務店・建設",recruit,A,y,
+123,株式会社テイガク,"info@teigaku.co.jp","https://yanekabeya.com","https://yanekabeya.com/about/company/",埼玉,G1_MODERN,inside,0,3,4,ai_ops,"HP整備済(G1_MODERN); 問合せ・見積導線; 見積・対応エリア訴求",ai_ops,A,y,
+124,株式会社フジキ建設,"info@fuziki.co.jp","http://www.fuziki.co.jp","https://www.fuziki.co.jp/",埼玉,G1_WEAK,inside,2,3,2,recruit,"採用URL:/recruit/; 工務店・建設",recruit,A,y,
+125,快適空間株式会社,"abc@abc.com","http://www.kaitekikukan.co.jp","https://kaitekikukan.co.jp/contact/",埼玉,G1_WEAK,inside,1,4,2,recruit,"採用URL:/recruit; 採用キーワード; 工務店・建設",recruit,A,y,
+126,e-cubeホームテクノ株式会社,"info@e-cube-group.com","https://www.e-cube-group.com/ht/","https://www.e-cube-group.com/ht/",埼玉,G1_MODERN,inside,0,3,4,ai_ops,"HP整備済(G1_MODERN); FAX表記; 問合せ・見積導線",ai_ops,A,y,
+127,大野建設株式会社,"yourname@yourdomain.jp","https://www.oono.gr.jp","https://www.oono.gr.jp/contact/",埼玉,G1_WEAK,inside,2,4,1,recruit,"採用URL:/recruit/; 採用キーワード; 工務店・建設",recruit,A,y,
+128,(株)サン建築工房,"info@sunken.co.jp","http://www.sunken.co.jp/index.html","https://www.sunken.co.jp/",福岡,G1_MODERN,inside,0,3,4,ai_ops,"HP整備済(G1_MODERN); FAX表記; 問合せ・見積導線",ai_ops,A,y,
+129,(株)安成工務店 福岡支店,"yasunari@yasunari.co.jp","https://www.yasunari-komuten.com/","https://www.yasunari-komuten.com/inquiry",福岡,G1_WEAK,inside,2,3,2,recruit,"採用キーワード; 採用リンクあり(深掘り要); 工務店・建設",recruit,A,y,
+130,(株)清武建設,"info@kiyotake.co.jp","https://www.kiyotake.co.jp/","https://www.kiyotake.co.jp/",福岡,G1_MODERN,inside,0,2,5,ai_ops,"HP整備済(G1_MODERN); FAX表記; PDF資料; 問合せ・見積導線",ai_ops,S,y,
+131,中原工務店,"info@i-nakahara.com","http://www.i-nakahara.com/","https://www.i-nakahara.com/about/",福岡,G1_WEAK,inside,2,3,2,recruit,"採用URL:/recruit/; 工務店・建設",recruit,A,y,
+132,(株)アーキテックス,"abc@architex.co.jp","https://architex.co.jp/","https://architex.co.jp/contact/",福岡,G1_WEAK,inside,2,4,1,recruit,"採用URL:/recruit/; 採用キーワード; 工務店・建設",recruit,A,y,
+133,(株)ラクジュ,"lakuju@gmail.com","http://www.lakuju.jp/","https://lakuju.jp/",神奈川,G1_MODERN,inside,0,2,5,ai_ops,"HP整備済(G1_MODERN); FAX表記; PDF資料; 問合せ・見積導線",ai_ops,S,y,
+134,小泉木材(株),"info@woodmeister.jp","https://www.woodmeister.jp/","https://kizuki-home.co.jp/terracehouse/access/",神奈川,G1_MODERN,inside,0,3,4,ai_ops,"HP整備済(G1_MODERN); 問合せ・見積導線; 見積・対応エリア訴求",ai_ops,A,y,
+135,株式会社 キリガヤ,"home@kirigaya.co.jp","http://www.kirigaya.jp/","https://kirigaya.jp/contact/",神奈川,G1_MODERN,inside,0,2,5,ai_ops,"HP整備済(G1_MODERN); FAX表記; PDF資料; 問合せ・見積導線",ai_ops,S,y,
+136,近代ホーム株式会社,"info@100kj.co.jp","http://www.100kj.co.jp/","https://www.100kj.co.jp/",神奈川,G1_MODERN,inside,0,4,3,recruit,"採用URL:/recruit/; 採用キーワード; 工務店・建設",recruit,A,y,
+137,株式会社匠技建,"info@takumigiken.com","https://www.takumigiken.com/","https://www.takumigiken.com/contact",東京,G1_WEAK,inside,2,4,1,recruit,"採用URL:/recruit; 採用キーワード; 工務店・建設",recruit,A,y,
+138,株式会社日本空間,"info@nippon-kukan.co.jp","https://nippon-kukan.co.jp","https://nippon-kukan.co.jp/",東京,G1_MODERN,inside,0,4,3,recruit,"採用URL:/recruit/; 採用キーワード; 工務店・建設",recruit,A,y,
+139,株式会社Ａｒｘｉｓｔ,"info@axt1.co.jp","http://www.arxist.jp/","https://www.arxist.jp/company.html",東京,G1_WEAK,inside,2,4,1,recruit,"採用URL:/recruit; 採用キーワード; 工務店・建設",recruit,A,y,
+140,日動建設株式会社,"mail@nichido-kensetsu.com","http://www.nichido-kensetsu.com/","https://nichido-kensetsu.com/company/",千葉,G1_MODERN,inside,0,3,4,ai_ops,"HP整備済(G1_MODERN); FAX表記; 問合せ・見積導線",ai_ops,A,y,
+141,e-marusei,"mocomoko@e-marusei.jp","https://www.e-marusei.jp/","https://www.e-marusei.jp/",東京,G1_MODERN,inside,0,3,4,ai_ops,"HP整備済(G1_MODERN); FAX表記; 問合せ・見積導線",ai_ops,A,y,
+142,野崎工務店,"yourmail@sample.co.jp","https://www.nozakic.com/","https://www.nozakic.com/form/",所沢,G1_WEAK,inside,2,4,1,recruit,"採用URL:/recruit; 採用キーワード; 工務店・建設",,A,,
+143,小川工務店,"hagiwara@ogawa-bco.co.jp","https://www.ogawa-bco.co.jp/","https://www.ogawa-bco.co.jp/",柏市,G1_MODERN,inside,0,4,3,recruit,"採用URL:/recruit/; 採用キーワード; 工務店・建設",,A,,
+144,君津住宅,"info@kimijyu.co.jp","https://kimijyu.co.jp/","https://kimijyu.co.jp/",君津市,G1_MODERN,inside,0,3,4,ai_ops,"HP整備済(G1_MODERN); PDF資料; 問合せ・見積導線",,A,,
+145,株式会社小松原工務店,"kikaku@komatsubara.co.jp","https://www.komatsubara-komuten.com/","https://www.komatsubara-komuten.com/",豊島区,G1_WEAK,inside,2,4,1,recruit,"採用URL:/recruit; 採用キーワード; 工務店・建設",,A,,
+146,株式会社キリガヤ,"home@kirigaya.co.jp","https://kirigaya.jp/","https://kirigaya.jp/contact/",逗子市,G1_MODERN,inside,0,2,5,ai_ops,"HP整備済(G1_MODERN); FAX表記; PDF資料; 問合せ・見積導線",,S,,
+147,有限会社門倉工務店,"info@kado-com.com","https://kado-com.com/","https://kado-com.com/",行田市,G1_WEAK,inside,2,4,1,recruit,"採用URL:/recruit/; 採用キーワード; 工務店・建設",,A,,
+148,有限会社尾身工務店,"info@omi-k.jp","https://www.omi-k.jp/","https://www.omi-k.jp/contact",吉見町,G1_WEAK,inside,3,1,3,hp_improve,"更新停止感(HTML内2018止); httpsサイト内http混在; 粗1点",,B,,
+149,株式会社小林建設,"kobayashi@kobaken.info","https://www.kobaken.info/","https://www.kobaken.info/company/profile/",美里町,G1_MODERN,inside,0,3,4,ai_ops,"HP整備済(G1_MODERN); FAX表記; 問合せ・見積導線",,A,,
+150,株式会社松本工務店,"info@matsumotok.co.jp","https://matsumotok.co.jp/","https://matsumotok.co.jp/",白河,G1_MODERN,inside,0,2,4,ai_ops,"HP整備済(G1_MODERN); FAX表記; 問合せ・見積導線",ai_ops,A,y,
+151,有限会社尚建工務店,"info@sho-ken.jp","https://syo-ken.jp/","https://syo-ken.jp/contact-us/",日吉津,G1_MODERN,inside,0,3,3,recruit,"採用URL:/recruit/; 工務店・建設",recruit,A,y,
+152,株式会社建販,"info@kenpan.jp","https://kenpan.jp/","https://kenpan.jp/company",鳥取,G1_MODERN,inside,0,2,4,ai_ops,"HP整備済(G1_MODERN); FAX表記; 問合せ・見積導線",ai_ops,A,y,
+153,株式会社飛鳥建築,"info@asuka-kk.com","https://asuka-kk.com/","https://asuka-kk.com/",狭山,G1_MODERN,inside,0,3,3,recruit,"採用キーワード; 採用リンクあり(深掘り要); 工務店・建設",recruit,A,y,
+154,株式会社仙臺屋,"info@sendaiya1000.com","https://www.sendaiya1000.com/","https://sendaiya1000.com/about-us/",仙台,G1_MODERN,inside,0,2,4,ai_ops,"HP整備済(G1_MODERN); FAX表記; 問合せ・見積導線",ai_ops,A,y,
+155,インデュアホーム秋田茂木建設株式会社,"akita@e-motegi.com","http://eh-akita.com","https://eh-akita.com/",秋田,G1_WEAK,inside,2,1,3,ai_ops,"HP導線おおむね整備; FAX表記; 問合せ・見積導線",ai_ops,A,y,
+156,ファースト住建株式会社,"info@first-juhken.co.jp","http://www.first-juhken.co.jp","https://www.first-juhken.co.jp/profile/",高崎,G1_MODERN,inside,0,2,4,ai_ops,"HP整備済(G1_MODERN); FAX表記; 問合せ・見積導線",ai_ops,A,y,
+157,株式会社石山工業所,"info@sigoto-kitiri.com","http://www.sigoto-kitiri.com/","https://www.sigoto-kitiri.com/corporate/",さいたま,G1_WEAK,inside,2,1,3,ai_ops,"HP導線おおむね整備; FAX表記; 問合せ・見積導線",ai_ops,A,y,
+158,野末建築,"info@nozue.info","http://www.nozue.info/","https://nozue.info/company/",滑川,G1_MODERN,inside,0,2,4,ai_ops,"HP整備済(G1_MODERN); FAX表記; 問合せ・見積導線",ai_ops,A,y,
+159,株式会社登昭建設,"cozy@aitonukumorinoie.net","http://www.aitonukumorinoie.net/","https://aitonukumorinoie.net/company/",岐阜,G1_MODERN,inside,0,2,4,ai_ops,"HP整備済(G1_MODERN); FAX表記; 問合せ・見積導線",ai_ops,A,y,
+160,株式会社吉田組,"info@yoshidagumi.com","https://www.yoshidagumi.com","https://www.yoshidagumi.com/",西尾市,G1_MODERN,inside,0,2,4,ai_ops,"HP整備済(G1_MODERN); FAX表記; 問合せ・見積導線",ai_ops,A,y,
+161,株式会社ワイツ,"otoiawase@waitsu.com","http://www.waitsu.com/","https://waitsu.com/",平群,G1_MODERN,inside,0,1,5,ai_ops,"HP整備済(G1_MODERN); FAX表記; PDF資料; 問合せ・見積導線",ai_ops,S,y,
+162,株式会社シモムラ・プランニング社,"info@simomura.co.jp","http://www.simomura.co.jp/","https://www.simomura.co.jp/",一宮,G1_WEAK,inside,2,1,3,ai_ops,"FAX表記; PDF資料; 問合せ・見積導線",ai_ops,A,y,
+163,有限会社加藤建築,"info@katoukenchiku.jp","https://www.katoukenchiku.jp/","https://www.katoukenchiku.jp/company.html",埼玉,G1_WEAK,inside,2,1,3,ai_ops,"FAX表記; 問合せ・見積導線; 見積・対応エリア訴求",ai_ops,A,y,
+164,上武・リフォーム,"mmytoka@nifty.com","http://jobu.la.coocan.jp/","https://jobu.la.coocan.jp/",埼玉,G1_WEAK,inside,2,1,3,ai_ops,"FAX表記; 問合せ・見積導線; 見積・対応エリア訴求",ai_ops,A,y,
+165,(株)タカノホーム,"info@takanohome.co.jp","http://www.takanohome.co.jp/index.php","https://www.takanohome.co.jp/toiawase/index.html",福岡,G1_MODERN,inside,0,2,4,ai_ops,"HP整備済(G1_MODERN); FAX表記; 問合せ・見積導線",ai_ops,A,y,
+166,エコワークス(株),"info@eco-works.jp","http://www.eco-works.jp/","https://www.eco-works.jp/",福岡,G1_MODERN,inside,0,3,3,recruit,"採用キーワード; 採用リンクあり(深掘り要); 工務店・建設",recruit,A,y,
+167,(株)福岡工務店,"info@fukuoka-k.jp","https://www.fukuoka-k.jp/","https://www.fukuoka-k.jp/",福岡,G1_MODERN,inside,0,2,4,ai_ops,"HP整備済(G1_MODERN); FAX表記; 問合せ・見積導線",ai_ops,A,y,
+168,(株)駅前工務店,"yourname@yourdomain.com","http://www.ekimaekoumuten.co.jp/","https://www.ekimaekoumuten.co.jp/inquiry/",福岡,G1_MODERN,inside,0,3,3,recruit,"採用キーワード; 採用リンクあり(深掘り要); 工務店・建設",recruit,A,y,
+169,(有)三陽工務店,"info-34@sanyoukoumuten.co.jp","http://www.sanyoukoumuten.co.jp/company/company.html","https://www.sanyoukoumuten.co.jp/company/company.html",神奈川,G1_MODERN,inside,0,2,4,ai_ops,"HP整備済(G1_MODERN); FAX表記; 問合せ・見積導線",ai_ops,A,y,
+170,(有)木匠工務店,"info@mokusho.com","http://www.mokusho.com","https://www.mokusho.com/",神奈川,G1_MODERN,inside,0,1,5,ai_ops,"HP整備済(G1_MODERN); FAX表記; 問合せ・見積導線; 見積・対応エリア訴求",ai_ops,S,y,
+171,(株)大川,"info@okawa-ss.co.jp","https://www.okawa-ss.co.jp/index2.html","https://www.okawa-ss.co.jp/",神奈川,G1_MODERN,inside,0,3,3,recruit,"採用キーワード; 採用リンクあり(深掘り要); 工務店・建設",recruit,A,y,
+172,小松建設株式会社,"info@komatsu-co.com","https://www.komatsu-co.com/","https://www.komatsu-co.com/company/",東京,G1_MODERN,inside,0,2,4,ai_ops,"HP整備済(G1_MODERN); FAX表記; 問合せ・見積導線",ai_ops,A,y,
+173,株式会社大悦工務店,"info@daietu-kk.co.jp","http://daietu-kk.co.jp/","https://daietu-kk.co.jp/",東京,G1_WEAK,inside,2,3,1,recruit,"採用キーワード; 採用リンクあり(深掘り要); 工務店・建設",recruit,A,y,
+174,美空建株式会社,"info.bikuken@bikuken.co.jp","https://www.bikuken.co.jp/","https://www.bikuken.co.jp/company.html",東京,G1_MODERN,inside,0,2,4,ai_ops,"HP整備済(G1_MODERN); FAX表記; 問合せ・見積導線",ai_ops,A,y,
+175,株式会社小須田建設工業,"info@kosuda-kk.com","https://kosuda-kk.com","https://kosuda-kk.com/inquiry/",埼玉,G1_WEAK,inside,2,3,1,recruit,"採用URL:/recruit/; 工務店・建設",recruit,A,y,
+176,仁・幸夢店株式会社,"abc@mail.com","https://jin-gr.com/","https://jin-gr.com/contact/",千葉,G1_MODERN,inside,0,2,4,ai_ops,"HP整備済(G1_MODERN); 問合せ・見積導線; 見積・対応エリア訴求",ai_ops,A,y,
+177,大五郎建設有限会社,"info@daigoro-kensetu.com","http://www.daigoro-kensetu.com/","https://www.daigoro-kensetu.com/",千葉,G1_WEAK,inside,2,1,3,ai_ops,"FAX表記; PDF資料; 問合せ・見積導線",ai_ops,A,y,
+178,有限会社三堀工務店,"info@mihori.co.jp","http://www.mihori.co.jp/","https://mihori.co.jp/",千葉,G1_MODERN,inside,0,2,4,ai_ops,"HP整備済(G1_MODERN); FAX表記; 問合せ・見積導線",ai_ops,A,y,
+179,有限会社水戸工務店,"info@mitok.jp","http://mitok.jp/","https://mitok.jp/about/",千葉,G1_MODERN,inside,0,2,4,ai_ops,"HP整備済(G1_MODERN); FAX表記; 問合せ・見積導線",ai_ops,A,y,
+180,r-station,"info@r-station.net","https://www.r-station.net/","https://www.r-station.net/",東京,G1_MODERN,inside,0,2,4,ai_ops,"HP整備済(G1_MODERN); 問合せ・見積導線; 見積・対応エリア訴求",ai_ops,A,y,
+181,taisei-re,"info@taisei-re.com","https://www.taisei-re.com/","https://www.taisei-re.com/company/",東京,G1_WEAK,inside,2,1,3,ai_ops,"FAX表記; PDF資料; 問合せ・見積導線",ai_ops,A,y,
+182,川津工務店株式会社,"info@kawatsukoumuten.com","https://www.kawatsukoumuten.com/","https://www.kawatsukoumuten.com/contact",世田谷区,G1_WEAK,inside,1,2,3,ai_ops,"HP導線おおむね整備; 問合せ・見積導線; 見積・対応エリア訴求",,A,,
+183,㈱吉楽工務店,"info@kichiraku.com","https://kichiraku.com/","https://kichiraku.com/",世田谷区,G1_WEAK,inside,1,3,2,recruit,"採用URL:/recruit/; 工務店・建設",,A,,
+184,佐藤工務店,"info@satohkoumuten.com","https://satohkoumuten.com/","https://satohkoumuten.com/company",相模原,G1_WEAK,inside,3,1,2,hp_improve,"tel:なし; httpsサイト内http混在; 粗1点",,B,,
+185,山崎工務店,"info@yamazaki-k.biz","https://www.yamazaki-k.biz/","https://www.yamazaki-k.biz/company/",立川,G1_MODERN,inside,0,1,5,ai_ops,"HP整備済(G1_MODERN); FAX表記; 問合せ・見積導線; 見積・対応エリア訴求",,S,,
+186,石井建設工務店,"ishii@ishii-kensetsu-k.co.jp","https://www.ishii-kensetsu-k.co.jp/","https://www.ishii-kensetsu-k.co.jp/company/",松戸市,G1_MODERN,inside,0,1,5,ai_ops,"HP整備済(G1_MODERN); FAX表記; 問合せ・見積導線; 見積・対応エリア訴求",,S,,
+187,住工房スタイル,"abc@abcd.co.jp","https://www.jukobo.jp/","https://www.jukobo.jp/about-recruit/",栄町,G1_WEAK,inside,2,3,1,recruit,"採用キーワード; 採用リンクあり(深掘り要); 工務店・建設",,A,,
+188,株式会社ジェネシス,"info@genesis-ltd.co.jp","https://www.genesis-ltd.co.jp/","https://www.genesis-ltd.co.jp/toiawase/index.html",武蔵野市,G1_MODERN,inside,0,2,4,ai_ops,"HP整備済(G1_MODERN); FAX表記; 問合せ・見積導線",,A,,
+189,ウッドシップ株式会社,"w.s@woodship.jp","https://www.woodship.jp/","https://www.woodship.jp/",小平市,G1_MODERN,inside,0,3,3,recruit,"採用キーワード; 採用リンクあり(深掘り要); 工務店・建設",,A,,
+190,株式会社福田工務店,"fukudakoumuten@outlook.com","https://www.fukudakoumuten.net/","https://www.fukudakoumuten.net/",東大和市,G1_WEAK,inside,3,1,2,hp_improve,"tel:なし; ワンページ構成; 粗1点",,B,,
+191,ハウスオブクラン株式会社,"houseofclan@gmail.com","https://houseofclan.com/","https://houseofclan.com/",蓮田市,G1_MODERN,inside,0,1,5,ai_ops,"HP整備済(G1_MODERN); FAX表記; 問合せ・見積導線; 見積・対応エリア訴求",,S,,
+192,古川工務店,"dhf@xxx.com","https://dh-f.jp/furukawa/","https://dh-f.jp/contactform/",鶴ヶ島市,G1_MODERN,inside,0,1,5,ai_ops,"HP整備済(G1_MODERN); FAX表記; PDF資料; 問合せ・見積導線",,S,,
+193,株式会社伊藤木材建設,"ngominoie1@themis.ocn.ne.jp","https://www.ito-mokuzaikensetsu.com/","https://www.ito-mokuzaikensetsu.com/toiawase/index.html",日高市,G1_MODERN,inside,0,2,4,ai_ops,"HP整備済(G1_MODERN); FAX表記; 問合せ・見積導線",,A,,
+194,株式会社松崎住宅産業,"aaa@aaaa.co.jp","https://www.mjs-housing.co.jp/","https://www.mjs-housing.co.jp/contact/",横瀬町,G1_WEAK,inside,2,1,3,ai_ops,"FAX表記; PDF資料; 問合せ・見積導線",,A,,
+195,有限会社鎌田工務店,"info@kamata-k.jp","https://www.kamata-k.jp/","https://www.kamata-k.jp/",仙台,G1_MODERN,inside,0,1,4,ai_ops,"HP整備済(G1_MODERN); FAX表記; 問合せ・見積導線",ai_ops,A,y,
+196,いなばハウジング株式会社,"info@xxx.com","https://inabahousing.com/","https://inabahousing.com/contact/",鳥取,G1_MODERN,inside,0,1,4,ai_ops,"HP整備済(G1_MODERN); FAX表記; 問合せ・見積導線",ai_ops,A,y,
+197,株式会社カネタケ建設,"info@kanetake-kensetu.com","http://www.kanetake-kensetu.com/","https://kanetake-kensetu.com/company/",十日町,G1_WEAK,inside,1,1,3,ai_ops,"HP導線おおむね整備; FAX表記; 問合せ・見積導線",ai_ops,A,y,
+198,株式会社菅原工務店,"info@sugawara-koumuten.com","http://sugawara-koumuten.com/","https://www.sugawara-koumuten.com/contact/",大崎,G1_WEAK,inside,1,1,3,ai_ops,"HP導線おおむね整備; FAX表記; 問合せ・見積導線",ai_ops,A,y,
+199,株式会社福山Three door,"info@fukuyamathreedoor.co.jp","https://www.3door.jp","https://www.3door.jp/contact/",福山,G1_MODERN,inside,0,1,4,ai_ops,"HP整備済(G1_MODERN); FAX表記; 問合せ・見積導線",ai_ops,A,y,
+200,株式会社広瀬住宅計画,"info@hirose-sc.com","http://hirose-sc.com/","https://hirose-sc.com/company/",前橋,G1_MODERN,inside,0,1,4,ai_ops,"HP整備済(G1_MODERN); FAX表記; 問合せ・見積導線",ai_ops,A,y,
+201,株式会社コムハウジング,"request@comhousing.com","http://www.comhousing.com","https://www.comhousing.com/toiawase/index.html",岡山,G1_MODERN,inside,0,1,4,ai_ops,"HP整備済(G1_MODERN); FAX表記; 問合せ・見積導線",ai_ops,A,y,
+202,株式会社イチマルホーム,".abcd@sample.co.jp","http://www.ichimaruhome.com","https://www.ichimaruhome.com/contact/",赤磐,G1_MODERN,inside,0,1,4,ai_ops,"HP整備済(G1_MODERN); FAX表記; 問合せ・見積導線",ai_ops,A,y,
+203,株式会社育暮家ハイホームス,"e-mail.hihomes@tokai.or.jp","http://www.hihomes.co.jp","https://hihomes.co.jp/",藤枝,G1_MODERN,inside,0,1,4,ai_ops,"HP整備済(G1_MODERN); FAX表記; 問合せ・見積導線",ai_ops,A,y,
+204,株式会社すまいるほーむ,"info@smile-life.jp","http://smile-life.jp/","https://smile-life.jp/",富山,G1_MODERN,inside,0,2,3,ai_ops,"HP整備済(G1_MODERN); 問合せ・見積導線",ai_ops,A,y,
+205,有限会社谷村工務店,"info@tanimura-sc.com","http://www.tanimura-sc.com/","https://tanimura-sc.com/",東村山,G1_MODERN,inside,0,1,4,ai_ops,"HP整備済(G1_MODERN); FAX表記; 問合せ・見積導線",ai_ops,A,y,
+206,藏家,"info@kura-ya.net","http://www.kura-ya.net/","https://kura-ya.net/",大阪,G1_MODERN,inside,0,2,3,ai_ops,"HP整備済(G1_MODERN); 問合せ・見積導線",ai_ops,A,y,
+207,株式会社飛鳥,"asuka5511@voice.ocn.ne.jp","http://asukalife.com/","https://www.asukalife.com/",桜井,G1_MODERN,inside,0,1,4,ai_ops,"HP整備済(G1_MODERN); FAX表記; 問合せ・見積導線",ai_ops,A,y,
+208,株式会社ヒロハウス,"info@hilohouse.net","http://www.hilohouse.net/","https://www.hilohouse.net/",久山,G1_MODERN,inside,0,1,4,ai_ops,"HP整備済(G1_MODERN); FAX表記; 問合せ・見積導線",ai_ops,A,y,
+209,未来アート株式会社,"info@mirai-art.co.jp","https://mirai-art.co.jp","https://mirai-art.co.jp/",埼玉,G1_MODERN,inside,0,1,4,ai_ops,"HP整備済(G1_MODERN); FAX表記; 問合せ・見積導線",ai_ops,A,y,
+210,(株)リバティーホーム,"yourname@yourdomain.com","http://libertygroup.jp/","https://libertygroup.jp/company/",福岡,G1_MODERN,inside,0,1,4,ai_ops,"HP整備済(G1_MODERN); FAX表記; 問合せ・見積導線",ai_ops,A,y,
+211,九州八重洲(株),"info@kyushu-yaesu.co.jp","http://www.kyushu-yaesu.co.jp/","https://www.y98.jp/contact/",福岡,G1_MODERN,inside,0,1,4,ai_ops,"HP整備済(G1_MODERN); FAX表記; 問合せ・見積導線",ai_ops,A,y,
+212,(株)大幸商事,"contact@eto-web.com","http://www.eto-web.com/","https://eto-web.com/",福岡,G1_MODERN,inside,0,1,4,ai_ops,"HP整備済(G1_MODERN); FAX表記; 問合せ・見積導線",ai_ops,A,y,
+213,(株)西江ハウジング,"info@nishie-housing.com","http://nishie-housing.com/","https://nishie-housing.com/",福岡,G1_WEAK,inside,1,1,3,ai_ops,"HP導線おおむね整備; FAX表記; 問合せ・見積導線",ai_ops,A,y,
+214,(株)中山建設,"nk@nakaken.info","https://nakaken-nh.jp/","https://nakaken-nh.jp/about/",神奈川,G1_MODERN,inside,0,1,4,ai_ops,"HP整備済(G1_MODERN); FAX表記; 問合せ・見積導線",ai_ops,A,y,
+215,テクニカルホーム 株式会社,"info@technical-home.co.jp","http://www.technical-home.co.jp/","https://www.technical-home.co.jp/company/",神奈川,G1_MODERN,inside,0,1,4,ai_ops,"HP整備済(G1_MODERN); FAX表記; 問合せ・見積導線",ai_ops,A,y,
+216,有限会社谷村工務店,"info@tanimura-sc.com","https://www.tanimura-sc.com","https://tanimura-sc.com/",東京,G1_MODERN,inside,0,1,4,ai_ops,"HP整備済(G1_MODERN); FAX表記; 問合せ・見積導線",ai_ops,A,y,
+217,株式会社吉澤建設工業,"info@yoshizawa-kk.co.jp","http://www.yoshizawa-kk.co.jp","https://www.yoshizawa-kk.co.jp/",埼玉,G1_MODERN,inside,0,1,4,ai_ops,"HP整備済(G1_MODERN); FAX表記; 問合せ・見積導線",ai_ops,A,y,
+218,kurasu,"info@kurasu.co.jp","https://kurasu.co.jp/","https://kurasu.co.jp/",東京,G1_MODERN,inside,0,2,3,ai_ops,"HP整備済(G1_MODERN); 問合せ・見積導線",ai_ops,A,y,
+219,fabworks,"info@fabworks.co.jp","https://www.fabworks.co.jp/","https://www.fabworks.co.jp/company/",東京,G1_MODERN,inside,0,1,4,ai_ops,"HP整備済(G1_MODERN); FAX表記; 問合せ・見積導線",ai_ops,A,y,
+220,大久保工務店,"info@ookubo-k.com","https://www.ookubo-k.com/","https://www.ookubo-k.com/",八王子,G1_MODERN,inside,0,1,4,ai_ops,"HP整備済(G1_MODERN); FAX表記; 問合せ・見積導線",,A,,
+221,清水台工務店,"info@shimizudai.com","https://www.shimizudai.com/","https://www.shimizudai.com/",野田市,G1_MODERN,inside,0,1,4,ai_ops,"HP整備済(G1_MODERN); FAX表記; 問合せ・見積導線",,A,,
+222,日建ホーム,"nikken@n-home.co.jp","https://www.n-home.co.jp/","https://www.n-home.co.jp/",我孫子市,G1_MODERN,inside,0,2,3,ai_ops,"HP整備済(G1_MODERN); 問合せ・見積導線",,A,,
+223,真行寺建設,"info@shin-ken.net","https://www.shin-ken.net/","https://www.shin-ken.net/toiawase/index.html",芝山町,G1_MODERN,inside,0,1,4,ai_ops,"HP整備済(G1_MODERN); FAX表記; 問合せ・見積導線",,A,,
+224,株式会社榎本工務店,"info@em-komuten.jp","https://www.em-komuten.jp/","https://www.em-komuten.jp/contact",狛江市,G1_MODERN,inside,0,2,3,ai_ops,"HP整備済(G1_MODERN); 問合せ・見積導線",,A,,
+225,株式会社関工務店,"39customer@sekikou.co.jp","https://sekikou.co.jp/","https://sekikou.co.jp/",清瀬市,G1_MODERN,inside,0,1,4,ai_ops,"HP整備済(G1_MODERN); FAX表記; 問合せ・見積導線",,A,,
+226,有限会社高堰工務店,"info@iikoumuten.co.jp","https://www.iikoumuten.co.jp/","https://www.iikoumuten.co.jp/",海老名市,G1_MODERN,inside,0,1,4,ai_ops,"HP整備済(G1_MODERN); FAX表記; 問合せ・見積導線",,A,,
+227,有限会社守屋工務店,"info@moriya-k.com","https://moriya-k.com/","https://moriya-k.com/",大磯町,G1_WEAK,inside,3,1,1,hp_improve,"tel:なし; httpsサイト内http混在; 粗1点",,B,,
+228,株式会社日吉工務店,"hiyoshi@topaz.plala.or.jp","https://hiyoshikoumuten.com/","https://hiyoshikoumuten.com/company/",桶川市,G1_MODERN,inside,0,1,4,ai_ops,"HP整備済(G1_MODERN); FAX表記; 問合せ・見積導線",,A,,
+229,有限会社篠崎工務店,"sth.shinokou.358@i.gmobb.jp","https://shinozaki-koumuten.com/","https://shinozaki-koumuten.com/",松伏町,G1_MODERN,inside,0,1,4,ai_ops,"HP整備済(G1_MODERN); 問合せ・見積導線; 見積・対応エリア訴求",,A,,
+230,GAT,"gat@xxxxx.com","https://www.foryou-home.jp/","https://www.foryou-home.jp/",久慈,G1_MODERN,inside,0,1,3,ai_ops,"HP整備済(G1_MODERN); 問合せ・見積導線",ai_ops,A,y,
+231,株式会社クラフト・ハウス,"iwate.crafthouse@gmail.com","http://iwate-crafthouse.co.jp","https://www.iwate-crafthouse.co.jp/contact/",矢巾,G1_MODERN,inside,0,1,3,ai_ops,"HP整備済(G1_MODERN); 問合せ・見積導線",ai_ops,A,y,
+232,株式会社千田建設,"info@sendakensetsu.jp","http://www.sendakensetsu.jp/","https://sendakensetsu.jp/",倉敷,G1_MODERN,inside,0,1,3,ai_ops,"HP整備済(G1_MODERN); 問合せ・見積導線",ai_ops,A,y,
+233,稲東建設株式会社,"info@inatou.com","http://inatou.com","https://www.inatou.com/",稲沢市,G1_MODERN,inside,0,1,3,ai_ops,"HP整備済(G1_MODERN); 問合せ・見積導線",ai_ops,A,y,
+234,建築プランナー(株),"info@kpkp.co.jp","http://www.kpkp.co.jp/","https://kpkp.co.jp/company/",福岡,G1_MODERN,inside,0,1,3,ai_ops,"HP整備済(G1_MODERN); 問合せ・見積導線",ai_ops,A,y,
+235,株式会社守重建設,"t_yamada@sample.jp","https://www.morisigekensetu.jp/","https://www.morisigekensetu.jp/inquiry/",東京,G1_MODERN,inside,0,1,3,ai_ops,"HP整備済(G1_MODERN); 問合せ・見積導線",ai_ops,A,y,
+236,111ie,"kentaro@horikiri.co.jp","https://111ie.com/","https://111ie.com/contact/",東京,G1_MODERN,inside,0,1,3,ai_ops,"HP整備済(G1_MODERN); 問合せ・見積導線",ai_ops,A,y,
+237,株式会社山匠工務店,"abcdefg@hijk.com","https://www.yamasho-koumuten.jp/","https://www.yamasho-koumuten.jp/contact/",東金市,G1_MODERN,inside,0,1,3,ai_ops,"HP整備済(G1_MODERN); 問合せ・見積導線",,A,,
+238,株式会社蓮見工務店,"info@hasumikomuten.local","https://www.hasumi.jp/","https://www.hasumi.jp/contact/",北本市,G1_MODERN,inside,0,1,3,ai_ops,"HP整備済(G1_MODERN); 問合せ・見積導線",,A,,

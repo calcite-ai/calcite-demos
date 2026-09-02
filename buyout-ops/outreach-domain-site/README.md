@@ -10,9 +10,15 @@
 https://www.calcite-mail.jp/demo/{slug}/{skin}/
 ```
 
-`buyout-ops/generate-demo-redirects.mjs` が `demo/{slug}/{skin}/index.html` を生成する（GitHub Pages へ即時リダイレクト）。
+`buyout-ops/generate-demo-redirects.mjs` が `demo/{slug}/{skin}/` の静的リダイレクトを生成できる（任意・短縮URL用）。
 
-**デプロイ:** ConoHa WING の `calcite-mail.jp` 公開ディレクトリに `demo/` フォルダごとアップロード（`index.html` と同階層）。
+- **デモクリック計測** → **SendGrid** の Activity（クリック追跡 ON）。新デモ追加時の ConoHa 同期は不要
+- **メール本文** → GitHub Pages のデモ URL をそのまま載せ、SendGrid がクリックを記録
+- **カルサイトHP**（`calcite-ai.jp`）→ 署名に直リンク。SendGrid 上ではクリックが見えるが計測対象外として扱う
+
+（旧方式）calcite-mail.jp 経由の PHP ログは運用停止。サーバー上の `demo/` は残っていても害はない。
+
+**デプロイ（任意・短縮URLを使う場合のみ）:** ConoHa WING の `calcite-mail.jp` 公開ディレクトリに `demo/` をアップロード。
 
 ## デプロイ（ConoHa WING）
 

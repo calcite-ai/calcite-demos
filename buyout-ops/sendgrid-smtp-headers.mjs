@@ -1,6 +1,7 @@
 /**
- * SendGrid SMTP: disable click/open tracking so links stay direct (no url####.calcite-mail.jp/wf/click…).
- * Applies only when provider=sendgrid.
+ * SendGrid SMTP headers for outreach.
+ * HTML click tracking ON (demos). Plain-text link rewriting OFF.
+ * Open tracking OFF.
  */
 export function sendgridSmtpHeaders() {
   if (String(process.env.BUYOUT_MAIL_PROVIDER || "").trim().toLowerCase() !== "sendgrid") {
@@ -8,7 +9,7 @@ export function sendgridSmtpHeaders() {
   }
   const payload = {
     filters: {
-      clicktrack: { settings: { enable: 0, enable_text: false } },
+      clicktrack: { settings: { enable: 1, enable_text: false } },
       opentrack: { settings: { enable: 0 } },
     },
   };

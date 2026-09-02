@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /**
- * Send buyout initial outreach as text/plain.
- * Never use htmlBody — avoids google.com/url wrapping.
+ * Send buyout initial outreach as multipart (text/plain + text/html).
+ * HTML: demo links tracked (SendGrid); signature Web uses clicktracking=off.
  *
  * Providers (BUYOUT_MAIL_PROVIDER):
  *   conoha   (default) — ConoHa SMTP
@@ -50,14 +50,17 @@ function renderEmail(company) {
     process.exit(r.status || 1);
   }
   const t = r.stdout;
-  const m = t.match(/===SUBJECT===\n([\s\S]*?)\n===BODY===\n([\s\S]*?)\n===SEND===/);
+  const m = t.match(
+    /===SUBJECT===\n([\s\S]*?)\n===BODY===\n([\s\S]*?)\n===HTML===\n([\s\S]*?)\n===SEND===/
+  );
   if (!m) {
     console.error("FAIL could not parse render-outreach-email output");
     process.exit(1);
   }
   const subject = m[1].trim();
   const body = m[2].replace(/\n+$/, "") + "\n";
-  if (/google\.com\/url/i.test(subject + body)) {
+  const html = m[3].replace(/\n+$/, "") + "\n";
+  if (/google\.com\/url/i.test(subject + body + html)) {
     console.error("FAIL rendered body contains google.com/url");
     process.exit(1);
   }
@@ -65,7 +68,11 @@ function renderEmail(company) {
     console.error("FAIL body missing 66,000円");
     process.exit(1);
   }
-  return { subject, body };
+  if (!/clicktracking=off/.test(html)) {
+    console.error("FAIL html missing clicktracking=off on signature Web link");
+    process.exit(1);
+  }
+  return { subject, body, html };
 }
 
 const company = arg("company");
@@ -75,7 +82,7 @@ if (!company) {
 }
 
 const dryRun = process.argv.includes("--dry-run");
-const { subject, body } = renderEmail(company);
+const { subject, body, html } = renderEmail(company);
 
 const { rows } = parseCsv(fs.readFileSync(path.join(__dirname, "demo_buyout_leads.csv"), "utf8"));
 const row =
@@ -97,7 +104,7 @@ console.log(`bcc=${bcc || "(none)"}`);
 console.log(`from=${transport.fromUser}`);
 console.log(`subject=${subject}`);
 console.log(`host=${transport.host} port=${transport.port}`);
-console.log(`mime=text/plain htmlBody=none`);
+console.log(`mime=multipart/alternative text+html`);
 
 if (dryRun) {
   console.log("RESULT dry-run — not sent");
@@ -117,6 +124,7 @@ try {
     to: row.email,
     subject,
     text: body,
+    html,
     headers: sendgridSmtpHeaders(),
   };
   if (bcc) mail.bcc = bcc;

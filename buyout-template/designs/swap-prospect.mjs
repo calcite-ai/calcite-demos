@@ -67,12 +67,27 @@ function heroHtml(companyName) {
   return companyName;
 }
 
+function brandMark(companyName) {
+  const short = companyName.replace(/^(株式会社|有限会社)/, "");
+  return short.charAt(0) || "工";
+}
+
+function englishSubtitle(companyName) {
+  const short = companyName.replace(/^(株式会社|有限会社)/, "").replace(/[株式会社有限会社]/g, "");
+  if (!short) return "LOCAL BUILDER Inc.";
+  const slug = short.replace(/[^\u3040-\u30ff\u4e00-\u9fafA-Za-z]/g, "").toUpperCase();
+  return `${slug.slice(0, 24)} Inc.`;
+}
+
 const replacements = [
   // Line-broken hero first (before plain アオイ工房)
   ["アオイ<br />工房", heroHtml(name)],
   ["アオイ<br/>工房", heroHtml(name)],
   ["アオイ<br>工房", heroHtml(name)],
   ["アオイ工房", name],
+  ["AOI KOUBO Inc.", englishSubtitle(name)],
+  ["青", brandMark(name)],
+  ["地域で設計から工事まで行う総合建設会社", tag],
   ["地域の家づくりを、まっすぐ。", tag],
   ["地域の仕事を、丁寧に。", tag],
   ["03-0000-0000", tel],
@@ -158,6 +173,8 @@ const labels = {
   "c-daylight": "C案 Neighborhood Daylight",
   "c-refresh": "C案 Refresh（刷新レイアウト）",
   "d-signboard": "D案 Bold Signboard",
+  "e-taisei": "E案 Taisei Corporate",
+  "f-sanyu": "F案 Sanyu Editorial",
 };
 
 const index = `<!DOCTYPE html>

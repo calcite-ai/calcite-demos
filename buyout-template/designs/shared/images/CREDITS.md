@@ -16,3 +16,12 @@ Demo placeholder images only. Replace with client photos after buyout.
 | work-desk.jpg | photo-1600585154526-990dced4db0d | 住まい内観・会社概要 |
 
 License: Unsplash License（商用利用可。買い取り後はクライアント写真へ差し替え）。
+
+## Video (`../video/`)
+
+| File | Source | Use |
+|---|---|---|
+| hero-loop.mp4 / .webm | AI-generated (Seedance 2.5, Higgsfield) | E案ヒーロー背景ループ（20s） |
+| hero-loop-poster.jpg | Extracted from hero-loop | poster / fallback |
+
+Replace with client footage after buyout.

@@ -1,0 +1,2 @@
+# deny web access to click log
+Require all denied
