@@ -174,7 +174,29 @@ const client = new ImapFlow({
   logger: false,
 });
 
-await client.connect();
+try {
+  await client.connect();
+} catch (e) {
+  const authFail =
+    e?.authenticationFailed ||
+    /AUTHENTICATIONFAILED/i.test(String(e?.response || e?.responseText || e?.message || ""));
+  if (authFail) {
+    appendEscalate(
+      [
+        `## ${jstDateString()} IMAP AUTH failed`,
+        `- host: ${imapHost}:${imapPort}`,
+        `- user: ${user}`,
+        `- action: GitHub secret \`BUYOUT_SMTP_PASS\` を ConoHa メール箱パスワードに更新（SendGrid APIキーに置換しない）`,
+        "",
+      ].join("\n")
+    );
+    console.log(
+      "RESULT skip — IMAP authentication failed (update BUYOUT_SMTP_PASS; not a SendGrid API key)"
+    );
+    process.exit(0);
+  }
+  throw e;
+}
 const lock = await client.getMailboxLock("INBOX");
 try {
   const uids = await client.search({ since }, { uid: true });

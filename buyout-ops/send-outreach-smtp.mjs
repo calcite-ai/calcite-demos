@@ -77,7 +77,11 @@ const dryRun = process.argv.includes("--dry-run");
 const { subject, body } = renderEmail(company);
 
 const { rows } = parseCsv(fs.readFileSync(path.join(__dirname, "demo_buyout_leads.csv"), "utf8"));
-const row = rows.find((r) => r.company === company);
+const row =
+  rows.find(
+    (r) =>
+      r.company === company && (r.status === "queued" || r.status === "built")
+  ) || rows.find((r) => r.company === company);
 if (!row?.email) {
   console.error(`FAIL no email for ${company}`);
   process.exit(1);

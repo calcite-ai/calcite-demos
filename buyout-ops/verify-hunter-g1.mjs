@@ -120,6 +120,11 @@ async function main() {
       targets = rows.filter((r) => r.status === "queued" || r.status === "built");
     } else if (company) {
       targets = rows.filter((r) => (r.company || "").includes(company));
+      // paused な重複行（例: finfo@ 誤抽出）が queued 送信をブロックしない
+      const active = targets.filter((r) =>
+        ["queued", "built", "approved"].includes(String(r.status || ""))
+      );
+      if (active.length) targets = active;
     } else {
       console.error("Need --url, or --from-csv with --company or --queued");
       process.exit(2);
