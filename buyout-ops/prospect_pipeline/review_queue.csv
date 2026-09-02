@@ -84,3 +84,4 @@ approval_seq,company,url,email,defects,audit_draft,final_url,owner_ok,owner_note
 83,中武建設株式会社,"http://www.nakatake.co.jp/","info@nakatake.co.jp",SSL未整備; viewportなし; tel:なし,粗:(1)SSL未整備;(2)viewportなし;(3)tel:なし,"http://www.nakatake.co.jp/",,
 84,溝江工務店,"http://www.mizoekoumuten.jp/","info@mizoekoumuten.jp",SSL未整備; viewportなし; tel:なし; 更新停止感(HTML内2016止),粗:(1)SSL未整備;(2)viewportなし;(3)tel:なし,"http://www.mizoekoumuten.jp/company.html",,
 85,有限会社畠山工務店,"http://hatakeyama-komuten.com/","fp.h-k11@beach.ocn.ne.jp",SSL未整備; tel:なし; 更新停止感(HTML内2017止),粗:(1)SSL未整備;(2)tel:なし;(3)更新停止感(HTML内2017止),"http://hatakeyama-komuten.com/contact-us",,
+86,岩崎工務店,"https://www.iwasaki-k.jp/","info@iwasaki-k.jp",viewportなし; tel:なし; 更新停止感(HTML内2018止),粗:(1)viewportなし;(2)tel:なし;(3)更新停止感(HTML内2018止),"https://www.iwasaki-k.jp/pc/index.html",,
