@@ -99,7 +99,15 @@ const replacements = [
 function copyDir(src, dest) {
   fs.mkdirSync(dest, { recursive: true });
   for (const entry of fs.readdirSync(src, { withFileTypes: true })) {
-    if (entry.name === "node_modules" || entry.name.startsWith(".")) continue;
+    // 動画の中間素材はデモ公開に不要（Pages肥大化防止）
+    if (
+      entry.name === "node_modules" ||
+      entry.name.startsWith(".") ||
+      entry.name === "clips" ||
+      entry.name === "out"
+    ) {
+      continue;
+    }
     const from = path.join(src, entry.name);
     const to = path.join(dest, entry.name);
     if (entry.isDirectory()) copyDir(from, to);
