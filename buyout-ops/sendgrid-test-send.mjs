@@ -11,6 +11,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import nodemailer from "nodemailer";
+import { sendgridSmtpHeaders } from "./sendgrid-smtp-headers.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const secretsDir = path.join(__dirname, "..", "secrets");
@@ -80,6 +81,7 @@ try {
     bcc,
     subject,
     text,
+    headers: sendgridSmtpHeaders(),
   });
   console.log(`RESULT sent messageId=${info.messageId || info.response || "unknown"}`);
 } catch (err) {

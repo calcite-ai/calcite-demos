@@ -27,6 +27,7 @@ import { fileURLToPath } from "node:url";
 import nodemailer from "nodemailer";
 import { parseCsv } from "./csv-util.mjs";
 import { resolveTransport } from "./mail-transport.mjs";
+import { sendgridSmtpHeaders } from "./sendgrid-smtp-headers.mjs";
 import { classifySmtpError, exitCodeForKind } from "./smtp-error-kind.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -116,6 +117,7 @@ try {
     to: row.email,
     subject,
     text: body,
+    headers: sendgridSmtpHeaders(),
   };
   if (bcc) mail.bcc = bcc;
 

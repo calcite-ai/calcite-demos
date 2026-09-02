@@ -24,6 +24,7 @@ import { ImapFlow } from "imapflow";
 import nodemailer from "nodemailer";
 import { parseCsv, serializeCsv } from "./csv-util.mjs";
 import { resolveTransport } from "./mail-transport.mjs";
+import { sendgridSmtpHeaders } from "./sendgrid-smtp-headers.mjs";
 import { METRICS_COLUMNS } from "./metrics-columns.mjs";
 import { jstDateString } from "./send-quota.mjs";
 import { classifyBounceText, bounceAllowsFailover } from "./smtp-error-kind.mjs";
@@ -341,6 +342,7 @@ try {
             text: mail.body,
             inReplyTo: messageId,
             references: messageId,
+            headers: sendgridSmtpHeaders(),
           });
           row.checkout_status = "checkout_sent";
           row.notes = `${row.notes} / checkout_sent ${jstDateString()}`;

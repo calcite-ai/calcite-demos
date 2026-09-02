@@ -4,6 +4,30 @@ export const CALCITE_SITE = "https://www.calcite-ai.jp/";
 /** コールド営業・inside 送信専用（From / 署名 Mail）。Web は CALCITE_SITE のまま。 */
 export const OUTREACH_MAIL = "hello@calcite-mail.jp";
 
+/** GitHub Pages 正本（CSV・verify 用） */
+export const GITHUB_DEMO_ORIGIN =
+  process.env.BUYOUT_DEMO_GITHUB_ORIGIN || "https://calcite-ai.github.io/calcite-demos";
+
+/** メール本文用の短いデモ URL（calcite-mail.jp 静的リダイレクト） */
+export const DEMO_SHORT_BASE =
+  process.env.BUYOUT_DEMO_SHORT_BASE || "https://www.calcite-mail.jp/demo";
+
+const DEMO_PATH_RE = /buyout-prospects\/([^/?#]+)\/([^/?#]+)/i;
+
+export function parseDemoSkinPath(url) {
+  const m = String(url || "").match(DEMO_PATH_RE);
+  if (!m) return null;
+  return { slug: m[1], skin: m[2] };
+}
+
+/** メールに載せる短いデモ URL（slug/skin を抽出して calcite-mail.jp へ） */
+export function publicDemoUrl(url, label = "demo") {
+  const stored = assertDirectHttpsUrl(url, label);
+  const parts = parseDemoSkinPath(stored);
+  if (!parts) return withTrailingSlash(stored);
+  return withTrailingSlash(`${DEMO_SHORT_BASE}/${parts.slug}/${parts.skin}`);
+}
+
 export function unwrapGmailRedirect(url) {
   const s = String(url || "").trim();
   if (!s) return s;

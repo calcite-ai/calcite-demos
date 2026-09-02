@@ -12,7 +12,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { parseCsv } from "./csv-util.mjs";
-import { CALCITE_SITE, canonicalDemoUrl } from "./canonical-url.mjs";
+import { CALCITE_SITE, publicDemoUrl } from "./canonical-url.mjs";
 import { humanStrengthLine } from "./strength-line.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -76,8 +76,8 @@ if (!row) {
   process.exit(1);
 }
 
-const urlA = canonicalDemoUrl(row.demo_url_a, "demo_url_a");
-const urlB = canonicalDemoUrl(row.demo_url_b, "demo_url_b");
+const urlA = publicDemoUrl(row.demo_url_a, "demo_url_a");
+const urlB = publicDemoUrl(row.demo_url_b, "demo_url_b");
 const tpl = fs.readFileSync(path.join(__dirname, "templates", "email_demo_buyout_1_initial.txt"), "utf8");
 const issues = parseRoughItems(row.audit_notes).slice(0, 3).map(issueLine);
 while (issues.length < 3) issues.push("");

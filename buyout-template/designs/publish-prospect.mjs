@@ -8,6 +8,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { publicDemoUrl } from "../../buyout-ops/canonical-url.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -88,4 +89,7 @@ const skins = fs
 
 console.log("published", dest);
 console.log("index ", base + "/");
-for (const s of skins) console.log("skin  ", `${base}/${s}/`);
+for (const s of skins) {
+  const github = `${base}/${s}/`;
+  console.log("skin  ", publicDemoUrl(github), `(→ ${github})`);
+}

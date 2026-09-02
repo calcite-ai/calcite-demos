@@ -13,6 +13,7 @@ import { fileURLToPath } from "node:url";
 import nodemailer from "nodemailer";
 import { parseCsv, serializeCsv } from "./csv-util.mjs";
 import { resolveTransport } from "./mail-transport.mjs";
+import { sendgridSmtpHeaders } from "./sendgrid-smtp-headers.mjs";
 import { classifySmtpError, exitCodeForKind } from "./smtp-error-kind.mjs";
 import { jstDateString } from "./send-quota.mjs";
 
@@ -91,6 +92,7 @@ try {
     to: rows[idx].email,
     subject,
     text: body,
+    headers: sendgridSmtpHeaders(),
   };
   if (bcc) mail.bcc = bcc;
 
