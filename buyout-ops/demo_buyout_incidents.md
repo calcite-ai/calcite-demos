@@ -2,6 +2,40 @@
 
 > 同種ミスを二度起こさないための記録とゲート一覧。
 
+## 2026-09-03: SendGrid のバウンスが CSV に反映されない
+
+### 起きたこと
+
+| # | 内容 | 影響 |
+|---|---|---|
+| 1 | 黒田工務店（`kurota-koumuten@hb.tp1.jp`）へ送信 → 即 `550 5.1.1 User Unknown` でハードバウンス | 宛先不通。CSV は `sent` のまま |
+| 2 | SendGrid 送信では DSN が SendGrid の return-path に返るため、**ConoHa 受信箱に DSN が来ない** | IMAP を見る `inbox-process.mjs` はバウンス0件と判定 |
+| 3 | 同日インサイドの鐵舟株式会社（`m.koga@tessyu.jp`）も同じくハードバウンス。誰も気づいていなかった | 当日 4通中 1通不通（bounce率が見えない） |
+
+### 恒久対策
+
+| 層 | 内容 |
+|---|---|
+| **同期** | `sync-sendgrid-bounces.mjs` を追加。SendGrid の抑制リストを CSV に反映（buyout→`paused`／inside→`opt_out`＋blocklist）。冪等 |
+| **自動化** | `buyout-daily-send.yml` の送信後に実行し、`prior_outreach_blocklist.csv` も commit 対象に追加 |
+| **列落ち** | `serializeCsv` は headers に無い列を黙って捨てるため、`setField` で警告を出す（`skippedFields`） |
+
+未解決: 公開HTMLから拾ったアドレスでも**受信箱が消滅している**ことがある。送信前の宛先実在確認（MX＋SMTP RCPT 検証など）は未導入。
+
+---
+
+## 2026-09-03: skin_pair を存在しない列名に書いて黙って消えた
+
+`demo_buyout_leads.csv` の列は `skin_pair` だが `skins` に代入したため、`serializeCsv` が黙って捨てて空のまま送信された（メール本文のURLは正しく、実害なし）。`verify-ops-pack.mjs` O10 に「queued/built で demo URL があるのに `skin_pair` が空なら FAIL」を追加。
+
+---
+
+## 2026-09-03: 再診行の「粗残:」を G1 判定が読めず送信ゲートで停止
+
+`site-g1-eval.mjs` が `粗:` しか見ておらず、再診で書かれる `粗残:(1)(2)(3)` を0点と判定していた（該当3社が無言でブロック）。`粗(残置)?:` を許容するよう修正。
+
+---
+
 ## 2026-09-03: フォーム記入例メールが承認キューに混入
 
 ### 起きたこと

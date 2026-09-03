@@ -92,6 +92,13 @@ jobs:
             node buyout-ops/daily-send-inside-one.mjs
           fi
 
+      # SendGrid 経由の DSN は ConoHa 受信箱に来ないため IMAP では拾えない
+      - name: Sync SendGrid bounces into leads
+        if: ${{ !(github.event_name == 'workflow_dispatch' && inputs.dry_run == 'true') }}
+        env:
+          SENDGRID_API_KEY: ${{ secrets.SENDGRID_API_KEY }}
+        run: node buyout-ops/sync-sendgrid-bounces.mjs
+
       - name: Commit sent CSV / escalate if changed
         run: |
           git config user.name "buyout-daily-send"
@@ -99,6 +106,7 @@ jobs:
           for f in \
             buyout-ops/demo_buyout_leads.csv \
             buyout-ops/inside_sales_poc_leads.csv \
+            buyout-ops/prior_outreach_blocklist.csv \
             buyout-ops/metrics/inbox-escalate.md; do
             if [ -e "$f" ]; then git add -- "$f"; fi
           done

@@ -129,14 +129,30 @@ export function evaluateProspectListMeta(row) {
   return { exclude: false };
 }
 
+/**
+ * audit_notes の粗ラベル行。再診行は「粗残:」「粗残置:」と書かれることがある。
+ * 粗を読む処理はすべてこれを使う（ラベル表記のゆれで判定と本文生成がずれるため）
+ */
+export const ROUGH_AUDIT_LINE = /粗(?:残置?)?:[^\n]*/;
+
+/** audit_notes から粗の行だけ取り出す。ラベルが無ければ "" */
+export function extractRoughLine(audit_notes) {
+  return String(audit_notes || "").match(ROUGH_AUDIT_LINE)?.[0] || "";
+}
+
+/** 粗ラベル行の (1)…(2)… を項目名の配列にする */
+export function parseRoughItems(audit_notes) {
+  const line = extractRoughLine(audit_notes);
+  return [...line.matchAll(/\(\d+\)([^;(]+)/g)].map((m) => m[1].trim()).filter(Boolean);
+}
+
 /** demo_buyout_leads.csv audit_notes の最低要件 */
 export function evaluateAuditNotes(audit_notes) {
   const text = audit_notes || "";
   if (/G1不合格|G1見送り|サイト新し/.test(text)) {
     return { fail: true, code: "AUDIT_G1_FAIL", message: "audit_notes に G1不合格/見送り" };
   }
-  // 再診行は「粗残:」と書かれることがある（残っている粗）。同じ扱いにする
-  const roughLine = text.match(/粗(?:残置?)?:[^\n]*/)?.[0] || "";
+  const roughLine = extractRoughLine(text);
   const defectCount = [...roughLine.matchAll(/\(\d+\)/g)].length;
   const hasSsl = /SSL未整備|https未整備|HTTPSでない|https未対応/i.test(text);
   // セキュリティ警告サイトは粗1点（SSLのみ）でも送信対象

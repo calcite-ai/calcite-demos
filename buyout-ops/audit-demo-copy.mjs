@@ -3,6 +3,7 @@
  * defects / pay_signals は scan または audit_notes から。推測で足さない。
  */
 import { humanStrengthLine, humanStrengthAudit } from "./strength-line.mjs";
+import { parseRoughItems } from "./site-g1-eval.mjs";
 
 export const AUDIT_SECTION_KICKER = "サイト改善のポイント";
 
@@ -22,12 +23,6 @@ function defectTokens(defects) {
     .filter(Boolean);
 }
 
-function parseRoughFromAudit(audit) {
-  const m = String(audit || "").match(/粗:[^)]*\((\d+)\)([^;(]+)/g);
-  if (!m) return [];
-  return m.map((x) => x.replace(/^[^)]*\(\d+\)/, "").trim());
-}
-
 export function buildAuditDemoCopy({
   defects = "",
   pay_signals = "",
@@ -35,7 +30,7 @@ export function buildAuditDemoCopy({
   company = "",
 } = {}) {
   let tokens = defectTokens(defects);
-  if (!tokens.length) tokens = parseRoughFromAudit(audit_notes);
+  if (!tokens.length) tokens = parseRoughItems(audit_notes);
 
   const fixes = [];
   for (const d of tokens) {

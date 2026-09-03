@@ -78,6 +78,13 @@ node buyout-ops/inbox-process.mjs --dry-run
 node buyout-ops/inbox-process.mjs
 ```
 
+**SendGrid 送信のバウンスは IMAP に来ない。** DSN は SendGrid の return-path に返るため、抑制リストから取り込む（`buyout-daily-send.yml` の送信後に自動実行）。
+
+```bash
+node buyout-ops/sync-sendgrid-bounces.mjs --dry-run
+node buyout-ops/sync-sendgrid-bounces.mjs
+```
+
 IMAP は SMTP と同じ `BUYOUT_SMTP_USER` / `PASS`。ホスト違いなら Secret `BUYOUT_IMAP_HOST` を追加。
 
 

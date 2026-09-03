@@ -15,6 +15,7 @@ import { parseCsv } from "./csv-util.mjs";
 import { CALCITE_SITE, canonicalDemoUrl } from "./canonical-url.mjs";
 import { outreachBodyToHtml } from "./outreach-email-html.mjs";
 import { humanStrengthLine } from "./strength-line.mjs";
+import { extractRoughLine } from "./site-g1-eval.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -37,8 +38,8 @@ const DEFECT_LINE = {
 };
 
 function parseRoughItems(audit) {
-  const m = String(audit || "").match(/粗:(.+)$/);
-  const src = m ? m[1] : String(audit || "");
+  // 粗ラベルが無い監査メモもあるので、その場合は全文から番号項目を拾う
+  const src = extractRoughLine(audit) || String(audit || "");
   const numbered = [...src.matchAll(/\(\d+\)([^;(]+)/g)].map((x) => x[1].trim()).filter(Boolean);
   if (numbered.length) return numbered;
   // 番号なし監査メモ向け（「HTTPSでない」「更新感が弱い」など）
