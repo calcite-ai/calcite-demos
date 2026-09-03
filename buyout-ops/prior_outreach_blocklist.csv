@@ -14,3 +14,8 @@ company,email,vertical,sent_via,sent_date,notes
 株式会社日南工務店,info@nichinankoumuten.jp,koumuten,hello@calcite-ai.jp,2026-08-22,buyout初回送信済（55k legacy）
 吉原建設株式会社,info@ycc-yoshihara.co.jp,koumuten,hello@calcite-mail.jp,2026-09-03,inside recruit 初回への配信停止返信
 鐵舟株式会社,m.koga@tessyu.jp,koumuten,hello@calcite-mail.jp,2026-09-03,SendGrid bounce hard
+株式会社オノコム,onocom@onocom.co.jp,koumuten,verify-recipient(未送信),2026-09-04,宛先不在 verify-recipient rcpt_rejected
+株式会社育暮家ハイホームス,e-mail.hihomes@tokai.or.jp,koumuten,verify-recipient(未送信),2026-09-04,宛先不在 verify-recipient rcpt_rejected
+株式会社田村ビルズ,info@tmrkz.com,koumuten,verify-recipient(未送信),2026-09-04,宛先不在 verify-recipient rcpt_rejected
+株式会社福山Three door,info@fukuyamathreedoor.co.jp,koumuten,verify-recipient(未送信),2026-09-04,宛先不在 verify-recipient nxdomain
+九州八重洲(株),info@kyushu-yaesu.co.jp,koumuten,verify-recipient(未送信),2026-09-04,宛先不在 verify-recipient rcpt_rejected

@@ -8,6 +8,10 @@
  *   node buyout-ops/verify-before-send.mjs --from-csv --company "株式会社福澤工務店"
  *   node buyout-ops/verify-before-send.mjs --from-csv --queued
  *
+ * V17（宛先実在確認）は queued/built のときだけ走る。
+ *   --skip-recipient-probe  プローブしない（オフライン確認用）
+ *   --recipient-probe       GitHub Actions でも強行する
+ *
  * Always run verify-ops-pack.mjs first in automation (template + repo hygiene).
  */
 import fs from "node:fs";
@@ -17,6 +21,7 @@ import { spawnSync } from "node:child_process";
 import { ACTIVE_VERTICAL, isActiveVertical, rowVertical, verticalLabel } from "./vertical-config.mjs";
 import { matchPriorOutreach } from "./prior-outreach.mjs";
 import { isValidPublicEmail } from "./campaign-score.mjs";
+import { verifyRecipient, probeSkipReason } from "./verify-recipient.mjs";
 import { evaluateLeadG1 } from "./site-g1-eval.mjs";
 import { loadSendQuota } from "./send-quota.mjs";
 
@@ -137,6 +142,21 @@ async function verifyProspect({ name, email, urlA, urlB, slug, quotedPrice, stat
     fails.push(
       `V11 送信対象が現行vertical=${ACTIVE_VERTICAL}(${verticalLabel(ACTIVE_VERTICAL)})外: ${verticalLabel(rowVertical(row))}`
     );
+  }
+
+  // V17 宛先メールボックスの実在確認（MX + SMTP RCPT、DATA は送らない）。
+  // dead だけ FAIL。unknown（25番ブロック・catch-all・グレイリスト）は警告で通す。
+  if ((status === "queued" || status === "built") && isValidPublicEmail(email) && !hasFlag("skip-recipient-probe")) {
+    const probe = await verifyRecipient(email, { force: hasFlag("recipient-probe") });
+    if (probe.state === "dead") {
+      fails.push(
+        `V17 宛先が実在しない（${probe.reason}）: ${email} — ${probe.detail || probe.mx} / CSVから外す`
+      );
+    } else if (probe.state === "skipped") {
+      warns.push(`V17 宛先実在確認スキップ（${probe.detail || probe.reason}）: ${email}`);
+    } else if (probe.state === "unknown") {
+      warns.push(`V17 宛先実在確認は判定不能（${probe.reason}）: ${email} — 送信は可`);
+    }
   }
 
   const quota = loadSendQuota();
@@ -313,6 +333,11 @@ async function main() {
   if (!runOpsPack()) {
     console.error("RESULT FAIL — verify-ops-pack failed (fix templates/repo before send)");
     process.exit(1);
+  }
+
+  const probeOff = hasFlag("skip-recipient-probe") ? "--skip-recipient-probe" : probeSkipReason();
+  if (probeOff && !hasFlag("recipient-probe")) {
+    console.log(`NOTE V17 宛先実在確認は無効（${probeOff}）— バウンスは事後同期で拾う`);
   }
 
   let anyFail = false;

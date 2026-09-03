@@ -19,6 +19,9 @@
 | `demo_buyout_leads.csv` | 送信キュー |
 | `demo_buyout_pre_send_checklist.md` | **送信前ゲート（必須）** |
 | `verify-before-send.mjs` | 送信前の機械チェック（404・アオイ残存など） |
+| `verify-recipient.mjs` | **宛先実在確認**（MX + SMTP RCPT / DATA は送らない）。V17 が利用 |
+| `audit-recipients.mjs` | 既存リードの宛先を一括検証。dead のみ送信プールから除外 |
+| `sync-sendgrid-bounces.mjs` | SendGrid 抑制リスト → CSV（送信後に実行） |
 | `verify-hunter-g1.mjs` | **G1必須**（モダンサイト除外・queued前） |
 | `site-g1-eval.mjs` | G1判定ロジック（上記から利用） |
 | `demo_buyout_prospect_pipeline.md` | **全国リスト収集**（夜間スキャン手順） |

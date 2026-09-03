@@ -2,6 +2,50 @@
 
 > 同種ミスを二度起こさないための記録とゲート一覧。
 
+## 2026-09-03: 当日2通が2通ともハードバウンス（送信前の宛先実在確認なし）
+
+### 起きたこと
+
+| # | 内容 | 影響 |
+|---|---|---|
+| 1 | buyout 黒田工務店 `kurota-koumuten@hb.tp1.jp` → `550 5.1.1 User Unknown` | 当日 buyout 1/1 が不達 |
+| 2 | inside 鐵舟株式会社 `m.koga@tessyu.jp` → 同じくハードバウンス | 当日 inside 1/1 が不達 |
+| 3 | **当日 2通 / ハードバウンス 2通 = バウンス率 100%** | 続けると SendGrid のドメイン評価が落ちる（トライアル 〜2026-10-29） |
+
+ドメインは実在し、アドレスも公開HTMLから拾った本物の表記。受信箱だけが消滅していたため、
+記入例アドレスを弾く `isValidPublicEmail`（V16）では原理的に防げない。
+
+### 恒久対策
+
+| 層 | 内容 |
+|---|---|
+| **モジュール** | `verify-recipient.mjs` — MX 解決 → SMTP `RCPT TO` プローブ。`DATA` は送らないので配送は発生しない |
+| **送信前** | `verify-before-send.mjs` **V17**（queued/built のみ）。`dead`→FAIL／`unknown`→警告で通す／`ok`→PASS |
+| **棚卸し** | `audit-recipients.mjs` — 既存リードを一括検証し、dead だけ送信プールから外す |
+| **事後** | `sync-sendgrid-bounces.mjs`（前節）は継続。V17 は事前、こちらは事後で二重化 |
+
+### 3値判定と限界（過信禁止）
+
+- `dead` は **明確な恒久拒否だけ**。`5.1.1` / user unknown 系の 5xx、または MX も A も無い NXDOMAIN。
+- `unknown` は **送ってよい**。25番ブロック・タイムアウト・4xx グレイリスト・catch-all・判別不能な 5xx。
+- catch-all はランダムなローカルパートを同時に `RCPT` して検知する。検知したら `ok` ではなく `unknown`。
+- 5xx でも spam / policy / relay / 5.7.x は宛先不在ではないので `unknown` に落とす。
+- **オーナー環境は outbound 25 が Google 以外ほぼ落ちる**（ConoHa・ロリポップ・さくら等すべてタイムアウト）。
+  GitHub Actions（Azure）も 25 は塞がれているため、`GITHUB_ACTIONS=true` では V17 を自動スキップして警告に降格する
+  （日次送信を止めない）。つまり V17 が実際に効くのは **Google Workspace / Gmail 宛など一部だけ**。
+
+### 棚卸し結果（2026-09-04 実施）
+
+| トラック | 検査 | ok | dead | unknown |
+|---|---|---|---|---|
+| buyout（approved/queued/built） | 65 | 2 | 0 | 63 |
+| inside（approved） | 150 | 17 | 5 | 128 |
+
+dead 5件は inside 慣習どおり `status=opt_out` + `prior_outreach_blocklist.csv` 追記で送信プールから除外。
+行は消さない（消すと再スキャンで同じアドレスが新規として復活するため）。
+
+---
+
 ## 2026-09-03: SendGrid のバウンスが CSV に反映されない
 
 ### 起きたこと
@@ -20,7 +64,8 @@
 | **自動化** | `buyout-daily-send.yml` の送信後に実行し、`prior_outreach_blocklist.csv` も commit 対象に追加 |
 | **列落ち** | `serializeCsv` は headers に無い列を黙って捨てるため、`setField` で警告を出す（`skippedFields`） |
 
-未解決: 公開HTMLから拾ったアドレスでも**受信箱が消滅している**ことがある。送信前の宛先実在確認（MX＋SMTP RCPT 検証など）は未導入。
+~~未解決: 公開HTMLから拾ったアドレスでも**受信箱が消滅している**ことがある。送信前の宛先実在確認（MX＋SMTP RCPT 検証など）は未導入。~~
+**解決（2026-09-04）**: `verify-recipient.mjs` + `verify-before-send.mjs` V17 を導入。前節参照。ただし 25番が塞がれた環境では `unknown` に落ちるため、事後同期（本節）は引き続き必須。
 
 ---
 
@@ -238,3 +283,5 @@
 | O8 | GitHub main 上のテンプレが旧版 |
 | I2 | 旧価格コホートへの66k checkout |
 | V13 | G1 モダンサイト除外 / audit 粗不足 |
+| V16 | フォーム記入例アドレス（`yourmail@sample.co.jp` など） |
+| V17 | 宛先メールボックスが実在しない（`dead` のみ FAIL・`unknown` は警告） |
