@@ -135,7 +135,8 @@ export function evaluateAuditNotes(audit_notes) {
   if (/G1不合格|G1見送り|サイト新し/.test(text)) {
     return { fail: true, code: "AUDIT_G1_FAIL", message: "audit_notes に G1不合格/見送り" };
   }
-  const roughLine = text.match(/粗:[^\n]*/)?.[0] || "";
+  // 再診行は「粗残:」と書かれることがある（残っている粗）。同じ扱いにする
+  const roughLine = text.match(/粗(?:残置?)?:[^\n]*/)?.[0] || "";
   const defectCount = [...roughLine.matchAll(/\(\d+\)/g)].length;
   const hasSsl = /SSL未整備|https未整備|HTTPSでない|https未対応/i.test(text);
   // セキュリティ警告サイトは粗1点（SSLのみ）でも送信対象
