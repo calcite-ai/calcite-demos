@@ -10,4 +10,10 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: "20"
-      - run: FORCE_RECIPIENT_PROBE=1 node buyout-ops/verify-recipient.mjs --email nonexistent-xyz-abc@gmail.com --email kenta.hino1106@gmail.com --json || true
+      - name: TCP reachability on 25
+        run: |
+          for h in aspmx.l.google.com mail1004.conoha.ne.jp mx01.lolipop.jp mx.securemx.jp mx6.basmail.jp HBL0.mx.cloud-mail.jp mx1.mail.yahoo.co.jp; do
+            timeout 8 bash -c "exec 3<>/dev/tcp/$h/25" >/dev/null 2>&1 && echo "PORT25 OPEN  $h" || echo "PORT25 BLOCK $h"
+          done
+      - name: Probe real lead addresses
+        run: FORCE_RECIPIENT_PROBE=1 node buyout-ops/verify-recipient.mjs --email kurota-koumuten@hb.tp1.jp --email m.koga@tessyu.jp --email info@nichinankoumuten.jp --email info@mocca-house.com || true
