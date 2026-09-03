@@ -30,6 +30,11 @@
       "at": "2026-08-30",
       "kind": "ignored_unknown",
       "from": "hello@calcite-mail.jp"
+    },
+    "uid:6": {
+      "at": "2026-09-03",
+      "kind": "ignored_unknown",
+      "from": "info@ycc-yoshihara.co.jp"
     }
   }
 }
