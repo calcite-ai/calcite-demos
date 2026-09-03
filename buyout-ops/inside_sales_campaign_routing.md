@@ -82,7 +82,7 @@ node buyout-ops/run-campaign-pipeline.mjs --scan   # 未スキャン + 上記
 
 | 項目 | 内容 |
 |---|---|
-| 枠 | `send-quota.csv` — **buyout 1 + inside 1 / 日** |
+| 枠 | `send-quota.csv` — **buyout 2 / 日**（inside は一時停止・`daily_inside=0`） |
 | 自動送信 | GitHub Actions `buyout-daily-send` → `daily-send-one.mjs` + `daily-send-inside-one.mjs` |
 | 順序 | **send_tier**（S→A→月木B）のあと `queue_seq=` 昇順 |
 | 文面 | `render-inside-email.mjs` — recruit / ai_ops / **hp_improve** テンプレ（`templates/email_inside_*`） |
