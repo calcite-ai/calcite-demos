@@ -14,10 +14,10 @@ approval_seq,company,url,email,defects,audit_draft,final_url,owner_ok,owner_note
 13,株式会社ネオハウス,"http://www.neohouse.jp","info@neohouse.jp",viewportなし; tel:なし,粗:(1)viewportなし;(2)tel:なし,"https://www.neohouse.jp/",y,
 14,黒田工務店,"http://kurotakoumuten.web.fc2.com/","kurota-koumuten@hb.tp1.jp",viewportなし; tel:なし; 更新停止感(HTML内2012止),粗:(1)viewportなし(2)tel:なし(3)更新停止感(HTML内2012止),"https://kurotakoumuten.web.fc2.com/",y,
 15,有限会社木香,"http://mocca-house.com/","info@mocca-house.com",SSL未整備; viewportなし; tel:なし,粗:(1)SSL未整備;(2)viewportなし;(3)tel:なし,"http://mocca-house.com/",y,
-16,株式会社ダンデ・ライズ,"http://www.danderise.co.jp/","info@danderise.co.jp",viewportなし; tel:なし,粗:(1)viewportなし(2)tel:なし,"https://www.danderise.co.jp/company/",,2026-08-24 除外: owner_ok解除
+16,株式会社ダンデ・ライズ,"http://www.danderise.co.jp/","info@danderise.co.jp",viewportなし; tel:なし,粗:(1)viewportなし(2)tel:なし,"https://www.danderise.co.jp/company/",y,2026-08-24 除外: owner_ok解除
 17,有限会社佐藤工務店,"http://www.bluemoon-s.com/","info@bluemoon-s.com",SSL未整備; viewportなし; tel:なし,粗:(1)SSL未整備;(2)viewportなし;(3)tel:なし,"http://www.bluemoon-s.com/",y,
 18,株式会社五十嵐建築,"http://www.chachakiki.com/","chachakiki0320@yahoo.co.jp",SSL未整備; viewportなし; tel:なし; 更新停止感(HTML内2008止),粗:(1)SSL未整備;(2)viewportなし;(3)tel:なし,"http://www.chachakiki.com/",y,
-19,株式会社本田谷田部,"http://www.honda-yatabe.com/","info01@honda-yatabe.com",viewportなし; tel:なし; 更新停止感(HTML内2007止),粗:(1)viewportなし(2)tel:なし(3)更新停止感(HTML内2007止),"https://www.honda-yatabe.com/company.html",,2026-08-24 除外: owner_ok解除
+19,株式会社本田谷田部,"http://www.honda-yatabe.com/","info01@honda-yatabe.com",viewportなし; tel:なし; 更新停止感(HTML内2007止),粗:(1)viewportなし(2)tel:なし(3)更新停止感(HTML内2007止),"https://www.honda-yatabe.com/company.html",y,2026-08-24 除外: owner_ok解除
 20,株式会社高嶋材木店,"http://www.takashima-zaimoku.jp/","info@takashima-zaimoku.jp",SSL未整備; viewportなし; tel:なし,粗:(1)SSL未整備;(2)viewportなし;(3)tel:なし,"http://www.takashima-zaimoku.jp/",y,
 21,テクノウッドワークス株式会社,"http://www.technowoodworks.com/","sales@technowoodworks.com",SSL未整備; 更新停止感(HTML内2013止),粗:(1)SSL未整備;(2)更新停止感(HTML内2013止),"http://technowoodworks.com/inquiry/",y,
 22,有限会社上野建築事務所,"http://www.ueno-kenchiku.co.jp/","info@ueno-kenchiku.co.jp",SSL未整備; viewportなし; tel:なし; 更新停止感(HTML内2010止),粗:(1)SSL未整備;(2)viewportなし;(3)tel:なし,"http://www.ueno-kenchiku.co.jp/",y,
@@ -28,8 +28,8 @@ approval_seq,company,url,email,defects,audit_draft,final_url,owner_ok,owner_note
 27,有限会社小畑工務店,"http://www.obata-buildersoffice.com/","obata-k@topaz.bforth.com",SSL未整備; viewportなし; tel:なし; 更新停止感(HTML内2009止),粗:(1)SSL未整備;(2)viewportなし;(3)tel:なし,"http://www.obata-buildersoffice.com/company.html",y,
 28,株式会社中祥建設,"http://nakasho-kk.jp","waraoya@nifty.com",tel:なし; 更新停止感(HTML内2015止),粗:(1)tel:なし(2)更新停止感(HTML内2015止),"https://nakasho-kk.jp/company",y,
 29,加茂建設株式会社,"http://www.orihime.ne.jp/~kamo/","kamo@orihime.ne.jp",SSL未整備; viewportなし; tel:なし,粗:(1)SSL未整備;(2)viewportなし;(3)tel:なし,"http://www.orihime.ne.jp/~kamo/",y,/ owner OK 2026-08-27 pending batch
-30,サシヨシエ業株式会社,"https://www.sashiyoshi.jp","aaa@bbb.jp",viewportなし; tel:なし,粗:(1)viewportなし;(2)tel:なし,"https://www.sashiyoshi.jp/contact/",,
-31,株式会社渡邊工務店,"https://www.watanabekomu.co.jp/","sample@sample.ne.jp",tel:なし; 更新停止感(HTML内2017止),粗:(1)tel:なし;(2)更新停止感(HTML内2017止),"https://www.watanabekomu.co.jp/contact/",,
+30,サシヨシエ業株式会社,"https://www.sashiyoshi.jp","aaa@bbb.jp",viewportなし; tel:なし,粗:(1)viewportなし;(2)tel:なし,"https://www.sashiyoshi.jp/contact/",n,記入例メールのため除外 2026-09-03
+31,株式会社渡邊工務店,"https://www.watanabekomu.co.jp/","sample@sample.ne.jp",tel:なし; 更新停止感(HTML内2017止),粗:(1)tel:なし;(2)更新停止感(HTML内2017止),"https://www.watanabekomu.co.jp/contact/",n,記入例メールのため除外 2026-09-03
 32,株式会社星野工務店,"http://www.hoshinokoumuten.co.jp","info@hoshinokoumuten.co.jp",SSL未整備; viewportなし; tel:なし; 更新停止感(HTML内2007止),粗:(1)SSL未整備;(2)viewportなし;(3)tel:なし,"http://www.hoshinokoumuten.co.jp/company.html",y,/ owner OK 2026-08-27 pending batch
 33,宮川建設株式会社,"http://miyagawa-home.main.jp","miyagawa-co@wind.ocn.ne.jp",viewportなし; tel:なし; 更新停止感(HTML内2015止),粗:(1)viewportなし;(2)tel:なし;(3)更新停止感(HTML内2015止),"https://miyagawa-home.main.jp/",y,/ owner OK 2026-08-27 pending batch
 34,八神建築株式会社,"http://yagami-kk.jp","info@yagami-kk.jp",SSL未整備; 更新停止感(HTML内2017止),粗:(1)SSL未整備;(2)更新停止感(HTML内2017止),"http://yagami-kk.jp/",y,/ owner OK 2026-08-27 pending batch
@@ -40,16 +40,16 @@ approval_seq,company,url,email,defects,audit_draft,final_url,owner_ok,owner_note
 39,株式会社ハヤタウッドユーホーム,"http://maruka-woodsystems.com/","maruka.woodsystems@gmail.com",SSL未整備; viewportなし; tel:なし,粗:(1)SSL未整備;(2)viewportなし;(3)tel:なし,"http://maruka-woodsystems.com/",y,/ owner OK 2026-08-27 pending batch
 40,株式会社国松工務店,"http://www.k-kunimatsu.jp/","kunimatsu@k-kunimatsu.jp",SSL未整備; tel:なし,粗:(1)SSL未整備;(2)tel:なし,"http://www.k-kunimatsu.jp/",y,/ owner OK 2026-08-27 pending batch
 41,株式会社サントピアホーム,"http://www.suntopiahome.co.jp/","info@www.suntopiahome.co.jp",SSL未整備; tel:なし,粗:(1)SSL未整備;(2)tel:なし,"http://www.suntopiahome.co.jp/contact",y,/ owner OK 2026-08-27 pending batch
-42,株式会社小林工務店,"http://www.0561569111.com/","yourmail@sample.co.jp",tel:なし; 更新停止感(HTML内2019止),粗:(1)tel:なし;(2)更新停止感(HTML内2019止),"https://www.0561569111.com/form",,
+42,株式会社小林工務店,"http://www.0561569111.com/","yourmail@sample.co.jp",tel:なし; 更新停止感(HTML内2019止),粗:(1)tel:なし;(2)更新停止感(HTML内2019止),"https://www.0561569111.com/form",n,記入例メールのため除外 2026-09-03
 43,株式会共豊エポック,"http://www.kyoho-epoch.co.jp/","info@kyoho-epoch.co.jp",SSL未整備; 更新停止感(HTML内2017止),粗:(1)SSL未整備;(2)更新停止感(HTML内2017止),"http://www.kyoho-epoch.co.jp/company/",y,/ owner OK 2026-08-27 pending batch
 44,中田ホームズ有限会社,"http://www.nakata-homes.com/","info@nakata-homes.com",SSL未整備; viewportなし; tel:なし,粗:(1)SSL未整備;(2)viewportなし;(3)tel:なし,"http://www.nakata-homes.com/company.html",y,/ owner OK 2026-08-27 pending batch
-45,株式会社にしかわ,"http://nishikawa-inc.com/","nishikawa@abcd.com",tel:なし; 更新停止感(HTML内2000止),粗:(1)tel:なし;(2)更新停止感(HTML内2000止),"https://nishikawa-inc.com/contact",,
+45,株式会社にしかわ,"http://nishikawa-inc.com/","nishikawa@abcd.com",tel:なし; 更新停止感(HTML内2000止),粗:(1)tel:なし;(2)更新停止感(HTML内2000止),"https://nishikawa-inc.com/contact",n,記入例メールのため除外 2026-09-03
 46,有限会社古澤リビング,"http://www.furusawa-living.co.jp","info@furusawa-living.co.jp",SSL未整備; viewportなし; tel:なし; 更新停止感(HTML内2005止),粗:(1)SSL未整備;(2)viewportなし;(3)tel:なし,"http://www.furusawa-living.co.jp/",y,
 47,アレス有限会社,"http://www.kenkoutatemono.co.jp","info@kenkoutatemono.co.jp",viewportなし; tel:なし; 更新停止感(HTML内2014止),粗:(1)viewportなし;(2)tel:なし;(3)更新停止感(HTML内2014止),"https://www.kenkoutatemono.co.jp/",y,
-48,星和住研(株),"http://www.e-seiwa.net/","yourmail@sample.co.jp",tel:なし; 更新停止感(HTML内2019止),粗:(1)tel:なし;(2)更新停止感(HTML内2019止),"https://www.e-seiwa.net/form",,
+48,星和住研(株),"http://www.e-seiwa.net/","yourmail@sample.co.jp",tel:なし; 更新停止感(HTML内2019止),粗:(1)tel:なし;(2)更新停止感(HTML内2019止),"https://www.e-seiwa.net/form",n,記入例メールのため除外 2026-09-03
 49,(有)内山工務店,"https://www.v-hf.com/k/uchiyama389/","miyazaki@uchiyama-k.co.jp",viewportなし; tel:なし,粗:(1)viewportなし;(2)tel:なし,"https://www.v-hf.com/k/uchiyama389/",y,
 50,(株)山﨑建設,"http://yamasaki-1972.co.jp/profile/","yamasaki03ys@wind.ocn.ne.jp",SSL未整備; viewportなし; tel:なし; 更新停止感(HTML内2011止),粗:(1)SSL未整備;(2)viewportなし;(3)tel:なし,"http://yamasaki-1972.co.jp/profile/",y,
-51,(有)手作り工房いぐち,"http://tedukuri-kobo.com/","support@netrun.ne.jp",viewportなし; tel:なし,粗:(1)viewportなし;(2)tel:なし,"https://tedukuri-kobo.com/",,
+51,(有)手作り工房いぐち,"http://tedukuri-kobo.com/","support@netrun.ne.jp",viewportなし; tel:なし,粗:(1)viewportなし;(2)tel:なし,"https://tedukuri-kobo.com/",y,bulk_approve 2026-09-03
 52,有限会社藤川建設,"http://fujikawakensetu.com/","fujikawa-kensetu@jcom.home.ne.jp",viewportなし; tel:なし; 更新停止感(HTML内2009止),粗:(1)viewportなし;(2)tel:なし;(3)更新停止感(HTML内2009止),"https://fujikawakensetu.com/gaiyou.html",y,
 53,株式会社 トレカーサ工事,"http://www.trecasa.co.jp","post@trecasa.co.jp",viewportなし; tel:なし,粗:(1)viewportなし;(2)tel:なし,"https://www.trecasa.co.jp/company",y,
 54,あさひワークス株式会社,"http://asahiworks.co.jp/","info@asahiworks.co.jp",viewportなし; tel:なし,粗:(1)viewportなし;(2)tel:なし,"https://asahiworks.co.jp/company/",y,
@@ -60,29 +60,29 @@ approval_seq,company,url,email,defects,audit_draft,final_url,owner_ok,owner_note
 59,株式会社戸諸工務店,"http://www.tomoro.co.jp/","tomoro.net@abeam.ocn.ne.jp",viewportなし; tel:なし,粗:(1)viewportなし;(2)tel:なし,"https://www.tomoro.co.jp/",y,
 60,tama-kenchiku,"http://tama-kenchiku.jp/","tamaoki@mtj.biglobe.ne.jp",SSL未整備; viewportなし; tel:なし; 更新停止感(HTML内2009止),粗:(1)SSL未整備;(2)viewportなし;(3)tel:なし,"http://tama-kenchiku.jp/",y,
 61,athome-arai,"https://www.athome-arai.jp/","yoshiwa@athome-arai.jp",viewportなし; tel:なし,粗:(1)viewportなし;(2)tel:なし,"https://www.athome-arai.jp/",y,
-62,㈱新屋敷工務店,"https://www.shinyashiki.co.jp/","info@shinyashiki.co.jp",viewportなし; tel:なし,粗:(1)viewportなし;(2)tel:なし,"https://www.shinyashiki.co.jp/company/",,
-63,株式会社タウンズホーム,"https://ssl.towns-home.co.jp/","natural-home@towns-home.co.jp",tel:なし; 更新停止感(HTML内2019止),粗:(1)tel:なし;(2)更新停止感(HTML内2019止),"https://ssl.towns-home.co.jp/company.html",,
-64,押元建設,"http://www.osimoto.com/","info@osimoto.com",SSL未整備; tel:なし,粗:(1)SSL未整備;(2)tel:なし,"http://www.osimoto.com/company/",,
-65,石井工業株式会社,"https://ishiikogyo.jp/","ishiikogyo@nifty.com",viewportなし; tel:なし,粗:(1)viewportなし;(2)tel:なし,"https://ishiikogyo.jp/about/",,
-66,株式会社杉本工務店,"https://sugi-kou.net/","info@sugi-kou.net",viewportなし; tel:なし,粗:(1)viewportなし;(2)tel:なし,"https://sugi-kou.net/company/",,
-67,株式会社前澤工務店,"https://www.maezawa-koumuten.com/","info@maezawa-koumuten.com",viewportなし; tel:なし,粗:(1)viewportなし;(2)tel:なし,"https://www.maezawa-koumuten.com/pc/index.html",,
-68,株式会社幸治工務店,"https://koji-koumuten.com/","hiroaki_koji@mac.com",viewportなし; tel:なし,粗:(1)viewportなし;(2)tel:なし,"https://koji-koumuten.com/",,
-69,有限会社野澤工務店,"http://www.nozawa-koumuten.jp/","nozawakoumuten@tbr.t-com.ne.jp",SSL未整備; 更新停止感(HTML内2000止),粗:(1)SSL未整備;(2)更新停止感(HTML内2000止),"http://www.nozawa-koumuten.jp/",,
-70,株式会社辰栄工務店,"https://www.shin-ei-net.co.jp/","info@shin-ei-net.co.jp",tel:なし; 更新停止感(HTML内2017止),粗:(1)tel:なし;(2)更新停止感(HTML内2017止),"https://www.shin-ei-net.co.jp/",,
-71,株式会社寿々木工務店,"https://suzuki-komuten.sakura.ne.jp/","kotobuki@heart.ocn.ne.jp",viewportなし; tel:なし,粗:(1)viewportなし;(2)tel:なし,"https://suzuki-komuten.sakura.ne.jp/",,
-72,株式会社横和工務店,"http://www.yokowa.co.jp/","info@yokowa.co.jp",SSL未整備,粗:(1)SSL未整備,"http://www.yokowa.co.jp/",,
-73,有限会社米澤工務店,"http://www.yone-kou.com/","yonezawa@yone-kou.com",SSL未整備; tel:なし,粗:(1)SSL未整備;(2)tel:なし,"http://yone-kou.com/",,
-74,株式会社渡辺工務店,"http://watanabe-koumuten.jp/","info@watanabe-koumuten.jp",SSL未整備; tel:なし,粗:(1)SSL未整備;(2)tel:なし,"http://watanabe-koumuten.jp/contact",,
-75,木村工務店,"http://www.kimura-d9.com/","kimurakoumuten@amber.plala.or.jp",SSL未整備; viewportなし; tel:なし,粗:(1)SSL未整備;(2)viewportなし;(3)tel:なし,"http://www.kimura-d9.com/",,
-76,株式会社浜工務店,"http://www.orenoie.jp/","hama6135@theia.ocn.ne.jp",SSL未整備; tel:なし,粗:(1)SSL未整備;(2)tel:なし,"http://www.orenoie.jp/",,
-77,上里建設,"https://kamiken.info/","kamiken@sky.plala.or.jp",tel:なし; 更新停止感(HTML内2016止),粗:(1)tel:なし;(2)更新停止感(HTML内2016止),"https://kamiken.info/inquiry/",,
-78,いとう建正株式会社,"http://itoukensyou.web.fc2.com/","ito-daiku@able.ocn.ne.jp",SSL未整備; viewportなし; tel:なし; 更新停止感(HTML内2016止),粗:(1)SSL未整備;(2)viewportなし;(3)tel:なし,"http://itoukensyou.web.fc2.com/",,
-79,西村工務店,"http://www.nishimura-daiku.com/","info@nishimura-daiku.com",viewportなし; tel:なし,粗:(1)viewportなし;(2)tel:なし,"https://www.nishimura-daiku.com/company/",,
-80,有限会社つくし工務店,"https://tsukushikoumuten.com/","tsukushi_1@mub.biglobe.ne.jp",viewportなし; tel:なし,粗:(1)viewportなし;(2)tel:なし,"https://tsukushikoumuten.com/",,
-81,有限会社タイセイホーム,"https://www.taisei-home.com/","info@taisei-home.com",viewportなし; tel:なし,粗:(1)viewportなし;(2)tel:なし,"https://www.taisei-home.com/",,
-82,株式会社武田工務店,"https://www.takeda-koumuten.com/","takeda@takeda-koumuten.com",viewportなし; tel:なし; 更新停止感(HTML内2008止),粗:(1)viewportなし;(2)tel:なし;(3)更新停止感(HTML内2008止),"https://www.takeda-koumuten.com/",,
-83,(株)山﨑建設,"http://yamasaki-1972.co.jp/","yamasaki03ys@wind.ocn.ne.jp",SSL未整備; viewportなし; tel:なし; 更新停止感(HTML内2011止),粗:(1)SSL未整備;(2)viewportなし;(3)tel:なし,"http://yamasaki-1972.co.jp/profile/",,
-84,中武建設株式会社,"http://www.nakatake.co.jp/","info@nakatake.co.jp",SSL未整備; viewportなし; tel:なし,粗:(1)SSL未整備;(2)viewportなし;(3)tel:なし,"http://www.nakatake.co.jp/",,
-85,溝江工務店,"http://www.mizoekoumuten.jp/","info@mizoekoumuten.jp",SSL未整備; viewportなし; tel:なし; 更新停止感(HTML内2016止),粗:(1)SSL未整備;(2)viewportなし;(3)tel:なし,"http://www.mizoekoumuten.jp/company.html",,
-86,有限会社畠山工務店,"http://hatakeyama-komuten.com/","fp.h-k11@beach.ocn.ne.jp",SSL未整備; tel:なし; 更新停止感(HTML内2017止),粗:(1)SSL未整備;(2)tel:なし;(3)更新停止感(HTML内2017止),"http://hatakeyama-komuten.com/contact-us",,
-87,岩崎工務店,"https://www.iwasaki-k.jp/","info@iwasaki-k.jp",viewportなし; tel:なし; 更新停止感(HTML内2018止),粗:(1)viewportなし;(2)tel:なし;(3)更新停止感(HTML内2018止),"https://www.iwasaki-k.jp/pc/index.html",,
+62,㈱新屋敷工務店,"https://www.shinyashiki.co.jp/","info@shinyashiki.co.jp",viewportなし; tel:なし,粗:(1)viewportなし;(2)tel:なし,"https://www.shinyashiki.co.jp/company/",y,bulk_approve 2026-09-03
+63,株式会社タウンズホーム,"https://ssl.towns-home.co.jp/","natural-home@towns-home.co.jp",tel:なし; 更新停止感(HTML内2019止),粗:(1)tel:なし;(2)更新停止感(HTML内2019止),"https://ssl.towns-home.co.jp/company.html",y,bulk_approve 2026-09-03
+64,押元建設,"http://www.osimoto.com/","info@osimoto.com",SSL未整備; tel:なし,粗:(1)SSL未整備;(2)tel:なし,"http://www.osimoto.com/company/",y,bulk_approve 2026-09-03
+65,石井工業株式会社,"https://ishiikogyo.jp/","ishiikogyo@nifty.com",viewportなし; tel:なし,粗:(1)viewportなし;(2)tel:なし,"https://ishiikogyo.jp/about/",y,bulk_approve 2026-09-03
+66,株式会社杉本工務店,"https://sugi-kou.net/","info@sugi-kou.net",viewportなし; tel:なし,粗:(1)viewportなし;(2)tel:なし,"https://sugi-kou.net/company/",y,bulk_approve 2026-09-03
+67,株式会社前澤工務店,"https://www.maezawa-koumuten.com/","info@maezawa-koumuten.com",viewportなし; tel:なし,粗:(1)viewportなし;(2)tel:なし,"https://www.maezawa-koumuten.com/pc/index.html",y,bulk_approve 2026-09-03
+68,株式会社幸治工務店,"https://koji-koumuten.com/","hiroaki_koji@mac.com",viewportなし; tel:なし,粗:(1)viewportなし;(2)tel:なし,"https://koji-koumuten.com/",y,bulk_approve 2026-09-03
+69,有限会社野澤工務店,"http://www.nozawa-koumuten.jp/","nozawakoumuten@tbr.t-com.ne.jp",SSL未整備; 更新停止感(HTML内2000止),粗:(1)SSL未整備;(2)更新停止感(HTML内2000止),"http://www.nozawa-koumuten.jp/",y,bulk_approve 2026-09-03
+70,株式会社辰栄工務店,"https://www.shin-ei-net.co.jp/","info@shin-ei-net.co.jp",tel:なし; 更新停止感(HTML内2017止),粗:(1)tel:なし;(2)更新停止感(HTML内2017止),"https://www.shin-ei-net.co.jp/",y,bulk_approve 2026-09-03
+71,株式会社寿々木工務店,"https://suzuki-komuten.sakura.ne.jp/","kotobuki@heart.ocn.ne.jp",viewportなし; tel:なし,粗:(1)viewportなし;(2)tel:なし,"https://suzuki-komuten.sakura.ne.jp/",y,bulk_approve 2026-09-03
+72,株式会社横和工務店,"http://www.yokowa.co.jp/","info@yokowa.co.jp",SSL未整備,粗:(1)SSL未整備,"http://www.yokowa.co.jp/",y,bulk_approve 2026-09-03
+73,有限会社米澤工務店,"http://www.yone-kou.com/","yonezawa@yone-kou.com",SSL未整備; tel:なし,粗:(1)SSL未整備;(2)tel:なし,"http://yone-kou.com/",y,bulk_approve 2026-09-03
+74,株式会社渡辺工務店,"http://watanabe-koumuten.jp/","info@watanabe-koumuten.jp",SSL未整備; tel:なし,粗:(1)SSL未整備;(2)tel:なし,"http://watanabe-koumuten.jp/contact",y,bulk_approve 2026-09-03
+75,木村工務店,"http://www.kimura-d9.com/","kimurakoumuten@amber.plala.or.jp",SSL未整備; viewportなし; tel:なし,粗:(1)SSL未整備;(2)viewportなし;(3)tel:なし,"http://www.kimura-d9.com/",y,bulk_approve 2026-09-03
+76,株式会社浜工務店,"http://www.orenoie.jp/","hama6135@theia.ocn.ne.jp",SSL未整備; tel:なし,粗:(1)SSL未整備;(2)tel:なし,"http://www.orenoie.jp/",y,bulk_approve 2026-09-03
+77,上里建設,"https://kamiken.info/","kamiken@sky.plala.or.jp",tel:なし; 更新停止感(HTML内2016止),粗:(1)tel:なし;(2)更新停止感(HTML内2016止),"https://kamiken.info/inquiry/",y,bulk_approve 2026-09-03
+78,いとう建正株式会社,"http://itoukensyou.web.fc2.com/","ito-daiku@able.ocn.ne.jp",SSL未整備; viewportなし; tel:なし; 更新停止感(HTML内2016止),粗:(1)SSL未整備;(2)viewportなし;(3)tel:なし,"http://itoukensyou.web.fc2.com/",y,bulk_approve 2026-09-03
+79,西村工務店,"http://www.nishimura-daiku.com/","info@nishimura-daiku.com",viewportなし; tel:なし,粗:(1)viewportなし;(2)tel:なし,"https://www.nishimura-daiku.com/company/",y,bulk_approve 2026-09-03
+80,有限会社つくし工務店,"https://tsukushikoumuten.com/","tsukushi_1@mub.biglobe.ne.jp",viewportなし; tel:なし,粗:(1)viewportなし;(2)tel:なし,"https://tsukushikoumuten.com/",y,bulk_approve 2026-09-03
+81,有限会社タイセイホーム,"https://www.taisei-home.com/","info@taisei-home.com",viewportなし; tel:なし,粗:(1)viewportなし;(2)tel:なし,"https://www.taisei-home.com/",y,bulk_approve 2026-09-03
+82,株式会社武田工務店,"https://www.takeda-koumuten.com/","takeda@takeda-koumuten.com",viewportなし; tel:なし; 更新停止感(HTML内2008止),粗:(1)viewportなし;(2)tel:なし;(3)更新停止感(HTML内2008止),"https://www.takeda-koumuten.com/",y,bulk_approve 2026-09-03
+83,(株)山﨑建設,"http://yamasaki-1972.co.jp/","yamasaki03ys@wind.ocn.ne.jp",SSL未整備; viewportなし; tel:なし; 更新停止感(HTML内2011止),粗:(1)SSL未整備;(2)viewportなし;(3)tel:なし,"http://yamasaki-1972.co.jp/profile/",y,bulk_approve 2026-09-03
+84,中武建設株式会社,"http://www.nakatake.co.jp/","info@nakatake.co.jp",SSL未整備; viewportなし; tel:なし,粗:(1)SSL未整備;(2)viewportなし;(3)tel:なし,"http://www.nakatake.co.jp/",y,bulk_approve 2026-09-03
+85,溝江工務店,"http://www.mizoekoumuten.jp/","info@mizoekoumuten.jp",SSL未整備; viewportなし; tel:なし; 更新停止感(HTML内2016止),粗:(1)SSL未整備;(2)viewportなし;(3)tel:なし,"http://www.mizoekoumuten.jp/company.html",y,bulk_approve 2026-09-03
+86,有限会社畠山工務店,"http://hatakeyama-komuten.com/","fp.h-k11@beach.ocn.ne.jp",SSL未整備; tel:なし; 更新停止感(HTML内2017止),粗:(1)SSL未整備;(2)tel:なし;(3)更新停止感(HTML内2017止),"http://hatakeyama-komuten.com/contact-us",y,bulk_approve 2026-09-03
+87,岩崎工務店,"https://www.iwasaki-k.jp/","info@iwasaki-k.jp",viewportなし; tel:なし; 更新停止感(HTML内2018止),粗:(1)viewportなし;(2)tel:なし;(3)更新停止感(HTML内2018止),"https://www.iwasaki-k.jp/pc/index.html",y,bulk_approve 2026-09-03

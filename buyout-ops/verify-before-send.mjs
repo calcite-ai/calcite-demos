@@ -16,6 +16,7 @@ import { fileURLToPath } from "node:url";
 import { spawnSync } from "node:child_process";
 import { ACTIVE_VERTICAL, isActiveVertical, rowVertical, verticalLabel } from "./vertical-config.mjs";
 import { matchPriorOutreach } from "./prior-outreach.mjs";
+import { isValidPublicEmail } from "./campaign-score.mjs";
 import { evaluateLeadG1 } from "./site-g1-eval.mjs";
 import { loadSendQuota } from "./send-quota.mjs";
 
@@ -122,6 +123,11 @@ async function verifyProspect({ name, email, urlA, urlB, slug, quotedPrice, stat
 
   if (!urlA || !urlB) fails.push("V1 CSVに demo_url_a / demo_url_b がない");
   if (!name) fails.push("V3 社名がない");
+  if (!isValidPublicEmail(email)) {
+    fails.push(
+      `V16 送信先メールが無効（フォーム記入例・空など）: ${email || "(empty)"} — 実在するアドレスに直すか行を削除`
+    );
+  }
 
   if ((status === "queued" || status === "built") && quotedPrice && quotedPrice !== SEND_PRICE) {
     fails.push(`V9 新規送信対象の quoted_price=${quotedPrice}（${SEND_PRICE} 必須）`);

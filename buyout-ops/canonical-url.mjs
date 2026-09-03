@@ -20,7 +20,13 @@ export function parseDemoSkinPath(url) {
   return { slug: m[1], skin: m[2] };
 }
 
-/** メールに載せる短いデモ URL（slug/skin を抽出して calcite-mail.jp へ） */
+/**
+ * 短縮デモ URL（slug/skin を抽出して calcite-mail.jp へ）。
+ *
+ * **メール本文には使わない。** 本文は GitHub Pages 直URL（canonicalDemoUrl）で、
+ * クリック計測は SendGrid が行う（2026-09-03 以降）。用途は publish 時の表示のみ。
+ * 経緯: buyout-ops/outreach-domain-site/README.md
+ */
 export function publicDemoUrl(url, label = "demo") {
   const stored = assertDirectHttpsUrl(url, label);
   const parts = parseDemoSkinPath(stored);

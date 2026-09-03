@@ -11,6 +11,7 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { parseCsv, serializeCsv, sortByApprovalSeq } from "./csv-util.mjs";
 import { isPriorOutreachBlocked } from "./prior-outreach.mjs";
+import { isValidPublicEmail } from "./campaign-score.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const reviewPath = path.join(__dirname, "prospect_pipeline", "review_queue.csv");
@@ -68,6 +69,10 @@ for (const r of approved) {
   const company = r.company;
   const email = r.email;
   const site = r.final_url || r.url;
+  if (!isValidPublicEmail(email)) {
+    console.log(`SKIP invalid email: ${company} <${email || "(empty)"}>`);
+    continue;
+  }
   if (isPriorOutreachBlocked({ company, email })) {
     console.log(`SKIP blocklist: ${company}`);
     continue;

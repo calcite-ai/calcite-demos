@@ -10,6 +10,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { parseCsv, serializeCsv } from "./csv-util.mjs";
+import { isValidPublicEmail } from "./campaign-score.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const scanPath = path.join(__dirname, "prospect_pipeline", "scan_results.csv");
@@ -37,7 +38,14 @@ if (!fs.existsSync(scanPath)) {
 }
 
 const { rows: scanRows } = parseCsv(fs.readFileSync(scanPath, "utf8"));
-const candidates = scanRows.filter((r) => r.status === "CANDIDATE");
+const allCandidates = scanRows.filter((r) => r.status === "CANDIDATE");
+// フォーム記入例メール（yourmail@sample.co.jp 等）はレビューに載せない — 誤送信になる
+const candidates = allCandidates.filter((r) => isValidPublicEmail(r.email));
+for (const r of allCandidates) {
+  if (!isValidPublicEmail(r.email)) {
+    console.log(`SKIP invalid email: ${r.company} <${r.email || "(empty)"}>`);
+  }
+}
 
 let ownerByUrl = new Map();
 if (fs.existsSync(outPath)) {

@@ -1,24 +1,29 @@
 # 営業専用ドメイン — 最小LP
 
-工務店コールドメールのフッター `Web:` 用 + **デモ短縮URL** 用。
+工務店コールドメールのフッター `Web:` 用。
 
-## デモ短縮 URL（メール本文）
+## デモURLとクリック計測（現行・2026-09-03 以降）
 
-メールには GitHub Pages ではなく次の形式を載せる:
+**メール本文には GitHub Pages のデモURLをそのまま書く。** 追跡は **SendGrid** が行う。
 
 ```
-https://www.calcite-mail.jp/demo/{slug}/{skin}/
+https://calcite-ai.github.io/calcite-demos/buyout-prospects/{slug}/{skin}/
 ```
 
-`buyout-ops/generate-demo-redirects.mjs` が `demo/{slug}/{skin}/` の静的リダイレクトを生成できる（任意・短縮URL用）。
+| 対象 | 計測 |
+|---|---|
+| デモURL | **SendGrid の Activity**（`clicktrack.enable=1` / HTML のみ・`enable_text: false`） |
+| カルサイトHP（署名 `calcite-ai.jp`） | HTML で `clicktracking=off`。計測対象外 |
 
-- **デモクリック計測** → **SendGrid** の Activity（クリック追跡 ON）。新デモ追加時の ConoHa 同期は不要
-- **メール本文** → GitHub Pages のデモ URL をそのまま載せ、SendGrid がクリックを記録
-- **カルサイトHP**（`calcite-ai.jp`）→ 署名に直リンク。SendGrid 上ではクリックが見えるが計測対象外として扱う
+実装: `sendgrid-smtp-headers.mjs`（追跡ON）/ `render-outreach-email.mjs`（`canonicalDemoUrl` を使う）。
 
-（旧方式）calcite-mail.jp 経由の PHP ログは運用停止。サーバー上の `demo/` は残っていても害はない。
+### やらないこと（旧方式・運用停止）
 
-**デプロイ（任意・短縮URLを使う場合のみ）:** ConoHa WING の `calcite-mail.jp` 公開ディレクトリに `demo/` をアップロード。
+- **`https://www.calcite-mail.jp/demo/{slug}/{skin}/` をメール本文に書かない**
+- `generate-demo-redirects.mjs` の PHP クリックログは使わない（ConoHa への `demo/` 同期も不要）
+- `publicDemoUrl()` をメール本文に使わない（`publish-prospect.mjs` の表示用のみ）
+
+サーバー上に残っている `demo/` は害はないが、更新しない。切替の経緯は `demo_buyout_incidents.md`。
 
 ## デプロイ（ConoHa WING）
 

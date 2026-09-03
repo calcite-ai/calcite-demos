@@ -72,6 +72,17 @@ function renderEmail(company) {
     console.error("FAIL html missing clicktracking=off on signature Web link");
     process.exit(1);
   }
+  // デモURLは GitHub Pages 直URL（追跡は SendGrid）。旧 calcite-mail.jp/demo 短縮URLは使わない
+  if (/calcite-mail\.jp\/demo\//i.test(body + html)) {
+    console.error(
+      "FAIL body has calcite-mail.jp/demo short URL — 現行はGitHub Pages直URL+SendGrid追跡（outreach-domain-site/README.md）"
+    );
+    process.exit(1);
+  }
+  if (!/calcite-ai\.github\.io\/calcite-demos\/buyout-prospects\//i.test(body)) {
+    console.error("FAIL body missing GitHub Pages demo URL");
+    process.exit(1);
+  }
   return { subject, body, html };
 }
 

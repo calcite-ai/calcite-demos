@@ -2,6 +2,46 @@
 
 > 同種ミスを二度起こさないための記録とゲート一覧。
 
+## 2026-09-03: フォーム記入例メールが承認キューに混入
+
+### 起きたこと
+
+| # | 内容 | 影響 |
+|---|---|---|
+| 1 | スキャンが問い合わせフォームの**記入例アドレス**（`yourmail@sample.co.jp` / `aaa@bbb.jp` / `nishikawa@abcd.com` 等）を先方メールとして拾った | 買い取り5社・インサイド35社が実在しない宛先で `approved` に |
+| 2 | `isValidPublicEmail` の除外パターンが `sample@` `your@` など**ローカル部だけ**を見ており、`@sample.co.jp` 等の**記入例ドメイン**を素通し | 検証をすり抜けた |
+| 3 | `import-review-approvals.mjs` にメール検証が無く、`owner_ok=y` の一括承認でそのまま採用 | レビューの網も無し |
+
+`sample.co.jp` `domain.com` `abc.com` 等は**実在する他人のドメイン**。送っていれば無関係の第三者への誤送信だった。
+
+### 恒久対策
+
+| 層 | 内容 |
+|---|---|
+| **判定** | `campaign-score.mjs` に `PLACEHOLDER_DOMAIN` / `PLACEHOLDER_LOCAL` を追加。記入例ドメインと `abc@` `yourname@` `t_yamada@` 等のローカル部を無効化 |
+| **入口** | `prepare-review-sheet.mjs` が無効メールをレビューシートに載せない |
+| **承認** | `import-review-approvals.mjs` が無効メールを SKIP |
+| **送信前** | `verify-before-send.mjs` V16 で無効メールは FAIL |
+| **データ** | 該当40行を削除、レビューキューは `owner_ok=n`（送信済み履歴は残す） |
+
+---
+
+## 2026-09-03: メール本文のデモURLを短縮URLに変えかけた（未送信で発見）
+
+### 起きたこと
+
+`outreach-domain-site/README.md` の冒頭に「メールには GitHub Pages ではなく `calcite-mail.jp/demo/{slug}/{skin}/` を載せる」という**旧方式の記述が残っており**、同じファイルの下部にある現行方針（GitHub Pages 直URL＋SendGrid 追跡）と矛盾していた。これを読んで `render-outreach-email.mjs` を短縮URLに変更。オーナー指摘で送信前に revert。
+
+### 恒久対策
+
+| 層 | 内容 |
+|---|---|
+| **docs** | README を現行方式のみに書き換え（旧方式は「やらないこと」として明記） |
+| **コード** | `canonical-url.mjs` の `publicDemoUrl` に「メール本文に使わない」と明記 |
+| **送信前** | `send-outreach-smtp.mjs` が本文に `calcite-mail.jp/demo/` を含む／GitHub Pages URL を含まない場合は FAIL |
+
+---
+
 ## 2026-08-31: 10:00 Actions が未実行 — 営業メール0通
 
 ### 起きたこと

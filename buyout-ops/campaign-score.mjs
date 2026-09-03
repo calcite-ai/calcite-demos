@@ -17,10 +17,23 @@ export const CAMPAIGNS = {
 const BAD_EMAIL =
   /example|exsample|sample@|test@|dummy@|wixpress|sentry|wordpress\.com|aaa@bbb|your@|xxx@|badge|@2x\.|\.(png|jpg|jpeg|gif|webp|svg|ico)(?:\?|$)/i;
 
+/**
+ * 問い合わせフォームの記入例ドメイン。実在しても先方のものではないため誤送信になる。
+ * 由来: 2026-09-03 yourmail@sample.co.jp 等が承認キューに入った
+ */
+const PLACEHOLDER_DOMAIN =
+  /@(?:sample|example|sampl|xxx+|abc|abcd|aaa+|bbb+|ccc+|defg|domain|mail|hoge|dummy|test)\.(?:com|net|org|jp|co\.jp|ne\.jp|or\.jp)$/i;
+
+/** 記入例のローカル部（先方ドメインでも記入例のことがある） */
+const PLACEHOLDER_LOCAL =
+  /^\.?(?:abc|abcd|aaa+|xxx+|yourmail|your-mail|yourname|user|username|sample|hoge|taro|yamada|t_yamada|foo|bar)@/i;
+
 export function isValidPublicEmail(email) {
   const e = String(email || "").trim().toLowerCase();
   if (!e || !/^[^\s@]+@[^\s@]+\.[a-z]{2,}$/i.test(e)) return false;
   if (BAD_EMAIL.test(e)) return false;
+  if (PLACEHOLDER_DOMAIN.test(e)) return false;
+  if (PLACEHOLDER_LOCAL.test(e)) return false;
   return true;
 }
 

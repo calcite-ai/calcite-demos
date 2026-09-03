@@ -89,7 +89,8 @@ const skins = fs
 
 console.log("published", dest);
 console.log("index ", base + "/");
+// メール本文・CSV に載せるのは GitHub Pages 直URL。短縮URLは参考表示のみ
 for (const s of skins) {
   const github = `${base}/${s}/`;
-  console.log("skin  ", publicDemoUrl(github), `(→ ${github})`);
+  console.log("skin  ", github, `(旧短縮URL: ${publicDemoUrl(github)} — メールには使わない)`);
 }
