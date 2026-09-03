@@ -181,6 +181,14 @@ if (fs.existsSync(csvPath)) {
         );
       }
       const skin = row.skin_pair || "";
+      if (
+        (status === "queued" || status === "built") &&
+        !skin.trim() &&
+        (row.demo_url_a || row.demo_url_b)
+      ) {
+        // 列名ミス（skins に書いて skin_pair が空）を送信前に検出する
+        fails.push(`O10 ${row.company} は demo URL があるのに skin_pair が空（列は skins ではなく skin_pair）`);
+      }
       if (skin.includes(",")) {
         for (const s of skin.split(",").map((x) => x.trim()).filter(Boolean)) {
           const inA = (row.demo_url_a || "").includes(`/${s}/`);
