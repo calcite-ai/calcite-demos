@@ -60,6 +60,18 @@ node buyout-ops/run-campaign-pipeline.mjs --scan   # 未スキャン + 上記
 - 推測メール（`info@ドメイン` 等）
 - buyout と inside を同一社・同日に送る
 - owner_ok なしの自動送信（PoC）
+- **送信済み（`sent` / `opt_out` / `paused` / `sent_at` / notes の「初回送信」）を `approved` に戻して再送すること**
+
+## 再送防止（2026-09-03〜）
+
+| 層 | ガード |
+|---|---|
+| `split-scan-tracks.mjs` | `sent_at` 保持。terminal status を demote しない。スキャン落ちの送信済みを orphan 保存 |
+| `import-inside-approvals.mjs` | 既送信・opt_out・paused は `approved` に上書きしない |
+| `send-inside-smtp.mjs` | 既送信証拠があれば送信拒否 |
+| `send-quota.mjs` | 当日枠は notes/`sent_at` の日付でカウント（status が壊れても枠は消費済み） |
+| `inbox-process.mjs` | inside 返信も照合。配信停止 → `opt_out` + blocklist |
+| `verify-ops-pack.mjs` O18 | `approved` なのに送信済み証拠がある行を FAIL |
 
 ## buyout との関係
 

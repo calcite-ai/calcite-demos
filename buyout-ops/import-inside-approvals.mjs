@@ -13,6 +13,7 @@ import { fileURLToPath } from "node:url";
 import { parseCsv, serializeCsv } from "./csv-util.mjs";
 import { isPriorOutreachBlocked } from "./prior-outreach.mjs";
 import { CAMPAIGNS } from "./campaign-score.mjs";
+import { isAlreadyOutreached } from "./outreach-guard.mjs";
 import { computeSendTier } from "./send-tier.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -61,6 +62,14 @@ for (const r of approved) {
   const idx = leads.findIndex((l) => l.company === r.company && l.email === r.email);
   if (idx < 0) {
     console.log(`SKIP not in pool: ${r.company}`);
+    skipped++;
+    continue;
+  }
+
+  if (isAlreadyOutreached(leads[idx])) {
+    console.log(
+      `SKIP already outreached: ${r.company} status=${leads[idx].status || ""} sent_at=${leads[idx].sent_at || ""}`
+    );
     skipped++;
     continue;
   }

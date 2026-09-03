@@ -13,6 +13,7 @@ import { fileURLToPath } from "node:url";
 import nodemailer from "nodemailer";
 import { parseCsv, serializeCsv } from "./csv-util.mjs";
 import { resolveTransport } from "./mail-transport.mjs";
+import { isAlreadyOutreached } from "./outreach-guard.mjs";
 import { sendgridSmtpHeaders } from "./sendgrid-smtp-headers.mjs";
 import { classifySmtpError, exitCodeForKind } from "./smtp-error-kind.mjs";
 import { jstDateString } from "./send-quota.mjs";
@@ -59,6 +60,18 @@ const { headers, rows } = parseCsv(fs.readFileSync(leadsPath, "utf8"));
 const idx = rows.findIndex((r) => r.company === company);
 if (idx < 0 || !rows[idx].email) {
   console.error(`FAIL no email for ${company}`);
+  process.exit(1);
+}
+
+if (isAlreadyOutreached(rows[idx])) {
+  console.error(
+    `FAIL already outreached — refuse resend: ${company} status=${rows[idx].status || ""} sent_at=${rows[idx].sent_at || ""}`
+  );
+  process.exit(1);
+}
+
+if (String(rows[idx].status || "").trim() !== "approved") {
+  console.error(`FAIL status must be approved (got ${rows[idx].status || "(empty)"})`);
   process.exit(1);
 }
 

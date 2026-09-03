@@ -6,6 +6,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { isAlreadyOutreached } from "./outreach-guard.mjs";
 import { ACTIVE_VERTICAL, isActiveVertical, verticalLabel } from "./vertical-config.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -111,6 +112,7 @@ walkProspects((slug, dir) => {
 });
 
 const csvPath = path.join(__dirname, "demo_buyout_leads.csv");
+const insideCsvPath = path.join(__dirname, "inside_sales_poc_leads.csv");
 
 function parseCsv(text) {
   const lines = text.replace(/^\uFEFF/, "").split(/\r?\n/).filter(Boolean);
@@ -188,6 +190,18 @@ if (fs.existsSync(csvPath)) {
           }
         }
       }
+    }
+  }
+}
+
+if (fs.existsSync(insideCsvPath)) {
+  const insideRows = parseCsv(fs.readFileSync(insideCsvPath, "utf8"));
+  for (const row of insideRows) {
+    if (String(row.status || "").trim() !== "approved") continue;
+    if (isAlreadyOutreached(row)) {
+      fails.push(
+        `O18 inside ${row.company} が status=approved だが送信済み証拠あり（sent_at/初回送信/terminal）— 再送事故防止のため status を sent/opt_out に戻す`
+      );
     }
   }
 }

@@ -1,10 +1,10 @@
 #!/usr/bin/env node
 /**
- * Poll ConoHa IMAP for replies to buyout outreach, classify, and auto-handle.
+ * Poll ConoHa IMAP for replies to buyout + inside outreach, classify, and auto-handle.
  *
- * - Purchase (A/B/buy) + quoted_price!=55000 → SMTP checkout reply (text/plain)
+ * - Purchase (A/B/buy) + quoted_price!=55000 → SMTP checkout reply (text/plain) [buyout only]
  * - Legacy 55000 → escalate file only (no 66k checkout)
- * - opt_out / bounce → update CSV
+ * - opt_out / bounce → update the matching track CSV (+ blocklist for inside opt_out)
  * - question/custom/other → escalate for human/agent
  *
  * Env: BUYOUT_SMTP_USER / BUYOUT_SMTP_PASS — ConoHa mailbox (IMAP always)
@@ -28,6 +28,7 @@ import { sendgridSmtpHeaders } from "./sendgrid-smtp-headers.mjs";
 import { METRICS_COLUMNS } from "./metrics-columns.mjs";
 import { jstDateString } from "./send-quota.mjs";
 import { classifyBounceText, bounceAllowsFailover } from "./smtp-error-kind.mjs";
+import { appendPriorOutreachBlocklist } from "./prior-outreach.mjs";
 import {
   classifyReplyBody,
   isPurchaseIntent,
@@ -35,7 +36,8 @@ import {
 } from "./classify-reply.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const leadsPath = path.join(__dirname, "demo_buyout_leads.csv");
+const buyoutLeadsPath = path.join(__dirname, "demo_buyout_leads.csv");
+const insideLeadsPath = path.join(__dirname, "inside_sales_poc_leads.csv");
 const statePath = path.join(__dirname, "metrics", "inbox-processed.json");
 const escalatePath = path.join(__dirname, "metrics", "inbox-escalate.md");
 const checkoutTplPath = path.join(__dirname, "templates", "email_demo_buyout_2_checkout.txt");
@@ -153,19 +155,43 @@ const imapHost = process.env.BUYOUT_IMAP_HOST || "mail1004.conoha.ne.jp";
 const imapPort = Number(process.env.BUYOUT_IMAP_PORT || "993");
 const outbound = resolveTransport();
 
-let { headers, rows } = parseCsv(fs.readFileSync(leadsPath, "utf8"));
+let buyoutHeaders = [];
+let buyoutRows = [];
+if (fs.existsSync(buyoutLeadsPath)) {
+  ({ headers: buyoutHeaders, rows: buyoutRows } = parseCsv(fs.readFileSync(buyoutLeadsPath, "utf8")));
+}
+let insideHeaders = [];
+let insideRows = [];
+if (fs.existsSync(insideLeadsPath)) {
+  ({ headers: insideHeaders, rows: insideRows } = parseCsv(fs.readFileSync(insideLeadsPath, "utf8")));
+}
+
+/** @type {Map<string, { track: "buyout"|"inside", row: object }>} */
 const byEmail = new Map();
-for (const row of rows) {
+for (const row of buyoutRows) {
   const em = String(row.email || "")
     .trim()
     .toLowerCase();
-  if (em) byEmail.set(em, row);
+  if (em) byEmail.set(em, { track: "buyout", row });
+}
+for (const row of insideRows) {
+  const em = String(row.email || "")
+    .trim()
+    .toLowerCase();
+  // Prefer buyout if same email appears in both (unlikely)
+  if (em && !byEmail.has(em)) byEmail.set(em, { track: "inside", row });
 }
 
 const state = loadState();
 const since = new Date(Date.now() - sinceDays * 864e5);
-let touched = false;
+let touchedBuyout = false;
+let touchedInside = false;
 const actions = [];
+
+function markTrackTouched(track) {
+  if (track === "buyout") touchedBuyout = true;
+  if (track === "inside") touchedInside = true;
+}
 
 const client = new ImapFlow({
   host: imapHost,
@@ -221,14 +247,18 @@ try {
     if (/mailer-daemon|postmaster|mail delivery|undelivered/i.test(fromAddr + subject)) {
       const hits = bounceRecipientHits(bodyText, byEmail);
       for (const hit of hits) {
-        const row = byEmail.get(hit);
-        headers = ensureMetrics(headers, row);
+        const entry = byEmail.get(hit);
+        if (!entry) continue;
+        const { track, row } = entry;
+        if (track === "buyout") {
+          buyoutHeaders = ensureMetrics(buyoutHeaders, row);
+        }
         const bounceKind = classifyBounceText(bodyText);
-        const already = Boolean(row.bounce_at) || row.status === "paused";
+        const already = Boolean(row.bounce_at) || row.status === "paused" || row.status === "opt_out";
         if (already) {
-          // Do not re-trigger same-day failover every 2h
           actions.push({
             type: "bounce_already",
+            track,
             company: row.company,
             email: hit,
             bounce_type: row.bounce_type || bounceKind,
@@ -238,12 +268,12 @@ try {
         }
         row.bounce_at = jstDateString();
         row.bounce_type = bounceKind;
-        row.status = "paused";
-        // Free today's quota: successful-send counter only counts status=sent
+        row.status = track === "inside" ? "opt_out" : "paused";
         row.notes = `${row.notes || ""} / IMAP bounce ${jstDateString()} kind=${bounceKind}`.trim();
-        const doFailover = bounceAllowsFailover(bounceKind);
+        const doFailover = track === "buyout" && bounceAllowsFailover(bounceKind);
         actions.push({
           type: "bounce",
+          track,
           company: row.company,
           email: hit,
           bounce_type: bounceKind,
@@ -253,13 +283,14 @@ try {
           appendEscalate(
             [
               `## ${jstDateString()} bounce spam-like — ${row.company}`,
+              `- track: ${track}`,
               `- email: ${hit}`,
-              `- action: paused; do NOT auto-failover blast`,
+              `- action: paused/opt_out; do NOT auto-failover blast`,
               "",
             ].join("\n")
           );
         }
-        touched = true;
+        markTrackTouched(track);
       }
       state.ids[key] = { at: jstDateString(), kind: "bounce_scan", messageId, hits };
       if (!dryRun) {
@@ -273,19 +304,21 @@ try {
       continue;
     }
 
-    const row = byEmail.get(fromAddr);
-    if (row.status !== "sent" && row.status !== "paused") {
-      // only process outreach we marked sent (or paused after bounce attempt)
+    const { track, row } = byEmail.get(fromAddr);
+    if (row.status !== "sent" && row.status !== "paused" && row.status !== "opt_out") {
       if (!row.sent_at && row.status !== "sent") {
-        state.ids[key] = { at: jstDateString(), kind: "ignored_not_sent" };
+        state.ids[key] = { at: jstDateString(), kind: "ignored_not_sent", track };
         continue;
       }
     }
 
     const replyType = classifyReplyBody(bodyText);
-    headers = ensureMetrics(headers, row);
+    if (track === "buyout") {
+      buyoutHeaders = ensureMetrics(buyoutHeaders, row);
+    }
     actions.push({
       type: "reply",
+      track,
       company: row.company,
       email: fromAddr,
       replyType,
@@ -296,11 +329,37 @@ try {
     row.reply_at = row.reply_at || jstDateString();
     row.reply_class = replyType;
     row.notes = `${row.notes || ""} / IMAP reply=${replyType} ${jstDateString()}`.trim();
-    touched = true;
+    markTrackTouched(track);
 
     if (replyType === "opt_out") {
-      row.do_not_contact = "true";
-      row.status = "paused";
+      if (track === "inside") {
+        row.status = "opt_out";
+        row.notes = `${row.notes} / opt_out ${jstDateString()} reply from ${fromAddr}`.trim();
+        if (!dryRun) {
+          appendPriorOutreachBlocklist({
+            company: row.company,
+            email: fromAddr,
+            sent_via: "hello@calcite-mail.jp",
+            sent_date: jstDateString(),
+            notes: `inside ${row.owner_campaign || row.recommended_campaign || ""} 配信停止返信`,
+          });
+        }
+      } else {
+        row.do_not_contact = "true";
+        row.status = "paused";
+      }
+    } else if (track === "inside") {
+      appendEscalate(
+        [
+          `## ${jstDateString()} inside needs human — ${row.company}`,
+          `- email: ${fromAddr}`,
+          `- reply_type: ${replyType}`,
+          `- subject: ${subject}`,
+          `- snippet: ${bodyText.replace(/\s+/g, " ").slice(0, 240)}`,
+          "",
+        ].join("\n")
+      );
+      actions.push({ type: "escalate", track: "inside", company: row.company, replyType });
     } else if (isPurchaseIntent(replyType)) {
       const demo = selectedDemoLabel(replyType);
       if (demo) row.notes = `${row.notes} / selected_demo=${demo}`;
@@ -366,6 +425,7 @@ try {
     state.ids[key] = {
       at: jstDateString(),
       kind: replyType,
+      track,
       company: row.company,
       messageId,
     };
@@ -378,10 +438,23 @@ try {
   await client.logout();
 }
 
-if (touched && !dryRun) {
-  fs.writeFileSync(leadsPath, serializeCsv(headers, rows) + "\n");
+if (!dryRun) {
+  if (touchedBuyout) {
+    fs.writeFileSync(buyoutLeadsPath, serializeCsv(buyoutHeaders, buyoutRows) + "\n");
+  }
+  if (touchedInside) {
+    if (!insideHeaders.includes("sent_at") && insideRows.some((r) => r.sent_at)) {
+      insideHeaders = [...insideHeaders, "sent_at"];
+    }
+    fs.writeFileSync(
+      insideLeadsPath,
+      serializeCsv(insideHeaders, insideRows, {
+        alwaysQuoteHeaders: ["site_url", "email", "campaign_evidence", "notes"],
+      }) + "\n"
+    );
+  }
+  saveState(state);
 }
-if (!dryRun) saveState(state);
 
 const bounceFailover = actions.some((a) => a.type === "bounce" && a.failover);
 console.log(JSON.stringify({ dryRun, actions, count: actions.length, bounceFailover }, null, 2));

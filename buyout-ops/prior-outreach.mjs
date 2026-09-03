@@ -101,6 +101,35 @@ export function isPriorOutreachBlocked(target) {
   return matchPriorOutreach(target).blocked;
 }
 
+/** Append a blocklist row if email/company not already blocked. Returns true if appended. */
+export function appendPriorOutreachBlocklist({
+  company = "",
+  email = "",
+  vertical = "koumuten",
+  sent_via = "hello@calcite-mail.jp",
+  sent_date = "",
+  notes = "",
+} = {}) {
+  if (isPriorOutreachBlocked({ company, email })) return false;
+  const headers = "company,email,vertical,sent_via,sent_date,notes";
+  const escape = (v) => {
+    const s = String(v ?? "");
+    return /[",\n]/.test(s) ? `"${s.replace(/"/g, '""')}"` : s;
+  };
+  const line = [company, email, vertical, sent_via, sent_date, notes].map(escape).join(",");
+  let prev = "";
+  if (fs.existsSync(BLOCKLIST_PATH)) {
+    prev = fs.readFileSync(BLOCKLIST_PATH, "utf8");
+    if (!prev.endsWith("\n")) prev += "\n";
+    if (!prev.trim()) prev = `${headers}\n`;
+  } else {
+    prev = `${headers}\n`;
+  }
+  fs.writeFileSync(BLOCKLIST_PATH, prev + line + "\n");
+  cache = null;
+  return true;
+}
+
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const company = process.argv.includes("--company")
     ? process.argv[process.argv.indexOf("--company") + 1]

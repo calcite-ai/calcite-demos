@@ -10,6 +10,7 @@ import { fileURLToPath } from "node:url";
 import { parseCsv } from "./csv-util.mjs";
 import { isPriorOutreachBlocked } from "./prior-outreach.mjs";
 import { isValidPublicEmail } from "./campaign-score.mjs";
+import { isAlreadyOutreached } from "./outreach-guard.mjs";
 import { loadSendQuota, jstDateString } from "./send-quota.mjs";
 import {
   computeSendTier,
@@ -32,6 +33,7 @@ function queueSeq(row) {
 function isApprovedSendable(r) {
   return (
     r.status === "approved" &&
+    !isAlreadyOutreached(r) &&
     isValidPublicEmail(r.email) &&
     !isPriorOutreachBlocked({ company: r.company, email: r.email }) &&
     ["recruit", "ai_ops", "hp_improve"].includes(String(r.owner_campaign || r.recommended_campaign || "").trim())

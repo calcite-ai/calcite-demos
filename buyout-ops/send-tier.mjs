@@ -10,6 +10,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { parseCsv } from "./csv-util.mjs";
+import { parseOutreachSentDate } from "./outreach-guard.mjs";
 import { jstDateString } from "./send-quota.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -85,9 +86,7 @@ export function computeSendTier(row) {
 }
 
 export function parseSentDate(row) {
-  if (row.sent_at) return String(row.sent_at).slice(0, 10);
-  const m = String(row.notes || "").match(/初回送信\s+(\d{4}-\d{2}-\d{2})/);
-  return m ? m[1] : "";
+  return parseOutreachSentDate(row);
 }
 
 /** JST 週（月曜始まり）の YYYY-MM-DD */

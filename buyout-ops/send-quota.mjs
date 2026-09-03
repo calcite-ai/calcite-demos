@@ -11,6 +11,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
 import { parseCsv } from "./csv-util.mjs";
+import { parseOutreachSentDate } from "./outreach-guard.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const quotaPath = path.join(__dirname, "send-quota.csv");
@@ -26,11 +27,9 @@ export function jstDateString(d = new Date()) {
   }).format(d);
 }
 
+/** @deprecated alias — use parseOutreachSentDate; kept for callers */
 export function parseSentDate(row) {
-  if (row.sent_at) return String(row.sent_at).slice(0, 10);
-  const blob = `${row.notes || ""} ${row.owner_approved_at || ""}`;
-  const m = blob.match(/初回送信済\s+(\d{4}-\d{2}-\d{2})/);
-  return m ? m[1] : "";
+  return parseOutreachSentDate(row);
 }
 
 export function loadQuotaRows() {
@@ -75,16 +74,17 @@ export function dailySendLimit(today = jstDateString()) {
   };
 }
 
+/** Count by send evidence date — status may have been wrongly reset by a pipeline rewrite. */
 export function countBuyoutSentOn(today = jstDateString()) {
   if (!fs.existsSync(buyoutLeadsPath)) return 0;
   const { rows } = parseCsv(fs.readFileSync(buyoutLeadsPath, "utf8"));
-  return rows.filter((r) => r.status === "sent" && parseSentDate(r) === today).length;
+  return rows.filter((r) => parseOutreachSentDate(r) === today).length;
 }
 
 export function countInsideSentOn(today = jstDateString()) {
   if (!fs.existsSync(insideLeadsPath)) return 0;
   const { rows } = parseCsv(fs.readFileSync(insideLeadsPath, "utf8"));
-  return rows.filter((r) => r.status === "sent" && parseSentDate(r) === today).length;
+  return rows.filter((r) => parseOutreachSentDate(r) === today).length;
 }
 
 /** @deprecated use countBuyoutSentOn */
