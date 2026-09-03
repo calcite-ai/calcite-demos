@@ -1,0 +1,13 @@
+name: tmp port25 check
+on:
+  push:
+    branches: [tmp/port25-probe-check]
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - run: FORCE_RECIPIENT_PROBE=1 node buyout-ops/verify-recipient.mjs --email nonexistent-xyz-abc@gmail.com --email kenta.hino1106@gmail.com --json || true
