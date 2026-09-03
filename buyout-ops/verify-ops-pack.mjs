@@ -83,6 +83,31 @@ walkProspects((slug, dir) => {
       fails.push(`O16 buyout-prospects/${slug}/b-atelier に about/contact がありません`);
     }
   }
+  const imgDir = path.join(dir, "shared", "images");
+  function walkHtmlForImages(d) {
+    for (const e of fs.readdirSync(d, { withFileTypes: true })) {
+      const p = path.join(d, e.name);
+      if (e.isDirectory()) walkHtmlForImages(p);
+      else if (e.name.endsWith(".html")) {
+        const html = fs.readFileSync(p, "utf8");
+        if (/prospect-(hero|photo)/i.test(html)) {
+          fails.push(
+            `O17 ${path.relative(repoRoot, p)} — 先方サイトから拾った画像参照は禁止（在庫 Unsplash/AI のみ）`
+          );
+        }
+      }
+    }
+  }
+  walkHtmlForImages(dir);
+  if (fs.existsSync(imgDir)) {
+    for (const f of fs.readdirSync(imgDir)) {
+      if (/^prospect-(hero|photo)/i.test(f)) {
+        fails.push(
+          `O17 buyout-prospects/${slug}/shared/images/${f} — 先方サイト画像ファイルは禁止（削除して在庫画像に戻す）`
+        );
+      }
+    }
+  }
 });
 
 const csvPath = path.join(__dirname, "demo_buyout_leads.csv");

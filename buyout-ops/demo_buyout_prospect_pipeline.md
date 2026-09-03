@@ -74,9 +74,9 @@ node buyout-ops/prospect-scan-batch.mjs --limit 10 --sleep-ms 1500
 
 | status | 意味 | 次 |
 |---|---|---|
-| **CANDIDATE** | メールあり・粗2点以上・非モダン | 朝レビュー → prospects へ |
+| **CANDIDATE** | メールあり・粗2点以上・非モダン。**例外: SSL未整備（ブラウザ警告）は粗1点でも CANDIDATE** | 朝レビュー → prospects へ |
 | G1_MODERN | 新しすぎ | 捨てる（捏造禁止） |
-| G1_WEAK | 粗1点以下 | 捨てる |
+| G1_WEAK | 粗1点以下（SSL警告を除く） | 捨てる / inside 分岐 |
 | NO_EMAIL | フォームのみ | 電話トラック or スキップ |
 | BLOCKLIST | 過去営業済 | 触らない |
 

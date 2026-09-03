@@ -220,6 +220,7 @@ url,company,scan_status,track,email,prefecture,final_url,hp_score,recruit_score,
 "https://www.yamashita-sc.com/",yamashita-sc,G1_MODERN,skip,"",東京,"https://www.yamashita-sc.com/",0,0,0,skip,"track=skip",
 "https://yoshida-c.com/",yoshida-c,NO_EMAIL,skip,"",東京,"https://yoshida-c.com/",0,0,0,skip,"track=skip",
 "http://www.architectsun-do.com/",アーキテクトSUN-DO,FETCH_FAIL,skip,"",和歌山市,"http://www.architectsun-do.com/",0,0,0,skip,"track=skip",
+"https://studiopure.jp/",アーキテクト工房 Pure,NO_EMAIL,skip,"",松山市,"https://studiopure.jp/",0,0,0,skip,"track=skip",
 "https://www.arterracehome.jp/",アートテラスホーム株式会社,G1_MODERN,skip,"",神奈川,"https://www.arterracehome.jp/",0,0,0,skip,"track=skip",
 "https://www.ideal-fk.co.jp/",アイディール株式会社,G1_MODERN,skip,"",八王子,"https://www.ideal-fk.co.jp/",0,0,0,skip,"track=skip",
 "http://ainai.jp/index.html",アイナイ工務店 株式会社,FETCH_FAIL,skip,"",神奈川,"http://ainai.jp/index.html",0,0,0,skip,"track=skip",
@@ -264,6 +265,7 @@ url,company,scan_status,track,email,prefecture,final_url,hp_score,recruit_score,
 "https://www.urasawa-koumuten.com/",うらさわ工務店,FETCH_FAIL,skip,"",大津市,"https://www.urasawa-koumuten.com/",0,0,0,skip,"track=skip",
 "https://www.8home.jp/",エイト,FETCH_FAIL,skip,"",大分市,"https://www.8home.jp/",0,0,0,skip,"track=skip",
 "https://www.satoh-koumuten.com/",エーエス佐藤工務店,G1_MODERN,skip,"",相模原,"https://www.satoh-koumuten.com/",0,0,0,skip,"track=skip",
+"https://www.egawa-koumuten.com/",エガワ工務店,NO_EMAIL,skip,"",佐賀市,"https://www.egawa-koumuten.com/",0,0,0,skip,"track=skip",
 "https://www.eclathome.jp/",エクラホーム,FETCH_FAIL,skip,"",那覇市,"https://www.eclathome.jp/",0,0,0,skip,"track=skip",
 "https://www.ecohouse-okayama.jp/",エコハウス岡山株式会社,NO_EMAIL,skip,"",岡山市,"https://www.ecohouse-okayama.jp/",0,0,0,skip,"track=skip",
 "http://www.eco-works.jp/",エコワークス(株),G1_MODERN,inside,"info@eco-works.jp",福岡,"https://www.eco-works.jp/",0,3,3,recruit,"採用キーワード; 採用リンクあり(深掘り要); 工務店・建設",2026-08-31T10:46:07
@@ -285,6 +287,7 @@ url,company,scan_status,track,email,prefecture,final_url,hp_score,recruit_score,
 "https://k-greengable.com/",グリーンゲーブル,G1_MODERN,inside,"info@k-greengable.com",鹿児島市,"https://k-greengable.com/inquiry/",0,1,2,skip,"全スコア不足(hp=0,recruit=1,ai=2)",2026-09-02T03:10:25
 "http://green-market.net/",グリーンマーケット株式会社,NO_EMAIL,skip,"",水戸,"http://green-market.net/",0,0,0,skip,"track=skip",
 "https://kenkenkoumuten.jp/",けんけん工務店株式会社,G1_MODERN,skip,"",日の出町,"https://kenkenkoumuten.jp/",0,0,0,skip,"track=skip",
+"https://www.woodlife-core.co.jp/",コアー建築工房,FETCH_FAIL,skip,"",堺市,"https://www.woodlife-core.co.jp/",0,0,0,skip,"track=skip",
 "http://www.coretechnos.com/",コアテクノス株式会社,NO_EMAIL,skip,"",大阪,"http://www.coretechnos.com/",0,0,0,skip,"track=skip",
 "https://cosmohome-co.com/",コスモホーム,FETCH_FAIL,skip,"",名古屋市,"https://cosmohome-co.com/",0,0,0,skip,"track=skip",
 "https://kuturogi.jp/",コスモレーベン(株),G1_MODERN,skip,"",福岡,"https://kuturogi.jp/",0,0,0,skip,"track=skip",
@@ -498,6 +501,7 @@ url,company,scan_status,track,email,prefecture,final_url,hp_score,recruit_score,
 "https://www.apple-h.co.jp/",株式会社アップルホーム,G1_MODERN,inside,"info@apple-h.co.jp",埼玉,"https://www.apple-h.co.jp/",0,4,4,recruit,"採用URL:/recruit/; 採用キーワード; 工務店・建設",2026-08-31T06:20:20
 "https://atelier-hibiki.com",株式会社アトリエ響,G1_MODERN,skip,"",東京,"https://atelier-hibiki.com/",0,0,0,skip,"track=skip",
 "https://www.after-1115.com/",株式会社アフター,FETCH_FAIL,skip,"",十日町,"https://www.after-1115.com/",0,0,0,skip,"track=skip",
+"https://ara-kawa.net/",株式会社アラカワ,G1_MODERN,skip,"",堺市,"https://ara-kawa.net/",0,0,0,skip,"track=skip",
 "https://century21-aluc.jp",株式会社アルクホーム,FETCH_FAIL,skip,"",札幌市,"https://century21-aluc.jp",0,0,0,skip,"track=skip",
 "https://www.alphahome.info/",株式会社アルファホーム,G1_WEAK,inside,"info@alphahome.info",青森市,"https://www.alphahome.info/company/",2,1,0,skip,"全スコア不足(hp=2,recruit=1,ai=0)",2026-09-02T03:18:19
 "https://www.alpha-as.jp",株式会社アルファ建築空間,G1_WEAK,inside,"info@mail.co.jp",鹿島,"https://alpha-as.jp/contact/",2,2,2,skip,"全スコア不足(hp=2,recruit=2,ai=2)",2026-08-31T06:14:03
@@ -645,9 +649,11 @@ url,company,scan_status,track,email,prefecture,final_url,hp_score,recruit_score,
 "http://www.sciencetect.jp/",株式会社ビルドテクト,CANDIDATE,buyout,"mail.bildtct@clock.ocn.ne.jp",鳥取,"http://www.sciencetect.jp/company.html",5,0,0,hp_buyout_66k,"SSL未整備; tel:なし; 粗2点以上",
 "http://www.hilohouse.net/",株式会社ヒロハウス,G1_MODERN,inside,"info@hilohouse.net",久山,"https://www.hilohouse.net/",0,1,4,ai_ops,"HP整備済(G1_MODERN); FAX表記; 問合せ・見積導線",2026-08-31T06:19:49
 "https://hirobase.co.jp/",株式会社ヒロベース,FETCH_FAIL,skip,"",埼玉,"https://hirobase.co.jp/",0,0,0,skip,"track=skip",
+"https://hiroken1004.com/",株式会社ヒロ建設工業,G1_WEAK,inside,"matsuoka@hiroken1004.com",松山市,"https://hiroken1004.com/company/",2,3,2,recruit,"採用キーワード; 採用リンクあり(深掘り要); 工務店・建設",2026-09-02T23:32:51
 "https://forestajp.com/",株式会社フォレスタ,G1_MODERN,skip,"",札幌市,"https://forestajp.com/",0,0,0,skip,"track=skip",
 "http://www.fuziki.co.jp",株式会社フジキ建設,G1_WEAK,inside,"info@fuziki.co.jp",埼玉,"https://www.fuziki.co.jp/",2,3,2,recruit,"採用URL:/recruit/; 工務店・建設",2026-08-31T06:20:09
 "https://www.fujikengroup.co.jp",株式会社フジケン,NO_EMAIL,skip,"",岡崎市,"https://www.fujikengroup.co.jp/",0,0,0,skip,"track=skip",
+"https://www.fuji-jutaku.co.jp/",株式会社フジ住宅,NO_EMAIL,skip,"",堺市,"https://www.fuji-jutaku.co.jp/",0,0,0,skip,"track=skip",
 "https://primehousing.co.jp/",株式会社プライムハウジング,NO_EMAIL,skip,"",青森市,"https://primehousing.co.jp/",0,0,0,skip,"track=skip",
 "https://www.plus-one-home.com/",株式会社プラスワン,FETCH_FAIL,skip,"",松山市,"https://www.plus-one-home.com/",0,0,0,skip,"track=skip",
 "http://breath-home.com/",株式会社ブレスホーム,FETCH_FAIL,skip,"",豊田,"http://breath-home.com/",0,0,0,skip,"track=skip",
@@ -1118,6 +1124,7 @@ url,company,scan_status,track,email,prefecture,final_url,hp_score,recruit_score,
 "https://www.3door.jp",株式会社福山Three door,G1_MODERN,inside,"info@fukuyamathreedoor.co.jp",福山,"https://www.3door.jp/contact/",0,1,4,ai_ops,"HP整備済(G1_MODERN); FAX表記; 問合せ・見積導線",2026-08-31T06:14:11
 "https://e-fukushi.co.jp/",株式会社福子工務店,NO_EMAIL,skip,"",千代田区,"https://e-fukushi.co.jp/",0,0,0,skip,"track=skip",
 "https://www.fukudakoumuten.net/",株式会社福田工務店,G1_WEAK,inside,"fukudakoumuten@outlook.com",東大和市,"https://www.fukudakoumuten.net/",3,1,2,hp_improve,"tel:なし; ワンページ構成; 粗1点",2026-09-01T14:38:52
+"https://fukuda-saga.com/",株式会社福田工務店,G1_MODERN,skip,"",佐賀市,"https://fukuda-saga.com/",0,0,0,skip,"track=skip",
 "http://www.k-fukuzawa.co.jp/",株式会社福澤工務店,BLOCKLIST,skip,"",厚木,"http://www.k-fukuzawa.co.jp/",0,0,0,skip,"track=skip",
 "https://hirai-koumuten.com/",株式会社平井工務店,G1_MODERN,skip,"",久喜市,"https://hirai-koumuten.com/",0,0,0,skip,"track=skip",
 "https://hirashou.com/",株式会社平正工務店,G1_MODERN,skip,"",さいたま,"https://hirashou.com/",0,0,0,skip,"track=skip",
@@ -1255,6 +1262,7 @@ url,company,scan_status,track,email,prefecture,final_url,hp_score,recruit_score,
 "https://www.dada-arc.com/",建築工房DADA,FETCH_FAIL,skip,"",仙台市,"https://www.dada-arc.com/",0,0,0,skip,"track=skip",
 "https://tatsuki-k.com/",建木工務店,G1_MODERN,inside,"info@tatsuki-k.com",立川,"https://www.tatsuki-k.com/",0,6,5,recruit,"採用URL:/recruit/; 採用キーワード; 採用ページ更新古い(2018); 工務店・建設",2026-09-01T13:34:04
 "http://www14.ocn.ne.jp/~kenwa",建和工業有限会社,FETCH_FAIL,skip,"",福井,"http://www14.ocn.ne.jp/~kenwa",0,0,0,skip,"track=skip",
+"https://kogakoumuten.com/",古賀工務店,G1_MODERN,inside,"info@kogakoumuten.com",佐賀市,"https://kogakoumuten.com/contact/",0,1,5,ai_ops,"HP整備済(G1_MODERN); FAX表記; PDF資料; 問合せ・見積導線",2026-09-02T23:32:47
 "https://www.furugori-housing.com/",古郡ホーム株式会社,G1_MODERN,skip,"",深谷市,"https://www.furugori-housing.com/",0,0,0,skip,"track=skip",
 "https://dh-f.jp/furukawa/",古川工務店,G1_MODERN,inside,"dhf@xxx.com",鶴ヶ島市,"https://dh-f.jp/contactform/",0,1,5,ai_ops,"HP整備済(G1_MODERN); FAX表記; PDF資料; 問合せ・見積導線",2026-09-01T14:39:55
 "http://fbirdhouse.com/",袴田工務店,FETCH_FAIL,skip,"",静岡市,"http://fbirdhouse.com/",0,0,0,skip,"track=skip",

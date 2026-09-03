@@ -1,21 +1,17 @@
 #!/usr/bin/env node
 /**
  * Copy c-refresh + b-atelier skins to buyout-prospects/<slug>/ with company swap,
- * サイト改善のポイント band, human strength line, optional site photos.
+ * サイト改善のポイント band, human strength line. 画像は在庫のみ（先方サイト取得禁止）。
  *
  * Usage:
- *   node buyout-ops/rollout-c-refresh.mjs [--slug takasu-koumuten] [--fetch-images]
- *   node buyout-ops/rollout-c-refresh.mjs --no-fetch-images
+ *   node buyout-ops/rollout-c-refresh.mjs [--slug takasu-koumuten]
  */
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { parseCsv } from "./csv-util.mjs";
 import { buildAuditDemoCopy, injectAuditIntoHtml } from "./audit-demo-copy.mjs";
-import {
-  fetchProspectSiteImages,
-  prospectImageReplacements,
-} from "./prospect-site-images.mjs";
+import { prospectImageReplacements } from "./prospect-site-images.mjs";
 
 const repoRoot = path.join(path.dirname(fileURLToPath(import.meta.url)), "..");
 const templateRoot = path.join(repoRoot, "buyout-template/designs/c-refresh");
@@ -171,7 +167,7 @@ function ensureSharedImages(slugDir, imageReplacements) {
   return sharedDir;
 }
 
-async function refreshSlug(slug, { fetchImages }) {
+async function refreshSlug(slug) {
   const slugDir = path.join(prospectsRoot, slug);
   const sourceIndex = findSourceIndex(slugDir);
   if (!sourceIndex) {
@@ -189,20 +185,8 @@ async function refreshSlug(slug, { fetchImages }) {
   });
 
   const imagesDir = ensureSharedImages(slugDir, []);
-  let prospectImages = { hero: null, photo2: null };
-  if (fetchImages && lead?.site_url) {
-    prospectImages = await fetchProspectSiteImages(lead.site_url, imagesDir);
-    if (prospectImages.hero || prospectImages.photo2) {
-      console.log(
-        "  images",
-        prospectImages.hero || "-",
-        prospectImages.photo2 || "-",
-        "←",
-        lead.site_url
-      );
-    }
-  }
-  const imageReplacements = prospectImageReplacements(imagesDir, prospectImages);
+  // 先方サイトからの画像取得は禁止（在庫のみ）
+  const imageReplacements = prospectImageReplacements(imagesDir, {});
 
   const cDest = path.join(slugDir, "c-refresh");
   fs.rmSync(cDest, { recursive: true, force: true });
@@ -226,7 +210,6 @@ if (!fs.existsSync(templateRoot)) {
 }
 
 const onlySlug = arg("slug");
-const fetchImages = !hasFlag("no-fetch-images");
 const slugs = onlySlug
   ? [onlySlug]
   : fs.readdirSync(prospectsRoot).filter((name) => {
@@ -248,5 +231,5 @@ if (seed) {
 }
 
 for (const slug of slugs.sort()) {
-  await refreshSlug(slug, { fetchImages });
+  await refreshSlug(slug);
 }

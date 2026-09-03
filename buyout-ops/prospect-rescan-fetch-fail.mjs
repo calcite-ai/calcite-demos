@@ -12,6 +12,7 @@ import {
   detectMachineDefects,
   formatRoughAudit,
   fetchSiteWithContacts,
+  isBuyoutCandidateDefects,
 } from "./site-g1-eval.mjs";
 import { isPriorOutreachBlocked } from "./prior-outreach.mjs";
 
@@ -59,7 +60,7 @@ async function rescanRow(row) {
 
   const defects = detectMachineDefects(pack.signals);
   const auditDraft = formatRoughAudit(defects);
-  if (defects.length < 2) {
+  if (!isBuyoutCandidateDefects(defects)) {
     return {
       ...row,
       status: "G1_WEAK",

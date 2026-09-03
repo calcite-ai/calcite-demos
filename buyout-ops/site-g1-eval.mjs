@@ -137,11 +137,13 @@ export function evaluateAuditNotes(audit_notes) {
   }
   const roughLine = text.match(/粗:[^\n]*/)?.[0] || "";
   const defectCount = [...roughLine.matchAll(/\(\d+\)/g)].length;
-  if (defectCount < 2) {
+  const hasSsl = /SSL未整備|https未整備|HTTPSでない|https未対応/i.test(text);
+  // セキュリティ警告サイトは粗1点（SSLのみ）でも送信対象
+  if (defectCount < 2 && !(hasSsl && defectCount >= 1)) {
     return {
       fail: true,
       code: "AUDIT_DEFECTS",
-      message: `audit_notes の粗が${defectCount}点（2点以上必須）`,
+      message: `audit_notes の粗が${defectCount}点（2点以上必須。SSL警告のみは1点可）`,
     };
   }
   return { fail: false, defectCount };
@@ -167,7 +169,7 @@ export async function evaluateSiteG1(siteUrl) {
   return { pass: true, signals, fails: [] };
 }
 
-/** 機械検出できる粗（C1/C2/C3/C4 の一部）。2点以上で G1 候補 */
+/** 機械検出できる粗（C1/C2/C3/C4 の一部）。通常は2点以上で G1 候補 */
 export function detectMachineDefects(signals) {
   const defects = [];
   if (!signals.finalHttps) defects.push("SSL未整備");
@@ -179,8 +181,20 @@ export function detectMachineDefects(signals) {
   return defects;
 }
 
+/** ブラウザのセキュリティ警告（HTTPS未整備）があるサイトは粗1点でも買い取り営業対象 */
+export function hasSecurityWarningDefect(defects) {
+  return (defects || []).some((d) => /SSL未整備|https未整備/i.test(String(d)));
+}
+
+/** buyout CANDIDATE にする粗の条件（メールあり前提は呼び出し側） */
+export function isBuyoutCandidateDefects(defects) {
+  const list = Array.isArray(defects) ? defects : [];
+  if (list.length >= 2) return true;
+  return hasSecurityWarningDefect(list);
+}
+
 export function formatRoughAudit(defects) {
-  if (defects.length < 2) return "";
+  if (!isBuyoutCandidateDefects(defects)) return "";
   const parts = defects.slice(0, 3).map((d, i) => `(${i + 1})${d}`);
   return `粗:${parts.join(";")}`;
 }

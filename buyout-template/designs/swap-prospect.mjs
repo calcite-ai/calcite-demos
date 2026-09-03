@@ -4,7 +4,7 @@
  *
  * Usage:
  *   node designs/swap-prospect.mjs \
- *     --skins b-atelier,c-daylight \
+ *     --skins e-taisei,f-sanyu \
  *     --name "株式会社サンプル" \
  *     --tag "地域の〇〇を支えます" \
  *     --tel "03-1234-5678" \
@@ -19,10 +19,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { buildAuditDemoCopy, injectAuditIntoHtml } from "../../buyout-ops/audit-demo-copy.mjs";
-import {
-  fetchProspectSiteImages,
-  prospectImageReplacements,
-} from "../../buyout-ops/prospect-site-images.mjs";
+// 営業デモでは先方サイトから画像を拾わない（在庫 Unsplash / AI 素材のみ）
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -31,7 +28,8 @@ function arg(name, fallback = "") {
   return i >= 0 ? process.argv[i + 1] : fallback;
 }
 
-const skins = arg("skins", "b-atelier,c-daylight")
+/** 標準は E+F（方針: demo_buyout_plan.md）。A〜D は明示指定時のみ */
+const skins = arg("skins", "e-taisei,f-sanyu")
   .split(",")
   .map((s) => s.trim())
   .filter(Boolean);
@@ -44,7 +42,8 @@ const slug = arg("slug", "prospect");
 const defects = arg("defects", "");
 const paySignals = arg("pay-signals", arg("pay_signals", ""));
 const auditNotes = arg("audit-notes", arg("audit_notes", ""));
-const siteUrl = arg("site-url", arg("site_url", ""));
+const siteUrl = arg("site-url", arg("site_url", "")); // 監査メモ用。先方画像取得には使わない（禁止）
+void siteUrl;
 
 if (!name) {
   console.error("Required: --name");
@@ -126,22 +125,8 @@ function walk(dir, fn) {
 fs.rmSync(outRoot, { recursive: true, force: true });
 fs.mkdirSync(outRoot, { recursive: true });
 
-// Shared photos once per prospect
+// Shared photos once per prospect（在庫のみ。先方サイト画像の取得は禁止）
 copyDir(path.join(__dirname, "shared"), path.join(outRoot, "shared"));
-
-const imagesDir = path.join(outRoot, "shared", "images");
-let prospectImages = { hero: null, photo2: null };
-if (siteUrl) {
-  prospectImages = await fetchProspectSiteImages(siteUrl, imagesDir);
-  if (prospectImages.hero || prospectImages.photo2) {
-    console.log(
-      "prospect images:",
-      prospectImages.hero || "(none)",
-      prospectImages.photo2 || "(none)"
-    );
-  }
-}
-const imageReplacements = prospectImageReplacements(imagesDir, prospectImages);
 
 for (const skin of skins) {
   const src = path.join(__dirname, skin);
@@ -156,7 +141,6 @@ for (const skin of skins) {
     if (!/\.(html|css|js|md)$/i.test(file)) return;
     let text = fs.readFileSync(file, "utf8");
     for (const [a, b] of replacements) text = text.split(a).join(b);
-    for (const [a, b] of imageReplacements) text = text.split(a).join(b);
 
     text = injectAuditIntoHtml(text, auditCopy);
 
