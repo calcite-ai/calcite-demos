@@ -55,6 +55,11 @@
       "at": "2026-09-04",
       "kind": "ignored_unknown",
       "from": "noreply-dmarc-support@google.com"
+    },
+    "uid:11": {
+      "at": "2026-09-05",
+      "kind": "ignored_unknown",
+      "from": "dmarc-reports@heteml.jp"
     }
   }
 }
