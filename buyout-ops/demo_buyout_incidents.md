@@ -2,6 +2,31 @@
 
 > 同種ミスを二度起こさないための記録とゲート一覧。
 
+## 2026-09-04: 有限会社佐藤工務店へ同一本文を2通送信
+
+### 起きたこと
+
+| # | 時刻 (JST) | 経路 | messageId |
+|---|---|---|---|
+| 1 | 09:12 | push「Queue 有限会社佐藤工務店」が `buyout-daily-send.yml` を起動 | `<d505583d-c006-513d-168b-d70fbcfa25f4@calcite-mail.jp>` |
+| 2 | 14:17 | スケジュール catch-up | `<34380283-362d-83dd-307b-05d4b594a4f5@calcite-mail.jp>` |
+
+1通目のあと workflow は CSV を `sent` にして commit したが、同時刻の「Queue 高嶋材木店」push で `main` が進んでおり **`git push` が non-fast-forward で失敗**。CSV は origin 上 `queued` のまま残った。14:17 はそれを未送信と見て再送した。宛先は `info@bluemoon-s.com`。本文は同一（デモURLも同じ）。
+
+concurrency はジョブ実行を直列化していたが、**SMTP成功後の mark-sent が origin に乗らなければ次枠が再送する**。`remaining_today` も CSV の `sent_at` 依存なので、1通目は枠消費に数えられなかった。
+
+### 恒久対策
+
+| 層 | 内容 |
+|---|---|
+| **receipt** | SMTP 成功直後に `send-receipts.jsonl` へ追記。CSV の status が遅れても同一アドレスは再送しない（V18 / `isAlreadyOutreached` / `send-outreach-smtp`） |
+| **cache** | Actions cache に `.send-receipts-cache.jsonl` を残す。mark-sent push が落ちても次ランが復元できる |
+| **push** | mark-sent は `git pull --rebase` を最大8回リトライ。それでも失敗なら job を FAIL（メールは送済み・receipt で再送阻止） |
+
+先方へのお詫びメールはオーナー判断。自動では送らない。
+
+---
+
 ## 2026-09-03: 当日2通が2通ともハードバウンス（送信前の宛先実在確認なし）
 
 ### 起きたこと

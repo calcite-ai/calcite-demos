@@ -24,6 +24,7 @@ import { isValidPublicEmail } from "./campaign-score.mjs";
 import { verifyRecipient, probeSkipReason } from "./verify-recipient.mjs";
 import { evaluateLeadG1 } from "./site-g1-eval.mjs";
 import { loadSendQuota } from "./send-quota.mjs";
+import { hasSentTo } from "./send-receipts.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const repoRoot = path.resolve(__dirname, "..");
@@ -131,6 +132,11 @@ async function verifyProspect({ name, email, urlA, urlB, slug, quotedPrice, stat
   if (!isValidPublicEmail(email)) {
     fails.push(
       `V16 送信先メールが無効（フォーム記入例・空など）: ${email || "(empty)"} — 実在するアドレスに直すか行を削除`
+    );
+  }
+  if (email && hasSentTo(email) && status !== "sent") {
+    fails.push(
+      `V18 同一アドレスへ送信済み（send-receipts.jsonl）。CSVの status が sent でなくても再送しない`
     );
   }
 

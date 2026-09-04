@@ -2,6 +2,8 @@
  * Shared outreach idempotency — never re-approve or re-send a lead that
  * already left the pool (sent / opt_out / paused) or that has send evidence.
  */
+import { hasSentTo } from "./send-receipts.mjs";
+
 export const TERMINAL_LEAD_STATUSES = new Set(["sent", "opt_out", "paused"]);
 
 /** Prefer sent_at; else notes 「初回送信」/「初回送信済」YYYY-MM-DD */
@@ -19,6 +21,7 @@ export function isAlreadyOutreached(row) {
   if (TERMINAL_LEAD_STATUSES.has(st)) return true;
   if (String(row.sent_at || "").trim()) return true;
   if (parseOutreachSentDate(row)) return true;
+  if (hasSentTo(row.email)) return true;
   return false;
 }
 

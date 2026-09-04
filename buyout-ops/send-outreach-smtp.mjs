@@ -29,6 +29,7 @@ import { parseCsv } from "./csv-util.mjs";
 import { resolveTransport } from "./mail-transport.mjs";
 import { sendgridSmtpHeaders } from "./sendgrid-smtp-headers.mjs";
 import { classifySmtpError, exitCodeForKind } from "./smtp-error-kind.mjs";
+import { appendReceipt, hasSentTo } from "./send-receipts.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.join(__dirname, "..");
@@ -105,6 +106,10 @@ if (!row?.email) {
   console.error(`FAIL no email for ${company}`);
   process.exit(1);
 }
+if (hasSentTo(row.email)) {
+  console.error(`FAIL already sent to ${row.email} (send-receipts.jsonl) — will not resend`);
+  process.exit(1);
+}
 
 const transport = resolveTransport();
 const bcc = String(process.env.BUYOUT_BCC || DEFAULT_BCC).trim();
@@ -143,6 +148,7 @@ try {
   const info = await transporter.sendMail(mail);
 
   const id = info.messageId || info.response || "";
+  appendReceipt({ company, email: row.email, messageId: id, track: "buyout" });
   console.log(`RESULT sent messageId=${id}`);
   console.log(`SMTP_MESSAGE_ID=${id}`);
 } catch (err) {

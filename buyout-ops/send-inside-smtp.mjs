@@ -17,6 +17,7 @@ import { isAlreadyOutreached } from "./outreach-guard.mjs";
 import { sendgridSmtpHeaders } from "./sendgrid-smtp-headers.mjs";
 import { classifySmtpError, exitCodeForKind } from "./smtp-error-kind.mjs";
 import { jstDateString } from "./send-quota.mjs";
+import { appendReceipt } from "./send-receipts.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.join(__dirname, "..");
@@ -123,6 +124,12 @@ try {
       alwaysQuoteHeaders: ["site_url", "email", "campaign_evidence", "notes"],
     }) + "\n"
   );
+  appendReceipt({
+    company: rows[idx].company,
+    email: rows[idx].email,
+    messageId: id,
+    track: "inside",
+  });
   console.log(`RESULT sent messageId=${id}`);
   console.log(`SMTP_MESSAGE_ID=${id}`);
 } catch (err) {

@@ -1,3 +1,4 @@
 # local secrets — never commit
 secrets/
 buyout-ops/node_modules/
+buyout-ops/.send-receipts-cache.jsonl
