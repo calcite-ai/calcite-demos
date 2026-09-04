@@ -8,6 +8,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { spawnSync } from "node:child_process";
 import { publicDemoUrl } from "../../buyout-ops/canonical-url.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -29,6 +30,24 @@ const dest = path.join(__dirname, "..", "..", "buyout-prospects", slug);
 if (!fs.existsSync(src)) {
   console.error("Missing _prospects/" + slug + " — run swap-prospect.mjs first");
   process.exit(1);
+}
+
+const contentGate = spawnSync(
+  process.execPath,
+  [
+    path.join(__dirname, "..", "..", "buyout-ops", "verify-demo-content.mjs"),
+    "--dir",
+    src,
+    "--slug",
+    slug,
+    "--skip-site",
+    "--skip-email",
+  ],
+  { stdio: "inherit" }
+);
+if (contentGate.status !== 0) {
+  console.error("publish aborted — verify-demo-content FAIL");
+  process.exit(contentGate.status || 1);
 }
 
 function copyDir(from, to) {

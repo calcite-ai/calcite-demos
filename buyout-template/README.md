@@ -2,20 +2,18 @@
 
 架空サンプル: **アオイ工房**
 
-## 本番運用（在庫4 → 送付2）
+## 本番運用（標準は E案1本）
 
 実送付用のデザイン在庫はここ:
 
-**`designs/`** — A Sumi / B Atelier / C Daylight / D Signboard（見た目）  
-業種の中身は `designs/verticals/`（koumuten / zeirishi / sougi）。詳細: `../../sales/knowledge/demo_buyout_verticals.md`
+**`designs/`** — 標準 **E Taisei**。F および A〜D は在庫として残置。
 
 | 手順 | 内容 |
 |---|---|
-| 1 | `http://127.0.0.1:8765/designs/` で在庫確認 |
-| 2 | 先方に合う **2骨格** を選ぶ |
-| 3 | `node designs/swap-prospect.mjs` で社名など差し替えコピーを出力 |
-| 4 | 2URLを送付 →「どちらかでよければ55,000円（税込）で買い取り」 |
-| 5 | 決済後は選ばれた1本だけ本差し替え納品 |
+| 1 | `http://127.0.0.1:8765/designs/e-taisei/` で標準テンプレ確認 |
+| 2 | `node designs/swap-prospect.mjs` で社名など差し替え（省略時スキンは e-taisei） |
+| 3 | 1URLを送付 →「この方向でよければ66,000円（税込）で買い取り」 |
+| 4 | 決済後はそのデモを差し替え納品 |
 
 運用詳細: `../../sales/knowledge/demo_buyout_design_inventory.md`
 

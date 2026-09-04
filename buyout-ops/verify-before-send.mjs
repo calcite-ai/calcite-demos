@@ -127,7 +127,7 @@ async function verifyProspect({ name, email, urlA, urlB, slug, quotedPrice, stat
     );
   }
 
-  if (!urlA || !urlB) fails.push("V1 CSVに demo_url_a / demo_url_b がない");
+  if (!urlA) fails.push("V1 CSVに demo_url_a がない");
   if (!name) fails.push("V3 社名がない");
   if (!isValidPublicEmail(email)) {
     fails.push(
@@ -272,6 +272,24 @@ async function verifyProspect({ name, email, urlA, urlB, slug, quotedPrice, stat
     }
   }
 
+  if ((status === "queued" || status === "built") && derivedSlug) {
+    const content = spawnSync(
+      process.execPath,
+      [
+        path.join(__dirname, "verify-demo-content.mjs"),
+        "--from-csv",
+        "--company",
+        name,
+        "--slug",
+        derivedSlug,
+      ],
+      { stdio: "inherit", cwd: repoRoot }
+    );
+    if (content.status !== 0) {
+      fails.push("C0 verify-demo-content.mjs FAIL — 本文ゲートを通してから送る");
+    }
+  }
+
   return { fails, warns, slug: derivedSlug };
 }
 
@@ -316,17 +334,17 @@ async function main() {
         slug: arg("slug"),
       },
     ];
-    if (!targets[0].urlA || !targets[0].urlB) {
-      // derive from slug + default skins if provided via --skins
+    if (!targets[0].urlA) {
+      // derive from slug + default skin if provided via --skins
       const slug = arg("slug");
-      const skins = arg("skins", "e-taisei,f-sanyu")
+      const skins = arg("skins", "e-taisei")
         .split(",")
         .map((s) => s.trim())
         .filter(Boolean);
-      if (slug && skins.length >= 2) {
+      if (slug && skins.length >= 1) {
         const base = `https://calcite-ai.github.io/calcite-demos/buyout-prospects/${slug}`;
         targets[0].urlA = `${base}/${skins[0]}/`;
-        targets[0].urlB = `${base}/${skins[1]}/`;
+        if (skins[1]) targets[0].urlB = `${base}/${skins[1]}/`;
       }
     }
   }

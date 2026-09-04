@@ -9,12 +9,14 @@
 cd ~/claude/02_hp-sales/demos
 node buyout-ops/verify-ops-pack.mjs
 node buyout-ops/verify-hunter-g1.mjs --from-csv --company "株式会社〇〇"
+node buyout-ops/verify-demo-content.mjs --from-csv --company "株式会社〇〇"
 node buyout-ops/verify-before-send.mjs --slug <slug> --name "株式会社〇〇"
 # または CSV の1行から:
 node buyout-ops/verify-before-send.mjs --from-csv --company "株式会社福澤工務店"
 ```
 
-`verify-before-send` は内部で **verify-ops-pack も実行** する。  
+`verify-before-send` は内部で **verify-ops-pack** と、queued/built なら **verify-demo-content** も実行する。  
+`verify-demo-content` は先方に見せる本文（転記・デモ表記・架空代表・サンプル住所）を見る。PASS でも FACT 行は先方HPで手照合する。  
 返信で checkout / followup を送る前:
 
 ```bash
@@ -30,7 +32,8 @@ node buyout-ops/verify-inbox-reply.mjs --company "株式会社〇〇" --template
 □ P1  Gmail: to:{email} from:me で過去送信なし
 □ P2  C0〜C2 再確認（正規サイト・最終HTTPS・tel:）
 □ P3  メール課題①〜③ = audit_notes の粗だけ（新規指摘を足していない）
-□ P4  verify-ops-pack.mjs + verify-before-send.mjs が PASS
+□ P4  verify-ops-pack.mjs + verify-demo-content.mjs + verify-before-send.mjs が PASS
+□ P4b  FACT（代表・許可・事業見出し・写真盗用なし・390px）を先方HPと照合済み
 □ P5  デモ案A/B URL がメール本文と CSV で一致（末尾/・google.com/urlなし・www.calcite-ai.jp）
 □ P5b `render-outreach-email.mjs` の本文を text/plain で送る（htmlBodyなし）
 □ P6  今日の送信枠を超えていない（`send-quota.csv` / `node buyout-ops/send-quota.mjs`）
@@ -41,7 +44,7 @@ node buyout-ops/verify-inbox-reply.mjs --company "株式会社〇〇" --template
 
 | ID | 内容 | 失敗時 |
 |---|---|---|
-| V1 | `demo_url_a` / `demo_url_b` が HTTPS で **HTTP 200** | 送らない（push待ち or 作り直し） |
+| V1 | `demo_url_a` が HTTPS で **HTTP 200**（`demo_url_b` は任意） | 送らない（push待ち or 作り直し） |
 | V2 | 公開HTMLに **アオイ** / **アオイ工房** / サンプル住所・仮TELが残っていない | swapやり直し |
 | V3 | 公開HTML（トップ）に **先方社名** が含まれる | swapやり直し |
 | V4 | CSV の skin と URL パスが一致（例: `.../d-signboard/`） | CSV or URL 修正 |
@@ -57,6 +60,8 @@ node buyout-ops/verify-inbox-reply.mjs --company "株式会社〇〇" --template
 | V12 | **`prior_outreach_blocklist.csv` に載る**（個人Gmail・hello@ 含む過去デモ営業済） | 送らない |
 | V13 | **G1**: 相手サイトがモダン除外 / audit_notes に粗2点未満 / G1不合格 | 送らない（石川型） |
 | V15 | 今日の送信枠（`send-quota.csv`）に残がある | 残枠0なら送らない |
+| C1–C5 | `verify-demo-content.mjs`（転記・デモ表記・アオイ残・架空代表・社名） | 本文を直してから送る |
+| FACT | 代表・許可・事業見出しを先方HPと手照合（機械では判定しない） | 未確認なら最終OKにしない |
 
 ## 過去ミスとの対応
 
@@ -70,6 +75,6 @@ node buyout-ops/verify-inbox-reply.mjs --company "株式会社〇〇" --template
 | **旧価格テンプレのまま送信** | **V8 / O8 / P7** |
 | **デモ中間ページ・picker** | **V7 / V10 / O3-O4** |
 | **旧価格先に66k決済** | **I2 / quoted_price** |
-| **新しいサイトに buyout 送信（石川）** | **V13 / verify-hunter-g1** |
+| **社内メモ・架空代表がデモに残った（上野レビュー）** | **C1–C5 / verify-demo-content.mjs / P4b** |
 
 詳細: [`demo_buyout_incidents.md`](./demo_buyout_incidents.md)

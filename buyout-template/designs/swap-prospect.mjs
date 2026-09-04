@@ -1,10 +1,10 @@
 #!/usr/bin/env node
 /**
- * Copy 1–2 inventory skins and swap company fields for outreach.
+ * Copy inventory skin(s) and swap company fields for outreach.
  *
  * Usage:
  *   node designs/swap-prospect.mjs \
- *     --skins e-taisei,f-sanyu \
+ *     --skins e-taisei \
  *     --name "株式会社サンプル" \
  *     --tag "地域の〇〇を支えます" \
  *     --tel "03-1234-5678" \
@@ -18,8 +18,8 @@
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { buildAuditDemoCopy, injectAuditIntoHtml } from "../../buyout-ops/audit-demo-copy.mjs";
 // 営業デモでは先方サイトから画像を拾わない（在庫 Unsplash / AI 素材のみ）
+// サイト改善のポイントはデモ本文に埋め込まない（メール本文のみ）
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -28,8 +28,8 @@ function arg(name, fallback = "") {
   return i >= 0 ? process.argv[i + 1] : fallback;
 }
 
-/** 標準は E+F（方針: demo_buyout_plan.md）。A〜D は明示指定時のみ */
-const skins = arg("skins", "e-taisei,f-sanyu")
+/** 標準は E案のみ。F や A〜D は明示指定時のみ */
+const skins = arg("skins", "e-taisei")
   .split(",")
   .map((s) => s.trim())
   .filter(Boolean);
@@ -39,9 +39,6 @@ const tel = arg("tel", "03-0000-0000");
 const email = arg("email", "info@example.com");
 const address = arg("address", "〒100-0001 東京都千代田区サンプル1-2-3");
 const slug = arg("slug", "prospect");
-const defects = arg("defects", "");
-const paySignals = arg("pay-signals", arg("pay_signals", ""));
-const auditNotes = arg("audit-notes", arg("audit_notes", ""));
 const siteUrl = arg("site-url", arg("site_url", "")); // 監査メモ用。先方画像取得には使わない（禁止）
 void siteUrl;
 
@@ -52,12 +49,6 @@ if (!name) {
 
 const telHref = `tel:${tel.replace(/[^0-9+]/g, "")}`;
 const outRoot = path.join(__dirname, "_prospects", slug);
-const auditCopy = buildAuditDemoCopy({
-  defects,
-  pay_signals: paySignals,
-  audit_notes: auditNotes,
-  company: name,
-});
 
 /** D Signboard hero is `アオイ<br />工房` — plain `アオイ工房` replace misses it. */
 function heroHtml(companyName) {
@@ -86,13 +77,14 @@ const replacements = [
   ["アオイ工房", name],
   ["AOI KOUBO Inc.", englishSubtitle(name)],
   ["青", brandMark(name)],
-  ["地域で設計から工事まで行う総合建設会社", tag],
   ["地域の家づくりを、まっすぐ。", tag],
   ["地域の仕事を、丁寧に。", tag],
+  ["新築・改修・総合建設", "新築・改修"],
   ["03-0000-0000", tel],
   ["tel:0300000000", telHref],
   ["info@example.com", email],
   ["〒100-0001 東京都千代田区サンプル1-2-3", address],
+  ["〒100-0001<br />東京都千代田区サンプル1-2-3", address],
 ];
 
 function copyDir(src, dest) {
@@ -142,8 +134,6 @@ for (const skin of skins) {
     let text = fs.readFileSync(file, "utf8");
     for (const [a, b] of replacements) text = text.split(a).join(b);
 
-    text = injectAuditIntoHtml(text, auditCopy);
-
     const rel = path.relative(dest, path.dirname(file));
     const depth = rel === "" ? 0 : rel.split(path.sep).length;
     const sharedPrefix = depth === 0 ? "../shared/images" : "../../shared/images";
@@ -174,7 +164,7 @@ const index = `<!DOCTYPE html>
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>${name} — デモ案2つ</title>
+  <title>${name} — デモ${skins.length > 1 ? `案${skins.length}つ` : ""}</title>
   <style>
     body { margin: 0; font-family: "Hiragino Sans", sans-serif; background: #111; color: #eee; line-height: 1.65; }
     main { width: min(640px, 100% - 2rem); margin: 2.5rem auto; }
@@ -191,7 +181,7 @@ const index = `<!DOCTYPE html>
 <body>
   <main>
     <h1>${name}</h1>
-    <p>雰囲気の違うデモを2案ご用意しました（社内プレビュー用）。先方にはメール記載の skin URL を直接開いてもらいます。</p>
+    <p>社内プレビュー用です。先方にはメール記載の URL を直接開いてもらいます。</p>
     ${skins.map((s) => `<a href="${s}/">${labels[s] || s}</a>`).join("\n    ")}
     <p class="note">写真・文言はイメージです。ご購入後に御社情報へ差し替えます。</p>
   </main>

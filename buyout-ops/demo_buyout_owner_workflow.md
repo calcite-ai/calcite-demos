@@ -63,7 +63,7 @@ git add buyout-ops/demo_buyout_leads.csv && git commit && git push   # オーナ
 1. `node buyout-ops/next-approved.mjs` で社名確認
 2. [`demo_buyout_hunter.md`](./demo_buyout_hunter.md) G0〜G5 / C0〜C5（承認済でも G1 再確認）
 3. `verify-hunter-g1.mjs --from-csv --company "…"` PASS
-4. swap → publish → buyout-prospects push
+4. swap → **verify-demo-content PASS + FACT照合** → publish → buyout-prospects push
 5. CSV: `status=queued`, `demo_url_a/b` 記入（**approval_seq は変えない**）
 6. `verify-before-send.mjs` PASS → commit & push（10:00前）
 

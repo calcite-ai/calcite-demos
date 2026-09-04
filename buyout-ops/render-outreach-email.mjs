@@ -26,15 +26,15 @@ function arg(name, fallback = "") {
 
 const DEFECT_LINE = {
   SSL未整備:
-    "サイトが https 未対応のままで、ブラウザによっては「安全ではありません」などの警告が出ます。初めて訪れたお客様が不安に感じやすい状態です",
+    "サイトが http のままで、ブラウザに鍵マークが付きません。初めて訪れたお客様が不安に感じやすい状態です",
   "https未整備":
-    "サイトが https 未対応のままで、ブラウザによっては「安全ではありません」などの警告が出ます。初めて訪れたお客様が不安に感じやすい状態です",
+    "サイトが http のままで、ブラウザに鍵マークが付きません。初めて訪れたお客様が不安に感じやすい状態です",
   HTTPSでない:
-    "サイトが https 未対応のままで、ブラウザによっては「安全ではありません」などの警告が出ます。初めて訪れたお客様が不安に感じやすい状態です",
+    "サイトが http のままで、ブラウザに鍵マークが付きません。初めて訪れたお客様が不安に感じやすい状態です",
   viewportなし:
-    "スマホ表示用のviewport設定がなく、画面幅に合わせた表示になっていません。スマホだと見づらく・操作しづらくなりやすいです",
+    "スマートフォン向けの表示指定がなく、画面幅に合いにくい状態です",
   "tel:なし":
-    "tel:リンクがないため、スマホで電話番号をタップしても発信につながりません。問い合わせしたい瞬間に一手間増えやすいです",
+    "お電話番号はございますが、タップして発信できる形になっておりません",
 };
 
 function parseRoughItems(audit) {
@@ -82,6 +82,11 @@ function mailBodyFromTemplate(tpl) {
   return (cut >= 0 ? rest.slice(0, cut) : rest).trim() + "\n";
 }
 
+function noteField(notes, key) {
+  const m = String(notes || "").match(new RegExp(`${key}[：:]([^|]+)`));
+  return m ? m[1].trim() : "";
+}
+
 const company = arg("company");
 if (!company) {
   console.error("Required: --company");
@@ -96,13 +101,24 @@ if (!row) {
 }
 
 const urlA = canonicalDemoUrl(row.demo_url_a, "demo_url_a");
-const urlB = canonicalDemoUrl(row.demo_url_b, "demo_url_b");
+const urlB = String(row.demo_url_b || "").trim()
+  ? canonicalDemoUrl(row.demo_url_b, "demo_url_b")
+  : "";
 const tpl = fs.readFileSync(path.join(__dirname, "templates", "email_demo_buyout_1_initial.txt"), "utf8");
 const issues = parseRoughItems(row.audit_notes).slice(0, 3).map(issueLine);
 
-const region = arg("region") || "地域の工務店";
-const strength = arg("strength") || humanStrengthLine({ pay_signals: row.pay_signals });
-const addressee = arg("addressee") || "ご担当者";
+const region =
+  arg("region") ||
+  noteField(row.notes, "地域") ||
+  "地域の工務店";
+const strength =
+  arg("strength") ||
+  noteField(row.notes, "強み") ||
+  humanStrengthLine({ pay_signals: row.pay_signals });
+const addressee =
+  arg("addressee") ||
+  noteField(row.notes, "宛名") ||
+  "ご担当者";
 
 let out = mailBodyFromTemplate(tpl)
   .replaceAll("{会社名}", company)

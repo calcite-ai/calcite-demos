@@ -108,8 +108,11 @@ cd buyout-ops がある calcite-demos リポジトリ root で作業する。
    - node buyout-ops/verify-hunter-g1.mjs --from-csv --company "<社名>" PASS
    - 税理士・葬儀は絶対に queued にしない（vertical=koumuten のみ）
    - 承認リスト外の hunter-suggest は使わない
-   - buyout-template/designs/swap-prospect.mjs **（標準スキン `--skins e-taisei,f-sanyu`。省略時も同値。旧 b-atelier/c-daylight をデフォルトで使わない。先方サイトから画像を拾わない＝在庫素材のみ）** → publish-prospect.mjs → buyout-prospects を **main へ直接 push**（Draft PR 禁止。Pages は main 反映後しか 200 にならない）
-   - demo_buyout_leads.csv: status=queued, quoted_price=66000, vertical=koumuten, skin_pair=`e-taisei,f-sanyu`, demo_url_a/b 記入（approval_seq は変えない）
+   - buyout-template/designs/swap-prospect.mjs **（標準スキン `--skins e-taisei`。省略時も同値。F や旧 A〜D をデフォルトで使わない。先方サイトから画像を拾わない＝在庫素材のみ）**
+   - 先方HPを読んで会社情報・事業見出し・採用の有無を合わせる（挨拶・施工写真・地図はご購入後の約束のまま）
+   - `node buyout-ops/verify-demo-content.mjs --from-csv --company "<社名>"` PASS ＋ FACT 手照合
+   - publish-prospect.mjs → buyout-prospects を **main へ直接 push**（Draft PR 禁止。Pages は main 反映後しか 200 にならない）
+   - demo_buyout_leads.csv: status=queued, quoted_price=66000, vertical=koumuten, skin_pair=`e-taisei`, demo_url_a 記入（approval_seq は変えない。demo_url_b は空）
    - node buyout-ops/verify-before-send.mjs --from-csv --company "<社名>" が PASS まで（Pages 200 必須）
    - **同じコミットで** leads CSV も main へ push（10:00 前）
    - 再度 1) に戻る（sendable が残枠以上になるまで）
@@ -145,7 +148,7 @@ cd buyout-ops がある calcite-demos リポジトリ root で作業する。
 4) 送信直前に G1 の C0〜C2（正規サイト・HTTPS最終到達・tel:）を再確認。
    課題は audit_notes からのみ（demo_buyout_audit_checklist.md / demo_buyout_hunter.md）
 
-5) デモ未公開なら swap-prospect.mjs（`--skins e-taisei,f-sanyu`）→ publish-prospect.mjs → buyout-prospects のみ push
+5) デモ未公開なら swap-prospect.mjs（`--skins e-taisei`）→ publish-prospect.mjs → buyout-prospects のみ push
 
 6) 公開URLが HTTP 200 になるまで送らない
 
@@ -157,7 +160,7 @@ cd buyout-ops がある calcite-demos リポジトリ root で作業する。
 8) node buyout-ops/render-outreach-email.mjs --company "<社名>" で本文生成し、
    その text/plain をそのまま送信（オーナー確認不要）。From: hello@calcite-mail.jp
    - htmlBody は渡さない（Gmail の google.com/url でリダイレクト警告になる）
-   - デモURLは CSV の demo_url_a/b と同一（末尾 / 必須。google.com/url を貼らない）
+   - デモURLは CSV の demo_url_a と同一（末尾 / 必須。google.com/url を貼らない）
    - 公式サイトは https://www.calcite-ai.jp/（apex 禁止）
    - 本文に 66,000円 があることを1行確認
 

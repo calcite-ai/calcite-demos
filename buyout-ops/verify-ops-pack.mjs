@@ -189,13 +189,13 @@ if (fs.existsSync(csvPath)) {
         // 列名ミス（skins に書いて skin_pair が空）を送信前に検出する
         fails.push(`O10 ${row.company} は demo URL があるのに skin_pair が空（列は skins ではなく skin_pair）`);
       }
-      if (skin.includes(",")) {
-        for (const s of skin.split(",").map((x) => x.trim()).filter(Boolean)) {
-          const inA = (row.demo_url_a || "").includes(`/${s}/`);
-          const inB = (row.demo_url_b || "").includes(`/${s}/`);
-          if (!inA && !inB) {
-            fails.push(`O10 ${row.company} の skin_pair "${s}" が demo URL と一致しない（CSV列ズレ疑い）`);
-          }
+      const listed = skin.split(",").map((x) => x.trim()).filter(Boolean);
+      for (const s of listed) {
+        if (!/^[a-z0-9-]+$/i.test(s)) continue;
+        const inA = (row.demo_url_a || "").includes(`/${s}/`);
+        const inB = (row.demo_url_b || "").includes(`/${s}/`);
+        if (!inA && !inB) {
+          fails.push(`O10 ${row.company} の skin_pair "${s}" が demo URL と一致しない（CSV列ズレ疑い）`);
         }
       }
     }
@@ -252,6 +252,60 @@ async function checkRemoteTemplate() {
     fails.push(`O8 GitHub上の初回テンプレ取得失敗: ${e.message}`);
   }
 }
+
+function walkHtmlFiles(dir, fn) {
+  if (!fs.existsSync(dir)) return;
+  for (const e of fs.readdirSync(dir, { withFileTypes: true })) {
+    const p = path.join(dir, e.name);
+    if (e.isDirectory()) walkHtmlFiles(p, fn);
+    else if (e.name.endsWith(".html")) fn(p);
+  }
+}
+
+const HONEST_SKIN_BANS = [
+  "since 1985",
+  "公共工事で培った",
+  "公共施設 改修",
+  "学校施設",
+  "夏季休業",
+  "青木",
+  "__AUDIT_",
+  "hp-audit",
+  "福利厚生・制度（デモ）",
+  "総合建設",
+];
+
+for (const skin of ["e-taisei", "f-sanyu"]) {
+  walkHtmlFiles(path.join(repoRoot, "buyout-template", "designs", skin), (p) => {
+    const html = fs.readFileSync(p, "utf8");
+    for (const needle of HONEST_SKIN_BANS) {
+      if (html.includes(needle)) {
+        fails.push(
+          `O19 ${path.relative(repoRoot, p)} に架空・監査埋め込みが残っている: ${needle}`
+        );
+      }
+    }
+  });
+}
+
+const E_COPY_BANS = [
+  "転記",
+  "本番納品",
+  "現行ホームページ",
+  "現行HP",
+  "写真はイメージです",
+  "地図は準備中",
+];
+walkHtmlFiles(path.join(repoRoot, "buyout-template", "designs", "e-taisei"), (p) => {
+  const html = fs.readFileSync(p, "utf8");
+  for (const needle of E_COPY_BANS) {
+    if (html.includes(needle)) {
+      fails.push(
+        `O20 ${path.relative(repoRoot, p)} に社内向け／空欄の誤注記が残っている: ${needle}`
+      );
+    }
+  }
+});
 
 await checkRemoteTemplate();
 

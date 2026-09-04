@@ -19,6 +19,7 @@
 | `demo_buyout_leads.csv` | 送信キュー |
 | `demo_buyout_pre_send_checklist.md` | **送信前ゲート（必須）** |
 | `verify-before-send.mjs` | 送信前の機械チェック（404・アオイ残存など） |
+| `verify-demo-content.mjs` | **本文ゲート**（転記・デモ表記・架空代表。FACTは先方HPで手照合） |
 | `verify-recipient.mjs` | **宛先実在確認**（MX + SMTP RCPT / DATA は送らない）。V17 が利用 |
 | `audit-recipients.mjs` | 既存リードの宛先を一括検証。dead のみ送信プールから除外 |
 | `sync-sendgrid-bounces.mjs` | SendGrid 抑制リスト → CSV（送信後に実行） |
@@ -48,6 +49,7 @@ Hunter 用リスト: `buyout-ops/sales_prospects.csv`（クラウド Automation 
 送信前:
 
 ```bash
+node buyout-ops/verify-demo-content.mjs --from-csv --company "株式会社〇〇"
 node buyout-ops/verify-before-send.mjs --from-csv --company "株式会社〇〇"
-# PASS 以外は送らない
+# PASS 以外は送らない。本文ゲートの FACT 行は先方HPで潰す
 ```

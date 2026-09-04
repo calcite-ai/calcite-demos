@@ -30,7 +30,7 @@
 3. `queue-status` の **next_send を残枠ぶん**、`approval_seq` 昇順に1社ずつ送る
 4. Gmail で `to:{email} from:me` を再確認（過去送信があれば `paused`）
 5. **送信直前:** G1の C0〜C2（正規サイト・HTTPS最終到達・tel:）を再確認。課題は audit_notes からのみ（`demo_buyout_audit_checklist.md` / `demo_buyout_hunter.md`）
-6. デモ未公開なら `buyout-template/designs/swap-prospect.mjs`（標準 `--skins e-taisei,f-sanyu`・**先方サイト画像は使わない**）→ `publish-prospect.mjs` → **buyout-prospects を main へ直接 push（Draft PR 禁止）**
+6. デモ未公開なら `swap-prospect.mjs`（`--skins e-taisei`・先方画像禁止）→ `verify-demo-content.mjs` PASS＋FACT照合 → `publish-prospect.mjs` → **buyout-prospects を main へ直接 push（Draft PR 禁止）**
 7. **テンプレ・verify スクリプトを変えたら、送信より先に push**（2026-08-22 旧価格事故）
 8. **公開URLが HTTP 200 になるまで送らない**（404のままURLを書かない。2026-08-21 福澤で再発。**2026-08-25/26: PR未マージで Pages 404 → 送信不可。9:00 は main 直 push 必須**）
 9. **送信前ゲート必須（順番固定）:**  
@@ -40,7 +40,7 @@
    どれか FAIL → **送らない**（[`demo_buyout_incidents.md`](./demo_buyout_incidents.md)）
 10. `node buyout-ops/render-outreach-email.mjs --company "<社名>"` で本文を生成し、**その text/plain をそのまま送信**（確認不要）。From: hello@calcite-mail.jp  
     ※**htmlBody は渡さない**（Gmailが google.com/url に包むと「リダイレクトの警告」になる）  
-    ※デモURLは CSV の demo_url_a/b と同一（末尾 `/` 必須。`google.com/url` を貼らない）  
+    ※デモURLは CSV の demo_url_a と同一（末尾 `/` 必須。`google.com/url` を貼らない）  
     ※公式サイトは `https://www.calcite-ai.jp/`（apex `calcite-ai.jp` は www へ301するため警告が出る）  
     ※送信本文に **66,000円** が含まれることを目視1行確認（ゲート V8 の二重チェック）
 11. CSV を `sent` に更新、notes に日付と message id。変更は commit & push
