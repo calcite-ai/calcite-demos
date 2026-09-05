@@ -187,8 +187,8 @@ CSV（正本）: `sales/knowledge/demo_buyout_leads.csv`
 | site_url | ✅ | https://... or http://... |
 | audit_notes | ✅ | 粗2〜3点（実機確認日つき） |
 | pay_signals | ✅ | 0120 / 法人 / レビュー42 等 |
-| skin_pair | ✅ | `e-taisei,f-sanyu`（標準。旧 A〜D は明示時のみ） |
-| demo_url_a / demo_url_b | 送付直前 | 公開URL（ローカル不可） |
+| skin_pair | ✅ | `e-taisei`（標準。F や旧 A〜D は明示時のみ） |
+| demo_url_a | 送付直前 | 公開URL（ローカル不可）。`demo_url_b` は空でよい |
 | vertical | ✅ | Phase1は **`koumuten` のみ** queued 可（`vertical-config.mjs`） |
 | status | ✅ | `qualified` → 後で `built` / `sent`… |
 | source | ✅ | prospects / maps / referral |

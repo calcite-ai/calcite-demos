@@ -2,7 +2,7 @@
 /**
  * Poll ConoHa IMAP for replies to buyout + inside outreach, classify, and auto-handle.
  *
- * - Purchase (A/B/buy) + quoted_price!=55000 → SMTP checkout reply (text/plain) [buyout only]
+ * - Purchase (buy / A希望 / B希望 for already-sent two-skin mails) + quoted_price!=55000 → SMTP checkout
  * - Legacy 55000 → escalate file only (no 66k checkout)
  * - opt_out / bounce → update the matching track CSV (+ blocklist for inside opt_out)
  * - question/custom/other → escalate for human/agent

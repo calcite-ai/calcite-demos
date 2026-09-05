@@ -85,7 +85,7 @@ const objects = rows.map(({ cols }) => {
 
 const candidates = objects.filter((r) => {
   if (r.status !== "paused") return false;
-  if (!r.demo_url_a || !r.demo_url_b) return false;
+  if (!r.demo_url_a) return false;
   if (String(r.quoted_price || "").trim() !== "66000") return false;
   const notes = `${r.audit_notes || ""} ${r.notes || ""}`;
   if (EXCLUDE_NOTE.test(notes)) return false;

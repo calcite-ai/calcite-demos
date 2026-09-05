@@ -38,10 +38,10 @@ const buyout = {
   queued: buyoutRows.filter((r) => r.status === "queued").length,
   approved: buyoutRows.filter((r) => r.status === "approved").length,
   approved_with_demo: buyoutRows.filter(
-    (r) => r.status === "approved" && r.demo_url_a && r.demo_url_b
+    (r) => r.status === "approved" && r.demo_url_a
   ).length,
   approved_no_demo: buyoutRows.filter(
-    (r) => r.status === "approved" && (!r.demo_url_a || !r.demo_url_b)
+    (r) => r.status === "approved" && !r.demo_url_a
   ).length,
   paused: buyoutRows.filter((r) => r.status === "paused").length,
 };
