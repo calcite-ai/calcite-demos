@@ -31,7 +31,7 @@ function isSendableRow(r) {
     String(r.do_not_contact).toLowerCase() !== "true" &&
     !isPriorOutreachBlocked({ company: r.company, email: r.email }) &&
     r.demo_url_a &&
-    r.demo_url_b &&
+    // demo_url_b is optional (e-taisei single-skin; V1 / daily schedule)
     isActiveVertical(r) &&
     !isG1Excluded(r)
   );
