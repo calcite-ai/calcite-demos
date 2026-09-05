@@ -23,7 +23,7 @@ function htmlLink(href, label, { track = true } = {}) {
  */
 export function outreachBodyToHtml(body, { urlA, urlB, calciteSite }) {
   let html = escapeHtml(body);
-  for (const url of [urlA, urlB]) {
+  for (const url of [urlA, urlB].filter(Boolean)) {
     const e = escapeHtml(url);
     html = html.split(e).join(htmlLink(url, url, { track: true }));
   }
