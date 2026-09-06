@@ -1,0 +1,27 @@
+name: buyout-api-smoke
+
+# ANTHROPIC_API_KEY の疎通確認。手動実行のみ。
+# デモ制作が動かないとき、キーの失効かコードの問題かを最初に切り分ける。
+#   gh workflow run buyout-api-smoke.yml
+
+on:
+  workflow_dispatch:
+
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install deps
+        working-directory: buyout-ops
+        run: npm install --omit=dev
+
+      - name: Anthropic API smoke test
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: node buyout-ops/api-smoke.mjs
