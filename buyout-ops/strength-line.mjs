@@ -29,7 +29,8 @@ function mapToken(token) {
 /** メール {強み1行} — 読みやすい1文 */
 export function humanStrengthLine({ pay_signals = "" } = {}) {
   const raw = String(pay_signals || "").trim();
-  if (!raw) return "地域で施工を手がける実力がある";
+  // 直前の「御社のホームページを拝見しました。」に続く1文なので敬体で閉じる
+  if (!raw) return "地域で施工を手がけていらっしゃるのですね";
 
   const phrases = [];
   for (const token of raw.split(/[、,]/).map((s) => s.trim()).filter(Boolean)) {
@@ -39,9 +40,9 @@ export function humanStrengthLine({ pay_signals = "" } = {}) {
     if (phrases.length >= 2) break;
   }
 
-  if (!phrases.length) return "地域で施工を手がける実力がある";
-  if (phrases.length === 1) return `${phrases[0]}がうかがえる`;
-  return `${phrases[0]}や${phrases[1]}がうかがえる`;
+  if (!phrases.length) return "地域で施工を手がけていらっしゃるのですね";
+  if (phrases.length === 1) return `${phrases[0]}がうかがえます`;
+  return `${phrases[0]}や${phrases[1]}がうかがえます`;
 }
 
 /** デモ audit リード — 名詞句を列挙 */
