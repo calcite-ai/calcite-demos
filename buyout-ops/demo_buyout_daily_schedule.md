@@ -84,103 +84,61 @@ node buyout-ops/import-review-approvals.mjs   # オーナー承認取込
 
 ---
 
-## Cursor Automation プロンプト（9:00 用・コピペ）
+## Cursor Automation プロンプト（9:00 用）
 
-```
-git pull origin main
+**正本は [`prompts/demo-build-0900.md`](./prompts/demo-build-0900.md)。**
+ここにコピーを置かない。
 
-cd buyout-ops がある calcite-demos リポジトリ root で作業する。
-正本: buyout-ops/demo_buyout_daily_schedule.md
-通数: buyout-ops/send-quota.csv（当日残枠ぶんだけデモを作る）
-承認キュー: buyout-ops/demo_buyout_owner_workflow.md
+2026-09-05 に、Automation に貼られていた実物がこの doc から4行ズレていた
+（先方HPを読む指示・FACT照合・`skin_pair`・`demo_url_b` が欠落）。
+結果、ダミーの営業時間が実在企業名のページで公開された。
+2箇所に本文を持つとまた同じことが起きるので、貼り付け元は1つに固定する。
 
-残枠が埋まるまで繰り返す:
+貼り直すときは正本ファイルのコードブロックをそのまま使う。
 
-1) node buyout-ops/refill-queue-if-empty.mjs を実行
+## 10:00 の送信について
 
-2) 終了コード 0 → ループ終了（10:00 の送信 Automation に任せる／今日の枠満了）
+**送信は GitHub Actions [`buyout-daily-send.yml`](../.github/workflows/buyout-daily-send.yml) が実行する。
+Cursor Automation の 10:00 送信は 2026-08-26 に削除済み。**
 
-3) 終了コード 2 → ループ終了（承認キューなし・待機。hunter-suggest しない）
+ここに手動送信の手順を置かない。Actions と並行して人が送ると二重送信になる
+（2026-09-04 佐藤工務店・2026-09-03 吉原建設は別原因だが、同じ結果を招いた）。
 
-4) 終了コード 3 → 承認キュー先頭1社だけデモ制作（工務店のみ）:
-   - node buyout-ops/next-approved.mjs で社名確認
-   - buyout-ops/demo_buyout_hunter.md の G0〜G5 / C0〜C5
-   - node buyout-ops/verify-hunter-g1.mjs --from-csv --company "<社名>" PASS
-   - 税理士・葬儀は絶対に queued にしない（vertical=koumuten のみ）
-   - 承認リスト外の hunter-suggest は使わない
-   - buyout-template/designs/swap-prospect.mjs **（標準スキン `--skins e-taisei`。省略時も同値。F や旧 A〜D をデフォルトで使わない。先方サイトから画像を拾わない＝在庫素材のみ）**
-   - 先方HPを読んで会社情報・事業見出し・採用の有無を合わせる（挨拶・施工写真・地図はご購入後の約束のまま）
-   - `node buyout-ops/verify-demo-content.mjs --from-csv --company "<社名>"` PASS ＋ FACT 手照合
-   - publish-prospect.mjs → buyout-prospects を **main へ直接 push**（Draft PR 禁止。Pages は main 反映後しか 200 にならない）
-   - demo_buyout_leads.csv: status=queued, quoted_price=66000, vertical=koumuten, skin_pair=`e-taisei`, demo_url_a 記入（approval_seq は変えない。demo_url_b は空）
-   - node buyout-ops/verify-before-send.mjs --from-csv --company "<社名>" が PASS まで（Pages 200 必須）
-   - **同じコミットで** leads CSV も main へ push（10:00 前）
-   - 再度 1) に戻る（sendable が残枠以上になるまで）
+### 実行タイミング
 
-禁止:
-- 66k 以外の価格でメール送信
-- quoted_price=55000 の3社への決済メール
-- verify FAIL のまま送付先を queued のまま放置せず、失敗理由を notes に残す
-- オーナー未承認の hunter-suggest で queued を増やさない
-- **PR / Draft PR で止めること**（必ず main push。今日の事故: PR#6 未マージで Pages 404 → 送信不可）
-- **先方ホームページから画像を拾ってデモに使うこと**（在庫 Unsplash / AI 素材のみ。`prospect-hero` 等の生成禁止）
-```
+cron は UTC。本命 01:00 UTC（10:00 JST）で、遅延・スキップが多いため予備が4本ある。
 
-## Cursor Automation プロンプト（10:00 用・コピペ）
+| cron (UTC) | JST | 位置づけ |
+|---|---|---|
+| `0 1` | 10:00 | 本命 |
+| `0 2` / `0 3` / `0 4` | 11:00 / 12:00 / 13:00 | 回収 |
+| `0 6` | 15:00 | 午後 catch-up |
 
-```
-git pull origin main
+加えて `buyout-ops/demo_buyout_leads.csv` と `buyout-prospects/**` への
+push でも発火する（cron が飛んだ日の穴埋め）。
+**枠がリセットされた後に push すると、その時刻に送信される。**
+深夜や早朝に push しないこと（2026-09-06 は 14:11 JST に送信された）。
 
-cd buyout-ops がある calcite-demos リポジトリ root で作業する。
-正本: buyout-ops/demo_buyout_autorun.md
-通数: buyout-ops/send-quota.csv
-ゲート: buyout-ops/demo_buyout_pre_send_checklist.md
+### 手で送りたいとき
 
-残枠が0になるまで、1社ずつ送る:
+手順を再現せず、**workflow_dispatch を使う**。
 
-1) node buyout-ops/queue-status.mjs
-   - remaining_today=0 または sendable=0 なら送信せず終了
-
-2) next_send（approval_seq 最小）の1社を取る
-
-3) Gmail で to:{email} from:me を再確認（過去送信があれば paused）
-
-4) 送信直前に G1 の C0〜C2（正規サイト・HTTPS最終到達・tel:）を再確認。
-   課題は audit_notes からのみ（demo_buyout_audit_checklist.md / demo_buyout_hunter.md）
-
-5) デモ未公開なら swap-prospect.mjs（`--skins e-taisei`）→ publish-prospect.mjs → buyout-prospects のみ push
-
-6) 公開URLが HTTP 200 になるまで送らない
-
-7) 送信前ゲート（順番固定・どれか FAIL なら送らない）:
-   node buyout-ops/verify-ops-pack.mjs
-   node buyout-ops/verify-hunter-g1.mjs --from-csv --company "<社名>"
-   node buyout-ops/verify-before-send.mjs --from-csv --company "<社名>"
-
-8) node buyout-ops/render-outreach-email.mjs --company "<社名>" で本文生成し、
-   その text/plain をそのまま送信（オーナー確認不要）。From: hello@calcite-mail.jp
-   - htmlBody は渡さない（Gmail の google.com/url でリダイレクト警告になる）
-   - デモURLは CSV の demo_url_a と同一（末尾 / 必須。google.com/url を貼らない）
-   - 公式サイトは https://www.calcite-ai.jp/（apex 禁止）
-   - 本文に 66,000円 があることを1行確認
-
-9) demo_buyout_leads.csv を status=sent に更新。notes に「初回送信済 YYYY-MM-DD」と Gmail message id。
-   commit & push
-
-10) node buyout-ops/send-quota.mjs で remaining を確認。
-    remaining>0 かつ sendable>0 なら 1) に戻る。remaining=0 で今日は終了。
-
-禁止:
-- 同日に残枠を超えて送る
-- 66k 以外の価格で初回メール送信
-- quoted_price=55000 の3社（新見・福澤・日南）への 66k 決済メール
-- 税理士・葬儀（vertical が koumuten 以外）を送る
-- prior_outreach_blocklist.csv 掲載先への再送
-- verify FAIL のまま送る
-- htmlBody / google.com/url ラップ
+```bash
+gh workflow run buyout-daily-send.yml                      # 本番
+gh workflow run buyout-daily-send.yml -f dry_run=true      # 送らず確認
 ```
 
----
+ゲート・枠・レシート記録がすべて同じ経路を通るので、二重送信も枠超過も起きない。
+
+### 送信されない理由を調べる
+
+```bash
+node buyout-ops/queue-status.mjs        # sendable / remaining_today
+node buyout-ops/verify-before-send.mjs --from-csv --company "<社名>"
+gh run list --workflow=buyout-daily-send.yml --limit 5
+```
+
+`RESULT skip — buyout_remaining=0` は正常（当日枠を使い切っている）。
 
 ## 補足
 

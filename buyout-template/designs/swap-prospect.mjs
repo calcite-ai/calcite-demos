@@ -10,6 +10,7 @@
  *     --tel "03-1234-5678" \
  *     --email "info@sample.example" \
  *     --address "〒150-0001 東京都渋谷区サンプル1-2-3" \
+ *     --hours "平日 8:00-17:00"   # 先方HPで確認できたときだけ。未指定は「ご購入後に反映」
  *     --slug sample-co
  *
  * Output: designs/_prospects/<slug>/<skin>/
@@ -39,6 +40,13 @@ const tel = arg("tel", "03-0000-0000");
 const email = arg("email", "info@example.com");
 const address = arg("address", "〒100-0001 東京都千代田区サンプル1-2-3");
 const slug = arg("slug", "prospect");
+/**
+ * 在庫スキンの営業時間は雛形（アオイ工房）の埋め草。
+ * 先方HPで確認できたときだけ実値を入れる。未指定はご購入後の約束に倒す
+ * （2026-09-05 加茂建設: 実際 8:00-17:00 に対し 9:00-18:00 が公開されていた）。
+ */
+const HOURS_PLACEHOLDER = "営業時間はご購入後に反映します";
+const hours = arg("hours", "") || HOURS_PLACEHOLDER;
 const siteUrl = arg("site-url", arg("site_url", "")); // 監査メモ用。先方画像取得には使わない（禁止）
 void siteUrl;
 
@@ -85,6 +93,10 @@ const replacements = [
   ["info@example.com", email],
   ["〒100-0001 東京都千代田区サンプル1-2-3", address],
   ["〒100-0001<br />東京都千代田区サンプル1-2-3", address],
+  // 営業時間: 問い合わせページの「（土日祝休み）」つきを先に潰す
+  ["平日 9:00〜18:00（土日祝休み）", hours],
+  ["平日 9:00–18:00", hours],
+  ["平日 9:00-18:00", hours],
 ];
 
 function copyDir(src, dest) {
