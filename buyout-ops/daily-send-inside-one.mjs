@@ -11,6 +11,7 @@ import { fileURLToPath } from "node:url";
 import { parseCsv, serializeCsv } from "./csv-util.mjs";
 import { loadSendQuota, jstDateString } from "./send-quota.mjs";
 import { SMTP_EXIT } from "./smtp-error-kind.mjs";
+import { outsideSendWindow, sendWindowSkipLine } from "./send-window.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.join(__dirname, "..");
@@ -48,6 +49,11 @@ function markPaused(company, reason) {
 }
 
 let status = insideStatus();
+const off = outsideSendWindow();
+if (off && !dryRun) {
+  console.log(sendWindowSkipLine(off));
+  process.exit(0);
+}
 if (status.inside_remaining <= 0) {
   console.log("RESULT skip inside — inside_remaining=0");
   process.exit(0);

@@ -19,6 +19,7 @@ import { fileURLToPath } from "node:url";
 import { parseCsv, serializeCsv } from "./csv-util.mjs";
 import { jstDateString, loadSendQuota } from "./send-quota.mjs";
 import { SMTP_EXIT } from "./smtp-error-kind.mjs";
+import { outsideSendWindow, sendWindowSkipLine } from "./send-window.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.join(__dirname, "..");
@@ -128,6 +129,11 @@ function isTransientG1FetchFail(stdout, stderr) {
 }
 
 let status = queueStatus();
+const off = outsideSendWindow();
+if (off && !dryRun) {
+  console.log(sendWindowSkipLine(off));
+  process.exit(0);
+}
 if (status.buyout_remaining <= 0) {
   console.log("RESULT skip — buyout_remaining=0");
   process.exit(0);
