@@ -10,6 +10,9 @@
  *     --tel "03-1234-5678" \
  *     --email "info@sample.example" \
  *     --address "〒150-0001 東京都渋谷区サンプル1-2-3" \
+ *     --representative "森 眞"  --capital "2,000万円"  --employees "6名"
+ *     --founded "昭和28年2月10日"  --license "愛知県知事許可 般-3 第4217号"
+ *     --business "総合建設業（木造・鉄骨造・鉄筋コンクリート造）"
  *     --hours "平日 8:00-17:00"   # 先方HPで確認できたときだけ。未指定は「ご購入後に反映」
  *     --slug sample-co
  *
@@ -47,6 +50,32 @@ const slug = arg("slug", "prospect");
  */
 const HOURS_PLACEHOLDER = "営業時間はご購入後に反映します";
 const hours = arg("hours", "") || HOURS_PLACEHOLDER;
+
+/**
+ * 会社情報テーブルの追加行。先方HPに「書いてある」ものだけ渡す。
+ * 渡さなかった項目は行ごと出力されない（雛形の見た目は崩れない）。
+ * 代表者名・許可番号は間違えると事故になるので、原文に literal で
+ * 存在することを確認してから渡すこと。
+ */
+const infoRows = [
+  ["代表者", arg("representative", "")],
+  ["創業", arg("founded", "")],
+  ["設立", arg("established", "")],
+  ["資本金", arg("capital", "")],
+  ["従業員数", arg("employees", "")],
+  ["建設業許可", arg("license", "")],
+].filter(([, v]) => v);
+const businessText = arg("business", "");
+
+/**
+ * 事業内容ページの2ブロック。見出しだけ先方HPの事実（許可業種・事業内容）に
+ * 差し替える。本文は書かない — 各ブロックには雛形側の
+ * 「詳しい対応範囲は、ご購入後のヒアリングのうえ反映します。」だけが載る。
+ */
+const services = [
+  { title: arg("service-a-title", ""), stockTitle: "建築工事" },
+  { title: arg("service-b-title", ""), stockTitle: "改修・リフォーム" },
+];
 const siteUrl = arg("site-url", arg("site_url", "")); // 監査メモ用。先方画像取得には使わない（禁止）
 void siteUrl;
 
@@ -99,6 +128,38 @@ const replacements = [
   ["平日 9:00-18:00", hours],
 ];
 
+/** 会社情報テーブル: 事業内容の上書きと、追加行の注入 */
+function applyInfoTable(html) {
+  const bizRow = "<tr><th>事業内容</th><td>建築工事、改修・リフォーム</td></tr>";
+  if (!html.includes(bizRow)) return html;
+  const biz = businessText
+    ? `<tr><th>事業内容</th><td>${businessText}</td></tr>`
+    : bizRow;
+  const extra = infoRows
+    .map(([k, v]) => `\n          <tr><th>${k}</th><td>${v}</td></tr>`)
+    .join("");
+  // 事業内容は最後に置く（雛形の並びを保つ）
+  return html.replace(bizRow, extra ? `${extra.trim()}\n          ${biz}` : biz);
+}
+
+/** 事業内容ページ: 見出しと事実行を差し替える（未指定なら雛形のまま） */
+function applyServices(html) {
+  let out = html;
+  for (const s of services) {
+    if (s.title) {
+      out = out
+        .split(`<h2>${s.stockTitle}</h2>`).join(`<h2>${s.title}</h2>`)
+        .split(`alt="${s.stockTitle}"`).join(`alt="${s.title}"`);
+    }
+  }
+  const [a, b] = services;
+  if (a.title || b.title) {
+    const lead = `${a.title || a.stockTitle}と${b.title || b.stockTitle}をご案内します。`;
+    out = out.split("建築工事と改修・リフォームをご案内します。").join(lead);
+  }
+  return out;
+}
+
 function copyDir(src, dest) {
   fs.mkdirSync(dest, { recursive: true });
   for (const entry of fs.readdirSync(src, { withFileTypes: true })) {
@@ -145,6 +206,7 @@ for (const skin of skins) {
     if (!/\.(html|css|js|md)$/i.test(file)) return;
     let text = fs.readFileSync(file, "utf8");
     for (const [a, b] of replacements) text = text.split(a).join(b);
+    if (/\.html$/i.test(file)) text = applyServices(applyInfoTable(text));
 
     const rel = path.relative(dest, path.dirname(file));
     const depth = rel === "" ? 0 : rel.split(path.sep).length;
@@ -161,14 +223,15 @@ for (const skin of skins) {
   console.log("ready", dest);
 }
 
+/** 社内用チューザーのラベル。実在企業名を出さない（顧客に渡る可能性を潰す） */
 const labels = {
-  "a-sumi": "A案 Sumi Editorial",
-  "b-atelier": "B案 Cool Atelier",
-  "c-daylight": "C案 Neighborhood Daylight",
-  "c-refresh": "C案 Refresh（刷新レイアウト）",
-  "d-signboard": "D案 Bold Signboard",
-  "e-taisei": "E案 Taisei Corporate",
-  "f-sanyu": "F案 Sanyu Editorial",
+  "a-sumi": "A案",
+  "b-atelier": "B案",
+  "c-daylight": "C案",
+  "c-refresh": "C案（刷新レイアウト）",
+  "d-signboard": "D案",
+  "e-taisei": "E案",
+  "f-sanyu": "F案",
 };
 
 const index = `<!DOCTYPE html>

@@ -42,13 +42,16 @@ function checkTemplate(file, label) {
   }
 }
 
+/** 旧 buyout-prospects/ と新 works/ の両方を検査する（rel は表示・分岐用） */
 function walkProspects(fn) {
-  const root = path.join(repoRoot, "buyout-prospects");
-  if (!fs.existsSync(root)) return;
-  for (const slug of fs.readdirSync(root)) {
-    const dir = path.join(root, slug);
-    if (!fs.statSync(dir).isDirectory()) continue;
-    fn(slug, dir);
+  for (const rootName of ["buyout-prospects", "works"]) {
+    const root = path.join(repoRoot, rootName);
+    if (!fs.existsSync(root)) continue;
+    for (const slug of fs.readdirSync(root)) {
+      const dir = path.join(root, slug);
+      if (!fs.existsSync(dir) || !fs.statSync(dir).isDirectory()) continue;
+      fn(slug, dir, rootName);
+    }
   }
 }
 
@@ -56,9 +59,9 @@ checkTemplate("email_demo_buyout_1_initial.txt", "初回メール");
 checkTemplate("email_demo_buyout_2_checkout.txt", "決済メール");
 checkTemplate("email_demo_buyout_5_followup.txt", "フォロー");
 
-walkProspects((slug, dir) => {
-  const chooser = path.join(dir, "index.html");
-  if (fs.existsSync(chooser)) {
+walkProspects((slug, dir, rootName) => {
+  // works/ は畳んだ構造なので index.html が本体。中間ページ禁止は旧構造のみ
+  if (rootName === "buyout-prospects" && fs.existsSync(path.join(dir, "index.html"))) {
     fails.push(`O3 buyout-prospects/${slug}/index.html が残っている（中間ページ禁止）`);
   }
   function walkHtml(d) {
@@ -190,8 +193,13 @@ if (fs.existsSync(csvPath)) {
         fails.push(`O10 ${row.company} は demo URL があるのに skin_pair が空（列は skins ではなく skin_pair）`);
       }
       const listed = skin.split(",").map((x) => x.trim()).filter(Boolean);
+      // 新 works/{slug}/ はスキン階層を持たない。URL との突き合わせは旧構造のみ
+      const legacyUrl = [row.demo_url_a, row.demo_url_b]
+        .filter(Boolean)
+        .some((u) => /buyout-prospects\//i.test(u));
       for (const s of listed) {
         if (!/^[a-z0-9-]+$/i.test(s)) continue;
+        if (!legacyUrl) continue;
         const inA = (row.demo_url_a || "").includes(`/${s}/`);
         const inB = (row.demo_url_b || "").includes(`/${s}/`);
         if (!inA && !inB) {

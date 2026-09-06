@@ -12,12 +12,22 @@ export const GITHUB_DEMO_ORIGIN =
 export const DEMO_SHORT_BASE =
   process.env.BUYOUT_DEMO_SHORT_BASE || "https://www.calcite-mail.jp/demo";
 
+/**
+ * デモURLの2形式。
+ *   旧: /buyout-prospects/{slug}/{skin}/  — 2026-09-06 までに送信済み。触らない
+ *   新: /works/{slug}/                    — スキン階層なし
+ * 「buyout-prospects」「e-taisei」が受信者に見えていたため新形式へ移行した。
+ */
 const DEMO_PATH_RE = /buyout-prospects\/([^/?#]+)\/([^/?#]+)/i;
+const WORKS_PATH_RE = /\/works\/([^/?#]+)/i;
 
 export function parseDemoSkinPath(url) {
-  const m = String(url || "").match(DEMO_PATH_RE);
-  if (!m) return null;
-  return { slug: m[1], skin: m[2] };
+  const s = String(url || "");
+  const m = s.match(DEMO_PATH_RE);
+  if (m) return { slug: m[1], skin: m[2] };
+  const w = s.match(WORKS_PATH_RE);
+  if (w) return { slug: w[1], skin: "" };
+  return null;
 }
 
 /**

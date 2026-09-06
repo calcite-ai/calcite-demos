@@ -25,7 +25,15 @@ if (!slug) {
 }
 
 const src = path.join(__dirname, "_prospects", slug);
-const dest = path.join(__dirname, "..", "..", "buyout-prospects", slug);
+/**
+ * 公開先。E案1本運用になったのでスキン階層は畳み、URLから内部名を消す。
+ *   旧: buyout-prospects/{slug}/{skin}/   （送信済みリンクのため残す・触らない）
+ *   新: works/{slug}/
+ * 「buyout-prospects（買い取り見込み客）」も「e-taisei（着想元の企業名）」も
+ * 受信者に見えていた。2026-09-07 以降の新規はこちら。
+ */
+const PUBLISH_ROOT = process.env.BUYOUT_PUBLISH_ROOT || "works";
+const dest = path.join(__dirname, "..", "..", PUBLISH_ROOT, slug);
 
 if (!fs.existsSync(src)) {
   console.error("Missing _prospects/" + slug + " — run swap-prospect.mjs first");
@@ -72,6 +80,35 @@ function walk(dir, fn) {
 fs.rmSync(dest, { recursive: true, force: true });
 copyDir(src, dest);
 
+/** 単一スキンなら {slug}/{skin}/* を {slug}/* へ引き上げる（shared は据え置き） */
+function flattenSingleSkin(root) {
+  const dirs = fs
+    .readdirSync(root, { withFileTypes: true })
+    .filter((e) => e.isDirectory() && e.name !== "shared")
+    .map((e) => e.name);
+  if (dirs.length !== 1) return null;
+  const skin = dirs[0];
+  const from = path.join(root, skin);
+  for (const entry of fs.readdirSync(from)) {
+    fs.rmSync(path.join(root, entry), { recursive: true, force: true });
+    fs.renameSync(path.join(from, entry), path.join(root, entry));
+  }
+  fs.rmSync(from, { recursive: true, force: true });
+  // 1階層上がったので ../../shared → ../shared
+  walk(root, (file) => {
+    if (!/\.(html|css|js)$/i.test(file)) return;
+    const depth = path.relative(root, path.dirname(file)).split(path.sep).filter(Boolean).length;
+    const prefix = depth === 0 ? "shared" : "../".repeat(depth) + "shared";
+    fs.writeFileSync(
+      file,
+      fs.readFileSync(file, "utf8").replace(/(\.\.\/)+shared/g, prefix)
+    );
+  });
+  return skin;
+}
+
+const flattened = flattenSingleSkin(dest);
+
 const robots =
   '<meta name="robots" content="noindex,nofollow" />\n  <meta name="googlebot" content="noindex,nofollow" />';
 
@@ -94,22 +131,27 @@ walk(dest, (file) => {
 });
 
 // Chooser index is for local preview only — do not publish to Pages
-const publishedIndex = path.join(dest, "index.html");
-if (fs.existsSync(publishedIndex)) {
-  fs.unlinkSync(publishedIndex);
-  console.log("removed published chooser index.html");
+// 畳んだ場合の index.html はデモ本体なので消さない。
+// 旧構造（複数スキン）のときだけ、スキン選択の中間ページを削除する。
+if (!flattened) {
+  const publishedIndex = path.join(dest, "index.html");
+  if (fs.existsSync(publishedIndex)) {
+    fs.unlinkSync(publishedIndex);
+    console.log("removed published chooser index.html");
+  }
 }
 
-const base = `https://calcite-ai.github.io/calcite-demos/buyout-prospects/${slug}`;
-const skins = fs
-  .readdirSync(dest, { withFileTypes: true })
-  .filter((e) => e.isDirectory() && e.name !== "shared")
-  .map((e) => e.name);
+const base = `https://calcite-ai.github.io/calcite-demos/${PUBLISH_ROOT}/${slug}`;
 
 console.log("published", dest);
-console.log("index ", base + "/");
-// メール本文・CSV に載せるのは GitHub Pages 直URL。短縮URLは参考表示のみ
-for (const s of skins) {
-  const github = `${base}/${s}/`;
-  console.log("skin  ", github, `(旧短縮URL: ${publicDemoUrl(github)} — メールには使わない)`);
+if (flattened) {
+  // スキン階層なし。この URL をそのまま CSV の demo_url_a に入れる
+  console.log("demo_url_a", `${base}/`);
+} else {
+  const skins = fs
+    .readdirSync(dest, { withFileTypes: true })
+    .filter((e) => e.isDirectory() && e.name !== "shared")
+    .map((e) => e.name);
+  console.log("index ", base + "/");
+  for (const s of skins) console.log("skin  ", `${base}/${s}/`);
 }

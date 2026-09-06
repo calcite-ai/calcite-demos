@@ -80,7 +80,10 @@ function renderEmail(company) {
     );
     process.exit(1);
   }
-  if (!/calcite-ai\.github\.io\/calcite-demos\/buyout-prospects\//i.test(body)) {
+  // 旧 /buyout-prospects/{slug}/{skin}/ と新 /works/{slug}/ の両方を許可
+  if (
+    !/calcite-ai\.github\.io\/calcite-demos\/(buyout-prospects|works)\//i.test(body)
+  ) {
     console.error("FAIL body missing GitHub Pages demo URL");
     process.exit(1);
   }

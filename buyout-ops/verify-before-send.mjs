@@ -97,11 +97,14 @@ function parseCsv(text) {
 }
 
 function skinFromUrl(url) {
+  if (/\/works\/[^/]+\/?$/.test(String(url))) return "";
   const m = String(url).match(/buyout-prospects\/[^/]+\/([^/]+)\/?$/);
   return m ? m[1] : "";
 }
 
 function slugFromUrl(url) {
+  const w = String(url).match(/\/works\/([^/?#]+)/);
+  if (w) return w[1];
   const m = String(url).match(/buyout-prospects\/([^/]+)\//);
   return m ? m[1] : "";
 }
@@ -176,11 +179,20 @@ async function verifyProspect({ name, email, urlA, urlB, slug, quotedPrice, stat
 
   const derivedSlug = slug || slugFromUrl(urlA) || slugFromUrl(urlB);
   if (derivedSlug) {
-    const local = path.join(repoRoot, "buyout-prospects", derivedSlug);
-    if (!fs.existsSync(local)) fails.push(`V5 ローカルに buyout-prospects/${derivedSlug} がない`);
-    const chooser = path.join(local, "index.html");
-    if (fs.existsSync(chooser)) {
-      fails.push(`V10 buyout-prospects/${derivedSlug}/index.html が残っている（中間ページ禁止）`);
+    // 新 works/{slug}/ と旧 buyout-prospects/{slug}/ のどちらかにあればよい
+    const roots = ["works", "buyout-prospects"];
+    const found = roots
+      .map((r) => path.join(repoRoot, r, derivedSlug))
+      .filter((p) => fs.existsSync(p));
+    if (!found.length) {
+      fails.push(`V5 ローカルに works/${derivedSlug} も buyout-prospects/${derivedSlug} も無い`);
+    }
+    for (const local of found) {
+      const rel = path.relative(repoRoot, local);
+      // works/ は畳んだ構造なので index.html が本体。旧構造だけ中間ページを禁止する
+      if (rel.startsWith("buyout-prospects") && fs.existsSync(path.join(local, "index.html"))) {
+        fails.push(`V10 ${rel}/index.html が残っている（中間ページ禁止）`);
+      }
     }
   } else {
     fails.push("V5 slug を URL から特定できない");

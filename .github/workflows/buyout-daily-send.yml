@@ -34,6 +34,7 @@ on:
       - "buyout-ops/demo_buyout_leads.csv"
       - "buyout-ops/inside_sales_poc_leads.csv"
       - "buyout-prospects/**"
+      - "works/**"
   workflow_dispatch:
     inputs:
       dry_run:

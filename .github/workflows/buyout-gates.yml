@@ -6,6 +6,7 @@ on:
     paths:
       - "buyout-ops/**"
       - "buyout-prospects/**"
+      - "works/**"
       - "buyout-template/designs/swap-prospect.mjs"
       - "buyout-template/designs/publish-prospect.mjs"
       - ".github/workflows/buyout-gates.yml"
