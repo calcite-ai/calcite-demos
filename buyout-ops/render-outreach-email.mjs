@@ -87,6 +87,13 @@ function noteField(notes, key) {
   return m ? m[1].trim() : "";
 }
 
+/** {強み1行} は独立行。句点が無いと前行から途切れて見えるので閉じる */
+function closeSentence(s) {
+  const t = String(s || "").trim();
+  if (!t) return t;
+  return /[。．.！？!?]$/.test(t) ? t : `${t}。`;
+}
+
 const company = arg("company");
 if (!company) {
   console.error("Required: --company");
@@ -111,10 +118,11 @@ const region =
   arg("region") ||
   noteField(row.notes, "地域") ||
   "地域の工務店";
-const strength =
+const strength = closeSentence(
   arg("strength") ||
-  noteField(row.notes, "強み") ||
-  humanStrengthLine({ pay_signals: row.pay_signals });
+    noteField(row.notes, "強み") ||
+    humanStrengthLine({ pay_signals: row.pay_signals })
+);
 const addressee =
   arg("addressee") ||
   noteField(row.notes, "宛名") ||
