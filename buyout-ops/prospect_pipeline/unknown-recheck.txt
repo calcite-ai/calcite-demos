@@ -1,0 +1,10 @@
+# verify-official-site が unknown を返した社の再確認リスト
+# 形式: seq|社名|登録URL|所在地（分かれば）
+99|板橋建設|http://www.v-hf.com/k/itahashi|
+101|有限会社内山工務店|http://www.v-hf.com/k/uchiyama389/|
+121|株式会社家本工務店|http://www.iemoto-koumuten.jp/|
+18|黒田工務店|https://kurotakoumuten.web.fc2.com/|
+48|株式会社山﨑建設|http://yamasaki-1972.co.jp/profile/|
+46|有限会社古澤リビング|http://www.furusawa-living.co.jp/|
+60|tama-kenchiku|http://tama-kenchiku.jp/|
+33|宮川建設株式会社|https://miyagawa-home.main.jp/|愛知県豊田市

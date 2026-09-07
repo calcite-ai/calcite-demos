@@ -8,7 +8,7 @@ on:
       mode:
         description: "sample=既知3社で精度検証 / all=承認済み+未承認をまとめて"
         type: choice
-        options: [sample, all, rest]
+        options: [sample, all, rest, unknowns]
         default: sample
 
 permissions:
@@ -53,6 +53,20 @@ jobs:
         run: |
           node buyout-ops/verify-official-site.mjs --all --no-queue \
             --status "sent,paused," --out official.json
+
+      - name: Unknowns (individual re-check)
+        if: inputs.mode == 'unknowns'
+        env: { ANTHROPIC_API_KEY: "${{ secrets.ANTHROPIC_API_KEY }}" }
+        run: |
+          while IFS='|' read -r seq co url where; do
+            case "$seq" in ''|\#*) continue;; esac
+            echo "--- seq$seq $co ---"
+            if [ -n "$where" ]; then
+              node buyout-ops/verify-official-site.mjs --company "$co" --url "$url" --where "$where" || true
+            else
+              node buyout-ops/verify-official-site.mjs --company "$co" --url "$url" || true
+            fi
+          done < buyout-ops/prospect_pipeline/unknown-recheck.txt
 
       - name: Upload results
         if: inputs.mode == 'all' || inputs.mode == 'rest'
