@@ -130,6 +130,19 @@ if (left <= 21) {
     `trial 終了まで${left}日。Essentials への切替判断が必要（SENDGRID_UPGRADE_RUNBOOK.md）`);
 }
 
+/* 6b. 前日の送信が枠を使い切ったか ----------------------------------- */
+{
+  const y = jstDaysAgo(1);
+  const cap = dailySendLimit(y).daily_buyout;
+  const n = byDay.get(`${y}|buyout`) || 0;
+  notes.push(`前日(${y}) buyout 送信 ${n}/${cap}`);
+  if (cap > 0 && n === 0) {
+    flag("HIGH", "送信", `${y} の送信が 0 通。cron 不発かゲート FAIL の可能性（2026-09-07 に発生）`);
+  } else if (n < cap) {
+    flag("MID", "送信", `${y} は ${n}/${cap} 通どまり。在庫切れなら正常、そうでなければ要確認`);
+  }
+}
+
 /* 7. 直近の Actions failure ------------------------------------------- */
 try {
   const out = execFileSync(

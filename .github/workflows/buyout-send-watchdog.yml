@@ -1,0 +1,68 @@
+name: buyout-send-watchdog
+
+# 送信ウィンドウ（9-18 JST）が閉じたあとに、当日の送信が成立したかを検証する。
+# 2026-09-07: ゲートの取り残しと cron 不発が重なり 0 通で終わったが、
+# 8:30 の点検は送信より前に走るため拾えず、夕方まで誰も気づかなかった。
+on:
+  schedule:
+    - cron: "0 9 * * *"   # 18:00 JST — ウィンドウ直後
+    - cron: "0 11 * * *"  # 20:00 JST — 上が飛んだ日の回収
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Verify today's send landed
+        id: verify
+        run: |
+          set +e
+          out=$(node buyout-ops/verify-daily-send.mjs 2>&1)
+          code=$?
+          echo "$out"
+          {
+            echo 'report<<EOR'
+            echo "$out"
+            echo 'EOR'
+          } >> "$GITHUB_OUTPUT"
+          exit $code
+
+      # 失敗したら Issue を立てる。黙って赤いチェックが付くだけだと気づけない
+      - name: Open an issue when the day's send did not land
+        if: failure()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const body = [
+              '送信ウィンドウが閉じた時点で、本日の送信が成立していません。',
+              '',
+              '```',
+              `${{ steps.verify.outputs.report }}`,
+              '```',
+              '',
+              '確認手順:',
+              '1. `gh run list --workflow=buyout-daily-send.yml --limit 5`',
+              '2. failure があればログを見る（ゲート FAIL の可能性）',
+              '3. run が無ければ cron 不発 — `gh workflow run buyout-daily-send.yml` で手動送信',
+              '',
+              '_buyout-send-watchdog_',
+            ].join('\n');
+            const title = `送信されていない日があります (${new Date().toISOString().slice(0,10)})`;
+            const { data } = await github.rest.issues.listForRepo({
+              owner: context.repo.owner, repo: context.repo.repo,
+              state: 'open', labels: 'send-watchdog',
+            });
+            if (data.some(i => i.title === title)) return;
+            await github.rest.issues.create({
+              owner: context.repo.owner, repo: context.repo.repo,
+              title, body, labels: ['send-watchdog'],
+            });

@@ -34,7 +34,22 @@ jobs:
       - name: G1 gate on queued leads (modern-site exclusion)
         run: node buyout-ops/verify-hunter-g1.mjs --from-csv --queued
 
-      - name: Live demo gate (nichinan)
+      # 実際に次に送る社を検査する。固定1社だけだと、その社が通る経路しか
+      # 守られない（2026-09-07: URL を works/ に移したのに旧パスの日南しか
+      # 見ておらず、本文ゲートの取り残しを CI が見逃して当日の送信が失敗）
+      - name: Live demo gate (queued leads)
+        run: |
+          set +e
+          out=$(node buyout-ops/verify-before-send.mjs --from-csv --queued 2>&1)
+          code=$?
+          echo "$out"
+          # exit 2 = 対象なし（queued が空の日は正常）。それ以外の非0は FAIL
+          if [ "$code" -eq 2 ] && echo "$out" | grep -q "No targets"; then
+            echo "queued なし — skip"; exit 0
+          fi
+          exit "$code"
+
+      - name: Live demo gate (legacy path regression)
         run: |
           node buyout-ops/verify-before-send.mjs \
             --from-csv \
