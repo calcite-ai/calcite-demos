@@ -67,8 +67,10 @@ function isChooser(file, html) {
 }
 
 function listProspectDirs() {
+  // works/ = 新（スキン階層なし）、buyout-prospects/ = 旧（送信済み）
   const roots = [
     path.join(repoRoot, "buyout-template", "designs", "_prospects"),
+    path.join(repoRoot, "works"),
     path.join(repoRoot, "buyout-prospects"),
   ];
   const out = [];
@@ -105,14 +107,16 @@ function resolveDir(slug, explicitDir, name) {
     return abs;
   }
   if (slug) {
-    const local = path.join(repoRoot, "buyout-template", "designs", "_prospects", slug);
-    const published = path.join(repoRoot, "buyout-prospects", slug);
-    if (fs.existsSync(local)) return local;
-    if (fs.existsSync(published)) return published;
+    const candidates = [
+      path.join(repoRoot, "buyout-template", "designs", "_prospects", slug),
+      path.join(repoRoot, "works", slug),
+      path.join(repoRoot, "buyout-prospects", slug),
+    ];
+    for (const c of candidates) if (fs.existsSync(c)) return c;
   }
   const byName = findDirByName(name);
   if (byName) return byName;
-  throw new Error(`_prospects も buyout-prospects も無い: ${slug || name || "?"}`);
+  throw new Error(`_prospects も works も buyout-prospects も無い: ${slug || name || "?"}`);
 }
 
 function digits(s) {
@@ -243,7 +247,9 @@ async function main() {
     name = row.company;
     email = row.email;
     siteUrl = row.site_url;
-    const m = String(row.demo_url_a || "").match(/buyout-prospects\/([^/]+)\//);
+    const m =
+      String(row.demo_url_a || "").match(/\/works\/([^/?#]+)/) ||
+      String(row.demo_url_a || "").match(/buyout-prospects\/([^/]+)\//);
     slug = slug || m?.[1] || "";
   }
 
