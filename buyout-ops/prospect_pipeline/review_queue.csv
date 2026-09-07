@@ -14,10 +14,10 @@ approval_seq,company,url,email,defects,audit_draft,final_url,owner_ok,owner_note
 13,株式会社ネオハウス,"http://www.neohouse.jp","info@neohouse.jp",viewportなし; tel:なし,粗:(1)viewportなし;(2)tel:なし,"https://www.neohouse.jp/",y,
 14,黒田工務店,"http://kurotakoumuten.web.fc2.com/","kurota-koumuten@hb.tp1.jp",viewportなし; tel:なし; 更新停止感(HTML内2012止),粗:(1)viewportなし(2)tel:なし(3)更新停止感(HTML内2012止),"https://kurotakoumuten.web.fc2.com/",y,
 15,有限会社木香,"http://mocca-house.com/","info@mocca-house.com",SSL未整備; viewportなし; tel:なし,粗:(1)SSL未整備;(2)viewportなし;(3)tel:なし,"http://mocca-house.com/",y,
-16,株式会社ダンデ・ライズ,"http://www.danderise.co.jp/","info@danderise.co.jp",viewportなし; tel:なし,粗:(1)viewportなし(2)tel:なし,"https://www.danderise.co.jp/company/",y,2026-08-24 除外: owner_ok解除
+16,株式会社ダンデ・ライズ,http://www.danderise.co.jp/,info@danderise.co.jp,viewportなし; tel:なし,粗:(1)viewportなし(2)tel:なし,https://www.danderise.co.jp/company/,,2026-08-24 除外: owner_ok解除 / 2026-09-07 owner_ok を注記の実態（除外）に同期
 17,有限会社佐藤工務店,"http://www.bluemoon-s.com/","info@bluemoon-s.com",SSL未整備; viewportなし; tel:なし,粗:(1)SSL未整備;(2)viewportなし;(3)tel:なし,"http://www.bluemoon-s.com/",y,
 18,株式会社五十嵐建築,"http://www.chachakiki.com/","chachakiki0320@yahoo.co.jp",SSL未整備; viewportなし; tel:なし; 更新停止感(HTML内2008止),粗:(1)SSL未整備;(2)viewportなし;(3)tel:なし,"http://www.chachakiki.com/",y,
-19,株式会社本田谷田部,"http://www.honda-yatabe.com/","info01@honda-yatabe.com",viewportなし; tel:なし; 更新停止感(HTML内2007止),粗:(1)viewportなし(2)tel:なし(3)更新停止感(HTML内2007止),"https://www.honda-yatabe.com/company.html",y,2026-08-24 除外: owner_ok解除
+19,株式会社本田谷田部,http://www.honda-yatabe.com/,info01@honda-yatabe.com,viewportなし; tel:なし; 更新停止感(HTML内2007止),粗:(1)viewportなし(2)tel:なし(3)更新停止感(HTML内2007止),https://www.honda-yatabe.com/company.html,,2026-08-24 除外: owner_ok解除 / 2026-09-07 owner_ok を注記の実態（除外）に同期
 20,株式会社高嶋材木店,"http://www.takashima-zaimoku.jp/","info@takashima-zaimoku.jp",SSL未整備; viewportなし; tel:なし,粗:(1)SSL未整備;(2)viewportなし;(3)tel:なし,"http://www.takashima-zaimoku.jp/",y,
 21,テクノウッドワークス株式会社,"http://www.technowoodworks.com/","sales@technowoodworks.com",SSL未整備; 更新停止感(HTML内2013止),粗:(1)SSL未整備;(2)更新停止感(HTML内2013止),"http://technowoodworks.com/inquiry/",y,
 22,有限会社上野建築事務所,"http://www.ueno-kenchiku.co.jp/","info@ueno-kenchiku.co.jp",SSL未整備; viewportなし; tel:なし; 更新停止感(HTML内2010止),粗:(1)SSL未整備;(2)viewportなし;(3)tel:なし,"http://www.ueno-kenchiku.co.jp/",y,
