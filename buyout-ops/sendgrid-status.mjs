@@ -58,6 +58,27 @@ for (const d of Array.isArray(stats) ? stats : []) {
   if (Number(m.requests || 0) > 0) active.push({ date: d.date, ...Object.fromEntries(M.map((k) => [k, Number(m[k] || 0)])) });
 }
 
+// クリックの出所を切り分けるための材料。free プランでは取れないものもある。
+const [devices, clients, geo, webhook, messages] = await Promise.all([
+  get(`/devices/stats?start_date=${start}&end_date=${today}`),
+  get(`/clients/stats?start_date=${start}&end_date=${today}`),
+  get(`/geo/stats?start_date=${start}&end_date=${today}`),
+  get("/user/webhooks/event/settings"),
+  get(`/messages?limit=20`),
+]);
+const flatten = (arr) => {
+  const acc = {};
+  for (const d of Array.isArray(arr) ? arr : []) {
+    for (const st of d.stats || []) {
+      const n = st.name || st.type || "?";
+      acc[n] = acc[n] || {};
+      for (const [k, v] of Object.entries(st.metrics || {})) acc[n][k] = (acc[n][k] || 0) + Number(v || 0);
+    }
+  }
+  return acc;
+};
+const byDevice = flatten(devices), byClient = flatten(clients), byGeo = flatten(geo);
+
 const supp = {
   bounces: Array.isArray(bounces) ? bounces.length : `?(${bounces.__error})`,
   blocks: Array.isArray(blocks) ? blocks.length : `?(${blocks.__error})`,
@@ -101,5 +122,22 @@ if (active.length) {
 }
 console.log(`\nサプレッション（累計・宛先数）`);
 for (const [k, v] of Object.entries(supp)) console.log(`  ${k.padEnd(20)} ${v}`);
+console.log(`\nクリック/開封の出所`);
+const dump = (label, obj, err) => {
+  const keys = Object.keys(obj);
+  if (!keys.length) { console.log(`  ${label}: 取得不可/データなし${err ? ` (${err})` : ""}`); return; }
+  for (const k of keys) console.log(`  ${label} ${k}: ${JSON.stringify(obj[k])}`);
+};
+dump("デバイス", byDevice, devices?.__error);
+dump("クライアント", byClient, clients?.__error);
+dump("国", byGeo, geo?.__error);
+console.log(`  イベントWebhook: ${webhook?.__error ? `取得不可 (${webhook.__error})` : `enabled=${webhook?.enabled} url=${webhook?.url || "(未設定)"} click=${webhook?.click} open=${webhook?.open}`}`);
+console.log(`  Email Activity API: ${messages?.__error ? `使えない (${messages.__error})` : `使える（${(messages?.messages || []).length}件取得）`}`);
+if (Array.isArray(messages?.messages)) {
+  for (const m of messages.messages.slice(0, 20)) {
+    console.log(`    ${m.last_event_time} ${m.status} ${m.to_email} clicks=${m.clicks_count ?? "?"} opens=${m.opens_count ?? "?"}`);
+  }
+}
+
 if (trk.open === false) console.log(`\n注意: 開封トラッキングが無効。開封数は常に 0 になる。`);
 if (trk.click === false) console.log(`注意: クリックトラッキングが無効。クリック数は常に 0 になる。`);
