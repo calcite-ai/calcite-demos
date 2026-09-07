@@ -2,3 +2,11 @@
 secrets/
 buyout-ops/node_modules/
 buyout-ops/.send-receipts-cache.jsonl
+
+# macOS が勝手に作る。git add -A のたびに紛れ込むので除外
+.DS_Store
+**/.DS_Store
+
+# 作業中の生成物（リポジトリに要らない）
+buyout-ops/outreach-domain-site/demo-deploy.zip
+buyout-ops/prospect_pipeline/scan_results.bak-*.csv
