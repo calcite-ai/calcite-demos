@@ -12,6 +12,8 @@
  *
  * 必要: SENDGRID_API_KEY
  */
+import { sendgridSmtpHeaders } from "./sendgrid-smtp-headers.mjs";
+
 const KEY = process.env.SENDGRID_API_KEY;
 if (!KEY) {
   console.error("FAIL SENDGRID_API_KEY が無い");
@@ -106,7 +108,20 @@ const pct = (n, d) => (d > 0 ? `${((n / d) * 100).toFixed(1)}%` : "—");
 console.log(`SendGrid 現況  ${today} JST（直近${days}日: ${start} 〜 ${today}）\n`);
 console.log(`アカウント : ${account?.type ?? "?"} / 評価スコア ${account?.reputation ?? "?"}`);
 console.log(`クレジット : ${credits?.remain ?? "?"} / ${credits?.total ?? "?"}（${credits?.reset_frequency ?? "?"}・次リセット ${credits?.next_reset ?? "?"}）`);
-console.log(`トラッキング: 開封=${trk.open} クリック=${trk.click} 配信停止リンク=${trk.subscription}`);
+// アカウント設定より、送信時の X-SMTPAPI ヘッダの方が強い。実効値はこちら。
+let eff = null;
+try {
+  const h = sendgridSmtpHeaders.call(null);
+  const raw = h["X-SMTPAPI"] ||
+    (() => { process.env.BUYOUT_MAIL_PROVIDER = "sendgrid"; return sendgridSmtpHeaders()["X-SMTPAPI"]; })();
+  const f = JSON.parse(raw).filters || {};
+  eff = { open: f.opentrack?.settings?.enable === 1, click: f.clicktrack?.settings?.enable === 1 };
+} catch { /* ヘッダを読めないときはアカウント設定だけ出す */ }
+console.log(`トラッキング(アカウント設定): 開封=${trk.open} クリック=${trk.click} 配信停止リンク=${trk.subscription}`);
+if (eff) {
+  console.log(`トラッキング(実際の送信ヘッダ): 開封=${eff.open} クリック=${eff.click}  ← こちらが優先される`);
+  if (!eff.open) console.log(`  ※ 開封は送信側で切ってある。下の開封数 0 は「誰も開いていない」ではなく「測っていない」。`);
+}
 console.log(`\n配信統計（合計）`);
 console.log(`  送信要求   ${total.requests}`);
 console.log(`  配信完了   ${total.delivered}  (${pct(total.delivered, total.requests)})`);
@@ -134,10 +149,24 @@ dump("国", byGeo, geo?.__error);
 console.log(`  イベントWebhook: ${webhook?.__error ? `取得不可 (${webhook.__error})` : `enabled=${webhook?.enabled} url=${webhook?.url || "(未設定)"} click=${webhook?.click} open=${webhook?.open}`}`);
 console.log(`  Email Activity API: ${messages?.__error ? `使えない (${messages.__error})` : `使える（${(messages?.messages || []).length}件取得）`}`);
 if (Array.isArray(messages?.messages)) {
+  const per = {};
+  for (const m of messages.messages) {
+    const e = m.to_email || "?";
+    per[e] = per[e] || { msgs: 0, clicks: 0 };
+    per[e].msgs++; per[e].clicks += Number(m.clicks_count || 0);
+  }
+  const bcc = "kenta.hino1106@gmail.com";
+  const own = Object.entries(per).filter(([e]) => e === bcc);
+  const pros = Object.entries(per).filter(([e]) => e !== bcc);
+  console.log(`  --- 宛先別（Activity で見えている範囲のみ） ---`);
+  for (const [e, v] of own) console.log(`    [自分のBCC] ${e}: ${v.msgs}通 クリック${v.clicks}`);
+  const pc = pros.reduce((a, [, v]) => a + v.clicks, 0);
+  console.log(`    [営業先] ${pros.length}宛先 ${pros.reduce((a,[,v])=>a+v.msgs,0)}通 クリック合計 ${pc}`);
+  for (const [e, v] of pros) console.log(`      ${e}: クリック${v.clicks}`);
+}
+if (Array.isArray(messages?.messages)) {
   for (const m of messages.messages.slice(0, 20)) {
     console.log(`    ${m.last_event_time} ${m.status} ${m.to_email} clicks=${m.clicks_count ?? "?"} opens=${m.opens_count ?? "?"}`);
   }
 }
 
-if (trk.open === false) console.log(`\n注意: 開封トラッキングが無効。開封数は常に 0 になる。`);
-if (trk.click === false) console.log(`注意: クリックトラッキングが無効。クリック数は常に 0 になる。`);
