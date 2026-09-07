@@ -88,7 +88,7 @@ approval_seq,company,url,email,defects,audit_draft,final_url,owner_ok,owner_note
 87,都夢住研株式会社,"http://tomu-jk.co.jp/","tomu-jk@msa.biglobe.ne.jp",SSL未整備; viewportなし,粗:(1)SSL未整備;(2)viewportなし,"http://tomu-jk.co.jp/",,
 88,株式会社ハウジングホース,"http://www.housing-horse.com/","housing-horse@nifty.com",viewportなし; tel:なし,粗:(1)viewportなし;(2)tel:なし,"https://www.housing-horse.com/corporate/",,
 89,株式会社小阪工務店,"http://www.kosakaweb.jp","info@kosakaweb.jp",tel:なし; 更新停止感(HTML内2016止),粗:(1)tel:なし;(2)更新停止感(HTML内2016止),"https://www.kosakaweb.jp/contact/",,
-90,株式会社三幸住研,"https://www.lowcost.com","sales@lowcost.com",SSL未整備; viewportなし; tel:なし,粗:(1)SSL未整備;(2)viewportなし;(3)tel:なし,"http://www.lowcost.com/",,
+90,株式会社三幸住研,https://www.lowcost.com,sales@lowcost.com,SSL未整備; viewportなし; tel:なし,粗:(1)SSL未整備;(2)viewportなし;(3)tel:なし,http://www.lowcost.com/,,⚠2026-09-07 登録URLは旧サイト。現行は https://sankoujyuken.jp/ — URL差し替え前に承認しないこと
 91,株式会社大塚工務店,"https://kinoie.life/","happy.homes.since1925@s5.dion.ne.jp",tel:なし; 更新停止感(HTML内2019止),粗:(1)tel:なし;(2)更新停止感(HTML内2019止),"https://kinoie.life/company/",,
 92,株式会社関西技建,"http://kansaigiken.co.jp","customer@kansaigiken.co.jp",SSL未整備,粗:(1)SSL未整備,"http://kansaigiken.co.jp/company/",,
 93,株式会社清水工務店,"https://www.sh-koum.com","info@sh-koum.com",viewportなし; tel:なし,粗:(1)viewportなし;(2)tel:なし,"https://www.sh-koum.com/",,
@@ -98,7 +98,7 @@ approval_seq,company,url,email,defects,audit_draft,final_url,owner_ok,owner_note
 97,水上総建株式会社,"http://m-souken.jp/","info@m-souken.jp",viewportなし; tel:なし; 更新停止感(HTML内2015止),粗:(1)viewportなし;(2)tel:なし;(3)更新停止感(HTML内2015止),"https://m-souken.jp/company/",,
 98,株式会社深澤工務所,"http://k-fukasawa.com/","finfo@k-fukasawa.com",viewportなし; tel:なし,粗:(1)viewportなし;(2)tel:なし,"https://k-fukasawa.com/",,
 99,板橋建設,"http://www.v-hf.com/k/itahashi","itahashi@lion.ocn.ne.jp",viewportなし; tel:なし,粗:(1)viewportなし;(2)tel:なし,"https://www.v-hf.com/k/itahashi",,
-100,今村弘建設,"http://www.v-hf.com/k/imamura","hiro_carpenter@hb.tp1.jp",viewportなし; tel:なし,粗:(1)viewportなし;(2)tel:なし,"https://www.v-hf.com/k/imamura",,
+100,今村弘建設,http://www.v-hf.com/k/imamura,hiro_carpenter@hb.tp1.jp,viewportなし; tel:なし,粗:(1)viewportなし;(2)tel:なし,https://www.v-hf.com/k/imamura,,⚠2026-09-07 登録URLは旧サイト。現行は https://imamurahiroshikensetsu.com/ — URL差し替え前に承認しないこと
 101,有限会社内山工務店,"http://www.v-hf.com/k/uchiyama389/","miyazaki@uchiyama-k.co.jp",viewportなし; tel:なし,粗:(1)viewportなし;(2)tel:なし,"https://www.v-hf.com/k/uchiyama389/",,
 102,有限会社大隈建築,"http://www.okumakenchiku.com/","okuma@okumakenchiku.com",SSL未整備; viewportなし; tel:なし,粗:(1)SSL未整備;(2)viewportなし;(3)tel:なし,"http://www.okumakenchiku.com/contact/regist",,
 103,有限会社三栄建設,"http://www.saneikensetsu.jp/","info@saneikensetsu.jp",SSL未整備; viewportなし; tel:なし; 更新停止感(HTML内2019止),粗:(1)SSL未整備;(2)viewportなし;(3)tel:なし,"http://www.saneikensetsu.jp/",,
@@ -109,7 +109,7 @@ approval_seq,company,url,email,defects,audit_draft,final_url,owner_ok,owner_note
 108,株式会社ちゅらきや,"http://www.churakiya.com/home/","hirataks@churakiya.com",viewportなし; tel:なし,粗:(1)viewportなし;(2)tel:なし,"https://churakiya.com/about/",,
 109,有限会社進和建設所,"http://shinwakensetsusyo.com/","info@ehime-shield.co.jp",SSL未整備; viewportなし; tel:なし,粗:(1)SSL未整備;(2)viewportなし;(3)tel:なし,"http://shinwakensetsusyo.com/",,
 110,イシドヤホーム株式会社,"http://ishidoyahome.jp","ishidoya@jomon.ne.jp",SSL未整備; viewportなし; tel:なし,粗:(1)SSL未整備;(2)viewportなし;(3)tel:なし,"http://ishidoyahome.jp/",,
-111,株式会社北三住建,"http://kitami-j.com/top","kitami1919@gmail.com",SSL未整備; tel:なし,粗:(1)SSL未整備;(2)tel:なし,"http://kitami-j.com/about/",,
+111,株式会社北三住建,http://kitami-j.com/top,kitami1919@gmail.com,SSL未整備; tel:なし,粗:(1)SSL未整備;(2)tel:なし,http://kitami-j.com/about/,,⚠2026-09-07 登録URLは旧サイト。現行は https://www.kitami-juken.com/ — URL差し替え前に承認しないこと
 112,株式会社センケンホーム,"http://www.senkenhome.jp","info@senkenhome.jp",SSL未整備; viewportなし; tel:なし,粗:(1)SSL未整備;(2)viewportなし;(3)tel:なし,"http://www.senkenhome.jp/",,
 113,有限会社金森建築,"http://www.kanamori-k.com/","info@kanamori-k.com",SSL未整備; viewportなし; tel:なし; 更新停止感(HTML内2014止),粗:(1)SSL未整備;(2)viewportなし;(3)tel:なし,"http://kanamori-k.com/company/",,
 114,株式会社小坂工務店,"http://www.kosaka-arc.jp","email.solar@kosaka-arc.jp",SSL未整備; viewportなし; tel:なし; 更新停止感(HTML内2017止),粗:(1)SSL未整備;(2)viewportなし;(3)tel:なし,"http://www.kosaka-arc.jp/",,

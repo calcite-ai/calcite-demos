@@ -36,6 +36,14 @@ cd buyout-ops がある calcite-demos リポジトリ root で作業する。
    - 税理士・葬儀は絶対に queued にしない（vertical=koumuten のみ）
    - 承認リスト外の hunter-suggest は使わない
 
+   - ★登録URLが現行の公式サイトかを確認する:
+       node buyout-ops/verify-official-site.mjs --company "<社名>" --url "<site_url>" --where "<市区町村>"
+       verdict=superseded なら **デモを作らない**。CSV を status=paused にし、
+       notes に現行URLを書いて次の社へ進む（URL差し替えは人が判断する）
+       verdict=unknown なら制作を止め、notes に「公式サイト要確認」と書いて次へ
+       （2026-09-07 ＫＡＺ空間企画: 廃止済みの旧サイトを診断して送信。
+         旧サイトも 200 を返し社名・住所・TEL が一致するため C0 では防げない）
+
    - 先方HPの会社概要ページを実際に開いて読む。
      代表者名・建設業許可番号・住所・TEL・営業時間・事業内容・採用の有無を控える。
      HPに書いていない項目は載せない。捏造しない。
