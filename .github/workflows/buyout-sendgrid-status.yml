@@ -1,0 +1,26 @@
+# SendGrid の配信・開封・クリックを読み出すだけ。メールは送らない。
+name: Buyout SendGrid status
+
+on:
+  workflow_dispatch:
+    inputs:
+      days:
+        description: "遡る日数"
+        required: false
+        default: "30"
+
+permissions:
+  contents: read
+
+jobs:
+  status:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: SendGrid status
+        env:
+          SENDGRID_API_KEY: ${{ secrets.SENDGRID_API_KEY }}
+        run: node buyout-ops/sendgrid-status.mjs --days "${{ inputs.days || '30' }}"
