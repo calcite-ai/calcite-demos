@@ -97,7 +97,7 @@ approval_seq,company,url,email,defects,audit_draft,final_url,owner_ok,owner_note
 96,中西木材株式会社,"http://www.n-wood.co.jp/","info@n-wood.co.jp",viewportなし; tel:なし,粗:(1)viewportなし;(2)tel:なし,"https://www.n-wood.co.jp/",,
 97,水上総建株式会社,"http://m-souken.jp/","info@m-souken.jp",viewportなし; tel:なし; 更新停止感(HTML内2015止),粗:(1)viewportなし;(2)tel:なし;(3)更新停止感(HTML内2015止),"https://m-souken.jp/company/",,
 98,株式会社深澤工務所,"http://k-fukasawa.com/","finfo@k-fukasawa.com",viewportなし; tel:なし,粗:(1)viewportなし;(2)tel:なし,"https://k-fukasawa.com/",,
-99,板橋建設,"http://www.v-hf.com/k/itahashi","itahashi@lion.ocn.ne.jp",viewportなし; tel:なし,粗:(1)viewportなし;(2)tel:なし,"https://www.v-hf.com/k/itahashi",,
+99,板橋建設,http://www.v-hf.com/k/itahashi,itahashi@lion.ocn.ne.jp,viewportなし; tel:なし,粗:(1)viewportなし;(2)tel:なし,https://www.v-hf.com/k/itahashi,,"2026-09-07 保留（承認しないこと）: 登録URLはクローバーグループ内の作りかけページで、本文が「こちらのページは現在作成中となります」＋ダミー文字列のみ（実質515文字・見出しは全て「a邸」）。著作表記は OCHISANGYO CO.,LTD で板橋建設のものですらない。現行雛形は「現行HPの欠点を指摘する」型なので、指摘材料が取れず本文が作れない。解除条件: 「自社サイトが無い会社」向けの別型メールを用意し、他社で成果を確認できたとき。永久除外ではないためブロックリストには入れない。"
 100,今村弘建設,http://www.v-hf.com/k/imamura,hiro_carpenter@hb.tp1.jp,viewportなし; tel:なし,粗:(1)viewportなし;(2)tel:なし,https://www.v-hf.com/k/imamura,,⚠2026-09-07 登録URLは旧サイト。現行は https://imamurahiroshikensetsu.com/ — URL差し替え前に承認しないこと
 101,有限会社内山工務店,http://www.v-hf.com/k/uchiyama389/,miyazaki@uchiyama-k.co.jp,viewportなし; tel:なし,粗:(1)viewportなし;(2)tel:なし,https://www.v-hf.com/k/uchiyama389/,,重複 — seq44 (有)内山工務店 と同一宛先 miyazaki@uchiyama-k.co.jp。seq44 は承認済で送信リストに登録済のため、この行は承認しないこと
 102,有限会社大隈建築,"http://www.okumakenchiku.com/","okuma@okumakenchiku.com",SSL未整備; viewportなし; tel:なし,粗:(1)SSL未整備;(2)viewportなし;(3)tel:なし,"http://www.okumakenchiku.com/contact/regist",,
