@@ -18,6 +18,10 @@ export function archiveRecipient() {
 export async function sendArchiveCopy(transporter, { from, to, subject, text, html }) {
   const rcpt = archiveRecipient();
   if (!rcpt) return { skipped: "recipient未設定" };
+  // 控えが営業先へ飛ぶと同じ相手に2通届く。BUYOUT_BCC の設定ミスでも起きないよう塞ぐ。
+  if (rcpt.toLowerCase() === String(to || "").trim().toLowerCase()) {
+    return { skipped: `控えの宛先が営業先と同一 (${rcpt}) — 2通目を送らない` };
+  }
   try {
     const msg = {
       from,
