@@ -401,7 +401,7 @@ try {
             text: mail.body,
             inReplyTo: messageId,
             references: messageId,
-            headers: sendgridSmtpHeaders(),
+            headers: sendgridSmtpHeaders({ track: false }),
           });
           row.checkout_status = "checkout_sent";
           row.notes = `${row.notes} / checkout_sent ${jstDateString()}`;

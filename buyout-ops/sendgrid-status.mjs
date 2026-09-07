@@ -13,6 +13,7 @@
  * 必要: SENDGRID_API_KEY
  */
 import { sendgridSmtpHeaders } from "./sendgrid-smtp-headers.mjs";
+import { archiveRecipient } from "./archive-copy.mjs";
 
 const KEY = process.env.SENDGRID_API_KEY;
 if (!KEY) {
@@ -155,11 +156,11 @@ if (Array.isArray(messages?.messages)) {
     per[e] = per[e] || { msgs: 0, clicks: 0 };
     per[e].msgs++; per[e].clicks += Number(m.clicks_count || 0);
   }
-  const bcc = "kenta.hino1106@gmail.com";
+  const bcc = archiveRecipient();
   const own = Object.entries(per).filter(([e]) => e === bcc);
   const pros = Object.entries(per).filter(([e]) => e !== bcc);
   console.log(`  --- 宛先別（Activity で見えている範囲のみ） ---`);
-  for (const [e, v] of own) console.log(`    [自分のBCC] ${e}: ${v.msgs}通 クリック${v.clicks}`);
+  for (const [e, v] of own) console.log(`    [自分の控え] ${e}: ${v.msgs}通 クリック${v.clicks}`);
   const pc = pros.reduce((a, [, v]) => a + v.clicks, 0);
   console.log(`    [営業先] ${pros.length}宛先 ${pros.reduce((a,[,v])=>a+v.msgs,0)}通 クリック合計 ${pc}`);
   for (const [e, v] of pros) console.log(`      ${e}: クリック${v.clicks}`);

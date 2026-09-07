@@ -14,7 +14,8 @@
  *   BUYOUT_SMTP_HOST   mail1004… (conoha) / smtp.sendgrid.net (optional override)
  *   BUYOUT_SMTP_PORT   465
  *   SENDGRID_API_KEY   required when provider=sendgrid
- *   BUYOUT_BCC         optional (default kenta.hino1106@gmail.com)
+ *   BUYOUT_BCC         控えの宛先 (default kenta.hino1106@gmail.com)。
+ *                      BCC ではなく「追跡なしの別メッセージ」で送る。
  *
  * Usage:
  *   node buyout-ops/send-outreach-smtp.mjs --company "村上工務店"
@@ -28,12 +29,12 @@ import nodemailer from "nodemailer";
 import { parseCsv } from "./csv-util.mjs";
 import { resolveTransport } from "./mail-transport.mjs";
 import { sendgridSmtpHeaders } from "./sendgrid-smtp-headers.mjs";
+import { sendArchiveCopy, archiveRecipient } from "./archive-copy.mjs";
 import { classifySmtpError, exitCodeForKind } from "./smtp-error-kind.mjs";
 import { appendReceipt, hasSentTo } from "./send-receipts.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.join(__dirname, "..");
-const DEFAULT_BCC = "kenta.hino1106@gmail.com";
 
 function arg(name, fallback = "") {
   const i = process.argv.indexOf(`--${name}`);
@@ -115,11 +116,11 @@ if (hasSentTo(row.email)) {
 }
 
 const transport = resolveTransport();
-const bcc = String(process.env.BUYOUT_BCC || DEFAULT_BCC).trim();
+const archiveTo = archiveRecipient();
 
 console.log(`provider=${transport.provider}`);
 console.log(`to=${row.email}`);
-console.log(`bcc=${bcc || "(none)"}`);
+console.log(`archive=${archiveTo || "(none)"} (追跡なしの別送)`);
 console.log(`from=${transport.fromUser}`);
 console.log(`subject=${subject}`);
 console.log(`host=${transport.host} port=${transport.port}`);
@@ -146,7 +147,6 @@ try {
     html,
     headers: sendgridSmtpHeaders(),
   };
-  if (bcc) mail.bcc = bcc;
 
   const info = await transporter.sendMail(mail);
 
@@ -154,6 +154,14 @@ try {
   appendReceipt({ company, email: row.email, messageId: id, track: "buyout" });
   console.log(`RESULT sent messageId=${id}`);
   console.log(`SMTP_MESSAGE_ID=${id}`);
+
+  // 控えは別送。ここで失敗しても本文は既に届いているので落とさない。
+  const arch = await sendArchiveCopy(transporter, {
+    from: mail.from, to: row.email, subject, text: body, html,
+  });
+  if (arch.error) console.warn(`WARN 控えの送信に失敗（本文は送信済み）: ${arch.error}`);
+  else if (arch.skipped) console.log(`控え: skip (${arch.skipped})`);
+  else console.log(`控え送信 messageId=${arch.messageId}`);
 } catch (err) {
   const kind = classifySmtpError(err);
   console.error(`FAIL_KIND=${kind}`);

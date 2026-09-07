@@ -81,7 +81,7 @@ try {
     bcc,
     subject,
     text,
-    headers: sendgridSmtpHeaders(),
+    headers: sendgridSmtpHeaders({ track: false }),
   });
   console.log(`RESULT sent messageId=${info.messageId || info.response || "unknown"}`);
 } catch (err) {

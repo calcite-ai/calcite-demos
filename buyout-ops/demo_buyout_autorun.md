@@ -11,7 +11,12 @@
 > 稼働:  
 > - **9:00 JST** Cursor Automation デモ制作 → [`demo_buyout_daily_schedule.md`](./demo_buyout_daily_schedule.md)（**main 直 push**）  
 > - **10:00 JST** **GitHub Actions** [`buyout-daily-send.yml`](../.github/workflows/buyout-daily-send.yml) が残枠ぶん SMTP text/plain 送信（**buyout → inside の順**）  
-> - 送信は **BCC `kenta.hino1106@gmail.com`**（Gmail受信箱で履歴確認。URLは text/plain のまま）  
+> - 控えは **`kenta.hino1106@gmail.com` へ別メッセージで別送**（Gmail受信箱で履歴確認。URLは text/plain のまま）
+>   - 2026-09-07 まで BCC だった。BCC は同一メッセージなので追跡設定を分けられず、
+>     控えを自分で開く／デモリンクを踏むと営業先の開封・クリックに混ざる。
+>     実際、それまでのクリック23件は**全て控え由来**で、営業先のクリックは0だった。
+>   - 控えは開封・クリックとも追跡オフ。件名に `[控え]` が付く。
+>   - SendGrid のクレジット消費は BCC 時と同じ（宛先2件＝2通分）。  
 > このフォルダ（`buyout-ops/`）が正本。
 
 ## PCスリープについて

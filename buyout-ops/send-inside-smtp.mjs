@@ -15,6 +15,7 @@ import { parseCsv, serializeCsv } from "./csv-util.mjs";
 import { resolveTransport } from "./mail-transport.mjs";
 import { isAlreadyOutreached } from "./outreach-guard.mjs";
 import { sendgridSmtpHeaders } from "./sendgrid-smtp-headers.mjs";
+import { sendArchiveCopy, archiveRecipient } from "./archive-copy.mjs";
 import { classifySmtpError, exitCodeForKind } from "./smtp-error-kind.mjs";
 import { jstDateString } from "./send-quota.mjs";
 import { appendReceipt } from "./send-receipts.mjs";
@@ -22,7 +23,6 @@ import { appendReceipt } from "./send-receipts.mjs";
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.join(__dirname, "..");
 const leadsPath = path.join(__dirname, "inside_sales_poc_leads.csv");
-const DEFAULT_BCC = "kenta.hino1106@gmail.com";
 
 function arg(name, fallback = "") {
   const i = process.argv.indexOf(`--${name}`);
@@ -85,11 +85,11 @@ if (dryRun) {
 }
 
 const transport = resolveTransport();
-const bcc = String(process.env.BUYOUT_BCC || DEFAULT_BCC).trim();
+const archiveTo = archiveRecipient();
 
 console.log(`track=inside provider=${transport.provider}`);
 console.log(`to=${rows[idx].email}`);
-console.log(`bcc=${bcc || "(none)"}`);
+console.log(`archive=${archiveTo || "(none)"} (追跡なしの別送)`);
 console.log(`from=${transport.fromUser}`);
 console.log(`subject=${subject}`);
 
@@ -108,7 +108,6 @@ try {
     text: body,
     headers: sendgridSmtpHeaders(),
   };
-  if (bcc) mail.bcc = bcc;
 
   const info = await transporter.sendMail(mail);
   const id = info.messageId || info.response || "";
@@ -132,6 +131,14 @@ try {
   });
   console.log(`RESULT sent messageId=${id}`);
   console.log(`SMTP_MESSAGE_ID=${id}`);
+
+  // 控えは別送。ここで失敗しても本文は既に届いているので落とさない。
+  const arch = await sendArchiveCopy(transporter, {
+    from: mail.from, to: rows[idx].email, subject, text: body,
+  });
+  if (arch.error) console.warn(`WARN 控えの送信に失敗（本文は送信済み）: ${arch.error}`);
+  else if (arch.skipped) console.log(`控え: skip (${arch.skipped})`);
+  else console.log(`控え送信 messageId=${arch.messageId}`);
 } catch (err) {
   const kind = classifySmtpError(err);
   console.error(`FAIL_KIND=${kind}`);
