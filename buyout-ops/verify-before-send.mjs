@@ -132,6 +132,10 @@ async function verifyProspect({ name, email, urlA, urlB, slug, quotedPrice, stat
 
   if (!urlA) fails.push("V1 CSVに demo_url_a がない");
   if (!name) fails.push("V3 社名がない");
+  else if (!/[\u3040-\u30ff\u3400-\u9fff]/.test(name))
+    fails.push(
+      `V3b 社名が日本語でない（"${name}"）— ドメイン由来のスラッグのまま宛名に出る`
+    );
   if (!isValidPublicEmail(email)) {
     fails.push(
       `V16 送信先メールが無効（フォーム記入例・空など）: ${email || "(empty)"} — 実在するアドレスに直すか行を削除`

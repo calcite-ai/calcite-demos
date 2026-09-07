@@ -53,8 +53,8 @@ approval_seq,company,url,email,defects,audit_draft,final_url,owner_ok,owner_note
 52,株式会社中央建工,"http://www.chuokenko.jp/","info@chuokenko.jp",SSL未整備; viewportなし; tel:なし; 更新停止感(HTML内2013止),粗:(1)SSL未整備;(2)viewportなし;(3)tel:なし,"http://www.chuokenko.jp/profile",y,
 53,株式会社佐久間工務店,"http://sakumakoumuten.jp/","soumu@sakuma.co.jp",tel:なし; 更新停止感(HTML内2014止),粗:(1)tel:なし;(2)更新停止感(HTML内2014止),"https://sakumakoumuten.jp/company/",y,
 54,株式会社戸諸工務店,"http://www.tomoro.co.jp/","tomoro.net@abeam.ocn.ne.jp",viewportなし; tel:なし,粗:(1)viewportなし;(2)tel:なし,"https://www.tomoro.co.jp/",y,
-55,tama-kenchiku,"http://tama-kenchiku.jp/","tamaoki@mtj.biglobe.ne.jp",SSL未整備; viewportなし; tel:なし; 更新停止感(HTML内2009止),粗:(1)SSL未整備;(2)viewportなし;(3)tel:なし,"http://tama-kenchiku.jp/",y,
-56,athome-arai,"https://www.athome-arai.jp/","yoshiwa@athome-arai.jp",viewportなし; tel:なし,粗:(1)viewportなし;(2)tel:なし,"https://www.athome-arai.jp/",y,
+55,株式会社環建築工房,"http://tama-kenchiku.jp/","tamaoki@mtj.biglobe.ne.jp",SSL未整備; viewportなし; tel:なし; 更新停止感(HTML内2009止),粗:(1)SSL未整備;(2)viewportなし;(3)tel:なし,"http://tama-kenchiku.jp/",y,
+56,有限会社新井建設,"https://www.athome-arai.jp/","yoshiwa@athome-arai.jp",viewportなし; tel:なし,粗:(1)viewportなし;(2)tel:なし,"https://www.athome-arai.jp/",y,
 57,㈱新屋敷工務店,"https://www.shinyashiki.co.jp/","info@shinyashiki.co.jp",viewportなし; tel:なし,粗:(1)viewportなし;(2)tel:なし,"https://www.shinyashiki.co.jp/company/",y,bulk_approve 2026-09-03
 58,株式会社タウンズホーム,"https://ssl.towns-home.co.jp/","natural-home@towns-home.co.jp",tel:なし; 更新停止感(HTML内2019止),粗:(1)tel:なし;(2)更新停止感(HTML内2019止),"https://ssl.towns-home.co.jp/company.html",y,bulk_approve 2026-09-03
 59,押元建設,"http://www.osimoto.com/","info@osimoto.com",SSL未整備; tel:なし,粗:(1)SSL未整備;(2)tel:なし,"http://www.osimoto.com/company/",y,bulk_approve 2026-09-03
@@ -99,7 +99,7 @@ approval_seq,company,url,email,defects,audit_draft,final_url,owner_ok,owner_note
 98,株式会社深澤工務所,"http://k-fukasawa.com/","finfo@k-fukasawa.com",viewportなし; tel:なし,粗:(1)viewportなし;(2)tel:なし,"https://k-fukasawa.com/",,
 99,板橋建設,"http://www.v-hf.com/k/itahashi","itahashi@lion.ocn.ne.jp",viewportなし; tel:なし,粗:(1)viewportなし;(2)tel:なし,"https://www.v-hf.com/k/itahashi",,
 100,今村弘建設,http://www.v-hf.com/k/imamura,hiro_carpenter@hb.tp1.jp,viewportなし; tel:なし,粗:(1)viewportなし;(2)tel:なし,https://www.v-hf.com/k/imamura,,⚠2026-09-07 登録URLは旧サイト。現行は https://imamurahiroshikensetsu.com/ — URL差し替え前に承認しないこと
-101,有限会社内山工務店,"http://www.v-hf.com/k/uchiyama389/","miyazaki@uchiyama-k.co.jp",viewportなし; tel:なし,粗:(1)viewportなし;(2)tel:なし,"https://www.v-hf.com/k/uchiyama389/",,
+101,有限会社内山工務店,http://www.v-hf.com/k/uchiyama389/,miyazaki@uchiyama-k.co.jp,viewportなし; tel:なし,粗:(1)viewportなし;(2)tel:なし,https://www.v-hf.com/k/uchiyama389/,,重複 — seq44 (有)内山工務店 と同一宛先 miyazaki@uchiyama-k.co.jp。seq44 は承認済で送信リストに登録済のため、この行は承認しないこと
 102,有限会社大隈建築,"http://www.okumakenchiku.com/","okuma@okumakenchiku.com",SSL未整備; viewportなし; tel:なし,粗:(1)SSL未整備;(2)viewportなし;(3)tel:なし,"http://www.okumakenchiku.com/contact/regist",,
 103,有限会社三栄建設,"http://www.saneikensetsu.jp/","info@saneikensetsu.jp",SSL未整備; viewportなし; tel:なし; 更新停止感(HTML内2019止),粗:(1)SSL未整備;(2)viewportなし;(3)tel:なし,"http://www.saneikensetsu.jp/",,
 104,株式会社小川工務店,"http://www.ogawa-1k.com/","info@ogawa-1k.com",SSL未整備; 更新停止感(HTML内2011止),粗:(1)SSL未整備;(2)更新停止感(HTML内2011止),"http://www.ogawa-1k.com/",,

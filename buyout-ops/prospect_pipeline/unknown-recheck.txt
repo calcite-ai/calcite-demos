@@ -1,10 +1,39 @@
-# verify-official-site が unknown を返した社の再確認リスト
-# 形式: seq|社名|登録URL|所在地（分かれば）
+# verify-official-site が unknown を返した社の個別確認（2026-09-07 実施・完了）
+#
+# 結論: 8件とも「登録URLの差し替えは不要」。paused にすべき社はなかった。
+# 検索の superseded 判定は2件出たが、実物を開いた結果どちらも誤検出だった。
+#
+# 形式: seq|社名|登録URL|所在地（あれば）
+#
+# --- 結果 ---
+# seq99  板橋建設        現行のまま。登録URLは「こちらのページは現在作成中となります」の
+#                        未完成ページ（クローバーグループ内・福岡県みやま市）。別ドメインの
+#                        公式サイトは存在しない。※診断対象となる中身が無い点は要判断。
+# seq101 内山工務店      current。NAVITIME の住所・電話(0925912655)一致で登録URLが会社サイト。
+#                        メールドメイン uchiyama-k.co.jp は Domain Default page＝メール専用。
+# seq121 家本工務店      current。検索は ii-ie2.net を superseded として挙げたが、これは
+#                        LIXIL「いい家ネット」のポータルであり自社サイトではない（誤検出）。
+#                        登録URLは住所一致の現行 WordPress サイト。
+# seq18  黒田工務店      判定不能のまま。同名企業が全国に多数、登録URL側に会社概要が無い。
+#                        既に paused のため実害なし。
+# seq48  山﨑建設        current。同ドメイン内に2025年更新記事、住所・電話一致。
+# seq46  古澤リビング    current。IBM Homepage Builder 10 / Shift_JIS / <title> 空という
+#                        2005年頃の作りのまま生存。
+# seq60  環建築工房      current。※CSVの社名が "tama-kenchiku" というスラッグだった。
+#                        実名「株式会社環建築工房」(東京都千代田区岩本町1-9-4) に修正済。
+# seq33  宮川建設        current。検索は miyagawa-home.com を superseded として挙げたが、
+#                        両ドメインは本文が完全一致（md5同一）で、ページ自身が
+#                        「WEB http://miyagawa-home.main.jp」と自社表記している（誤検出）。
+#
+# --- 監査主張の実地検証（メール本文に載る記述） ---
+# 「SSL未整備」: yamasaki-1972 / furusawa-living / tama-kenchiku / iemoto-koumuten の
+#                4件とも https 接続不可を実測で確認。主張は正しい。
+#
 99|板橋建設|http://www.v-hf.com/k/itahashi|
 101|有限会社内山工務店|http://www.v-hf.com/k/uchiyama389/|
 121|株式会社家本工務店|http://www.iemoto-koumuten.jp/|
 18|黒田工務店|https://kurotakoumuten.web.fc2.com/|
 48|株式会社山﨑建設|http://yamasaki-1972.co.jp/profile/|
 46|有限会社古澤リビング|http://www.furusawa-living.co.jp/|
-60|tama-kenchiku|http://tama-kenchiku.jp/|
+60|株式会社環建築工房|http://tama-kenchiku.jp/|東京都千代田区
 33|宮川建設株式会社|https://miyagawa-home.main.jp/|愛知県豊田市

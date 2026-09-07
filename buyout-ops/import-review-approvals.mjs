@@ -60,6 +60,10 @@ const { headers: existingHeaders, rows: existing } = parseCsv(
   fs.readFileSync(leadsPath, "utf8")
 );
 const known = new Set(existing.map((r) => `${r.company}\t${r.email}`));
+// 社名の表記ゆれ（(有) と 有限会社 など）で同じ宛先が二重登録されるのを防ぐ。
+const knownEmails = new Set(
+  existing.map((r) => String(r.email || "").trim().toLowerCase()).filter(Boolean)
+);
 
 const today = new Date().toISOString().slice(0, 10);
 const toAdd = [];
@@ -79,6 +83,10 @@ for (const r of approved) {
   }
   if (known.has(`${company}\t${email}`)) {
     console.log(`SKIP already in leads: ${company}`);
+    continue;
+  }
+  if (knownEmails.has(String(email).trim().toLowerCase())) {
+    console.log(`SKIP same email already in leads: ${company} <${email}>`);
     continue;
   }
   const audit = `2026-08-23 owner承認。scan:${r.audit_draft || r.defects}. C0/C3は送信前再確認`;
