@@ -59,6 +59,37 @@
 - `shukatsu-concierge/` は**別プロダクト**。本番反映は **FTP**（オーナー確認後）。
   ここから push しない
 
+## 2.5 外（claude.ai/code・別マシン）から作業するとき
+
+**このセッションは文脈ゼロで始まる。** まずこの順に読む。
+
+1. `CLAUDE.md`（このファイル）
+2. `buyout-ops/prompts/demo-build-0900.md` — 9:00 デモ制作の**正本プロンプト**
+3. `buyout-ops/demo_buyout_daily_schedule.md` — 当日の手順
+4. `git log --oneline -20` — 直近の判断はコミットメッセージに書いてある
+
+### 手元（Mac）と外で違うこと
+
+| | Mac | 外（クラウド） |
+|---|---|---|
+| SMTP認証情報 | 無い（Actions のみ） | 無い |
+| `ANTHROPIC_API_KEY` | `~/.env` にある → ローカル実行可 | **無い** → Actions 経由のみ |
+| デモのビルド・publish | できる | **できる**（リポジトリ内で完結） |
+
+- **メール送信をローカルから叩かない。** 認証情報が無いので失敗する。
+  送信は `works/**` か `demo_buyout_leads.csv` を **main に push すれば自動発火**する
+  （`buyout-daily-send.yml` の push トリガ）。手動なら
+  `gh workflow run buyout-daily-send.yml`。
+- **モデルを使う検証**（サイト現況・抽出）は外からは Actions 経由。
+  `gh workflow run buyout-official-site-check.yml`
+- **SendGrid の数字**を見るなら `gh workflow run buyout-sendgrid-status.yml`
+- 営業時間ガード（9-18時 JST）は Actions 側で効く。時間外は skip して次の cron で再試行。
+
+### 外から触らない方がいいもの
+
+- `shukatsu-concierge/` — 本番反映が FTP で、リポジトリからは出せない
+- 実機でのスマホ確認（§3）— これはオーナーの手元が要る
+
 ## 3. 最終チェックはスマホ必須
 
 デモ・クライアントHPの「最終OK」前に、幅 **〜390px**（iPhone相当）で主要ページを見る。
