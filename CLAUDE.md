@@ -63,10 +63,11 @@
 
 **このセッションは文脈ゼロで始まる。** まずこの順に読む。
 
-1. `CLAUDE.md`（このファイル）
-2. `buyout-ops/prompts/demo-build-0900.md` — 9:00 デモ制作の**正本プロンプト**
-3. `buyout-ops/demo_buyout_daily_schedule.md` — 当日の手順
-4. `git log --oneline -20` — 直近の判断はコミットメッセージに書いてある
+1. `buyout-ops/STATUS.md` — **現況メモ。まずこれ**（数字・未着手・直近の発見）
+2. `CLAUDE.md`（このファイル）
+3. `buyout-ops/prompts/demo-build-0900.md` — 9:00 デモ制作の**正本プロンプト**
+4. `buyout-ops/demo_buyout_daily_schedule.md` — 当日の手順
+5. `git log --oneline -20` — 直近の判断はコミットメッセージに書いてある
 
 ### 手元（Mac）と外で違うこと
 
