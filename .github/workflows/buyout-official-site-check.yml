@@ -1,0 +1,52 @@
+name: buyout-official-site-check
+
+# 登録URLが現行公式かを web 検索で確認する（手動）。
+#   gh workflow run buyout-official-site-check.yml -f mode=sample
+on:
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: "sample=既知3社で精度検証 / all=承認済み+未承認をまとめて"
+        type: choice
+        options: [sample, all]
+        default: sample
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: "20" }
+      - name: Install deps
+        working-directory: buyout-ops
+        run: npm install --omit=dev
+
+      - name: Sample (accuracy check on known cases)
+        if: inputs.mode == 'sample'
+        env: { ANTHROPIC_API_KEY: "${{ secrets.ANTHROPIC_API_KEY }}" }
+        run: |
+          set -e
+          echo "期待: KAZ=superseded / 星野=current / 加茂=current"
+          echo "--- ＫＡＺ空間企画 ---"
+          node buyout-ops/verify-official-site.mjs --company "ＫＡＺ空間企画" \
+            --url "http://www.kaz-kuukan.com/" --where "福島県会津若松市" || true
+          echo "--- 株式会社星野工務店 ---"
+          node buyout-ops/verify-official-site.mjs --company "株式会社星野工務店" \
+            --url "http://www.hoshinokoumuten.co.jp/company.html" --where "愛知県豊川市" || true
+          echo "--- 加茂建設株式会社 ---"
+          node buyout-ops/verify-official-site.mjs --company "加茂建設株式会社" \
+            --url "http://www.orihime.ne.jp/~kamo/" --where "愛知県一宮市" || true
+
+      - name: All (approved + pending)
+        if: inputs.mode == 'all'
+        env: { ANTHROPIC_API_KEY: "${{ secrets.ANTHROPIC_API_KEY }}" }
+        run: node buyout-ops/verify-official-site.mjs --all --out official.json
+
+      - name: Upload results
+        if: inputs.mode == 'all'
+        uses: actions/upload-artifact@v4
+        with: { name: official-site-check, path: official.json }
