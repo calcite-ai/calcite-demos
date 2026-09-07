@@ -86,12 +86,17 @@ export async function checkOne({ company, url, where }) {
 }
 
 function loadTargets() {
-  const root = path.join(__dirname, "..");
+  // --status で対象を絞る。既定は approved（送信予定のもの）
+  const want = (arg("status", "approved") || "").split(",").map((s) => s.trim()).filter(Boolean);
+  const all = want.includes("all");
   const leads = parseCsv(fs.readFileSync(path.join(__dirname, "demo_buyout_leads.csv"), "utf8")).rows
-    .filter((r) => r.status === "approved" && String(r.do_not_contact).toLowerCase() !== "true")
-    .map((r) => ({ src: "approved", seq: r.approval_seq, company: r.company, url: r.site_url, where: "" }));
+    .filter((r) => r.company && r.site_url)
+    .filter((r) => all || want.includes(r.status || ""))
+    .map((r) => ({ src: r.status || "(none)", seq: r.approval_seq, company: r.company, url: r.site_url, where: "" }));
   const qp = path.join(__dirname, "prospect_pipeline", "review_queue.csv");
-  const queue = fs.existsSync(qp)
+  const queue = arg("no-queue") !== undefined && process.argv.includes("--no-queue")
+    ? []
+    : fs.existsSync(qp)
     ? parseCsv(fs.readFileSync(qp, "utf8")).rows
         .filter((r) => r.company && !String(r.owner_ok || "").trim())
         .map((r) => ({ src: "pending", seq: r.approval_seq, company: r.company, url: r.url, where: "" }))

@@ -8,7 +8,7 @@ on:
       mode:
         description: "sample=既知3社で精度検証 / all=承認済み+未承認をまとめて"
         type: choice
-        options: [sample, all]
+        options: [sample, all, rest]
         default: sample
 
 permissions:
@@ -46,7 +46,15 @@ jobs:
         env: { ANTHROPIC_API_KEY: "${{ secrets.ANTHROPIC_API_KEY }}" }
         run: node buyout-ops/verify-official-site.mjs --all --out official.json
 
+      # 送信済み・停止中・状態なしも含めた棚卸し（送信済みの検証は事後確認）
+      - name: Rest (sent / paused / no-status)
+        if: inputs.mode == 'rest'
+        env: { ANTHROPIC_API_KEY: "${{ secrets.ANTHROPIC_API_KEY }}" }
+        run: |
+          node buyout-ops/verify-official-site.mjs --all --no-queue \
+            --status "sent,paused," --out official.json
+
       - name: Upload results
-        if: inputs.mode == 'all'
+        if: inputs.mode == 'all' || inputs.mode == 'rest'
         uses: actions/upload-artifact@v4
         with: { name: official-site-check, path: official.json }
