@@ -2,82 +2,100 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>お問い合わせ｜株式会社日南工務店</title>
-  <meta name="description" content="株式会社日南工務店へのお問い合わせ。" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;600&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="../styles.css" />
   <meta name="robots" content="noindex,nofollow" />
-  <meta name="googlebot" content="noindex,nofollow" />
 </head>
-<body data-skin="c-daylight">
-  <header class="site-header">
+<body>
+  <header class="site-header site-header--solid">
     <div class="wrap site-header__inner">
       <a class="brand" href="../index.html">
-        <span class="brand__name">株式会社日南工務店</span>
-        <span class="brand__tag">川崎の新築・リフォームを、丁寧に。</span>
+        <span class="brand__mark" aria-hidden="true">日</span>
+        <span><span class="brand__name">株式会社日南工務店</span></span>
       </a>
       <nav class="nav" aria-label="メインメニュー">
-        <a href="../index.html">ホーム</a>
-        <a href="../services/index.html">サービス</a>
         <a href="../about/index.html">会社概要</a>
+        <a href="../services/index.html">事業内容</a>
+        <a href="../recruit/index.html">採用情報</a>
         <a href="../contact/index.html" class="nav__cta" aria-current="page">お問い合わせ</a>
       </nav>
-      <button class="menu-btn" type="button" aria-label="メニュー" data-menu-toggle>
-        <span></span><span></span><span></span>
-      </button>
+      <button class="menu-btn" type="button" aria-label="メニュー" data-menu-toggle><span></span><span></span><span></span></button>
     </div>
     <div class="wrap mobile-nav" data-mobile-nav>
       <a href="../index.html">ホーム</a>
-      <a href="../services/index.html">サービス</a>
       <a href="../about/index.html">会社概要</a>
-      <a href="../contact/index.html">お問い合わせ</a>
-      <a href="../privacy/index.html">プライバシーポリシー</a>
+      <a href="../recruit/index.html">採用情報</a>
     </div>
   </header>
-
-
-  <section class="page-hero">
-    <div class="wrap">
-      <h1>お問い合わせ</h1>
-      <p>お急ぎの方はお電話がスムーズです。</p>
-    </div>
-  </section>
-  <section class="block-page">
-    <div class="wrap contact-layout">
-      <div class="contact-card">
-        <h2>電話</h2>
-        <p><a class="tel-lg" href="tel:0448116033">044-811-6033</a></p>
-        <p class="muted">受付: 平日 9:00–18:00</p>
-        <a class="btn btn--primary" href="tel:0448116033">電話をかける</a>
+  <main>
+    <section class="page-hero">
+      <div class="wrap">
+        <p class="sec-head__en">Contact</p>
+        <h1>お問い合わせ</h1>
+        <p class="page-hero__lead">施工のご依頼・お見積りは、お電話または下記フォームよりお願いいたします。</p>
       </div>
-      <div class="contact-card">
-        <h2>メール</h2>
-        <p><a href="mailto:info@nichinankoumuten.jp">info@nichinankoumuten.jp</a></p>
-        <p class="muted">内容を簡単にご記入のうえお送りください。</p>
-        <a class="btn btn--ghost" href="mailto:info@nichinankoumuten.jp">メールを送る</a>
+    </section>
+
+    <section class="page-body">
+      <div class="wrap">
+        <div class="contact-grid">
+          <div class="contact-card">
+            <h2>お電話</h2>
+            <p><a href="tel:0448116033">044-811-6033</a></p>
+            <p class="note">8:00-18:00（定休日: 日曜・祝日・年末年始・夏季休暇・GW）</p>
+          </div>
+        </div>
+
+        <h2>お問い合わせフォーム</h2>
+        <form class="form-mock" action="#" method="post" onsubmit="return false;">
+          <label for="c-name">お名前</label>
+          <input id="c-name" name="name" type="text" autocomplete="name" />
+          <label for="c-tel">電話番号</label>
+          <input id="c-tel" name="tel" type="tel" autocomplete="tel" />
+          <label for="c-email">メールアドレス</label>
+          <input id="c-email" name="email" type="email" autocomplete="email" />
+          <label for="c-type">お問い合わせ種別</label>
+          <select id="c-type" name="type">
+            <option>施工のご相談</option>
+            <option>お見積り依頼</option>
+            <option>採用について</option>
+            <option>その他</option>
+          </select>
+          <label for="c-body">お問い合わせ内容</label>
+          <textarea id="c-body" name="body"></textarea>
+          <button class="btn" type="submit">送信する</button>
+        </form>
+        <p class="form-note">※フォームはイメージです。ご連絡はお電話でお願いいたします。</p>
       </div>
-    </div>
-  </section>
-  <footer class="site-footer">
+    </section>
+  </main>
+  <footer class="site-footer sub-footer">
     <div class="wrap site-footer__grid">
       <div>
         <strong>株式会社日南工務店</strong>
-        <p>神奈川県川崎市多摩区堰3-4-1<br />TEL: 044-811-6033</p>
+        <p>神奈川県川崎市多摩区堰3-4-1</p>
+        <p>TEL <a href="tel:0448116033">044-811-6033</a></p>
       </div>
       <div>
-        <p>営業時間: 平日 9:00–18:00<br />定休日: 土日祝</p>
+        <p><a href="../about/index.html">会社概要</a><br />
+        <a href="../services/index.html">事業内容</a><br />
+        <a href="../recruit/index.html">採用情報</a><br />
+        <a href="../contact/index.html">お問い合わせ</a></p>
       </div>
       <div>
-        <p><a href="../privacy/index.html">プライバシーポリシー</a><br /><a href="mailto:info@nichinankoumuten.jp">info@nichinankoumuten.jp</a></p>
+        <p>8:00-18:00（定休日: 日曜・祝日・年末年始・夏季休暇・GW）<br />
+        <a href="../privacy/index.html">プライバシーポリシー</a></p>
       </div>
     </div>
+    <div class="wrap site-footer__copy">© All Rights Reserved 株式会社日南工務店</div>
   </footer>
   <nav class="bottom-bar" aria-label="スマートフォン用連絡">
     <a href="tel:0448116033">電話する</a>
-    <a href="mailto:info@nichinankoumuten.jp">メール</a>
+    <a href="../contact/index.html">お問い合わせ</a>
   </nav>
   <script src="../site.js"></script>
 </body>

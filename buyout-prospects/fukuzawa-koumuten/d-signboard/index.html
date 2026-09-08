@@ -2,112 +2,197 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>株式会社福澤工務店｜D Bold Signboard</title>
-  <meta name="description" content="株式会社福澤工務店。ご相談から施工・アフターまで対応します。" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>株式会社福澤工務店</title>
+  <meta name="description" content="株式会社福澤工務店。新築・改修・リフォーム。" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;600&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
   <meta name="robots" content="noindex,nofollow" />
-  <meta name="googlebot" content="noindex,nofollow" />
 </head>
-<body data-skin="d-signboard">
-  <header class="site-header">
-    <div class="wrap site-header__inner">
-      <a class="brand" href="index.html">
-        <span class="brand__name">株式会社福澤工務店</span>
-        <span class="brand__tag">伝統の技と、確かな施工を。</span>
-      </a>
-      <nav class="nav" aria-label="メインメニュー">
-        <a href="index.html" aria-current="page">ホーム</a>
-        <a href="services/index.html">サービス</a>
+<body>
+  <section class="hero-full">
+    <header class="site-header">
+      <div class="wrap site-header__inner">
+        <a class="brand" href="index.html">
+          <span class="brand__mark" aria-hidden="true">福</span>
+          <span>
+            <span class="brand__name">株式会社福澤工務店</span>
+          </span>
+        </a>
+        <nav class="nav" aria-label="メインメニュー">
+          <a href="about/index.html">会社概要</a>
+          <a href="services/index.html">事業内容</a>
+          <a href="recruit/index.html">採用情報</a>
+          <a href="contact/index.html" class="nav__cta">お問い合わせ</a>
+        </nav>
+        <button class="menu-btn" type="button" aria-label="メニュー" data-menu-toggle>
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+      <div class="wrap mobile-nav" data-mobile-nav>
         <a href="about/index.html">会社概要</a>
-        <a href="contact/index.html" class="nav__cta">お問い合わせ</a>
-      </nav>
-      <button class="menu-btn" type="button" aria-label="メニュー" data-menu-toggle>
-        <span></span><span></span><span></span>
-      </button>
-    </div>
-    <div class="wrap mobile-nav" data-mobile-nav>
-      <a href="index.html">ホーム</a>
-      <a href="services/index.html">サービス</a>
-      <a href="about/index.html">会社概要</a>
-      <a href="contact/index.html">お問い合わせ</a>
-      <a href="privacy/index.html">プライバシーポリシー</a>
-    </div>
-  </header>
+        <a href="services/index.html">事業内容</a>
+        <a href="recruit/index.html">採用情報</a>
+        <a href="contact/index.html">お問い合わせ</a>
+        <a href="privacy/index.html">プライバシーポリシー</a>
+      </div>
+    </header>
 
-  <section class="board">
-    <p class="board__place">TOKYO</p>
-    <h1>株式会社福澤<br />工務店</h1>
-    <div class="board__rule"></div>
-    <p class="board__tag">伝統の技と、確かな施工を。</p>
-    <div class="board__actions">
-      <a class="btn btn--primary" href="tel:0462483883">電話で相談する</a>
-      <a class="btn btn--outline" href="contact/index.html">お問い合わせ</a>
+    <div class="hero-full__bg" aria-hidden="true">
+      <video class="hero-full__video" autoplay muted loop playsinline poster="../shared/video/hero-loop-poster.jpg">
+        <source src="../shared/video/hero-loop.webm" type="video/webm" />
+        <source src="../shared/video/hero-loop.mp4" type="video/mp4" />
+      </video>
+      <img src="../shared/video/hero-loop-poster.jpg" alt="" width="1280" height="720" />
     </div>
+    <div class="hero-full__overlay" aria-hidden="true"></div>
+    <div class="hero-full__content">
+      <div class="hero-full__mark" aria-hidden="true">福</div>
+      <h1>株式会社福澤工務店</h1>
+      <p class="hero-full__en">福澤工務店 Inc.</p>
+    </div>
+    <p class="hero-full__tagline">伝統の技と最先端技術の融合を</p>
   </section>
 
-  <section class="board-photo">
-    <img src="../shared/images/gallery-1.jpg" alt="建物・空間のイメージ" width="1000" height="667" />
-  </section>
-
-  <section class="chunk" id="about">
-    <h2>地域のお客様に、<br />安心して任せてもらえる仕事を</h2>
-    <p class="lead">小さな修繕からまとまった工事まで、現状を伺いながら最適な進め方をご提案します。初めての方にもわかりやすくご説明します。</p>
-    <ul class="dense">
-      <li><b>01</b><span><strong>丁寧なヒアリング</strong> — ご要望と現場の状況を確認し、無理のない計画を一緒に考えます。</span></li>
-      <li><b>02</b><span><strong>わかりやすいご案内</strong> — 作業内容と費用の目安を事前にお伝えし、納得のうえで進めます。</span></li>
-      <li><b>03</b><span><strong>アフターまで対応</strong> — 納品後の確認やご相談にも対応し、長く安心して使える状態を目指します。</span></li>
-    </ul>
-  </section>
-
-  <hr class="thick" />
-
-  <section class="chunk" id="services">
-    <h2>主なサービス</h2>
-    <div class="cols">
-      <div><h3>ご相談・ヒアリング</h3><p>現状の課題を整理し、進め方をご提案します。</p></div>
-      <div><h3>現地確認・お見積り</h3><p>必要に応じて現地を確認し、費用の目安をお伝えします。</p></div>
-      <div><h3>施工・納品・アフター</h3><p>作業後の確認まで含めて、安心して任せられる流れにします。</p></div>
-    </div>
-    <p class="more"><a class="btn btn--outline" href="services/index.html">サービス一覧</a></p>
-  </section>
-
-  <section class="chunk">
-    <h2>仕事の様子</h2>
-    <p class="lead">写真はイメージです。買い取り後は御社の写真に差し替えできます。</p>
-    <div class="gallery gallery--3">
-      <img src="../shared/images/work-tools.jpg" alt="道具イメージ" width="1200" height="712" loading="lazy" />
-      <img src="../shared/images/gallery-2.jpg" alt="現場イメージ" width="1000" height="662" loading="lazy" />
-      <img src="../shared/images/work-hands.jpg" alt="作業イメージ" width="1200" height="800" loading="lazy" />
+  <section class="quality" id="quality">
+    <div class="wrap">
+      <div class="sec-head sec-head--light">
+        <p class="sec-head__en">Construction Quality</p>
+        <h2>工事品質</h2>
+      </div>
+      <div class="quality__grid">
+        <article class="quality__item">
+          <p class="quality__label">POINT 1</p>
+          <h3>長年の<br />現場経験を活かした建築</h3>
+        </article>
+        <article class="quality__item">
+          <p class="quality__label">POINT 2</p>
+          <h3>現場の工程と品質を<br />大切にする施工</h3>
+        </article>
+        <article class="quality__item">
+          <p class="quality__label">POINT 3</p>
+          <h3>高い技術力で<br />安心のサービスを提供</h3>
+        </article>
+        <article class="quality__item">
+          <p class="quality__label">POINT 4</p>
+          <h3>地域と職人の暮らしを<br />守る取り組み</h3>
+        </article>
+      </div>
     </div>
   </section>
 
-  <section class="block-cta" id="contact">
-    <h2>まずはお気軽にご連絡ください</h2>
-    <p>お見積り・ご相談を受け付けています。</p>
-    <a class="btn btn--accent" href="tel:0462483883">046-248-3883</a>
+  <section class="business">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="sec-head__en">Business</p>
+        <h2>事業内容</h2>
+      </div>
+      <div class="business__grid">
+        <a class="business__card" href="services/index.html">
+          <img src="../shared/images/gallery-1.jpg" alt="建築工事のイメージ" width="1000" height="667" loading="lazy" />
+          <div class="business__card-body">
+            <h3>新築（注文住宅）</h3>
+            <p>ARCHITECTURE</p>
+          </div>
+        </a>
+        <a class="business__card" href="services/index.html">
+          <img src="../shared/images/work-tools.jpg" alt="改修工事のイメージ" width="1200" height="800" loading="lazy" />
+          <div class="business__card-body">
+            <h3>リフォーム</h3>
+            <p>RENOVATION</p>
+          </div>
+        </a>
+      </div>
+    </div>
   </section>
+
+  <div class="dual-promo">
+    <a class="dual-promo__item" href="about/index.html#history">
+      <img src="../shared/images/hero-dark.jpg" alt="" width="1600" height="1068" loading="lazy" />
+      <div class="dual-promo__body">
+        <h3>沿革</h3>
+        <span>HISTORY</span>
+      </div>
+    </a>
+    <a class="dual-promo__item" href="about/index.html">
+      <img src="../shared/images/work-desk.jpg" alt="" width="1200" height="800" loading="lazy" />
+      <div class="dual-promo__body">
+        <h3>会社概要</h3>
+        <span>ABOUT</span>
+      </div>
+    </a>
+  </div>
+
+  <section class="works" id="works">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="sec-head__en">Construction Result</p>
+        <h2>施工実績</h2>
+      </div>
+      <div class="works-placeholder" aria-label="施工写真の掲載枠">
+        <div class="works-placeholder__slot">施工写真 1</div>
+        <div class="works-placeholder__slot">施工写真 2</div>
+        <div class="works-placeholder__slot">施工写真 3</div>
+        <div class="works-placeholder__slot">施工写真 4</div>
+      </div>
+      <p class="slot-note">ご購入後、公開できる施工写真に差し替えます。</p>
+    </div>
+  </section>
+
+  <section class="news">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="sec-head__en">News Release</p>
+        <h2>新着情報</h2>
+      </div>
+      <p class="slot-note">お知らせを掲載します。</p>
+    </div>
+  </section>
+
+  <section class="contact-band" id="contact">
+    <div class="contact-band__visual">
+      <img src="../shared/images/hero-shop.jpg" alt="お問い合わせ" width="1600" height="1067" loading="lazy" />
+    </div>
+    <div class="contact-band__copy">
+      <h3>お問い合わせ</h3>
+      <p>施工のご依頼・ご相談は、お電話またはフォームからお願いいたします。</p>
+      <a class="btn" href="contact/index.html">お問い合わせフォーム</a>
+    </div>
+  </section>
+
+  <a class="recruit-band" href="recruit/index.html">
+    <img src="../shared/images/gallery-1.jpg" alt="" loading="lazy" />
+    <div class="wrap">
+      <h3>採用情報 RECRUIT</h3>
+    </div>
+  </a>
 
   <footer class="site-footer">
     <div class="wrap site-footer__grid">
       <div>
         <strong>株式会社福澤工務店</strong>
-        <p>〒243-0035 神奈川県厚木市愛甲二丁目4番21号<br />TEL: 046-248-3883</p>
+        <p>〒243-0035 神奈川県厚木市愛甲二丁目4番21号</p>
+        <p>TEL <a href="tel:0462483883">046-248-3883</a></p>
       </div>
       <div>
-        <p>営業時間: 平日 9:00–18:00<br />定休日: 土日祝</p>
+        <p><a href="about/index.html">会社概要</a><br />
+        <a href="services/index.html">事業内容</a><br />
+        <a href="recruit/index.html">採用情報</a><br />
+        <a href="contact/index.html">お問い合わせ</a></p>
       </div>
       <div>
-        <p><a href="privacy/index.html">プライバシーポリシー</a><br /><a href="mailto:construction@k-fukuzawa.co.jp">construction@k-fukuzawa.co.jp</a></p>
+        <p>営業時間はご購入後に反映します<br />
+        <a href="privacy/index.html">プライバシーポリシー</a></p>
       </div>
     </div>
+    <div class="wrap site-footer__copy">© All Rights Reserved 株式会社福澤工務店</div>
   </footer>
+
   <nav class="bottom-bar" aria-label="スマートフォン用連絡">
     <a href="tel:0462483883">電話する</a>
-    <a href="mailto:construction@k-fukuzawa.co.jp">メール</a>
+    <a href="contact/index.html">お問い合わせ</a>
   </nav>
   <script src="site.js"></script>
 </body>
