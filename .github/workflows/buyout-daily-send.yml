@@ -101,6 +101,23 @@ jobs:
             node buyout-ops/daily-send-inside-one.mjs
           fi
 
+      # 2026-09-08 オーナー決定: 初回から5日後・未返信のみ、1リード1回。
+      # 新規送信枠（daily_buyout）とは別枠（daily_followup、send-quota.csv）。
+      - name: Daily send follow-up (unreplied, 5 days, remaining quota)
+        env:
+          BUYOUT_MAIL_PROVIDER: ${{ secrets.BUYOUT_MAIL_PROVIDER }}
+          SENDGRID_API_KEY: ${{ secrets.SENDGRID_API_KEY }}
+          BUYOUT_SMTP_USER: ${{ secrets.BUYOUT_SMTP_USER }}
+          BUYOUT_SMTP_PASS: ${{ secrets.BUYOUT_SMTP_PASS }}
+          BUYOUT_SMTP_HOST: ${{ secrets.BUYOUT_SMTP_HOST }}
+          BUYOUT_SMTP_PORT: ${{ secrets.BUYOUT_SMTP_PORT }}
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ] && [ "${{ inputs.dry_run }}" = "true" ]; then
+            node buyout-ops/daily-send-followup.mjs --dry-run
+          else
+            node buyout-ops/daily-send-followup.mjs
+          fi
+
       # SendGrid 経由の DSN は ConoHa 受信箱に来ないため IMAP では拾えない
       - name: Sync SendGrid bounces into leads
         if: ${{ !(github.event_name == 'workflow_dispatch' && inputs.dry_run == 'true') }}
