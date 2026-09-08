@@ -78,6 +78,23 @@ cd buyout-ops がある calcite-demos リポジトリ root で作業する。
 
    - node buyout-template/designs/publish-prospect.mjs --slug <slug>
 
+   - ★第三者チェック（作った本人の自己採点だけで queued にしない。
+     2026-09-08 小畑工務店: 本人チェックでは建築士事務所登録番号の
+     1桁脱字を見逃し、独立した二次チェックで発見・修正した）:
+       - このビルドの記憶がない状態（別エージェント／新しいチャット）で、
+         公開されたデモURLと先方HPを実際に開いて比較させる
+       - 見るもの: 代表者・住所・電話・許可/登録番号・設立・資本金・
+         従業員数・事業内容・営業時間が「一字一句」一致しているか
+         （番号は特にすり合わせが甘くなりやすい）。禁止表現（本文ゲートの
+         FORBIDDEN 一覧）の残存。ページ間（トップ/about/services）の
+         見出し・事実の矛盾。捏造疑い（先方HPに書いていない情報）
+       - PASS/FAILと具体的な差分を報告させる
+       - FAILなら直して publish-prospect.mjs をやり直し、
+         もう一度この第三者チェックを通す（PASSになるまでループ）
+       - Claude Code から実行しているときは Agent ツールで
+         general-purpose サブエージェントを1体立てて検証させる
+         （建てたエージェント自身に検証させない）
+
    - demo_buyout_leads.csv:
        status=queued, quoted_price=66000, vertical=koumuten,
        skin_pair=e-taisei, demo_url_a 記入, demo_url_b は空のまま
@@ -101,5 +118,6 @@ cd buyout-ops がある calcite-demos リポジトリ root で作業する。
 
 | 日付 | 変更 |
 |---|---|
+| 2026-09-08 | publish直後に第三者チェック（独立エージェント／別チャット）を必須化。本人の自己採点だけでは登録番号の脱字・見出し不一致を見逃した実例あり |
 | 2026-09-06 | このファイルを新設し正本化。`--hours`・強み1行・採用文言・390px改行を追加 |
 | 2026-09-05 | 実物が正本から4行ズレていることが判明（HP読み込み・FACT照合・`skin_pair`・`demo_url_b`） |
