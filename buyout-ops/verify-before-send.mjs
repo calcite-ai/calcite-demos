@@ -109,13 +109,29 @@ function slugFromUrl(url) {
   return m ? m[1] : "";
 }
 
-async function fetchText(url) {
-  const res = await fetch(url, {
-    redirect: "follow",
-    headers: { "User-Agent": "CalciteBuyoutVerify/1.0" },
-  });
-  const text = await res.text();
-  return { status: res.status, finalUrl: res.url, text };
+function sleep(ms) {
+  return new Promise((r) => setTimeout(r, ms));
+}
+
+/**
+ * publish直後は GitHub Pages のビルドが追いつかず一時的に404を返すことがある
+ * （2026-09-08: 高速に連続push・queued化した際、CI の Buyout gates が
+ * ビルド待ち中の404を本物の欠落と誤検知して何度も失敗した）。
+ * 404のときだけ少し待って数回リトライし、恒久的な404と区別する。
+ */
+async function fetchText(url, { retries = 4, retryDelayMs = 15000 } = {}) {
+  let last;
+  for (let attempt = 0; attempt <= retries; attempt++) {
+    const res = await fetch(url, {
+      redirect: "follow",
+      headers: { "User-Agent": "CalciteBuyoutVerify/1.0" },
+    });
+    const text = await res.text();
+    last = { status: res.status, finalUrl: res.url, text };
+    if (res.status !== 404 || attempt === retries) return last;
+    await sleep(retryDelayMs);
+  }
+  return last;
 }
 
 async function verifyProspect({ name, email, urlA, urlB, slug, quotedPrice, status, vertical, pay_signals, audit_notes, site_url }) {
