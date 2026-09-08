@@ -14,7 +14,6 @@ import { fileURLToPath } from "node:url";
 import { parseCsv } from "./csv-util.mjs";
 import { CALCITE_SITE, canonicalDemoUrl } from "./canonical-url.mjs";
 import { outreachBodyToHtml } from "./outreach-email-html.mjs";
-import { humanStrengthLine } from "./strength-line.mjs";
 import { extractRoughLine } from "./site-g1-eval.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -118,11 +117,10 @@ const region =
   arg("region") ||
   noteField(row.notes, "地域") ||
   "地域の工務店";
-const strength = closeSentence(
-  arg("strength") ||
-    noteField(row.notes, "強み") ||
-    humanStrengthLine({ pay_signals: row.pay_signals })
-);
+// 際立つ事実が無ければ書かない（2026-09-08 オーナー方針）。
+// notes の 強み：… が無ければ行ごと省略する。汎用文で埋めない。
+const strengthRaw = arg("strength") || noteField(row.notes, "強み");
+const strength = strengthRaw ? closeSentence(strengthRaw) : "";
 const addressee =
   arg("addressee") ||
   noteField(row.notes, "宛名") ||
@@ -131,8 +129,11 @@ const addressee =
 let out = mailBodyFromTemplate(tpl)
   .replaceAll("{会社名}", company)
   .replaceAll("{担当者名}", addressee)
-  .replaceAll("{業種・地域}", region)
-  .replaceAll("{強み1行}", strength)
+  .replaceAll("{業種・地域}", region);
+out = strength
+  ? out.replaceAll("{強み1行}", strength)
+  : out.replace("{強み1行}\n", "");
+out = out
   .replaceAll("{デモURL_A}", urlA)
   .replaceAll("{デモURL_B}", urlB)
   .replaceAll("{課題①}", issues[0] || "")
