@@ -136,6 +136,65 @@ function collectPhones(html) {
   return [...out];
 }
 
+/**
+ * e-taisei雛形は「事業内容」を複数ページ（トップのカード=h3 / servicesページ=h2）
+ * に重複して出す。見出しを個別に差し替えたとき、片方のタグだけ直って
+ * もう片方が雛形の仮見出しのまま残る事故があった（2026-09-08 小畑工務店）。
+ * 両ページ共通の英字ラベル（ARCHITECTURE/RENOVATION）を手がかりに、
+ * 同じブロックの見出しがページ間で食い違っていないかを機械チェックする。
+ */
+const SERVICE_MARKERS = ["ARCHITECTURE", "RENOVATION"];
+
+/** 雛形によって見出し→ラベルの順（トップ）/ラベル→見出しの順（servicesページ）が
+ * 逆なので、窓の中の最初の一致ではなく「マーカーに最も近い見出し」を採る。 */
+function extractHeadingNear(html, idx) {
+  const radius = 300;
+  const window = html.slice(Math.max(0, idx - radius), idx + radius);
+  const windowStart = Math.max(0, idx - radius);
+  let best = null;
+  let bestDist = Infinity;
+  for (const m of window.matchAll(/<h[23]>([^<]+)<\/h[23]>/g)) {
+    const headingIdx = windowStart + m.index;
+    const dist = Math.abs(headingIdx - idx);
+    if (dist < bestDist) {
+      bestDist = dist;
+      best = m[1].trim();
+    }
+  }
+  return best;
+}
+
+function checkServiceHeadingConsistency(dir) {
+  const byMarker = new Map(); // marker -> Map(heading -> files[])
+  walkHtml(dir, (file) => {
+    const html = fs.readFileSync(file, "utf8");
+    if (isChooser(file, html)) return;
+    const rel = path.relative(repoRoot, file);
+    for (const marker of SERVICE_MARKERS) {
+      let idx = html.indexOf(marker);
+      while (idx !== -1) {
+        const heading = extractHeadingNear(html, idx);
+        if (heading) {
+          const map = byMarker.get(marker) || new Map();
+          const files = map.get(heading) || [];
+          if (!files.includes(rel)) files.push(rel);
+          map.set(heading, files);
+          byMarker.set(marker, map);
+        }
+        idx = html.indexOf(marker, idx + marker.length);
+      }
+    }
+  });
+  const fails = [];
+  for (const [marker, map] of byMarker) {
+    if (map.size > 1) {
+      const detail = [...map.entries()].map(([t, files]) => `「${t}」(${files.join(", ")})`).join(" ≠ ");
+      fails.push(`C8 事業見出しがページ間で不一致（${marker}）: ${detail}`);
+    }
+  }
+  return fails;
+}
+
 export function scanDemoHtml(dir) {
   const fails = [];
   const warns = [];
@@ -157,6 +216,7 @@ export function scanDemoHtml(dir) {
   });
 
   if (!fileCount) fails.push("C0 HTML が1つもない");
+  fails.push(...checkServiceHeadingConsistency(dir));
   return { fails, warns, phones: [...phones], fileCount };
 }
 
