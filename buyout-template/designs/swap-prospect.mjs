@@ -149,6 +149,7 @@ function applyServices(html) {
     if (s.title) {
       out = out
         .split(`<h2>${s.stockTitle}</h2>`).join(`<h2>${s.title}</h2>`)
+        .split(`<h3>${s.stockTitle}</h3>`).join(`<h3>${s.title}</h3>`)
         .split(`alt="${s.stockTitle}"`).join(`alt="${s.title}"`);
     }
   }
