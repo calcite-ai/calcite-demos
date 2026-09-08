@@ -1,5 +1,6 @@
-effective_from,daily_sends,daily_buyout,daily_inside,notes
-2026-08-20,1,1,0,hello@ calcite-ai.jp warmup（1日1通）
-2026-08-31,2,2,0,warmup継続・buyoutのみ2通/日
-2026-09-01,2,1,1,HP買い取り1+インサイド1/日
-2026-09-03,2,2,0,HP買い取り2/日・インサイド一時停止
+effective_from,daily_sends,daily_buyout,daily_inside,daily_followup,notes
+2026-08-20,1,1,0,,hello@ calcite-ai.jp warmup（1日1通）
+2026-08-31,2,2,0,,warmup継続・buyoutのみ2通/日
+2026-09-01,2,1,1,,HP買い取り1+インサイド1/日
+2026-09-03,2,2,0,,HP買い取り2/日・インサイド一時停止
+2026-09-08,2,2,0,2,新規は2/日のまま様子見。未返信フォロー（5日後・1回のみ）を新規枠と別に2/日まで追加

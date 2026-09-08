@@ -307,10 +307,17 @@ async function main() {
     name = row.company;
     email = row.email;
     siteUrl = row.site_url;
-    const m =
-      String(row.demo_url_a || "").match(/\/works\/([^/?#]+)/) ||
-      String(row.demo_url_a || "").match(/buyout-prospects\/([^/]+)\//);
-    slug = slug || m?.[1] || "";
+    // demo_url_a が既に公開URL（works/ or buyout-prospects/）を指しているなら、
+    // それが「実際に送った」内容の一次ソース。resolveDir の候補順（_prospects優先）
+    // だと、公開後も残った古いローカル作業コピー（_prospects）を誤って優先して
+    // しまう（2026-09-08 中村工務店・村上工務店で実際に発生：公開済みの修正が
+    // 反映されず、掃除されていない旧 _prospects の「写真はイメージです」等を
+    // 検査していた）。URL からルートが特定できるときは dir を直接指定する。
+    const worksMatch = String(row.demo_url_a || "").match(/\/works\/([^/?#]+)/);
+    const prospectsMatch = String(row.demo_url_a || "").match(/buyout-prospects\/([^/]+)\//);
+    if (!dir && worksMatch) dir = path.join(repoRoot, "works", worksMatch[1]);
+    else if (!dir && prospectsMatch) dir = path.join(repoRoot, "buyout-prospects", prospectsMatch[1]);
+    slug = slug || worksMatch?.[1] || prospectsMatch?.[1] || "";
   }
 
   let resolved;

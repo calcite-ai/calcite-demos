@@ -46,6 +46,8 @@ export function dailySendLimit(today = jstDateString()) {
       n: Number(r.daily_sends),
       buyout: r.daily_buyout !== "" && r.daily_buyout != null ? Number(r.daily_buyout) : NaN,
       inside: r.daily_inside !== "" && r.daily_inside != null ? Number(r.daily_inside) : NaN,
+      followup:
+        r.daily_followup !== "" && r.daily_followup != null ? Number(r.daily_followup) : NaN,
       notes: r.notes || "",
     }))
     .filter((r) => /^\d{4}-\d{2}-\d{2}$/.test(r.from) && Number.isFinite(r.n) && r.n >= 0)
@@ -58,17 +60,21 @@ export function dailySendLimit(today = jstDateString()) {
       daily_sends: 1,
       daily_buyout: 1,
       daily_inside: 0,
+      daily_followup: 0,
       effective_from: "",
       notes: "fallback 1",
     };
   }
   const daily_buyout = Number.isFinite(hit.buyout) ? hit.buyout : hit.n;
   const daily_inside = Number.isFinite(hit.inside) ? hit.inside : 0;
+  // フォローアップは新規枠（daily_buyout）と別枠。未指定日は0（2026-09-08以前は後追い無し）
+  const daily_followup = Number.isFinite(hit.followup) ? hit.followup : 0;
   return {
     date: today,
     daily_sends: hit.n,
     daily_buyout,
     daily_inside,
+    daily_followup,
     effective_from: hit.from,
     notes: hit.notes,
   };
@@ -87,6 +93,12 @@ export function countInsideSentOn(today = jstDateString()) {
   return rows.filter((r) => parseOutreachSentDate(r) === today).length;
 }
 
+export function countFollowupSentOn(today = jstDateString()) {
+  if (!fs.existsSync(buyoutLeadsPath)) return 0;
+  const { rows } = parseCsv(fs.readFileSync(buyoutLeadsPath, "utf8"));
+  return rows.filter((r) => String(r.followup_sent_at || "").slice(0, 10) === today).length;
+}
+
 /** @deprecated use countBuyoutSentOn */
 export function countSentOn(today = jstDateString()) {
   return countBuyoutSentOn(today);
@@ -96,8 +108,11 @@ export function loadSendQuota(today = jstDateString()) {
   const limit = dailySendLimit(today);
   const buyout_sent_today = countBuyoutSentOn(today);
   const inside_sent_today = countInsideSentOn(today);
+  const followup_sent_today = countFollowupSentOn(today);
   const buyout_remaining = Math.max(0, limit.daily_buyout - buyout_sent_today);
   const inside_remaining = Math.max(0, limit.daily_inside - inside_sent_today);
+  // 新規枠とは独立（同じ日に新規2件＋フォロー2件、が起こり得る）
+  const followup_remaining = Math.max(0, limit.daily_followup - followup_sent_today);
   const sent_today = buyout_sent_today + inside_sent_today;
   const remaining = buyout_remaining + inside_remaining;
   return {
@@ -105,9 +120,11 @@ export function loadSendQuota(today = jstDateString()) {
     sent_today,
     buyout_sent_today,
     inside_sent_today,
+    followup_sent_today,
     remaining,
     buyout_remaining,
     inside_remaining,
+    followup_remaining,
   };
 }
 
