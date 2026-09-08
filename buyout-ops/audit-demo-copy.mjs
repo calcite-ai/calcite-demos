@@ -49,8 +49,8 @@ export function buildAuditDemoCopy({
   const strength = humanStrengthAudit({ pay_signals });
 
   const lede = company
-    ? `${company}のホームページを拝見し、${strength}などがうかがえました。このデモでは、御社の強みが問い合わせにつながりやすいよう、以下の点を意識して構成しています。`
-    : `御社のホームページを拝見したうえで、問い合わせにつながりやすい改善イメージをこのデモに反映しています。`;
+    ? `${company}のホームページを拝見し、${strength}などがうかがえました。ここでは、御社の強みが問い合わせにつながりやすいよう、以下の点を意識して構成しています。`
+    : `御社のホームページを拝見したうえで、問い合わせにつながりやすい改善イメージを反映しています。`;
 
   const fixesHtml = uniqFixes.map((t) => `<li>${t}</li>`).join("\n          ");
 
