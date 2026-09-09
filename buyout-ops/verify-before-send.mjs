@@ -134,7 +134,7 @@ async function fetchText(url, { retries = 4, retryDelayMs = 15000 } = {}) {
   return last;
 }
 
-async function verifyProspect({ name, email, urlA, urlB, slug, quotedPrice, status, vertical, pay_signals, audit_notes, site_url }) {
+async function verifyProspect({ name, email, urlA, urlB, slug, quotedPrice, status, vertical, pay_signals, audit_notes, site_url, queuedBatch }) {
   const fails = [];
   const warns = [];
   const row = { company: name, vertical, pay_signals, audit_notes };
@@ -191,9 +191,14 @@ async function verifyProspect({ name, email, urlA, urlB, slug, quotedPrice, stat
   const quota = loadSendQuota();
   if (status === "queued" || status === "built") {
     if (quota.remaining <= 0) {
-      fails.push(
-        `V15 今日の送信枠が満了（daily_sends=${quota.daily_sends} sent_today=${quota.sent_today} / send-quota.csv）`
-      );
+      // --queued はビルド済み在庫全件の内容チェック。在庫が日次枠(2件)を
+      // 超えて積んであるのは想定内（先に作って翌日以降の枠で送る運用）なので
+      // ここをFAILにしない。実際の送信直前ゲート（daily-send-one.mjs 経由の
+      // 単体--company呼び出し）でだけ枠満了をFAILとして送信を止める
+      // （2026-09-09: 在庫9件で毎push CIが赤くなり続けた）。
+      const msg = `V15 今日の送信枠が満了（daily_sends=${quota.daily_sends} sent_today=${quota.sent_today} / send-quota.csv）`;
+      if (queuedBatch) warns.push(`${msg} — 在庫として保持（送信は次回枠で）`);
+      else fails.push(msg);
     }
   }
 
@@ -344,6 +349,7 @@ async function main() {
       console.error("Need --company or --queued with --from-csv");
       process.exit(2);
     }
+    const isQueuedBatch = hasFlag("queued");
     targets = targets.map((r) => ({
       name: r.company,
       email: r.email,
@@ -356,6 +362,7 @@ async function main() {
       pay_signals: r.pay_signals,
       audit_notes: r.audit_notes,
       site_url: r.site_url,
+      queuedBatch: isQueuedBatch,
     }));
   } else {
     targets = [
