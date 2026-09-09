@@ -39,6 +39,12 @@ const skins = arg("skins", "e-taisei")
   .filter(Boolean);
 const name = arg("name");
 const tag = arg("tag", "地域の家づくりを、まっすぐ。");
+// 2026-09-09: 塗装専門店・水道工事店など「工務店」以外の業種で、
+// meta descriptionと会社概要ページの見出しが「新築・改修」前提のまま
+// 残っていた（岩田水道工務店・高嶋材木店・アレス有限会社で発覚）。
+// 業種が新築中心でない先には --business-short / --about-lede を渡す。
+const businessShort = arg("business-short", "新築・改修・リフォーム");
+const aboutLede = arg("about-lede", "地域の家づくりと改修に、丁寧な施工で応えます。");
 const tel = arg("tel", "03-0000-0000");
 const email = arg("email", "info@example.com");
 const address = arg("address", "〒100-0001 東京都千代田区サンプル1-2-3");
@@ -117,6 +123,8 @@ const replacements = [
   ["地域の家づくりを、まっすぐ。", tag],
   ["地域の仕事を、丁寧に。", tag],
   ["新築・改修・総合建設", "新築・改修"],
+  ["新築・改修・リフォーム", businessShort],
+  ["地域の家づくりと改修に、丁寧な施工で応えます。", aboutLede],
   ["03-0000-0000", tel],
   ["tel:0300000000", telHref],
   ["info@example.com", email],
