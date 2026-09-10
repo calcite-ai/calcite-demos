@@ -303,7 +303,11 @@ async function verifyProspect({ name, email, urlA, urlB, slug, quotedPrice, stat
   }
 
   if (status === "queued" || status === "built") {
-    const g1 = await evaluateLeadG1({ site_url, audit_notes, status });
+    // --queued 一括チェック（CI）は先方サイトの一時的な接続断・Bot対策403で
+    // 誤FAILしやすい（2026-09-10 エコハウス）。verify-hunter-g1.mjs と同じ
+    // lenient 扱いにする。単体 --company 確認は厳格なまま。
+    const g1 = await evaluateLeadG1({ site_url, audit_notes, status, lenient: queuedBatch });
+    for (const w of g1.warns || []) warns.push(`V13 G1 ${w}`);
     if (!g1.pass) {
       for (const f of g1.fails) fails.push(`V13 G1 ${f}`);
     }
