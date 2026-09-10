@@ -36,3 +36,7 @@
 {"at":"2026-09-10T01:56:21.793Z","jst":"2026-09-10","track":"buyout","company":"松本建設株式会社","email":"kenji-m@car.ocn.ne.jp","messageId":"<2f1b18d1-7f76-8579-bfd1-1d5821b17e59@calcite-mail.jp>"}
 {"at":"2026-09-10T01:56:22.715Z","jst":"2026-09-10","track":"buyout_followup","company":"中武建設株式会社","email":"info@nakatake.co.jp","messageId":"<fb51beaf-ae9e-a748-34a6-67a44bf1fdbc@calcite-mail.jp>"}
 {"at":"2026-09-10T01:56:23.532Z","jst":"2026-09-10","track":"buyout_followup","company":"株式会社マゴメ工務店","email":"info@magome-net.co.jp","messageId":"<4fbb686d-ba5e-97a4-0892-d559e928966f@calcite-mail.jp>"}
+{"at":"2026-09-10T01:56:55.308Z","jst":"2026-09-10","track":"buyout","company":"株式会社笠原工務店","email":"info@kasahara-koumuten.co.jp","messageId":"<de9fa2e4-74b1-50d4-aa58-4d3f1c80f1e9@calcite-mail.jp>","note":"並行run競合(34427442269)で枠超過送信・事後記録"}
+{"at":"2026-09-10T01:56:58.105Z","jst":"2026-09-10","track":"buyout","company":"株式会社城南組","email":"info@jonangumi.co.jp","messageId":"<4060e0cf-77ef-7945-be74-ee2b91c53449@calcite-mail.jp>","note":"並行run競合(34427442269)で枠超過送信・事後記録"}
+{"at":"2026-09-10T01:56:59.098Z","jst":"2026-09-10","track":"buyout_followup","company":"中武建設株式会社","email":"info@nakatake.co.jp","messageId":"<618962a4-ab1f-6c19-2a8f-896ef559c824@calcite-mail.jp>","note":"並行run競合(34427442269)で二重送信・事後記録"}
+{"at":"2026-09-10T01:56:59.636Z","jst":"2026-09-10","track":"buyout_followup","company":"株式会社マゴメ工務店","email":"info@magome-net.co.jp","messageId":"<ede15584-c968-5a27-393e-cd6f991ec8e2@calcite-mail.jp>","note":"並行run競合(34427442269)で二重送信・事後記録"}

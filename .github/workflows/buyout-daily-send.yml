@@ -71,6 +71,16 @@ jobs:
         working-directory: buyout-ops
         run: npm install --omit=dev
 
+      # 2026-09-10: concurrency group はワークフロー全体を直列化するが、checkout
+      # 時点のスナップショットのまま quota/候補を計算していたため、ほぼ同時刻に
+      # push が連続すると2本目のrunが「まだ送っていない」古い状態を見て枠超過・
+      # フォロー二重送信が発生した（笠原工務店/城南組の枠超過送信、中武建設/
+      # マゴメ工務店への二重フォロー）。送信直前に origin/main を必ず再取得する。
+      - name: Sync to latest main before sending
+        run: |
+          git fetch origin main
+          git reset --hard origin/main
+
       - name: Daily send buyout (remaining quota)
         env:
           BUYOUT_MAIL_PROVIDER: ${{ secrets.BUYOUT_MAIL_PROVIDER }}
