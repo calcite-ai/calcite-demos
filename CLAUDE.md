@@ -58,6 +58,13 @@
 - 小さな見た目修正のたびに Pages へ push しない
 - `shukatsu-concierge/` は**別プロダクト**。本番反映は **FTP**（オーナー確認後）。
   ここから push しない
+- **`demo_buyout_leads.csv` / `buyout-prospects/**` / `works/**` への push を
+  数十秒〜数分の間隔で連続させない。** `buyout-daily-send.yml` は push トリガで
+  起動し、concurrency で直列化はされるが、2本目が1本目のmark-sent commitより
+  前のスナップショットで枠計算を始めると二重送信・枠超過送信が起きる
+  （2026-09-04 佐藤工務店・2026-09-10 中武建設/マゴメ工務店で発生。
+   2026-09-10 に送信直前 `git fetch && reset --hard origin/main` を追加したが、
+   それでも複数社のデモ制作は**まとめて1回のpushにする**のが一番安全）
 
 ## 2.5 外（claude.ai/code・別マシン）から作業するとき
 
