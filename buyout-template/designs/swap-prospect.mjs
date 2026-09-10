@@ -105,10 +105,20 @@ function brandMark(companyName) {
   return short.charAt(0) || "工";
 }
 
+/**
+ * 許可する字は「社名に実際に出る字」を落とさないこと。
+ * 2026-09-10 株式会社山﨑建設: 﨑 は U+FA11（CJK互換漢字）で \u4e00-\u9faf に
+ * 入らず、ヒーローの英字サブタイトルが「山建設 Inc.」という誤った社名で出た。
+ * ＫＡＺ空間企画 も全角ラテンが落ちて「空間企画 Inc.」になっていた。
+ * → 互換漢字・拡張漢字・々・全角英数を許可に加える。
+ */
+const SUBTITLE_ALLOWED =
+  /[^\u3005\u3040-\u30ff\u3400-\u4dbf\u4e00-\u9fff\uf900-\ufaff\uff10-\uff19\uff21-\uff3a\uff41-\uff5aA-Za-z]/g;
+
 function englishSubtitle(companyName) {
   const short = companyName.replace(/^(株式会社|有限会社)/, "").replace(/[株式会社有限会社]/g, "");
   if (!short) return "LOCAL BUILDER Inc.";
-  const slug = short.replace(/[^\u3040-\u30ff\u4e00-\u9fafA-Za-z]/g, "").toUpperCase();
+  const slug = short.replace(SUBTITLE_ALLOWED, "").toUpperCase();
   return `${slug.slice(0, 24)} Inc.`;
 }
 
