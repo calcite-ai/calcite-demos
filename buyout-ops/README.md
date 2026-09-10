@@ -25,6 +25,7 @@
 | `sync-sendgrid-bounces.mjs` | SendGrid 抑制リスト → CSV（送信後に実行） |
 | `verify-hunter-g1.mjs` | **G1必須**（モダンサイト除外・queued前） |
 | `site-g1-eval.mjs` | G1判定ロジック（上記から利用） |
+| `classify-volume-segment.mjs` | **ボリューム型判定**（2026-09-10〜。コンテンツは活発だが技術的な粗がある会社を検出。RESULT VOLUMEなら `templates/email_demo_buyout_1_initial_volume.txt`（見積もり制）を検討。最終判断は人手） |
 | `demo_buyout_prospect_pipeline.md` | **全国リスト収集**（夜間スキャン手順） |
 | `prospect-scan-batch.mjs` | 夜間: 種URL → scan_results.csv（C1: http種でも https を試す） |
 | `inside_sales_campaign_routing.md` | **インサイド PoC** — 商材振り分け（HP/採用/AI） |
