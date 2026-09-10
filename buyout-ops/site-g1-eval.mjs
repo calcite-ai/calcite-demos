@@ -166,7 +166,7 @@ export function evaluateAuditNotes(audit_notes) {
   return { fail: false, defectCount };
 }
 
-export async function evaluateSiteG1(siteUrl) {
+export async function evaluateSiteG1(siteUrl, { lenient = false } = {}) {
   if (!siteUrl?.startsWith("http")) {
     return { pass: false, fails: ["site_url が http(s) でない"], signals: null };
   }
@@ -174,10 +174,20 @@ export async function evaluateSiteG1(siteUrl) {
   try {
     signals = await fetchSiteSignals(siteUrl);
   } catch (e) {
-    return { pass: false, fails: [`サイト取得失敗: ${e.message}`], signals: null };
+    const msg = `サイト取得失敗: ${e.message}`;
+    // queued済みリードの再チェック（CI毎push）は、Actions側の一時的な接続断・
+    // タイムアウトを「サイトが消えた」と誤判定しやすい。既にG1を通っている
+    // リードなので、ここでは警告に落として送信を止めない
+    // （2026-09-10 中田ホームズ/エコハウスで発生）。
+    if (lenient) return { pass: true, warns: [msg], signals: null };
+    return { pass: false, fails: [msg], signals: null };
   }
   if (signals.status !== 200) {
-    return { pass: false, fails: [`サイト HTTP ${signals.status}`], signals };
+    const msg = `サイト HTTP ${signals.status}`;
+    // 403等はBot対策で弾かれているだけの可能性が高く、サイトが実際に
+    // モダン化・消滅したわけではない。再チェック文脈では警告止まりにする。
+    if (lenient) return { pass: true, warns: [msg], signals };
+    return { pass: false, fails: [msg], signals };
   }
   const modern = evaluateModernExclusion(signals);
   if (modern.exclude) {
@@ -295,18 +305,20 @@ export async function fetchSiteWithContacts(baseUrl) {
 }
 
 /** queued/built 行の総合 G1（サイト再取得 + audit_notes） */
-export async function evaluateLeadG1({ site_url, audit_notes, status, asQueued = false }) {
+export async function evaluateLeadG1({ site_url, audit_notes, status, asQueued = false, lenient = false }) {
   const fails = [];
+  const warns = [];
   const effective = asQueued ? "queued" : status;
   if (effective === "queued" || effective === "built") {
     const audit = evaluateAuditNotes(audit_notes);
     if (audit.fail) fails.push(audit.message);
     if (site_url) {
-      const site = await evaluateSiteG1(site_url);
+      const site = await evaluateSiteG1(site_url, { lenient });
       if (!site.pass) fails.push(...site.fails);
+      if (site.warns) warns.push(...site.warns);
     } else {
       fails.push("site_url が空（G1再確認不可）");
     }
   }
-  return { pass: fails.length === 0, fails };
+  return { pass: fails.length === 0, fails, warns };
 }

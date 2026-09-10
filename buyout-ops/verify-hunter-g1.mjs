@@ -88,14 +88,16 @@ async function checkUrl(url) {
   return false;
 }
 
-async function checkLead(row, { asQueued = false } = {}) {
+async function checkLead(row, { asQueued = false, lenient = false } = {}) {
   console.log(`\n=== G1 lead: ${row.company} ===`);
   const r = await evaluateLeadG1({
     site_url: row.site_url,
     audit_notes: row.audit_notes,
     status: row.status || "queued",
     asQueued,
+    lenient,
   });
+  for (const w of r.warns || []) console.log("WARN", w);
   if (r.pass) {
     console.log("RESULT PASS — ok to queue/send (G1)");
     return true;
@@ -135,8 +137,14 @@ async function main() {
     }
     let ok = true;
     const asQueued = Boolean(company) && !hasFlag("queued");
+    // --queued の一括再チェックはCI（push毎）で毎回全社の実サイトを叩く。
+    // 一時的な接続断やBot対策の403は「サイトが消えた/モダン化した」ではないので
+    // 警告止まりにする（2026-09-10 中田ホームズ「fetch failed」・
+    // エコハウス「HTTP 403」で誤FAILが発生）。単発の --company 確認は
+    // 厳格なままにする。
+    const lenient = hasFlag("queued");
     for (const t of targets) {
-      if (!(await checkLead(t, { asQueued }))) ok = false;
+      if (!(await checkLead(t, { asQueued, lenient }))) ok = false;
     }
     process.exit(ok ? 0 : 1);
   }
