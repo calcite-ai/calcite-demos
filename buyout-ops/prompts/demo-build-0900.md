@@ -109,11 +109,15 @@ cd buyout-ops がある calcite-demos リポジトリ root で作業する。
        - Claude Code から実行しているときは Agent ツールで
          general-purpose サブエージェントを1体立てて検証させる
          （建てたエージェント自身に検証させない）
-       - モデルは model: fable を指定する（2026-09-10 オーナー方針:
-         費用対効果のため業務に応じて機種を振る。Fable 5.1 は主要ベンチマークで
-         Opus 5 を上回りコストは約21%安い。「曖昧な判断・誤検知の少なさ」が
-         強みで事実照合系に向くため、事故に直結する第三者チェックはこちらを使う。
-         G1 URL 確認など機械的な作業は Sonnet のままでよい）
+       - Agent ツールの subagent_type: deep-reasoning を指定する
+         （`~/.claude/agents/deep-reasoning.md` → model: opus。
+         2026-09-10 に一度 model: fable と書いたが誤り — Fable 5.1 は
+         Opus 5 より**高価**（入力$10/出力$50 vs 入力$5/出力$25、約2倍）で
+         「約21%安い」は事実誤認だった。frontier-task（Fable）は
+         「最難・長期戦略タスクのみ、standard-task/deep-reasoningで
+         足りるものには使わない」設計のため、1社分のデモ照合には
+         deep-reasoning（Opus）が適正。G1 URL 確認など機械的な作業は
+         standard-task（Sonnet）のままでよい）
 
    - demo_buyout_leads.csv:
        status=queued, quoted_price=66000, vertical=koumuten,
@@ -138,6 +142,7 @@ cd buyout-ops がある calcite-demos リポジトリ root で作業する。
 
 | 日付 | 変更 |
 |---|---|
+| 2026-09-10 | 第三者チェックを `model: fable` から `subagent_type: deep-reasoning`（Opus）に訂正。Fable 5.1 が Opus 5 より安いというのは価格の見間違いで、実際は約2倍高価だった |
 | 2026-09-10 | 第三者チェックのサブエージェントに `model: fable` を指定（初回はopusにしたが、Fable 5.1がベンチマークでOpus 5を上回りコストも安いことが判明したため訂正。機械的なG1確認等はSonnetのまま） |
 | 2026-09-08 | 「強み1行」を方針転換: 際立つ事実がある時だけ、その1事実への所感を書く。無ければ行ごと省略（`render-outreach-email.mjs`の汎用文フォールバックも撤去） |
 | 2026-09-08 | publish直後に第三者チェック（独立エージェント／別チャット）を必須化。本人の自己採点だけでは登録番号の脱字・見出し不一致を見逃した実例あり |
