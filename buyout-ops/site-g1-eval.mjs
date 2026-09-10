@@ -18,10 +18,10 @@ export function originFromUrl(url) {
   }
 }
 
-export async function fetchSiteSignals(url) {
+export async function fetchSiteSignals(url, { retries = 5 } = {}) {
   let lastErr;
   // Actions runner からの一時不通対策（マゴメ 2026-08-29 fetch failed）
-  for (let i = 0; i < 5; i++) {
+  for (let i = 0; i < retries; i++) {
     try {
       const res = await fetch(url, {
         headers: UA,
@@ -172,7 +172,10 @@ export async function evaluateSiteG1(siteUrl, { lenient = false } = {}) {
   }
   let signals;
   try {
-    signals = await fetchSiteSignals(siteUrl);
+    // lenient時はどのみち警告止まりで結果を左右しないので、5回リトライ
+    // （最大2.5分/社）を粘らず2回で切り上げる。queued 12社超だと直列実行で
+    // CIが10分近く詰まる（2026-09-10に実際発生）。
+    signals = await fetchSiteSignals(siteUrl, { retries: lenient ? 2 : 5 });
   } catch (e) {
     const msg = `サイト取得失敗: ${e.message}`;
     // queued済みリードの再チェック（CI毎push）は、Actions側の一時的な接続断・
