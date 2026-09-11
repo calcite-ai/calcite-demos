@@ -95,6 +95,11 @@
       "at": "2026-09-11",
       "kind": "ignored_unknown",
       "from": "dmarc-reports@heteml.jp"
+    },
+    "uid:19": {
+      "at": "2026-09-11",
+      "kind": "ignored_unknown",
+      "from": "dmarc-reports@lolipop.jp"
     }
   }
 }
