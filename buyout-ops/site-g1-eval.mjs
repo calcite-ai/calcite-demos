@@ -30,7 +30,11 @@ export async function fetchSiteSignals(url, { retries = 5 } = {}) {
       });
       const html = await res.text();
       const finalUrl = res.url;
-      const years = [...html.matchAll(/20[0-9]{2}/g)]
+      // <script>/<style> 内の数値（例: Swiper の speed:2000 ミリ秒）を年と
+      // 誤検出しないよう除外してから検索する（2026-09-11 野澤工務店:
+      // JSのspeed:2000を「HTML内2000止」の更新停止と誤判定した）。
+      const textOnly = html.replace(/<script[\s\S]*?<\/script>/gi, "").replace(/<style[\s\S]*?<\/style>/gi, "");
+      const years = [...textOnly.matchAll(/20[0-9]{2}/g)]
         .map((m) => +m[0])
         .filter((y) => y >= 2000 && y <= 2030);
       return {
