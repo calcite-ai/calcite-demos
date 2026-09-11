@@ -39,7 +39,13 @@ const DEFECT_LINE = {
 function parseRoughItems(audit) {
   // 粗ラベルが無い監査メモもあるので、その場合は全文から番号項目を拾う
   const src = extractRoughLine(audit) || String(audit || "");
-  const numbered = [...src.matchAll(/\(\d+\)([^;(]+)/g)].map((x) => x[1].trim()).filter(Boolean);
+  // 最後の項目は「;」「(」の次の区切りが無いため、末尾の
+  // ". C0/C3は送信前再確認" 等の定型注記まで飲み込みやすい
+  // （2026-09-11 タウンズホーム: 独自の粗説明がDEFECT_LINE未登録だったため露呈）。
+  // 項目本文が「.」を含むことは無い前提で、ピリオド+空白の手前で打ち切る。
+  const numbered = [...src.matchAll(/\(\d+\)([^;(]+)/g)]
+    .map((x) => x[1].split(/[.。]\s/)[0].trim())
+    .filter(Boolean);
   if (numbered.length) return numbered;
   // 番号なし監査メモ向け（「HTTPSでない」「更新感が弱い」など）
   return String(audit || "")
