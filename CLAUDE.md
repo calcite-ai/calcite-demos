@@ -10,11 +10,14 @@
 1. `node buyout-ops/verify-demo-content.mjs --from-csv --company "<社名>"`
 2. 出力の **FACT を先方HPで照合**（代表・許可・事業見出し）
 3. 主要ページを幅 **〜390px** で確認
-4. 送付するなら `node buyout-ops/verify-before-send.mjs --from-csv --company "<社名>"`
+4. `node buyout-ops/render-outreach-email.mjs --company "<社名>"` で**実際に送信されるメール本文をプレビュー**する
+5. 独立エージェント（`subagent_type: deep-reasoning`）に **デモHPとメール本文プレビューの両方**を照合させる（2026-09-11〜。送信は無人自動実行のため、人・エージェントが本文を見られるのはここだけ）
+6. 送付するなら `node buyout-ops/verify-before-send.mjs --from-csv --company "<社名>"`
 
 - `RESULT FAIL` のまま **publish / queued / 送付しない**
 - **機械 PASS だけでは最終OKにしない。** FACT未確認なら止める
 - **先方HPから画像を拾わない**（在庫 Unsplash / AI素材のみ）
+- 詳細な手順は `buyout-ops/prompts/demo-build-0900.md` が正本
 
 対象: `buyout-ops/**` `buyout-template/**` `buyout-prospects/**`
 

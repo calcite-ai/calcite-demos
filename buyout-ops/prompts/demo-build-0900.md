@@ -93,19 +93,47 @@ cd buyout-ops がある calcite-demos リポジトリ root で作業する。
 
    - node buyout-template/designs/publish-prospect.mjs --slug <slug>
 
+   - ここで demo_buyout_leads.csv に demo_url_a・skin_pair・quoted_price・
+     vertical を先に記入する（**status は approved のまま変えない**。
+     queued/built にすると daily-send-one.mjs の送信対象に入ってしまう。
+     下記の第三者チェックが両方PASSするまで status=queued にしない）。
+     これは次のメールプレビューを作るための準備で、まだ「送信可」の意味
+     ではない。
+
+   - メールプレビューを作る:
+       node buyout-ops/render-outreach-email.mjs --company "<社名>"
+       （notes に 強み：… が入っていればそのまま反映される。
+       未確定なら --strength "強み：…" で仮の文言を渡してよい）
+       ここで出力される SUBJECT / BODY が、実際に無人の送信スケジュール
+       （daily-send-one.mjs → render-outreach-email.mjs → SMTP送信）が
+       送るものと同じ文面になる。build時に人・エージェントが目を通せる
+       のはこの瞬間だけ（送信自体は完全自動・無人実行のため）。
+
    - ★第三者チェック（作った本人の自己採点だけで queued にしない。
+     デモHPと、上で作ったメール本文プレビューの**両方**を見せる。
      2026-09-08 小畑工務店: 本人チェックでは建築士事務所登録番号の
-     1桁脱字を見逃し、独立した二次チェックで発見・修正した）:
+     1桁脱字を見逃し、独立した二次チェックで発見・修正した。
+     2026-09-11 オーナー指示: メール本文も送信前に第三者チェックの対象に
+     追加した — それまでは強み1行だけを見ており、課題①②③（audit_notesから
+     自動生成）や件名・全体の文面は誰も目を通していなかった）:
        - このビルドの記憶がない状態（別エージェント／新しいチャット）で、
-         公開されたデモURLと先方HPを実際に開いて比較させる
-       - 見るもの: 代表者・住所・電話・許可/登録番号・設立・資本金・
+         (a) 公開されたデモURLと先方HPを実際に開いて比較させる
+         (b) render-outreach-email.mjs の出力（件名・本文）を渡し、
+             先方HPと突き合わせさせる
+       - デモHPで見るもの: 代表者・住所・電話・許可/登録番号・設立・資本金・
          従業員数・事業内容・営業時間が「一字一句」一致しているか
          （番号は特にすり合わせが甘くなりやすい）。禁止表現（本文ゲートの
          FORBIDDEN 一覧）の残存。ページ間（トップ/about/services）の
          見出し・事実の矛盾。捏造疑い（先方HPに書いていない情報）
+       - メール本文で見るもの: 課題①②③が実HPで裏取りできる事実か
+         （見ていない指摘・断定しすぎ・機会損失の言い切りが無いか）。
+         強み1行が事実に基づき、定義文（「〜な会社です」）で終わって
+         いないか。件名・価格（66,000円）・URLが規約どおりか。禁止表現
+         （「転記」「デモ」等）の残存
        - PASS/FAILと具体的な差分を報告させる
-       - FAILなら直して publish-prospect.mjs をやり直し、
-         もう一度この第三者チェックを通す（PASSになるまでループ）
+       - FAILなら直して publish-prospect.mjs をやり直すか notes を修正し、
+         render-outreach-email.mjs を再実行してから、もう一度この
+         第三者チェックを通す（両方PASSになるまでループ）
        - Claude Code から実行しているときは Agent ツールで
          general-purpose サブエージェントを1体立てて検証させる
          （建てたエージェント自身に検証させない）
@@ -119,10 +147,12 @@ cd buyout-ops がある calcite-demos リポジトリ root で作業する。
          deep-reasoning（Opus）が適正。G1 URL 確認など機械的な作業は
          standard-task（Sonnet）のままでよい）
 
-   - demo_buyout_leads.csv:
-       status=queued, quoted_price=66000, vertical=koumuten,
-       skin_pair=e-taisei, demo_url_a 記入, demo_url_b は空のまま
-       （approval_seq は変えない）
+   - デモHP・メール本文の両方がPASSしたら、notes の 強み：… を
+     レビュー済みの最終文言に確定させたうえで
+     demo_buyout_leads.csv の status=queued にする
+     （quoted_price=66000, vertical=koumuten, skin_pair=e-taisei,
+     demo_url_a は上で記入済み。demo_url_b は空のまま。
+     approval_seq は変えない）
 
    - buyout-prospects と leads CSV を同じコミットで origin main へ直接 push
    - node buyout-ops/verify-ops-pack.mjs PASS（O10 が skin_pair 空を検出する）
@@ -142,6 +172,7 @@ cd buyout-ops がある calcite-demos リポジトリ root で作業する。
 
 | 日付 | 変更 |
 |---|---|
+| 2026-09-11 | 第三者チェックの対象にメール本文を追加。publish後にrender-outreach-email.mjsで本文をプレビューし、デモHPと一緒に第三者チェックへ渡す。それまで課題①②③・件名は誰もレビューしておらず、強み1行だけが確認対象だった |
 | 2026-09-10 | 第三者チェックを `model: fable` から `subagent_type: deep-reasoning`（Opus）に訂正。Fable 5.1 が Opus 5 より安いというのは価格の見間違いで、実際は約2倍高価だった |
 | 2026-09-10 | 第三者チェックのサブエージェントに `model: fable` を指定（初回はopusにしたが、Fable 5.1がベンチマークでOpus 5を上回りコストも安いことが判明したため訂正。機械的なG1確認等はSonnetのまま） |
 | 2026-09-08 | 「強み1行」を方針転換: 際立つ事実がある時だけ、その1事実への所感を書く。無ければ行ごと省略（`render-outreach-email.mjs`の汎用文フォールバックも撤去） |
