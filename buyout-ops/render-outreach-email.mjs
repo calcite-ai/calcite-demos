@@ -12,7 +12,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { parseCsv } from "./csv-util.mjs";
-import { CALCITE_SITE, canonicalDemoUrl } from "./canonical-url.mjs";
+import { CALCITE_SITE, canonicalDemoUrl, parseDemoSkinPath } from "./canonical-url.mjs";
 import { outreachBodyToHtml } from "./outreach-email-html.mjs";
 import { extractRoughLine } from "./site-g1-eval.mjs";
 
@@ -99,6 +99,21 @@ function closeSentence(s) {
   return /[。．.！？!?]$/.test(t) ? t : `${t}。`;
 }
 
+/**
+ * テンプレ固定文「会社案内に載っていた代表名・許可・事業内容などは、
+ * デモに反映しています。」の「許可」が、許可番号を公開していない会社に
+ * 誤爆する（2026-09-11 共豊エポック・押元建設・杉本工務店で発覚）。
+ * デモの about ページに許可情報が実在するかで自動的に出し分ける。
+ */
+function demoHasLicenseInfo(demoUrlA) {
+  const parsed = parseDemoSkinPath(demoUrlA);
+  if (!parsed) return true; // 判定不能なら従来どおり「許可」を残す
+  const aboutPath = path.join(__dirname, "..", "works", parsed.slug, "about", "index.html");
+  if (!fs.existsSync(aboutPath)) return true;
+  const html = fs.readFileSync(aboutPath, "utf8");
+  return /許可|登録\s*第|届出/.test(html);
+}
+
 const company = arg("company");
 if (!company) {
   console.error("Required: --company");
@@ -148,6 +163,13 @@ out = out
   .replace(/https:\/\/(?!www\.)calcite-ai\.jp\/?/g, CALCITE_SITE)
   .replace(/\n{3,}/g, "\n\n")
   .replace(/\n[①②③]\s*\n/g, "\n");
+
+if (!demoHasLicenseInfo(row.demo_url_a)) {
+  out = out.replace(
+    "会社案内に載っていた代表名・許可・事業内容などは、デモに反映しています。",
+    "会社案内に載っていた代表名・事業内容などは、デモに反映しています。"
+  );
+}
 
 if (/google\.com\/url/i.test(out)) {
   console.error("FAIL rendered body contains google.com/url");
