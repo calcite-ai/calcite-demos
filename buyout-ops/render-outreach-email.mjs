@@ -99,19 +99,30 @@ function closeSentence(s) {
   return /[。．.！？!?]$/.test(t) ? t : `${t}。`;
 }
 
+function demoAboutHtml(demoUrlA) {
+  const parsed = parseDemoSkinPath(demoUrlA);
+  if (!parsed) return null;
+  const aboutPath = path.join(__dirname, "..", "works", parsed.slug, "about", "index.html");
+  if (!fs.existsSync(aboutPath)) return null;
+  return fs.readFileSync(aboutPath, "utf8");
+}
+
 /**
  * テンプレ固定文「会社案内に載っていた代表名・許可・事業内容などは、
- * デモに反映しています。」の「許可」が、許可番号を公開していない会社に
- * 誤爆する（2026-09-11 共豊エポック・押元建設・杉本工務店で発覚）。
- * デモの about ページに許可情報が実在するかで自動的に出し分ける。
+ * デモに反映しています。」は、代表者名や許可番号を公開していない会社に
+ * 誤爆する（2026-09-11 共豊エポック・押元建設・杉本工務店で「許可」、
+ * 幸治工務店で「代表名」が発覚 — 会社概要ページに代表者名の記載がない）。
+ * デモの about ページに実在する項目だけで動的に組み立てる。
  */
-function demoHasLicenseInfo(demoUrlA) {
-  const parsed = parseDemoSkinPath(demoUrlA);
-  if (!parsed) return true; // 判定不能なら従来どおり「許可」を残す
-  const aboutPath = path.join(__dirname, "..", "works", parsed.slug, "about", "index.html");
-  if (!fs.existsSync(aboutPath)) return true;
-  const html = fs.readFileSync(aboutPath, "utf8");
-  return /許可|登録\s*第|届出/.test(html);
+function buildReflectedFieldsLine(demoUrlA) {
+  const html = demoAboutHtml(demoUrlA);
+  const hasRep = html == null || /代表/.test(html);
+  const hasLicense = html == null || /許可|登録\s*第|届出/.test(html);
+  const parts = [];
+  if (hasRep) parts.push("代表名");
+  if (hasLicense) parts.push("許可");
+  parts.push("事業内容");
+  return `会社案内に載っていた${parts.join("・")}などは、デモに反映しています。`;
 }
 
 const company = arg("company");
@@ -164,12 +175,10 @@ out = out
   .replace(/\n{3,}/g, "\n\n")
   .replace(/\n[①②③]\s*\n/g, "\n");
 
-if (!demoHasLicenseInfo(row.demo_url_a)) {
-  out = out.replace(
-    "会社案内に載っていた代表名・許可・事業内容などは、デモに反映しています。",
-    "会社案内に載っていた代表名・事業内容などは、デモに反映しています。"
-  );
-}
+out = out.replace(
+  "会社案内に載っていた代表名・許可・事業内容などは、デモに反映しています。",
+  buildReflectedFieldsLine(row.demo_url_a)
+);
 
 if (/google\.com\/url/i.test(out)) {
   console.error("FAIL rendered body contains google.com/url");
