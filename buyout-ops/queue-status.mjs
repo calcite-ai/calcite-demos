@@ -33,7 +33,13 @@ function isSendableRow(r) {
     r.demo_url_a &&
     // demo_url_b is optional (e-taisei single-skin; V1 / daily schedule)
     isActiveVertical(r) &&
-    !isG1Excluded(r)
+    !isG1Excluded(r) &&
+    // 2026-09-12: 無人送信の内容事故が繰り返し発生したため、送信本文
+    // （render-outreach-email.mjsの出力）を実際に読んだ記録が無い行は
+    // 候補から外す。build時の第三者チェックで body_reviewed_at をその日の
+    // 日付にする（demo-build-0900.md参照）。空のままだと日次送信は
+    // このリードを一生スキップする＝無言で送られることはない
+    r.body_reviewed_at
   );
 }
 

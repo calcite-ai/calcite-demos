@@ -153,6 +153,10 @@ cd buyout-ops がある calcite-demos リポジトリ root で作業する。
      （quoted_price=66000, vertical=koumuten, skin_pair=e-taisei,
      demo_url_a は上で記入済み。demo_url_b は空のまま。
      approval_seq は変えない）
+     このとき body_reviewed_at にその日の日付（YYYY-MM-DD）を必ず入れる
+     （2026-09-12〜。render-outreach-email.mjs の出力を実際に読んだ記録。
+     空のままだと queue-status.mjs が sendable から外し、無人送信は
+     このリードを永久にスキップする＝レビューなしで送られることはない）
 
    - buyout-prospects と leads CSV を同じコミットで origin main へ直接 push
    - node buyout-ops/verify-ops-pack.mjs PASS（O10 が skin_pair 空を検出する）
@@ -172,6 +176,7 @@ cd buyout-ops がある calcite-demos リポジトリ root で作業する。
 
 | 日付 | 変更 |
 |---|---|
+| 2026-09-12 | オーナー指示で `demo_buyout_leads.csv` に `body_reviewed_at` 列を新設し、`queue-status.mjs`（＝日次無人送信の候補選定）が空欄の行を送信対象から除外するように変更。status=queued にする際、この日付を必ず入れる。戦略評価（返信0/33・営業先クリック0）を受け、パイプライン全体を一時停止し、送信済み15社への後追い電話へ切り替え中。デモ制作もこの日から一時停止 |
 | 2026-09-11 | 第三者チェックの対象にメール本文を追加。publish後にrender-outreach-email.mjsで本文をプレビューし、デモHPと一緒に第三者チェックへ渡す。それまで課題①②③・件名は誰もレビューしておらず、強み1行だけが確認対象だった |
 | 2026-09-10 | 第三者チェックを `model: fable` から `subagent_type: deep-reasoning`（Opus）に訂正。Fable 5.1 が Opus 5 より安いというのは価格の見間違いで、実際は約2倍高価だった |
 | 2026-09-10 | 第三者チェックのサブエージェントに `model: fable` を指定（初回はopusにしたが、Fable 5.1がベンチマークでOpus 5を上回りコストも安いことが判明したため訂正。機械的なG1確認等はSonnetのまま） |
