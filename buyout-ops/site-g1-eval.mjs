@@ -39,6 +39,11 @@ export async function fetchSiteSignals(url, { retries = 5 } = {}) {
         html,
         finalHttps: finalUrl.startsWith("https://"),
         hasViewport: /name=["']viewport["']/i.test(html),
+        // viewportタグの「存在」だけでは不十分（2026-09-11 佐久間工務店:
+        // width=480/1300の固定値viewportが実在し、hasViewportがtrueになる
+        // せいでモダンサイト誤除外＝G1 FAILを起こした）。device-widthを
+        // 含む＝実際にレスポンシブなviewportかを別シグナルとして持つ。
+        hasResponsiveViewport: /name=["']viewport["'][^>]*content=["'][^"']*device-width/i.test(html),
         telCount: [...html.matchAll(/href=["']tel:([^"']+)["']/gi)].length,
         maxYear: years.length ? Math.max(...years) : null,
       };
@@ -101,8 +106,8 @@ export async function probeHttpsAvailable(seedUrl) {
 
 /** Hunter §5 / スコア −5: モダンCMSで導線も良い */
 export function evaluateModernExclusion(signals) {
-  const { finalHttps, hasViewport, telCount, maxYear } = signals;
-  if (finalHttps && hasViewport && telCount >= 1 && maxYear != null && maxYear >= RECENT_YEAR) {
+  const { finalHttps, hasResponsiveViewport, telCount, maxYear } = signals;
+  if (finalHttps && hasResponsiveViewport && telCount >= 1 && maxYear != null && maxYear >= RECENT_YEAR) {
     return {
       exclude: true,
       code: "MODERN_SITE",
