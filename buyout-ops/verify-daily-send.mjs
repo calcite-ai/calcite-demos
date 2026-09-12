@@ -60,8 +60,10 @@ if (off && remaining > 0 && sendable > 0) {
     `本日 ${sendable} 社が送信可能で残枠 ${remaining} だったが、送信ウィンドウ内に送られなかった`
   );
 }
-// 枠を使い切れていない（在庫はあった）
-if (off && sentToday === 0 && sendable > 0) {
+// 枠を使い切れていない（在庫はあった）。ただし daily_buyout=0 は
+// オーナーが意図的に送信を止めている日（send-quota.csv参照）なので異常ではない
+// （2026-09-12 電話フォロー切り替えで発生、誤ってwatchdogがIssueを立てた）
+if (off && q.daily_buyout > 0 && sentToday === 0 && sendable > 0) {
   problems.push("本日の送信が 0 通。cron 不発かゲート FAIL の可能性 — Actions のログを確認");
 }
 
