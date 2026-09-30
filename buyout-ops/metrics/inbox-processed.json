@@ -120,6 +120,11 @@
       "at": "2026-09-30",
       "kind": "ignored_unknown",
       "from": "noreply-dmarc-support@google.com"
+    },
+    "uid:24": {
+      "at": "2026-10-01",
+      "kind": "ignored_unknown",
+      "from": "dmarc-reports@lolipop.jp"
     }
   }
 }
