@@ -125,6 +125,21 @@
       "at": "2026-10-01",
       "kind": "ignored_unknown",
       "from": "dmarc-reports@lolipop.jp"
+    },
+    "uid:25": {
+      "at": "2026-10-01",
+      "kind": "ignored_unknown",
+      "from": "noreply-dmarc-support@google.com"
+    },
+    "uid:26": {
+      "at": "2026-10-01",
+      "kind": "ignored_unknown",
+      "from": "noreply-dmarc-support@google.com"
+    },
+    "uid:27": {
+      "at": "2026-10-01",
+      "kind": "ignored_unknown",
+      "from": "noreply-dmarc-support@google.com"
     }
   }
 }
