@@ -155,6 +155,11 @@
       "at": "2026-10-05",
       "kind": "ignored_unknown",
       "from": "noreply-dmarc-support@google.com"
+    },
+    "uid:31": {
+      "at": "2026-10-05",
+      "kind": "ignored_unknown",
+      "from": "dmarcreport@microsoft.com"
     }
   }
 }
