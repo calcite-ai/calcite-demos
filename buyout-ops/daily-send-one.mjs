@@ -129,10 +129,20 @@ function isTransientG1FetchFail(stdout, stderr) {
 }
 
 let status = queueStatus();
-const off = outsideSendWindow();
+// 2026-10-09: cronの発火遅延で9-18時の枠を毎回逃し、本日分が0件のまま終わる
+// 事故が続いたため、本日まだ1件も送れていない場合に限り22時までの取り戻しを許可
+const off = outsideSendWindow(new Date(), { allowCatchUp: status.sent_today === 0 });
 if (off && !dryRun) {
   console.log(sendWindowSkipLine(off));
   process.exit(0);
+}
+if (off === null && status.sent_today === 0) {
+  const hour = Number(
+    new Intl.DateTimeFormat("en-US", { timeZone: "Asia/Tokyo", hour: "numeric", hour12: false }).format(new Date())
+  ) % 24;
+  if (hour >= 18) {
+    console.log(`NOTE catch-up送信 (${hour}時 JST、本日まだ0件のため22時まで取り戻しを許可)`);
+  }
 }
 if (status.buyout_remaining <= 0) {
   console.log("RESULT skip — buyout_remaining=0");
