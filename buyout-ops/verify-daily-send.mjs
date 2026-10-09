@@ -19,7 +19,13 @@ import { loadReceipts } from "./send-receipts.mjs";
 import { outsideSendWindow } from "./send-window.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const today = jstDateString();
+// GitHub Actions の cron は数時間遅れて発火する（18:00 JST 狙いが翌 01:00 JST など）。
+// 日付が変わった後に走った場合は、窓が閉じたばかりの「前日」を検証する。
+// 新しい日の 0 通を異常と誤認し、毎日 Issue が立っていた（2026-09-30〜10-10）。
+const jstHour = Number(
+  new Intl.DateTimeFormat("en-US", { timeZone: "Asia/Tokyo", hour: "numeric", hour12: false }).format(new Date())
+) % 24;
+const today = jstHour < 9 ? jstDateString(new Date(Date.now() - 24 * 3600 * 1000)) : jstDateString();
 const q = loadSendQuota(today);
 
 function queueStatus() {
@@ -43,7 +49,7 @@ const st = queueStatus();
 const sendable = Number(st.sendable ?? 0);
 const sentToday = q.buyout_sent_today;
 const remaining = q.buyout_remaining;
-const off = outsideSendWindow();
+const off = jstHour < 9 ? { hour: jstHour, from: 9, to: 18 } : outsideSendWindow();
 
 console.log(`=== daily-send 検証 ${today} ===\n`);
 console.log(`  送信済み  ${sentToday} / 枠 ${q.daily_buyout}`);
