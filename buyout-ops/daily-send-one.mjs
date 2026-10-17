@@ -121,6 +121,9 @@ function sleepSync(ms) {
   spawnSync("sleep", [String(sec)], { stdio: "ignore" });
 }
 
+// 送信直前のG1/verify-before-send で、Bot対策の403を「サイト消滅」と誤判定しない（子プロセスに継承）
+process.env.BUYOUT_G1_BOTBLOCK_OK = "1";
+
 function isTransientG1FetchFail(stdout, stderr) {
   const blob = `${stdout || ""}\n${stderr || ""}`;
   return /サイト取得失敗|fetch failed|AbortError|TimeoutError|ECONNRESET|ETIMEDOUT|ENOTFOUND/i.test(

@@ -198,7 +198,13 @@ export async function evaluateSiteG1(siteUrl, { lenient = false } = {}) {
     const msg = `サイト HTTP ${signals.status}`;
     // 403等はBot対策で弾かれているだけの可能性が高く、サイトが実際に
     // モダン化・消滅したわけではない。再チェック文脈では警告止まりにする。
-    if (lenient) return { pass: true, warns: [msg], signals };
+    // 送信時の再確認でも、Bot対策の拒否（401/403/406/429）だけは警告止まりにする。
+    // 先方サイトが GitHub Actions のIPを弾くだけで、ブラウザからは200で開ける会社が
+    // あり（エコハウス・中部ジェイ・シィ）、毎回FAILして10/13〜10/17に1通も送れなかった。
+    // 構築時のG1とメール本文の独立レビューは通過済み。daily-send-one.mjs だけが有効化する。
+    const botBlock =
+      [401, 403, 406, 429].includes(signals.status) && process.env.BUYOUT_G1_BOTBLOCK_OK === "1";
+    if (lenient || botBlock) return { pass: true, warns: [msg], signals };
     return { pass: false, fails: [msg], signals };
   }
   const modern = evaluateModernExclusion(signals);
