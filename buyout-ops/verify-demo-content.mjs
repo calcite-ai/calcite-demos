@@ -47,14 +47,16 @@ const FORBIDDEN = [
   { id: "C2", re: /サンプル駅/, why: "架空アクセス" },
   { id: "C2", re: /高木 太郎|佐木 太郎|黒木 太郎|ネ木 太郎/, why: "架空代表名" },
   { id: "C2", re: /第000000号/, why: "架空許可番号" },
+  { id: "C2", re: /サンプル(行政書士|士業|法務)事務所|サンプル業務[A-Z]/, why: "士業雛形のサンプル値の残存" },
+  { id: "C2", re: /\{\{[A-Z_]+\}\}/, why: "未置換のテンプレトークン" },
   { id: "C3", re: /class="picker"|デモ案一覧|社内プレビュー用/, why: "社内chooserが公開面に残っている" },
   { id: "C4", re: /prospect-(hero|photo)/i, why: "先方サイト画像の参照は禁止" },
 ];
 
 const FACT_LINES = [
-  "会社情報の代表・設立・許可・住所・TELが、先方HPの会社案内と一致している（無い項目は載せない）",
+  "会社情報の代表・設立・許可・登録番号・住所・TELが、先方HPの会社案内と一致している（無い項目は載せない）",
   "事業の見出しが、先方HPのメニューと矛盾していない",
-  "施工写真を先方サイトから使っていない（在庫素材＋ご購入後差し替え）",
+  "写真を先方サイトから使っていない（工務店=在庫素材＋ご購入後差し替え／士業=写真なし）",
   "主要ページを幅〜390pxで確認した",
 ];
 
@@ -89,15 +91,27 @@ function listProspectDirs() {
   return out;
 }
 
+/** 会社概要/トップの候補。works/ は畳み済み（直下）、旧 buyout-prospects/ と _prospects/ はスキン階層つき */
+function aboutCandidates(dir) {
+  const out = [];
+  for (const skin of ["", "e-taisei", "g-shigyo"]) {
+    out.push(path.join(dir, skin, "about", "index.html"), path.join(dir, skin, "index.html"));
+  }
+  return out;
+}
+
+function pickAboutFile(dir) {
+  const list = aboutCandidates(dir);
+  return list.find((f) => /about[\\/]index\.html$/.test(f) && fs.existsSync(f)) || list.find((f) => fs.existsSync(f)) || "";
+}
+
 function findDirByName(name) {
   if (!name) return "";
   const compact = name.replace(/\s+/g, "");
   const hits = [];
   for (const { slug, dir, local } of listProspectDirs()) {
-    const about = path.join(dir, "e-taisei", "about", "index.html");
-    const home = path.join(dir, "e-taisei", "index.html");
-    const file = fs.existsSync(about) ? about : home;
-    if (!fs.existsSync(file)) continue;
+    const file = pickAboutFile(dir);
+    if (!file) continue;
     const plain = fs.readFileSync(file, "utf8").replace(/<[^>]+>/g, "").replace(/\s+/g, "");
     if (plain.includes(compact)) hits.push({ slug, dir, local });
   }
@@ -244,10 +258,8 @@ export async function verifyDemoContent({ dir, name, email, siteUrl, skipSite, s
   const { fails, warns, phones, fileCount } = scanDemoHtml(dir);
 
   if (name) {
-    const about = path.join(dir, "e-taisei", "about", "index.html");
-    const home = path.join(dir, "e-taisei", "index.html");
-    const target = fs.existsSync(about) ? about : home;
-    if (fs.existsSync(target)) {
+    const target = pickAboutFile(dir);
+    if (target) {
       const plain = fs.readFileSync(target, "utf8").replace(/<[^>]+>/g, "").replace(/\s+/g, "");
       const compactName = name.replace(/\s+/g, "");
       if (compactName && !plain.includes(compactName)) {

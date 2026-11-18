@@ -13,7 +13,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { parseCsv, sortByApprovalSeq } from "./csv-util.mjs";
-import { ACTIVE_VERTICAL, isActiveVertical, verticalLabel } from "./vertical-config.mjs";
+import { activeVerticalsLabel, isActiveVertical } from "./vertical-config.mjs";
 import { isPriorOutreachBlocked } from "./prior-outreach.mjs";
 import { loadSendQuota } from "./send-quota.mjs";
 
@@ -96,7 +96,7 @@ if (process.argv.includes("--json")) {
   console.log(JSON.stringify(result, null, 2));
 } else {
   console.log(
-    `queued=${result.queued} built=${result.built} approved_waiting=${result.approved_waiting} sendable=${result.sendable} vertical=${ACTIVE_VERTICAL}(${verticalLabel(ACTIVE_VERTICAL)}) daily_buyout=${result.daily_buyout} buyout_sent=${result.sent_today} buyout_remaining=${result.remaining_today} inside_remaining=${result.inside_remaining}`
+    `queued=${result.queued} built=${result.built} approved_waiting=${result.approved_waiting} sendable=${result.sendable} vertical=${activeVerticalsLabel()} daily_buyout=${result.daily_buyout} buyout_sent=${result.sent_today} buyout_remaining=${result.remaining_today} inside_remaining=${result.inside_remaining}`
   );
   if (result.next_sends?.length) {
     for (const n of result.next_sends) {

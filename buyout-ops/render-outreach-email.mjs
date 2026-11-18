@@ -15,6 +15,7 @@ import { parseCsv } from "./csv-util.mjs";
 import { CALCITE_SITE, canonicalDemoUrl, parseDemoSkinPath } from "./canonical-url.mjs";
 import { outreachBodyToHtml } from "./outreach-email-html.mjs";
 import { extractRoughLine } from "./site-g1-eval.mjs";
+import { SHIGYO_RE, rowVertical } from "./vertical-config.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -125,6 +126,36 @@ function buildReflectedFieldsLine(demoUrlA) {
   return `会社案内に載っていた${parts.join("・")}などは、デモに反映しています。`;
 }
 
+/**
+ * 士業（vertical=shigyo）向けの差分。工務店向けの語彙（施工・許可・お客様）が
+ * 誤爆しないよう、課題文の言い回しと「反映項目」行を士業用にする（2026-11-18）。
+ */
+function shigyoIssueWording(text) {
+  return text
+    .replaceAll("初めて訪れたお客様", "初めて訪れた方")
+    .replaceAll("お客様からすると", "ご相談を検討する方からすると")
+    .replaceAll("施工の実力", "ご経験や実力");
+}
+
+function buildReflectedFieldsLineShigyo(demoUrlA) {
+  const html = demoAboutHtml(demoUrlA);
+  const hasRep = html == null || /代表/.test(html);
+  const hasReg = html == null || /登録/.test(html);
+  const parts = [];
+  if (hasRep) parts.push("代表名");
+  if (hasReg) parts.push("登録番号");
+  parts.push("業務内容");
+  return `事務所案内に載っていた${parts.join("・")}などは、デモに反映しています。`;
+}
+
+/** 事務所名から資格名を拾って「地域の○○事務所」にする。判定できなければ汎用 */
+function shigyoDefaultRegion(companyName) {
+  const m = String(companyName).match(SHIGYO_RE);
+  if (!m) return "地域の士業の事務所";
+  const prof = m[0] === "社労士" ? "社会保険労務士" : m[0];
+  return `地域の${prof}事務所`;
+}
+
 const company = arg("company");
 if (!company) {
   console.error("Required: --company");
@@ -142,13 +173,24 @@ const urlA = canonicalDemoUrl(row.demo_url_a, "demo_url_a");
 const urlB = String(row.demo_url_b || "").trim()
   ? canonicalDemoUrl(row.demo_url_b, "demo_url_b")
   : "";
-const tpl = fs.readFileSync(path.join(__dirname, "templates", "email_demo_buyout_1_initial.txt"), "utf8");
-const issues = parseRoughItems(row.audit_notes).slice(0, 3).map(issueLine);
+const isShigyo = rowVertical(row) === "shigyo";
+const tpl = fs.readFileSync(
+  path.join(
+    __dirname,
+    "templates",
+    isShigyo ? "email_demo_buyout_1_initial_shigyo.txt" : "email_demo_buyout_1_initial.txt"
+  ),
+  "utf8"
+);
+const issues = parseRoughItems(row.audit_notes)
+  .slice(0, 3)
+  .map(issueLine)
+  .map((t) => (isShigyo ? shigyoIssueWording(t) : t));
 
 const region =
   arg("region") ||
   noteField(row.notes, "地域") ||
-  "地域の工務店";
+  (isShigyo ? shigyoDefaultRegion(company) : "地域の工務店");
 // 際立つ事実が無ければ書かない（2026-09-08 オーナー方針）。
 // notes の 強み：… が無ければ行ごと省略する。汎用文で埋めない。
 const strengthRaw = arg("strength") || noteField(row.notes, "強み");
@@ -175,10 +217,19 @@ out = out
   .replace(/\n{3,}/g, "\n\n")
   .replace(/\n[①②③]\s*\n/g, "\n");
 
-out = out.replace(
-  "会社案内に載っていた代表名・許可・事業内容などは、デモに反映しています。",
-  buildReflectedFieldsLine(row.demo_url_a)
-);
+out = isShigyo
+  ? out.replace("{反映項目行}", buildReflectedFieldsLineShigyo(row.demo_url_a))
+  : out.replace(
+      "会社案内に載っていた代表名・許可・事業内容などは、デモに反映しています。",
+      buildReflectedFieldsLine(row.demo_url_a)
+    );
+
+// 未置換のプレースホルダが本文に残ったら送らない
+const leftover = out.match(/\{[^{}\n]{1,20}\}/);
+if (leftover) {
+  console.error(`FAIL rendered body has unreplaced placeholder: ${leftover[0]}`);
+  process.exit(1);
+}
 
 if (/google\.com\/url/i.test(out)) {
   console.error("FAIL rendered body contains google.com/url");

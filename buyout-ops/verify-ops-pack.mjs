@@ -7,7 +7,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { isAlreadyOutreached } from "./outreach-guard.mjs";
-import { ACTIVE_VERTICAL, isActiveVertical, verticalLabel } from "./vertical-config.mjs";
+import { activeVerticalsLabel, isActiveVertical } from "./vertical-config.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const repoRoot = path.resolve(__dirname, "..");
@@ -56,6 +56,7 @@ function walkProspects(fn) {
 }
 
 checkTemplate("email_demo_buyout_1_initial.txt", "初回メール");
+checkTemplate("email_demo_buyout_1_initial_shigyo.txt", "初回メール（士業）");
 checkTemplate("email_demo_buyout_2_checkout.txt", "決済メール");
 checkTemplate("email_demo_buyout_5_followup.txt", "フォロー");
 
@@ -180,7 +181,7 @@ if (fs.existsSync(csvPath)) {
       }
       if ((status === "queued" || status === "built") && !isActiveVertical(row)) {
         fails.push(
-          `O11 queued/built の ${row.company} が vertical 外（現行=${ACTIVE_VERTICAL}のみ送信可）`
+          `O11 queued/built の ${row.company} が vertical 外（現行=${activeVerticalsLabel()}のみ送信可）`
         );
       }
       const skin = row.skin_pair || "";

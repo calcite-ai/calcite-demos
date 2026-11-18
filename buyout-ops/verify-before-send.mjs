@@ -18,7 +18,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { spawnSync } from "node:child_process";
-import { ACTIVE_VERTICAL, isActiveVertical, rowVertical, verticalLabel } from "./vertical-config.mjs";
+import { activeVerticalsLabel, isActiveVertical, rowVertical, verticalLabel } from "./vertical-config.mjs";
 import { matchPriorOutreach } from "./prior-outreach.mjs";
 import { isValidPublicEmail } from "./campaign-score.mjs";
 import { verifyRecipient, probeSkipReason } from "./verify-recipient.mjs";
@@ -169,7 +169,7 @@ async function verifyProspect({ name, email, urlA, urlB, slug, quotedPrice, stat
 
   if ((status === "queued" || status === "built") && !isActiveVertical(row)) {
     fails.push(
-      `V11 送信対象が現行vertical=${ACTIVE_VERTICAL}(${verticalLabel(ACTIVE_VERTICAL)})外: ${verticalLabel(rowVertical(row))}`
+      `V11 送信対象が現行vertical=${activeVerticalsLabel()}外: ${verticalLabel(rowVertical(row))}`
     );
   }
 
@@ -287,8 +287,9 @@ async function verifyProspect({ name, email, urlA, urlB, slug, quotedPrice, stat
   }
 
   // V8: local initial template (verify-ops-pack also checks all templates)
-  const initialTpl = path.join(__dirname, "templates", "email_demo_buyout_1_initial.txt");
-  if (fs.existsSync(initialTpl)) {
+  for (const tplName of ["email_demo_buyout_1_initial.txt", "email_demo_buyout_1_initial_shigyo.txt"]) {
+    const initialTpl = path.join(__dirname, "templates", tplName);
+    if (!fs.existsSync(initialTpl)) continue;
     const tpl = fs.readFileSync(initialTpl, "utf8");
     const body = tpl.split("\n\n").slice(1).join("\n\n");
     if (/55,000|50,000|55000|50000/.test(body)) {

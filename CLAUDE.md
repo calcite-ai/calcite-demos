@@ -125,7 +125,9 @@
 
 - **デモは E案1本**（`--skins e-taisei`）。`demo_url_b` は空。
   F案・旧 A〜D は明示指定時のみ
-- 送信対象は **工務店（`vertical=koumuten`）のみ**。税理士・葬儀は queued にしない
+- 送信対象は **工務店（`vertical=koumuten`）と士業（`vertical=shigyo`、2026-11-18 追加）**。葬儀・その他は queued にしない。
+  士業は雛形 `g-shigyo`（`swap-shigyo.mjs`）・専用メール `email_demo_buyout_1_initial_shigyo.txt` を使う。
+  手順の差分は `buyout-ops/prompts/demo-build-shigyo.md`
 - 価格は **66,000円**。それ以外で送らない。
   `quoted_price=55000` の3社へ決済メールを送らない
 - 当日の通数は `buyout-ops/send-quota.csv` に従う

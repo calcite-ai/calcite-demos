@@ -17,6 +17,12 @@
 
 運用詳細: `../../sales/knowledge/demo_buyout_design_inventory.md`
 
+## 士業向け（2026-11-18〜）
+
+**`designs/g-shigyo/`** — 行政書士・司法書士・社労士・税理士・土地家屋調査士向け。写真なし。
+生成は `node designs/swap-shigyo.mjs`（`--sample` で架空データの見た目確認）。
+手順の差分は `../buyout-ops/prompts/demo-build-shigyo.md`。
+
 ## 旧ルート雛形
 
 リポジトリ直下の `index.html` 等は初期クリーム案。送付は **`designs/` 側**を使う。
