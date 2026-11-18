@@ -1,7 +1,17 @@
-# 現況メモ（最終更新 2026-11-16）
+# 現況メモ（最終更新 2026-11-18）
 
 新しいセッションはここを最初に読む。詳しい経緯は `git log` のコミットメッセージにある。
 **このファイルは追記ではなく上書きで最新に保つ。**
+
+## 2026-11-18: 士業（vertical=shigyo）の雛形を作った — まだ誰にも送っていない
+
+工務店が59社送信で返信0のため、士業へ展開する準備。候補56件は `buyout-ops/candidates/shigyo_merged_20261117.csv`（**leads.csv にはまだ入れていない**）。
+- 雛形: `buyout-template/designs/g-shigyo/`（写真なし）。生成 `designs/swap-shigyo.mjs`、コマンド組み立て `buyout-ops/shigyo-swap-cmd.mjs --rank N`。見た目確認は `swap-shigyo.mjs --sample --out <dir>`
+- メール: `templates/email_demo_buyout_1_initial_shigyo.txt`（`vertical=shigyo` の行にレンダラが自動適用。価格・構成は工務店版と同じ、業種語のみ差し替え）
+- ゲート: `vertical-config.mjs` が `koumuten+shigyo` を送信対象に。`verify-demo-content` に士業サンプル値/未置換トークン検出を追加。C5（社名一致）は works/ の畳み済みデモで**従来ずっと素通りしていた**のを修正（既存79件は全てPASS）
+- 手順の差分: `buyout-ops/prompts/demo-build-shigyo.md`
+- 工務店のメール出力が変わっていないことを25件で差分確認済み。実在候補1件（本多行政書士）で見た目をローカル確認（未公開）
+- **次**: 上位候補を数件、builder→独立reviewer で制作 → queued。risk_notes に「休眠の可能性」「同定注意」がある候補は先方確認が先。SendGrid無料期間切れ（Issue #8）は未解決のまま
 
 ## 2026-11-16: 送信が10/18から止まっていた原因と再開
 
